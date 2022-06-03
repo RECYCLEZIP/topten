@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import { Quiz } from "./quiz/quiz.model";
+import { Trash } from "./trash/trash.model";
 
 const DB_URL =
     process.env.MONGODB_URL ||
@@ -11,3 +13,5 @@ db.on("connected", () => console.log("정상적으로 MongoDB 서버에 연결�
 db.on("error", (error) =>
     console.error("MongoDB 연결에 실패하였습니다...\n" + DB_URL + "\n" + error),
 );
+
+export { Quiz, Trash };
