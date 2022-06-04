@@ -62,7 +62,6 @@ export const LandingBubble = styled.div`
 
   color: white;
   font-size: 1rem;
-  font-weight: bold;
 `;
 
 export const LandingBubble1 = styled(LandingBubble)`
@@ -143,7 +142,6 @@ export const LandingSection3StepTitle = styled.div`
   margin-bottom: 1%;
 
   font-size: 1rem;
-  font-weight: bold;
 `;
 
 export const LandingSection3StepSubTitle = styled.div`
