@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const MainContainer = styled.div`
-  height: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -12,38 +11,30 @@ export const AiContainer = styled.div`
   text-align: center;
   @media (min-width: 768px) {
     display: flex;
-    justify-content: space-around;
-    padding: 5% 0;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
 export const AiDescription = styled.div`
-  margin: auto 0;
-  align-items: center;
   @media (min-width: 768px) {
-    size: 1.5rem;
+    margin-left: 1.5rem;
   }
-`;
-
-export const NewsSection = styled.div`
-  margin: 0 5%;
 `;
 
 export const AiImg = styled.img`
-  width: 50%;
-  @media (min-width: 768px) {
-    size: 1.5rem;
-  }
+  width: 40%;
 `;
 
 export const MainText = styled.p`
   color: white;
-  font-weight: bold;
+
+  font-size: 0.8rem;
   @media (min-width: 768px) {
-    font-size: 1.5rem;
+    margin-top: 0;
   }
 `;
 
 export const TitleText = styled.p`
-  font-weight: bold;
+  font-size: 1rem;
 `;
