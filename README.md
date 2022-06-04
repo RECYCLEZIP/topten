@@ -16,23 +16,25 @@ yarn test // start test with jest
 
 ```
 Root
-├── script
 ├── src
 │   ├── apis
 │   │   ├── quiz
-│   │   │   ├── controller
-│   │   │   ├── quiz.repository.ts
-│   │   │   └── quiz.service.ts
+│   │   │   └── controller
 │   │   ├── trash
-│   │   │   ├── controller
-│   │   │   ├── trash.repository.ts
-│   │   │   └── trash.service.ts
+│   │   │   └── controller
 │   │   └── index.controller.ts
+│   ├── service
+│   │   ├── quiz.service.ts
+│   │   └── trash.service.ts
+│   ├── repository
+│   │   ├── quiz.repository.ts
+│   │   └── trash.repository.ts
 │   ├── db
 │   ├── middlewares
-│   ├── __tests__
 │   ├── app.ts
 │   └── server.ts
+├── __tests__
+├── script
 ├── ecosystem.config.js
 ├── .env
 ├── .eslintrc.js
