@@ -1,5 +1,12 @@
 module.exports = {
     preset: "ts-jest",
-    testEnvironment: "node", //테스트 환경
-    testMatch: ["**/__tests__/*.test.(ts|tsx)"],
+    testEnvironment: "node",
+    collectCoverage: false,
+    coverageDirectory: "coverage",
+    clearMocks: true,
+    transform: {
+        "^.+\\.ts?$": "ts-jest",
+    },
+    transformIgnorePatterns: ["<rootDir>/node_modules/"],
+    moduleFileExtensions: [...defaults.moduleFileExtensions, "ts", "tsx"],
 };
