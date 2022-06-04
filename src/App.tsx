@@ -7,11 +7,12 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
+import Main from "./pages/main/Main";
 
 function App() {
   return (
     <RecoilRoot>
-      <div></div>
+      <Main></Main>
     </RecoilRoot>
   );
 }
