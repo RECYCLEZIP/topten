@@ -43,7 +43,10 @@ function Landing() {
     <>
       <Section1>
         <LandingBubble1>치킨 뼈는 음식 쓰레기인가요?</LandingBubble1>
-        <LandingBubble2>페트병 뚜껑은 따로 버려야 하나요?</LandingBubble2>
+        <LandingBubble2>
+          <span>페트병 뚜껑은</span>
+          <span>따로 버려야 하나요?</span>
+        </LandingBubble2>
         <LandingBubble3>바나나 껍질은 어떻게 버려요?</LandingBubble3>
       </Section1>
       <Section2>
