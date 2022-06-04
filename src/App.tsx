@@ -8,10 +8,12 @@ import {
   useRecoilValue,
 } from "recoil";
 
+import Landing from './pages/landing/Landing'
+
 function App() {
   return (
     <RecoilRoot>
-      <div></div>
+      <Landing />
     </RecoilRoot>
   );
 }
