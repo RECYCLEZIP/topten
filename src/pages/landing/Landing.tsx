@@ -1,6 +1,6 @@
 import React from "react";
 
-import { RadiusButton } from "../../styles/Styles";
+import { Button } from "../../styles/Styles";
 
 import { img } from "../../assets/imgImport";
 import bins from "../../assets/bins.png";
@@ -138,7 +138,7 @@ function Landing() {
           <LandingTitleWhite>녹색 환경을 위한 작은 첫걸음,</LandingTitleWhite>
           <LandingTitleWhite>함께 하세요!</LandingTitleWhite>
         </LandingSection6TitleContainer>
-        <RadiusButton>시작하기</RadiusButton>
+        <Button>시작하기</Button>
       </Section6>
     </>
   );
