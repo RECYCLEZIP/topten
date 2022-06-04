@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
 // 공통
+export const LandingSection = styled.div`
+  margin: 20% 5%;
+
+  display: flow-root;
+`;
+
 export const LandingTitle = styled.span`
   font-size: 1.5rem;
 `;
@@ -40,19 +46,19 @@ export const LandingImg = styled.img`
 `;
 
 // 섹션 1 - 말풍선
-export const Section1 = styled.div`
+export const Section1 = styled(LandingSection)`
   background: yellow;
 
-  display: inline-block;
+  margin-top: 10%;
 `;
 
 // 말풍선 공통
 export const LandingBubble = styled.div`
   height: auto;
-  padding: 10px 25px;
+  padding: 1rem 2rem;
   margin: 10px 0;
 
-  border-radius: 30px;
+  border-radius: 2rem;
 
   color: white;
   font-size: 1rem;
@@ -72,7 +78,10 @@ export const LandingBubble2 = styled(LandingBubble)`
   background: #5bc691;
 
   width: 60%;
+  display: grid;
+
   float: right;
+  text-align: right;
 `;
 
 export const LandingBubble3 = styled(LandingBubble)`
@@ -83,10 +92,8 @@ export const LandingBubble3 = styled(LandingBubble)`
 `;
 
 // 섹션 2 - 올바른 분리수거, 확실히 하고 계신가요?
-export const Section2 = styled.div`
+export const Section2 = styled(LandingSection)`
   background: pink;
-
-  height: auto;
 `;
 
 export const LandingSection2Img = styled(LandingImg)`
@@ -99,8 +106,8 @@ export const LandingSection2TitleContainer = styled.div`
   margin-bottom: 3%;
 `;
 
-// 섹션 3 - AI가 알려주는 분리수고 3 STEP
-export const Section3 = styled.div`
+// 섹션 3 - AI가 알려주는 분리수거 3 STEP
+export const Section3 = styled(LandingSection)`
   background: skyblue;
 
   text-align: center;
@@ -109,7 +116,8 @@ export const Section3 = styled.div`
 export const LandingSection3StepContainer = styled.div`
   width: 100%;
 
-  padding: 20px 0;
+  margin-top: 5%;
+  padding: 5% 0;
 
   display: grid;
   justify-items: center;
@@ -144,8 +152,11 @@ export const LandingSection3StepSubTitle = styled.div`
 `;
 
 // 섹션 4 - 서울시 공공 쓰레기통 지도
-export const Section4 = styled.div`
+export const Section4 = styled(LandingSection)`
   background: #69db7c;
+
+  margin: 10% 0;
+  padding: 5% 5%;
 `;
 
 export const LandingSection4TitleContainer = styled.div`
@@ -153,7 +164,7 @@ export const LandingSection4TitleContainer = styled.div`
 
   width: fit-content;
 
-  margin-bottom: 0.5rem;
+  margin-bottom: 5%;
 `;
 
 export const Section4Label = styled(LandingLabel)`
@@ -173,7 +184,7 @@ export const LandingSubTitleContainer = styled.div`
 `;
 
 // 섹션 5 - 분리수거 퀴즈
-export const Section5 = styled.div`
+export const Section5 = styled(LandingSection)`
   background: lightsalmon;
 `;
 
@@ -186,6 +197,7 @@ export const LandingSection5TitleContainer = styled.div`
 export const LandingSection5SubTitleContainer = styled(
   LandingSubTitleContainer,
 )`
+  margin-top: 0.5rem;
   margin-bottom: 1rem;
   background: white;
 
@@ -208,11 +220,12 @@ export const LandingQuiz1 = styled(LandingQuiz)`
 export const LandingQuiz2 = styled(LandingQuiz)`
   background: #69db7c;
 
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 `;
 
 // 섹션 6 - 최하단, 시작하기
-export const Section6 = styled.div`
+export const Section6 = styled(LandingSection)`
+  margin: 10% 0;
   padding: 2rem 0;
   background: #69db7c;
 
