@@ -10,4 +10,6 @@ export const Button = styled.button`
   color: white;
   font-size: 0.7rem;
   font-weight: bold;
+
+  cursor: pointer;
 `;
