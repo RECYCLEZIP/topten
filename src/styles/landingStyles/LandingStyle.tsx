@@ -91,10 +91,6 @@ export const LandingBubble3 = styled(LandingBubble)`
 `;
 
 // 섹션 2 - 올바른 분리수거, 확실히 하고 계신가요?
-export const Section2 = styled(LandingSection)`
-  /* background: pink; */
-`;
-
 export const LandingSection2ImgWrapper = styled.div`
   /* background: red;
 
@@ -215,7 +211,7 @@ export const Section4 = styled(LandingSection)`
 export const PrologueSection4TextContainer = styled.div`
   /* background: brown; */
 
-  align-self: center; 
+  align-self: center;
   margin-bottom: 1rem;
 `;
 
@@ -275,10 +271,6 @@ export const PrologueSection4Img = styled.img`
 `;
 
 // 섹션 5 - 분리수거 퀴즈
-export const Section5 = styled(LandingSection)`
-  /* background: lightsalmon; */
-`;
-
 export const LandingSection5TitleContainer = styled.div`
   /* background: orange; */
 

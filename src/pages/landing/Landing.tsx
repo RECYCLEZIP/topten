@@ -5,11 +5,11 @@ import { Button } from "../../styles/ButtonStyles";
 import { img } from "../../assets/imgImport";
 
 import {
+  LandingSection,
   LandingTitle,
   LandingSubTitleWhite,
   LandingTitleWhite,
   Section1,
-  Section2,
   LandingBubble1,
   LandingBubble2,
   LandingBubble3,
@@ -32,7 +32,6 @@ import {
   PrologueSection4ImgContainer,
   PrologueSection4ImgWrapper,
   PrologueSection4Img,
-  Section5,
   LandingSection5TitleContainer,
   LandingSection5SubTitleContainer,
   LandingSubTitleGray,
@@ -53,7 +52,7 @@ function Landing() {
         </LandingBubble2>
         <LandingBubble3>바나나 껍질은 어떻게 버려요?</LandingBubble3>
       </Section1>
-      <Section2>
+      <LandingSection>
         <LandingSection2TitleContainer>
           <div>
             <LandingTitleLightGreen>올바른 </LandingTitleLightGreen>
@@ -67,7 +66,7 @@ function Landing() {
         <LandingSection2ImgWrapper>
           <LandingSection2Img src={img.bin} alt="bins" />
         </LandingSection2ImgWrapper>
-      </Section2>
+      </LandingSection>
       <Section3>
         <div>
           <LandingTitle>AI가 알려주는</LandingTitle>
@@ -126,7 +125,7 @@ function Landing() {
           </PrologueSection4ImgWrapper>
         </PrologueSection4ImgContainer>
       </Section4>
-      <Section5>
+      <LandingSection>
         <LandingSection5TitleContainer>
           <LandingTitle>분리수거 퀴즈</LandingTitle>
         </LandingSection5TitleContainer>
@@ -145,7 +144,7 @@ function Landing() {
         <LandingSubTitleGray>
           객관식부터 OX까지 다양한 질문 수록
         </LandingSubTitleGray>
-      </Section5>
+      </LandingSection>
       <Section6>
         <LandingSection6TitleContainer>
           <LandingTitleWhite>녹색 환경을 위한 작은 첫걸음,</LandingTitleWhite>
