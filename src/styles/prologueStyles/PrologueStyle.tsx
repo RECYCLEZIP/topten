@@ -46,7 +46,7 @@ export const PrologueImg = styled.img`
 `;
 
 // 섹션 1 - 말풍선
-export const Section1 = styled(PrologueSection)`
+export const PrologueBubbleSection = styled(PrologueSection)`
   /* background: yellow; */
 
   margin-top: 10%;
@@ -91,7 +91,7 @@ export const PrologueBubble3 = styled(PrologueBubble)`
 `;
 
 // 섹션 2 - 올바른 분리수거, 확실히 하고 계신가요?
-export const PrologueSection2ImgWrapper = styled.div`
+export const PrologueAskImgWrapper = styled.div`
   /* background: red;
 
   width: 100%;
@@ -118,7 +118,7 @@ export const PrologueSection2ImgWrapper = styled.div`
   overflow: hidden;*/
 `;
 
-export const PrologueSection2Img = styled(PrologueImg)`
+export const PrologueAskImg = styled(PrologueImg)`
   /* max-width: 100%;
   height: auto;
 
@@ -144,20 +144,20 @@ export const PrologueSection2Img = styled(PrologueImg)`
   transform: translate(-10%, -15%); */
 `;
 
-export const PrologueSection2TitleContainer = styled.div`
+export const PrologueAskTitleContainer = styled.div`
   height: auto;
 
   margin-bottom: 3%;
 `;
 
 // 섹션 3 - AI가 알려주는 분리수거 3 STEP
-export const Section3 = styled(PrologueSection)`
+export const PrologueStepSection = styled(PrologueSection)`
   /* background: skyblue; */
 
   text-align: center;
 `;
 
-export const PrologueSection3StepContainer = styled.div`
+export const PrologueStepsContainer = styled.div`
   width: 100%;
 
   margin-top: 5%;
@@ -170,7 +170,7 @@ export const PrologueSection3StepContainer = styled.div`
   background: #f0f4f9;
 `;
 
-export const PrologueSectionStepContainer = styled.div`
+export const PrologueStepContainer = styled.div`
   display: inline-block;
 
   /* background: lightsalmon; */
@@ -178,24 +178,24 @@ export const PrologueSectionStepContainer = styled.div`
   margin: 20px 0;
 `;
 
-export const PrologueSection3StepLabel = styled(PrologueLabel)`
+export const PrologueStepLabel = styled(PrologueLabel)`
   background: #51cf66;
   color: white;
 `;
 
-export const PrologueSection3StepTitle = styled.div`
+export const PrologueStepTitle = styled.div`
   margin-bottom: 1%;
 
   font-size: 1rem;
 `;
 
-export const PrologueSection3StepSubTitle = styled.div`
+export const PrologueStepSubTitle = styled.div`
   font-size: 0.8rem;
   font-weight: 500;
 `;
 
 // 섹션 4 - 서울시 공공 쓰레기통 지도
-export const Section4 = styled(PrologueSection)`
+export const PrologueBinMapSection = styled(PrologueSection)`
   background: #69db7c;
 
   margin: 10% 0;
@@ -208,14 +208,14 @@ export const Section4 = styled(PrologueSection)`
   }
 `;
 
-export const PrologueSection4TextContainer = styled.div`
+export const PrologueBinMapTextContainer = styled.div`
   /* background: brown; */
 
   align-self: center;
   margin-bottom: 1rem;
 `;
 
-export const PrologueSection4TitleContainer = styled.div`
+export const PrologueBinMapTitleContainer = styled.div`
   /* background: red; */
 
   width: fit-content;
@@ -223,7 +223,7 @@ export const PrologueSection4TitleContainer = styled.div`
   margin-bottom: 1rem;
 `;
 
-export const Section4Label = styled(PrologueLabel)`
+export const BinMapLabel = styled(PrologueLabel)`
   float: right;
   margin-top: 2%;
 
@@ -237,7 +237,7 @@ export const PrologueSubTitleContainer = styled.div`
   display: grid;
 `;
 
-export const PrologueSection4ImgContainer = styled.div`
+export const PrologueBinMapImgContainer = styled.div`
   /* background: blue; */
 
   height: 15rem;
@@ -254,7 +254,7 @@ export const PrologueSection4ImgContainer = styled.div`
   }
 `;
 
-export const PrologueSection4ImgWrapper = styled.div`
+export const PrologueBinMapImgWrapper = styled.div`
   background: red;
 
   width: 15rem;
@@ -265,19 +265,19 @@ export const PrologueSection4ImgWrapper = styled.div`
   overflow: hidden;
 `;
 
-export const PrologueSection4Img = styled.img`
+export const PrologueBinMapImg = styled.img`
   width: auto;
   height: 100%;
 `;
 
 // 섹션 5 - 분리수거 퀴즈
-export const PrologueSection5TitleContainer = styled.div`
+export const PrologueQuizTitleContainer = styled.div`
   /* background: orange; */
 
   text-align: right;
 `;
 
-export const PrologueSection5SubTitleContainer = styled(
+export const PrologueQuizSubTitleContainer = styled(
   PrologueSubTitleContainer,
 )`
   margin-top: 0.5rem;
@@ -307,7 +307,7 @@ export const PrologueQuiz2 = styled(PrologueQuiz)`
 `;
 
 // 섹션 6 - 최하단, 시작하기
-export const Section6 = styled(PrologueSection)`
+export const PrologueEndSection = styled(PrologueSection)`
   margin: 10% 0;
   padding: 2rem 0;
   background: #69db7c;
@@ -315,7 +315,7 @@ export const Section6 = styled(PrologueSection)`
   text-align: center;
 `;
 
-export const PrologueSection6TitleContainer = styled.div`
+export const PrologueEndTitleContainer = styled.div`
   display: grid;
   margin-bottom: 2rem;
 
