@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 export const CategoryContainer = styled.div`
   margin: 3% 5%;
+  height: 100%;
 `;
 
 export const CategoryTitle = styled.span`
   font-size: 1rem;
-  margin: 5% 0;
 `;
 
 export const CategorySubTitle = styled.span`
@@ -22,14 +22,16 @@ export const CategoryText = styled.p`
 
 export const List = styled.div`
   margin-top: 2%;
-  height: 4rem;
   display: grid;
   justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
   grid-template-columns: repeat(3, 5rem);
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(6, 5rem);
+  @media (min-width: 896px) {
+    grid-template-columns: repeat(5, 5rem);
+  }
+  @media (min-width: 1300px) {
+    grid-template-columns: repeat(7, 5rem);
   }
 `;
 

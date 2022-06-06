@@ -13,7 +13,3 @@ export const CardText = styled.p`
     margin-top: 0;
   }
 `;
-
-export const TitleText = styled.p`
-  font-size: 1rem;
-`;
