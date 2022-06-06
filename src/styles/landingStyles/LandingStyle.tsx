@@ -95,8 +95,57 @@ export const Section2 = styled(LandingSection)`
   background: pink;
 `;
 
-export const LandingSection2Img = styled(LandingImg)`
+export const LandingSection2ImgWrapper = styled.div`
+  /* background: red;
+
   width: 100%;
+
+  overflow: hidden;
+
+  @media screen and (min-width: 768px) {
+    max-width: 80%;
+  } */
+
+  background: red;
+  position: relative;
+  width: 15rem;
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    max-width: 60%;
+  }
+  /* height: 15rem; */
+
+  /* background: red;
+  max-width: 100%;
+  height: 10rem;
+  overflow: hidden;*/
+`;
+
+export const LandingSection2Img = styled(LandingImg)`
+  /* max-width: 100%;
+  height: auto;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-10%, -15%); */
+
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  transform: 50, 50;
+  width: 100%;
+  height: 100%;
+  height: auto;
+  object-fit: cover;
+  margin: auto;
+
+  /* position: absolute; */
+  /* max-width: 120%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-10%, -15%); */
 `;
 
 export const LandingSection2TitleContainer = styled.div`
@@ -155,6 +204,12 @@ export const Section4 = styled(LandingSection)`
 
   margin: 10% 0;
   padding: 5% 5%;
+
+  display: block;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
 `;
 
 export const LandingSection4TitleContainer = styled.div`
@@ -179,6 +234,39 @@ export const LandingSubTitleContainer = styled.div`
   display: grid;
 
   margin-bottom: 0.5rem;
+`;
+
+export const PrologueSection4ImgContainer = styled.div`
+  background: blue;
+
+  height: 15rem;
+
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+
+  overflow: hidden;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 3rem;
+    justify-content: right;
+  }
+`;
+
+export const PrologueSection4ImgWrapper = styled.div`
+  background: red;
+
+  width: 15rem;
+  height: 100%;
+
+  border-radius: 2rem;
+
+  overflow: hidden;
+`;
+
+export const PrologueSection4Img = styled.img`
+  width: auto;
+  height: 100%;
 `;
 
 // 섹션 5 - 분리수거 퀴즈
