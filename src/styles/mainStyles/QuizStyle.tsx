@@ -39,10 +39,3 @@ export const QuizButton = styled.p`
   text-align: center;
   font-size: 1rem;
 `;
-
-export const SeoulImg = styled.div`
-  width: 100%;
-  height: auto;
-  opacity: 0.5;
-  background-image: url("./seoul.jpg");
-`;

@@ -1,9 +1,5 @@
 import { TitleText } from "../../styles/TitleStyle";
-import {
-  QuizButton,
-  RateText,
-  SeoulImg,
-} from "../../styles/mainStyles/QuizStyle";
+import { QuizButton, RateText } from "../../styles/mainStyles/QuizStyle";
 import QuizCard from "./QuizCard";
 
 function QuizSection() {
@@ -15,7 +11,6 @@ function QuizSection() {
       <QuizCard />
       <QuizCard />
       <QuizButton>전체 퀴즈 풀러가기</QuizButton>
-      <SeoulImg />
     </div>
   );
 }
