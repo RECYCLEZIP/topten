@@ -1,4 +1,4 @@
-import { CardText } from "../../styles/TitleStyle";
+import { CardText } from "../../styles/TextStyle";
 import {
   QuizBox,
   QuizImg,

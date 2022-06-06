@@ -1,4 +1,4 @@
-import { TitleText } from "../../styles/TitleStyle";
+import { TitleText } from "../../styles/TextStyle";
 import { QuizButton, RateText } from "../../styles/mainStyles/QuizStyle";
 import QuizCard from "./QuizCard";
 
