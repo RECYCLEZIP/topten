@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
-import Landing from "../pages/landing/Landing";
+import Landing from "../pages/prologue/Prologue";
 
 function AppRouter() {
   return (

@@ -1,36 +1,36 @@
 import styled from "styled-components";
 
 // 공통
-export const LandingSection = styled.div`
+export const PrologueSection = styled.div`
   margin: 20% 8%;
 
   display: flow-root;
 `;
 
-export const LandingTitle = styled.span`
+export const PrologueTitle = styled.span`
   font-size: 1.5rem;
 `;
 
-export const LandingTitleWhite = styled(LandingTitle)`
+export const PrologueTitleWhite = styled(PrologueTitle)`
   color: white;
 `;
 
-export const LandingTitleLightGreen = styled(LandingTitle)`
+export const PrologueTitleLightGreen = styled(PrologueTitle)`
   color: #97ccaf;
 `;
-export const LandingTitleGreen = styled(LandingTitle)`
+export const PrologueTitleGreen = styled(PrologueTitle)`
   color: #21a663;
 `;
 
-export const LandingSubTitle = styled.span`
+export const PrologueSubTitle = styled.span`
   font-size: 0.8rem;
 `;
 
-export const LandingSubTitleWhite = styled(LandingSubTitle)`
+export const PrologueSubTitleWhite = styled(PrologueSubTitle)`
   color: white;
 `;
 
-export const LandingLabel = styled.div`
+export const PrologueLabel = styled.div`
   display: inline-block;
 
   margin-bottom: 1%;
@@ -41,19 +41,19 @@ export const LandingLabel = styled.div`
   font-weight: 500;
 `;
 
-export const LandingImg = styled.img`
+export const PrologueImg = styled.img`
   border-radius: 10px;
 `;
 
 // 섹션 1 - 말풍선
-export const Section1 = styled(LandingSection)`
+export const Section1 = styled(PrologueSection)`
   /* background: yellow; */
 
   margin-top: 10%;
 `;
 
 // 말풍선 공통
-export const LandingBubble = styled.div`
+export const PrologueBubble = styled.div`
   height: auto;
   padding: 1rem 2rem;
   margin: 10px 0;
@@ -64,7 +64,7 @@ export const LandingBubble = styled.div`
   font-size: 1rem;
 `;
 
-export const LandingBubble1 = styled(LandingBubble)`
+export const PrologueBubble1 = styled(PrologueBubble)`
   background: #c2e9d4;
 
   width: 50%;
@@ -73,7 +73,7 @@ export const LandingBubble1 = styled(LandingBubble)`
   color: black;
 `;
 
-export const LandingBubble2 = styled(LandingBubble)`
+export const PrologueBubble2 = styled(PrologueBubble)`
   background: #5bc691;
 
   width: 60%;
@@ -83,7 +83,7 @@ export const LandingBubble2 = styled(LandingBubble)`
   text-align: right;
 `;
 
-export const LandingBubble3 = styled(LandingBubble)`
+export const PrologueBubble3 = styled(PrologueBubble)`
   background: #21a663;
 
   width: 60%;
@@ -91,7 +91,7 @@ export const LandingBubble3 = styled(LandingBubble)`
 `;
 
 // 섹션 2 - 올바른 분리수거, 확실히 하고 계신가요?
-export const LandingSection2ImgWrapper = styled.div`
+export const PrologueSection2ImgWrapper = styled.div`
   /* background: red;
 
   width: 100%;
@@ -118,7 +118,7 @@ export const LandingSection2ImgWrapper = styled.div`
   overflow: hidden;*/
 `;
 
-export const LandingSection2Img = styled(LandingImg)`
+export const PrologueSection2Img = styled(PrologueImg)`
   /* max-width: 100%;
   height: auto;
 
@@ -144,20 +144,20 @@ export const LandingSection2Img = styled(LandingImg)`
   transform: translate(-10%, -15%); */
 `;
 
-export const LandingSection2TitleContainer = styled.div`
+export const PrologueSection2TitleContainer = styled.div`
   height: auto;
 
   margin-bottom: 3%;
 `;
 
 // 섹션 3 - AI가 알려주는 분리수거 3 STEP
-export const Section3 = styled(LandingSection)`
+export const Section3 = styled(PrologueSection)`
   /* background: skyblue; */
 
   text-align: center;
 `;
 
-export const LandingSection3StepContainer = styled.div`
+export const PrologueSection3StepContainer = styled.div`
   width: 100%;
 
   margin-top: 5%;
@@ -170,7 +170,7 @@ export const LandingSection3StepContainer = styled.div`
   background: #f0f4f9;
 `;
 
-export const LandingSectionStepContainer = styled.div`
+export const PrologueSectionStepContainer = styled.div`
   display: inline-block;
 
   /* background: lightsalmon; */
@@ -178,24 +178,24 @@ export const LandingSectionStepContainer = styled.div`
   margin: 20px 0;
 `;
 
-export const LandingSection3StepLabel = styled(LandingLabel)`
+export const PrologueSection3StepLabel = styled(PrologueLabel)`
   background: #51cf66;
   color: white;
 `;
 
-export const LandingSection3StepTitle = styled.div`
+export const PrologueSection3StepTitle = styled.div`
   margin-bottom: 1%;
 
   font-size: 1rem;
 `;
 
-export const LandingSection3StepSubTitle = styled.div`
+export const PrologueSection3StepSubTitle = styled.div`
   font-size: 0.8rem;
   font-weight: 500;
 `;
 
 // 섹션 4 - 서울시 공공 쓰레기통 지도
-export const Section4 = styled(LandingSection)`
+export const Section4 = styled(PrologueSection)`
   background: #69db7c;
 
   margin: 10% 0;
@@ -215,7 +215,7 @@ export const PrologueSection4TextContainer = styled.div`
   margin-bottom: 1rem;
 `;
 
-export const LandingSection4TitleContainer = styled.div`
+export const PrologueSection4TitleContainer = styled.div`
   /* background: red; */
 
   width: fit-content;
@@ -223,7 +223,7 @@ export const LandingSection4TitleContainer = styled.div`
   margin-bottom: 1rem;
 `;
 
-export const Section4Label = styled(LandingLabel)`
+export const Section4Label = styled(PrologueLabel)`
   float: right;
   margin-top: 2%;
 
@@ -233,7 +233,7 @@ export const Section4Label = styled(LandingLabel)`
   font-weight: bold;
 `;
 
-export const LandingSubTitleContainer = styled.div`
+export const PrologueSubTitleContainer = styled.div`
   display: grid;
 `;
 
@@ -271,14 +271,14 @@ export const PrologueSection4Img = styled.img`
 `;
 
 // 섹션 5 - 분리수거 퀴즈
-export const LandingSection5TitleContainer = styled.div`
+export const PrologueSection5TitleContainer = styled.div`
   /* background: orange; */
 
   text-align: right;
 `;
 
-export const LandingSection5SubTitleContainer = styled(
-  LandingSubTitleContainer,
+export const PrologueSection5SubTitleContainer = styled(
+  PrologueSubTitleContainer,
 )`
   margin-top: 0.5rem;
   margin-bottom: 1rem;
@@ -287,27 +287,27 @@ export const LandingSection5SubTitleContainer = styled(
   text-align: right;
 `;
 
-export const LandingSubTitleGray = styled(LandingSubTitle)`
+export const PrologueSubTitleGray = styled(PrologueSubTitle)`
   color: #9eacba;
 `;
 
-export const LandingQuiz = styled.div`
+export const PrologueQuiz = styled.div`
   border-radius: 0.5rem;
 
   padding: 0.5rem 1rem;
 `;
 
-export const LandingQuiz1 = styled(LandingQuiz)`
+export const PrologueQuiz1 = styled(PrologueQuiz)`
   background: #22be70;
 `;
-export const LandingQuiz2 = styled(LandingQuiz)`
+export const PrologueQuiz2 = styled(PrologueQuiz)`
   background: #69db7c;
 
   margin-bottom: 0.5rem;
 `;
 
 // 섹션 6 - 최하단, 시작하기
-export const Section6 = styled(LandingSection)`
+export const Section6 = styled(PrologueSection)`
   margin: 10% 0;
   padding: 2rem 0;
   background: #69db7c;
@@ -315,7 +315,7 @@ export const Section6 = styled(LandingSection)`
   text-align: center;
 `;
 
-export const LandingSection6TitleContainer = styled.div`
+export const PrologueSection6TitleContainer = styled.div`
   display: grid;
   margin-bottom: 2rem;
 
