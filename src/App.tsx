@@ -1,21 +1,9 @@
 import React from "react";
 
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
-
-import Landing from './pages/landing/Landing'
+import AppRouter from "./components/AppRouter";
 
 function App() {
-  return (
-    <RecoilRoot>
-      <Landing />
-    </RecoilRoot>
-  );
+  return <AppRouter />;
 }
 
 export default App;
