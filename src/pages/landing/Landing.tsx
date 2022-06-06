@@ -1,9 +1,8 @@
 import React from "react";
 
-import { Button } from "../../styles/Styles";
+import { Button } from "../../styles/ButtonStyles";
 
 import { img } from "../../assets/imgImport";
-import bins from "../../assets/bins.png";
 
 import {
   LandingTitle,
@@ -17,6 +16,7 @@ import {
   LandingSection2TitleContainer,
   LandingTitleLightGreen,
   LandingTitleGreen,
+  LandingSection2ImgWrapper,
   LandingSection2Img,
   Section3,
   LandingSection3StepContainer,
@@ -28,6 +28,9 @@ import {
   LandingSection4TitleContainer,
   LandingSubTitleContainer,
   Section4Label,
+  PrologueSection4ImgContainer,
+  PrologueSection4ImgWrapper,
+  PrologueSection4Img,
   Section5,
   LandingSection5TitleContainer,
   LandingSection5SubTitleContainer,
@@ -60,10 +63,9 @@ function Landing() {
             <LandingTitle>하고 계신가요?</LandingTitle>
           </div>
         </LandingSection2TitleContainer>
-        <div>
-          <LandingSection2Img src={bins} alt="bins" />
-          {/* <img src={img.bin} alt="bins" /> */}
-        </div>
+        <LandingSection2ImgWrapper>
+          <LandingSection2Img src={img.bin} alt="bins" />
+        </LandingSection2ImgWrapper>
       </Section2>
       <Section3>
         <div>
@@ -100,21 +102,28 @@ function Landing() {
         </LandingSection3StepContainer>
       </Section3>
       <Section4>
-        <LandingSection4TitleContainer>
-          <div>
-            <Section4Label>서울시 전지역</Section4Label>
-            <LandingTitleWhite>서울시</LandingTitleWhite>
-          </div>
-          <div>
-            <LandingTitleWhite>공공 쓰레기통 지도</LandingTitleWhite>
-          </div>
-        </LandingSection4TitleContainer>
-        <LandingSubTitleContainer>
-          <LandingSubTitleWhite>25개 구에 설치된</LandingSubTitleWhite>
-          <LandingSubTitleWhite>
-            공공 쓰레기통의 위치를 한 눈에!
-          </LandingSubTitleWhite>
-        </LandingSubTitleContainer>
+        <div>
+          <LandingSection4TitleContainer>
+            <div>
+              <Section4Label>서울시 전지역</Section4Label>
+              <LandingTitleWhite>서울시</LandingTitleWhite>
+            </div>
+            <div>
+              <LandingTitleWhite>공공 쓰레기통 지도</LandingTitleWhite>
+            </div>
+          </LandingSection4TitleContainer>
+          <LandingSubTitleContainer>
+            <LandingSubTitleWhite>25개 구에 설치된</LandingSubTitleWhite>
+            <LandingSubTitleWhite>
+              공공 쓰레기통의 위치를 한 눈에!
+            </LandingSubTitleWhite>
+          </LandingSubTitleContainer>
+        </div>
+        <PrologueSection4ImgContainer>
+          <PrologueSection4ImgWrapper>
+            <PrologueSection4Img src={img.map} alt="map" />
+          </PrologueSection4ImgWrapper>
+        </PrologueSection4ImgContainer>
       </Section4>
       <Section5>
         <LandingSection5TitleContainer>
@@ -141,7 +150,7 @@ function Landing() {
           <LandingTitleWhite>녹색 환경을 위한 작은 첫걸음,</LandingTitleWhite>
           <LandingTitleWhite>함께 하세요!</LandingTitleWhite>
         </LandingSection6TitleContainer>
-        <Button>시작하기</Button>
+        <Button onClick={() => alert("시작하기")}>시작하기</Button>
       </Section6>
     </>
   );
