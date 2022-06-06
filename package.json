@@ -5,7 +5,8 @@
     "license": "MIT",
     "scripts": {
         "start": "ts-node-dev --respawn --transpile-only src/server.ts",
-        "test": "jest --setupFiles dotenv/config --forceExit --detectOpenHandles"
+        "test": "jest --setupFiles dotenv/config --forceExit --detectOpenHandles",
+        "coverage": "jest --coverage"
     },
     "dependencies": {
         "@types/cors": "^2.8.12",
