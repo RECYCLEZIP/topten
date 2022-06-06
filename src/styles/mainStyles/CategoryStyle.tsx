@@ -47,11 +47,11 @@ export const IMGBox = styled.div`
   border: 1px solid #dbdbdb;
   border-radius: 50%;
   overflow: hidden;
+  background-color: white;
 `;
 
 export const IMG = styled.img`
   height: 4rem;
-  background-color: white;
   display: block;
   margin: 0 auto;
 `;

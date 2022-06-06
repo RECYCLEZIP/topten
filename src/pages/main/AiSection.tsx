@@ -1,4 +1,4 @@
-import { CardText } from "../../styles/mainStyles/MainStyle";
+import { CardText } from "../../styles/TitleStyle";
 import {
   AiContainer,
   AiImg,
