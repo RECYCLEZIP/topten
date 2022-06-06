@@ -25,6 +25,7 @@ import {
   LandingSection3StepTitle,
   LandingSection3StepSubTitle,
   Section4,
+  PrologueSection4TextContainer,
   LandingSection4TitleContainer,
   LandingSubTitleContainer,
   Section4Label,
@@ -102,7 +103,7 @@ function Landing() {
         </LandingSection3StepContainer>
       </Section3>
       <Section4>
-        <div>
+        <PrologueSection4TextContainer>
           <LandingSection4TitleContainer>
             <div>
               <Section4Label>서울시 전지역</Section4Label>
@@ -118,7 +119,7 @@ function Landing() {
               공공 쓰레기통의 위치를 한 눈에!
             </LandingSubTitleWhite>
           </LandingSubTitleContainer>
-        </div>
+        </PrologueSection4TextContainer>
         <PrologueSection4ImgContainer>
           <PrologueSection4ImgWrapper>
             <PrologueSection4Img src={img.map} alt="map" />
