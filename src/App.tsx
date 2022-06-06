@@ -1,3 +1,4 @@
+import { Router } from "express";
 import React from "react";
 
 import {
@@ -7,11 +8,13 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
+import AppRouter from "./components/AppRouter";
+import Main from "./pages/main/Main";
 
 function App() {
   return (
     <RecoilRoot>
-      <div></div>
+      <AppRouter />
     </RecoilRoot>
   );
 }
