@@ -25,7 +25,7 @@ export const QuizBox = styled.div`
   background-color: #51cf66;
   border-radius: 1rem;
   text-align: center;
-  width: 90%;
+  width: 80%;
   margin: 0 auto;
   padding: 5% 0;
 `;

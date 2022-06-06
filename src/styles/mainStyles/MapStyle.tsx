@@ -1,13 +1,21 @@
 import styled from "styled-components";
 
 export const SeoulImg = styled.div`
+  width: 100%;
   height: 30vh;
   text-align: center;
   position: relative;
+  @media (min-width: 560px) {
+    height: 50vh;
+  }
+  @media (min-width: 940px) {
+    height: 90vh;
+  }
   ::before {
     content: "";
     background: url("./seoul.jpg") no-repeat;
     background-size: contain;
+    resize: both;
     position: absolute;
     top: 0px;
     left: 0px;
