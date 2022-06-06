@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const QuizContainer = styled.div`
+  margin: 3% 8%;
+`;
+
 export const RateText = styled.p`
   color: #9eacba;
   font-size: 0.6rem;
@@ -25,7 +29,6 @@ export const QuizBox = styled.div`
   background-color: #51cf66;
   border-radius: 1rem;
   text-align: center;
-  width: 80%;
   margin: 0 auto;
   padding: 5% 0;
 `;

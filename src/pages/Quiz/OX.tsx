@@ -1,17 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import {
-  QuizBox,
+  QuizListBox,
   QuizDescription,
   QuizNumber,
   QuizTitle,
 } from "../../styles/quizStyles/QuizListStyle";
 
 function OX() {
+  const navigate = useNavigate();
+
   return (
-    <QuizBox>
+    <QuizListBox onClick={() => navigate("./ox")}>
       <QuizNumber>4문항</QuizNumber>
       <QuizTitle>OX 퀴즈</QuizTitle>
       <QuizDescription>OX 중에 고르기</QuizDescription>
-    </QuizBox>
+    </QuizListBox>
   );
 }
 

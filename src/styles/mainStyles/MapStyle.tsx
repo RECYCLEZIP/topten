@@ -39,4 +39,10 @@ export const MapButton = styled.button`
   font-weight: bold;
   background-color: rgba(255, 255, 255, 0);
   position: relative;
+  cursor: pointer;
+  &:hover {
+    background-color: black;
+    color: white;
+    transition: all 0.5s;
+  }
 `;
