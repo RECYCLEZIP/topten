@@ -9,8 +9,6 @@ export const PrologueSection = styled.div`
   display: flow-root;
 `;
 
-export const PrologueMotionSection = styled.div
-
 export const PrologueTitle = styled.span`
   font-size: 1.5rem;
 `;
@@ -51,15 +49,17 @@ export const PrologueImg = styled.img`
 
 // 섹션 1 - 말풍선
 export const PrologueBubbleSection = styled(PrologueSection)`
-  /* background: yellow; */
+  background: yellow;
 
-  margin-top: 0%;
+  margin-top: 0;
+  /* padding-top: 10%; */
 `;
 
 // 말풍선 공통
 // export const PrologueBubble = styled.div`
 export const PrologueBubble = styled(motion.div).attrs(() => ({
   animate: { y: "3rem" },
+  // animate: { y: [-30, 0] },
 }))`
   height: auto;
   padding: 1rem 2rem;
