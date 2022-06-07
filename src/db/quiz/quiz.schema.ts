@@ -20,6 +20,7 @@ interface Quiz {
 const QuizSchema = new Schema<Quiz>({
     quizId: {
         type: Schema.Types.ObjectId,
+        required: true,
     },
     title: {
         type: String,
