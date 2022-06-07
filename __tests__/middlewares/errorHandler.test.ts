@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { errorMiddleware, RequestError } from "../../src/middlewares/errorHandler";
+import { errorMiddleware, RequestError } from "@src/middlewares/errorHandler";
 import {
     STATUS_400_BADREQUEST,
     STATUS_403_FORBIDDEN,
     STATUS_404_NOTFOUND,
     STATUS_500_INTERNALSERVERERROR,
-} from "./../../src/utils/statusCode";
+} from "@src/utils/statusCode";
 
 const mockRequest = (): Request => {
     const req: unknown = jest.fn();

@@ -1,5 +1,5 @@
 import { RequestHandler, Request, Response } from "express";
-import wrapAsyncFunc from "../../src/utils/catchAsync";
+import wrapAsyncFunc from "@src/utils/catchAsync";
 
 const mockRequest = (): Request => {
     const req: unknown = jest.fn();
