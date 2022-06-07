@@ -2,12 +2,16 @@ import styled from "styled-components";
 
 import { Button } from "../ButtonStyles";
 
+export const Container = styled.div`
+  padding: 5% 8%;
+`;
+
 export const AiTopTitle = styled.span`
   font-size: 1rem;
 `;
 
 export const AiImageUploadSection = styled.div`
-  margin: 0 3rem;
+  margin: 1rem 3rem;
 `;
 
 export const AiImageContainer = styled.div`
@@ -15,6 +19,8 @@ export const AiImageContainer = styled.div`
 
   width: 100%;
   height: 10rem;
+
+  margin-bottom: 0.5rem;
 
   display: flex;
   justify-content: center;
@@ -52,13 +58,15 @@ export const AiTopContainer = styled.div`
   background: green;
 
   margin: 0 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 
   display: flex;
 `;
 
 export const AiTitleWrapper = styled.div`
   background: gray;
+
+  font-size: 0.9rem;
 `;
 
 export const AiButtonWrapper = styled.div`
@@ -68,29 +76,23 @@ export const AiButtonWrapper = styled.div`
 `;
 
 export const AiButton = styled(Button)`
+  height: 100%;
+
+  padding: 0.3rem 1.2rem;
+
   float: right;
 
   border-radius: 0.5rem;
+
+  font-size: 0.5rem;
 `;
 
 export const AiGuideLikeSection = styled.div`
-  background:lightyellow;
+  background: lightyellow;
 
   width: 100%;
 
-  margin-bottom: 1rem;
-`;
-
-export const AiGuidesContainer = styled.div`
-  width: 100%;
-
-  /* padding: 1rem; */
-  display: grid;
-  justify-items: center;
-
-  background: #ffffff;
-  border: 1px solid #9eacba;
-  border-radius: 1rem;
+  margin-bottom: 2rem;
 `;
 
 export const AiGuidesTitle = styled.span`
@@ -99,29 +101,53 @@ export const AiGuidesTitle = styled.span`
   color: #9eacba;
 `;
 
+export const AiGuidesContainer = styled.div`
+  width: 100%;
+
+  margin-top: 0.5rem;
+  padding: 1rem;
+
+  display: grid;
+  justify-items: center;
+
+  background: #ffffff;
+  border: 1px solid #9eacba;
+  border-radius: 1rem;
+`;
+
 export const AiGuideContainer = styled.div`
-  background: green;
+  /* background: lightgreen; */
 
   width: fit-content;
 
-  margin: 1rem;
+  margin: 0.5rem;
+
+  text-align: center;
 `;
 
 export const AiGuideImgWrapper = styled.div`
   background: lightblue;
 
-  width: 30%;
+  width: 10rem;
+  height: 5.5rem;
 
   margin: auto;
+
+  overflow: hidden;
 
   text-align: -webkit-center;
 `;
 
+export const AiGuideImg = styled.img`
+  width: 100%;
+
+  transform: translate(0px, -10px);
+`;
+
 export const AiGuideTitle = styled.span`
   font-size: 0.6rem;
+  color: #9eacba;
 `;
 export const AiGuideDescription = styled.span`
-  //
-
   font-weight: 400;
 `;
