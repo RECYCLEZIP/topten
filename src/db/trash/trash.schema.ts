@@ -13,7 +13,6 @@ interface Trash {
 const TrashSchema = new Schema<Trash>({
     trashId: {
         type: Schema.Types.ObjectId,
-        required: true,
     },
     title: {
         type: String,
