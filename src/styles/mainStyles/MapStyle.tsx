@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { img } from "../../assets/imgImport";
 
 export const SeoulImg = styled.div`
   width: 100%;
@@ -13,7 +14,7 @@ export const SeoulImg = styled.div`
   }
   ::before {
     content: "";
-    background: url("./seoul.jpg") no-repeat;
+    background: url(${img.seoul}) no-repeat;
     background-size: contain;
     resize: both;
     position: absolute;

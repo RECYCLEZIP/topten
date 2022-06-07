@@ -28,17 +28,21 @@ export const PercentText = styled.p`
 export const QuizBox = styled.div`
   background-color: #51cf66;
   border-radius: 1rem;
-  text-align: center;
   margin: 0 auto;
-  padding: 5% 0;
+  padding: 5% 4%;
+  text-align: center;
 `;
 
 export const QuizImg = styled.img`
   width: 50%;
-  height: 50%;
+  border-radius: 1rem;
 `;
 
 export const QuizButton = styled.p`
   text-align: center;
   font-size: 1rem;
+`;
+
+export const LogoImg = styled.img`
+  width: 2.3rem;
 `;

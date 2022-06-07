@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const QuizListBox = styled.div`
   background-color: #e6ecf2;
   border-radius: 1rem;
-  width: 70%;
+  width: 80%;
   margin: 1rem auto;
   padding: 5%;
   &:hover {
@@ -17,7 +17,8 @@ export const QuizListBox = styled.div`
 
 export const QuizNumber = styled.div`
   background-color: #40a050;
-  font-size: 0.6rem;
+  font-size: 0.5rem;
+  font-weight: 500;
   border-radius: 1rem;
   color: white;
   padding: 1% 4%;
