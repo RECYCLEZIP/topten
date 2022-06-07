@@ -1,5 +1,11 @@
 import { Request, Response } from "express";
-import { errorMiddleware } from "../../src/middlewares/errorHandler";
+import { errorMiddleware, RequestError } from "../../src/middlewares/errorHandler";
+
+interface CustomError {
+    name?: string;
+    status: number;
+    message: string;
+}
 
 const mockError = (message: string): Error => {
     return {
@@ -22,6 +28,20 @@ const mockResponse = (): Response => {
 };
 
 const mockNext = jest.fn();
+
+describe("RequestError 클래스 테스트", () => {
+    it("인스턴스 생성", () => {
+        const err: CustomError = new RequestError("Permission Error", 403);
+        expect(err.status).toBe(403);
+        expect(err.message).toEqual("Permission Error");
+    });
+
+    it("인수 없이 인스턴스 생성", () => {
+        const err: CustomError = new RequestError();
+        expect(err.status).toBe(400);
+        expect(err.message).toEqual("잘못된 요청입니다.");
+    });
+});
 
 describe("에러 미들웨어 테스트", () => {
     const res = mockResponse();
