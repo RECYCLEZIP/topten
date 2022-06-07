@@ -12,9 +12,18 @@ class RequestError extends Error {
 }
 
 const errorMiddleware: ErrorRequestHandler = (error, _req, res, _next) => {
-    const { status, message } = error;
     console.log("\x1b[33m%s\x1b[0m", error);
-    res.status(status).json({ message });
+
+    if (error instanceof RequestError) {
+        const { status, message } = error;
+        return res.status(status).json({ message });
+    }
+
+    if (error instanceof Error) {
+        return res.status(400).json({ message: error.message });
+    }
+
+    return res.status(500).json({ message: error.message });
 };
 
 export { errorMiddleware, RequestError };
