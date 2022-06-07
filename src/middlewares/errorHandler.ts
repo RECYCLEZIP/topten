@@ -1,5 +1,5 @@
 import { ErrorRequestHandler } from "express";
-import { STATUS_500_INTERNALSERVERERROR, STATUS_400_BADREQUEST } from "./../utils/statusCode";
+import { STATUS_500_INTERNALSERVERERROR, STATUS_400_BADREQUEST } from "@src/utils/statusCode";
 
 class RequestError extends Error {
     status: number;
