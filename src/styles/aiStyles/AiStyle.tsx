@@ -26,18 +26,15 @@ export const AiImageContainer = styled.div`
   justify-content: center;
 
   border-radius: 0.5rem;
-`;
-export const AiImageWrapper = styled.div`
-  /* background: red;
 
-  width: 80%;
-  height: auto; */
+  overflow: hidden;
 `;
 
 export const AiImage = styled.img`
   /* background: blue; */
 
   width: 100%;
+  object-fit: cover;
 `;
 
 export const AiIconsContainer = styled.div`
@@ -45,13 +42,12 @@ export const AiIconsContainer = styled.div`
 
   display: flex;
   align-items: center;
-
-  `;
+`;
 
 export const AiIcon = styled.img`
   width: 1rem;
   height: auto;
-  
+
   margin-right: 0.2rem;
   display: flex;
 
@@ -79,7 +75,7 @@ export const AiButtonWrapper = styled.div`
   flex-grow: 1;
 `;
 
-export const AiButton = styled(Button)`
+export const AiButton = styled(Button)<{ isImgUploaded: boolean }>`
   height: 100%;
 
   padding: 0.3rem 1.2rem;
@@ -89,6 +85,11 @@ export const AiButton = styled(Button)`
   border-radius: 0.3rem;
 
   font-size: 0.5rem;
+
+  cursor: ${(props) => !props.isImgUploaded && "default"};
+  background: ${(props) =>
+    !props.isImgUploaded &&
+    "linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), #21A663"};
 `;
 
 export const AiGuideLikeSection = styled.div`
@@ -135,17 +136,21 @@ export const AiGuideImgWrapper = styled.div`
   width: 10rem;
   height: 5.5rem;
 
+  display: flex;
+
   margin: auto;
 
   overflow: hidden;
 
-  text-align: -webkit-center;
+  justify-content: center;
 `;
 
 export const AiGuideImg = styled.img`
   width: 100%;
 
-  transform: translate(0px, -10px);
+  object-fit: cover;
+
+  /* transform: translate(0px, -10px); */
 `;
 
 export const AiGuideTitle = styled.span`

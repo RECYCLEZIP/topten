@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import { img } from "../../assets/imgImport";
 
@@ -7,7 +7,6 @@ import {
   AiTopTitle,
   AiImageUploadSection,
   AiImageContainer,
-  AiImageWrapper,
   AiImage,
   AiIconsContainer,
   AiIcon,
@@ -26,16 +25,22 @@ import {
 
 function Ai() {
   const [fileImage, setFileImage] = useState("");
+  const [isImgUploaded, setIsImgUploaded] = useState(false);
 
   const imgInput = useRef<any>();
 
   // 파일 저장
   const onClickImgUpload = (e: any) => {
     imgInput.current.click();
-    
+
     setFileImage(URL.createObjectURL(e.target.files[0]));
   };
 
+  useEffect(() => {
+    fileImage ? setIsImgUploaded(true) : setIsImgUploaded(false);
+  }, [fileImage]);
+
+  console.log(isImgUploaded);
   return (
     <Container>
       <div>
@@ -45,9 +50,7 @@ function Ai() {
       <AiImageUploadSection>
         {/* 사진 */}
         <AiImageContainer>
-          <AiImageWrapper>
-            <AiImage></AiImage>
-          </AiImageWrapper>
+          <AiImage src={fileImage}></AiImage>
         </AiImageContainer>
         {/* 아이콘 */}
         <AiIconsContainer>
@@ -68,9 +71,20 @@ function Ai() {
       {/* 사진 업로드 문구, 분석하기 버튼 */}
       <AiTopContainer>
         {/* 사진 업로드 문구 */}
-        <AiTitleWrapper>쓰레기 사진을 업로드해주세요</AiTitleWrapper>
+        {isImgUploaded ? (
+          <AiTitleWrapper>분석하기 버튼을 클릭해주세요</AiTitleWrapper>
+        ) : (
+          <AiTitleWrapper>쓰레기 사진을 업로드해주세요</AiTitleWrapper>
+        )}
+        {/* <AiTitleWrapper>쓰레기 사진을 업로드해주세요</AiTitleWrapper> */}
         <AiButtonWrapper>
-          <AiButton>분석하기</AiButton>
+          <AiButton
+            disabled={!isImgUploaded}
+            isImgUploaded={isImgUploaded}
+            onClick={() => alert("asfasdf")}
+          >
+            분석하기
+          </AiButton>
         </AiButtonWrapper>
       </AiTopContainer>
       {/* 이런 사진이 좋아요! */}
