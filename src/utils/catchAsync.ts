@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 
-const wrapAsync = (func: RequestHandler): RequestHandler => {
+const wrapAsyncFunc = (func: RequestHandler): RequestHandler => {
     return (req, res, next) => {
         try {
             func(req, res, next);
@@ -10,4 +10,4 @@ const wrapAsync = (func: RequestHandler): RequestHandler => {
     };
 };
 
-export default wrapAsync;
+export default wrapAsyncFunc;
