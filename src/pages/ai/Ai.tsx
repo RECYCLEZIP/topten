@@ -1,42 +1,150 @@
 import React from "react";
 
+import { img } from "../../assets/imgImport";
+
+import {
+  AiTopTitle,
+  AiImageUploadSection,
+  AiImageContainer,
+  AiImageWrapper,
+  AiImage,
+  AiIconsContainer,
+  AiIcon,
+  AiTopContainer,
+  AiTitleWrapper,
+  AiButtonWrapper,
+  AiButton,
+  AiGuideLikeSection,
+  AiGuidesContainer,
+  AiGuidesTitle,
+  AiGuideContainer,
+  AiGuideImgWrapper,
+  AiGuideTitle,
+  AiGuideDescription,
+} from "../../styles/aiStyles/AiStyle";
+
 function Ai() {
   return (
     <>
-      <div>Ai 분석하기</div>
+      <div>
+        <AiTopTitle>AI 분리수거</AiTopTitle>
+      </div>
       {/* 사진, 카메라 */}
-      <div>
+      <AiImageUploadSection>
         {/* 사진 */}
-        <div></div>
+        <AiImageContainer>
+          <AiImageWrapper>
+            <AiImage></AiImage>
+          </AiImageWrapper>
+        </AiImageContainer>
         {/* 아이콘 */}
-        <div></div>
-      </div>
+        <AiIconsContainer>
+          <AiIcon src={img.camera} alt="camera" />
+          <AiIcon src={img.image} alt="pic" />
+        </AiIconsContainer>
+      </AiImageUploadSection>
       {/* 사진 업로드 문구, 분석하기 버튼 */}
-      <div>
+      <AiTopContainer>
         {/* 사진 업로드 문구 */}
-        <div>사진을 업로드하세요</div>
-        <button>분석하기</button>
-      </div>
+        <AiTitleWrapper>쓰레기 사진을 업로드해주세요</AiTitleWrapper>
+        <AiButtonWrapper>
+          <AiButton>분석하기</AiButton>
+        </AiButtonWrapper>
+      </AiTopContainer>
       {/* 이런 사진이 좋아요! */}
-      <div>
+      <AiGuideLikeSection>
         {/* 타이틀 */}
-        <div>이런 사진이 좋아요!</div>
+        <div>
+          <AiGuidesTitle>이런 사진이 좋아요!</AiGuidesTitle>
+        </div>
         {/* 사진 예시 섹션 */}
 
-        <div>
+        <AiGuidesContainer>
           {/* 사진 1 섹션*/}
-          <div>
-              {/* 사진 1 래퍼 */}
-              <div>
-
-              </div>
-              {/* 사진 1 설명 */}
-              <div>
-                  화질이 선명한 사진
-              </div>
-          </div>
+          <AiGuideContainer>
+            {/* 사진 1 래퍼 */}
+            <AiGuideImgWrapper>
+              <img />
+            </AiGuideImgWrapper>
+            {/* 사진 1 설명 */}
+            <div>
+              <AiGuideTitle>화질이 선명한 사진</AiGuideTitle>
+            </div>
+          </AiGuideContainer>
+          {/* 사진 1 섹션*/}
+          <AiGuideContainer>
+            {/* 사진 1 래퍼 */}
+            <AiGuideImgWrapper>
+              <img />
+            </AiGuideImgWrapper>
+            {/* 사진 1 설명 */}
+            <div>
+              <AiGuideTitle>객체가 명확히 구분되는 사진</AiGuideTitle>
+            </div>
+          </AiGuideContainer>
+          <AiGuideContainer>
+            {/* 사진 1 래퍼 */}
+            <AiGuideImgWrapper>
+              <img />
+            </AiGuideImgWrapper>
+            {/* 사진 1 설명 */}
+            <div>
+              <AiGuideTitle>형체가 온전히 드러나는 사진</AiGuideTitle>
+            </div>
+          </AiGuideContainer>
+        </AiGuidesContainer>
+      </AiGuideLikeSection>
+      <AiGuideLikeSection>
+        {/* 타이틀 */}
+        <div>
+          <AiGuidesTitle>이런 식별이 어려워요!</AiGuidesTitle>
         </div>
-      </div>
+        {/* 사진 예시 섹션 */}
+        <AiGuidesContainer>
+          {/* 사진 1 섹션*/}
+          <AiGuideContainer>
+            {/* 사진 1 래퍼 */}
+            <AiGuideImgWrapper>
+              <img />
+            </AiGuideImgWrapper>
+            {/* 사진 1 설명 */}
+            <div>
+              <AiGuideTitle>상당 부분 가려진 객체</AiGuideTitle>
+            </div>
+          </AiGuideContainer>
+          {/* 사진 1 섹션*/}
+          <AiGuideContainer>
+            {/* 사진 1 래퍼 */}
+            <AiGuideImgWrapper>
+              <img />
+            </AiGuideImgWrapper>
+            {/* 사진 1 설명 */}
+            <div>
+              <AiGuideTitle>심한 파손이나 오염이 있는 객체</AiGuideTitle>
+            </div>
+          </AiGuideContainer>
+          <AiGuideContainer>
+            {/* 사진 1 래퍼 */}
+            <AiGuideImgWrapper>
+              <img />
+            </AiGuideImgWrapper>
+            {/* 사진 1 설명 */}
+            <div>
+              <AiGuideTitle>단일 객체가 아닌 사진</AiGuideTitle>
+            </div>
+          </AiGuideContainer>
+          <AiGuideContainer>
+            {/* 사진 1 래퍼 */}
+            <AiGuideImgWrapper>
+              <img />
+            </AiGuideImgWrapper>
+            {/* 사진 1 설명 */}
+            <div>
+              <AiGuideTitle>어두운 곳에서 촬영된 사진</AiGuideTitle>
+            </div>
+          </AiGuideContainer>
+        </AiGuidesContainer>
+      </AiGuideLikeSection>
     </>
   );
 }
