@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
-import { errorMiddleware } from "./middlewares/errorHandler";
-import { indexController } from "./api/index.controller";
+import { errorMiddleware } from "@src/middlewares/errorHandler";
+import { indexController } from "@src/api/index.controller";
 import "dotenv/config";
 
 const app = express();
