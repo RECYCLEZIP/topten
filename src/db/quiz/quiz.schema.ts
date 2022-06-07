@@ -10,6 +10,7 @@ interface Result {
 interface Quiz {
     quizId: Types.ObjectId;
     title: string;
+    description: string;
     options: string[];
     answer: string;
     result: Result[];
@@ -25,6 +26,10 @@ const QuizSchema = new Schema<Quiz>({
         type: String,
         required: true,
     },
+    description: {
+        type: String,
+        required: true,
+    },
     options: {
         type: [String],
         required: true,
@@ -33,7 +38,7 @@ const QuizSchema = new Schema<Quiz>({
     answer: {
         type: String,
         required: true,
-        enum: ["0", "1", "2", "3", "o", "x", "음식물", "일반"],
+        enum: ["0", "1", "2", "3", "O", "X", "음식물", "일반"],
     },
     result: {
         type: [{ date: Date, totalUser: Number, wrong: Number, yesterday: Number }],
