@@ -3,6 +3,7 @@ import React from "react";
 import { img } from "../../assets/imgImport";
 
 import {
+  Container,
   AiTopTitle,
   AiImageUploadSection,
   AiImageContainer,
@@ -19,13 +20,13 @@ import {
   AiGuidesTitle,
   AiGuideContainer,
   AiGuideImgWrapper,
+  AiGuideImg,
   AiGuideTitle,
-  AiGuideDescription,
 } from "../../styles/aiStyles/AiStyle";
 
 function Ai() {
   return (
-    <>
+    <Container>
       <div>
         <AiTopTitle>AI 분리수거</AiTopTitle>
       </div>
@@ -64,7 +65,7 @@ function Ai() {
           <AiGuideContainer>
             {/* 사진 1 래퍼 */}
             <AiGuideImgWrapper>
-              <img />
+              <AiGuideImg src={img.like1} />
             </AiGuideImgWrapper>
             {/* 사진 1 설명 */}
             <div>
@@ -75,7 +76,7 @@ function Ai() {
           <AiGuideContainer>
             {/* 사진 1 래퍼 */}
             <AiGuideImgWrapper>
-              <img />
+              <AiGuideImg src={img.like2} />
             </AiGuideImgWrapper>
             {/* 사진 1 설명 */}
             <div>
@@ -85,11 +86,11 @@ function Ai() {
           <AiGuideContainer>
             {/* 사진 1 래퍼 */}
             <AiGuideImgWrapper>
-              <img />
+              <AiGuideImg src={img.like3} />
             </AiGuideImgWrapper>
             {/* 사진 1 설명 */}
             <div>
-              <AiGuideTitle>형체가 온전히 드러나는 사진</AiGuideTitle>
+              <AiGuideTitle>형태가 온전히 드러나는 사진</AiGuideTitle>
             </div>
           </AiGuideContainer>
         </AiGuidesContainer>
@@ -105,7 +106,7 @@ function Ai() {
           <AiGuideContainer>
             {/* 사진 1 래퍼 */}
             <AiGuideImgWrapper>
-              <img />
+              <AiGuideImg src={img.hard1} />
             </AiGuideImgWrapper>
             {/* 사진 1 설명 */}
             <div>
@@ -116,7 +117,7 @@ function Ai() {
           <AiGuideContainer>
             {/* 사진 1 래퍼 */}
             <AiGuideImgWrapper>
-              <img />
+              <AiGuideImg src={img.hard2} />
             </AiGuideImgWrapper>
             {/* 사진 1 설명 */}
             <div>
@@ -126,7 +127,7 @@ function Ai() {
           <AiGuideContainer>
             {/* 사진 1 래퍼 */}
             <AiGuideImgWrapper>
-              <img />
+              <AiGuideImg src={img.hard3} />
             </AiGuideImgWrapper>
             {/* 사진 1 설명 */}
             <div>
@@ -145,7 +146,7 @@ function Ai() {
           </AiGuideContainer>
         </AiGuidesContainer>
       </AiGuideLikeSection>
-    </>
+    </Container>
   );
 }
 
