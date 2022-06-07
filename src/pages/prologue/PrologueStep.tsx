@@ -6,6 +6,8 @@ import {
   PrologueStepSection,
   PrologueStepsContainer,
   PrologueStepContainer,
+  PrologueStepLeftContainer,
+  PrologueStepRightContainer,
   PrologueStepLabel,
   PrologueStepTitle,
   PrologueStepSubTitle,
@@ -22,29 +24,23 @@ function PrologueStep() {
         <PrologueTitleGreen>3 STEP</PrologueTitleGreen>
       </div>
       <PrologueStepsContainer>
-        <PrologueStepContainer>
+        <PrologueStepLeftContainer>
           <PrologueStepLabel>STEP 1</PrologueStepLabel>
           <PrologueStepTitle>사진 올리고,</PrologueStepTitle>
-          <PrologueStepSubTitle>
-            쓰레기 사진 업로드
-          </PrologueStepSubTitle>
-        </PrologueStepContainer>
+          <PrologueStepSubTitle>쓰레기 사진 업로드</PrologueStepSubTitle>
+        </PrologueStepLeftContainer>
         <PrologueStepContainer>
           <PrologueStepLabel>STEP 2</PrologueStepLabel>
-          <PrologueStepTitle>
-            AI 분석 확인하고,
-          </PrologueStepTitle>
+          <PrologueStepTitle>AI 분석 확인하고,</PrologueStepTitle>
           <PrologueStepSubTitle>
             쓰레기 별 적절한 폐기 방법 분석
           </PrologueStepSubTitle>
         </PrologueStepContainer>
-        <PrologueStepContainer>
+        <PrologueStepRightContainer>
           <PrologueStepLabel>STEP 3</PrologueStepLabel>
           <PrologueStepTitle>사진 올리고,</PrologueStepTitle>
-          <PrologueStepSubTitle>
-            AI가 알려준대로 분리수거
-          </PrologueStepSubTitle>
-        </PrologueStepContainer>
+          <PrologueStepSubTitle>AI가 알려준대로 분리수거</PrologueStepSubTitle>
+        </PrologueStepRightContainer>
       </PrologueStepsContainer>
     </PrologueStepSection>
   );

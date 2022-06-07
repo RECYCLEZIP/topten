@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
+import { motion } from "framer-motion";
+
 // 공통
 export const PrologueSection = styled.div`
   margin: 20% 8%;
 
   display: flow-root;
 `;
+
+export const PrologueMotionSection = styled.div
 
 export const PrologueTitle = styled.span`
   font-size: 1.5rem;
@@ -49,11 +53,14 @@ export const PrologueImg = styled.img`
 export const PrologueBubbleSection = styled(PrologueSection)`
   /* background: yellow; */
 
-  margin-top: 10%;
+  margin-top: 0%;
 `;
 
 // 말풍선 공통
-export const PrologueBubble = styled.div`
+// export const PrologueBubble = styled.div`
+export const PrologueBubble = styled(motion.div).attrs(() => ({
+  animate: { y: "3rem" },
+}))`
   height: auto;
   padding: 1rem 2rem;
   margin: 10px 0;
@@ -62,6 +69,16 @@ export const PrologueBubble = styled.div`
 
   color: white;
   font-size: 1rem;
+
+  /* hidden: { opacity: 1; scale: 0 };
+  visible: {
+    opacity: 1;
+    scale: 1;
+    transition: {
+      delayChildren: 0.3;
+      staggerChildren: 0.2
+    }
+  } */
 `;
 
 export const PrologueBubble1 = styled(PrologueBubble)`
@@ -71,6 +88,10 @@ export const PrologueBubble1 = styled(PrologueBubble)`
   float: left;
 
   color: black;
+
+  animate: {
+    y: 100;
+  }
 `;
 
 export const PrologueBubble2 = styled(PrologueBubble)`
@@ -164,10 +185,15 @@ export const PrologueStepsContainer = styled.div`
   padding: 5% 0;
 
   display: grid;
+  /* display: inline-flex; */
   justify-items: center;
 
   border-radius: 30px;
   background: #f0f4f9;
+
+  @media screen and (min-width: 768px) {
+    display: inline-block;
+  }
 `;
 
 export const PrologueStepContainer = styled.div`
@@ -176,6 +202,26 @@ export const PrologueStepContainer = styled.div`
   /* background: lightsalmon; */
 
   margin: 20px 0;
+
+  @media screen and (min-width: 768px) {
+    margin: 0 1rem;
+  }
+`;
+
+export const PrologueStepLeftContainer = styled(PrologueStepContainer)`
+  float: left;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 3rem;
+  }
+`;
+
+export const PrologueStepRightContainer = styled(PrologueStepContainer)`
+  float: right;
+
+  @media screen and (min-width: 768px) {
+    margin-right: 3rem;
+  }
 `;
 
 export const PrologueStepLabel = styled(PrologueLabel)`
@@ -190,8 +236,8 @@ export const PrologueStepTitle = styled.div`
 `;
 
 export const PrologueStepSubTitle = styled.div`
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 0.6rem;
+  font-weight: 400;
 `;
 
 // 섹션 4 - 서울시 공공 쓰레기통 지도
@@ -277,9 +323,7 @@ export const PrologueQuizTitleContainer = styled.div`
   text-align: right;
 `;
 
-export const PrologueQuizSubTitleContainer = styled(
-  PrologueSubTitleContainer,
-)`
+export const PrologueQuizSubTitleContainer = styled(PrologueSubTitleContainer)`
   margin-top: 0.5rem;
   margin-bottom: 1rem;
   // background: white;
