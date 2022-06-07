@@ -35,27 +35,30 @@ export const AiImageWrapper = styled.div`
 `;
 
 export const AiImage = styled.img`
-  background: blue;
+  /* background: blue; */
 
   width: 100%;
 `;
 
 export const AiIconsContainer = styled.div`
-  background: goldenrod;
+  /* background: goldenrod; */
 
   display: flex;
   align-items: center;
-`;
+
+  `;
 
 export const AiIcon = styled.img`
   width: 1rem;
   height: auto;
-
+  
   margin-right: 0.2rem;
+
+  cursor: pointer;
 `;
 
 export const AiTopContainer = styled.div`
-  background: green;
+  /* background: green; */
 
   margin: 0 1rem;
   margin-bottom: 3rem;
@@ -64,13 +67,13 @@ export const AiTopContainer = styled.div`
 `;
 
 export const AiTitleWrapper = styled.div`
-  background: gray;
+  /* background: gray; */
 
   font-size: 0.9rem;
 `;
 
 export const AiButtonWrapper = styled.div`
-  background: brown;
+  /* background: brown; */
 
   flex-grow: 1;
 `;
@@ -82,13 +85,13 @@ export const AiButton = styled(Button)`
 
   float: right;
 
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
 
   font-size: 0.5rem;
 `;
 
 export const AiGuideLikeSection = styled.div`
-  background: lightyellow;
+  /* background: lightyellow; */
 
   width: 100%;
 
@@ -126,7 +129,7 @@ export const AiGuideContainer = styled.div`
 `;
 
 export const AiGuideImgWrapper = styled.div`
-  background: lightblue;
+  /* background: lightblue; */
 
   width: 10rem;
   height: 5.5rem;
