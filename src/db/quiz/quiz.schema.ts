@@ -34,7 +34,7 @@ const QuizSchema = new Schema<Quiz>({
     answer: {
         type: String,
         required: true,
-        enum: ["1", "2", "3", "o", "x"],
+        enum: ["1", "2", "3", "o", "x", "음식물", "일반"],
     },
     result: {
         type: [{ date: Date, totalUser: Number, wrong: Number, yesterday: Number }],
