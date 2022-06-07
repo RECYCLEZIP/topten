@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 
 import { img } from "../../assets/imgImport";
 
@@ -25,6 +25,17 @@ import {
 } from "../../styles/aiStyles/AiStyle";
 
 function Ai() {
+  const [fileImage, setFileImage] = useState("");
+
+  const imgInput = useRef<any>();
+
+  // 파일 저장
+  const onClickImgUpload = (e: any) => {
+    imgInput.current.click();
+    
+    setFileImage(URL.createObjectURL(e.target.files[0]));
+  };
+
   return (
     <Container>
       <div>
@@ -41,7 +52,17 @@ function Ai() {
         {/* 아이콘 */}
         <AiIconsContainer>
           <AiIcon src={img.camera} alt="camera" />
-          <AiIcon src={img.image} alt="pic" />
+          <form>
+            <input
+              name="imgUpload"
+              type="file"
+              accept="image/*"
+              onChange={onClickImgUpload}
+              ref={imgInput}
+              style={{ display: "none" }}
+            />
+            <AiIcon src={img.image} alt="pic" onClick={onClickImgUpload} />
+          </form>
         </AiIconsContainer>
       </AiImageUploadSection>
       {/* 사진 업로드 문구, 분석하기 버튼 */}
@@ -58,8 +79,7 @@ function Ai() {
         <div>
           <AiGuidesTitle>이런 사진이 좋아요!</AiGuidesTitle>
         </div>
-        {/* 사진 예시 섹션 */}
-
+        {/* 예시 섹션 */}
         <AiGuidesContainer>
           {/* 사진 1 섹션*/}
           <AiGuideContainer>

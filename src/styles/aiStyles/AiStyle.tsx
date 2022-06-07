@@ -53,6 +53,7 @@ export const AiIcon = styled.img`
   height: auto;
   
   margin-right: 0.2rem;
+  display: flex;
 
   cursor: pointer;
 `;
