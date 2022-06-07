@@ -42,7 +42,7 @@ const TrashSchema = new Schema<Trash>({
     category: {
         type: String,
         required: true,
-        enum: ["페트", "스티로폼", "유리", "캔", "음식물", "일반", "종이", "비닐"],
+        enum: ["플라스틱", "스티로폼", "유리", "캔", "음식물", "일반", "종이", "비닐"],
     },
 });
 

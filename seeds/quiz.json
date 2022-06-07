@@ -9,7 +9,6 @@
             "잘게 잘라서 버린다."
         ],
         "answer": "2",
-        "result": {},
         "type": "multipleChoice",
         "image": "http://www.laborplus.co.kr/news/photo/201911/22917_29040_1411.jpg"
     },
@@ -23,7 +22,6 @@
             "약사님께 드린다."
         ],
         "answer": "1",
-        "result": {},
         "type": "multipleChoice",
         "image": "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1840&q=80"
     },
@@ -37,7 +35,6 @@
             "내용물을 깨끗이 씻어 말린 뒤, 납작하게 접어 일반 종이와 분리해서 버린다."
         ],
         "answer": "3",
-        "result": {},
         "type": "multipleChoice",
         "image": "https://t1.daumcdn.net/cfile/tistory/99DF7B345F88CA8D0C"
     },
@@ -51,7 +48,6 @@
             "내용물을 비운 뒤 버린다."
         ],
         "answer": "0",
-        "result": {},
         "type": "multipleChoice",
         "image": "https://images.unsplash.com/photo-1523362628745-0c100150b504?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80"
     },
@@ -60,7 +56,6 @@
         "description": "뚜껑은 플라스틱 빨대는 일반 쓰레기로 분리배출해야 한다.",
         "options": ["O", "X"],
         "answer": "X",
-        "result": {},
         "type": "ox",
         "image": "https://images.unsplash.com/photo-1522039906375-50d8e4d9550a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1178&q=80"
     },
@@ -69,7 +64,6 @@
         "description": "크기를 너무 작게 만들면 재활용 선별장에서 분류되지 않을 수 있다. 따라서 가로로 눕혀서 발로 살짝 누른 뒤 버리는 정도가 적당하다.",
         "options": ["O", "X"],
         "answer": "X",
-        "result": {},
         "type": "ox",
         "image": "https://images.unsplash.com/photo-1517088587697-8de5e72b421b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1771&q=80"
     },
@@ -78,7 +72,6 @@
         "description": "소스가 묻어 있다면 일반쓰레기, 깨끗이 씻었다면 비닐류로 버린다.",
         "options": ["O", "X"],
         "answer": "X",
-        "result": {},
         "type": "ox",
         "image": "https://www.beanobread.com/shop/data/goods/1639112613167m2.jpg"
     },
@@ -87,7 +80,6 @@
         "description": "플라스틱의 한 종류인 폴리스티렌 재질로 재활용이 가능하다.",
         "options": ["O", "X"],
         "answer": "O",
-        "result": {},
         "type": "ox",
         "image": "http://m.linamimarket.com/web/product/medium/202009/aa12322abce4cd62a83ad1456558c92c.jpg"
     },
@@ -96,7 +88,6 @@
         "description": "조개껍데기, 닭뼈, 달걀껍데기, 생선가시 등 동물이 먹지 못하는 것은 일반쓰레기이다.",
         "options": ["일반", "음식물"],
         "answer": "일반",
-        "result": {},
         "type": "mixUp",
         "image": "https://images.unsplash.com/photo-1600699899970-b1c9fadd8f9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80"
     },
@@ -105,7 +96,6 @@
         "description": "염분이 많은 장류는 음식물 쓰레기에 포함되지 않는다.",
         "options": ["일반", "음식물"],
         "answer": "일반",
-        "result": {},
         "type": "mixUp",
         "image": "https://mblogthumb-phinf.pstatic.net/20160823_217/paldoblog_1471947280387FElPn_JPEG/%C6%C8%B5%B5_%C7%D1%BD%C4_%BE%E7%B3%E4%C0%E5_%C0%E5.jpg?type=w2"
     },
@@ -114,7 +104,6 @@
         "description": "채소류의 껍질과 뿌리는 모두 일반쓰레기이다.",
         "options": ["일반", "음식물"],
         "answer": "일반",
-        "result": {},
         "type": "mixUp",
         "image": "https://blog.kakaocdn.net/dn/b3pQFW/btqEUpVNy4g/kWDhTVeWIjvTwdo4hktMQk/img.jpg"
     },
@@ -123,7 +112,6 @@
         "description": "딸기꼭지와 귤껍질은 음식물이다.",
         "options": ["일반", "음식물"],
         "answer": "음식물",
-        "result": {},
         "type": "mixUp",
         "image": "https://images.unsplash.com/photo-1518635017498-87f514b751ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1772&q=80"
     }
