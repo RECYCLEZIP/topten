@@ -67,8 +67,14 @@ export const AiResultScrollIconWrapper = styled.div`
 
 export const AiResultScrollIcon = styled.img`
   width: 2rem;
+
+  cursor: pointer;
 `;
 
 export const AiResultDesContainer = styled(AiResultContentContainer)`
   text-align: left;
+`;
+
+export const AiResultDesLastContainer = styled(AiResultDesContainer)`
+  margin-bottom: 2rem;
 `;
