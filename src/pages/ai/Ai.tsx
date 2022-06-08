@@ -2,6 +2,7 @@ import React from "react";
 
 import AiImageupload from "./AiImageUpload";
 import AiGuide from "./AiGuide";
+import AiResult from "./AiResult";
 
 import { useRecoilValue } from "recoil";
 import { AiSituationState } from "../../stores/atoms";
@@ -15,7 +16,7 @@ function Ai() {
     <Container>
       <AiTopTitle>AI 분리수거</AiTopTitle>
       <AiImageupload />
-      {situation === "done" ? <></> : <AiGuide />}
+      {situation === "done" ? <AiResult /> : <AiGuide />}
     </Container>
   );
 }
