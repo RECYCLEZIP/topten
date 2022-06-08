@@ -1,8 +1,9 @@
 import fs from "fs";
 import path from "path";
 import mongoose from "mongoose";
-import "dotenv/config";
+import dotenv from "dotenv";
 import { NewsModel } from "../../dist/src/db/news/news.schema.js";
+dotenv.config();
 
 let exit = 0;
 const DB_URL =
@@ -16,7 +17,7 @@ const insertData = async () => {
         .readFileSync(path.join(path.dirname(process.argv[1]), "./news.txt"), "utf-8")
         .toString()
         .trim()
-        .split("\r\n");
+        .split("\n");
 
     try {
         await NewsModel.deleteMany({});
