@@ -52,9 +52,20 @@ export const OptionNumber = styled.span<{ isSelected: boolean }>`
   font-size: 0.8rem;
 `;
 
-export const MoveButton = styled.div`
+export const MoveButton = styled.div<{ count?: number }>`
   display: flex;
   align-items: center;
+  cursor: pointer;
+  visibility: ${(props) => props.count && props.count === 1 && "hidden"};
+`;
+
+export const SubmitButton = styled.p`
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  font-size: 0.6rem;
+  background-color: #dfe6ed;
+  border-radius: 1rem;
   cursor: pointer;
 `;
 
