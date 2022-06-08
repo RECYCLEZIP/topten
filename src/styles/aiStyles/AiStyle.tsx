@@ -14,7 +14,7 @@ export const AiImageUploadSection = styled.div`
   margin: 1rem 3rem;
 `;
 
-export const AiImageContainer = styled.div`
+export const AiImageContainer = styled.div<{ isAnalyzed: boolean }>`
   background: #9eacba;
 
   width: 100%;
@@ -28,6 +28,27 @@ export const AiImageContainer = styled.div`
   border-radius: 0.5rem;
 
   overflow: hidden;
+
+  position: relative;
+`;
+
+export const AiImageLayer = styled.div`
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  display: flex;
+
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+
+  top: 0;
+  left: 0;
+`;
+
+export const AiSpinImg = styled.img`
+  margin: auto;
+
+  width: 15%;
 `;
 
 export const AiImage = styled.img`
@@ -75,7 +96,11 @@ export const AiButtonWrapper = styled.div`
   flex-grow: 1;
 `;
 
-export const AiButton = styled(Button)<{ isImgUploaded: boolean }>`
+export const AiButton = styled(Button)<{
+  isImgUploaded: boolean;
+  isAnalyzed: boolean;
+  isCompletion: boolean;
+}>`
   height: 100%;
 
   padding: 0.3rem 1.2rem;
@@ -86,9 +111,23 @@ export const AiButton = styled(Button)<{ isImgUploaded: boolean }>`
 
   font-size: 0.5rem;
 
-  cursor: ${(props) => !props.isImgUploaded && "default"};
+  cursor: ${(props) =>
+    (!props.isImgUploaded || props.isAnalyzed) &&
+    !props.isCompletion &&
+    "default"};
+
   background: ${(props) =>
-    !props.isImgUploaded &&
+    // ?이미지 업로드 전
+    // 이미지 업로드 false, 분석 중 false, 분석 완료 false
+
+    // ?분석 중
+    // 이미지 업로드 false, 분석 중 true, 분석 완료 false
+
+    // ! 안 하는 경우
+    // ?분석 완료
+    // 이미지 업로드 false, 분석 중 false, 분석 완료 true
+    (!props.isImgUploaded || props.isAnalyzed) &&
+    !props.isCompletion &&
     "linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), #21A663"};
 `;
 
