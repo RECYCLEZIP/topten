@@ -13,9 +13,11 @@ import { CardText } from "../../styles/TextStyle";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function QuestionCard() {
   const [count, setCount] = useState(1);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -41,7 +43,9 @@ function QuestionCard() {
             <ChevronRightIcon style={{ color: "#9EACBA", fontSize: "2rem" }} />
           </MoveButton>
         ) : (
-          <SubmitButton>결과확인</SubmitButton>
+          <SubmitButton onClick={() => navigate("/quizzes/result")}>
+            결과확인
+          </SubmitButton>
         )}
       </Icons>
     </>

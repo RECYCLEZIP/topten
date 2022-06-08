@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { QuizContainer } from "../../styles/mainStyles/QuizStyle";
-import {
-  CorrectAnswer,
-  TwoOption,
-  TwoOptions,
-} from "../../styles/quizStyles/QuizzesStyle";
+import { TwoOption, TwoOptions } from "../../styles/quizStyles/QuizzesStyle";
 import QuestionCard from "./QuestionCard";
 import ClearIcon from "@mui/icons-material/Clear";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
@@ -16,8 +12,6 @@ function OXQuiz() {
     <ClearIcon style={{ fontSize: "6rem" }} />,
   ];
   const [isSelected, setIsSelected] = useState([false]);
-
-  const [result, setResult] = useState(false);
 
   const clickHandler = (idx: number) => {
     const newArr: boolean[] = Array(option.length).fill(false);
