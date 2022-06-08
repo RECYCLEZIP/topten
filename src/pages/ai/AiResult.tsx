@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import { img } from "../../assets/imgImport";
 
@@ -16,9 +16,15 @@ import {
   AiResultScrollIconWrapper,
   AiResultScrollIcon,
   AiResultDesContainer,
+  AiResultDesLastContainer,
 } from "../../styles/aiStyles/AiResultStyle";
 
 function AiResult() {
+  const detailRef = useRef<HTMLDivElement>(null);
+  const onScrollDownClick = () => {
+    detailRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <>
       {/* 품목 정보 섹션*/}
@@ -54,19 +60,44 @@ function AiResult() {
       </AiResultContentsSection>
       {/* 하향 화살표 */}
       <AiResultScrollIconWrapper>
-        <AiResultScrollIcon src={img.scrollDown} />
+        <AiResultScrollIcon src={img.scrollDown} onClick={onScrollDownClick} />
       </AiResultScrollIconWrapper>
       {/* 분석 상세 섹션 */}
-      <div>
-        {/* 분석 1 상세 제목 */}
+      <div ref={detailRef}>
+        {/* 분석 1 상세 컨테이너 */}
         <div>
-          <AiContentTitle>분석 1 상세</AiContentTitle>
+          {/* 분석 1 상세 제목 */}
+          <div>
+            <AiContentTitle>분석 1 상세</AiContentTitle>
+          </div>
+          {/* 분석 1 상세 내용 컨테이너*/}
+          <AiResultDesContainer>
+            {/* 분석 1 상세 내용 래퍼 */}
+            <AiContentText>분석 1 상세 내용</AiContentText>
+          </AiResultDesContainer>
         </div>
-        {/* 분석 1 상세 내용 컨테이너*/}
-        <AiResultDesContainer>
-          {/* 분석 1 상세 내용 래퍼 */}
-          <AiContentText>분석 1 상세 내용</AiContentText>
-        </AiResultDesContainer>
+        <div>
+          {/* 분석 1 상세 제목 */}
+          <div>
+            <AiContentTitle>분석 1 상세</AiContentTitle>
+          </div>
+          {/* 분석 1 상세 내용 컨테이너*/}
+          <AiResultDesContainer>
+            {/* 분석 1 상세 내용 래퍼 */}
+            <AiContentText>분석 1 상세 내용</AiContentText>
+          </AiResultDesContainer>
+        </div>
+        <div>
+          {/* 분석 1 상세 제목 */}
+          <div>
+            <AiContentTitle>분석 1 상세</AiContentTitle>
+          </div>
+          {/* 분석 1 상세 내용 컨테이너*/}
+          <AiResultDesLastContainer>
+            {/* 분석 1 상세 내용 래퍼 */}
+            <AiContentText>분석 1 상세 내용</AiContentText>
+          </AiResultDesLastContainer>
+        </div>
       </div>
       {/* 버리는 법 섹션 */}
       <div>
