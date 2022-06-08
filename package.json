@@ -6,6 +6,7 @@
     "scripts": {
         "start": "ts-node-dev --respawn --transpile-only src/server.ts",
         "test": "jest --setupFiles dotenv/config --forceExit --detectOpenHandles",
+        "test:ci": "jest --config ./jest.config.ts --collectCoverage --coverageDirectory=\"./coverage\" --ci --reporters=default --reporters=jest-junit --watchAll=false",
         "coverage": "jest --coverage"
     },
     "dependencies": {
@@ -27,6 +28,7 @@
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-prettier": "^4.0.0",
         "jest": "^28.1.0",
+        "jest-junit": "^13.2.0",
         "supertest": "^6.2.3",
         "ts-jest": "^28.0.3",
         "ts-node": "^10.8.1",

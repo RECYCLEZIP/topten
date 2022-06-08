@@ -16,6 +16,9 @@ module.exports = {
         "@src/(.*)": "<rootDir>/src/$1",
     },
     coverageDirectory: "coverage",
+    collectCoverageFrom: ["src/**/*.ts", "!**/node_modules/**"],
+    coverageReporters: ["html", "text", "text-summary", "cobertura"],
+    testMatch: ["**/*.test.ts"],
     clearMocks: true,
     transform: {
         "^.+\\.ts?$": "ts-jest",
