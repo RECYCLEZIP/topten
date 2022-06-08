@@ -7,7 +7,7 @@ interface Trash {
     kind: string[];
     image: string;
     recycle: boolean;
-    category: string;
+    category: string[];
 }
 
 const TrashSchema = new Schema<Trash>({
@@ -40,7 +40,7 @@ const TrashSchema = new Schema<Trash>({
         default: false,
     },
     category: {
-        type: String,
+        type: [String],
         required: true,
         enum: ["플라스틱", "스티로폼", "유리", "캔", "음식물", "일반", "종이", "비닐"],
     },

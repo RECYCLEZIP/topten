@@ -55,15 +55,22 @@ describe("에러 미들웨어는 응답으로 상태코드와 에러 메시지�
         expect(res.json).toBeCalledWith({ message: err.message });
     });
 
-    it("일반 에러 인스턴스는 상태코드 500을 응답하지 않는다.", () => {
+    it("일반 에러 인스턴스는 상태코드 500을 응답한다.", () => {
         const err = new Error("일반 에러 인스턴스");
         errorMiddleware(err, req, res, mockNext);
-        expect(res.status).toBeCalledWith(STATUS_400_BADREQUEST);
+        expect(res.status).toBeCalledWith(STATUS_500_INTERNALSERVERERROR);
         expect(res.json).toBeCalledWith({ message: err.message });
     });
 
     it("RequestError 인스턴스는 상태코드 500을 응답하지 않는다.", () => {
-        const err = new RequestError("커스텀 에러 인스턴스");
+        const err = new RequestError("커스텀 에러 인스턴스", STATUS_403_FORBIDDEN);
+        errorMiddleware(err, req, res, mockNext);
+        expect(res.status).toBeCalledWith(STATUS_403_FORBIDDEN);
+        expect(res.json).toBeCalledWith({ message: err.message });
+    });
+
+    it("RequestError 인스턴스 생성 시 상태코드를 입력하지 않으면 400을 응답한다.", () => {
+        const err = new RequestError();
         errorMiddleware(err, req, res, mockNext);
         expect(res.status).toBeCalledWith(STATUS_400_BADREQUEST);
         expect(res.json).toBeCalledWith({ message: err.message });
