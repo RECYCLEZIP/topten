@@ -10,6 +10,15 @@ export const AiTopTitle = styled.span`
   font-size: 1rem;
 `;
 
+// 공통
+export const AiContentTitle = styled.span`
+  font-size: 0.8rem;
+`;
+
+export const AiContentText = styled.span`
+  font-size: 0.7rem;
+`;
+
 export const AiImageUploadSection = styled.div`
   margin: 1rem 3rem;
 `;
@@ -84,7 +93,7 @@ export const AiTopContainer = styled.div`
   display: flex;
 `;
 
-export const AiTitleWrapper = styled.div`
+export const AiNoticeWrapper = styled.div`
   /* background: gray; */
 
   font-size: 0.9rem;
@@ -137,9 +146,7 @@ export const AiGuideSection = styled.div`
   margin-bottom: 2rem;
 `;
 
-export const AiGuidesTitle = styled.span`
-  font-size: 0.8rem;
-
+export const AiGuidesTitle = styled(AiContentTitle)`
   color: #9eacba;
 `;
 
@@ -188,10 +195,6 @@ export const AiGuideImg = styled.img`
   /* transform: translate(0px, -10px); */
 `;
 
-export const AiGuideTitle = styled.span`
-  font-size: 0.6rem;
+export const AiGuideTitle = styled(AiContentText)`
   color: #9eacba;
-`;
-export const AiGuideDescription = styled.span`
-  font-weight: 400;
 `;
