@@ -1,5 +1,7 @@
 import React from "react";
 
+import { img } from "../../assets/imgImport";
+
 import { AiContentTitle, AiContentText } from "../../styles/aiStyles/AiStyle";
 
 import {
@@ -10,7 +12,10 @@ import {
   AiResultContentContainer,
   AiResultMidSummaryContainer,
   AiResultSummaryTitleWrapper,
-  AiResultSummaryDesWrapper,AiResultDesContainer,
+  AiResultSummaryDesWrapper,
+  AiResultScrollIconWrapper,
+  AiResultScrollIcon,
+  AiResultDesContainer,
 } from "../../styles/aiStyles/AiResultStyle";
 
 function AiResult() {
@@ -48,9 +53,9 @@ function AiResult() {
         </AiResultContentContainer>
       </AiResultContentsSection>
       {/* 하향 화살표 */}
-      <div>
-        <img></img>
-      </div>
+      <AiResultScrollIconWrapper>
+        <AiResultScrollIcon src={img.scrollDown} />
+      </AiResultScrollIconWrapper>
       {/* 분석 상세 섹션 */}
       <div>
         {/* 분석 1 상세 제목 */}
