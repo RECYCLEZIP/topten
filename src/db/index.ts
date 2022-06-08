@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import { Quiz } from "@src/db/quiz/quiz.model";
-import { Trash } from "@src/db/trash/trash.model";
 import { News } from "@src/repository/news.repository";
+import { Quiz } from "@src/repository/quiz.repository";
+import { Trash } from "@src/repository/trash.repository";
 
 const DB_URL =
     process.env.MONGODB_URL ||
@@ -15,4 +15,4 @@ db.on("error", (error) =>
     console.error("MongoDB 연결에 실패하였습니다...\n" + DB_URL + "\n" + error),
 );
 
-export { Quiz, Trash };
+export { Quiz, Trash, News };
