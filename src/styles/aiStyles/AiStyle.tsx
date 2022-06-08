@@ -131,7 +131,7 @@ export const AiButton = styled(Button)<{
     "linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), #21A663"};
 `;
 
-export const AiGuideLikeSection = styled.div`
+export const AiGuideSection = styled.div`
   /* background: lightyellow; */
 
   width: 100%;
