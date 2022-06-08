@@ -28,10 +28,10 @@ export const Icons = styled.div`
   justify-content: space-between;
 `;
 
-export const QuizOption = styled.div<{ isClick: boolean }>`
+export const QuizOption = styled.div<{ isSelected: boolean }>`
   border-radius: 0.5rem;
   box-shadow: ${(props) =>
-    props.isClick
+    props.isSelected
       ? "0px 0px 10px rgba(34, 190, 112, 0.8)"
       : "0px 0px 10px rgba(0, 0, 0, 0.2)"};
 
@@ -39,22 +39,23 @@ export const QuizOption = styled.div<{ isClick: boolean }>`
   font-size: 0.7rem;
   margin: 1rem 0;
 
-  color: ${(props) => (props.isClick ? "white" : "black")};
-  background-color: ${(props) => (props.isClick ? "#22be70" : "white")};
+  color: ${(props) => (props.isSelected ? "white" : "black")};
+  background-color: ${(props) => (props.isSelected ? "#22be70" : "white")};
 
   &:hover {
-    background-color: ${(props) => (props.isClick ? "#22be70" : "#ebfbee")};
+    background-color: ${(props) => (props.isSelected ? "#22be70" : "#ebfbee")};
   }
 `;
 
-export const OptionNumber = styled.span<{ isClick: boolean }>`
-  color: ${(props) => (props.isClick ? "white" : "#9eacba")};
+export const OptionNumber = styled.span<{ isSelected: boolean }>`
+  color: ${(props) => (props.isSelected ? "white" : "#9eacba")};
   font-size: 0.8rem;
 `;
 
 export const MoveButton = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const MoveText = styled.p`
@@ -82,7 +83,7 @@ export const TwoOptions = styled.div`
   justify-content: space-evenly;
 `;
 
-export const TwoOption = styled.div<{ isClick: boolean }>`
+export const TwoOption = styled.div<{ isSelected: boolean }>`
   width: 7rem;
   height: 7rem;
   display: flex;
@@ -91,16 +92,16 @@ export const TwoOption = styled.div<{ isClick: boolean }>`
   color: #22be70;
   border-radius: 0.3rem;
   box-shadow: ${(props) =>
-    props.isClick
+    props.isSelected
       ? "0px 0px 10px rgba(34, 190, 112, 0.8)"
       : "0px 0px 10px rgba(0, 0, 0, 0.2)"};
   cursor: pointer;
 
-  color: ${(props) => (props.isClick ? "white" : "#22be70;")};
-  background-color: ${(props) => (props.isClick ? "#22be70" : "#f8fcf9")};
+  color: ${(props) => (props.isSelected ? "white" : "#22be70;")};
+  background-color: ${(props) => (props.isSelected ? "#22be70" : "#f8fcf9")};
 
   &:hover {
-    background-color: ${(props) => (props.isClick ? "#22be70" : "#ebfbee")};
+    background-color: ${(props) => (props.isSelected ? "#22be70" : "#ebfbee")};
   }
 
   @media (min-width: 768px) {
@@ -109,10 +110,10 @@ export const TwoOption = styled.div<{ isClick: boolean }>`
   }
 `;
 
-export const TextTwoOption = styled.div<{ isClick: boolean }>`
-  width: 8rem;
+export const TextTwoOption = styled.div<{ isSelected: boolean }>`
+  width: 5rem;
   height: 4rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding: 3% 7%;
   display: flex;
   justify-content: center;
@@ -120,15 +121,29 @@ export const TextTwoOption = styled.div<{ isClick: boolean }>`
   color: #22be70;
   border-radius: 0.3rem;
   box-shadow: ${(props) =>
-    props.isClick
+    props.isSelected
       ? "0px 0px 10px rgba(34, 190, 112, 0.8)"
       : "0px 0px 10px rgba(0, 0, 0, 0.2)"};
   cursor: pointer;
 
-  color: ${(props) => (props.isClick ? "white" : "#22be70;")};
-  background-color: ${(props) => (props.isClick ? "#22be70" : "#f8fcf9")};
+  color: ${(props) => (props.isSelected ? "white" : "#22be70;")};
+  background-color: ${(props) => (props.isSelected ? "#22be70" : "#f8fcf9")};
 
   &:hover {
-    background-color: ${(props) => (props.isClick ? "#22be70" : "#ebfbee")};
+    background-color: ${(props) => (props.isSelected ? "#22be70" : "#ebfbee")};
   }
+
+  @media (min-width: 768px) {
+    width: 8rem;
+    height: 4rem;
+  }
+`;
+
+export const Result = styled.div`
+  border-top: 1px solid #9eacba;
+  margin: 7% 0;
+`;
+
+export const ResultText = styled.p<{ size?: string }>`
+  font-size: ${(props) => props.size || "0.8rem"};
 `;

@@ -28,16 +28,12 @@ function QuestionCard() {
       </QuestionBox>
       <Icons>
         <MoveButton>
-          <ChevronLeftIcon
-            style={{ color: "#9EACBA", fontSize: "2rem", cursor: "pointer" }}
-          />
+          <ChevronLeftIcon style={{ color: "#9EACBA", fontSize: "2rem" }} />
           <MoveText>이전 문제</MoveText>
         </MoveButton>
         <MoveButton>
           <MoveText>다음 문제</MoveText>
-          <ChevronRightIcon
-            style={{ color: "#9EACBA", fontSize: "2rem", cursor: "pointer" }}
-          />
+          <ChevronRightIcon style={{ color: "#9EACBA", fontSize: "2rem" }} />
         </MoveButton>
       </Icons>
     </>

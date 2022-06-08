@@ -1,35 +1,36 @@
 import { QuizContainer } from "../../styles/mainStyles/QuizStyle";
-import {
-  CorrectAnswer,
-  OptionNumber,
-  QuizOption,
-} from "../../styles/quizStyles/QuizzesStyle";
+import { OptionNumber, QuizOption } from "../../styles/quizStyles/QuizzesStyle";
 import { useState } from "react";
 import QuestionCard from "./QuestionCard";
+import Results from "./Results";
 
 function MultiQuiz() {
-  const [click, setClick] = useState(false);
+  const option = ["안녕하세요", "안녕하세요", "안녕하세요", "안녕하세요"];
+  const [isSelected, setIsSelected] = useState([false]);
 
-  const clickHandler = () => {
-    setClick((cur: boolean) => !cur);
+  const clickHandler = (idx: number) => {
+    const newArr: boolean[] = Array(option.length).fill(false);
+    newArr[idx] = true;
+    setIsSelected(newArr);
   };
 
   return (
     <QuizContainer>
       <QuestionCard />
-      <QuizOption onClick={clickHandler} isClick={click}>
-        <OptionNumber isClick={click}>1. </OptionNumber>안녕하세요.
-      </QuizOption>
-      <QuizOption onClick={clickHandler} isClick={click}>
-        <OptionNumber isClick={click}>2. </OptionNumber>안녕하세요.
-      </QuizOption>
-      <QuizOption onClick={clickHandler} isClick={click}>
-        <OptionNumber isClick={click}>3. </OptionNumber>안녕하세요.
-      </QuizOption>
-      <QuizOption onClick={clickHandler} isClick={click}>
-        <OptionNumber isClick={click}>4. </OptionNumber>안녕하세요.
-      </QuizOption>
-      <CorrectAnswer>정답 확인</CorrectAnswer>
+      {option.map((text, index) => {
+        return (
+          <QuizOption
+            onClick={() => clickHandler(index)}
+            isSelected={isSelected[index]}
+          >
+            <OptionNumber isSelected={isSelected[index]}>
+              {index + 1}.{" "}
+            </OptionNumber>
+            안녕하세요.
+          </QuizOption>
+        );
+      })}
+      <Results />
     </QuizContainer>
   );
 }

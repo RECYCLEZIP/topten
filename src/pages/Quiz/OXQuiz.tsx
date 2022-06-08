@@ -8,23 +8,39 @@ import {
 import QuestionCard from "./QuestionCard";
 import ClearIcon from "@mui/icons-material/Clear";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
+import Results from "./Results";
 
 function OXQuiz() {
-  const [oState, setOState] = useState(false);
-  const [xState, setXState] = useState(false);
+  const option = [
+    <CircleOutlinedIcon style={{ fontSize: "5rem" }} />,
+    <ClearIcon style={{ fontSize: "6rem" }} />,
+  ];
+  const [isSelected, setIsSelected] = useState([false]);
+
+  const [result, setResult] = useState(false);
+
+  const clickHandler = (idx: number) => {
+    const newArr: boolean[] = Array(option.length).fill(false);
+    newArr[idx] = true;
+    setIsSelected(newArr);
+  };
 
   return (
     <QuizContainer>
       <QuestionCard />
       <TwoOptions>
-        <TwoOption onClick={() => setOState((cur) => !cur)} isClick={oState}>
-          <CircleOutlinedIcon style={{ fontSize: "5rem" }} />
-        </TwoOption>
-        <TwoOption onClick={() => setXState((cur) => !cur)} isClick={xState}>
-          <ClearIcon style={{ fontSize: "6rem" }} />
-        </TwoOption>
+        {option.map((text, index) => {
+          return (
+            <TwoOption
+              onClick={() => clickHandler(index)}
+              isSelected={isSelected[index]}
+            >
+              {text}
+            </TwoOption>
+          );
+        })}
       </TwoOptions>
-      <CorrectAnswer>정답 확인</CorrectAnswer>
+      <Results />
     </QuizContainer>
   );
 }
