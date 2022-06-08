@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
-// import { AiGuideTitle, AiContentText } from "./AiStyle";
-
 export const AiResultSubjectSection = styled.section`
-  background: lightblue;
+  /* background: lightblue; */
 
   display: grid;
   text-align: center;
