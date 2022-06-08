@@ -1,5 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 
+import { useRecoilState } from "recoil";
+import { AiSituationState } from "../../stores/atoms";
+
 import { img } from "../../assets/imgImport";
 
 import {
@@ -19,10 +22,8 @@ import {
 function AiImageUpload() {
   const [fileImage, setFileImage] = useState("");
 
-  // 이미지 업로드, 분석 중, 분석 완료 -> 페이지 상황 구분
-  const [isImgUploaded, setIsImgUploaded] = useState(false);
-  const [isAnalyzed, setIsAnalyzed] = useState(false);
-  const [isCompletion, setIsCompletion] = useState(false);
+  // 이미지 업로드 전: beforeImgUpload, 이미지 업로드: imgUploaded, 분석 중: analyzing, 분석 완료: done
+  const [situation, setSituation] = useRecoilState(AiSituationState);
 
   const [titleText, setTitleText] = useState("");
   const [buttonText, setButtonText] = useState("");
@@ -38,23 +39,22 @@ function AiImageUpload() {
 
   // 이미지 업로드 시
   useEffect(() => {
-    fileImage ? setIsImgUploaded(true) : setIsImgUploaded(false);
+    fileImage && setSituation("imgUploaded");
   }, [fileImage]);
 
   // 분석하기 버튼 Click 시
   const onClickAnalyze = () => {
-    if (isCompletion) {
-      // 다시 분석하기 Click 시, 이미지 업로드 전 상태로
-      setIsCompletion(false);
+    if (situation === "done") {
+      // 다시 분석하기 Click 시, 이미지 업로드 전 상태로 초기화
+      setSituation("beforeImgUpload");
       setFileImage("");
     } else {
       // 분석하기 Click 시
-      setIsAnalyzed(true);
+      setSituation("analyzing");
 
       // 임시 분석 완료 상태
       setTimeout(() => {
-        setIsCompletion(true);
-        setIsAnalyzed(false);
+        setSituation("done");
       }, 3000);
     }
 
@@ -63,21 +63,43 @@ function AiImageUpload() {
 
   useEffect(() => {
     const titleText = () => {
-      if (isCompletion) {
-        setTitleText("분석이 완료되었습니다");
-      } else if (isAnalyzed) {
-        setTitleText("AI가 사진을 분석하고 있습니다");
-      } else if (isImgUploaded) {
-        setTitleText("분석하기 버튼을 클릭해주세요");
-      } else {
-        setTitleText("쓰레기 사진을 업로드해주세요");
+      switch (situation) {
+        case "imgUploaded":
+          return setTitleText("분석하기 버튼을 클릭해주세요");
+        case "analyzing":
+          return setTitleText("AI가 사진을 분석하고 있습니다");
+        case "done":
+          return setTitleText("분석이 완료되었습니다");
+        default:
+          return setTitleText("쓰레기 사진을 업로드해주세요");
       }
+
+      // //   switch (situation) {
+      // //     case "done":
+      // //       return setTitleText("분석이 완료되었습니다");
+      // //     case "analyzing":
+      // //       return setTitleText("AI가 사진을 분석하고 있습니다");
+      // //     case "imgUploaded":
+      // //       return setTitleText("분석하기 버튼을 클릭해주세요");
+      // //     default:
+      // //       return setTitleText("쓰레기 사진을 업로드해주세요");
+      // //   }
+
+      //   if (situation === "done") {
+      //     setTitleText("분석이 완료되었습니다");
+      //   } else if (situation === "analyzing") {
+      //     setTitleText("AI가 사진을 분석하고 있습니다");
+      //   } else if (situation === "imgUploaded") {
+      //     setTitleText("분석하기 버튼을 클릭해주세요");
+      //   } else {
+      //     setTitleText("쓰레기 사진을 업로드해주세요");
+      //   }
     };
 
     titleText();
 
     const buttonText = () => {
-      if (isCompletion) {
+      if (situation === "done") {
         setButtonText("다시 분석하기");
       } else {
         setButtonText("분석하기");
@@ -85,19 +107,19 @@ function AiImageUpload() {
     };
 
     buttonText();
-  }, [isImgUploaded, isAnalyzed, isCompletion]);
+  }, [situation]);
 
   console.log(
-    `사진 업로드: ${isImgUploaded}, 분석 중: ${isAnalyzed}, 분석 완료: ${isCompletion}`,
+    `${situation}`,
   );
-  
+
   return (
     <>
       {/* 사진, 카메라 */}
       <AiImageUploadSection>
         {/* 사진 */}
-        <AiImageContainer isAnalyzed={isAnalyzed}>
-          {isAnalyzed && (
+        <AiImageContainer>
+          {situation === "analyzing" && (
             <AiImageLayer>
               <AiSpinImg src={img.spin} />
             </AiImageLayer>
@@ -126,11 +148,11 @@ function AiImageUpload() {
         <AiTitleWrapper>{titleText}</AiTitleWrapper>
         <AiButtonWrapper>
           <AiButton
-            // 버튼 활성화: 업로드 전, 분석 중
-            disabled={(!isImgUploaded || isAnalyzed) && !isCompletion}
-            isImgUploaded={isImgUploaded}
-            isAnalyzed={isAnalyzed}
-            isCompletion={isCompletion}
+            // 버튼 비활성화: 업로드 전, 분석 중
+            disabled={
+              situation === "beforeImgUpload" || situation === "analyzing"
+            }
+            situation={situation}
             onClick={onClickAnalyze}
           >
             {buttonText}

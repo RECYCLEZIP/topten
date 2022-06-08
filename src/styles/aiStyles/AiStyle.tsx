@@ -14,7 +14,7 @@ export const AiImageUploadSection = styled.div`
   margin: 1rem 3rem;
 `;
 
-export const AiImageContainer = styled.div<{ isAnalyzed: boolean }>`
+export const AiImageContainer = styled.div`
   background: #9eacba;
 
   width: 100%;
@@ -97,9 +97,7 @@ export const AiButtonWrapper = styled.div`
 `;
 
 export const AiButton = styled(Button)<{
-  isImgUploaded: boolean;
-  isAnalyzed: boolean;
-  isCompletion: boolean;
+  situation: string;
 }>`
   height: 100%;
 
@@ -112,8 +110,8 @@ export const AiButton = styled(Button)<{
   font-size: 0.5rem;
 
   cursor: ${(props) =>
-    (!props.isImgUploaded || props.isAnalyzed) &&
-    !props.isCompletion &&
+    (props.situation === "beforeImgUpload" ||
+      props.situation === "analyzing") &&
     "default"};
 
   background: ${(props) =>
@@ -126,8 +124,8 @@ export const AiButton = styled(Button)<{
     // ! 안 하는 경우
     // ?분석 완료
     // 이미지 업로드 false, 분석 중 false, 분석 완료 true
-    (!props.isImgUploaded || props.isAnalyzed) &&
-    !props.isCompletion &&
+    (props.situation === "beforeImgUpload" ||
+      props.situation === "analyzing") &&
     "linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), #21A663"};
 `;
 
@@ -146,8 +144,6 @@ export const AiGuidesTitle = styled.span`
 `;
 
 export const AiGuidesContainer = styled.div`
-  width: 100%;
-
   margin-top: 0.5rem;
   padding: 1rem;
 
