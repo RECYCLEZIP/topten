@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { Quiz } from "@src/db/quiz/quiz.model";
 import { Trash } from "@src/db/trash/trash.model";
+import { News } from "@src/repository/news.repository";
 
 const DB_URL =
     process.env.MONGODB_URL ||

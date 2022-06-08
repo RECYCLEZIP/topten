@@ -1,6 +1,8 @@
 node_modules/
 .DS_Store
 
+dist/
 coverage/
 .env
 .idea
+script/newsfeed/news.txt
