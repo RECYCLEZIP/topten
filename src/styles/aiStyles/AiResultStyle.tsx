@@ -3,6 +3,9 @@ import styled from "styled-components";
 export const AiResultSubjectSection = styled.section`
   /* background: lightblue; */
 
+  /* margin-top: 2rem; */
+  margin-bottom: 1rem;
+
   display: grid;
   text-align: center;
 `;
@@ -30,30 +33,42 @@ export const AiResultContentsSection = styled.section`
 export const AiResultContentContainer = styled.div`
   margin: 1rem 0;
   padding: 1rem;
-  
+
   flex: 1;
   text-align: center;
-  
+
   background: #dfe6ed;
   border-radius: 0.5rem;
-  `;
+`;
 
 export const AiResultMidSummaryContainer = styled(AiResultContentContainer)`
   @media screen and (min-width: 768px) {
-      margin: 1rem 1rem;
-    }
-    `;
+    margin: 1rem 1rem;
+  }
+`;
 
 export const AiResultSummaryTitleWrapper = styled.div`
   margin-bottom: 0.5rem;
-  
+
   font-size: 0.6rem;
-  `;
-  
+`;
+
 export const AiResultSummaryDesWrapper = styled.div`
   font-size: 0.7rem;
-  `;
+`;
 
-  export const AiResultDesContainer = styled(AiResultContentContainer)`
-    text-align: left;
-  `
+export const AiResultScrollIconWrapper = styled.div`
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+
+  display: flex;
+  justify-content: center;
+`;
+
+export const AiResultScrollIcon = styled.img`
+  width: 2rem;
+`;
+
+export const AiResultDesContainer = styled(AiResultContentContainer)`
+  text-align: left;
+`;
