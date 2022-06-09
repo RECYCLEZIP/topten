@@ -1,5 +1,5 @@
-{
-    "0": {
+[
+    {
         "title": "배달에 쓰인 일회용 용기의 분리배출 방법으로 옳은 것을 고르시오.",
         "description": "음식물과 기름기가 남아있지 않다면 약간의 얼룩은 상관 없다.",
         "options": [
@@ -12,7 +12,7 @@
         "type": "multipleChoice",
         "image": "http://www.laborplus.co.kr/news/photo/201911/22917_29040_1411.jpg"
     },
-    "1": {
+    {
         "title": "유통기한 지난 의약품의 분리배출 방법으로 옳은 것을 고르시오.",
         "description": "폐의약품을 그냥 버릴 경우 환경오염을 일으킬 수 있다. 약국에 비치된 폐의약품 수거함에 버린다.",
         "options": [
@@ -25,7 +25,7 @@
         "type": "multipleChoice",
         "image": "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1840&q=80"
     },
-    "2": {
+    {
         "title": "우유팩의 분리배출 방법으로 옳은 것을 고르시오.",
         "description": "종이팩과 종이컵은 양면에 폴리에틸렌이 코팅돼 있어 일반 종이류와 재활용되는 공정이 다르기 때문에 일반 종이와 분리배출해야 한다.",
         "options": [
@@ -38,7 +38,7 @@
         "type": "multipleChoice",
         "image": "https://t1.daumcdn.net/cfile/tistory/99DF7B345F88CA8D0C"
     },
-    "3": {
+    {
         "title": "투명 페트병의 분리배출 방법으로 옳은 것을 고르시오.",
         "description": "투명 페트병은 내용물을 비우고 깨끗하게 헹군 뒤 라벨을 제거하고 부피를 줄여 뚜껑을 닫아 버린다.",
         "options": [
@@ -51,7 +51,7 @@
         "type": "multipleChoice",
         "image": "https://images.unsplash.com/photo-1523362628745-0c100150b504?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80"
     },
-    "4": {
+    {
         "title": "패스트푸드 음료컵의 뚜껑과 빨대는 모두 플라스틱에 포함된다.",
         "description": "뚜껑은 플라스틱 빨대는 일반 쓰레기로 분리배출해야 한다.",
         "options": ["O", "X"],
@@ -59,7 +59,7 @@
         "type": "ox",
         "image": "https://images.unsplash.com/photo-1522039906375-50d8e4d9550a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1178&q=80"
     },
-    "5": {
+    {
         "title": "캔 음료는 최대한 작게 압축한 뒤 버린다.",
         "description": "크기를 너무 작게 만들면 재활용 선별장에서 분류되지 않을 수 있다. 따라서 가로로 눕혀서 발로 살짝 누른 뒤 버리는 정도가 적당하다.",
         "options": ["O", "X"],
@@ -67,7 +67,7 @@
         "type": "ox",
         "image": "https://images.unsplash.com/photo-1517088587697-8de5e72b421b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1771&q=80"
     },
-    "6": {
+    {
         "title": "핫소스처럼 작은 비닐은 안쪽을 씻어도 재활용이 안 된다.",
         "description": "소스가 묻어 있다면 일반쓰레기, 깨끗이 씻었다면 비닐류로 버린다.",
         "options": ["O", "X"],
@@ -75,7 +75,7 @@
         "type": "ox",
         "image": "https://www.beanobread.com/shop/data/goods/1639112613167m2.jpg"
     },
-    "7": {
+    {
         "title": "과일 포장재는 분리배출 대상이다.",
         "description": "플라스틱의 한 종류인 폴리스티렌 재질로 재활용이 가능하다.",
         "options": ["O", "X"],
@@ -83,7 +83,7 @@
         "type": "ox",
         "image": "http://m.linamimarket.com/web/product/medium/202009/aa12322abce4cd62a83ad1456558c92c.jpg"
     },
-    "8": {
+    {
         "title": "생선가시",
         "description": "조개껍데기, 닭뼈, 달걀껍데기, 생선가시 등 동물이 먹지 못하는 것은 일반쓰레기이다.",
         "options": ["일반", "음식물"],
@@ -91,7 +91,7 @@
         "type": "mixUp",
         "image": "https://images.unsplash.com/photo-1600699899970-b1c9fadd8f9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80"
     },
-    "9": {
+    {
         "title": "고추장, 간장, 쌈장 등 장류",
         "description": "염분이 많은 장류는 음식물 쓰레기에 포함되지 않는다.",
         "options": ["일반", "음식물"],
@@ -99,7 +99,7 @@
         "type": "mixUp",
         "image": "https://mblogthumb-phinf.pstatic.net/20160823_217/paldoblog_1471947280387FElPn_JPEG/%C6%C8%B5%B5_%C7%D1%BD%C4_%BE%E7%B3%E4%C0%E5_%C0%E5.jpg?type=w2"
     },
-    "10": {
+    {
         "title": "파뿌리",
         "description": "채소류의 껍질과 뿌리는 모두 일반쓰레기이다.",
         "options": ["일반", "음식물"],
@@ -107,7 +107,7 @@
         "type": "mixUp",
         "image": "https://blog.kakaocdn.net/dn/b3pQFW/btqEUpVNy4g/kWDhTVeWIjvTwdo4hktMQk/img.jpg"
     },
-    "11": {
+    {
         "title": "딸기꼭지",
         "description": "딸기꼭지와 귤껍질은 음식물이다.",
         "options": ["일반", "음식물"],
@@ -115,4 +115,4 @@
         "type": "mixUp",
         "image": "https://images.unsplash.com/photo-1518635017498-87f514b751ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1772&q=80"
     }
-}
+]

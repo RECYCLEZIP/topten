@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import mongoose, { Types } from "mongoose";
+import mongoose from "mongoose";
 import "dotenv/config";
 import { QuizModel } from "../src/db/quiz/quiz.schema";
 
@@ -38,7 +38,14 @@ db.on("connected", async () => {
             );
             const quizData = JSON.parse(dataBuffer.toString());
             quizData.forEach(async (quiz: Quiz) => {
-                const data = {};
+                const data = {
+                    title: quiz.title,
+                    description: quiz.description,
+                    options: quiz.options,
+                    answer: quiz.answer,
+                    type: quiz.type,
+                    image: quiz.image,
+                };
 
                 await QuizModel.create([data], { session });
             });
