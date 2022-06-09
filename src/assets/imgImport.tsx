@@ -16,6 +16,7 @@ import hard1 from "./img/image 51.png";
 import hard2 from "./img/image 53.png";
 import hard3 from "./img/image 52.png";
 import spin from "./img/spin.png";
+import mainLogo from "./img/서비스로고.png";
 
 export const img = {
   seoul: seoul,
@@ -35,4 +36,5 @@ export const img = {
   hard2: hard2,
   hard3: hard3,
   spin: spin,
+  mainLogo: mainLogo,
 };
