@@ -4,6 +4,7 @@ import PET from "./img/PET.jpg";
 import GLASS from "./img/GLASS.png";
 import PETs from "./img/PETs.jpg";
 import QuizLogo from "./img/QuizLogo.png";
+import QuizLogoB from "./img/QuizLogoB.png";
 
 export const img = {
   seoul: seoul,
@@ -11,4 +12,5 @@ export const img = {
   category: [PET, GLASS, PET, GLASS, PET, GLASS, PET, GLASS],
   sample: PETs,
   quizLogo: QuizLogo,
+  quizLogoB: QuizLogoB,
 };

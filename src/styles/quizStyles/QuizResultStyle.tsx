@@ -48,31 +48,30 @@ export const ResultBottom = styled.div`
 `;
 
 export const AnswerCard = styled.div`
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #f0f2f5;
-  border-radius: 1rem;
-  margin: 2% auto;
-  padding: 5% 4%;
+  padding: 2% 0;
+  margin-bottom: 3%;
 `;
 
 export const AnswerProblem = styled.div`
   display: flex;
   justify-content: space-around;
-  margin: 3% 0;
+  padding: 3% 0;
+  border-bottom: 1px solid black;
 `;
 
 export const AnswerDescription = styled.div`
-  background-color: #f0f2f5;
-  border-radius: 1rem;
-  width: 95%;
-  margin: 0 auto;
+  width: 100%;
+  padding: 2% 0;
 `;
 
-export const AnswerText = styled.p<{ size?: string; color?: string }>`
-  font-size: ${(props) => props.size || "0.8rem"};
+export const AnswerText = styled.p<ResultTextType>`
+  font-size: ${(props) => props.size || "0.7rem"};
   color: ${(props) => props.color};
   text-align: left;
-  padding: 0 5%;
+  padding: 0 2%;
+  margin: 0;
+  margin-bottom: ${(props) => props.margin};
 `;

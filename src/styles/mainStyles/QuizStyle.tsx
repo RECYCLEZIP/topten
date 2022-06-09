@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const QuizContainer = styled.div`
-  margin: 3% 8%;
+  padding: 3% 8%;
 `;
 
 export const RateText = styled.p`

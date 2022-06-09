@@ -14,7 +14,7 @@ export const QuestionBox = styled.div`
   border-radius: 1rem;
   margin: 0 auto;
   padding: 5% 4%;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 10px rgba(139, 188, 153, 0.8);
 `;
 
 export const QuizQuestion = styled.div`
@@ -86,13 +86,16 @@ export const CorrectAnswer = styled.button`
   border-radius: 1rem;
   padding: 1% 5%;
   margin: 5% auto;
+  margin-bottom: 3%;
   font-weight: 700;
   display: block;
   cursor: pointer;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.11);
 
   &:hover {
     background-color: #21a663;
     color: white;
+    box-shadow: 0px 0px 10px rgba(34, 190, 112, 0.4);
   }
 `;
 
@@ -116,7 +119,7 @@ export const TwoOption = styled.div<{ isSelected: boolean }>`
   cursor: pointer;
 
   color: ${(props) => (props.isSelected ? "white" : "#22be70;")};
-  background-color: ${(props) => (props.isSelected ? "#22be70" : "#f8fcf9")};
+  background-color: ${(props) => (props.isSelected ? "#22be70" : "white")};
 
   &:hover {
     background-color: ${(props) => (props.isSelected ? "#22be70" : "#ebfbee")};
@@ -145,7 +148,7 @@ export const TextTwoOption = styled.div<{ isSelected: boolean }>`
   cursor: pointer;
 
   color: ${(props) => (props.isSelected ? "white" : "#22be70;")};
-  background-color: ${(props) => (props.isSelected ? "#22be70" : "#f8fcf9")};
+  background-color: ${(props) => (props.isSelected ? "#22be70" : "white")};
 
   &:hover {
     background-color: ${(props) => (props.isSelected ? "#22be70" : "#ebfbee")};
@@ -158,7 +161,7 @@ export const TextTwoOption = styled.div<{ isSelected: boolean }>`
 `;
 
 export const Result = styled.div`
-  border-top: 1px solid #9eacba;
+  border-top: 1.4px solid #9eacba;
   margin: 7% 0;
 `;
 

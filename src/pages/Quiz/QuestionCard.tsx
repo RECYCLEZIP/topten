@@ -43,21 +43,18 @@ function QuestionCard() {
           <ChevronLeftIcon style={{ color: "#9EACBA", fontSize: "2rem" }} />
           <MoveText>이전 문제</MoveText>
         </MoveButton>
-        {count !== 4 ? (
-          <MoveButton
-            onClick={() => {
-              setCount((cur) => cur + 1);
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-          >
-            <MoveText>다음 문제</MoveText>
-            <ChevronRightIcon style={{ color: "#9EACBA", fontSize: "2rem" }} />
-          </MoveButton>
-        ) : (
-          <SubmitButton onClick={() => navigate("/quizzes/result")}>
-            결과 확인
-          </SubmitButton>
-        )}
+        <MoveButton
+          onClick={() => {
+            if (count === 4) {
+              navigate("/quizzes/result");
+            }
+            setCount((cur) => cur + 1);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        >
+          <MoveText>{count === 4 ? "결과 확인" : "다음 문제"}</MoveText>
+          <ChevronRightIcon style={{ color: "#9EACBA", fontSize: "2rem" }} />
+        </MoveButton>
       </Icons>
     </>
   );

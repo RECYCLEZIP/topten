@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
 export const QuizListBox = styled.div`
-  background-color: #e6ecf2;
   border-radius: 1rem;
   width: 80%;
   margin: 1rem auto;
   padding: 5%;
   &:hover {
     cursor: pointer;
-    transform: scale(1.1);
+    transform: scale(1.03);
     transition: transform 0.5s;
   }
   transform: scale(1);
   transition: transform 0.5s;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 `;
 
 export const QuizNumber = styled.div`
