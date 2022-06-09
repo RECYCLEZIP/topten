@@ -7,14 +7,14 @@ import AiResult from "./AiResult";
 import { useRecoilValue } from "recoil";
 import { AiSituationState } from "../../stores/atoms";
 
-import { Container, AiTopTitle } from "../../styles/aiStyles/AiStyle";
+import { Container, TopTitle } from "../../styles/basicStyle";
 
 function Ai() {
   const situation = useRecoilValue(AiSituationState);
 
   return (
     <Container>
-      <AiTopTitle>AI 분리수거</AiTopTitle>
+      <TopTitle>AI 분리수거</TopTitle>
       <AiImageUpload />
       {situation === "done" ? <AiResult /> : <AiGuide />}
     </Container>

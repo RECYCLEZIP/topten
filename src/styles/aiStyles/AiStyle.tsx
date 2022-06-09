@@ -2,13 +2,7 @@ import styled from "styled-components";
 
 import { Button } from "../ButtonStyles";
 
-export const Container = styled.div`
-  padding: 5% 8%;
-`;
 
-export const AiTopTitle = styled.span`
-  font-size: 1rem;
-`;
 
 // 공통
 export const AiContentTitle = styled.span`
