@@ -53,7 +53,7 @@ export const PrologueImg = styled.img`
 export const PrologueBubbleSection = styled(PrologueSection)`
   /* background: yellow; */
 
-  margin-top: 10%;
+  margin-top: 5%;
   /* padding-top: 10%; */
 `;
 
@@ -70,7 +70,7 @@ export const PrologueBubble = styled(motion.div).attrs(() => ({
   border-radius: 2rem;
 
   color: white;
-  font-size: 1rem;
+  font-size: 0.8rem;
 
   /* hidden: { opacity: 1; scale: 0 };
   visible: {
@@ -86,7 +86,7 @@ export const PrologueBubble = styled(motion.div).attrs(() => ({
 export const PrologueBubble1 = styled(PrologueBubble)`
   background: #c2e9d4;
 
-  width: 50%;
+  width: 40%;
   float: left;
 
   color: black;
@@ -101,7 +101,7 @@ export const PrologueBubble1 = styled(PrologueBubble)`
 export const PrologueBubble2 = styled(PrologueBubble)`
   background: #5bc691;
 
-  width: 60%;
+  width: 50%;
   display: grid;
 
   float: right;
@@ -113,7 +113,7 @@ export const PrologueBubble2 = styled(PrologueBubble)`
 export const PrologueBubble3 = styled(PrologueBubble)`
   background: #21a663;
 
-  width: 60%;
+  width: 50%;
   float: left;
 
   box-shadow: 0px 0px 25px rgb(0 0 0 / 25%);
@@ -239,9 +239,9 @@ export const PrologueStepLabel = styled(PrologueLabel)`
 `;
 
 export const PrologueStepTitle = styled.div`
-  margin-bottom: 1%;
+  margin: 0.2rem 0rem;
 
-  font-size: 1rem;
+  font-size: 0.8rem;
 `;
 
 export const PrologueStepSubTitle = styled.div`
@@ -275,7 +275,11 @@ export const PrologueBinMapTitleContainer = styled.div`
 
   width: fit-content;
 
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  
+  @media screen and (min-width: 768px) {
+    margin-bottom: 1.5rem;
+  }
 `;
 
 export const BinMapLabel = styled(PrologueLabel)`
