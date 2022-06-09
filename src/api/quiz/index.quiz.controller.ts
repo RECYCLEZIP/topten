@@ -17,7 +17,7 @@ quizController.get(
 
 // * 단일 퀴즈 정보 조회(id 기반 조회)
 quizController.get(
-    "quizzes/:id",
+    "/quizzes/:id",
     wrapAsyncFunc(async (req, res, next) => {
         const quizId = req.params.id;
         const quiz = await quizService.getQuiz(quizId);

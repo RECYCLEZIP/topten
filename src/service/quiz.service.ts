@@ -5,4 +5,8 @@ export class QuizService {
     async getQuizList(quizType: string) {
         return await Quiz.findByQuizType(quizType);
     }
+
+    async getQuiz(quizId: string) {
+        return await Quiz.findQuizById(quizId);
+    }
 }
