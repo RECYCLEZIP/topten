@@ -1,4 +1,4 @@
-// import * as fs from "fs";
+import * as fs from "fs";
 import mongoose from "mongoose";
 import "dotenv/config";
 import { TrashModel } from "../src/db/trash/trash.schema";
@@ -34,7 +34,6 @@ db.on("connected", async () => {
             // 캔, 유리, 플라스틱, 스티로폼
             trashData1.forEach(async (trash: Trash) => {
                 const data = {
-                    trashId: new mongoose.Types.ObjectId(),
                     title: trash.title,
                     description: trash.description,
                     image: trash.image,
@@ -47,22 +46,22 @@ db.on("connected", async () => {
             });
 
             // 일반, 음식물, 비닐, 종이
-            // const dataBuffer = fs.readFileSync(
-            //     "/Users/yanghaechan/vscode_workspace/elice_project/ai-project/seeds/restTrash.json",
-            // );
-            // const trashData2 = JSON.parse(dataBuffer.toString());
-            // trashData2.forEach(async (trash: Trash) => {
-            //     const data = {
-            //         title: trash.title,
-            //         description: trash.description,
-            //         image: trash.image,
-            //         kind: trash.kind,
-            //         recycle: trash.recycle,
-            //         category: trash.category,
-            //     };
+            const dataBuffer = fs.readFileSync(
+                "/Users/yanghaechan/vscode_workspace/elice_project/ai-project/seeds/restTrash.json",
+            );
+            const trashData2 = JSON.parse(dataBuffer.toString());
+            trashData2.forEach(async (trash: Trash) => {
+                const data = {
+                    title: trash.title,
+                    description: trash.description,
+                    image: trash.image,
+                    kind: trash.kind,
+                    recycle: trash.recycle,
+                    category: trash.category,
+                };
 
-            //     await TrashModel.create([data], { session });
-            // });
+                await TrashModel.create([data], { session });
+            });
 
             console.log(`데이터를 정상적으로 저장했습니다.`);
         } catch (error) {
