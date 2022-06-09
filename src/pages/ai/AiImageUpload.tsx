@@ -57,8 +57,6 @@ function AiImageUpload() {
         setSituation("done");
       }, 3000);
     }
-
-    alert("asdfa");
   };
 
   useEffect(() => {
