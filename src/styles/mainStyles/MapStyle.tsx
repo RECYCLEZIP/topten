@@ -1,13 +1,22 @@
 import styled from "styled-components";
+import { img } from "../../assets/imgImport";
 
 export const SeoulImg = styled.div`
+  width: 100%;
   height: 30vh;
   text-align: center;
   position: relative;
+  @media (min-width: 560px) {
+    height: 50vh;
+  }
+  @media (min-width: 940px) {
+    height: 90vh;
+  }
   ::before {
     content: "";
-    background: url("./seoul.jpg") no-repeat;
+    background: url(${img.seoul}) no-repeat;
     background-size: contain;
+    resize: both;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -31,4 +40,10 @@ export const MapButton = styled.button`
   font-weight: bold;
   background-color: rgba(255, 255, 255, 0);
   position: relative;
+  cursor: pointer;
+  &:hover {
+    background-color: black;
+    color: white;
+    transition: all 0.5s;
+  }
 `;

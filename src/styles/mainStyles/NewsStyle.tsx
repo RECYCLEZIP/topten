@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const NewsContainer = styled.div`
-  margin: 1% 5%;
+  margin: 1% 8%;
 `;
 
 export const NewsTitle = styled.p`
