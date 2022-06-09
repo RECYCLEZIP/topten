@@ -18,6 +18,7 @@ export const QuizCount = styled.p`
 export const QuestionBox = styled.div`
   display: flex;
   justify-content: space-around;
+
   align-items: center;
   background-color: #51cf66;
   border-radius: 1rem;
@@ -28,7 +29,10 @@ export const QuestionBox = styled.div`
 
 export const QuizQuestion = styled.div`
   text-align: right;
-  width: 40%;
+  width: 80%;
+  @media (min-width: 768px) {
+    width: 40%;
+  }
 `;
 
 export const Icons = styled.div`
