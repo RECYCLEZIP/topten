@@ -7,6 +7,10 @@ export const RankContainer = styled.div`
   margin: 2% 0;
 `;
 
+export const QuizLank = styled.div`
+  padding: 3% 8%;
+`;
+
 export const RateText = styled.p<{ display?: string }>`
   color: #9eacba;
   font-size: 0.6rem;
@@ -32,15 +36,14 @@ export const PercentText = styled.p`
 export const QuizBox = styled.div`
   background-color: #51cf66;
   border-radius: 1rem;
-  text-align: center;
-  width: 70%;
   margin: 0 auto;
-  padding: 5% 0;
+  padding: 5% 4%;
+  text-align: center;
 `;
 
 export const QuizImg = styled.img`
   width: 50%;
-  height: 50%;
+  border-radius: 1rem;
 `;
 
 export const QuizButton = styled.p`
@@ -50,4 +53,8 @@ export const QuizButton = styled.p`
   &:hover {
     color: #21a663;
   }
+`;
+
+export const LogoImg = styled.img`
+  width: 18%;
 `;

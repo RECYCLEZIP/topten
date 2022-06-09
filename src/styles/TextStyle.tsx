@@ -2,13 +2,12 @@ import styled from "styled-components";
 
 export const TitleText = styled.p`
   font-size: 1rem;
-  margin: 3% 5%;
 `;
 
-export const CardText = styled.p`
-  color: white;
+export const CardText = styled.p<{ color?: string }>`
+  color: ${(props) => props.color || "white"};
 
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   @media (min-width: 768px) {
     margin-top: 0;
   }

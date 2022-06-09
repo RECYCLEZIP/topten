@@ -17,7 +17,7 @@ function QuizCard({ display }: { display?: string }) {
         <PercentText>80%</PercentText>
       </RateBox>
       <QuizBox>
-        <QuizImg src="./PETs.jpg" />
+        <QuizImg src="/PETs.jpg" />
         <CardText>퀴즈 내용입니다.</CardText>
         <Button>지금 바로 풀어보기</Button>
       </QuizBox>

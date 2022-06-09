@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CategoryContainer = styled.div`
-  margin: 3% 5%;
+  margin: 3% 8%;
   height: 100%;
 `;
 
