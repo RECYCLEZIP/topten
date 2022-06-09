@@ -7,16 +7,15 @@ function QuizSection() {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <>
       <TitleText>최근 가장 많이 틀린 퀴즈</TitleText>
-      <RateText>오답률</RateText>
       <QuizCard />
-      <QuizCard />
-      <QuizCard />
+      <QuizCard display="none" />
+      <QuizCard display="none" />
       <QuizButton onClick={() => navigate("/quizlist")}>
         전체 퀴즈 풀러가기
       </QuizButton>
-    </div>
+    </>
   );
 }
 

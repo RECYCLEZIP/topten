@@ -1,9 +1,17 @@
 import styled from "styled-components";
 
-export const RateText = styled.p`
+export const RankContainer = styled.div`
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  margin: 2% 0;
+`;
+
+export const RateText = styled.p<{ display?: string }>`
   color: #9eacba;
   font-size: 0.6rem;
   text-align: center;
+  display: ${(props) => props.display};
 `;
 
 export const RateBox = styled.div`
@@ -25,7 +33,7 @@ export const QuizBox = styled.div`
   background-color: #51cf66;
   border-radius: 1rem;
   text-align: center;
-  width: 90%;
+  width: 70%;
   margin: 0 auto;
   padding: 5% 0;
 `;
