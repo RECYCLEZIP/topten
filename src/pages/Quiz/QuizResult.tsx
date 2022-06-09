@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { QuizContainer } from "../../styles/mainStyles/QuizStyle";
 import {
@@ -8,41 +9,44 @@ import {
   ResultText,
   ScoreBox,
 } from "../../styles/quizStyles/QuizResultStyle";
-import { TitleText } from "../../styles/TextStyle";
+import { CardText, TitleText } from "../../styles/TextStyle";
+import DropAnswer from "./DropAnwser";
 
 function QuizResult() {
   const navigate = useNavigate();
+  const results = [true, false];
+  const [isSelected, setIsSelected] = useState([false, false]);
+
+  const clickHandler = (idx: number) => {
+    const newArr: boolean[] = [...isSelected];
+    newArr[idx] = newArr[idx] ? false : true;
+    setIsSelected(newArr);
+  };
 
   return (
     <QuizContainer>
       <TitleText>결과</TitleText>
       <QuizResultCard>
-        <ResultList>
-          <ResultText>1번</ResultText>
-          <ResultText margin="60%">맞았습니다!</ResultText>
-          <ResultButton>문제 보기</ResultButton>
-        </ResultList>
-        <ResultList>
-          <ResultText>2번</ResultText>
-          <ResultText margin="60%" color="#ce1b1b">
-            틀렸습니다!
-          </ResultText>
-          <ResultButton>문제 보기</ResultButton>
-        </ResultList>
-        <ResultList>
-          <ResultText>3번</ResultText>
-          <ResultText margin="60%" color="#ce1b1b">
-            틀렸습니다!
-          </ResultText>
-          <ResultButton>문제 보기</ResultButton>
-        </ResultList>
-        <ResultList>
-          <ResultText>4번</ResultText>
-          <ResultText margin="60%" color="#ce1b1b">
-            틀렸습니다!
-          </ResultText>
-          <ResultButton>문제 보기</ResultButton>
-        </ResultList>
+        {results.map((result, idx) => {
+          return (
+            <div>
+              <ResultList>
+                <ResultText>{idx + 1}번</ResultText>
+                {result ? (
+                  <ResultText margin="50%">맞았습니다! </ResultText>
+                ) : (
+                  <ResultText margin="50%" color="#ce1b1b">
+                    틀렸습니다!
+                  </ResultText>
+                )}
+                <ResultButton onClick={() => clickHandler(idx)}>
+                  {isSelected[idx] ? "문제 닫기" : "문제 보기"}
+                </ResultButton>
+              </ResultList>
+              {isSelected[idx] && <DropAnswer />}
+            </div>
+          );
+        })}
         <ScoreBox>
           <ResultText margin="3%">총점</ResultText>
           <ResultText size="1.5rem" margin="0">

@@ -60,13 +60,18 @@ export const MoveButton = styled.div<{ count?: number }>`
 `;
 
 export const SubmitButton = styled.p`
-  padding: 0 5%;
+  padding: 0 3%;
   display: flex;
   align-items: center;
   font-size: 0.6rem;
   background-color: #dfe6ed;
   border-radius: 1rem;
   cursor: pointer;
+
+  &:hover {
+    background-color: #21a663;
+    color: white;
+  }
 `;
 
 export const MoveText = styled.p`
@@ -75,6 +80,7 @@ export const MoveText = styled.p`
 `;
 
 export const CorrectAnswer = styled.button`
+  font-size: 0.6rem;
   background-color: #dfe6ed;
   border: none;
   border-radius: 1rem;
@@ -85,7 +91,8 @@ export const CorrectAnswer = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #51cf66;
+    background-color: #21a663;
+    color: white;
   }
 `;
 

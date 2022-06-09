@@ -33,18 +33,29 @@ function QuestionCard() {
         </QuizQuestion>
       </QuestionBox>
       <Icons>
-        <MoveButton count={count} onClick={() => setCount((cur) => cur - 1)}>
+        <MoveButton
+          count={count}
+          onClick={() => {
+            setCount((cur) => cur - 1);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        >
           <ChevronLeftIcon style={{ color: "#9EACBA", fontSize: "2rem" }} />
           <MoveText>이전 문제</MoveText>
         </MoveButton>
         {count !== 4 ? (
-          <MoveButton onClick={() => setCount((cur) => cur + 1)}>
+          <MoveButton
+            onClick={() => {
+              setCount((cur) => cur + 1);
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
             <MoveText>다음 문제</MoveText>
             <ChevronRightIcon style={{ color: "#9EACBA", fontSize: "2rem" }} />
           </MoveButton>
         ) : (
           <SubmitButton onClick={() => navigate("/quizzes/result")}>
-            결과확인
+            결과 확인
           </SubmitButton>
         )}
       </Icons>
