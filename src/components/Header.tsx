@@ -17,9 +17,9 @@ function Header() {
           프롤로그
         </Link>
         <Link onClick={() => navigate("/ai")}>AI 분리수거</Link>
-        <Link onClick={() => navigate("/")}>서울시 쓰레기통</Link>
+        <Link onClick={() => navigate("/map")}>서울시 쓰레기통</Link>
         <Link onClick={() => navigate("/quizzes")}>퀴즈</Link>
-        <Link onClick={() => navigate("/")}>분리수거 정보</Link>
+        <Link onClick={() => navigate("/categories")}>분리수거 정보</Link>
       </Menu>
       <IconMenu onClick={() => setIsToggled((cur) => !cur)}>
         {isToggled ? <CloseOutlinedIcon /> : <MenuOutlinedIcon />}
