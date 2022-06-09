@@ -3,6 +3,7 @@ image: node:latest
 stages:
     - build
     - test
+    - deploy
 
 build:
     stage: build
@@ -24,9 +25,28 @@ test:
         - build
     script:
         - yarn test:ci
+    cache:
+        - paths:
+              - coverage/
     artifacts:
+        paths:
+            - coverage/
         when: always
         reports:
             junit:
                 - junit.xml
             cobertura: coverage/cobertura-coverage.xml
+
+pages:
+    stage: deploy
+    dependencies:
+        - test
+    script:
+        - mkdir .public
+        - cp -r coverage/* .public
+        - mv .public public
+    artifacts:
+        paths:
+            - public
+    only:
+        - master
