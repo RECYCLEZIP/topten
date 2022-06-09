@@ -1,7 +1,6 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model } from "mongoose";
 
 interface Trash {
-    trashId: Types.ObjectId;
     title: string;
     description: { throwAway: string[]; note: string[] };
     kind: string[];
@@ -11,9 +10,6 @@ interface Trash {
 }
 
 const TrashSchema = new Schema<Trash>({
-    trashId: {
-        type: Schema.Types.ObjectId,
-    },
     title: {
         type: String,
         required: true,

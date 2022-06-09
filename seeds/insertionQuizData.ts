@@ -11,7 +11,6 @@ interface Result {
 }
 
 interface Quiz {
-    quizId: Types.ObjectId;
     title: string;
     description: string;
     options: string[];

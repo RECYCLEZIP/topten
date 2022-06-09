@@ -1,4 +1,4 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model } from "mongoose";
 
 interface Result {
     date: Date;
@@ -8,7 +8,6 @@ interface Result {
 }
 
 interface Quiz {
-    quizId: Types.ObjectId;
     title: string;
     description: string;
     options: string[];
@@ -19,9 +18,6 @@ interface Quiz {
 }
 
 const QuizSchema = new Schema<Quiz>({
-    quizId: {
-        type: Schema.Types.ObjectId,
-    },
     title: {
         type: String,
         required: true,
