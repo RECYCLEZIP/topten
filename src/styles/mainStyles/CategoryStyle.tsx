@@ -10,7 +10,7 @@ export const CategoryTitle = styled.span`
 `;
 
 export const CategorySubTitle = styled.span`
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   color: #9eacba;
   margin-left: 0.8rem;
 `;
@@ -21,6 +21,7 @@ export const CategoryText = styled.p`
 `;
 
 export const List = styled.div`
+  height: 50%;
   margin-top: 2%;
   display: grid;
   justify-content: center;
@@ -38,20 +39,22 @@ export const List = styled.div`
 export const ImgContainer = styled.div`
   display: flex;
   flex-direction: column;
+  width: 80%;
 `;
 
 export const IMGBox = styled.div`
   width: 100%;
-  height: 100%;
-  margin: 0 auto;
+  height: 0;
+  padding-bottom: 100%;
   border: 1px solid #dbdbdb;
   border-radius: 50%;
   overflow: hidden;
   background-color: white;
+  display: flex;
+  justify-content: center;
 `;
 
 export const IMG = styled.img`
   height: 4rem;
-  display: block;
-  margin: 0 auto;
+  padding: 1%;
 `;
