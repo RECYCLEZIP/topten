@@ -36,7 +36,7 @@ quizController.post(
     "/quizzes/submission",
     wrapAsyncFunc(async (req, res, next) => {
         const { type, answers }: Submissions = req.body;
-        const result = await quizService.getResult({ type, answers });
+        const result = await quizService.getResults({ type, answers });
         return res.status(STATUS_200_OK).json(result);
     }),
 );
