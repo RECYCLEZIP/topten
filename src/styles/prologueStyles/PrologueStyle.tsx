@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 // 공통
 export const PrologueSection = styled.div`
-  margin: 20% 8%;
+  margin: 13% 8%;
 
   display: flow-root;
 `;
@@ -45,25 +45,27 @@ export const PrologueLabel = styled.div`
 
 export const PrologueImg = styled.img`
   border-radius: 10px;
+
+  box-shadow: 0px 0px 20px rgb(0 0 0 / 20%);
 `;
 
 // 섹션 1 - 말풍선
 export const PrologueBubbleSection = styled(PrologueSection)`
-  background: yellow;
+  /* background: yellow; */
 
-  margin-top: 0;
+  margin-top: 10%;
   /* padding-top: 10%; */
 `;
 
 // 말풍선 공통
 // export const PrologueBubble = styled.div`
 export const PrologueBubble = styled(motion.div).attrs(() => ({
-  animate: { y: "3rem" },
+  // animate: { y: "3rem" },
   // animate: { y: [-30, 0] },
 }))`
   height: auto;
   padding: 1rem 2rem;
-  margin: 10px 0;
+  margin: 1rem 0;
 
   border-radius: 2rem;
 
@@ -89,6 +91,8 @@ export const PrologueBubble1 = styled(PrologueBubble)`
 
   color: black;
 
+  box-shadow: 0px 0px 20px rgb(0 0 0 / 15%);
+
   animate: {
     y: 100;
   }
@@ -102,6 +106,8 @@ export const PrologueBubble2 = styled(PrologueBubble)`
 
   float: right;
   text-align: right;
+
+  box-shadow: 0px 0px 20px rgb(0 0 0 / 20%);
 `;
 
 export const PrologueBubble3 = styled(PrologueBubble)`
@@ -109,6 +115,8 @@ export const PrologueBubble3 = styled(PrologueBubble)`
 
   width: 60%;
   float: left;
+
+  box-shadow: 0px 0px 25px rgb(0 0 0 / 25%);
 `;
 
 // 섹션 2 - 올바른 분리수거, 확실히 하고 계신가요?
@@ -168,7 +176,7 @@ export const PrologueAskImg = styled(PrologueImg)`
 export const PrologueAskTitleContainer = styled.div`
   height: auto;
 
-  margin-bottom: 3%;
+  margin-bottom: 5%;
 `;
 
 // 섹션 3 - AI가 알려주는 분리수거 3 STEP
@@ -189,7 +197,8 @@ export const PrologueStepsContainer = styled.div`
   justify-items: center;
 
   border-radius: 30px;
-  background: #f0f4f9;
+  background: #ffffff;
+  box-shadow: 0px 0px 30px rgb(0 0 0 / 10%);
 
   @media screen and (min-width: 768px) {
     display: inline-block;
@@ -245,7 +254,7 @@ export const PrologueBinMapSection = styled(PrologueSection)`
   background: #69db7c;
 
   margin: 10% 0;
-  padding: 8%;
+  padding: 5%;
 
   display: block;
 
