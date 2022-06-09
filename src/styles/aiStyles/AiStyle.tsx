@@ -16,7 +16,7 @@ export const AiContentTitle = styled.span`
 `;
 
 export const AiContentText = styled.span`
-  font-size: 0.7rem;
+  font-size: 0.6rem;
 `;
 
 export const AiImageUploadSection = styled.div`
@@ -96,7 +96,7 @@ export const AiTopContainer = styled.div`
 export const AiNoticeWrapper = styled.div`
   /* background: gray; */
 
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 `;
 
 export const AiButtonWrapper = styled.div`
@@ -116,7 +116,7 @@ export const AiButton = styled(Button)<{
 
   border-radius: 0.3rem;
 
-  font-size: 0.5rem;
+  font-size: 0.6rem;
 
   cursor: ${(props) =>
     (props.situation === "beforeImgUpload" ||
@@ -151,14 +151,14 @@ export const AiGuidesTitle = styled(AiContentTitle)`
 `;
 
 export const AiGuidesContainer = styled.div`
-  margin-top: 0.5rem;
+  margin-top: 0.8rem;
   padding: 1rem;
 
   display: grid;
   justify-items: center;
 
   background: #ffffff;
-  border: 1px solid #9eacba;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
   border-radius: 1rem;
 `;
 
