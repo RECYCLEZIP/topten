@@ -5,6 +5,7 @@ export const SeoulImg = styled.div`
   width: 100%;
   height: 30vh;
   text-align: center;
+  margin-top: 2%;
   position: relative;
   @media (min-width: 560px) {
     height: 50vh;

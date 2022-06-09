@@ -5,16 +5,33 @@ export const RankContainer = styled.div`
   display: flex;
   justify-content: center;
   margin: 2% 0;
+  padding: 0 8%;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    padding: 0 10%;
+  }
 `;
 
 export const QuizLank = styled.div`
-  padding: 3% 8%;
+  padding: 0 5%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+export const WrongPercent = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-right: 5%;
 `;
 
 export const RateText = styled.p<{ display?: string }>`
   color: #9eacba;
   font-size: 0.6rem;
   text-align: center;
+  margin: 0;
   display: ${(props) => props.display};
 `;
 
@@ -27,18 +44,6 @@ export const RateBox = styled.div`
   align-items: center;
   height: 3rem;
   width: 3.5rem;
-`;
-
-export const PercentText = styled.p`
-  font-size: 1rem;
-`;
-
-export const QuizBox = styled.div`
-  background-color: #51cf66;
-  border-radius: 1rem;
-  margin: 0 auto;
-  padding: 5% 4%;
-  text-align: center;
 `;
 
 export const QuizImg = styled.img`
