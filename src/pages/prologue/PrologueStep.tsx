@@ -38,7 +38,7 @@ function PrologueStep() {
         </PrologueStepContainer>
         <PrologueStepRightContainer>
           <PrologueStepLabel>STEP 3</PrologueStepLabel>
-          <PrologueStepTitle>사진 올리고,</PrologueStepTitle>
+          <PrologueStepTitle>사진 올리기</PrologueStepTitle>
           <PrologueStepSubTitle>AI가 알려준대로 분리수거</PrologueStepSubTitle>
         </PrologueStepRightContainer>
       </PrologueStepsContainer>
