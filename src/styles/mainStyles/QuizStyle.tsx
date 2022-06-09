@@ -38,4 +38,8 @@ export const QuizImg = styled.img`
 export const QuizButton = styled.p`
   text-align: center;
   font-size: 1rem;
+  cursor: pointer;
+  &:hover {
+    color: #21a663;
+  }
 `;
