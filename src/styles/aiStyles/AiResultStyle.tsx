@@ -4,7 +4,7 @@ export const AiResultSubjectSection = styled.section`
   /* background: lightblue; */
 
   /* margin-top: 2rem; */
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
 
   display: grid;
   text-align: center;
@@ -31,7 +31,8 @@ export const AiResultContentsSection = styled.section`
 `;
 
 export const AiResultContentContainer = styled.div`
-  margin: 1rem 0;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
   padding: 1rem;
 
   flex: 1;
@@ -43,7 +44,8 @@ export const AiResultContentContainer = styled.div`
 
 export const AiResultMidSummaryContainer = styled(AiResultContentContainer)`
   @media screen and (min-width: 768px) {
-    margin: 1rem 1rem;
+    margin: 2rem 1rem;
+    margin-bottom: 3rem;
   }
 `;
 
@@ -57,21 +59,9 @@ export const AiResultSummaryDesWrapper = styled.div`
   font-size: 0.7rem;
 `;
 
-export const AiResultScrollIconWrapper = styled.div`
-  margin-top: 1rem;
-  margin-bottom: 4rem;
-
-  display: flex;
-  justify-content: center;
-`;
-
-export const AiResultScrollIcon = styled.img`
-  width: 2rem;
-
-  cursor: pointer;
-`;
-
 export const AiResultDesContainer = styled(AiResultContentContainer)`
+  margin: 1rem 0;
+
   text-align: left;
 `;
 

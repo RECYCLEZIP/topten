@@ -1,7 +1,5 @@
 import React, { useRef } from "react";
 
-import { img } from "../../assets/imgImport";
-
 import { AiContentTitle, AiContentText } from "../../styles/aiStyles/AiStyle";
 
 import {
@@ -13,18 +11,11 @@ import {
   AiResultMidSummaryContainer,
   AiResultSummaryTitleWrapper,
   AiResultSummaryDesWrapper,
-  AiResultScrollIconWrapper,
-  AiResultScrollIcon,
   AiResultDesContainer,
   AiResultDesLastContainer,
 } from "../../styles/aiStyles/AiResultStyle";
 
 function AiResult() {
-  const detailRef = useRef<HTMLDivElement>(null);
-  const onScrollDownClick = () => {
-    detailRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <>
       {/* 품목 정보 섹션*/}
@@ -58,12 +49,8 @@ function AiResult() {
           <AiResultSummaryDesWrapper>분석 내용1</AiResultSummaryDesWrapper>
         </AiResultContentContainer>
       </AiResultContentsSection>
-      {/* 하향 화살표 */}
-      <AiResultScrollIconWrapper>
-        <AiResultScrollIcon src={img.scrollDown} onClick={onScrollDownClick} />
-      </AiResultScrollIconWrapper>
       {/* 분석 상세 섹션 */}
-      <div ref={detailRef}>
+      <div>
         {/* 분석 1 상세 컨테이너 */}
         <div>
           {/* 분석 1 상세 제목 */}
