@@ -38,11 +38,20 @@ export const AiResultContentContainer = styled.div`
   flex: 1;
   text-align: center;
 
-  background: #dfe6ed;
+  background: white;
   border-radius: 0.5rem;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
 `;
 
-export const AiResultMidSummaryContainer = styled(AiResultContentContainer)`
+export const AiResultSummaryContainer = styled(AiResultContentContainer)`
+  padding: 1.5rem;
+
+  background: #f0f2f5;
+
+  box-shadow: 0px 0px 20px rgb(0 0 0 / 20%);
+`;
+
+export const AiResultMidSummaryContainer = styled(AiResultSummaryContainer)`
   @media screen and (min-width: 768px) {
     margin: 2rem 1rem;
     margin-bottom: 3rem;
@@ -56,7 +65,7 @@ export const AiResultSummaryTitleWrapper = styled.div`
 `;
 
 export const AiResultSummaryDesWrapper = styled.div`
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 `;
 
 export const AiResultDesContainer = styled(AiResultContentContainer)`

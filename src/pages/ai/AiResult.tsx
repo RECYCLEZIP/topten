@@ -7,7 +7,7 @@ import {
   AiResultSubjectName,
   AiResultSubjectTexture,
   AiResultContentsSection,
-  AiResultContentContainer,
+  AiResultSummaryContainer,
   AiResultMidSummaryContainer,
   AiResultSummaryTitleWrapper,
   AiResultSummaryDesWrapper,
@@ -28,12 +28,12 @@ function AiResult() {
       {/* 분석 요약 섹션 */}
       <AiResultContentsSection>
         {/* 분석 요약 1 */}
-        <AiResultContentContainer>
+        <AiResultSummaryContainer>
           {/* 분석 요약 1 제목 */}
           <AiResultSummaryTitleWrapper>분석1</AiResultSummaryTitleWrapper>
           {/* 분석 요약 1 내용 */}
           <AiResultSummaryDesWrapper>분석 내용1</AiResultSummaryDesWrapper>
-        </AiResultContentContainer>
+        </AiResultSummaryContainer>
         {/* 분석 요약 2 */}
         <AiResultMidSummaryContainer>
           {/* 분석 요약 1 제목 */}
@@ -42,12 +42,12 @@ function AiResult() {
           <AiResultSummaryDesWrapper>분석 내용1</AiResultSummaryDesWrapper>
         </AiResultMidSummaryContainer>
         {/* 분석 요약 3 */}
-        <AiResultContentContainer>
+        <AiResultSummaryContainer>
           {/* 분석 요약 1 제목 */}
           <AiResultSummaryTitleWrapper>분석1</AiResultSummaryTitleWrapper>
           {/* 분석 요약 1 내용 */}
           <AiResultSummaryDesWrapper>분석 내용1</AiResultSummaryDesWrapper>
-        </AiResultContentContainer>
+        </AiResultSummaryContainer>
       </AiResultContentsSection>
       {/* 분석 상세 섹션 */}
       <div>
