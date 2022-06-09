@@ -1,9 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import {
   QuizListBox,
-  QuizDescription,
   QuizNumber,
-  QuizTitle,
+  QuizText,
 } from "../../styles/quizStyles/QuizListStyle";
 
 function VS() {
@@ -12,8 +11,8 @@ function VS() {
   return (
     <QuizListBox onClick={() => navigate("./vs")}>
       <QuizNumber>4문항</QuizNumber>
-      <QuizTitle>음식물 vs 일반</QuizTitle>
-      <QuizDescription>헷갈리는 음식물과 일반 쓰레기</QuizDescription>
+      <QuizText>음식물 vs 일반</QuizText>
+      <QuizText size="0.6rem">헷갈리는 음식물과 일반 쓰레기</QuizText>
     </QuizListBox>
   );
 }

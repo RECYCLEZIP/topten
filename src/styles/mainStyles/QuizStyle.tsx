@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const QuizContainer = styled.div`
+export const QuizLank = styled.div`
   padding: 3% 8%;
 `;
 
@@ -44,5 +44,5 @@ export const QuizButton = styled.p`
 `;
 
 export const LogoImg = styled.img`
-  width: 2.3rem;
+  width: 18%;
 `;

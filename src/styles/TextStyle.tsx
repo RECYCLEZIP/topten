@@ -7,7 +7,7 @@ export const TitleText = styled.p`
 export const CardText = styled.p<{ color?: string }>`
   color: ${(props) => props.color || "white"};
 
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   @media (min-width: 768px) {
     margin-top: 0;
   }

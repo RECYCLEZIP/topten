@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { QuizContainer } from "../../styles/mainStyles/QuizStyle";
+import { QuizList } from "../../styles/quizStyles/QuizListStyle";
 import {
   QuizResultCard,
   ResultBottom,
@@ -9,7 +9,7 @@ import {
   ResultText,
   ScoreBox,
 } from "../../styles/quizStyles/QuizResultStyle";
-import { CardText, TitleText } from "../../styles/TextStyle";
+import { TitleText } from "../../styles/TextStyle";
 import DropAnswer from "./DropAnwser";
 
 function QuizResult() {
@@ -24,7 +24,7 @@ function QuizResult() {
   };
 
   return (
-    <QuizContainer>
+    <QuizList>
       <TitleText>결과</TitleText>
       <QuizResultCard>
         {results.map((result, idx) => {
@@ -49,7 +49,7 @@ function QuizResult() {
         })}
         <ScoreBox>
           <ResultText margin="3%">총점</ResultText>
-          <ResultText size="1.5rem" margin="0">
+          <ResultText size="1.3rem" margin="0">
             25
           </ResultText>
         </ScoreBox>
@@ -62,7 +62,7 @@ function QuizResult() {
           </ResultButton>
         </ResultBottom>
       </QuizResultCard>
-    </QuizContainer>
+    </QuizList>
   );
 }
 

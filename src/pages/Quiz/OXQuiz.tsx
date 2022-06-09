@@ -1,6 +1,9 @@
 import { useState } from "react";
-import { QuizContainer } from "../../styles/mainStyles/QuizStyle";
-import { TwoOption, TwoOptions } from "../../styles/quizStyles/QuizzesStyle";
+import {
+  QuizContainer,
+  TwoOption,
+  TwoOptions,
+} from "../../styles/quizStyles/QuizzesStyle";
 import QuestionCard from "./QuestionCard";
 import ClearIcon from "@mui/icons-material/Clear";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
@@ -8,8 +11,8 @@ import Results from "./Results";
 
 function OXQuiz() {
   const option = [
-    <CircleOutlinedIcon style={{ fontSize: "5rem" }} />,
-    <ClearIcon style={{ fontSize: "6rem" }} />,
+    <CircleOutlinedIcon style={{ fontSize: "2.5rem" }} />,
+    <ClearIcon style={{ fontSize: "3.5rem" }} />,
   ];
   const [isSelected, setIsSelected] = useState([false]);
 

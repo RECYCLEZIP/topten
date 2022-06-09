@@ -1,8 +1,8 @@
-import { QuizContainer } from "../../styles/mainStyles/QuizStyle";
 import QuestionCard from "./QuestionCard";
 import {
   TextTwoOption,
   TwoOptions,
+  QuizContainer,
 } from "../../styles/quizStyles/QuizzesStyle";
 import { useState } from "react";
 import Results from "./Results";

@@ -29,7 +29,7 @@ export const ResultButton = styled.p<{ background?: string }>`
 `;
 
 export const ResultText = styled.p<ResultTextType>`
-  font-size: ${(props) => props.size || "0.7rem"};
+  font-size: ${(props) => props.size || "0.8rem"};
   margin-right: ${(props) => props.margin || "3%"};
   color: ${(props) => props.color};
 `;
@@ -58,7 +58,7 @@ export const AnswerCard = styled.div`
 export const AnswerProblem = styled.div`
   display: flex;
   justify-content: space-around;
-  padding: 3% 0;
+  padding: 3% 8%;
   border-bottom: 1px solid black;
 `;
 
@@ -68,7 +68,7 @@ export const AnswerDescription = styled.div`
 `;
 
 export const AnswerText = styled.p<ResultTextType>`
-  font-size: ${(props) => props.size || "0.7rem"};
+  font-size: ${(props) => props.size || "0.65rem"};
   color: ${(props) => props.color};
   text-align: left;
   padding: 0 2%;

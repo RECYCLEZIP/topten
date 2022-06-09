@@ -40,7 +40,7 @@ function QuestionCard() {
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
         >
-          <ChevronLeftIcon style={{ color: "#9EACBA", fontSize: "2rem" }} />
+          <ChevronLeftIcon style={{ color: "#9EACBA", fontSize: "1.3rem" }} />
           <MoveText>이전 문제</MoveText>
         </MoveButton>
         <MoveButton
@@ -53,7 +53,7 @@ function QuestionCard() {
           }}
         >
           <MoveText>{count === 4 ? "결과 확인" : "다음 문제"}</MoveText>
-          <ChevronRightIcon style={{ color: "#9EACBA", fontSize: "2rem" }} />
+          <ChevronRightIcon style={{ color: "#9EACBA", fontSize: "1.3rem" }} />
         </MoveButton>
       </Icons>
     </>

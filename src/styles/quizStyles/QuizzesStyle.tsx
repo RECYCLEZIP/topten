@@ -1,8 +1,17 @@
 import styled from "styled-components";
 
+export const QuizContainer = styled.div`
+  width: 80%;
+  padding: 3% 8%;
+  margin: 0 auto;
+  @media (min-width: 768px) {
+    width: 45%;
+  }
+`;
+
 export const QuizCount = styled.p`
   color: #9eacba;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   text-align: right;
 `;
 
@@ -23,7 +32,7 @@ export const QuizQuestion = styled.div`
 `;
 
 export const Icons = styled.div`
-  margin: 2% 0;
+  margin: 1.5% 0;
   display: flex;
   justify-content: space-between;
 `;
@@ -35,8 +44,8 @@ export const QuizOption = styled.div<{ isSelected: boolean }>`
       ? "0px 0px 10px rgba(34, 190, 112, 0.8)"
       : "0px 0px 10px rgba(0, 0, 0, 0.2)"};
 
-  padding: 3%;
-  font-size: 0.7rem;
+  padding: 2% 5%;
+  font-size: 0.6rem;
   margin: 1rem 0;
 
   color: ${(props) => (props.isSelected ? "white" : "black")};
@@ -49,7 +58,7 @@ export const QuizOption = styled.div<{ isSelected: boolean }>`
 
 export const OptionNumber = styled.span<{ isSelected: boolean }>`
   color: ${(props) => (props.isSelected ? "white" : "#9eacba")};
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 `;
 
 export const MoveButton = styled.div<{ count?: number }>`
@@ -75,12 +84,13 @@ export const SubmitButton = styled.p`
 `;
 
 export const MoveText = styled.p`
+  margin: 1% 0;
   color: #9eacba;
-  font-size: 0.7rem;
+  font-size: 0.53rem;
 `;
 
 export const CorrectAnswer = styled.button`
-  font-size: 0.6rem;
+  font-size: 0.5rem;
   background-color: #dfe6ed;
   border: none;
   border-radius: 1rem;
@@ -105,8 +115,8 @@ export const TwoOptions = styled.div`
 `;
 
 export const TwoOption = styled.div<{ isSelected: boolean }>`
-  width: 7rem;
-  height: 7rem;
+  width: 4rem;
+  height: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -126,16 +136,16 @@ export const TwoOption = styled.div<{ isSelected: boolean }>`
   }
 
   @media (min-width: 768px) {
-    width: 7.5rem;
-    height: 7.5rem;
+    width: 5rem;
+    height: 5rem;
   }
 `;
 
 export const TextTwoOption = styled.div<{ isSelected: boolean }>`
-  width: 5rem;
-  height: 4rem;
-  font-size: 1.5rem;
-  padding: 3% 7%;
+  width: 4rem;
+  height: 2rem;
+  font-size: 0.8rem;
+  padding: 3% 5%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -155,8 +165,8 @@ export const TextTwoOption = styled.div<{ isSelected: boolean }>`
   }
 
   @media (min-width: 768px) {
-    width: 8rem;
-    height: 4rem;
+    width: 4rem;
+    height: 2rem;
   }
 `;
 

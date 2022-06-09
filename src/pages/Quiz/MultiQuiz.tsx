@@ -1,5 +1,8 @@
-import { QuizContainer } from "../../styles/mainStyles/QuizStyle";
-import { OptionNumber, QuizOption } from "../../styles/quizStyles/QuizzesStyle";
+import {
+  QuizContainer,
+  OptionNumber,
+  QuizOption,
+} from "../../styles/quizStyles/QuizzesStyle";
 import { useState } from "react";
 import QuestionCard from "./QuestionCard";
 import Results from "./Results";
