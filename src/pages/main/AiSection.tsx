@@ -5,7 +5,7 @@ import {
   AiDescription,
 } from "../../styles/mainStyles/AiStyle";
 import { img } from "../../assets/imgImport";
-import { Button } from "../../styles/ButtonStyle";
+import { Button } from "../../styles/ButtonStyles";
 
 function AiSection() {
   return (

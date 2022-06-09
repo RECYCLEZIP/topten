@@ -1,6 +1,6 @@
 import React from "react";
 
-import AiImageupload from "./AiImageUpload";
+import AiImageUpload from "./AiImageUpload";
 import AiGuide from "./AiGuide";
 import AiResult from "./AiResult";
 
@@ -15,7 +15,7 @@ function Ai() {
   return (
     <Container>
       <AiTopTitle>AI 분리수거</AiTopTitle>
-      <AiImageupload />
+      <AiImageUpload />
       {situation === "done" ? <AiResult /> : <AiGuide />}
     </Container>
   );

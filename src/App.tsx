@@ -1,4 +1,3 @@
-import { Router } from "express";
 import React from "react";
 
 import AppRouter from "./components/AppRouter";

@@ -7,7 +7,7 @@ import {
   WrongPercent,
   LogoImg,
 } from "../../styles/mainStyles/QuizStyle";
-import { Button } from "../../styles/ButtonStyle";
+import { Button } from "../../styles/ButtonStyles";
 import {
   QuestionBox,
   QuizQuestion,
