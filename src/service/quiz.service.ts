@@ -1,11 +1,9 @@
 import { Quiz } from "../db/index";
-import { Submissions } from "../api/quiz/quiz.types";
+import { Submissions, ToUpdate } from "../api/quiz/quiz.types";
 
-interface ToUpdate {
-    date?: Date;
-    totalUser: number;
-    wrong: number;
-    yesterday?: number;
+interface quizSetResult {
+    result: Object[];
+    score: number;
 }
 
 export class QuizService {
@@ -28,30 +26,31 @@ export class QuizService {
         const quizAnswer = await Quiz.findAnswerByQuizType(type);
 
         // * 문제 순회하면서 정답 체크 -> totalUser와 wrong 갱신
-        let quizResult = { result: {}, score: 0 }; // * 리턴할 데이터
-        let toUpdate: ToUpdate = { totalUser: 0, wrong: 0 };
+        let quizSetResult: quizSetResult = { result: [], score: 0 }; // * 리턴할 데이터
+
         const todayDate = new Date(); // * dayjs로 YYYY-MM-DD 형태로
         const userAnwer = Object.entries(answers);
 
         for (let i = 0; i < userAnwer.length; i++) {
+            const toUpdate: ToUpdate = { totalUser: 0, wrong: 0 };
             const quizId = userAnwer[i][0];
             const answer: string = userAnwer[i][1];
-            const correctAnswer = quizAnswer.find((quiz) => {
-                (quiz._id as unknown as string) === quizId;
-            }); // ! 타입 문제
+            const correctAnswer = quizAnswer.find((quiz) => String(quiz._id) === quizId);
 
             if (correctAnswer === undefined) {
                 throw new Error(`${quizId}에 해당하는 문제 정보가 없습니다.`);
             }
 
             toUpdate.totalUser += 1;
+            let quizResult = {};
             if (answer === correctAnswer.answer) {
-                quizResult.result = { ...quizResult.result, quizId: true };
-                quizResult.score += Number((1 / quizAnswer.length) * 100);
+                quizResult = { quizId, isCorrect: true };
+                quizSetResult.score += Number((1 / quizAnswer.length) * 100);
             } else {
-                quizResult.result = { ...quizResult.result, quizId: false };
+                quizResult = { quizId, isCorrect: false };
                 toUpdate.wrong += 1;
             }
+            quizSetResult.result.push(quizResult);
 
             // * 해당 문제에 대한 totalUser와 wrong 갱신($set)
             if (correctAnswer.result[0].date === todayDate) {
@@ -64,6 +63,6 @@ export class QuizService {
             }
         }
 
-        return quizResult;
+        return quizSetResult;
     }
 }
