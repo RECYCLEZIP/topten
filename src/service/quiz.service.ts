@@ -16,9 +16,14 @@ export class QuizService {
         return await Quiz.findQuizById(quizId);
     }
 
+    async getQuizByWrongRate() {
+        return await Quiz.findQuizByWrongRate();
+    }
+
     // * 단일 퀴즈 채점
     async getResult(quizId: string, type: string, answers: string) {
         const quiz = await Quiz.findQuizById(quizId);
+        return quiz;
     }
 
     // * 퀴즈셋 채점

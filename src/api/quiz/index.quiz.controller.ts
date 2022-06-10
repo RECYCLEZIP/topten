@@ -29,7 +29,7 @@ quizController.get(
 
 // * 많이 틀린 퀴즈 순으로 상위 3개 퀴즈리스트 조회
 quizController.get(
-    "/quizzes/wrong",
+    "/quizzes/ww",
     wrapAsyncFunc(async (req, res, next) => {
         const quizzesByWrongRate = await quizService.getQuizByWrongRate();
         return res.status(STATUS_200_OK).json(quizzesByWrongRate);
