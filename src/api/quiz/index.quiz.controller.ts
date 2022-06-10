@@ -5,14 +5,13 @@ import { STATUS_200_OK } from "@src/utils/statusCode";
 import { Submissions } from "./quiz.types";
 
 export const quizController = Router();
-const quizService = new QuizService();
 
 // * 퀴즈 유형별 퀴즈목록 조회(type 파라미터 : "multipleChoice", "mixUp", "ox")
 quizController.get(
     "/quizzes",
     wrapAsyncFunc(async (req, res, next) => {
         const quizType = req.query.type as string;
-        const quizList = await quizService.getQuizList(quizType);
+        const quizList = await QuizService.getQuizList(quizType);
         return res.status(STATUS_200_OK).json(quizList);
     }),
 );
@@ -22,16 +21,16 @@ quizController.get(
     "/quizzes/:id",
     wrapAsyncFunc(async (req, res, next) => {
         const quizId = req.params.id;
-        const quiz = await quizService.getQuiz(quizId);
+        const quiz = await QuizService.getQuiz(quizId);
         return res.status(STATUS_200_OK).json(quiz);
     }),
 );
 
 // * 많이 틀린 퀴즈 순으로 상위 3개 퀴즈리스트 조회
 quizController.get(
-    "/quizzes/ww",
+    "/quizzes/wrong",
     wrapAsyncFunc(async (req, res, next) => {
-        const quizzesByWrongRate = await quizService.getQuizByWrongRate();
+        const quizzesByWrongRate = await QuizService.getQuizByWrongRate();
         return res.status(STATUS_200_OK).json(quizzesByWrongRate);
     }),
 );
@@ -43,19 +42,20 @@ quizController.post(
     "/quizzes/submission",
     wrapAsyncFunc(async (req, res, next) => {
         const { type, answers }: Submissions = req.body;
-        const result = await quizService.getResults({ type, answers });
+        const result = await QuizService.getResults({ type, answers });
         return res.status(STATUS_200_OK).json(result);
     }),
 );
 
 // * 단일 퀴즈 제출 => 채점결과 반환
-// * result = {result : { quizId : true }},
+// * requestBody = { "answer": "1" }
+// * result = {result: true}
 quizController.post(
     "/quizzes/:id/submission",
     wrapAsyncFunc(async (req, res, next) => {
         const quizId = req.params.id;
-        const { type, answer }: { type: string; answer: string } = req.body;
-        const result = await quizService.getResult(quizId, type, answer);
+        const answer: string = req.body.answer;
+        const result = await QuizService.getResult(quizId, answer);
         return res.status(STATUS_200_OK).json(result);
     }),
 );

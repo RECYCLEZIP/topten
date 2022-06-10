@@ -1,5 +1,5 @@
 import { QuizModel } from "@src/db/quiz/quiz.schema";
-import { ToUpdate } from "@src/api/quiz/quiz.types";
+import { Result } from "@src/api/quiz/quiz.types";
 
 export class Quiz {
     static async findByQuizType(quizType: string) {
@@ -11,8 +11,7 @@ export class Quiz {
     }
 
     static async findQuizByWrongRate() {
-        return await QuizModel.find({});
-        // .sort({ yesterday: -1 }).limit(3);
+        return await QuizModel.find({}).sort({ yesterday: -1 }).limit(3);
     }
 
     // * 해당 타입의 문제셋의 answer 데이터만 조회
@@ -20,5 +19,7 @@ export class Quiz {
         return await QuizModel.find({ type }).select({ answer: 1, result: 1 });
     }
 
-    static async updateQuizInfo(toUpdate: ToUpdate) {}
+    static async updateQuizInfo(quizId: string, newResult: Result[] | Result) {
+        await QuizModel.findOneAndUpdate({ _id: quizId }, { result: newResult }, { new: true });
+    }
 }
