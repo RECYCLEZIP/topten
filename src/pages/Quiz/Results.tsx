@@ -1,18 +1,15 @@
 import { useState } from "react";
-import {
-  CorrectAnswer,
-  Result,
-  ResultText,
-} from "../../styles/quizStyles/QuizzesStyle";
+import { Result, ResultText } from "../../styles/quizStyles/QuizzesStyle";
+import AnswerAlert from "./AnswerAlert";
 
 function Results() {
   const [result, setResult] = useState(false);
+  const answer = false;
+
   return (
     <div>
       {!result ? (
-        <CorrectAnswer onClick={() => setResult((cur) => !cur)}>
-          정답 확인
-        </CorrectAnswer>
+        <AnswerAlert setResult={setResult} answer={answer}></AnswerAlert>
       ) : (
         <Result>
           <ResultText>해설</ResultText>

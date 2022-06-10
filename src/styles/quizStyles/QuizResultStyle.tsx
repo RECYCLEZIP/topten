@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ResultTextType } from "../../types/QuizTypes/QuizResultTyle";
+import { ResultTextType } from "../../types/QuizTypes/QuizResultType";
 
 export const QuizResultCard = styled.div`
   height: 80%;
