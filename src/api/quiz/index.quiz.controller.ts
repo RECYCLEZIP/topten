@@ -13,7 +13,7 @@ quizController.get(
     wrapAsyncFunc(async (req, res, next) => {
         const quizType = req.query.type as string;
         const quizList = await quizService.getQuizList(quizType);
-        return res.json(quizList);
+        return res.status(STATUS_200_OK).json(quizList);
     }),
 );
 
@@ -23,7 +23,7 @@ quizController.get(
     wrapAsyncFunc(async (req, res, next) => {
         const quizId = req.params.id;
         const quiz = await quizService.getQuiz(quizId);
-        return res.json(quiz);
+        return res.status(STATUS_200_OK).json(quiz);
     }),
 );
 
