@@ -1,98 +1,60 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-
+import MapSearch from "./MapSearch";
 import MapContent from "./MapContent";
 import MapList from "./MapList";
 
+import { useRecoilState } from "recoil";
+import { BinTypes, BinState } from "../../stores/atoms";
+
 import { Container, TopTitle } from "../../styles/basicStyle";
-
-import {
-  MapSearchSection,
-  MapSearchTextWrapper,
-  MapBinSection,
-} from "../../styles/mapStyles/mapStyle";
-
-// const seoul = [
-//   {
-//     강남구: {
-//       위도: 23423424,
-//       경도: 23423424,
-//       "상세 위치": "건물 앞",
-//     },
-//   },
-//   {
-//     강북구: {
-//       위도: 23423424,
-//       경도: 23423424,
-//       "상세 위치": "신호등 앞",
-//     },
-//   },
-// ];
-
-// const options = [seoul[0], seoul[1]];
-const options = ["Option 1", "Option 2"];
+import { MapBinSection } from "../../styles/mapStyles/mapStyle";
 
 function Map() {
-  const [value, setValue] = React.useState<string | null>("");
-  const [inputValue, setInputValue] = React.useState("");
+  const [bin, setBin] = useRecoilState<BinTypes[]>(BinState);
+
+  const markerData: Array<{
+    title: string;
+    point: string;
+    lat: number;
+    lng: number;
+  }> = [
+    {
+      title: "사직로 경복궁역 4번출구",
+      point: "지하철역 입구",
+      lat: 37.62197524055062,
+      lng: 127.16017523675508,
+    },
+    {
+      title: "자하문로 자하문로 44",
+      point: "도로(가로)변",
+      lat: 37.620842424005616,
+      lng: 127.1583774403176,
+    },
+    {
+      title: "율곡로 삼청로1 맞은편 인도",
+      point: "상가지역",
+      lat: 37.624915253753194,
+      lng: 127.15122688059974,
+    },
+    {
+      title: "여의나루로 50 여의도역5번출구(흡연부스)",
+      point: "정류장(버스, 택시 등)",
+      lat: 37.62456273069659,
+      lng: 127.15211256646381,
+    },
+  ];
+
+  useEffect(() => {
+    setBin(markerData);
+  }, []);
 
   return (
     <Container>
       {/* 페이지 타이틀 */}
       <TopTitle>서울시 공공 쓰레기통</TopTitle>
-
-      {/* 검색 섹션 */}
-      <MapSearchSection>
-        <MapSearchTextWrapper>서울시</MapSearchTextWrapper>
-        {/* 구 */}
-        <div>
-          {/* 오토 컴플릿 */}
-          <div>
-            <Autocomplete
-              value={value}
-              onChange={(event: any, newValue: string | null) => {
-                setValue(newValue);
-              }}
-              inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
-              id="controllable-states-demo"
-              options={options}
-              // sx={{ width: 300 }}
-              renderInput={(params) => (
-                <TextField {...params} label="Controllable" />
-              )}
-            />
-          </div>
-          <MapSearchTextWrapper>구</MapSearchTextWrapper>
-        </div>
-        {/* 동/지역명 */}
-        <div>
-          {/* 오토 컴플릿 */}
-          <div>
-            <Autocomplete
-              value={value}
-              onChange={(event: any, newValue: string | null) => {
-                setValue(newValue);
-              }}
-              inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
-              id="controllable-states-demo"
-              options={options}
-              sx={{ width: 100 }}
-              renderInput={(params) => (
-                <TextField {...params} label="Controllable" />
-              )}
-            />
-          </div>
-          <MapSearchTextWrapper>동/지역명</MapSearchTextWrapper>
-        </div>
-      </MapSearchSection>
+      {/* 지역 검색 */}
+      <MapSearch />
       {/* 지도, 리스트 섹션 */}
       <MapBinSection>
         {/* 지도 api */}
