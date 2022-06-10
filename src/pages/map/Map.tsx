@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
 import MapContent from "./MapContent";
+import MapList from "./MapList";
 
 import { Container, TopTitle } from "../../styles/basicStyle";
 
@@ -11,10 +12,6 @@ import {
   MapSearchSection,
   MapSearchTextWrapper,
   MapBinSection,
-  MapBinListContainer,
-  MapBinLocationContainer,
-  MapBinLacationTitle,
-  MapBinLacationDes,
 } from "../../styles/mapStyles/mapStyle";
 
 // const seoul = [
@@ -98,24 +95,10 @@ function Map() {
       </MapSearchSection>
       {/* 지도, 리스트 섹션 */}
       <MapBinSection>
-        {/* 지도 api 래퍼 */}
+        {/* 지도 api */}
         <MapContent />
-        {/* 지역별 쓰레기통 리스트 */}
-        <MapBinListContainer>
-          {/* 쓰레기통 리스트 */}
-          <MapBinLocationContainer>
-            <MapBinLacationTitle>서울시 경복궁역 4번 출구</MapBinLacationTitle>
-            <MapBinLacationDes>지하철역 입구</MapBinLacationDes>
-          </MapBinLocationContainer>
-          <MapBinLocationContainer>
-            <MapBinLacationTitle>서울시 경복궁역 4번 출구</MapBinLacationTitle>
-            <MapBinLacationDes>지하철역 입구</MapBinLacationDes>
-          </MapBinLocationContainer>
-          <MapBinLocationContainer>
-            <MapBinLacationTitle>서울시 경복궁역 4번 출구</MapBinLacationTitle>
-            <MapBinLacationDes>지하철역 입구</MapBinLacationDes>
-          </MapBinLocationContainer>
-        </MapBinListContainer>
+        {/* 쓰레기통 리스트 */}
+        <MapList />
       </MapBinSection>
     </Container>
   );
