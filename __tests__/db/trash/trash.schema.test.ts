@@ -11,4 +11,11 @@ describe("TrashModel 유효성 검사", () => {
         const error = trash.validateSync();
         expect(error).toBeUndefined();
     });
+
+    it("category는 enum에 없는 값이 올 수 없다.", () => {
+        tempTrash.category.push("Trash");
+        const trash = new TrashModel(tempTrash);
+        const error = trash.validateSync();
+        expect(error?.message).toMatch(/`Trash` is not a valid/);
+    });
 });
