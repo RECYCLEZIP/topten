@@ -1,5 +1,9 @@
 image: node:latest
 
+before_script:
+    - export MONGOMS_DOWNLOAD_URL=https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-debian10-4.4.1.tgz
+    - export MONGOMS_VERSION=4.4.1
+
 stages:
     - build
     - test
@@ -9,9 +13,10 @@ build:
     stage: build
     script:
         - yarn
+        - apt-get install libcurl4
     cache:
-        paths:
-            - node_modules/
+        - paths:
+              - node_modules/
     artifacts:
         expire_in: 1 days
         when: on_success
@@ -20,6 +25,7 @@ build:
 
 test:
     stage: test
+    image: node:15-buster
     coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
     dependencies:
         - build
