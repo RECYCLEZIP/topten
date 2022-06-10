@@ -34,9 +34,11 @@ export class QuizService {
         const userAnwer = Object.entries(answers);
 
         for (let i = 0; i < userAnwer.length; i++) {
-            const quizId: string = userAnwer[i][0];
+            const quizId = userAnwer[i][0];
             const answer: string = userAnwer[i][1];
-            const correctAnswer = quizAnswer.find((quiz) => quiz._id === quizId); // ! 타입 문제
+            const correctAnswer = quizAnswer.find((quiz) => {
+                (quiz._id as unknown as string) === quizId;
+            }); // ! 타입 문제
 
             if (correctAnswer === undefined) {
                 throw new Error(`${quizId}에 해당하는 문제 정보가 없습니다.`);
