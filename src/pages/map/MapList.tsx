@@ -1,5 +1,11 @@
 import React from "react";
 
+import { useRecoilValue, useRecoilState } from "recoil";
+import {
+  BinState,
+  BinSelectedState,
+} from "../../stores/atoms";
+
 import {
   MapBinListContainer,
   MapBinLocationContainer,
@@ -8,20 +14,24 @@ import {
 } from "../../styles/mapStyles/mapStyle";
 
 function MapList() {
+  const bins = useRecoilValue(BinState);
+  const [bintSelected, setBinSelected] = useRecoilState(BinSelectedState);
+  //   const [bintSelected, setBinSelected] =
+  //     useRecoilState<BinSelectedTypes[]>(BinSelectedState);
+
+  const onClickBin = (lat: number, lng: number) => {
+    console.log(lat, lng);
+    setBinSelected([lat, lng]);
+  };
+
   return (
     <MapBinListContainer>
-      <MapBinLocationContainer>
-        <MapBinLacationTitle>서울시 경복궁역 4번 출구</MapBinLacationTitle>
-        <MapBinLacationDes>지하철역 입구</MapBinLacationDes>
-      </MapBinLocationContainer>
-      <MapBinLocationContainer>
-        <MapBinLacationTitle>서울시 경복궁역 4번 출구</MapBinLacationTitle>
-        <MapBinLacationDes>지하철역 입구</MapBinLacationDes>
-      </MapBinLocationContainer>
-      <MapBinLocationContainer>
-        <MapBinLacationTitle>서울시 경복궁역 4번 출구</MapBinLacationTitle>
-        <MapBinLacationDes>지하철역 입구</MapBinLacationDes>
-      </MapBinLocationContainer>
+      {bins.map((bin) => (
+        <MapBinLocationContainer onClick={() => onClickBin(bin.lat, bin.lng)}>
+          <MapBinLacationTitle>{bin.title}</MapBinLacationTitle>
+          <MapBinLacationDes>{bin.point}</MapBinLacationDes>
+        </MapBinLocationContainer>
+      ))}
     </MapBinListContainer>
   );
 }
