@@ -23,7 +23,7 @@ describe("TRASH API", () => {
     });
 
     it("TRASH PATCH/ 쓰레기를 수정한다.", async () => {
-        const trash = await trashService.addNews(tempTrash);
+        const trash = await trashService.addTrash(tempTrash);
         const res = await request(app)
             .patch(`/trash/${trash._id}`)
             .send({ ...tempTrash, category: ["플라스틱"] });
@@ -33,7 +33,7 @@ describe("TRASH API", () => {
     });
 
     it("TRASH DELETE/ 쓰레기를 삭제한다.", async () => {
-        const targetTrash = await trashService.addNews(tempTrash);
+        const targetTrash = await trashService.addTrash(tempTrash);
         const res = await request(app).delete(`/trash/${targetTrash._id}`);
         expect(res.status).toBe(STATUS_200_OK);
         expect(res.body.message).toEqual("삭제가 완료되었습니다.");
