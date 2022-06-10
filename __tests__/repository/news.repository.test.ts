@@ -1,7 +1,10 @@
 import { News } from "@src/db";
+import { INews } from "@src/utils/types/interface";
 import { NewsModel } from "@src/db/news/news.schema";
 
 describe("NEWS 모델 접근", () => {
+    const tempNews: INews = { url: "http://localhost", title: "로컬호스트" };
+
     it("findAll은 모델에서 뉴스목록을 찾는다.", async () => {
         const spyFn = jest.spyOn(NewsModel, "find");
         await News.findAll();
@@ -9,25 +12,25 @@ describe("NEWS 모델 접근", () => {
     });
 
     it("create는 뉴스를 생성한다.", async () => {
-        const createdNews = await News.create({ url: "repositoryURL", title: "repositoryTitle" });
-        expect(createdNews.url).toEqual("repositoryURL");
-        expect(createdNews.title).toEqual("repositoryTitle");
+        const createdNews = await News.create(tempNews);
+        expect(createdNews.url).toEqual("http://localhost");
+        expect(createdNews.title).toEqual("로컬호스트");
     });
 
     it("update는 뉴스를 수정한다.", async () => {
-        const news = await News.create({ url: "수정 전 url", title: "수정 전 title" });
-        const setNews = await News.update(news._id.toString(), {
-            url: "수정 후 url",
-            title: "수정 후 title",
+        const news = await News.create(tempNews);
+        const updatedNews = await News.update(news._id.toString(), {
+            url: "http://google",
+            title: "구글",
         });
-        expect(setNews?.url).toEqual("수정 후 url");
-        expect(setNews?.title).toEqual("수정 후 title");
+        expect(updatedNews?.url).toEqual("http://google");
+        expect(updatedNews?.title).toEqual("구글");
     });
 
     it("delete는 뉴스를 삭제한다.", async () => {
-        const news = await News.create({ url: "삭제url", title: "삭제title" });
+        const news = await News.create(tempNews);
         const deletedNews = await News.delete(news._id.toString());
-        expect(deletedNews?.url).toEqual("삭제url");
-        expect(deletedNews?.title).toEqual("삭제title");
+        expect(deletedNews?.url).toEqual("http://localhost");
+        expect(deletedNews?.title).toEqual("로컬호스트");
     });
 });

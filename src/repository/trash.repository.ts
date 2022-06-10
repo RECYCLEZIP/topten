@@ -6,13 +6,17 @@ export class Trash {
         return await TrashModel.find();
     }
 
-    static async create(trash: ITrash) {
-        const createdTrash = await TrashModel.create(trash);
+    static async create(trashInfo: ITrash) {
+        const createdTrash = await TrashModel.create(trashInfo);
         return createdTrash;
     }
 
-    static async update(id: string, trash: ITrash) {
-        const updatedTrash = await TrashModel.findByIdAndUpdate(id, { $set: trash }, { new: true });
+    static async update(id: string, trashInfo: ITrash) {
+        const updatedTrash = await TrashModel.findByIdAndUpdate(
+            id,
+            { $set: trashInfo },
+            { new: true },
+        );
         return updatedTrash;
     }
 

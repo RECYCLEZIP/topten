@@ -1,8 +1,8 @@
 import app from "@src/app";
 import request from "supertest";
+import { ITrash } from "@src/utils/types/interface";
 import { trashService } from "@src/service/trash.service";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
-import { ITrash } from "@src/utils/types/interface";
 
 describe("TRASH API", () => {
     const tempTrash: ITrash = { title: "콜라", category: ["캔"] };
@@ -19,6 +19,7 @@ describe("TRASH API", () => {
         expect(res.body).toHaveProperty("image");
         expect(res.body).toHaveProperty("recycle");
         expect(res.body).toHaveProperty("title", "콜라");
+        expect(res.body.description).toHaveProperty("note");
         expect(res.body.description).toHaveProperty("throwAway");
     });
 

@@ -7,12 +7,12 @@ import { RequestError } from "@src/middlewares/errorHandler";
 const tempTrash: ITrash = { title: "사이다", category: ["캔"] };
 
 describe("TRASH SERVICE LOGIC", () => {
-    it("TRASH 목록 반환을 반환한다.", async () => {
+    it("TRASH 목록을 반환한다.", async () => {
         Trash.findAll = jest.fn().mockResolvedValue([tempTrash]);
-        const trash = await trashService.getTrashList();
-        expect(trash).toHaveLength(1);
-        expect(trash[0].title).toEqual("사이다");
-        expect(trash[0].category[0]).toEqual("캔");
+        const trashList = await trashService.getTrashList();
+        expect(trashList).toHaveLength(1);
+        expect(trashList[0].title).toEqual("사이다");
+        expect(trashList[0].category[0]).toEqual("캔");
     });
 
     it("TRASH를 생성한다.", async () => {
@@ -24,12 +24,13 @@ describe("TRASH SERVICE LOGIC", () => {
     it("TRASH를 수정한다.", async () => {
         const spyFn = jest.spyOn(Trash, "update");
         const newTrash = await trashService.addTrash(tempTrash);
-        const updateTrash = await trashService.updateTrash(newTrash._id.toString(), {
+        const updatedTrash = await trashService.updateTrash(newTrash._id.toString(), {
             ...tempTrash,
             image: "사이다이미지",
         });
         expect(spyFn).toBeCalledTimes(1);
-        expect(updateTrash?.image).toEqual("사이다이미지");
+        expect(updatedTrash?.title).toEqual("사이다");
+        expect(updatedTrash?.image).toEqual("사이다이미지");
     });
 
     it("TRASH를 삭제한다.", async () => {

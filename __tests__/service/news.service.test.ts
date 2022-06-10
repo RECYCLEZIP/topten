@@ -1,40 +1,41 @@
 import { News } from "@src/db";
+import { INews } from "@src/utils/types/interface";
 import { newsService } from "@src/service/news.service";
 import { RequestError } from "@src/middlewares/errorHandler";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 
+const tempNews: INews = { url: "http://test.com", title: "테스트기사" };
+
 describe("NEWS SERVICE LOGIC", () => {
-    it("NEWS 목록 반환을 반환한다.", async () => {
-        News.findAll = jest
-            .fn()
-            .mockResolvedValue([{ url: "http://test.com", title: "테스트기사" }]);
-        const news = await newsService.getNewsList();
-        expect(news).toHaveLength(1);
-        expect(news[0].url).toEqual("http://test.com");
-        expect(news[0].title).toEqual("테스트기사");
+    it("NEWS 목록을 반환한다.", async () => {
+        News.findAll = jest.fn().mockResolvedValue([tempNews]);
+        const newsList = await newsService.getNewsList();
+        expect(newsList).toHaveLength(1);
+        expect(newsList[0].url).toEqual("http://test.com");
+        expect(newsList[0].title).toEqual("테스트기사");
     });
 
     it("NEWS를 생성한다.", async () => {
-        const createdNews = await newsService.addNews({ url: "serviceURL", title: "serviceTitle" });
-        expect(createdNews.url).toEqual("serviceURL");
-        expect(createdNews.title).toEqual("serviceTitle");
+        const createdNews = await newsService.addNews(tempNews);
+        expect(createdNews.url).toEqual("http://test.com");
+        expect(createdNews.title).toEqual("테스트기사");
     });
 
     it("NEWS를 수정한다.", async () => {
         const spyFn = jest.spyOn(News, "update");
-        const newNews = await newsService.addNews({ url: "수정전url", title: "수정전title" });
-        const updateNews = await newsService.updateNews(newNews._id.toString(), {
-            url: "http://",
-            title: "수정했어요",
+        const newNews = await newsService.addNews(tempNews);
+        const updatedNews = await newsService.updateNews(newNews._id.toString(), {
+            url: "http://testing",
+            title: "테스트중",
         });
         expect(spyFn).toBeCalledTimes(1);
-        expect(updateNews?.url).toEqual("http://");
-        expect(updateNews?.title).toEqual("수정했어요");
+        expect(updatedNews?.url).toEqual("http://testing");
+        expect(updatedNews?.title).toEqual("테스트중");
     });
 
     it("NEWS를 삭제한다.", async () => {
         const spyFn = jest.spyOn(News, "delete");
-        const targetNews = await newsService.addNews({ url: "삭제", title: "삭제" });
+        const targetNews = await newsService.addNews(tempNews);
         const deleteResult = await newsService.deleteNews(targetNews._id.toString());
         expect(spyFn).toBeCalledTimes(1);
         expect(deleteResult.message).toBe("삭제가 완료되었습니다.");
@@ -56,7 +57,7 @@ describe("NEWS SERVICE ERROR HANDLING", () => {
     it("NEWS 생성 시 생성된 뉴스가 없으면 에러가 발생한다.", async () => {
         News.create = jest.fn().mockResolvedValue(null);
         try {
-            await newsService.addNews({ url: "생성", title: "생성" });
+            await newsService.addNews(tempNews);
         } catch (err: any) {
             expect(err).toBeInstanceOf(RequestError);
             expect(err.status).toBe(STATUS_404_NOTFOUND);
@@ -67,7 +68,7 @@ describe("NEWS SERVICE ERROR HANDLING", () => {
     it("NEWS 수정 시 뉴스를 찾을 수 없으면 에러가 발생한다.", async () => {
         News.update = jest.fn().mockResolvedValue(null);
         try {
-            await newsService.updateNews("id", { url: "temp", title: "temp" });
+            await newsService.updateNews("id", tempNews);
         } catch (err: any) {
             expect(err).toBeInstanceOf(RequestError);
             expect(err.status).toBe(STATUS_404_NOTFOUND);

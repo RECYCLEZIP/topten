@@ -24,12 +24,13 @@ describe("Trash 모델 접근", () => {
             title: "암바사",
         });
         expect(updatedTrash?.title).toEqual("암바사");
+        expect(updatedTrash?.category[0]).toEqual("플라스틱");
     });
 
     it("delete는 쓰레기를 삭제한다.", async () => {
         const trash = await Trash.create(tempTrash);
         const deletedTrash = await Trash.delete(trash._id.toString());
-        expect(deletedTrash?.title).toEqual("암바사");
+        expect(deletedTrash?.title).toEqual("밀키스");
         expect(deletedTrash?.category[0]).toEqual("플라스틱");
     });
 });
