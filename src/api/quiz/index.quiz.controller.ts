@@ -43,3 +43,11 @@ quizController.post(
 
 // * 단일 퀴즈 제출 => 채점결과 반환
 // * result = {result : { quizId : true }},
+quizController.post(
+    "/quizzes/:id/submission",
+    wrapAsyncFunc(async (req, res, next) => {
+        const quizId = req.params.id;
+        const result = await quizService.getResult(quizId);
+        return res.status(STATUS_200_OK).json(result);
+    }),
+);
