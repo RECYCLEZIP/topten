@@ -11,13 +11,13 @@ describe("TRASH SERVICE LOGIC", () => {
         Trash.findAll = jest.fn().mockResolvedValue([tempTrash]);
         const trash = await trashService.getTrashList();
         expect(trash).toHaveLength(1);
-        expect(trash[0].url).toEqual("http://test.com");
-        expect(trash[0].title).toEqual("테스트기사");
+        expect(trash[0].title).toEqual("사이다");
+        expect(trash[0].category[0]).toEqual("캔");
     });
 
     it("TRASH를 생성한다.", async () => {
-        const createdTrash = await trashService.addTrash(tempTrash);
-        expect(createdTrash.title).toEqual("사이다");
+        const createdTrash = await trashService.addTrash({ ...tempTrash, title: "환타" });
+        expect(createdTrash.title).toEqual("환타");
         expect(createdTrash.category[0]).toEqual("캔");
     });
 
