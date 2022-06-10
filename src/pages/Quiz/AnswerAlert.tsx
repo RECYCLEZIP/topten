@@ -17,48 +17,29 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 function AnswerAlert({ setResult, answer }: AlertType) {
   const [open, setOpen] = useState(false);
 
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string,
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
+  const handleClose = () => {
     setOpen(false);
     setResult((cur) => !cur);
   };
 
   return (
     <Stack spacing={2}>
-      <CorrectAnswer
-        onClick={() => {
-          handleClick();
-        }}
-      >
+      <CorrectAnswer onClick={() => setOpen((cur) => !cur)}>
         정답 확인
       </CorrectAnswer>
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={open}
-        onClose={handleClose}
         autoHideDuration={1500}
+        onClose={handleClose}
       >
         <Alert
           action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
+            <IconButton color="inherit">
               <CloseIcon
                 fontSize="inherit"
                 sx={{ height: "0.9rem", width: "0.9rem" }}
+                onClick={() => handleClose()}
               />
             </IconButton>
           }
