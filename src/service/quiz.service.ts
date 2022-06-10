@@ -16,6 +16,11 @@ export class QuizService {
         return await Quiz.findQuizById(quizId);
     }
 
+    // * 단일 퀴즈 채점
+    async getResult(quizId: string, type: string, answers: string) {
+        const quiz = await Quiz.findQuizById(quizId);
+    }
+
     // * 퀴즈셋 채점
     async getResults({ type, answers }: Submissions) {
         // * 1. 각 문제에 대한 정보 업데이트(totalUser, wrong)
