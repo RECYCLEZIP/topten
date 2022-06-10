@@ -1,5 +1,5 @@
 import { NewsModel } from "@src/db/news/news.schema";
-import { INews } from "@src/utils/types/news.interface";
+import { INews } from "@src/utils/types/interface";
 
 export class News {
     static async findAll() {

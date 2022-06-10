@@ -1,24 +1,20 @@
 import { Schema, model } from "mongoose";
+import { ITrash } from "@src/utils/types/interface";
 
-interface Trash {
-    title: string;
-    description: { throwAway: string[]; note: string[] };
-    kind: string[];
-    image: string;
-    recycle: boolean;
-    category: string[];
-}
-
-const TrashSchema = new Schema<Trash>(
+const TrashSchema = new Schema<ITrash>(
     {
         title: {
             type: String,
             required: true,
         },
         description: {
-            type: { throwAway: [String], note: [String] },
+            _id: false,
+            type: {
+                throwAway: { type: [String], required: true },
+                note: { type: [String], required: true },
+            },
             required: true,
-            defualt: { throwAway: [], note: [] },
+            default: { throwAway: [], note: [] },
         },
         kind: {
             type: [String],
@@ -47,4 +43,4 @@ const TrashSchema = new Schema<Trash>(
     },
 );
 
-export const TrashModel = model<Trash>("Trash", TrashSchema);
+export const TrashModel = model<ITrash>("Trash", TrashSchema);

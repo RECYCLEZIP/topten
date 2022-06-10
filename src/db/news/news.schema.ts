@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { INews } from "@src/utils/types/news.interface";
+import { INews } from "@src/utils/types/interface";
 
 const NewsSchema = new Schema<INews>({
     url: {
