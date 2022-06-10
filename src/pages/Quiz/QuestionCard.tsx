@@ -3,7 +3,6 @@ import { LogoImg, QuizImg } from "../../styles/mainStyles/QuizStyle";
 import {
   Icons,
   MoveButton,
-  SubmitButton,
   MoveText,
   QuestionBox,
   QuizCount,

@@ -5,6 +5,7 @@ export const SeoulImg = styled.div`
   width: 100%;
   height: 30vh;
   text-align: center;
+  margin-top: 2%;
   position: relative;
   @media (min-width: 560px) {
     height: 50vh;
@@ -27,7 +28,7 @@ export const SeoulImg = styled.div`
 `;
 
 export const MapText = styled.p`
-  font-size: 0.8rem;
+  font-size: 1rem;
   position: relative;
   margin-top: 15%;
 `;
@@ -35,8 +36,8 @@ export const MapText = styled.p`
 export const MapButton = styled.button`
   border: 1px solid black;
   border-radius: 1rem;
-  padding: 1% 3%;
-  font-size: 0.8rem;
+  padding: 1% 5%;
+  font-size: 0.7rem;
   font-weight: bold;
   background-color: rgba(255, 255, 255, 0);
   position: relative;

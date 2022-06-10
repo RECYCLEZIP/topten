@@ -1,21 +1,14 @@
-import { Router } from "express";
 import React from "react";
 
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
 import AppRouter from "./components/AppRouter";
-import Main from "./pages/main/Main";
+import Header from "./components/Header";
 
 function App() {
   return (
-    <RecoilRoot>
+    <div>
+      <Header />
       <AppRouter />
-    </RecoilRoot>
+    </div>
   );
 }
 

@@ -6,7 +6,7 @@ export const AiContainer = styled.div`
   text-align: center;
   @media (min-width: 768px) {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
   }
 `;
@@ -18,5 +18,10 @@ export const AiDescription = styled.div`
 `;
 
 export const AiImg = styled.img`
-  width: 40%;
+  width: 35%;
+  height: 20%;
+
+  @media (min-width: 768px) {
+    width: 35%;
+  }
 `;
