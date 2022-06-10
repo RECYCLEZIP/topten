@@ -1,7 +1,7 @@
 import { News } from "@src/db";
 import { newsService } from "@src/service/news.service";
 import { RequestError } from "@src/middlewares/errorHandler";
-import { STATUS_404_NOTFOUND, STATUS_503_SERVICEUNAVAILABLE } from "@src/utils/statusCode";
+import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 
 describe("NEWS SERVICE LOGIC", () => {
     it("NEWS 목록 반환을 반환한다.", async () => {
@@ -48,8 +48,19 @@ describe("NEWS SERVICE ERROR HANDLING", () => {
             await newsService.getNewsList();
         } catch (err: any) {
             expect(err).toBeInstanceOf(RequestError);
-            expect(err.status).toBe(STATUS_503_SERVICEUNAVAILABLE);
+            expect(err.status).toBe(STATUS_404_NOTFOUND);
             expect(err.message).toBe("뉴스 목록을 가져올 수 없습니다.");
+        }
+    });
+
+    it("NEWS 생성 시 생성된 뉴스가 없으면 에러가 발생한다.", async () => {
+        News.create = jest.fn().mockResolvedValue(null);
+        try {
+            await newsService.addNews({ url: "생성", title: "생성" });
+        } catch (err: any) {
+            expect(err).toBeInstanceOf(RequestError);
+            expect(err.status).toBe(STATUS_404_NOTFOUND);
+            expect(err.message).toBe("뉴스 생성에 실패하였습니다.");
         }
     });
 

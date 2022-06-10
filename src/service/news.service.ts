@@ -1,21 +1,20 @@
 import { News } from "@src/db";
 import { INews } from "@src/utils/types/interface";
 import { RequestError } from "@src/middlewares/errorHandler";
-import { STATUS_404_NOTFOUND, STATUS_503_SERVICEUNAVAILABLE } from "@src/utils/statusCode";
+import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 
 export class newsService {
     static async getNewsList() {
         const foundNewsList = await News.findAll();
         if (!foundNewsList)
-            throw new RequestError(
-                "뉴스 목록을 가져올 수 없습니다.",
-                STATUS_503_SERVICEUNAVAILABLE,
-            );
+            throw new RequestError("뉴스 목록을 가져올 수 없습니다.", STATUS_404_NOTFOUND);
         return foundNewsList;
     }
 
     static async addNews(news: INews) {
         const createdNews = await News.create(news);
+        if (!createdNews)
+            throw new RequestError("뉴스 생성에 실패하였습니다.", STATUS_404_NOTFOUND);
         return createdNews;
     }
 
