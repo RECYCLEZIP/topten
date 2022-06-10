@@ -40,12 +40,13 @@ export class QuizService {
                 quizResult.result = false;
             }
 
+            const wrongRate = Number((result.wrong / result.totalUser) * 100);
             const newResult = [
                 {
                     date: todayDate,
                     totalUser: 1,
                     wrong: 0,
-                    yesterday: Number((result.wrong / result.totalUser) * 100),
+                    yesterday: wrongRate !== NaN ? wrongRate : 0,
                 },
             ];
 
