@@ -1,18 +1,22 @@
+import { INews } from "@src/utils/types/interface";
 import { NewsModel } from "@src/db/news/news.schema";
-import { INews } from "@src/utils/types/news.interface";
 
 export class News {
     static async findAll() {
         return await NewsModel.find();
     }
 
-    static async create(news: INews) {
-        const createdNews = await NewsModel.create(news);
+    static async create(newsInfo: INews) {
+        const createdNews = await NewsModel.create(newsInfo);
         return createdNews;
     }
 
-    static async update(id: string, news: INews) {
-        const updatedNews = await NewsModel.findByIdAndUpdate(id, { $set: news }, { new: true });
+    static async update(id: string, newsInfo: INews) {
+        const updatedNews = await NewsModel.findByIdAndUpdate(
+            id,
+            { $set: newsInfo },
+            { new: true },
+        );
         return updatedNews;
     }
 

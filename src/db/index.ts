@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import "dotenv/config";
 import { News } from "@src/repository/news.repository";
 // import { Quiz } from "@src/repository/quiz.repository";
-// import { Trash } from "@src/repository/trash.repository";
+import { Trash } from "@src/repository/trash.repository";
 
 const DB_URL =
     process.env.MONGODB_URL ||
@@ -18,5 +18,5 @@ if (process.env.NODE_ENV !== "test") {
     );
 }
 
-export { News };
+export { News, Trash };
 // export { Quiz, Trash, News };

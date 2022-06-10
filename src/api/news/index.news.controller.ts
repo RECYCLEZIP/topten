@@ -1,7 +1,7 @@
 import { Router } from "express";
 import wrapAsyncFunc from "@src/utils/catchAsync";
+import { INews } from "@src/utils/types/interface";
 import { newsService } from "@src/service/news.service";
-import { INews } from "@src/utils/types/news.interface";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
 
 const newsController = Router();
