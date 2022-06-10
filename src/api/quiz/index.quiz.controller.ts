@@ -28,6 +28,13 @@ quizController.get(
 );
 
 // * 많이 틀린 퀴즈 순으로 상위 3개 퀴즈리스트 조회
+quizController.get(
+    "/quizzes/wrong",
+    wrapAsyncFunc(async (req, res, next) => {
+        const quizzesByWrongRate = await quizService.getQuizByWrongRate();
+        return res.status(STATUS_200_OK).json(quizzesByWrongRate);
+    }),
+);
 
 // * 퀴즈 셋 제출(타입별) => 채점결과 반환
 // * requst body = { type: "ox", answers: { quizId1: 1번문제 풀이, quizId2: 2번문제 풀이, quizId3: 3번문제 풀이, quizId4: 4번문제 풀이 }}
