@@ -1,11 +1,6 @@
 import dayjs from "dayjs";
 import { Quiz } from "../db/index";
-import { Submissions, ToUpdate } from "../api/quiz/quiz.types";
-
-interface quizSetResult {
-    result: Object[];
-    score: number;
-}
+import { Submissions } from "../api/quiz/quiz.types";
 
 export class QuizService {
     static async getQuizList(quizType: string) {
@@ -20,8 +15,7 @@ export class QuizService {
         return await Quiz.findQuizByWrongRate();
     }
 
-    // * 단일 퀴즈 채점
-    static async getResult(quizId: string, answer: string) {
+    static async getQuizResult(quizId: string, answer: string) {
         const quizResult = { isCorrect: true };
         const todayDate = new Date();
         const quiz = await Quiz.findQuizById(quizId);
@@ -57,8 +51,7 @@ export class QuizService {
         return quizResult;
     }
 
-    // * 퀴즈셋 채점 -> 정답, score만 반환
-    static async getResults({ type, answers }: Submissions) {
+    static async getQuizSetResults({ type, answers }: Submissions) {
         const quizAnswer = await Quiz.findAnswerByQuizType(type);
         const userAnswer = Object.values(answers);
 
