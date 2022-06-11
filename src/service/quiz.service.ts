@@ -40,11 +40,9 @@ export class QuizService {
                 yesterday: isNaN(wrongRate) ? 0 : wrongRate,
             };
             quiz.result.push(newResult);
-
             await Quiz.updateQuizInfo(quizId, newResult);
         } else {
             result.totalUser += 1;
-
             await Quiz.updateQuizInfo(quizId, result);
         }
 

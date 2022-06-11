@@ -11,7 +11,7 @@ export class Quiz {
     }
 
     static async findQuizByWrongRate() {
-        return await QuizModel.find({}).sort({ yesterday: -1 }).limit(3);
+        return await QuizModel.find().sort({ yesterday: -1 }).limit(3);
     }
 
     static async findAnswerByQuizType(type: string) {

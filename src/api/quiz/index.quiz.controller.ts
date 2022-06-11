@@ -16,19 +16,19 @@ quizController.get(
 );
 
 quizController.get(
+    "/quizzes/wrong",
+    wrapAsyncFunc(async (req, res, next) => {
+        const quizzesByWrongRate = await QuizService.getQuizByWrongRate();
+        return res.status(STATUS_200_OK).json(quizzesByWrongRate);
+    }),
+);
+
+quizController.get(
     "/quizzes/:id",
     wrapAsyncFunc(async (req, res, next) => {
         const quizId = req.params.id;
         const quiz = await QuizService.getQuiz(quizId);
         return res.status(STATUS_200_OK).json(quiz);
-    }),
-);
-
-quizController.get(
-    "/quizzes/wrong",
-    wrapAsyncFunc(async (req, res, next) => {
-        const quizzesByWrongRate = await QuizService.getQuizByWrongRate();
-        return res.status(STATUS_200_OK).json(quizzesByWrongRate);
     }),
 );
 
