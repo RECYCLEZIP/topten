@@ -5,9 +5,9 @@ import { NewsModel } from "@src/db/news/news.schema";
 describe("NEWS 모델 접근", () => {
     const tempNews: INews = { url: "http://localhost", title: "로컬호스트" };
 
-    it("findAll은 모델에서 뉴스목록을 찾는다.", async () => {
+    it("find는 모델에서 뉴스목록을 찾는다.", async () => {
         const spyFn = jest.spyOn(NewsModel, "find");
-        await News.findAll();
+        await News.find({ filteredQuery: {}, limit: 10 });
         expect(spyFn).toBeCalledTimes(1);
     });
 
