@@ -19,6 +19,10 @@ export interface FilterQuery {
     limit?: number;
 }
 
+export interface MongooseQuery {
+    $and?: any;
+}
+
 export interface Submissions {
     type: string;
     answers: [];

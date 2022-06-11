@@ -8,8 +8,8 @@ const tempTrash: ITrash = { title: "사이다", category: ["캔"] };
 
 describe("TRASH SERVICE LOGIC", () => {
     it("TRASH 목록을 반환한다.", async () => {
-        Trash.findAll = jest.fn().mockResolvedValue([tempTrash]);
-        const trashList = await trashService.getTrashList();
+        Trash.find = jest.fn().mockResolvedValue([tempTrash]);
+        const trashList = await trashService.getTrashList({});
         expect(trashList).toHaveLength(1);
         expect(trashList[0].title).toEqual("사이다");
         expect(trashList[0].category[0]).toEqual("캔");
@@ -44,9 +44,9 @@ describe("TRASH SERVICE LOGIC", () => {
 
 describe("TRASH SERVICE ERROR HANDLING", () => {
     it("TRASH 목록이 null이나 undefined라면 에러를 발생시킨다.", async () => {
-        Trash.findAll = jest.fn().mockResolvedValue(null);
+        Trash.find = jest.fn().mockResolvedValue(null);
         try {
-            await trashService.getTrashList();
+            await trashService.getTrashList({});
         } catch (err: any) {
             expect(err).toBeInstanceOf(RequestError);
             expect(err.status).toBe(STATUS_404_NOTFOUND);

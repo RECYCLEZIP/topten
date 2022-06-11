@@ -1,9 +1,9 @@
-import { ITrash } from "@src/utils/types/interface";
+import { MongooseQuery, ITrash } from "@src/utils/types/interface";
 import { TrashModel } from "@src/db/trash/trash.schema";
 
 export class Trash {
-    static async findAll() {
-        return await TrashModel.find();
+    static async find({ filteredQuery, limit }: { filteredQuery: MongooseQuery; limit: number }) {
+        return await TrashModel.find(filteredQuery).limit(limit);
     }
 
     static async create(trashInfo: ITrash) {

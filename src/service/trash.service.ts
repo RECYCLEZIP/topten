@@ -1,11 +1,14 @@
 import { Trash } from "@src/db";
-import { ITrash } from "@src/utils/types/interface";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 import { RequestError } from "@src/middlewares/errorHandler";
+import { FilterQuery, ITrash } from "@src/utils/types/interface";
+import { createFilterQuery } from "@src/utils/createQuery";
 
 export class trashService {
-    static async getTrashList() {
-        const foundTrashList = await Trash.findAll();
+    static async getTrashList(query: FilterQuery) {
+        const filterList = ["title", "category", "kind"];
+        const { filteredQuery, limit } = createFilterQuery(query, filterList);
+        const foundTrashList = await Trash.find({ filteredQuery, limit });
         if (!foundTrashList)
             throw new RequestError("쓰레기 목록을 가져올 수 없습니다.", STATUS_404_NOTFOUND);
         return foundTrashList;

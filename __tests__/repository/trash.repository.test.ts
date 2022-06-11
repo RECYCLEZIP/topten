@@ -7,7 +7,7 @@ describe("Trash 모델 접근", () => {
 
     it("findAll은 모델에서 쓰레기목록을 찾는다.", async () => {
         const spyFn = jest.spyOn(TrashModel, "find");
-        await Trash.findAll();
+        await Trash.find({ filteredQuery: {}, limit: 10 });
         expect(spyFn).toBeCalledTimes(1);
     });
 

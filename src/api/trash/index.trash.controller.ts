@@ -8,8 +8,8 @@ const trashController = Router();
 
 trashController.get(
     "/trash",
-    wrapAsyncFunc(async (_req, res, _next) => {
-        const trashList = await trashService.getTrashList();
+    wrapAsyncFunc(async (req, res, _next) => {
+        const trashList = await trashService.getTrashList(req.query);
         res.status(STATUS_200_OK).json(trashList);
     }),
 );
