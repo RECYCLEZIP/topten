@@ -1,8 +1,8 @@
 import { Trash } from "@src/db";
+import { createFilterQuery } from "@src/utils/createQuery";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 import { RequestError } from "@src/middlewares/errorHandler";
 import { FilterQuery, ITrash } from "@src/utils/types/interface";
-import { createFilterQuery } from "@src/utils/createQuery";
 
 export class trashService {
     static async getTrashList(query: FilterQuery) {

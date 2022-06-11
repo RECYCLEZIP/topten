@@ -1,5 +1,5 @@
-import { createFilterQuery } from "@src/utils/createQuery";
 import { FilterQuery } from "@src/utils/types/interface";
+import { createFilterQuery } from "@src/utils/createQuery";
 
 describe("createFilterQuery", () => {
     const tempQuery: FilterQuery = { search: "검색어", category: "캔", page: "id", limit: 5 };

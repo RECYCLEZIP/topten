@@ -1,9 +1,9 @@
-import { INews } from "@src/utils/types/interface";
 import { NewsModel } from "@src/db/news/news.schema";
+import { INews, MongooseQuery } from "@src/utils/types/interface";
 
 export class News {
-    static async findAll() {
-        return await NewsModel.find();
+    static async find({ filteredQuery, limit }: { filteredQuery: MongooseQuery; limit: number }) {
+        return await NewsModel.find(filteredQuery).limit(limit);
     }
 
     static async create(newsInfo: INews) {

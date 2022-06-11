@@ -8,8 +8,8 @@ const newsController = Router();
 
 newsController.get(
     "/news",
-    wrapAsyncFunc(async (_req, res, _next) => {
-        const newsList = await newsService.getNewsList();
+    wrapAsyncFunc(async (req, res, _next) => {
+        const newsList = await newsService.getNewsList(req.query);
         res.status(STATUS_200_OK).json(newsList);
     }),
 );

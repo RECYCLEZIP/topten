@@ -5,7 +5,7 @@ import { TrashModel } from "@src/db/trash/trash.schema";
 describe("Trash 모델 접근", () => {
     const tempTrash: ITrash = { title: "밀키스", category: ["플라스틱"] };
 
-    it("findAll은 모델에서 쓰레기목록을 찾는다.", async () => {
+    it("find는 모델에서 쓰레기목록을 찾는다.", async () => {
         const spyFn = jest.spyOn(TrashModel, "find");
         await Trash.find({ filteredQuery: {}, limit: 10 });
         expect(spyFn).toBeCalledTimes(1);
