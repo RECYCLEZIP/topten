@@ -31,8 +31,14 @@ export const BinState = atom<BinTypes[]>({
   ],
 });
 
-// 선택한 쓰레기통 좌표
-export const BinSelectedState = atom({
+// 선택한 쓰레기통 리스트 좌표
+export const BinSelectedState = atom<(number | undefined)[]>({
   key: "BinSelectedState",
-  default: [0, 0],
+  default: [0, undefined],
+});
+
+// 선택한 쓰레기통 마커
+export const selectedMarkerState = atom({
+  key: "selectedMarkerState",
+  default: { La: 0, Ma: 0 },
 });

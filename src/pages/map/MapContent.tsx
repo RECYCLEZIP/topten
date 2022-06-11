@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-import { useRecoilValue } from "recoil";
-import { BinState, BinSelectedState } from "../../stores/atoms";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { BinState, BinSelectedState, selectedMarkerState } from "../../stores/atoms";
 
 import { MapBinMapWrapper } from "../../styles/mapStyles/mapStyle";
 
@@ -15,6 +15,7 @@ declare global {
 function MapContent() {
   const bins = useRecoilValue(BinState);
   const binSelected = useRecoilValue(BinSelectedState);
+  const [selectedMarker, setSelectedMarker] = useRecoilState(selectedMarkerState);
 
   useEffect(() => {
     mapLoad();
@@ -45,14 +46,19 @@ function MapContent() {
     window.map.addControl(zoomControl, window.kakao.maps.ControlPosition.RIGHT);
 
     bins.forEach((bin) => {
-      // 마커를 생성합니다
-      new window.kakao.maps.Marker({
+      // 마커 생성
+      var marker = new window.kakao.maps.Marker({
         //마커가 표시 될 지도
         map: window.map,
         //마커가 표시 될 위치
         position: new window.kakao.maps.LatLng(bin.lat, bin.lng),
-        //마커에 hover시 나타날 title
+        //마커 hover 시 title
         title: bin.title,
+      });
+
+      // 마커 click 이벤트
+      window.kakao.maps.event.addListener(marker, "click", function () {
+        setSelectedMarker(marker.getPosition())
       });
     });
   };
