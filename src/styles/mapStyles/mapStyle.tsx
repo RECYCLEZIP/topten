@@ -29,7 +29,11 @@ export const MapSearchTextWrapper = styled2.div`
 `;
 
 export const MapBinSection = styled2.section`
-  display: flex;
+  display: block;
+
+  @media (min-width: 768px) {
+    display: flex;
+    }
 `;
 
 export const MapBinMapWrapper = styled2.div`
@@ -40,9 +44,13 @@ height: 15rem;
 export const MapBinListContainer = styled2.div`
   display: block;
 
-  margin-left: 3rem;
+  margin-top: 2rem;
 
   flex: 1;
+
+  @media (min-width: 768px) {
+    margin-left: 3rem;
+  }
 `;
 
 export const MapBinLocationContainer = styled2.div`
