@@ -1,6 +1,6 @@
 export interface Submissions {
     type: string;
-    answers: Object;
+    answers: [];
 }
 
 export interface ToUpdate {

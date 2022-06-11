@@ -60,42 +60,28 @@ export class QuizService {
     // * 퀴즈셋 채점 -> 정답, score만 반환
     static async getResults({ type, answers }: Submissions) {
         const quizAnswer = await Quiz.findAnswerByQuizType(type);
-        const quizSetResult: quizSetResult = { result: [], score: 0 }; // * 리턴할 데이터
+        const userAnswer = Object.values(answers);
 
-        const todayDate = new Date(); // * dayjs로 YYYY-MM-DD 형태로
-        const userAnswer = Object.entries(answers);
-
-        for (let i = 0; i < userAnswer.length; i++) {
-            const toUpdate: ToUpdate = { totalUser: 0, wrong: 0 };
-            const quizId = userAnswer[i][0];
-            const answer: string = userAnswer[i][1];
+        let score = 0;
+        const result = userAnswer.map((quiz) => {
+            const quizId: string = quiz["quizId"];
+            const answer: string = quiz["answer"];
             const correctAnswer = quizAnswer.find((quiz) => String(quiz._id) === quizId);
+            let isCorrect = false;
 
-            if (correctAnswer === undefined) {
-                throw new Error(`${quizId}에 해당하는 문제 정보가 없습니다.`);
+            if (!correctAnswer) {
+                const errorMessage = `${quizId}와 일치하는 문제 정보가 없습니다.`;
+                throw new Error(errorMessage);
             }
 
-            // toUpdate.totalUser += 1;
-            // let quizResult = {};
-            // if (answer === correctAnswer.answer) {
-            //     quizResult = { quizId, isCorrect: true };
-            //     quizSetResult.score += Number((1 / quizAnswer.length) * 100);
-            // } else {
-            //     quizResult = { quizId, isCorrect: false };
-            //     toUpdate.wrong += 1;
-            // }
-            // quizSetResult.result.push(quizResult);
+            if (correctAnswer.answer === answer) {
+                isCorrect = true;
+                score += Number((1 / answers.length) * 100);
+            }
 
-            // // * 해당 문제에 대한 totalUser와 wrong 갱신($set)
-            // if (correctAnswer.result[0].date === todayDate) {
-            //     await Quiz.updateQuizInfo(toUpdate);
-            // } else {
-            //     // * 날짜가 넘어간 경우
-            //     toUpdate.date = todayDate;
-            //     toUpdate.yesterday = Number((toUpdate.wrong / toUpdate.totalUser) * 100);
-            //     await Quiz.updateQuizInfo(toUpdate);
-            // }
-        }
+            return { quizId, isCorrect };
+        });
+        const quizSetResult = { result, score };
 
         return quizSetResult;
     }
