@@ -25,6 +25,7 @@ export const MapSearchTextWrapper = styled2.div`
   margin-right: 2rem;
 
   font-size: 0.6rem;
+  font-weight: 500;
 `;
 
 export const MapBinSection = styled2.section`
@@ -40,6 +41,8 @@ export const MapBinListContainer = styled2.div`
   display: block;
 
   margin-left: 3rem;
+
+  flex: 1;
 `;
 
 export const MapBinLocationContainer = styled2.div`
@@ -57,6 +60,15 @@ export const MapBinLacationDes = styled2.div`
   font-size: 0.53rem;
 
   color: #9eacba;
+`;
+
+export const BackWrapper = styled2.div`
+    margin-bottom: 0.5rem;
+
+    font-size: 0.53rem;
+    color: #9eacba;
+
+    cursor: pointer;
 `;
 
 export const StyledInput = styled(InputBase)(({ theme }) => ({
@@ -78,7 +90,7 @@ export const StyledInput = styled(InputBase)(({ theme }) => ({
 
 export const Listbox = styled("div")(({ theme }) => ({
   width: "4rem",
-  height: 'auto', 
+  height: "auto",
   // maxHeight: 200,
 
   // position: 'relative',
@@ -93,7 +105,7 @@ export const Listbox = styled("div")(({ theme }) => ({
   listStyle: "none",
   overflow: "auto",
   // border: "1px solid rgba(0,0,0,.25)",
-  
+
   [`& li.${autocompleteClasses.focused}`]: {
     backgroundColor: "#4a8df6",
     color: "white",
