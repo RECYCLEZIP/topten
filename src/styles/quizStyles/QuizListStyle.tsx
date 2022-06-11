@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const QuizList = styled.div`
-  padding: 3% 8%;
+  padding: 2.3rem 8% 3%;
 `;
 
 export const QuizListBox = styled.div`

@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router";
 import { MapButton, MapText, SeoulImg } from "../../styles/mainStyles/MapStyle";
 
 // main page map section component
 function MapSection() {
+  const navigate = useNavigate();
   return (
     <SeoulImg>
       <MapText>
@@ -9,7 +11,7 @@ function MapSection() {
         <br />
         위치 확인
       </MapText>
-      <MapButton>쓰레기 버리러 가기</MapButton>
+      <MapButton onClick={() => navigate("/map")}>쓰레기 버리러 가기</MapButton>
     </SeoulImg>
   );
 }
