@@ -14,10 +14,12 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+//quiz question card component
 function QuestionCard() {
   const [count, setCount] = useState(1);
   const navigate = useNavigate();
 
+  //퀴즈 데이터가 들어오면 map 처리
   return (
     <>
       <QuizCount>{count}/4</QuizCount>

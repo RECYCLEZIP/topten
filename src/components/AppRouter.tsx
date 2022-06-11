@@ -9,6 +9,7 @@ import Landing from "../pages/prologue/Prologue";
 import Ai from "../pages/ai/Ai";
 import Map from "../pages/map/Map";
 
+//set router component
 function AppRouter() {
   return (
     <Routes>

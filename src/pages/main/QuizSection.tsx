@@ -3,6 +3,7 @@ import { QuizButton, QuizLank } from "../../styles/mainStyles/QuizStyle";
 import QuizCard from "./QuizCard";
 import { useNavigate } from "react-router-dom";
 
+// main page quiz section component
 function QuizSection() {
   const navigate = useNavigate();
 

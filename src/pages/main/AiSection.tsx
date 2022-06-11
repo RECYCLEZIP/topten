@@ -8,8 +8,10 @@ import { img } from "../../assets/imgImport";
 import { Button } from "../../styles/ButtonStyles";
 import { useNavigate } from "react-router";
 
+// main page ai section
 function AiSection() {
   const navigate = useNavigate();
+
   return (
     <AiContainer>
       <AiImg src={img.mainAI} />

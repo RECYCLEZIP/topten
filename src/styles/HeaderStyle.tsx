@@ -1,3 +1,4 @@
+import { Link as RouterLink } from "react-router-dom";
 import styled from "styled-components";
 
 //navbar style
@@ -54,7 +55,8 @@ export const Menu = styled.div<{ isToggled: boolean }>`
   }
 `;
 
-export const Link = styled.div<{ border?: string }>`
+export const Link = styled(RouterLink)<{ border?: string }>`
+  all: unset;
   font-size: 0.6rem;
   cursor: pointer;
   padding: 0.5rem 0.8rem;

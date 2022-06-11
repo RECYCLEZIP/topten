@@ -1,5 +1,6 @@
 import { MapButton, MapText, SeoulImg } from "../../styles/mainStyles/MapStyle";
 
+// main page map section component
 function MapSection() {
   return (
     <SeoulImg>
