@@ -23,10 +23,10 @@ describe("TRASH API", () => {
         expect(res.body.description).toHaveProperty("throwAway");
     });
 
-    it("TRASH PATCH/ 쓰레기를 수정한다.", async () => {
+    it("TRASH put/ 쓰레기를 수정한다.", async () => {
         const trash = await trashService.addTrash(tempTrash);
         const res = await request(app)
-            .patch(`/trash/${trash._id}`)
+            .put(`/trash/${trash._id}`)
             .send({ ...tempTrash, category: ["플라스틱"] });
         expect(res.status).toBe(STATUS_200_OK);
         expect(res.body.category[0]).toEqual("플라스틱");

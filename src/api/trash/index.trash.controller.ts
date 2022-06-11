@@ -32,7 +32,7 @@ trashController.post(
     }),
 );
 
-trashController.patch(
+trashController.put(
     "/trash/:id",
     wrapAsyncFunc(async (req, res, _next) => {
         const { id } = req.params;

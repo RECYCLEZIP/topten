@@ -19,10 +19,10 @@ describe("NEWS API", () => {
         expect(res.body.title).toEqual("분리수ZIP");
     });
 
-    it("NEWS PATCH/ 뉴스를 수정한다.", async () => {
+    it("NEWS PUT/ 뉴스를 수정한다.", async () => {
         const news = await newsService.addNews(tempNews);
         const res = await request(app)
-            .patch(`/news/${news._id}`)
+            .put(`/news/${news._id}`)
             .send({ ...tempNews, url: "https://elice-team10" });
         expect(res.status).toBe(STATUS_200_OK);
         expect(res.body.title).toEqual("분리수ZIP");

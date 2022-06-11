@@ -23,7 +23,7 @@ newsController.post(
     }),
 );
 
-newsController.patch(
+newsController.put(
     "/news/:id",
     wrapAsyncFunc(async (req, res, _next) => {
         const { id } = req.params;
