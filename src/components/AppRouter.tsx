@@ -7,6 +7,7 @@ import QuizResult from "../pages/Quiz/QuizResult";
 import VSQuiz from "../pages/Quiz/VSQuiz";
 import Landing from "../pages/prologue/Prologue";
 import Ai from "../pages/ai/Ai";
+import Map from "../pages/map/Map";
 
 function AppRouter() {
   return (
@@ -18,6 +19,7 @@ function AppRouter() {
       <Route path="/quizzes/vs" element={<VSQuiz />} />
       <Route path="/quizzes/result" element={<QuizResult />} />
       <Route path="/prologue" element={<Landing />} />
+      <Route path="/map" element={<Map />} />
       <Route path="/ai" element={<Ai />} />
     </Routes>
   );

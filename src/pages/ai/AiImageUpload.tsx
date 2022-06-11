@@ -25,6 +25,7 @@ function AiImageUpload() {
   // 이미지 업로드 전: beforeImgUpload, 이미지 업로드: imgUploaded, 분석 중: analyzing, 분석 완료: done
   const [situation, setSituation] = useRecoilState(AiSituationState);
 
+  // 안내 문구 (e.g. 사진을 업로드 해주세요 ...)
   const [notice, setNotice] = useState("");
   const [buttonText, setButtonText] = useState("");
 
@@ -45,57 +46,45 @@ function AiImageUpload() {
   // 분석하기 버튼 Click 시
   const onClickAnalyze = () => {
     if (situation === "done") {
-      // 다시 분석하기 Click 시, 이미지 업로드 전 상태로 초기화
+      // 다시 분석하기 Click 시 이미지 업로드 전 상태로 초기화
       setSituation("beforeImgUpload");
       setFileImage("");
     } else {
       // 분석하기 Click 시
       setSituation("analyzing");
 
-      // 임시 분석 완료 상태
+      // 분석 완료 상태 (3초 후 완료라고 임시 설정)
       setTimeout(() => {
         setSituation("done");
       }, 3000);
     }
   };
 
+  // 페이지 상태 별 문구
+  const messages = {
+    beforeImgUpload: "분석하기 버튼을 클릭해주세요",
+    imgUploaded: "쓰레기 사진을 업로드해주세요",
+    analyzing: "AI가 사진을 분석하고 있습니다",
+    done: "분석이 완료되었습니다",
+  };
+
   useEffect(() => {
+    // 페이지 상태에 따라 notice 변경
     const notice = () => {
-      switch (situation) {
-        case "imgUploaded":
-          return setNotice("분석하기 버튼을 클릭해주세요");
-        case "analyzing":
-          return setNotice("AI가 사진을 분석하고 있습니다");
-        case "done":
-          return setNotice("분석이 완료되었습니다");
-        default:
-          return setNotice("쓰레기 사진을 업로드해주세요");
+      if (situation === "done") {
+        setNotice("분석이 완료되었습니다");
+      } else if (situation === "analyzing") {
+        setNotice("AI가 사진을 분석하고 있습니다");
+      } else if (situation === "imgUploaded") {
+        setNotice("분석하기 버튼을 클릭해주세요");
+      } else {
+        setNotice("쓰레기 사진을 업로드해주세요");
       }
-
-      // //   switch (situation) {
-      // //     case "done":
-      // //       return setTitleText("분석이 완료되었습니다");
-      // //     case "analyzing":
-      // //       return setTitleText("AI가 사진을 분석하고 있습니다");
-      // //     case "imgUploaded":
-      // //       return setTitleText("분석하기 버튼을 클릭해주세요");
-      // //     default:
-      // //       return setTitleText("쓰레기 사진을 업로드해주세요");
-      // //   }
-
-      //   if (situation === "done") {
-      //     setTitleText("분석이 완료되었습니다");
-      //   } else if (situation === "analyzing") {
-      //     setTitleText("AI가 사진을 분석하고 있습니다");
-      //   } else if (situation === "imgUploaded") {
-      //     setTitleText("분석하기 버튼을 클릭해주세요");
-      //   } else {
-      //     setTitleText("쓰레기 사진을 업로드해주세요");
-      //   }
     };
 
     notice();
 
+    // 페이지 상태에 따라 버튼 문구 변경
     const buttonText = () => {
       if (situation === "done") {
         setButtonText("다시 분석하기");
@@ -107,14 +96,11 @@ function AiImageUpload() {
     buttonText();
   }, [situation]);
 
-  console.log(`${situation}`);
-
   return (
     <>
-      {/* 사진, 카메라 */}
       <AiImageUploadSection>
-        {/* 사진 */}
         <AiImageContainer>
+          {/* 분석 중이라면 이미지 위에 반투명 레이어, 스피너 */}
           {situation === "analyzing" && (
             <AiImageLayer>
               <AiSpinImg src={img.spin} />
@@ -122,9 +108,9 @@ function AiImageUpload() {
           )}
           <AiImage src={fileImage}></AiImage>
         </AiImageContainer>
-        {/* 아이콘 */}
         <AiIconsContainer>
           <AiIcon src={img.camera} alt="camera" />
+          {/* 업로드 아이콘 클릭 = 업로드 폼 클릭 */}
           <form>
             <input
               name="imgUpload"
@@ -138,13 +124,11 @@ function AiImageUpload() {
           </form>
         </AiIconsContainer>
       </AiImageUploadSection>
-      {/* 사진 업로드 문구, 분석하기 버튼 */}
       <AiTopContainer>
-        {/* 사진 업로드 문구 */}
         <AiNoticeWrapper>{notice}</AiNoticeWrapper>
         <AiButtonWrapper>
           <AiButton
-            // 버튼 비활성화: 업로드 전, 분석 중
+            // 이미지 업로드 전, 분석 중이라면 버튼 비활성화
             disabled={
               situation === "beforeImgUpload" || situation === "analyzing"
             }
