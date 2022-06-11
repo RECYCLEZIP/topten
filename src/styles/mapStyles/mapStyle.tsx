@@ -37,8 +37,12 @@ export const MapBinSection = styled2.section`
 `;
 
 export const MapBinMapWrapper = styled2.div`
-width: 20rem;
+width: 100%;
 height: 15rem;
+
+@media (min-width: 768px) {
+  width: 45%;
+  }
 `;
 
 export const MapBinListContainer = styled2.div`
@@ -49,6 +53,7 @@ export const MapBinListContainer = styled2.div`
   flex: 1;
 
   @media (min-width: 768px) {
+    margin-top: 0;
     margin-left: 3rem;
   }
 `;
