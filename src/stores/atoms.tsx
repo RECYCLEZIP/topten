@@ -34,5 +34,5 @@ export const BinState = atom<BinTypes[]>({
 // 선택한 쓰레기통 좌표
 export const BinSelectedState = atom({
   key: "BinSelectedState",
-  default: [0],
+  default: [0, 0],
 });
