@@ -7,6 +7,7 @@ import {
 } from "../../styles/quizStyles/QuizListStyle";
 import { useNavigate } from "react-router-dom";
 
+//quiz list page
 function Quiz() {
   const url = ["multiple-choice", "ox", "vs"];
   const quizList = ["객관식 퀴즈", "OX 퀴즈", "음식물 vs 일반"];

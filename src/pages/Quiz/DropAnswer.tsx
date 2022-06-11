@@ -9,6 +9,7 @@ import { img } from "../../assets/imgImport";
 import { QuizQuestion } from "../../styles/quizStyles/QuizzesStyle";
 import { CardText } from "../../styles/TextStyle";
 
+// drop quiz answer card component
 function DropAnswer() {
   return (
     <AnswerCard>

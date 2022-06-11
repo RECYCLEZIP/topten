@@ -5,6 +5,7 @@ import MapSection from "./MapSection";
 import NewsSection from "./NewsSection";
 import QuizSection from "./QuizSection";
 
+// main page component
 function Main() {
   return (
     <MainContainer>

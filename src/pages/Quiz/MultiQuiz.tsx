@@ -5,12 +5,14 @@ import {
 } from "../../styles/quizStyles/QuizzesStyle";
 import { useState } from "react";
 import QuestionCard from "./QuestionCard";
-import Results from "./Results";
+import Answer from "./Answer";
 
+// multiple choice quiz page
 function MultiQuiz() {
   const option = ["안녕하세요", "안녕하세요", "안녕하세요", "안녕하세요"];
   const [isSelected, setIsSelected] = useState([false]);
 
+  // selected option toggle true
   const clickHandler = (idx: number) => {
     const newArr: boolean[] = Array(option.length).fill(false);
     newArr[idx] = true;
@@ -33,7 +35,7 @@ function MultiQuiz() {
           </QuizOption>
         );
       })}
-      <Results />
+      <Answer />
     </QuizContainer>
   );
 }

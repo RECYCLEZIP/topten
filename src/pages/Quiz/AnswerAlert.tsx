@@ -3,7 +3,7 @@ import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import { CorrectAnswer } from "../../styles/quizStyles/QuizzesStyle";
-import { AlertType } from "../../types/QuizTypes/QuizResultType";
+import { AlertType } from "../../types/Quiz";
 import { IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 

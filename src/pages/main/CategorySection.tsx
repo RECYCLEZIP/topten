@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router";
 import { img } from "../../assets/imgImport";
 import {
   CategoryContainer,
@@ -10,7 +11,9 @@ import {
   ImgContainer,
 } from "../../styles/mainStyles/CategoryStyle";
 
+// main category section component
 function CategorySection() {
+  const navigate = useNavigate();
   const category = [
     "페트",
     "유리",
@@ -21,10 +24,13 @@ function CategorySection() {
     "페트",
     "유리",
   ];
+
   return (
     <CategoryContainer>
       <CategoryTitle>카테고리</CategoryTitle>
-      <CategorySubTitle>자세히 보기</CategorySubTitle>
+      <CategorySubTitle onClick={() => navigate("/categories")}>
+        자세히 보기
+      </CategorySubTitle>
       <List>
         {img.category.map((img, index) => (
           <ImgContainer key={index}>

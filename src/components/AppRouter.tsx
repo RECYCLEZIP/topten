@@ -8,6 +8,7 @@ import VSQuiz from "../pages/Quiz/VSQuiz";
 import Landing from "../pages/prologue/Prologue";
 import Ai from "../pages/ai/Ai";
 
+//set router component
 function AppRouter() {
   return (
     <Routes>

@@ -5,8 +5,9 @@ import {
   QuizContainer,
 } from "../../styles/quizStyles/QuizzesStyle";
 import { useState } from "react";
-import Results from "./Results";
+import Answer from "./Answer";
 
+// vs quiz page
 function VSQuiz() {
   const option = ["일반", "음식물"];
   const [isSelected, setIsSelected] = useState([false]);
@@ -32,7 +33,7 @@ function VSQuiz() {
           );
         })}
       </TwoOptions>
-      <Results />
+      <Answer />
     </QuizContainer>
   );
 }

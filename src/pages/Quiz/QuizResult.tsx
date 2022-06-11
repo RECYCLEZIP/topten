@@ -10,17 +10,19 @@ import {
   ScoreBox,
 } from "../../styles/quizStyles/QuizResultStyle";
 import { TitleText } from "../../styles/TextStyle";
-import DropAnswer from "./DropAnwser";
+import DropAnswer from "./DropAnswer";
 
+//quiz result page
 function QuizResult() {
   const navigate = useNavigate();
   const results = [true, false];
-  const [isSelected, setIsSelected] = useState([false, false]);
+  const [isOpened, setIsOpened] = useState([false, false]);
 
+  //toggle open or not
   const clickHandler = (idx: number) => {
-    const newArr: boolean[] = [...isSelected];
+    const newArr: boolean[] = [...isOpened];
     newArr[idx] = newArr[idx] ? false : true;
-    setIsSelected(newArr);
+    setIsOpened(newArr);
   };
 
   return (
@@ -40,10 +42,10 @@ function QuizResult() {
                   </ResultText>
                 )}
                 <ResultButton onClick={() => clickHandler(idx)}>
-                  {isSelected[idx] ? "문제 닫기" : "문제 보기"}
+                  {isOpened[idx] ? "문제 닫기" : "문제 보기"}
                 </ResultButton>
               </ResultList>
-              {isSelected[idx] && <DropAnswer />}
+              {isOpened[idx] && <DropAnswer />}
             </div>
           );
         })}

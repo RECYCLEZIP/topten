@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Result, ResultText } from "../../styles/quizStyles/QuizzesStyle";
 import AnswerAlert from "./AnswerAlert";
 
-function Results() {
+// each quiz commentary component
+function Answer() {
   const [result, setResult] = useState(false);
   const answer = false;
 
@@ -20,4 +21,4 @@ function Results() {
   );
 }
 
-export default Results;
+export default Answer;

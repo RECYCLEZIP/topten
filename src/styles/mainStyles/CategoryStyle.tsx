@@ -2,17 +2,22 @@ import styled from "styled-components";
 
 export const CategoryContainer = styled.div`
   margin: 3% 8%;
-  height: 100%;
 `;
 
 export const CategoryTitle = styled.span`
   font-size: 1rem;
 `;
 
-export const CategorySubTitle = styled.span`
+export const CategorySubTitle = styled.button`
+  all: unset;
+  cursor: pointer;
   font-size: 0.6rem;
   color: #9eacba;
   margin-left: 0.8rem;
+  &: hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+  }
 `;
 
 export const CategoryText = styled.p`

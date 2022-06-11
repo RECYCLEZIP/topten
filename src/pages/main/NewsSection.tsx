@@ -4,6 +4,7 @@ import {
   NewsDescriptionText,
 } from "../../styles/mainStyles/NewsStyle";
 
+// main page news section
 function NewsSection() {
   return (
     <NewsContainer>

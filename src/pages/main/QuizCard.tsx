@@ -14,7 +14,12 @@ import {
 } from "../../styles/quizStyles/QuizzesStyle";
 import { img } from "../../assets/imgImport";
 
-function QuizCard({ display }: { display?: string }) {
+/** main page quiz card component
+ *
+ * @param {"none"} display visible or not
+ * @returns
+ */
+function QuizCard({ display }: { display?: "none" }) {
   return (
     <RankContainer>
       <WrongPercent>
