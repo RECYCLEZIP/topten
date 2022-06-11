@@ -12,6 +12,13 @@ export interface ITrash {
     category: string[];
 }
 
+export interface FilterQuery {
+    search?: string;
+    category?: string;
+    page?: string;
+    limit?: number;
+}
+
 export interface Submissions {
     type: string;
     answers: [];
