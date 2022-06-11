@@ -13,6 +13,7 @@ import { MapBinSection } from "../../styles/mapStyles/mapStyle";
 function Map() {
   const [bin, setBin] = useRecoilState<BinTypes[]>(BinState);
 
+  // 목 데이터
   const markerData: Array<{
     title: string;
     point: string;
@@ -51,15 +52,10 @@ function Map() {
 
   return (
     <Container>
-      {/* 페이지 타이틀 */}
       <TopTitle>서울시 공공 쓰레기통</TopTitle>
-      {/* 지역 검색 */}
       <MapSearch />
-      {/* 지도, 리스트 섹션 */}
       <MapBinSection>
-        {/* 지도 api */}
         <MapContent />
-        {/* 쓰레기통 리스트 */}
         <MapList />
       </MapBinSection>
     </Container>

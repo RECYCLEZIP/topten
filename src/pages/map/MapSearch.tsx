@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 
 import Autocomplete from "@mui/material/Autocomplete";
-import Box from "@mui/material/Box";
 import { makeStyles } from "@material-ui/core";
 
 import {
@@ -9,17 +8,12 @@ import {
   AutocompleteContainer,
   MapSearchTextWrapper,
   StyledInput,
-  Listbox,
 } from "../../styles/mapStyles/mapStyle";
 
+// 목 데이터
 const options = ["강남구", "강북구", '송파구'];
 
-const seoul = [
-  { 강남구: ["강남대로", "을지로"] },
-  { 강북구: ["강북대로"] },
-  { 강북구: ["강북대로", "강남대로", "을지로"] },
-];
-
+// 검색어가 항목에 없을 시 문구 style
 const useStyles = makeStyles({
   noOptions: {
     fontSize: "0.46rem",
@@ -27,13 +21,16 @@ const useStyles = makeStyles({
 });
 
 function MapSearch() {
+  // 구 
   const [regionValue, setRegionValue] = React.useState<string | null>("");
-  const [localValue, setLocalValue] = React.useState<string | null>("");
   const [inputRegionValue, setRegionInputValue] = React.useState("");
+  // 동/지역명
+  const [localValue, setLocalValue] = React.useState<string | null>("");
   const [inputLocalValue, setLocalInputValue] = React.useState("");
 
   const styles = useStyles();
 
+  // 구 or 동/지역명 선택 시 로직 (구현 전)
   useEffect(() => {
     console.log(regionValue, localValue);
   }, [regionValue, localValue]);
@@ -41,9 +38,7 @@ function MapSearch() {
   return (
     <MapSearchSection>
       <MapSearchTextWrapper>서울시</MapSearchTextWrapper>
-      {/* 구 */}
       <AutocompleteContainer>
-        {/* 오토 컴플릿 */}
         <Autocomplete
           value={regionValue}
           onChange={(event: any, newValue: string | null) => {
@@ -89,9 +84,7 @@ function MapSearch() {
         />
         <MapSearchTextWrapper>구</MapSearchTextWrapper>
       </AutocompleteContainer>
-      {/* 동/지역명 */}
       <AutocompleteContainer>
-        {/* 오토 컴플릿 */}
         <div>
           <Autocomplete
             value={localValue}
