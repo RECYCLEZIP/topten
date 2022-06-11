@@ -2,9 +2,9 @@ import { Router } from "express";
 import wrapAsyncFunc from "@src/utils/catchAsync";
 import { QuizService } from "@src/service/quiz.service";
 import { STATUS_200_OK } from "@src/utils/statusCode";
-import { Submissions } from "./quiz.types";
+import { Submissions } from "@src/utils/types/interface";
 
-export const quizController = Router();
+const quizController = Router();
 
 quizController.get(
     "/quizzes",
@@ -50,3 +50,5 @@ quizController.post(
         return res.status(STATUS_200_OK).json(result);
     }),
 );
+
+export default quizController;
