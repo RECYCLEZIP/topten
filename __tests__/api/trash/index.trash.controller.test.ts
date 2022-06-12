@@ -5,7 +5,17 @@ import { trashService } from "@src/service/trash.service";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
 
 describe("TRASH API", () => {
-    const tempTrash: ITrash = { title: "콜라", category: ["캔"] };
+    const tempTrash: ITrash = {
+        title: "콜라",
+        description: {
+            throwAway: ["버리는방법"],
+            note: ["찌그러트려서 배출"],
+        },
+        kind: ["캔"],
+        image: "http://",
+        recycle: true,
+        category: ["캔"],
+    };
 
     it("TRASH GET/ 쓰레기목록을 응답받는다.", async () => {
         const res = await request(app).get("/trash");
@@ -23,7 +33,7 @@ describe("TRASH API", () => {
         expect(res.body.description).toHaveProperty("throwAway");
     });
 
-    it("TRASH put/ 쓰레기를 수정한다.", async () => {
+    it("TRASH PUT/ 쓰레기를 수정한다.", async () => {
         const trash = await trashService.addTrash(tempTrash);
         const res = await request(app)
             .put(`/trash/${trash._id}`)

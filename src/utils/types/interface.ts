@@ -5,10 +5,10 @@ export interface INews {
 
 export interface ITrash {
     title: string;
-    description?: { throwAway: string[]; note: string[] };
-    kind?: string[];
-    image?: string;
-    recycle?: boolean;
+    description: { throwAway: string[]; note: string[] };
+    kind: string[];
+    image: string;
+    recycle: boolean;
     category: string[];
 }
 

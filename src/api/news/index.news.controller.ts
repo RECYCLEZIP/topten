@@ -1,7 +1,9 @@
 import { Router } from "express";
 import wrapAsyncFunc from "@src/utils/catchAsync";
 import { INews } from "@src/utils/types/interface";
+import { newsSchema } from "@src/utils/bodySchema";
 import { newsService } from "@src/service/news.service";
+import { bodyValidator } from "@src/middlewares/bodyValidator";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
 
 const newsController = Router();
@@ -16,6 +18,7 @@ newsController.get(
 
 newsController.post(
     "/news",
+    bodyValidator(newsSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         const newsInfo: INews = req.body;
         const createdNews = await newsService.addNews(newsInfo);
@@ -25,6 +28,7 @@ newsController.post(
 
 newsController.put(
     "/news/:id",
+    bodyValidator(newsSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         const { id } = req.params;
         const newsInfo: INews = req.body;

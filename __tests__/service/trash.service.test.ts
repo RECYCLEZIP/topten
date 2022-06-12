@@ -4,7 +4,17 @@ import { trashService } from "@src/service/trash.service";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 import { RequestError } from "@src/middlewares/errorHandler";
 
-const tempTrash: ITrash = { title: "사이다", category: ["캔"] };
+const tempTrash: ITrash = {
+    title: "사이다",
+    description: {
+        throwAway: ["버리는방법"],
+        note: ["찌그러트려서 배출"],
+    },
+    kind: ["캔"],
+    image: "http://",
+    recycle: true,
+    category: ["캔"],
+};
 
 describe("TRASH SERVICE LOGIC", () => {
     it("TRASH 목록을 반환한다.", async () => {
