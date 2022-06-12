@@ -7,6 +7,7 @@ import {
   MoveButton,
 } from "../../styles/category/items";
 
+// each category item card component
 function ItemCard() {
   return (
     <ItemContainer>

@@ -20,11 +20,13 @@ import {
 import { CategoryType } from "../../types/Category";
 import ItemCard from "./ItemCard";
 
+// category page component
 function Category() {
   const category = useRecoilValue(categoryState);
 
   const [isSelected, setIsSelected] = useState([false]);
 
+  // selected category color change
   const selectCategory = (index: number) => {
     const newArr = Array(category.length).fill(false);
     newArr[index] = true;
