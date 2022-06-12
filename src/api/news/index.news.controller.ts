@@ -11,6 +11,10 @@ const newsController = Router();
 newsController.get(
     "/news",
     wrapAsyncFunc(async (req, res, _next) => {
+        /*  #swagger.tags = ["news"]
+            
+            #swagger.responses[200] */
+
         const newsList = await newsService.getNewsList(req.query);
         res.status(STATUS_200_OK).json(newsList);
     }),
@@ -20,6 +24,10 @@ newsController.post(
     "/news",
     bodyValidator(newsSchema),
     wrapAsyncFunc(async (req, res, _next) => {
+        /*  #swagger.tags = ["news"]
+            
+            #swagger.responses[201] */
+
         const newsInfo: INews = req.body;
         const createdNews = await newsService.addNews(newsInfo);
         res.status(STATUS_201_CREATED).json(createdNews);
@@ -30,6 +38,10 @@ newsController.put(
     "/news/:id",
     bodyValidator(newsSchema),
     wrapAsyncFunc(async (req, res, _next) => {
+        /*  #swagger.tags = ["news"]
+            
+            #swagger.responses[200] */
+
         const { id } = req.params;
         const newsInfo: INews = req.body;
         const updatedNews = await newsService.updateNews(id, newsInfo);
@@ -40,6 +52,10 @@ newsController.put(
 newsController.delete(
     "/news/:id",
     wrapAsyncFunc(async (req, res, _next) => {
+        /*  #swagger.tags = ["news"]
+            
+            #swagger.responses[200] */
+
         const { id } = req.params;
         const deleteResult = await newsService.deleteNews(id);
         res.status(STATUS_200_OK).json(deleteResult);

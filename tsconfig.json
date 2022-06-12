@@ -8,6 +8,7 @@
         "paths": { "@src/*": ["*"] },
         "allowJs": true /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */,
         "outDir": "./dist" /* Specify an output folder for all emitted files. */,
+        "resolveJsonModule": true, // 자바스크립트 모듈을 Import 하기 위한 옵션
         "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
         "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
         "noUnusedLocals": true,
