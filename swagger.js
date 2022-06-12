@@ -26,15 +26,15 @@ const doc = {
     tags: [
         {
             name: "news",
-            description: "news 경로 엔드포인트",
+            description: "뉴스 데이터 API",
         },
         {
             name: "quiz",
-            description: "quiz 경로 엔드포인트",
+            description: "퀴즈 데이터 API",
         },
         {
             name: "trash",
-            description: "trash 경로 엔드포인트",
+            description: "쓰레기 데이터 API",
         },
     ],
     definitions: {

@@ -10,15 +10,15 @@
   "tags": [
     {
       "name": "news",
-      "description": "news 경로 엔드포인트"
+      "description": "뉴스 데이터 API"
     },
     {
       "name": "quiz",
-      "description": "quiz 경로 엔드포인트"
+      "description": "퀴즈 데이터 API"
     },
     {
       "name": "trash",
-      "description": "trash 경로 엔드포인트"
+      "description": "쓰레기 데이터 API"
     }
   ],
   "schemes": [
@@ -249,25 +249,49 @@
     },
     "/trash": {
       "get": {
+        "tags": [
+          "trash"
+        ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       },
       "post": {
+        "tags": [
+          "trash"
+        ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
       }
     },
     "/trash/categories": {
       "get": {
+        "tags": [
+          "trash"
+        ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/trash/{id}": {
       "put": {
+        "tags": [
+          "trash"
+        ],
         "description": "",
         "parameters": [
           {
@@ -277,9 +301,16 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       },
       "delete": {
+        "tags": [
+          "trash"
+        ],
         "description": "",
         "parameters": [
           {
@@ -289,7 +320,11 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     }
   },
