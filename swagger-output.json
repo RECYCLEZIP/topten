@@ -35,18 +35,35 @@
   "paths": {
     "/news": {
       "get": {
+        "tags": [
+          "news"
+        ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       },
       "post": {
+        "tags": [
+          "news"
+        ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
       }
     },
     "/news/{id}": {
       "put": {
+        "tags": [
+          "news"
+        ],
         "description": "",
         "parameters": [
           {
@@ -56,9 +73,16 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       },
       "delete": {
+        "tags": [
+          "news"
+        ],
         "description": "",
         "parameters": [
           {
@@ -68,7 +92,11 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/quizzes": {
@@ -300,23 +328,18 @@
           "example": "multipleChoice"
         },
         "answers": {
-          "type": "object",
-          "properties": {
-            "62a163ddac4b496254c13d9e": {
-              "type": "string",
-              "example": "1"
-            },
-            "62a163ddac4b496254c13d9c": {
-              "type": "string",
-              "example": "2"
-            },
-            "62a163ddac4b496254c13da2": {
-              "type": "string",
-              "example": "0"
-            },
-            "62a163ddac4b496254c13da0": {
-              "type": "string",
-              "example": "3"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "quizId": {
+                "type": "string",
+                "example": "62a455ad6059af946a56e719"
+              },
+              "answer": {
+                "type": "string",
+                "example": "3"
+              }
             }
           }
         }

@@ -1,4 +1,4 @@
-const options = { autoHeaders: false, autoQuery: false, autoBody: false };
+const options = { autoHeaders: false, autoQuery: false };
 const swaggerAutogen = require("swagger-autogen")(
     options,
     { openapi: "3.0.0" },
@@ -46,20 +46,20 @@ const doc = {
             type: "multipleChoice",
             answers: [
                 {
-                    quizId: "62a163ddac4b496254c13d9e",
-                    isCorrect: true,
+                    quizId: "62a455ad6059af946a56e717",
+                    answer: "1",
                 },
                 {
-                    quizId: "62a163ddac4b496254c13d9c",
-                    isCorrect: true,
+                    quizId: "62a455ad6059af946a56e715",
+                    answer: "2",
                 },
                 {
-                    quizId: "62a163ddac4b496254c13da2",
-                    isCorrect: true,
+                    quizId: "62a455ad6059af946a56e71b",
+                    answer: "0",
                 },
                 {
-                    quizId: "62a163ddac4b496254c13da0",
-                    isCorrect: true,
+                    quizId: "62a455ad6059af946a56e719",
+                    answer: "3",
                 },
             ],
         },

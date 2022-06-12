@@ -52,7 +52,8 @@ quizController.get(
                 description: '조회하고자 하는 퀴즈의 quizId를 경로 엔드포인트에 추가',
                 required: true,
                 schema: { $ref: "#/definitions/QuizId" }
-            }    
+            }
+            
             #swagger.responses[200] = { 
             schema: { "$ref": "#/definitions/QuizByType" },
             description: "quizId에 해당하는 퀴즈정보 조회" } */
@@ -103,6 +104,7 @@ quizController.post(
                 required: true,
                 schema: { $ref: "#/definitions/QuizSetSubmission" }
             }    
+
             #swagger.responses[200] = { 
             schema: { "$ref": "#/definitions/QuizSetResult" },
             description: "퀴즈셋 채점결과 반환" } */
