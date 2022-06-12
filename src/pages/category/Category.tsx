@@ -7,7 +7,7 @@ import {
   SearchIcon,
   TitleContainer,
   ItemContainer,
-} from "../../styles/categories/categories";
+} from "../../styles/category/category";
 import {
   CategoryText,
   CategoryTitle,
@@ -18,7 +18,7 @@ import {
 } from "../../styles/mainStyles/CategoryStyle";
 import ItemCard from "./ItemCard";
 
-function Categories() {
+function Category() {
   const category = [
     "페트",
     "유리",
@@ -75,4 +75,4 @@ function Categories() {
   );
 }
 
-export default Categories;
+export default Category;

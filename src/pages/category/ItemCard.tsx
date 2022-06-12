@@ -5,7 +5,7 @@ import {
   ItemText,
   ItemTitle,
   MoveButton,
-} from "../../styles/categories/items";
+} from "../../styles/category/items";
 
 function ItemCard() {
   return (

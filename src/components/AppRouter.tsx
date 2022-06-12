@@ -8,7 +8,7 @@ import VSQuiz from "../pages/quiz/VSQuiz";
 import Landing from "../pages/prologue/Prologue";
 import Ai from "../pages/ai/Ai";
 import Map from "../pages/map/Map";
-import Categories from "../pages/categories/Categories";
+import Category from "../pages/category/Category";
 
 //set router component
 function AppRouter() {
@@ -23,7 +23,7 @@ function AppRouter() {
       <Route path="/prologue" element={<Landing />} />
       <Route path="/map" element={<Map />} />
       <Route path="/ai" element={<Ai />} />
-      <Route path="/categories" element={<Categories />} />
+      <Route path="/category" element={<Category />} />
     </Routes>
   );
 }

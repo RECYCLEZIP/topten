@@ -28,7 +28,7 @@ function CategorySection() {
   return (
     <CategoryContainer>
       <CategoryTitle>카테고리</CategoryTitle>
-      <CategorySubTitle onClick={() => navigate("/categories")}>
+      <CategorySubTitle onClick={() => navigate("/category")}>
         자세히 보기
       </CategorySubTitle>
       <List>
