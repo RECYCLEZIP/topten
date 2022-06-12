@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { img } from "../../assets/imgImport";
+import { useRecoilValue } from "recoil";
+import { categoryState } from "../../stores/atoms";
 import {
   CategoryContainer,
   SearchBox,
@@ -16,19 +17,11 @@ import {
   ImgContainer,
   List,
 } from "../../styles/mainStyles/CategoryStyle";
+import { CategoryType } from "../../types/Category";
 import ItemCard from "./ItemCard";
 
 function Category() {
-  const category = [
-    "페트",
-    "유리",
-    "페트",
-    "유리",
-    "페트",
-    "유리",
-    "페트",
-    "유리",
-  ];
+  const category = useRecoilValue(categoryState);
 
   const [isSelected, setIsSelected] = useState([false]);
 
@@ -43,16 +36,16 @@ function Category() {
       <CategoryContainer>
         <CategoryTitle>카테고리</CategoryTitle>
         <List>
-          {img.category.map((img, index) => (
+          {category.map((list: CategoryType, index) => (
             <ImgContainer key={index}>
               <IMGBox>
-                <IMG src={img}></IMG>
+                <IMG src={list.image}></IMG>
               </IMGBox>
               <CategoryText
                 onClick={() => selectCategory(index)}
                 isSelected={isSelected[index]}
               >
-                {category[index]}
+                {list.name}
               </CategoryText>
             </ImgContainer>
           ))}

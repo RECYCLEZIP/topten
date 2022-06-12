@@ -46,6 +46,7 @@ export const List = styled.div`
 export const ImgContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
   width: 80%;
 `;
 
