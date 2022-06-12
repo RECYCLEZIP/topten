@@ -1,21 +1,30 @@
 import styled from "styled-components";
 
-export const NewsContainer = styled.div`
-  margin: 1% 8%;
+export const Container = styled.div`
+  margin: 2% 8% 0;
+  display: flex;
+  align-items: center;
 `;
 
-export const NewsTitle = styled.p`
+export const NewsText = styled.span`
   font-size: 0.6rem;
-  margin-bottom: 0;
-  @media (min-width: 768px) {
-    display: inline;
-  }
 `;
 
-export const NewsDescriptionText = styled.span`
+export const NewsTitle = styled.a`
+  text-decoration: none;
   font-size: 0.6rem;
   color: #9eacba;
   @media (min-width: 768px) {
     margin-left: 0.8rem;
   }
+`;
+
+export const NewsContainer = styled.div`
+  transition: transform 0.5s;
+  align-items: center;
+`;
+
+export const AutoSlide = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
