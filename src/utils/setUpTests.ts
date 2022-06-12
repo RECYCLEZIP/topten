@@ -1,7 +1,28 @@
 import "dotenv/config";
 import mongoose from "mongoose";
-import server from "@src/server";
+import { NextFunction, Request, Response } from "express";
 import { MongoMemoryServer } from "mongodb-memory-server";
+
+export const mockRequest = (body?: object): Request => {
+    const req: unknown = {
+        body,
+    };
+    return req as Request;
+};
+
+export const mockResponse = (): Response => {
+    const res: unknown = {
+        status: jest.fn(() => res),
+        send: jest.fn(),
+        json: jest.fn((message) => ({ message })),
+    };
+    return res as Response;
+};
+
+export const mockNext = (): NextFunction => {
+    const next: unknown = jest.fn();
+    return next as NextFunction;
+};
 
 beforeAll(async () => {
     if (process.env.NODE_ENV === "test") {
@@ -13,8 +34,6 @@ beforeAll(async () => {
 beforeEach(async () => {
     await mongoose.connection.db.dropDatabase();
 });
-
-afterEach(() => server.close());
 
 afterAll(async () => {
     await mongoose.disconnect();

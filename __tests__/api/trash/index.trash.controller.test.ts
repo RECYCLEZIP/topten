@@ -23,7 +23,7 @@ describe("TRASH API", () => {
         expect(res.body.description).toHaveProperty("throwAway");
     });
 
-    it("TRASH put/ 쓰레기를 수정한다.", async () => {
+    it("TRASH PUT/ 쓰레기를 수정한다.", async () => {
         const trash = await trashService.addTrash(tempTrash);
         const res = await request(app)
             .put(`/trash/${trash._id}`)

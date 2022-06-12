@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { mockRequest, mockResponse, mockNext } from "@src/utils/setUpTests";
 import { errorMiddleware, RequestError } from "@src/middlewares/errorHandler";
 import {
     STATUS_400_BADREQUEST,
@@ -6,22 +6,6 @@ import {
     STATUS_404_NOTFOUND,
     STATUS_500_INTERNALSERVERERROR,
 } from "@src/utils/statusCode";
-
-const mockRequest = (): Request => {
-    const req: unknown = jest.fn();
-    return req as Request;
-};
-
-const mockResponse = (): Response => {
-    const res: unknown = {
-        status: jest.fn(() => res),
-        send: jest.fn(),
-        json: jest.fn((message) => ({ message })),
-    };
-    return res as Response;
-};
-
-const mockNext = jest.fn();
 
 describe("RequestError 클래스는 에러를 생성한다.", () => {
     it("RequestError의 인스턴스를 생성한다.", () => {
