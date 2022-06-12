@@ -5,6 +5,7 @@
     "license": "MIT",
     "scripts": {
         "start": "ts-node-dev --respawn --transpile-only src/server.ts",
+        "prestart:dev": "node ./swagger.js",
         "test": "cross-env NODE_ENV=test jest --setupFiles dotenv/config --detectOpenHandles --forceExit",
         "test:ci": "cross-env NODE_ENV=test jest --config ./jest.config.ts --detectOpenHandles --collectCoverage --coverageDirectory=\"./coverage\" --ci --reporters=default --reporters=jest-junit --watchAll=false --forceExit",
         "coverage": "cross-env NODE_ENV=test jest --coverage"
@@ -34,6 +35,7 @@
         "jest-junit": "^13.2.0",
         "mongodb-memory-server": "^8.6.0",
         "supertest": "^6.2.3",
+        "swagger-autogen": "^2.21.3",
         "ts-jest": "^28.0.3",
         "ts-node": "^10.8.1",
         "ts-node-dev": "^2.0.0",
