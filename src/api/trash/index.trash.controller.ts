@@ -1,8 +1,10 @@
 import { Router } from "express";
 import wrapAsyncFunc from "@src/utils/catchAsync";
 import { ITrash } from "@src/utils/types/interface";
+import { trashSchema } from "@src/utils/bodySchema";
 import { trashCategories } from "@src/utils/constans";
 import { trashService } from "@src/service/trash.service";
+import { bodyValidator } from "@src/middlewares/bodyValidator";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
 
 const trashController = Router();
@@ -25,6 +27,7 @@ trashController.get(
 
 trashController.post(
     "/trash",
+    bodyValidator(trashSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         const trashInfo: ITrash = req.body;
         const createdTrash = await trashService.addTrash(trashInfo);
@@ -34,6 +37,7 @@ trashController.post(
 
 trashController.put(
     "/trash/:id",
+    bodyValidator(trashSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         const { id } = req.params;
         const trashInfo: ITrash = req.body;
