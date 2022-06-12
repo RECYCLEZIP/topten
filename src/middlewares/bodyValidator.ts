@@ -1,8 +1,9 @@
+import { ObjectSchema } from "joi";
 import { RequestHandler } from "express";
 import { RequestError } from "@src/middlewares/errorHandler";
 
 export const bodyValidator =
-    (schema: any): RequestHandler =>
+    (schema: ObjectSchema): RequestHandler =>
     (req, res, next) => {
         const { error } = schema.validate(req.body);
         if (error) {
