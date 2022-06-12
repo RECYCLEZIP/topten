@@ -21,7 +21,7 @@ export const trashCategories = [
     },
     {
         name: "일반",
-        image: "https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/96129644/B.jpg?985000000",
+        image: "https://www.ryupizza.com/wp-content/uploads/pizza403_1.jpg",
     },
     {
         name: "종이",
