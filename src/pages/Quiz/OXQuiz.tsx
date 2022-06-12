@@ -35,6 +35,7 @@ function OXQuiz() {
             <TwoOption
               onClick={() => clickHandler(index)}
               isSelected={isSelected[index]}
+              key={index}
             >
               {text}
             </TwoOption>

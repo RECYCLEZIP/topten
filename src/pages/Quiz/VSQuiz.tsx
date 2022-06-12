@@ -27,6 +27,7 @@ function VSQuiz() {
             <TextTwoOption
               onClick={() => clickHandler(index)}
               isSelected={isSelected[index]}
+              key={index}
             >
               {text}
             </TextTwoOption>

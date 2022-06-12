@@ -27,6 +27,7 @@ function MultiQuiz() {
           <QuizOption
             onClick={() => clickHandler(index)}
             isSelected={isSelected[index]}
+            key={index}
           >
             <OptionNumber isSelected={isSelected[index]}>
               {index + 1}.{" "}
