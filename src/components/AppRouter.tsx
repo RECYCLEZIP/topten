@@ -1,13 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import Main from "../pages/main/Main";
-import MultiQuiz from "../pages/Quiz/MultiQuiz";
-import OXQuiz from "../pages/Quiz/OXQuiz";
-import Quiz from "../pages/Quiz/Quiz";
-import QuizResult from "../pages/Quiz/QuizResult";
-import VSQuiz from "../pages/Quiz/VSQuiz";
+import MultiQuiz from "../pages/quiz/MultiQuiz";
+import OXQuiz from "../pages/quiz/OXQuiz";
+import Quiz from "../pages/quiz/Quiz";
+import QuizResult from "../pages/quiz/QuizResult";
+import VSQuiz from "../pages/quiz/VSQuiz";
 import Landing from "../pages/prologue/Prologue";
 import Ai from "../pages/ai/Ai";
 import Map from "../pages/map/Map";
+import Category from "../pages/category/Category";
 
 //set router component
 function AppRouter() {
@@ -22,6 +23,7 @@ function AppRouter() {
       <Route path="/prologue" element={<Landing />} />
       <Route path="/map" element={<Map />} />
       <Route path="/ai" element={<Ai />} />
+      <Route path="/category" element={<Category />} />
     </Routes>
   );
 }

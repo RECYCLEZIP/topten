@@ -42,3 +42,9 @@ export const selectedMarkerState = atom({
   key: "selectedMarkerState",
   default: { La: 0, Ma: 0 },
 });
+
+// category list
+export const categoryState = atom({
+  key: "CategoryState",
+  default: [],
+});

@@ -20,9 +20,11 @@ export const CategorySubTitle = styled.button`
   }
 `;
 
-export const CategoryText = styled.p`
+export const CategoryText = styled.p<{ isSelected?: boolean }>`
   font-size: 0.6rem;
   text-align: center;
+  cursor: pointer;
+  color: ${(props) => (props.isSelected ? "#21a663" : "black")};
 `;
 
 export const List = styled.div`
@@ -44,6 +46,7 @@ export const List = styled.div`
 export const ImgContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
   width: 80%;
 `;
 

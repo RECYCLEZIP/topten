@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
-import { img } from "../../assets/imgImport";
+import { useRecoilValue } from "recoil";
+import { categoryState } from "../../stores/atoms";
 import {
   CategoryContainer,
   CategorySubTitle,
@@ -10,34 +11,26 @@ import {
   CategoryText,
   ImgContainer,
 } from "../../styles/mainStyles/CategoryStyle";
+import { CategoryType } from "../../types/Category";
 
 // main category section component
 function CategorySection() {
   const navigate = useNavigate();
-  const category = [
-    "페트",
-    "유리",
-    "페트",
-    "유리",
-    "페트",
-    "유리",
-    "페트",
-    "유리",
-  ];
+  const category = useRecoilValue(categoryState);
 
   return (
     <CategoryContainer>
       <CategoryTitle>카테고리</CategoryTitle>
-      <CategorySubTitle onClick={() => navigate("/categories")}>
+      <CategorySubTitle onClick={() => navigate("/category")}>
         자세히 보기
       </CategorySubTitle>
       <List>
-        {img.category.map((img, index) => (
+        {category.map((list: CategoryType, index) => (
           <ImgContainer key={index}>
             <IMGBox>
-              <IMG src={img}></IMG>
+              <IMG src={list.image}></IMG>
             </IMGBox>
-            <CategoryText>{category[index]}</CategoryText>
+            <CategoryText>{list.name}</CategoryText>
           </ImgContainer>
         ))}
       </List>
