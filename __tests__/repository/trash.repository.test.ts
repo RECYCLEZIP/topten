@@ -3,7 +3,17 @@ import { ITrash } from "@src/utils/types/interface";
 import { TrashModel } from "@src/db/trash/trash.schema";
 
 describe("Trash 모델 접근", () => {
-    const tempTrash: ITrash = { title: "밀키스", category: ["플라스틱"] };
+    const tempTrash: ITrash = {
+        title: "밀키스",
+        description: {
+            throwAway: ["버리는방법"],
+            note: ["찌그러트려서 배출"],
+        },
+        kind: ["페트"],
+        image: "http://",
+        recycle: true,
+        category: ["플라스틱"],
+    };
 
     it("find는 모델에서 쓰레기목록을 찾는다.", async () => {
         const spyFn = jest.spyOn(TrashModel, "find");
