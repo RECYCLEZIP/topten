@@ -1,4 +1,4 @@
-const options = { autoHeaders: false, autoQuery: false };
+const options = { autoHeaders: false, autoQuery: false, autoBody: false };
 const swaggerAutogen = require("swagger-autogen")(
     options,
     { openapi: "3.0.0" },
