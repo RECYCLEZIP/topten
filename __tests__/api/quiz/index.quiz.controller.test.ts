@@ -16,4 +16,11 @@ describe("Quiz API Test", () => {
             expect(res.body).toEqual([]);
         });
     });
+
+    describe("GET /quizzes/wrong", () => {
+        it("전날 기준 오답률 상위 3개 퀴즈정보를 반환한다.??", async () => {
+            const res = await request(app).get("/quizzes/wrong");
+            expect(res.statusCode).toBe(STATUS_200_OK);
+        });
+    });
 });
