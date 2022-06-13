@@ -15,6 +15,8 @@ export class QuizService {
             const errorMessage = "quizId와 일치하는 퀴즈가 없습니다.";
             throw new RequestError(errorMessage, STATUS_404_NOTFOUND);
         }
+
+        return quizInfo;
     }
 
     static async getQuizByWrongRate() {
