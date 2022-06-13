@@ -1,6 +1,8 @@
 import dayjs from "dayjs";
 import { Quiz } from "../db/index";
 import { Submissions } from "@src/utils/types/interface";
+import { RequestError } from "@src/middlewares/errorHandler";
+import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 
 export class QuizService {
     static async getQuizList(quizType: string) {
@@ -8,7 +10,11 @@ export class QuizService {
     }
 
     static async getQuiz(quizId: string) {
-        return await Quiz.findQuizById(quizId);
+        const quizInfo = await Quiz.findQuizById(quizId);
+        if (!quizInfo) {
+            const errorMessage = "quizId와 일치하는 퀴즈가 없습니다.";
+            throw new RequestError(errorMessage, STATUS_404_NOTFOUND);
+        }
     }
 
     static async getQuizByWrongRate() {
