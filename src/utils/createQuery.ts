@@ -1,7 +1,9 @@
+import assert from "assert";
 import { FilterQuery, MongooseQuery } from "@src/models/interface";
 
 export const createFilterQuery = (query: FilterQuery, filterList: string[]) => {
     const { search, category, page = "", limit = 10 } = query;
+    assert(limit > 0, "Limit이 0 또는 음수입니다.");
     const filteredQuery: MongooseQuery = {};
 
     if (page) {
