@@ -22,7 +22,7 @@ function Quiz() {
     <QuizList>
       <TitleText>오늘의 퀴즈</TitleText>
       {quizList.map((quiz, index) => (
-        <QuizListBox onClick={() => navigate(`./${url[index]}`)}>
+        <QuizListBox onClick={() => navigate(`./${url[index]}`)} key={index}>
           <QuizNumber>4문항</QuizNumber>
           <QuizText>{quiz}</QuizText>
           <QuizText size="0.6rem">{quizDescription[index]}</QuizText>

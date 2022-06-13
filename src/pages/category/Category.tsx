@@ -17,7 +17,7 @@ import {
   ImgContainer,
   List,
 } from "../../styles/mainStyles/CategoryStyle";
-import { CategoryType } from "../../types/Category";
+import { CategoryType } from "../../types/Main";
 import ItemCard from "./ItemCard";
 
 // category page component

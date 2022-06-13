@@ -29,11 +29,11 @@ function QuizResult() {
     <QuizList>
       <TitleText>결과</TitleText>
       <QuizResultCard>
-        {results.map((result, idx) => {
+        {results.map((result, index) => {
           return (
-            <div>
+            <div key={index}>
               <ResultList>
-                <ResultText>{idx + 1}번</ResultText>
+                <ResultText>{index + 1}번</ResultText>
                 {result ? (
                   <ResultText margin="50%">맞았습니다! </ResultText>
                 ) : (
@@ -41,11 +41,11 @@ function QuizResult() {
                     틀렸습니다!
                   </ResultText>
                 )}
-                <ResultButton onClick={() => clickHandler(idx)}>
-                  {isOpened[idx] ? "문제 닫기" : "문제 보기"}
+                <ResultButton onClick={() => clickHandler(index)}>
+                  {isOpened[index] ? "문제 닫기" : "문제 보기"}
                 </ResultButton>
               </ResultList>
-              {isOpened[idx] && <DropAnswer />}
+              {isOpened[index] && <DropAnswer />}
             </div>
           );
         })}

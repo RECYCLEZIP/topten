@@ -11,7 +11,7 @@ import {
   CategoryText,
   ImgContainer,
 } from "../../styles/mainStyles/CategoryStyle";
-import { CategoryType } from "../../types/Category";
+import { CategoryType } from "../../types/Main";
 
 // main category section component
 function CategorySection() {

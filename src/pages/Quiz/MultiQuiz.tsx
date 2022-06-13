@@ -14,7 +14,7 @@ function MultiQuiz() {
 
   // selected option toggle true
   const clickHandler = (idx: number) => {
-    const newArr: boolean[] = Array(option.length).fill(false);
+    const newArr = Array<boolean>(option.length).fill(false);
     newArr[idx] = true;
     setIsSelected(newArr);
   };
@@ -27,6 +27,7 @@ function MultiQuiz() {
           <QuizOption
             onClick={() => clickHandler(index)}
             isSelected={isSelected[index]}
+            key={index}
           >
             <OptionNumber isSelected={isSelected[index]}>
               {index + 1}.{" "}
