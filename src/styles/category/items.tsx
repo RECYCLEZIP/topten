@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-export const ItemContainer = styled.div`
+export const ItemContainer = styled.div<{ opacity?: number }>`
   display: flex;
   align-items: center;
-  width: 50%;
-  justify-content: center;
+  width: 10rem;
   margin-bottom: 7%;
+  opacity: ${(props) => props.opacity};
 `;
 
 export const ItemTitle = styled.div`

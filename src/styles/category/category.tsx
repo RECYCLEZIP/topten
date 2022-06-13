@@ -13,10 +13,10 @@ export const TitleContainer = styled.div`
   align-items: center;
 `;
 
-export const ItemContainer = styled.div`
+export const ItemListContainer = styled.div`
   margin: 3% 15%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
 `;
 

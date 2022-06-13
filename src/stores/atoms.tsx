@@ -1,5 +1,6 @@
 import { atom } from "recoil";
-import { CategoryItemType, CategoryType } from "../types/Main";
+import { CategoryType } from "../types/Main";
+import { CategoryItemType } from "../types/Trash";
 
 export interface BinTypes {
   title: string;

@@ -5,18 +5,22 @@ import {
   ItemTitle,
   MoveButton,
 } from "../../styles/category/items";
-import { CategoryItemType } from "../../types/Main";
+import { TrashItemType } from "../../types/Trash";
 
 // each category item card component
-function ItemCard({ item }: { item: CategoryItemType }) {
+function ItemCard({ items }: TrashItemType) {
   return (
-    <ItemContainer>
-      <ItemImg src={item.image} />
-      <ItemTitle>
-        <ItemText>{item.title}</ItemText>
-        <MoveButton>자세히</MoveButton>
-      </ItemTitle>
-    </ItemContainer>
+    <>
+      {items.map((item, index) => (
+        <ItemContainer key={index}>
+          <ItemImg src={item.image} />
+          <ItemTitle>
+            <ItemText>{item.title}</ItemText>
+            <MoveButton>자세히</MoveButton>
+          </ItemTitle>
+        </ItemContainer>
+      ))}
+    </>
   );
 }
 
