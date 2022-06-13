@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 import { ITrash } from "@src/models/interface";
+import { TRASH_CATEGORY } from "@src/utils/constans";
 
 const TrashSchema = new Schema<ITrash>(
     {
@@ -35,7 +36,7 @@ const TrashSchema = new Schema<ITrash>(
         category: {
             type: [String],
             required: true,
-            enum: ["플라스틱", "스티로폼", "유리", "캔", "음식물", "일반", "종이", "비닐"],
+            enum: TRASH_CATEGORY,
         },
     },
     {

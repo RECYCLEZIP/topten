@@ -32,3 +32,14 @@ export const trashCategories = [
         image: "https://thumbnail10.coupangcdn.com/thumbnails/remote/492x492ex/image/rs_quotation_api/clej5qrx/df500ae2686740cd9c85d6c06fc09eda.jpg",
     },
 ];
+
+export const TRASH_CATEGORY = [
+    "플라스틱",
+    "스티로폼",
+    "유리",
+    "캔",
+    "음식물",
+    "일반",
+    "종이",
+    "비닐",
+];
