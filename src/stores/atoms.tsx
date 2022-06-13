@@ -45,6 +45,12 @@ export const selectedMarkerState = atom({
 
 // category list
 export const categoryState = atom({
-  key: "CategoryState",
+  key: "categoryState",
+  default: [],
+});
+
+// news list
+export const newsState = atom({
+  key: "newsState",
   default: [],
 });

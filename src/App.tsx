@@ -1,26 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { getData } from "./api";
-
+import axios from "axios";
 import AppRouter from "./components/AppRouter";
 import Header from "./components/Header";
-import { categoryState } from "./stores/atoms";
+import { categoryState, newsState } from "./stores/atoms";
 
 function App() {
+  const axiosRequest1 = getData(`trash/categories`);
+  const axiosRequest2 = getData(`news`);
   const setCategory = useSetRecoilState(categoryState);
+  const setNews = useSetRecoilState(newsState);
+
+  const [isFetchCompleted, setIsFetchCompleted] = useState(false);
 
   //initial api get request
-  useEffect(() => {
+  const getCategory = async () => {
     try {
-      const getCategory = async () => {
-        const res = await getData(`trash/categories`);
-        setCategory(res.data);
-      };
-      getCategory();
-    } catch (err) {
-      console.log("Error: award list get request fail", err);
+      await axios.all([axiosRequest1, axiosRequest2]).then(
+        axios.spread((res1, res2) => {
+          setCategory(res1.data);
+          setNews(res2.data);
+        }),
+      );
+    } catch {
+      console.log("Error: data get request fail");
     }
-  }, [setCategory]);
+    setIsFetchCompleted(true);
+  };
+
+  useEffect(() => {
+    getCategory();
+  }, []);
+
+  if (!isFetchCompleted) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
