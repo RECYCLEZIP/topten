@@ -38,11 +38,24 @@
         "tags": [
           "news"
         ],
-        "description": "",
-        "parameters": [],
+        "description": "뉴스 목록 조회",
+        "parameters": [
+          {
+            "name": "queryString",
+            "in": "query",
+            "description": "**search** 검색어\n  **page** 첫 요청시 빈 문자열 또는 생략\n  **limit** 기본값\n",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/NewsGetQuery"
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "OK"
+            "schema": {
+              "$ref": "#/definitions/NewsGetResponse"
+            },
+            "description": "뉴스 목록을 배열형태로 반환"
           }
         }
       },
@@ -50,11 +63,24 @@
         "tags": [
           "news"
         ],
-        "description": "",
-        "parameters": [],
+        "description": "뉴스 생성",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "생성하고자 하는 뉴스의 정보를 body에 담아 요청",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewsPostQuery"
+            }
+          }
+        ],
         "responses": {
           "201": {
-            "description": "Created"
+            "schema": {
+              "$ref": "#/definitions/NewsPostResponse"
+            },
+            "description": "생성된 뉴스 정보 반환"
           }
         }
       }
@@ -64,18 +90,34 @@
         "tags": [
           "news"
         ],
-        "description": "",
+        "description": "뉴스 수정",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "수정하고자 하는 뉴스의 ID",
+            "schema": {
+              "$ref": "#/definitions/NewsId"
+            }
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "수정하고자 하는 뉴스의 정보를 body에 담아 요청",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewsPutBody"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "schema": {
+              "$ref": "#/definitions/NewsPutResponse"
+            },
+            "description": "수정된 뉴스 정보 반환"
           }
         }
       },
@@ -83,18 +125,25 @@
         "tags": [
           "news"
         ],
-        "description": "",
+        "description": "뉴스 삭제",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "삭제하고자 하는 뉴스의 ID",
+            "schema": {
+              "$ref": "#/definitions/NewsId"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "schema": {
+              "$ref": "#/definitions/NewsDeleteResponse"
+            },
+            "description": "삭제 메시지"
           }
         }
       }
@@ -329,6 +378,103 @@
     }
   },
   "definitions": {
+    "NewsId": {
+      "type": "string",
+      "example": "news/{newsId}"
+    },
+    "NewsGetQuery": {
+      "type": "string",
+      "example": "?search={}&page={ID}&limit={5}"
+    },
+    "NewsGetResponse": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "id"
+          },
+          "url": {
+            "type": "string",
+            "example": "http://"
+          },
+          "title": {
+            "type": "string",
+            "example": "제목"
+          }
+        }
+      }
+    },
+    "NewsPostQuery": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "example": "http://"
+        },
+        "title": {
+          "type": "string",
+          "example": "제목"
+        }
+      }
+    },
+    "NewsPostResponse": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "id"
+        },
+        "url": {
+          "type": "string",
+          "example": "http://"
+        },
+        "title": {
+          "type": "string",
+          "example": "제목"
+        }
+      }
+    },
+    "NewsPutBody": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "example": "http://"
+        },
+        "title": {
+          "type": "string",
+          "example": "수정된제목"
+        }
+      }
+    },
+    "NewsPutResponse": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "id"
+        },
+        "url": {
+          "type": "string",
+          "example": "http://"
+        },
+        "title": {
+          "type": "string",
+          "example": "수정된제목"
+        }
+      }
+    },
+    "NewsDeleteResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "삭제가 완료되었습니다."
+        }
+      }
+    },
     "QuizId": {
       "type": "string",
       "example": "62a455ad6059af946a56e717"
