@@ -17,11 +17,11 @@ export const trashCategories = [
     },
     {
         name: "음식물",
-        image: "https://images.unsplash.com/photo-1561058325-8c99b449e3b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1494&q=80",
+        image: "https://www.ryupizza.com/wp-content/uploads/pizza403_1.jpg",
     },
     {
         name: "일반",
-        image: "https://www.ryupizza.com/wp-content/uploads/pizza403_1.jpg",
+        image: "https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/96129644/B.jpg?985000000",
     },
     {
         name: "종이",
