@@ -12,7 +12,7 @@ export class QuizService {
     static async getQuiz(quizId: string) {
         const quizInfo = await Quiz.findQuizById(quizId);
         if (!quizInfo) {
-            const errorMessage = "quizId와 일치하는 퀴즈가 없습니다.";
+            const errorMessage = `${quizId}에 해당하는 퀴즈 정보가 없습니다.`;
             throw new RequestError(errorMessage, STATUS_404_NOTFOUND);
         }
 
@@ -30,7 +30,7 @@ export class QuizService {
 
         if (!quiz) {
             const errorMessage = `${quizId}에 해당하는 퀴즈 정보가 없습니다.`;
-            throw new Error(errorMessage);
+            throw new RequestError(errorMessage, STATUS_404_NOTFOUND);
         }
 
         const result = quiz.result[quiz.result.length - 1];
@@ -70,7 +70,7 @@ export class QuizService {
 
             if (!correctAnswer) {
                 const errorMessage = `${quizId}와 일치하는 문제 정보가 없습니다.`;
-                throw new Error(errorMessage);
+                throw new RequestError(errorMessage, STATUS_404_NOTFOUND);
             }
 
             if (correctAnswer.answer === answer) {
