@@ -31,7 +31,7 @@ export const NewsContainer = styled.div`
 
 export const AutoSlide = styled.div`
   height: 0.83rem;
-  &: hover {
+  &:hover {
     animation-play-state: paused;
   }
 `;

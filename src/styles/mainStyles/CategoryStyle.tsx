@@ -14,7 +14,7 @@ export const CategorySubTitle = styled.button`
   font-size: 0.6rem;
   color: #9eacba;
   margin-left: 0.8rem;
-  &: hover {
+  &:hover {
     text-decoration: underline;
     text-decoration-thickness: 1px;
   }
