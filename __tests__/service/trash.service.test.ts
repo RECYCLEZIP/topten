@@ -1,8 +1,8 @@
 import { Trash } from "@src/db";
 import { ITrash } from "@src/utils/types/interface";
 import { trashService } from "@src/service/trash.service";
-import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 import { RequestError } from "@src/middlewares/errorHandler";
+import { STATUS_400_BADREQUEST, STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 
 const tempTrash: ITrash = {
     title: "사이다",
@@ -77,7 +77,7 @@ describe("TRASH SERVICE ERROR HANDLING", () => {
             await trashService.getByTrash("id");
         } catch (err: any) {
             expect(err).toBeInstanceOf(RequestError);
-            expect(err.status).toBe(STATUS_404_NOTFOUND);
+            expect(err.status).toBe(STATUS_400_BADREQUEST);
             expect(err.message).toBe("쓰레기 정보를 가져올 수 없습니다.");
         }
     });
@@ -88,7 +88,7 @@ describe("TRASH SERVICE ERROR HANDLING", () => {
             await trashService.addTrash(tempTrash);
         } catch (err: any) {
             expect(err).toBeInstanceOf(RequestError);
-            expect(err.status).toBe(STATUS_404_NOTFOUND);
+            expect(err.status).toBe(STATUS_400_BADREQUEST);
             expect(err.message).toBe("쓰레기 생성에 실패하였습니다.");
         }
     });
@@ -99,7 +99,7 @@ describe("TRASH SERVICE ERROR HANDLING", () => {
             await trashService.updateTrash("id", tempTrash);
         } catch (err: any) {
             expect(err).toBeInstanceOf(RequestError);
-            expect(err.status).toBe(STATUS_404_NOTFOUND);
+            expect(err.status).toBe(STATUS_400_BADREQUEST);
             expect(err.message).toBe("해당 쓰레기를 찾을 수 없습니다.");
         }
     });
@@ -110,7 +110,7 @@ describe("TRASH SERVICE ERROR HANDLING", () => {
             await trashService.deleteTrash("id");
         } catch (err: any) {
             expect(err).toBeInstanceOf(RequestError);
-            expect(err.status).toBe(STATUS_404_NOTFOUND);
+            expect(err.status).toBe(STATUS_400_BADREQUEST);
             expect(err.message).toBe("해당 쓰레기를 찾을 수 없습니다.");
         }
     });
