@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
-import { useRecoilValue } from "recoil";
-import { categoryState } from "../../stores/atoms";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { categoryKindState, categoryState } from "../../stores/atoms";
 import {
   CategoryContainer,
   CategorySubTitle,
@@ -17,16 +17,27 @@ import { CategoryType } from "../../types/Main";
 function CategorySection() {
   const navigate = useNavigate();
   const category = useRecoilValue(categoryState);
+  const setKind = useSetRecoilState(categoryKindState);
+
+  const selectCategory = (index: number) => {
+    setKind(category[index].name);
+    navigate(`/category/${category[index].name}`);
+  };
 
   return (
     <CategoryContainer>
       <CategoryTitle>카테고리</CategoryTitle>
-      <CategorySubTitle onClick={() => navigate("/category")}>
+      <CategorySubTitle
+        onClick={() => {
+          navigate("/category");
+          setKind("");
+        }}
+      >
         자세히 보기
       </CategorySubTitle>
       <List>
         {category.map((list: CategoryType, index) => (
-          <ImgContainer key={index}>
+          <ImgContainer key={index} onClick={() => selectCategory(index)}>
             <IMGBox>
               <IMG src={list.image}></IMG>
             </IMGBox>

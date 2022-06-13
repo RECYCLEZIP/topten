@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { MainContainer } from "../../styles/mainStyles/MainStyle";
 import AiSection from "./AiSection";
 import CategorySection from "./CategorySection";
@@ -9,6 +10,9 @@ import QuizSection from "./QuizSection";
 function Main() {
   return (
     <MainContainer>
+      <Helmet>
+        <title>분리수집</title>
+      </Helmet>
       <AiSection />
       <NewsSection />
       <CategorySection />
