@@ -72,23 +72,46 @@ describe("QuizService TEST", () => {
             type: "multipleChoice",
             answers: [
                 {
-                    quizId: "62a455ad6059af946a56e717",
+                    quizId: "1",
                     answer: "1",
                 },
                 {
-                    quizId: "62a455ad6059af946a56e715",
+                    quizId: "2",
                     answer: "2",
                 },
                 {
-                    quizId: "62a455ad6059af946a56e71b",
+                    quizId: "3",
                     answer: "0",
                 },
                 {
-                    quizId: "62a455ad6059af946a56e719",
+                    quizId: "4",
                     answer: "3",
                 },
             ],
         };
-        it("퀴즈셋의 정답결과를 반환한다.", () => {});
+        const quizAnswer = [
+            {
+                _id: "1",
+                answer: "1",
+            },
+            {
+                _id: "2",
+                answer: "2",
+            },
+            {
+                _id: "3",
+                answer: "0",
+            },
+            {
+                _id: "4",
+                answer: "3",
+            },
+        ];
+
+        it("퀴즈셋의 정답결과를 반환한다.", async () => {
+            const { type, answer } = requestBody;
+            Quiz.findAnswerByQuizType = jest.fn().mockResolvedValue(quizAnswer);
+            const res = await QuizService.getQuizSetResults();
+        });
     });
 });
