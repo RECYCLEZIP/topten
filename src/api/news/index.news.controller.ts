@@ -17,7 +17,7 @@ newsController.get(
                 in: 'query',
                 description: '**search** 검색어\n
                 **page** 첫 요청시 빈 문자열 또는 생략\n
-                **limit** 기본값\n',
+                **limit** 기본값10\n',
                 required: false,
                 schema: { $ref: "#/definitions/NewsGetQuery" }
             }
@@ -93,7 +93,7 @@ newsController.delete(
                 schema: { $ref: "#/definitions/NewsId" }
             }
             #swagger.responses[200] = { 
-            schema: { "$ref": "#/definitions/NewsDeleteResponse" },
+            schema: { "$ref": "#/definitions/DeleteResponse" },
             description: "삭제 메시지" } */
 
         const { id } = req.params;

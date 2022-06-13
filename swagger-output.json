@@ -43,7 +43,7 @@
           {
             "name": "queryString",
             "in": "query",
-            "description": "**search** 검색어\n  **page** 첫 요청시 빈 문자열 또는 생략\n  **limit** 기본값\n",
+            "description": "**search** 검색어\n  **page** 첫 요청시 빈 문자열 또는 생략\n  **limit** 기본값10\n",
             "required": false,
             "schema": {
               "$ref": "#/definitions/NewsGetQuery"
@@ -141,7 +141,7 @@
         "responses": {
           "200": {
             "schema": {
-              "$ref": "#/definitions/NewsDeleteResponse"
+              "$ref": "#/definitions/DeleteResponse"
             },
             "description": "삭제 메시지"
           }
@@ -301,11 +301,24 @@
         "tags": [
           "trash"
         ],
-        "description": "",
-        "parameters": [],
+        "description": "쓰레기 목록 조회",
+        "parameters": [
+          {
+            "name": "queryString",
+            "in": "query",
+            "description": "**search** 검색어\n  **category** 조회할 카테고리\n  **page** 첫 요청시 빈 문자열 또는 생략\n  **limit** 기본값10\n",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/TrashGetQuery"
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "OK"
+            "schema": {
+              "$ref": "#/definitions/TrashGetResponse"
+            },
+            "description": "쓰레기 목록을 배열형태로 반환"
           }
         }
       },
@@ -313,11 +326,24 @@
         "tags": [
           "trash"
         ],
-        "description": "",
-        "parameters": [],
+        "description": "쓰레기 생성",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "생성하고자 하는 쓰레기의 정보를 body에 담아 요청",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TrashPostRequest"
+            }
+          }
+        ],
         "responses": {
           "201": {
-            "description": "Created"
+            "schema": {
+              "$ref": "#/definitions/TrashPostResponse"
+            },
+            "description": "생성된 쓰레기 정보 반환"
           }
         }
       }
@@ -327,11 +353,14 @@
         "tags": [
           "trash"
         ],
-        "description": "",
+        "description": "쓰레기 카테고리 조회",
         "parameters": [],
         "responses": {
           "200": {
-            "description": "OK"
+            "schema": {
+              "$ref": "#/definitions/TrashCategoryGetResponse"
+            },
+            "description": "쓰레기 카테고리 목록을 배열형태로 반환"
           }
         }
       }
@@ -341,18 +370,34 @@
         "tags": [
           "trash"
         ],
-        "description": "",
+        "description": "쓰레기 정보 수정",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "수정하고자 하는 쓰레기의 ID",
+            "schema": {
+              "$ref": "#/definitions/TrashId"
+            }
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "수정하고자 하는 뉴스의 정보를 body에 담아 요청",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TrashPutRequest"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "schema": {
+              "$ref": "#/definitions/TrashPutResponse"
+            },
+            "description": "수정된 쓰레기 정보 반환"
           }
         }
       },
@@ -360,18 +405,25 @@
         "tags": [
           "trash"
         ],
-        "description": "",
+        "description": "쓰레기 삭제",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "삭제하고자 하는 쓰레기의 ID",
+            "schema": {
+              "$ref": "#/definitions/TrashId"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "schema": {
+              "$ref": "#/definitions/DeleteResponse"
+            },
+            "description": "삭제 메시지"
           }
         }
       }
@@ -466,12 +518,363 @@
         }
       }
     },
-    "NewsDeleteResponse": {
+    "DeleteResponse": {
       "type": "object",
       "properties": {
         "message": {
           "type": "string",
           "example": "삭제가 완료되었습니다."
+        }
+      }
+    },
+    "TrashId": {
+      "type": "string",
+      "example": "trash/{trashId}"
+    },
+    "TrashGetQuery": {
+      "type": "string",
+      "example": "?search={}&category={}&page={ID}&limit={5}"
+    },
+    "TrashGetResponse": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "62a1624d1458dc8c48ab52ca"
+          },
+          "title": {
+            "type": "string",
+            "example": "컵라면"
+          },
+          "description": {
+            "type": "object",
+            "properties": {
+              "throwAway": {
+                "type": "array",
+                "example": [
+                  "컵라면 용기를 물로 세척",
+                  "햇빛에 하루 이상 말려 기름, 국물 자국 제거",
+                  "흰 색의 용기로 만든 뒤 배출"
+                ],
+                "items": {
+                  "type": "string"
+                }
+              },
+              "note": {
+                "type": "array",
+                "example": [
+                  "라면 국물이 남아있거나, 음식물이 완전히 제거 되지 않은 컵라면 용기는 재활용 불가능하므로 일반쓰레기로 배출"
+                ],
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "kind": {
+            "type": "array",
+            "example": [
+              "다양한 스티로폼 컵라면 용기"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "image": {
+            "type": "string",
+            "example": "https://upload.wikimedia.org/wikipedia/commons/0/0a/PSP%EB%9D%BC%EB%A9%B4%EC%9A%A9%EA%B8%B0.png"
+          },
+          "recycle": {
+            "type": "boolean",
+            "example": true
+          },
+          "category": {
+            "type": "array",
+            "example": [
+              "스티로폼"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "__v": {
+            "type": "number",
+            "example": 0
+          }
+        }
+      }
+    },
+    "TrashCategoryGetResponse": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "플라스틱"
+          },
+          "image": {
+            "type": "string",
+            "example": "https://blisgo.com/wp-content/uploads/elementor/thumbs/%ED%8E%98%ED%8A%B8%EB%B3%91-osxqcextwey39nv9bbiwyx92fih9hl1i4rtny3m70g.jpg"
+          }
+        }
+      }
+    },
+    "TrashPostRequest": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "컵라면"
+        },
+        "description": {
+          "type": "object",
+          "properties": {
+            "throwAway": {
+              "type": "array",
+              "example": [
+                "컵라면 용기를 물로 세척",
+                "햇빛에 하루 이상 말려 기름, 국물 자국 제거",
+                "흰 색의 용기로 만든 뒤 배출"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "note": {
+              "type": "array",
+              "example": [
+                "라면 국물이 남아있거나, 음식물이 완전히 제거 되지 않은 컵라면 용기는 재활용 불가능하므로 일반쓰레기로 배출"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "kind": {
+          "type": "array",
+          "example": [
+            "다양한 스티로폼 컵라면 용기"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "image": {
+          "type": "string",
+          "example": "https://upload.wikimedia.org/wikipedia/commons/0/0a/PSP%EB%9D%BC%EB%A9%B4%EC%9A%A9%EA%B8%B0.png"
+        },
+        "recycle": {
+          "type": "boolean",
+          "example": true
+        },
+        "category": {
+          "type": "array",
+          "example": [
+            "스티로폼"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "TrashPostResponse": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "62a1624d1458dc8c48ab52ca"
+        },
+        "title": {
+          "type": "string",
+          "example": "컵라면"
+        },
+        "description": {
+          "type": "object",
+          "properties": {
+            "throwAway": {
+              "type": "array",
+              "example": [
+                "컵라면 용기를 물로 세척",
+                "햇빛에 하루 이상 말려 기름, 국물 자국 제거",
+                "흰 색의 용기로 만든 뒤 배출"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "note": {
+              "type": "array",
+              "example": [
+                "라면 국물이 남아있거나, 음식물이 완전히 제거 되지 않은 컵라면 용기는 재활용 불가능하므로 일반쓰레기로 배출"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "kind": {
+          "type": "array",
+          "example": [
+            "다양한 스티로폼 컵라면 용기"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "image": {
+          "type": "string",
+          "example": "https://upload.wikimedia.org/wikipedia/commons/0/0a/PSP%EB%9D%BC%EB%A9%B4%EC%9A%A9%EA%B8%B0.png"
+        },
+        "recycle": {
+          "type": "boolean",
+          "example": true
+        },
+        "category": {
+          "type": "array",
+          "example": [
+            "스티로폼"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "__v": {
+          "type": "number",
+          "example": 0
+        }
+      }
+    },
+    "TrashPutRequest": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "수정된제목"
+        },
+        "description": {
+          "type": "object",
+          "properties": {
+            "throwAway": {
+              "type": "array",
+              "example": [
+                "수정",
+                "햇빛에 하루 이상 말려 기름, 국물 자국 제거",
+                "흰 색의 용기로 만든 뒤 배출"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "note": {
+              "type": "array",
+              "example": [
+                "라면 국물이 남아있거나, 음식물이 완전히 제거 되지 않은 컵라면 용기는 재활용 불가능하므로 일반쓰레기로 배출"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "kind": {
+          "type": "array",
+          "example": [
+            "다양한 스티로폼 컵라면 용기"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "image": {
+          "type": "string",
+          "example": "https://upload.wikimedia.org/wikipedia/commons/0/0a/PSP%EB%9D%BC%EB%A9%B4%EC%9A%A9%EA%B8%B0.png"
+        },
+        "recycle": {
+          "type": "boolean",
+          "example": true
+        },
+        "category": {
+          "type": "array",
+          "example": [
+            "스티로폼"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "TrashPutResponse": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "62a1624d1458dc8c48ab52ca"
+        },
+        "title": {
+          "type": "string",
+          "example": "수정된제목"
+        },
+        "description": {
+          "type": "object",
+          "properties": {
+            "throwAway": {
+              "type": "array",
+              "example": [
+                "수정",
+                "햇빛에 하루 이상 말려 기름, 국물 자국 제거",
+                "흰 색의 용기로 만든 뒤 배출"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "note": {
+              "type": "array",
+              "example": [
+                "라면 국물이 남아있거나, 음식물이 완전히 제거 되지 않은 컵라면 용기는 재활용 불가능하므로 일반쓰레기로 배출"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "kind": {
+          "type": "array",
+          "example": [
+            "다양한 스티로폼 컵라면 용기"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "image": {
+          "type": "string",
+          "example": "https://upload.wikimedia.org/wikipedia/commons/0/0a/PSP%EB%9D%BC%EB%A9%B4%EC%9A%A9%EA%B8%B0.png"
+        },
+        "recycle": {
+          "type": "boolean",
+          "example": true
+        },
+        "category": {
+          "type": "array",
+          "example": [
+            "스티로폼"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "__v": {
+          "type": "number",
+          "example": 0
         }
       }
     },

@@ -45,7 +45,108 @@ const doc = {
         NewsPostResponse: { _id: "id", url: "http://", title: "제목" },
         NewsPutBody: { url: "http://", title: "수정된제목" },
         NewsPutResponse: { _id: "id", url: "http://", title: "수정된제목" },
-        NewsDeleteResponse: { message: "삭제가 완료되었습니다." },
+        DeleteResponse: { message: "삭제가 완료되었습니다." },
+        TrashId: "trash/{trashId}",
+        TrashGetQuery: "?search={}&category={}&page={ID}&limit={5}",
+        TrashGetResponse: [
+            {
+                _id: "62a1624d1458dc8c48ab52ca",
+                title: "컵라면",
+                description: {
+                    throwAway: [
+                        "컵라면 용기를 물로 세척",
+                        "햇빛에 하루 이상 말려 기름, 국물 자국 제거",
+                        "흰 색의 용기로 만든 뒤 배출",
+                    ],
+                    note: [
+                        "라면 국물이 남아있거나, 음식물이 완전히 제거 되지 않은 컵라면 용기는 재활용 불가능하므로 일반쓰레기로 배출",
+                    ],
+                },
+                kind: ["다양한 스티로폼 컵라면 용기"],
+                image: "https://upload.wikimedia.org/wikipedia/commons/0/0a/PSP%EB%9D%BC%EB%A9%B4%EC%9A%A9%EA%B8%B0.png",
+                recycle: true,
+                category: ["스티로폼"],
+                __v: 0,
+            },
+        ],
+        TrashCategoryGetResponse: [
+            {
+                name: "플라스틱",
+                image: "https://blisgo.com/wp-content/uploads/elementor/thumbs/%ED%8E%98%ED%8A%B8%EB%B3%91-osxqcextwey39nv9bbiwyx92fih9hl1i4rtny3m70g.jpg",
+            },
+        ],
+        TrashPostRequest: {
+            title: "컵라면",
+            description: {
+                throwAway: [
+                    "컵라면 용기를 물로 세척",
+                    "햇빛에 하루 이상 말려 기름, 국물 자국 제거",
+                    "흰 색의 용기로 만든 뒤 배출",
+                ],
+                note: [
+                    "라면 국물이 남아있거나, 음식물이 완전히 제거 되지 않은 컵라면 용기는 재활용 불가능하므로 일반쓰레기로 배출",
+                ],
+            },
+            kind: ["다양한 스티로폼 컵라면 용기"],
+            image: "https://upload.wikimedia.org/wikipedia/commons/0/0a/PSP%EB%9D%BC%EB%A9%B4%EC%9A%A9%EA%B8%B0.png",
+            recycle: true,
+            category: ["스티로폼"],
+        },
+        TrashPostResponse: {
+            _id: "62a1624d1458dc8c48ab52ca",
+            title: "컵라면",
+            description: {
+                throwAway: [
+                    "컵라면 용기를 물로 세척",
+                    "햇빛에 하루 이상 말려 기름, 국물 자국 제거",
+                    "흰 색의 용기로 만든 뒤 배출",
+                ],
+                note: [
+                    "라면 국물이 남아있거나, 음식물이 완전히 제거 되지 않은 컵라면 용기는 재활용 불가능하므로 일반쓰레기로 배출",
+                ],
+            },
+            kind: ["다양한 스티로폼 컵라면 용기"],
+            image: "https://upload.wikimedia.org/wikipedia/commons/0/0a/PSP%EB%9D%BC%EB%A9%B4%EC%9A%A9%EA%B8%B0.png",
+            recycle: true,
+            category: ["스티로폼"],
+            __v: 0,
+        },
+        TrashPutRequest: {
+            title: "수정된제목",
+            description: {
+                throwAway: [
+                    "수정",
+                    "햇빛에 하루 이상 말려 기름, 국물 자국 제거",
+                    "흰 색의 용기로 만든 뒤 배출",
+                ],
+                note: [
+                    "라면 국물이 남아있거나, 음식물이 완전히 제거 되지 않은 컵라면 용기는 재활용 불가능하므로 일반쓰레기로 배출",
+                ],
+            },
+            kind: ["다양한 스티로폼 컵라면 용기"],
+            image: "https://upload.wikimedia.org/wikipedia/commons/0/0a/PSP%EB%9D%BC%EB%A9%B4%EC%9A%A9%EA%B8%B0.png",
+            recycle: true,
+            category: ["스티로폼"],
+        },
+        TrashPutResponse: {
+            _id: "62a1624d1458dc8c48ab52ca",
+            title: "수정된제목",
+            description: {
+                throwAway: [
+                    "수정",
+                    "햇빛에 하루 이상 말려 기름, 국물 자국 제거",
+                    "흰 색의 용기로 만든 뒤 배출",
+                ],
+                note: [
+                    "라면 국물이 남아있거나, 음식물이 완전히 제거 되지 않은 컵라면 용기는 재활용 불가능하므로 일반쓰레기로 배출",
+                ],
+            },
+            kind: ["다양한 스티로폼 컵라면 용기"],
+            image: "https://upload.wikimedia.org/wikipedia/commons/0/0a/PSP%EB%9D%BC%EB%A9%B4%EC%9A%A9%EA%B8%B0.png",
+            recycle: true,
+            category: ["스티로폼"],
+            __v: 0,
+        },
         QuizId: "62a455ad6059af946a56e717",
         QuizType: "?type=multipleChoice",
         QuizUserAnswer: { answer: "1" },
