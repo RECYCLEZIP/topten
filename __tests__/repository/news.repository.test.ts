@@ -1,5 +1,5 @@
 import { News } from "@src/db";
-import { INews } from "@src/utils/types/interface";
+import { INews } from "@src/models/interface";
 import { NewsModel } from "@src/db/news/news.schema";
 
 describe("NEWS 모델 접근", () => {

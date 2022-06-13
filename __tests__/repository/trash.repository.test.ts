@@ -1,5 +1,5 @@
 import { Trash } from "@src/db";
-import { ITrash } from "@src/utils/types/interface";
+import { ITrash } from "@src/models/interface";
 import { TrashModel } from "@src/db/trash/trash.schema";
 
 describe("Trash 모델 접근", () => {

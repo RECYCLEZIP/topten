@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { ITrash } from "@src/utils/types/interface";
+import { ITrash } from "@src/models/interface";
 
 const TrashSchema = new Schema<ITrash>(
     {

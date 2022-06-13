@@ -1,5 +1,5 @@
 import { News } from "@src/db";
-import { INews } from "@src/utils/types/interface";
+import { INews } from "@src/models/interface";
 import { newsService } from "@src/service/news.service";
 import { RequestError } from "@src/middlewares/errorHandler";
 import { STATUS_400_BADREQUEST, STATUS_404_NOTFOUND } from "@src/utils/statusCode";

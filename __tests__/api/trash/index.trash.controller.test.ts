@@ -1,6 +1,6 @@
 import app from "@src/app";
 import request from "supertest";
-import { ITrash } from "@src/utils/types/interface";
+import { ITrash } from "@src/models/interface";
 import { trashService } from "@src/service/trash.service";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
 

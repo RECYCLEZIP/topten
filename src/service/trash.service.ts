@@ -1,7 +1,7 @@
 import { Trash } from "@src/db";
 import { createFilterQuery } from "@src/utils/createQuery";
 import { RequestError } from "@src/middlewares/errorHandler";
-import { FilterQuery, ITrash } from "@src/utils/types/interface";
+import { FilterQuery, ITrash } from "@src/models/interface";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 
 export class trashService {

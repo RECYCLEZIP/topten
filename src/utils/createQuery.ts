@@ -1,4 +1,4 @@
-import { FilterQuery, MongooseQuery } from "@src/utils/types/interface";
+import { FilterQuery, MongooseQuery } from "@src/models/interface";
 
 export const createFilterQuery = (query: FilterQuery, filterList: string[]) => {
     const { search, category, page = "", limit = 10 } = query;

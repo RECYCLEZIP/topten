@@ -1,5 +1,5 @@
 import { QuizModel } from "@src/db/quiz/quiz.schema";
-import { Result } from "@src/utils/types/interface";
+import { Result } from "@src/models/interface";
 
 export class Quiz {
     static async findByQuizType(quizType: string) {

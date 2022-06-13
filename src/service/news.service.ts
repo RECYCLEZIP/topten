@@ -2,7 +2,7 @@ import { News } from "@src/db";
 import { createFilterQuery } from "@src/utils/createQuery";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 import { RequestError } from "@src/middlewares/errorHandler";
-import { FilterQuery, INews } from "@src/utils/types/interface";
+import { FilterQuery, INews } from "@src/models/interface";
 
 export class newsService {
     static async getNewsList(query: FilterQuery) {

@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { Quiz } from "../db/index";
-import { Submissions } from "@src/utils/types/interface";
+import { Submissions } from "@src/models/interface";
 
 export class QuizService {
     static async getQuizList(quizType: string) {
