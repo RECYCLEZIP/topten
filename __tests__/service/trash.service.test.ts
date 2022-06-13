@@ -1,5 +1,5 @@
 import { Trash } from "@src/db";
-import { ITrash } from "@src/models/interface";
+import { Category, ITrash } from "@src/models/interface";
 import { trashService } from "@src/service/trash.service";
 import { RequestError } from "@src/middlewares/errorHandler";
 import { STATUS_400_BADREQUEST, STATUS_404_NOTFOUND } from "@src/utils/statusCode";
@@ -13,7 +13,7 @@ const tempTrash: ITrash = {
     kind: ["캔"],
     image: "http://",
     recycle: true,
-    category: ["캔"],
+    category: [Category.Can],
 };
 
 describe("TRASH SERVICE LOGIC", () => {

@@ -1,6 +1,6 @@
 import app from "@src/app";
 import request from "supertest";
-import { ITrash } from "@src/models/interface";
+import { Category, ITrash } from "@src/models/interface";
 import { trashService } from "@src/service/trash.service";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
 
@@ -14,7 +14,7 @@ describe("TRASH API", () => {
         kind: ["캔"],
         image: "http://",
         recycle: true,
-        category: ["캔"],
+        category: [Category.Can],
     };
 
     it("TRASH GET/ 쓰레기목록을 응답받는다.", async () => {

@@ -1,6 +1,6 @@
 import { Trash } from "@src/db";
-import { ITrash } from "@src/models/interface";
 import { TrashModel } from "@src/db/trash/trash.schema";
+import { Category, ITrash } from "@src/models/interface";
 
 describe("Trash 모델 접근", () => {
     const tempTrash: ITrash = {
@@ -12,7 +12,7 @@ describe("Trash 모델 접근", () => {
         kind: ["페트"],
         image: "http://",
         recycle: true,
-        category: ["플라스틱"],
+        category: [Category.Plastic],
     };
 
     it("find는 모델에서 쓰레기목록을 찾는다.", async () => {
