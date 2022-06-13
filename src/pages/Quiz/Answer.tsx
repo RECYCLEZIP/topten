@@ -14,7 +14,7 @@ function Answer() {
       ) : (
         <Result>
           <ResultText>해설</ResultText>
-          <ResultText size={"0.6rem"}>내용</ResultText>
+          <ResultText size="0.6rem">내용</ResultText>
         </Result>
       )}
     </div>
