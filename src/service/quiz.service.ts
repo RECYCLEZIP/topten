@@ -33,7 +33,7 @@ export class QuizService {
             throw new Error(errorMessage);
         }
 
-        const result = quiz.result[0];
+        const result = quiz.result[quiz.result.length - 1];
         if (answer !== quiz.answer) {
             result.wrong += 1;
             quizResult.isCorrect = false;
