@@ -1,6 +1,6 @@
 import { Router } from "express";
 import wrapAsyncFunc from "@src/utils/catchAsync";
-import { INews } from "@src/utils/types/interface";
+import { INews } from "@src/models/interface";
 import { newsSchema } from "@src/utils/bodySchema";
 import { newsService } from "@src/service/news.service";
 import { bodyValidator } from "@src/middlewares/bodyValidator";

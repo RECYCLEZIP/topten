@@ -1,5 +1,5 @@
 import { TrashModel } from "@src/db/trash/trash.schema";
-import { MongooseQuery, ITrash } from "@src/utils/types/interface";
+import { MongooseQuery, ITrash } from "@src/models/interface";
 
 export class Trash {
     static async find({ filteredQuery, limit }: { filteredQuery: MongooseQuery; limit: number }) {
@@ -7,7 +7,7 @@ export class Trash {
     }
 
     static async findOne(id: string) {
-        return await TrashModel.findOne({ _id: id });
+        return await TrashModel.findById(id);
     }
 
     static async create(trashInfo: ITrash) {

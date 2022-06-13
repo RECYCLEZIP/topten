@@ -1,8 +1,8 @@
 import { News } from "@src/db";
-import { INews } from "@src/utils/types/interface";
+import { INews } from "@src/models/interface";
 import { newsService } from "@src/service/news.service";
-import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 import { RequestError } from "@src/middlewares/errorHandler";
+import { STATUS_400_BADREQUEST, STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 
 const tempNews: INews = { url: "http://test.com", title: "테스트기사" };
 
@@ -60,7 +60,7 @@ describe("NEWS SERVICE ERROR HANDLING", () => {
             await newsService.addNews(tempNews);
         } catch (err: any) {
             expect(err).toBeInstanceOf(RequestError);
-            expect(err.status).toBe(STATUS_404_NOTFOUND);
+            expect(err.status).toBe(STATUS_400_BADREQUEST);
             expect(err.message).toBe("뉴스 생성에 실패하였습니다.");
         }
     });
@@ -71,7 +71,7 @@ describe("NEWS SERVICE ERROR HANDLING", () => {
             await newsService.updateNews("id", tempNews);
         } catch (err: any) {
             expect(err).toBeInstanceOf(RequestError);
-            expect(err.status).toBe(STATUS_404_NOTFOUND);
+            expect(err.status).toBe(STATUS_400_BADREQUEST);
             expect(err.message).toBe("해당 뉴스를 찾을 수 없습니다.");
         }
     });
@@ -82,7 +82,7 @@ describe("NEWS SERVICE ERROR HANDLING", () => {
             await newsService.deleteNews("id");
         } catch (err: any) {
             expect(err).toBeInstanceOf(RequestError);
-            expect(err.status).toBe(STATUS_404_NOTFOUND);
+            expect(err.status).toBe(STATUS_400_BADREQUEST);
             expect(err.message).toBe("해당 뉴스를 찾을 수 없습니다.");
         }
     });

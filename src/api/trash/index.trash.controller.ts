@@ -1,6 +1,6 @@
 import { Router } from "express";
 import wrapAsyncFunc from "@src/utils/catchAsync";
-import { ITrash } from "@src/utils/types/interface";
+import { ITrash } from "@src/models/interface";
 import { trashSchema } from "@src/utils/bodySchema";
 import { trashCategories } from "@src/utils/constans";
 import { trashService } from "@src/service/trash.service";

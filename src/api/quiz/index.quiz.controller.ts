@@ -2,7 +2,7 @@ import { Router } from "express";
 import wrapAsyncFunc from "@src/utils/catchAsync";
 import { QuizService } from "@src/service/quiz.service";
 import { STATUS_200_OK } from "@src/utils/statusCode";
-import { Submissions } from "@src/utils/types/interface";
+import { Submissions } from "@src/models/interface";
 
 const quizController = Router();
 

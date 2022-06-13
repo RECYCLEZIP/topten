@@ -2,7 +2,7 @@ import { News } from "@src/db";
 import { createFilterQuery } from "@src/utils/createQuery";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 import { RequestError } from "@src/middlewares/errorHandler";
-import { FilterQuery, INews } from "@src/utils/types/interface";
+import { FilterQuery, INews } from "@src/models/interface";
 
 export class newsService {
     static async getNewsList(query: FilterQuery) {
@@ -16,22 +16,19 @@ export class newsService {
 
     static async addNews(newsInfo: INews) {
         const createdNews = await News.create(newsInfo);
-        if (!createdNews)
-            throw new RequestError("뉴스 생성에 실패하였습니다.", STATUS_404_NOTFOUND);
+        if (!createdNews) throw new RequestError("뉴스 생성에 실패하였습니다.");
         return createdNews;
     }
 
     static async updateNews(id: string, newsInfo: INews) {
         const updatedNews = await News.update(id, newsInfo);
-        if (!updatedNews)
-            throw new RequestError("해당 뉴스를 찾을 수 없습니다.", STATUS_404_NOTFOUND);
+        if (!updatedNews) throw new RequestError("해당 뉴스를 찾을 수 없습니다.");
         return updatedNews;
     }
 
     static async deleteNews(id: string) {
         const deletedNews = await News.delete(id);
-        if (!deletedNews)
-            throw new RequestError("해당 뉴스를 찾을 수 없습니다.", STATUS_404_NOTFOUND);
+        if (!deletedNews) throw new RequestError("해당 뉴스를 찾을 수 없습니다.");
         return { message: "삭제가 완료되었습니다." };
     }
 }

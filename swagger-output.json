@@ -33,6 +33,13 @@
     }
   },
   "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
     "/news": {
       "get": {
         "tags": [

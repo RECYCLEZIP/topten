@@ -1,4 +1,4 @@
-import { FilterQuery } from "@src/utils/types/interface";
+import { FilterQuery } from "@src/models/interface";
 import { createFilterQuery } from "@src/utils/createQuery";
 
 describe("createFilterQuery", () => {

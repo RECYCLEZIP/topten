@@ -1,5 +1,5 @@
 import { NewsModel } from "@src/db/news/news.schema";
-import { INews, MongooseQuery } from "@src/utils/types/interface";
+import { INews, MongooseQuery } from "@src/models/interface";
 
 export class News {
     static async find({ filteredQuery, limit }: { filteredQuery: MongooseQuery; limit: number }) {

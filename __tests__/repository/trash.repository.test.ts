@@ -1,6 +1,6 @@
 import { Trash } from "@src/db";
-import { ITrash } from "@src/utils/types/interface";
 import { TrashModel } from "@src/db/trash/trash.schema";
+import { Category, ITrash } from "@src/models/interface";
 
 describe("Trash 모델 접근", () => {
     const tempTrash: ITrash = {
@@ -12,7 +12,7 @@ describe("Trash 모델 접근", () => {
         kind: ["페트"],
         image: "http://",
         recycle: true,
-        category: ["플라스틱"],
+        category: [Category.Plastic],
     };
 
     it("find는 모델에서 쓰레기목록을 찾는다.", async () => {
@@ -22,7 +22,7 @@ describe("Trash 모델 접근", () => {
     });
 
     it("findOne은 모델에서 단일 쓰레기를 찾는다.", async () => {
-        const spyFn = jest.spyOn(TrashModel, "findOne");
+        const spyFn = jest.spyOn(TrashModel, "findById");
         await Trash.findOne("62a1624d1458dc8c48ab52ca");
         expect(spyFn).toBeCalledTimes(1);
     });
@@ -43,7 +43,7 @@ describe("Trash 모델 접근", () => {
         expect(updatedTrash?.category[0]).toEqual("플라스틱");
     });
 
-    it("delete는 쓰레기를 삭제한다.", async () => {
+    it("쓰레기를 삭제한다.", async () => {
         const trash = await Trash.create(tempTrash);
         const deletedTrash = await Trash.delete(trash._id.toString());
         expect(deletedTrash?.title).toEqual("밀키스");

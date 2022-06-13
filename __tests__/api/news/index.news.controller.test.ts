@@ -1,6 +1,6 @@
 import app from "@src/app";
 import request from "supertest";
-import { INews } from "@src/utils/types/interface";
+import { INews } from "@src/models/interface";
 import { newsService } from "@src/service/news.service";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
 
