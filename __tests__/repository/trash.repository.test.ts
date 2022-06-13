@@ -22,7 +22,7 @@ describe("Trash 모델 접근", () => {
     });
 
     it("findOne은 모델에서 단일 쓰레기를 찾는다.", async () => {
-        const spyFn = jest.spyOn(TrashModel, "findOne");
+        const spyFn = jest.spyOn(TrashModel, "findById");
         await Trash.findOne("62a1624d1458dc8c48ab52ca");
         expect(spyFn).toBeCalledTimes(1);
     });

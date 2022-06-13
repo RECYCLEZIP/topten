@@ -7,7 +7,7 @@ export class Trash {
     }
 
     static async findOne(id: string) {
-        return await TrashModel.findOne({ _id: id });
+        return await TrashModel.findById(id);
     }
 
     static async create(trashInfo: ITrash) {
