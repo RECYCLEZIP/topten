@@ -15,7 +15,7 @@ export class Quiz {
     }
 
     static async findAnswerByQuizType(type: string) {
-        return await QuizModel.find({ type }).select({ answer: 1, result: 1 });
+        return await QuizModel.find({ type }).select({ answer: 1 });
     }
 
     static async updateQuizInfo(quizId: string, newResult: Result[] | Result) {
