@@ -46,6 +46,27 @@ trashController.get(
     }),
 );
 
+trashController.get(
+    "/trash/:id",
+    wrapAsyncFunc(async (req, res, _next) => {
+        /*  #swagger.tags = ["trash"]
+            #swagger.description = "개별 쓰레기 정보 조회"
+            #swagger.parameters['id'] = {
+                in: 'path',
+                description: '얻고자 하는 쓰레기정보의 ID',
+                required: true,
+                schema: { $ref: "#/definitions/TrashId" }
+            }
+            #swagger.responses[200] = {
+            schema: { "$ref": "#/definitions/TrashOneGetResponse" },
+            description: "쓰레기 정보를 반환" } */
+
+        const { id } = req.params;
+        const trashInfo = await trashService.getByTrash(id);
+        res.status(STATUS_200_OK).json(trashInfo);
+    }),
+);
+
 trashController.post(
     "/trash",
     bodyValidator(trashSchema),

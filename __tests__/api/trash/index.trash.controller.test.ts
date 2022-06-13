@@ -22,6 +22,17 @@ describe("TRASH API", () => {
         expect(res.status).toBe(STATUS_200_OK);
     });
 
+    it("TRASH CATEGORY GET/ 쓰레기 카테고리 목록을 응답받는다.", async () => {
+        const res = await request(app).get("/trash/categories");
+        expect(res.status).toBe(STATUS_200_OK);
+    });
+
+    it("TRASH/:id GET/ 개별 쓰레기 정보를 응답받는다.", async () => {
+        const trash = await trashService.addTrash(tempTrash);
+        const res = await request(app).get(`/trash/${trash._id}`);
+        expect(res.status).toBe(STATUS_200_OK);
+    });
+
     it("TRASH POST/ 쓰레기를 생성한다.", async () => {
         const res = await request(app).post("/trash").send(tempTrash);
         expect(res.status).toBe(STATUS_201_CREATED);

@@ -14,6 +14,13 @@ export class trashService {
         return foundTrashList;
     }
 
+    static async getByTrash(id: string) {
+        const foundTrashInfo = await Trash.findOne(id);
+        if (!foundTrashInfo)
+            throw new RequestError("쓰레기 정보를 가져올 수 없습니다.", STATUS_404_NOTFOUND);
+        return foundTrashInfo;
+    }
+
     static async addTrash(trashInfo: ITrash) {
         const createdTrash = await Trash.create(trashInfo);
         if (!createdTrash)

@@ -25,6 +25,13 @@ describe("TRASH SERVICE LOGIC", () => {
         expect(trashList[0].category[0]).toEqual("캔");
     });
 
+    it("단일 TRASH를 반환한다.", async () => {
+        Trash.findOne = jest.fn().mockResolvedValue(tempTrash);
+        const foundTrashInfo = await trashService.getByTrash("id");
+        expect(foundTrashInfo.title).toEqual("사이다");
+        expect(foundTrashInfo.category[0]).toEqual("캔");
+    });
+
     it("TRASH를 생성한다.", async () => {
         const createdTrash = await trashService.addTrash({ ...tempTrash, title: "환타" });
         expect(createdTrash.title).toEqual("환타");
@@ -61,6 +68,17 @@ describe("TRASH SERVICE ERROR HANDLING", () => {
             expect(err).toBeInstanceOf(RequestError);
             expect(err.status).toBe(STATUS_404_NOTFOUND);
             expect(err.message).toBe("쓰레기 목록을 가져올 수 없습니다.");
+        }
+    });
+
+    it("단일 TRASH를 찾지 못하면 에러를 발생시킨다.", async () => {
+        Trash.findOne = jest.fn().mockResolvedValue(null);
+        try {
+            await trashService.getByTrash("id");
+        } catch (err: any) {
+            expect(err).toBeInstanceOf(RequestError);
+            expect(err.status).toBe(STATUS_404_NOTFOUND);
+            expect(err.message).toBe("쓰레기 정보를 가져올 수 없습니다.");
         }
     });
 

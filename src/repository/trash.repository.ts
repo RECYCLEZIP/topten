@@ -6,6 +6,10 @@ export class Trash {
         return await TrashModel.find(filteredQuery).limit(limit);
     }
 
+    static async findOne(id: string) {
+        return await TrashModel.findOne({ _id: id });
+    }
+
     static async create(trashInfo: ITrash) {
         const createdTrash = await TrashModel.create(trashInfo);
         return createdTrash;
