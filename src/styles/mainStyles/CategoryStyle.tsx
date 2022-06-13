@@ -43,11 +43,13 @@ export const List = styled.div`
   }
 `;
 
-export const ImgContainer = styled.div`
+export const ImgContainer = styled.button`
+  all: unset;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   width: 80%;
+  cursor: pointer;
 `;
 
 export const IMGBox = styled.div`

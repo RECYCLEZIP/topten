@@ -1,4 +1,5 @@
 import { atom } from "recoil";
+import { CategoryItemType, CategoryType } from "../types/Main";
 
 export interface BinTypes {
   title: string;
@@ -44,7 +45,7 @@ export const selectedMarkerState = atom({
 });
 
 // category list
-export const categoryState = atom({
+export const categoryState = atom<CategoryType[]>({
   key: "categoryState",
   default: [],
 });
@@ -53,4 +54,15 @@ export const categoryState = atom({
 export const newsState = atom({
   key: "newsState",
   default: [],
+});
+
+// category item list
+export const categoryItemState = atom<CategoryItemType[]>({
+  key: "categoryItemState",
+  default: [],
+});
+
+export const categoryKindState = atom<string>({
+  key: "categoryKindState",
+  default: "",
 });

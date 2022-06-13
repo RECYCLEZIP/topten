@@ -40,8 +40,11 @@ function MapList() {
     <MapBinListContainer>
       {/* 지도에서 선택된 마커가 없다면 전체 리스트 띄움 */}
       {selectedMarker.La === 0 ? (
-        bins.map((bin) => (
-          <MapBinLocationContainer onClick={() => onClickBin(bin.lat, bin.lng)}>
+        bins.map((bin, index) => (
+          <MapBinLocationContainer
+            onClick={() => onClickBin(bin.lat, bin.lng)}
+            key={index}
+          >
             <MapBinLacationTitle>{bin.title}</MapBinLacationTitle>
             <MapBinLacationDes>{bin.point}</MapBinLacationDes>
           </MapBinLocationContainer>

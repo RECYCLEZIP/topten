@@ -1,14 +1,7 @@
 import { useState } from "react";
-import { useRecoilValue } from "recoil";
-import { categoryState } from "../../stores/atoms";
-import {
-  CategoryContainer,
-  SearchBox,
-  SearchText,
-  SearchIcon,
-  TitleContainer,
-  ItemContainer,
-} from "../../styles/category/category";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { categoryKindState, categoryState } from "../../stores/atoms";
+import { CategoryContainer } from "../../styles/category/category";
 import {
   CategoryText,
   CategoryTitle,
@@ -17,20 +10,21 @@ import {
   ImgContainer,
   List,
 } from "../../styles/mainStyles/CategoryStyle";
-import { CategoryType } from "../../types/Main";
-import ItemCard from "./ItemCard";
+import CategoryItems from "./CategoryItems";
 
 // category page component
 function Category() {
   const category = useRecoilValue(categoryState);
+  const setKind = useSetRecoilState(categoryKindState);
 
   const [isSelected, setIsSelected] = useState([false]);
 
   // selected category color change
   const selectCategory = (index: number) => {
     const newArr = Array(category.length).fill(false);
-    newArr[index] = true;
+    newArr[index] = newArr[index] ? false : true;
     setIsSelected(newArr);
+    setKind(category[index].name);
   };
 
   return (
@@ -38,34 +32,19 @@ function Category() {
       <CategoryContainer>
         <CategoryTitle>카테고리</CategoryTitle>
         <List>
-          {category.map((list: CategoryType, index) => (
-            <ImgContainer key={index}>
+          {category.map((list, index) => (
+            <ImgContainer onClick={() => selectCategory(index)} key={index}>
               <IMGBox>
                 <IMG src={list.image}></IMG>
               </IMGBox>
-              <CategoryText
-                onClick={() => selectCategory(index)}
-                isSelected={isSelected[index]}
-              >
+              <CategoryText isSelected={isSelected[index]}>
                 {list.name}
               </CategoryText>
             </ImgContainer>
           ))}
         </List>
       </CategoryContainer>
-      <TitleContainer>
-        <CategoryTitle>목록</CategoryTitle>
-        <SearchBox>
-          <SearchText />
-          <SearchIcon></SearchIcon>
-        </SearchBox>
-      </TitleContainer>
-      <ItemContainer>
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-      </ItemContainer>
+      <CategoryItems />
     </>
   );
 }

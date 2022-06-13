@@ -17,6 +17,7 @@ export const ItemTitle = styled.div`
 export const ItemImg = styled.img`
   width: 3.5rem;
   height: 3.5rem;
+  cursor: pointer;
 `;
 
 export const ItemText = styled.span`
@@ -29,4 +30,9 @@ export const MoveButton = styled.button`
   background: none;
   font-size: 0.6rem;
   text-align: left;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+  }
 `;

@@ -15,7 +15,6 @@ function NewsSection() {
   const news = useRecoilValue<Array<NewsType>>(newsState);
   const slideRef = useRef<HTMLDivElement>(null);
   const [slideIndex, setSlideIndex] = useState(0);
-  console.log(news);
 
   useEffect(() => {
     const interval = setInterval(() => {
