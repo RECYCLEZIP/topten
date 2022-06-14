@@ -8,21 +8,24 @@ import {
   NewsContainer,
   AutoSlide,
 } from "../../styles/mainStyles/NewsStyle";
-import { NewsType } from "../../types/Main";
 
 // main page news section
 function NewsSection() {
-  const news = useRecoilValue<Array<NewsType>>(newsState);
+  const news = useRecoilValue(newsState);
   const slideRef = useRef<HTMLDivElement>(null);
   const [slideIndex, setSlideIndex] = useState(0);
+  const [isHover, setIsHover] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (!slideRef.current) {
         return;
       }
+      if (isHover) return;
+
       slideRef.current.style.transition = `all 0.5s ease-in-out`;
       slideRef.current.style.transform = `translateY(-${slideIndex}00%)`;
+
       if (slideIndex === news.length) {
         setTimeout(() => {
           if (!slideRef.current) {
@@ -40,13 +43,17 @@ function NewsSection() {
     return () => {
       clearInterval(interval);
     };
-  }, [news, slideIndex]);
+  }, [news, slideIndex, isHover]);
 
   return (
     <Container>
       <NewsText> 오늘의 환경 뉴스</NewsText>
       <NewsContainer>
-        <AutoSlide ref={slideRef}>
+        <AutoSlide
+          ref={slideRef}
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
+        >
           {news.map((list, index) => (
             <NewsTitle key={index} href={list.url} target="_blank">
               {list.title}
