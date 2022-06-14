@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import CategoryList from "../../components/Category";
+import CategoryList from "../../components/CategoryList";
 import {
   CategoryContainer,
   CategorySubTitle,

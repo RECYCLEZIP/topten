@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router";
 import { Helmet } from "react-helmet";
 import { CategoryTitle } from "../../styles/mainStyles/CategoryStyle";
 import CategoryItems from "./CategoryItems";
-import CategoryList from "../../components/Category";
+import CategoryList from "../../components/CategoryList";
 import { CategoryTitleContainer } from "../../styles/category/category";
 
 // category page component
