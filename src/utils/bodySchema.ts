@@ -19,3 +19,12 @@ export const trashSchema = Joi.object({
         .items(Joi.string().valid(...TRASH_CATEGORY))
         .required(),
 });
+
+export const quizSchema = Joi.object({
+    answer: Joi.string().required(),
+});
+
+export const quizSetSchema = Joi.object({
+    type: Joi.string().required(),
+    answers: Joi.array().items({ quizId: Joi.string(), answer: Joi.string() }).required(),
+});
