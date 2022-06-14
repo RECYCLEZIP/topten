@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import "dotenv/config";
+import { User } from "@src/repository/user.repository";
 import { News } from "@src/repository/news.repository";
 import { Quiz } from "@src/repository/quiz.repository";
 import { Trash } from "@src/repository/trash.repository";
@@ -18,4 +19,4 @@ if (process.env.NODE_ENV !== "test") {
     );
 }
 
-export { Quiz, Trash, News };
+export { User, Quiz, Trash, News };

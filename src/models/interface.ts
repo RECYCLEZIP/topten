@@ -63,3 +63,9 @@ export interface Result {
     wrong: number;
     yesterday: number;
 }
+
+export interface IUser {
+    email: string;
+    username: string;
+    password: string;
+}
