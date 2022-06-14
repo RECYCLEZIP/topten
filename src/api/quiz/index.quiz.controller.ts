@@ -3,6 +3,8 @@ import wrapAsyncFunc from "@src/utils/catchAsync";
 import { QuizService } from "@src/service/quiz.service";
 import { STATUS_200_OK } from "@src/utils/statusCode";
 import { Submissions } from "@src/models/interface";
+import { bodyValidator } from "@src/middlewares/bodyValidator";
+import { quizSchema, quizSetSchema } from "@src/utils/bodySchema";
 
 const quizController = Router();
 
@@ -66,6 +68,7 @@ quizController.get(
 
 quizController.post(
     "/quizzes/:id/submission",
+    bodyValidator(quizSchema),
     wrapAsyncFunc(async (req, res, next) => {
         /*  #swagger.tags = ["quiz"]
             #swagger.description = "quizId에 해당하는 퀴즈채점" 
@@ -95,6 +98,7 @@ quizController.post(
 
 quizController.post(
     "/quizzes/submission",
+    bodyValidator(quizSetSchema),
     wrapAsyncFunc(async (req, res, next) => {
         /*  #swagger.tags = ["quiz"]
             #swagger.description = "퀴즈셋 채점" 
