@@ -55,7 +55,7 @@ describe("QuizService TEST", () => {
                 result: [{ date: new Date(), totalUser: 0, wrong: 0, yesterday: 0 }],
             };
             Quiz.findQuizById = jest.fn().mockResolvedValue(quizData);
-            Quiz.updateQuizInfo = jest.fn();
+            Quiz.upsertQuizInfo = jest.fn();
             const res = await QuizService.getQuizResult(quizId, userAnswer);
             expect(res).toEqual({ isCorrect: true });
         });
@@ -68,7 +68,7 @@ describe("QuizService TEST", () => {
                 result: [{ date: new Date(), totalUser: 0, wrong: 0, yesterday: 0 }],
             };
             Quiz.findQuizById = jest.fn().mockResolvedValue(quizData);
-            Quiz.updateQuizInfo = jest.fn();
+            Quiz.upsertQuizInfo = jest.fn();
             const res = await QuizService.getQuizResult(quizId, userAnswer);
             expect(res).toEqual({ isCorrect: false });
         });
@@ -89,7 +89,7 @@ describe("QuizService TEST", () => {
                 ],
             };
             Quiz.findQuizById = jest.fn().mockResolvedValue(quizData);
-            Quiz.updateQuizInfo = jest.fn();
+            Quiz.upsertQuizInfo = jest.fn();
             const res = await QuizService.getQuizResult(quizId, userAnswer);
             expect(res).toEqual({ isCorrect: true });
         });

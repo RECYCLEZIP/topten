@@ -29,7 +29,7 @@ describe("Quiz Repository Test", () => {
         expect(spy).toHaveBeenCalled();
     });
 
-    it("updateQuizInfo TEST", async () => {
+    it("upsertQuizInfo TEST", async () => {
         const newResult = {
             date: new Date(),
             totalUser: 1,
@@ -39,7 +39,7 @@ describe("Quiz Repository Test", () => {
 
         QuizModel.findByIdAndUpdate = jest.fn();
         const spy = jest.spyOn(QuizModel, "findOneAndUpdate");
-        await Quiz.updateQuizInfo(quizId, newResult);
+        await Quiz.upsertQuizInfo(quizId, newResult);
         expect(spy).toHaveBeenCalled();
     });
 });
