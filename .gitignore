@@ -7,4 +7,3 @@ coverage/
 .idea
 junit.xml
 script/newsfeed/news.txt
-swagger-output.json
