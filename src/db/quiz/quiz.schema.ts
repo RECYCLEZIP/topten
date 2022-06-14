@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { Answer } from "@src/utils/constans";
+import { Answer } from "@src/models/interface";
 
 interface Result {
     date: Date;

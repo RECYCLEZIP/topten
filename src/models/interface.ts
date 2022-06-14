@@ -14,6 +14,17 @@ export const enum Category {
     Vinyl = "비닐",
 }
 
+export enum Answer {
+    ZERO = "0",
+    ONE = "1",
+    TWO = "2",
+    THREE = "3",
+    O = "O",
+    X = "X",
+    FOOD = "음식물",
+    GENERAL = "일반",
+}
+
 export interface ITrash {
     title: string;
     description: { throwAway: string[]; note: string[] };
