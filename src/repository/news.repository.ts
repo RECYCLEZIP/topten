@@ -3,7 +3,7 @@ import { INews, MongooseQuery } from "@src/models/interface";
 
 export class News {
     static async find({ filteredQuery, limit }: { filteredQuery: MongooseQuery; limit: number }) {
-        return await NewsModel.find(filteredQuery).limit(limit);
+        return await NewsModel.find(filteredQuery).sort({ _id: -1 }).limit(limit);
     }
 
     static async create(newsInfo: INews) {
