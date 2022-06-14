@@ -2,6 +2,7 @@ import styled2 from "styled-components";
 import { styled } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import { autocompleteClasses } from "@mui/material/Autocomplete";
+import { Button } from "../ButtonStyles";
 
 export const MapSearchSection = styled2.section`
   margin-top: 2rem;
@@ -77,11 +78,11 @@ export const MapBinLacationDes = styled2.div`
 
 export const BackWrapper = styled2.div`
     margin-bottom: 0.5rem;
+    display: flex;
+    `;
 
-    font-size: 0.53rem;
-    color: #9eacba;
-
-    cursor: pointer;
+export const BackButton = styled2(Button)`
+    font-size: 0.5rem;
 `;
 
 export const StyledInput = styled(InputBase)(({ theme }) => ({
