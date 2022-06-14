@@ -8,7 +8,7 @@ import {
   categoryPageState,
   categoryState,
 } from "../stores/atoms";
-import { CategoryContainer } from "../styles/category/category";
+import { CategoryContainer } from "../styles/trash/category";
 import {
   List,
   ImgContainer,

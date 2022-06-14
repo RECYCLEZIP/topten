@@ -12,14 +12,14 @@ import {
   SearchIcon,
   TitleContainer,
   ItemListContainer,
-} from "../../styles/category/category";
+} from "../../styles/trash/category";
 import {
   ItemContainer,
   ItemImg,
   ItemText,
   ItemTitle,
   MoveButton,
-} from "../../styles/category/items";
+} from "../../styles/trash/items";
 import { CategoryTitle } from "../../styles/mainStyles/CategoryStyle";
 
 function CategoryItems() {
@@ -54,7 +54,7 @@ function CategoryItems() {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         io.unobserve(entry.target);
-        setPage(list[list.length - 1][list[list.length - 1].length - 1]._id);
+        setPage(list.slice(-1)[0].slice(-1)[0]._id);
       }
     });
   };
@@ -69,7 +69,7 @@ function CategoryItems() {
         </SearchBox>
       </TitleContainer>
       <ItemListContainer>
-        {list.map((items) => (
+        {list.map((items, index) => (
           <>
             {items.map((item, index) =>
               items.length - 1 === index ? (

@@ -5,7 +5,7 @@ import {
   ItemText,
   ItemTitle,
   MoveButton,
-} from "../../styles/category/items";
+} from "../../styles/trash/items";
 import { TrashItemType } from "../../types/Trash";
 
 // each category item card component

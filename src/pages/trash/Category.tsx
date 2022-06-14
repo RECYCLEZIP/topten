@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { CategoryTitle } from "../../styles/mainStyles/CategoryStyle";
 import CategoryItems from "./CategoryItems";
 import CategoryList from "../../components/CategoryList";
-import { CategoryTitleContainer } from "../../styles/category/category";
+import { CategoryTitleContainer } from "../../styles/trash/category";
 
 // category page component
 function Category() {
