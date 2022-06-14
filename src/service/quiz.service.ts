@@ -1,6 +1,8 @@
 import dayjs from "dayjs";
 import { Quiz } from "../db/index";
-import { Submissions } from "@src/models/interface";
+import { Submissions } from "@src/utils/types/interface";
+import { RequestError } from "@src/middlewares/errorHandler";
+import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 
 export class QuizService {
     static async getQuizList(quizType: string) {
@@ -8,7 +10,13 @@ export class QuizService {
     }
 
     static async getQuiz(quizId: string) {
-        return await Quiz.findQuizById(quizId);
+        const quizInfo = await Quiz.findQuizById(quizId);
+        if (!quizInfo) {
+            const errorMessage = `${quizId}에 해당하는 퀴즈 정보가 없습니다.`;
+            throw new RequestError(errorMessage, STATUS_404_NOTFOUND);
+        }
+
+        return quizInfo;
     }
 
     static async getQuizByWrongRate() {
@@ -22,10 +30,10 @@ export class QuizService {
 
         if (!quiz) {
             const errorMessage = `${quizId}에 해당하는 퀴즈 정보가 없습니다.`;
-            throw new Error(errorMessage);
+            throw new RequestError(errorMessage, STATUS_404_NOTFOUND);
         }
 
-        const result = quiz.result[0];
+        const result = quiz.result[quiz.result.length - 1];
         if (answer !== quiz.answer) {
             result.wrong += 1;
             quizResult.isCorrect = false;
@@ -62,7 +70,7 @@ export class QuizService {
 
             if (!correctAnswer) {
                 const errorMessage = `${quizId}와 일치하는 문제 정보가 없습니다.`;
-                throw new Error(errorMessage);
+                throw new RequestError(errorMessage, STATUS_404_NOTFOUND);
             }
 
             if (correctAnswer.answer === answer) {

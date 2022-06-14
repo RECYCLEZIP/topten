@@ -2,8 +2,8 @@ import { QuizModel } from "@src/db/quiz/quiz.schema";
 import { Result } from "@src/models/interface";
 
 export class Quiz {
-    static async findByQuizType(quizType: string) {
-        return await QuizModel.find({ type: quizType });
+    static async findByQuizType(type: string) {
+        return await QuizModel.find({ type });
     }
 
     static async findQuizById(quizId: string) {
@@ -15,7 +15,7 @@ export class Quiz {
     }
 
     static async findAnswerByQuizType(type: string) {
-        return await QuizModel.find({ type }).select({ answer: 1, result: 1 });
+        return await QuizModel.find({ type }).select({ answer: 1 });
     }
 
     static async updateQuizInfo(quizId: string, newResult: Result[] | Result) {
