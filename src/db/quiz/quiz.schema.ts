@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import { Answer } from "@src/utils/constans";
 
 interface Result {
     date: Date;
@@ -35,7 +36,7 @@ const QuizSchema = new Schema<Quiz>(
         answer: {
             type: String,
             required: true,
-            enum: ["0", "1", "2", "3", "O", "X", "음식물", "일반"],
+            enum: Object.values(Answer),
         },
         result: {
             type: [{ date: Date, totalUser: Number, wrong: Number, yesterday: Number }],

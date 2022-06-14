@@ -58,7 +58,7 @@ quizController.get(
             schema: { "$ref": "#/definitions/QuizByType" },
             description: "quizId에 해당하는 퀴즈정보 조회" } */
 
-        const quizId = req.params.id;
+        const { id: quizId } = req.params;
         const quiz = await QuizService.getQuiz(quizId);
         return res.status(STATUS_200_OK).json(quiz);
     }),
@@ -86,7 +86,7 @@ quizController.post(
             schema: { "$ref": "#/definitions/QuizResult" },
             description: "quizId에 해당하는 퀴즈 채점결과 반환" } */
 
-        const quizId = req.params.id;
+        const { id: quizId } = req.params;
         const answer: string = req.body.answer;
         const result = await QuizService.getQuizResult(quizId, answer);
         return res.status(STATUS_200_OK).json(result);

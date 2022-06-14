@@ -7,7 +7,7 @@ export class Quiz {
     }
 
     static async findQuizById(quizId: string) {
-        return await QuizModel.findOne({ _id: quizId });
+        return await QuizModel.findById(quizId);
     }
 
     static async findQuizByWrongRate() {
@@ -18,7 +18,7 @@ export class Quiz {
         return await QuizModel.find({ type }).select({ answer: 1 });
     }
 
-    static async updateQuizInfo(quizId: string, newResult: Result[] | Result) {
+    static async upsertQuizInfo(quizId: string, newResult: Result[] | Result) {
         await QuizModel.findOneAndUpdate({ _id: quizId }, { result: newResult }, { new: true });
     }
 }

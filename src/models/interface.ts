@@ -36,7 +36,7 @@ export interface MongooseQuery {
 
 export interface Submissions {
     type: string;
-    answers: [];
+    answers: { quizId: string; answer: string }[];
 }
 
 export interface ToUpdate {

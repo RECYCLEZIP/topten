@@ -43,3 +43,14 @@ export const TRASH_CATEGORY = [
     "종이",
     "비닐",
 ];
+
+export enum Answer {
+    ZERO = "0",
+    ONE = "1",
+    TWO = "2",
+    THREE = "3",
+    O = "O",
+    X = "X",
+    FOOD = "음식물",
+    GENERAL = "일반",
+}
