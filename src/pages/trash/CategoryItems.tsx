@@ -59,8 +59,6 @@ function CategoryItems() {
     });
   };
 
-  console.log(list);
-
   return (
     <>
       <TitleContainer>
