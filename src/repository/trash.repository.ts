@@ -3,7 +3,7 @@ import { MongooseQuery, ITrash } from "@src/models/interface";
 
 export class Trash {
     static async find({ filteredQuery, limit }: { filteredQuery: MongooseQuery; limit: number }) {
-        return await TrashModel.find(filteredQuery).sort({ _id: -1 }).limit(limit);
+        return TrashModel.find(filteredQuery).sort({ _id: 1 }).limit(limit);
     }
 
     static async findOne(id: string) {
