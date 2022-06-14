@@ -1,7 +1,11 @@
-import { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useCallback, useEffect, useRef } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { getData } from "../../api";
-import { categoryKindState } from "../../stores/atoms";
+import {
+  categoryItemState,
+  categoryKindState,
+  categoryPageState,
+} from "../../stores/atoms";
 import {
   SearchBox,
   SearchText,
@@ -16,29 +20,46 @@ import {
   ItemTitle,
   MoveButton,
 } from "../../styles/category/items";
-
 import { CategoryTitle } from "../../styles/mainStyles/CategoryStyle";
-import { CategoryItemType } from "../../types/Trash";
-import ItemCard from "./ItemCard";
 
 function CategoryItems() {
   const kind = useRecoilValue(categoryKindState);
-  const [list, setList] = useState<Array<CategoryItemType[]>>([]);
-  const [page, setPage] = useState("");
+  const [list, setList] = useRecoilState(categoryItemState);
+  const [page, setPage] = useRecoilState(categoryPageState);
+  const observerRef = useRef<IntersectionObserver>();
+  const boxRef = useRef<HTMLDivElement>(null);
+
+  const getTrashList = useCallback(async () => {
+    try {
+      const res = await getData(`trash?category=${kind}&page=${page}`);
+      setList((prev) => [...prev, res.data]);
+    } catch {
+      console.log("Error: data get request fail");
+    }
+  }, [page, kind]);
 
   useEffect(() => {
-    const getTrashList = async () => {
-      try {
-        setList([]);
-        const res = await getData(`trash?category=${kind}&page=${page}`);
-        setList((prev) => [...prev, res.data]);
-        console.log(res.data);
-      } catch {
-        console.log("Error: data get request fail");
-      }
-    };
     getTrashList();
-  }, [kind]);
+  }, [getTrashList]);
+
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(intersectionObserver); // IntersectionObserver
+    boxRef.current && observerRef.current.observe(boxRef.current);
+  }, [list]);
+
+  const intersectionObserver = (
+    entries: IntersectionObserverEntry[],
+    io: IntersectionObserver,
+  ) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        io.unobserve(entry.target);
+        setPage(list[list.length - 1][list[list.length - 1].length - 1]._id);
+      }
+    });
+  };
+
+  console.log(list);
 
   return (
     <>
@@ -50,8 +71,28 @@ function CategoryItems() {
         </SearchBox>
       </TitleContainer>
       <ItemListContainer>
-        {list.map((items, index) => (
-          <ItemCard key={index} items={items} />
+        {list.map((items) => (
+          <>
+            {items.map((item, index) =>
+              items.length - 1 === index ? (
+                <ItemContainer key={index} ref={boxRef}>
+                  <ItemImg src={item.image} />
+                  <ItemTitle>
+                    <ItemText>{item.title}</ItemText>
+                    <MoveButton>자세히</MoveButton>
+                  </ItemTitle>
+                </ItemContainer>
+              ) : (
+                <ItemContainer key={index}>
+                  <ItemImg src={item.image} />
+                  <ItemTitle>
+                    <ItemText>{item.title}</ItemText>
+                    <MoveButton>자세히</MoveButton>
+                  </ItemTitle>
+                </ItemContainer>
+              ),
+            )}
+          </>
         ))}
         <ItemContainer opacity={0}>
           <ItemImg />

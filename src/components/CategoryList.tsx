@@ -1,7 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { categoryKindState, categoryState } from "../stores/atoms";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { getData } from "../api";
+import {
+  categoryItemState,
+  categoryKindState,
+  categoryPageState,
+  categoryState,
+} from "../stores/atoms";
 import { CategoryContainer } from "../styles/category/category";
 import {
   List,
@@ -13,17 +19,35 @@ import {
 
 function CategoryList({ backColor }: { backColor?: string }) {
   const navigate = useNavigate();
-  const category = useRecoilValue(categoryState);
+  const [category, setCategory] = useRecoilState(categoryState);
   const setKind = useSetRecoilState(categoryKindState);
+  const setList = useSetRecoilState(categoryItemState);
+  const setPage = useSetRecoilState(categoryPageState);
 
   const [isSelected, setIsSelected] = useState([false]);
+
+  const getCategory = async () => {
+    try {
+      const res = await getData(`trash/categories`);
+      setCategory(res.data);
+    } catch {
+      console.log("Error: data get request fail");
+    }
+  };
+
+  useEffect(() => {
+    getCategory();
+  }, []);
 
   // selected category color change
   const selectCategory = (index: number) => {
     const newArr = Array(category.length).fill(false);
     newArr[index] = newArr[index] ? false : true;
     setIsSelected(newArr);
+    setPage("");
     setKind(category[index].name);
+    setList([]);
+
     navigate(`/category/${category[index].name}`);
   };
 

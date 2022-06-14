@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { CategoryType } from "../types/Main";
+import { CategoryType, NewsType } from "../types/Main";
 import { CategoryItemType } from "../types/Trash";
 
 export interface BinTypes {
@@ -52,18 +52,23 @@ export const categoryState = atom<CategoryType[]>({
 });
 
 // news list
-export const newsState = atom({
+export const newsState = atom<NewsType[]>({
   key: "newsState",
   default: [],
 });
 
 // category item list
-export const categoryItemState = atom<CategoryItemType[]>({
+export const categoryItemState = atom<CategoryItemType[][]>({
   key: "categoryItemState",
   default: [],
 });
 
 export const categoryKindState = atom<string>({
   key: "categoryKindState",
+  default: "",
+});
+
+export const categoryPageState = atom<string>({
+  key: "categoryPageState",
   default: "",
 });

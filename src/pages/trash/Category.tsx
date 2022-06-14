@@ -17,8 +17,8 @@ function Category() {
       </CategoryTitleContainer>
       <CategoryList backColor="#eaf0eb" />
       <Routes>
-        <Route path={``} element={<CategoryItems />} />
-        <Route path={`/:kind`} element={<CategoryItems />} />
+        <Route index element={<CategoryItems />} />
+        <Route path={`:kind`} element={<CategoryItems />} />
       </Routes>
       ;
     </>
