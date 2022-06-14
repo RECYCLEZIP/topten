@@ -1,0 +1,58 @@
+image: node:latest
+
+before_script:
+    - export MONGOMS_DOWNLOAD_URL=https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-debian10-4.4.1.tgz
+    - export MONGOMS_VERSION=4.4.1
+
+stages:
+    - build
+    - test
+    - deploy
+
+build:
+    stage: build
+    script:
+        - yarn
+        - apt-get install libcurl4
+    cache:
+        - paths:
+              - node_modules/
+    artifacts:
+        expire_in: 1 days
+        when: on_success
+        paths:
+            - node_modules/
+
+test:
+    stage: test
+    image: node:15-buster
+    coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+    dependencies:
+        - build
+    script:
+        - yarn test:ci
+    cache:
+        - paths:
+              - coverage/
+    artifacts:
+        paths:
+            - coverage/
+        when: always
+        reports:
+            junit:
+                - junit.xml
+            cobertura: coverage/cobertura-coverage.xml
+
+pages:
+    stage: deploy
+    dependencies:
+        - test
+    script:
+        - mkdir .public
+        - cp -r coverage/* .public
+        - mv .public public
+    artifacts:
+        paths:
+            - public
+    only:
+        - dev

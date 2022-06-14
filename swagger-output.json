@@ -1,0 +1,1135 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "분리수ZIP 서비스 API",
+    "description": "엘리스 AI 트랙 4기 - AI Project 10팀 TOPTEN 프로젝트 문서.",
+    "version": "1.0.0"
+  },
+  "host": "localhost:5001",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "news",
+      "description": "뉴스 데이터 API"
+    },
+    {
+      "name": "quiz",
+      "description": "퀴즈 데이터 API"
+    },
+    {
+      "name": "trash",
+      "description": "쓰레기 데이터 API"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer",
+      "in": "header",
+      "bearerFormat": "JWT"
+    }
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/news": {
+      "get": {
+        "tags": [
+          "news"
+        ],
+        "description": "뉴스 목록 조회",
+        "parameters": [
+          {
+            "name": "queryString",
+            "in": "query",
+            "description": "**search** 검색어\n  **page** 첫 요청시 빈 문자열 또는 생략\n  **limit** 기본값10\n",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/NewsGetQuery"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/NewsGetResponse"
+            },
+            "description": "뉴스 목록을 배열형태로 반환"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "news"
+        ],
+        "description": "뉴스 생성",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "생성하고자 하는 뉴스의 정보를 body에 담아 요청",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewsPostQuery"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/NewsPostResponse"
+            },
+            "description": "생성된 뉴스 정보 반환"
+          }
+        }
+      }
+    },
+    "/news/{id}": {
+      "put": {
+        "tags": [
+          "news"
+        ],
+        "description": "뉴스 수정",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "수정하고자 하는 뉴스의 ID",
+            "schema": {
+              "$ref": "#/definitions/NewsId"
+            }
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "수정하고자 하는 뉴스의 정보를 body에 담아 요청",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewsPutBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/NewsPutResponse"
+            },
+            "description": "수정된 뉴스 정보 반환"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "news"
+        ],
+        "description": "뉴스 삭제",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "삭제하고자 하는 뉴스의 ID",
+            "schema": {
+              "$ref": "#/definitions/NewsId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/DeleteResponse"
+            },
+            "description": "삭제 메시지"
+          }
+        }
+      }
+    },
+    "/quizzes": {
+      "get": {
+        "tags": [
+          "quiz"
+        ],
+        "description": "타입별 퀴즈목록 조회",
+        "parameters": [
+          {
+            "name": "queryString",
+            "in": "query",
+            "description": "[multipleChoice, mixUp, ox] 3가지 타입 중 한가지로 요청",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/QuizType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/QuizByType"
+            },
+            "description": "요청타입에 해당하는 퀴즈목록 조회"
+          }
+        }
+      }
+    },
+    "/quizzes/wrong": {
+      "get": {
+        "tags": [
+          "quiz"
+        ],
+        "description": "오답률 상위 3개 퀴즈정보 조회",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/QuizByType"
+            },
+            "description": "오답률 상위 3개 퀴즈정보 리턴"
+          }
+        }
+      }
+    },
+    "/quizzes/{id}": {
+      "get": {
+        "tags": [
+          "quiz"
+        ],
+        "description": "quizId에 해당하는 퀴즈정보 조회",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "params",
+            "required": true,
+            "type": "string",
+            "description": "조회하고자 하는 퀴즈의 quizId를 경로 엔드포인트에 추가",
+            "schema": {
+              "$ref": "#/definitions/QuizId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/QuizByType"
+            },
+            "description": "quizId에 해당하는 퀴즈정보 조회"
+          }
+        }
+      }
+    },
+    "/quizzes/{id}/submission": {
+      "post": {
+        "tags": [
+          "quiz"
+        ],
+        "description": "quizId에 해당하는 퀴즈채점",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "params",
+            "required": true,
+            "type": "string",
+            "description": "채점하고자 하는 퀴즈의 quizId를 경로 엔드포인트에 추가",
+            "schema": {
+              "$ref": "#/definitions/QuizId"
+            }
+          },
+          {
+            "name": "answer",
+            "in": "body",
+            "description": "해당 퀴즈를 풀이한 유저의 답을 body에 담아 요청",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/QuizUserAnswer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/QuizResult"
+            },
+            "description": "quizId에 해당하는 퀴즈 채점결과 반환"
+          }
+        }
+      }
+    },
+    "/quizzes/submission": {
+      "post": {
+        "tags": [
+          "quiz"
+        ],
+        "description": "퀴즈셋 채점",
+        "parameters": [
+          {
+            "name": "퀴즈셋정보",
+            "in": "body",
+            "description": "채점하고자 하는 퀴즈셋의 정보를 body에 담아 요청",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/QuizSetSubmission"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/QuizSetResult"
+            },
+            "description": "퀴즈셋 채점결과 반환"
+          }
+        }
+      }
+    },
+    "/trash": {
+      "get": {
+        "tags": [
+          "trash"
+        ],
+        "description": "쓰레기 목록 조회",
+        "parameters": [
+          {
+            "name": "queryString",
+            "in": "query",
+            "description": "**search** 검색어\n  **category** 조회할 카테고리\n  **page** 첫 요청시 빈 문자열 또는 생략\n  **limit** 기본값10\n",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/TrashGetQuery"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/TrashGetResponse"
+            },
+            "description": "쓰레기 목록을 배열형태로 반환"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "trash"
+        ],
+        "description": "쓰레기 생성",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "생성하고자 하는 쓰레기의 정보를 body에 담아 요청",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TrashPostRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/TrashPostResponse"
+            },
+            "description": "생성된 쓰레기 정보 반환"
+          }
+        }
+      }
+    },
+    "/trash/categories": {
+      "get": {
+        "tags": [
+          "trash"
+        ],
+        "description": "쓰레기 카테고리 조회",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/TrashCategoryGetResponse"
+            },
+            "description": "쓰레기 카테고리 목록을 배열형태로 반환"
+          }
+        }
+      }
+    },
+    "/trash/{id}": {
+      "get": {
+        "tags": [
+          "trash"
+        ],
+        "description": "개별 쓰레기 정보 조회",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "얻고자 하는 쓰레기정보의 ID",
+            "schema": {
+              "$ref": "#/definitions/TrashId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/TrashOneGetResponse"
+            },
+            "description": "쓰레기 정보를 반환"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "trash"
+        ],
+        "description": "쓰레기 정보 수정",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "수정하고자 하는 쓰레기의 ID",
+            "schema": {
+              "$ref": "#/definitions/TrashId"
+            }
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "수정하고자 하는 뉴스의 정보를 body에 담아 요청",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TrashPutRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/TrashPutResponse"
+            },
+            "description": "수정된 쓰레기 정보 반환"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "trash"
+        ],
+        "description": "쓰레기 삭제",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "삭제하고자 하는 쓰레기의 ID",
+            "schema": {
+              "$ref": "#/definitions/TrashId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/DeleteResponse"
+            },
+            "description": "삭제 메시지"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "NewsId": {
+      "type": "string",
+      "example": "news/{newsId}"
+    },
+    "NewsGetQuery": {
+      "type": "string",
+      "example": "?search={}&page={ID}&limit={5}"
+    },
+    "NewsGetResponse": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "id"
+          },
+          "url": {
+            "type": "string",
+            "example": "http://"
+          },
+          "title": {
+            "type": "string",
+            "example": "제목"
+          }
+        }
+      }
+    },
+    "NewsPostQuery": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "example": "http://"
+        },
+        "title": {
+          "type": "string",
+          "example": "제목"
+        }
+      }
+    },
+    "NewsPostResponse": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "id"
+        },
+        "url": {
+          "type": "string",
+          "example": "http://"
+        },
+        "title": {
+          "type": "string",
+          "example": "제목"
+        }
+      }
+    },
+    "NewsPutBody": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "example": "http://"
+        },
+        "title": {
+          "type": "string",
+          "example": "수정된제목"
+        }
+      }
+    },
+    "NewsPutResponse": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "id"
+        },
+        "url": {
+          "type": "string",
+          "example": "http://"
+        },
+        "title": {
+          "type": "string",
+          "example": "수정된제목"
+        }
+      }
+    },
+    "DeleteResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "삭제가 완료되었습니다."
+        }
+      }
+    },
+    "TrashId": {
+      "type": "string",
+      "example": "trash/{trashId}"
+    },
+    "TrashGetQuery": {
+      "type": "string",
+      "example": "?search={}&category={}&page={ID}&limit={5}"
+    },
+    "TrashGetResponse": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "62a1624d1458dc8c48ab52ca"
+          },
+          "title": {
+            "type": "string",
+            "example": "컵라면"
+          },
+          "description": {
+            "type": "object",
+            "properties": {
+              "throwAway": {
+                "type": "array",
+                "example": [
+                  "컵라면 용기를 물로 세척",
+                  "햇빛에 하루 이상 말려 기름, 국물 자국 제거",
+                  "흰 색의 용기로 만든 뒤 배출"
+                ],
+                "items": {
+                  "type": "string"
+                }
+              },
+              "note": {
+                "type": "array",
+                "example": [
+                  "라면 국물이 남아있거나, 음식물이 완전히 제거 되지 않은 컵라면 용기는 재활용 불가능하므로 일반쓰레기로 배출"
+                ],
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "kind": {
+            "type": "array",
+            "example": [
+              "다양한 스티로폼 컵라면 용기"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "image": {
+            "type": "string",
+            "example": "https://upload.wikimedia.org/wikipedia/commons/0/0a/PSP%EB%9D%BC%EB%A9%B4%EC%9A%A9%EA%B8%B0.png"
+          },
+          "recycle": {
+            "type": "boolean",
+            "example": true
+          },
+          "category": {
+            "type": "array",
+            "example": [
+              "스티로폼"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "__v": {
+            "type": "number",
+            "example": 0
+          }
+        }
+      }
+    },
+    "TrashOneGetResponse": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "62a1624d1458dc8c48ab52ca"
+        },
+        "title": {
+          "type": "string",
+          "example": "컵라면"
+        },
+        "description": {
+          "type": "object",
+          "properties": {
+            "throwAway": {
+              "type": "array",
+              "example": [
+                "컵라면 용기를 물로 세척",
+                "햇빛에 하루 이상 말려 기름, 국물 자국 제거",
+                "흰 색의 용기로 만든 뒤 배출"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "note": {
+              "type": "array",
+              "example": [
+                "라면 국물이 남아있거나, 음식물이 완전히 제거 되지 않은 컵라면 용기는 재활용 불가능하므로 일반쓰레기로 배출"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "kind": {
+          "type": "array",
+          "example": [
+            "다양한 스티로폼 컵라면 용기"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "image": {
+          "type": "string",
+          "example": "https://upload.wikimedia.org/wikipedia/commons/0/0a/PSP%EB%9D%BC%EB%A9%B4%EC%9A%A9%EA%B8%B0.png"
+        },
+        "recycle": {
+          "type": "boolean",
+          "example": true
+        },
+        "category": {
+          "type": "array",
+          "example": [
+            "스티로폼"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "__v": {
+          "type": "number",
+          "example": 0
+        }
+      }
+    },
+    "TrashCategoryGetResponse": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "플라스틱"
+          },
+          "image": {
+            "type": "string",
+            "example": "https://blisgo.com/wp-content/uploads/elementor/thumbs/%ED%8E%98%ED%8A%B8%EB%B3%91-osxqcextwey39nv9bbiwyx92fih9hl1i4rtny3m70g.jpg"
+          }
+        }
+      }
+    },
+    "TrashPostRequest": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "컵라면"
+        },
+        "description": {
+          "type": "object",
+          "properties": {
+            "throwAway": {
+              "type": "array",
+              "example": [
+                "컵라면 용기를 물로 세척",
+                "햇빛에 하루 이상 말려 기름, 국물 자국 제거",
+                "흰 색의 용기로 만든 뒤 배출"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "note": {
+              "type": "array",
+              "example": [
+                "라면 국물이 남아있거나, 음식물이 완전히 제거 되지 않은 컵라면 용기는 재활용 불가능하므로 일반쓰레기로 배출"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "kind": {
+          "type": "array",
+          "example": [
+            "다양한 스티로폼 컵라면 용기"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "image": {
+          "type": "string",
+          "example": "https://upload.wikimedia.org/wikipedia/commons/0/0a/PSP%EB%9D%BC%EB%A9%B4%EC%9A%A9%EA%B8%B0.png"
+        },
+        "recycle": {
+          "type": "boolean",
+          "example": true
+        },
+        "category": {
+          "type": "array",
+          "example": [
+            "스티로폼"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "TrashPostResponse": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "62a1624d1458dc8c48ab52ca"
+        },
+        "title": {
+          "type": "string",
+          "example": "컵라면"
+        },
+        "description": {
+          "type": "object",
+          "properties": {
+            "throwAway": {
+              "type": "array",
+              "example": [
+                "컵라면 용기를 물로 세척",
+                "햇빛에 하루 이상 말려 기름, 국물 자국 제거",
+                "흰 색의 용기로 만든 뒤 배출"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "note": {
+              "type": "array",
+              "example": [
+                "라면 국물이 남아있거나, 음식물이 완전히 제거 되지 않은 컵라면 용기는 재활용 불가능하므로 일반쓰레기로 배출"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "kind": {
+          "type": "array",
+          "example": [
+            "다양한 스티로폼 컵라면 용기"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "image": {
+          "type": "string",
+          "example": "https://upload.wikimedia.org/wikipedia/commons/0/0a/PSP%EB%9D%BC%EB%A9%B4%EC%9A%A9%EA%B8%B0.png"
+        },
+        "recycle": {
+          "type": "boolean",
+          "example": true
+        },
+        "category": {
+          "type": "array",
+          "example": [
+            "스티로폼"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "__v": {
+          "type": "number",
+          "example": 0
+        }
+      }
+    },
+    "TrashPutRequest": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "수정된제목"
+        },
+        "description": {
+          "type": "object",
+          "properties": {
+            "throwAway": {
+              "type": "array",
+              "example": [
+                "수정",
+                "햇빛에 하루 이상 말려 기름, 국물 자국 제거",
+                "흰 색의 용기로 만든 뒤 배출"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "note": {
+              "type": "array",
+              "example": [
+                "라면 국물이 남아있거나, 음식물이 완전히 제거 되지 않은 컵라면 용기는 재활용 불가능하므로 일반쓰레기로 배출"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "kind": {
+          "type": "array",
+          "example": [
+            "다양한 스티로폼 컵라면 용기"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "image": {
+          "type": "string",
+          "example": "https://upload.wikimedia.org/wikipedia/commons/0/0a/PSP%EB%9D%BC%EB%A9%B4%EC%9A%A9%EA%B8%B0.png"
+        },
+        "recycle": {
+          "type": "boolean",
+          "example": true
+        },
+        "category": {
+          "type": "array",
+          "example": [
+            "스티로폼"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "TrashPutResponse": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "62a1624d1458dc8c48ab52ca"
+        },
+        "title": {
+          "type": "string",
+          "example": "수정된제목"
+        },
+        "description": {
+          "type": "object",
+          "properties": {
+            "throwAway": {
+              "type": "array",
+              "example": [
+                "수정",
+                "햇빛에 하루 이상 말려 기름, 국물 자국 제거",
+                "흰 색의 용기로 만든 뒤 배출"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "note": {
+              "type": "array",
+              "example": [
+                "라면 국물이 남아있거나, 음식물이 완전히 제거 되지 않은 컵라면 용기는 재활용 불가능하므로 일반쓰레기로 배출"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "kind": {
+          "type": "array",
+          "example": [
+            "다양한 스티로폼 컵라면 용기"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "image": {
+          "type": "string",
+          "example": "https://upload.wikimedia.org/wikipedia/commons/0/0a/PSP%EB%9D%BC%EB%A9%B4%EC%9A%A9%EA%B8%B0.png"
+        },
+        "recycle": {
+          "type": "boolean",
+          "example": true
+        },
+        "category": {
+          "type": "array",
+          "example": [
+            "스티로폼"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "__v": {
+          "type": "number",
+          "example": 0
+        }
+      }
+    },
+    "QuizId": {
+      "type": "string",
+      "example": "62a455ad6059af946a56e717"
+    },
+    "QuizType": {
+      "type": "string",
+      "example": "?type=multipleChoice"
+    },
+    "QuizUserAnswer": {
+      "type": "object",
+      "properties": {
+        "answer": {
+          "type": "string",
+          "example": "1"
+        }
+      }
+    },
+    "QuizResult": {
+      "type": "object",
+      "properties": {
+        "isCorrect": {
+          "type": "boolean",
+          "example": true
+        }
+      }
+    },
+    "QuizSetSubmission": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "example": "multipleChoice"
+        },
+        "answers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "quizId": {
+                "type": "string",
+                "example": "62a455ad6059af946a56e719"
+              },
+              "answer": {
+                "type": "string",
+                "example": "3"
+              }
+            }
+          }
+        }
+      }
+    },
+    "QuizSetResult": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "quizId": {
+                "type": "string",
+                "example": "62a163ddac4b496254c13da0"
+              },
+              "isCorrect": {
+                "type": "boolean",
+                "example": true
+              }
+            }
+          }
+        },
+        "score": {
+          "type": "number",
+          "example": 100
+        }
+      }
+    },
+    "QuizByType": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "62a455ad6059af946a56e717"
+          },
+          "title": {
+            "type": "string",
+            "example": "유통기한 지난 의약품의 분리배출 방법으로 옳은 것을 고르시오."
+          },
+          "description": {
+            "type": "string",
+            "example": "폐의약품을 그냥 버릴 경우 환경오염을 일으킬 수 있다. 약국에 비치된 폐의약품 수거함에 버린다."
+          },
+          "options": {
+            "type": "array",
+            "example": [
+              "일반쓰레기로 버린다.",
+              "약국에 비치된 폐의약품 수거함에 버린다.",
+              "내 뱃속에 버린다.",
+              "약사님께 드린다."
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "answer": {
+            "type": "string",
+            "example": "1"
+          },
+          "type": {
+            "type": "string",
+            "example": "multipleChoice"
+          },
+          "image": {
+            "type": "string",
+            "example": "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1840&q=80"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "example": "2022-06-11T08:43:25.335Z"
+                },
+                "totalUser": {
+                  "type": "number",
+                  "example": 2
+                },
+                "wrong": {
+                  "type": "number",
+                  "example": 1
+                },
+                "yesterday": {
+                  "type": "number",
+                  "example": 0
+                },
+                "_id": {
+                  "type": "string",
+                  "example": "62a455ad6059af946a56e718"
+                }
+              }
+            }
+          },
+          "__v": {
+            "type": "number",
+            "example": 0
+          }
+        }
+      }
+    }
+  }
+}
