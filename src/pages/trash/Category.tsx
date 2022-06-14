@@ -10,7 +10,7 @@ function Category() {
   return (
     <>
       <Helmet>
-        <title>카테고리 - 분리수집</title>
+        <title>카테고리 - 분리수ZIP</title>
       </Helmet>
       <CategoryTitleContainer>
         <CategoryTitle>카테고리</CategoryTitle>
@@ -20,7 +20,6 @@ function Category() {
         <Route index element={<CategoryItems />} />
         <Route path={`:kind`} element={<CategoryItems />} />
       </Routes>
-      ;
     </>
   );
 }

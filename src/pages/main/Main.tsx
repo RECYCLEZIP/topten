@@ -37,7 +37,7 @@ function Main() {
   return (
     <MainContainer>
       <Helmet>
-        <title>분리수집</title>
+        <title>분리수ZIP</title>
       </Helmet>
       <AiSection />
       <NewsSection />

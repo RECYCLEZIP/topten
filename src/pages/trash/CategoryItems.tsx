@@ -21,6 +21,7 @@ import {
   MoveButton,
 } from "../../styles/trash/items";
 import { CategoryTitle } from "../../styles/mainStyles/CategoryStyle";
+import { useNavigate } from "react-router";
 
 function CategoryItems() {
   const kind = useRecoilValue(categoryKindState);
@@ -28,6 +29,7 @@ function CategoryItems() {
   const [page, setPage] = useRecoilState(categoryPageState);
   const observerRef = useRef<IntersectionObserver>();
   const boxRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const getTrashList = useCallback(async () => {
     try {
@@ -59,6 +61,10 @@ function CategoryItems() {
     });
   };
 
+  const moveItem = (id: string) => {
+    navigate(`./${id}`);
+  };
+
   return (
     <>
       <TitleContainer>
@@ -74,18 +80,28 @@ function CategoryItems() {
             {items.map((item, index) =>
               items.length - 1 === index ? (
                 <ItemContainer key={index} ref={boxRef}>
-                  <ItemImg src={item.image} />
+                  <ItemImg
+                    src={item.image}
+                    onClick={() => moveItem(item._id)}
+                  />
                   <ItemTitle>
                     <ItemText>{item.title}</ItemText>
-                    <MoveButton>자세히</MoveButton>
+                    <MoveButton onClick={() => moveItem(item._id)}>
+                      자세히
+                    </MoveButton>
                   </ItemTitle>
                 </ItemContainer>
               ) : (
                 <ItemContainer key={index}>
-                  <ItemImg src={item.image} />
+                  <ItemImg
+                    src={item.image}
+                    onClick={() => moveItem(item._id)}
+                  />
                   <ItemTitle>
                     <ItemText>{item.title}</ItemText>
-                    <MoveButton>자세히</MoveButton>
+                    <MoveButton onClick={() => moveItem(item._id)}>
+                      자세히
+                    </MoveButton>
                   </ItemTitle>
                 </ItemContainer>
               ),

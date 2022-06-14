@@ -9,6 +9,7 @@ import Landing from "../pages/prologue/Prologue";
 import Ai from "../pages/ai/Ai";
 import Map from "../pages/map/Map";
 import Category from "../pages/trash/Category";
+import Trash from "../pages/trash/Trash";
 
 //set router component
 function AppRouter() {
@@ -24,6 +25,7 @@ function AppRouter() {
       <Route path="/map" element={<Map />} />
       <Route path="/ai" element={<Ai />} />
       <Route path="/category/*" element={<Category />} />
+      <Route path="/category/:kind/:id" element={<Trash />} />
     </Routes>
   );
 }
