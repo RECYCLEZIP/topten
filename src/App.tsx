@@ -1,18 +1,13 @@
 import React from "react";
-
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
+import AppRouter from "./components/AppRouter";
+import Header from "./components/Header";
 
 function App() {
   return (
-    <RecoilRoot>
-      <div></div>
-    </RecoilRoot>
+    <div>
+      <Header />
+      <AppRouter />
+    </div>
   );
 }
 

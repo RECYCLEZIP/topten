@@ -9,7 +9,6 @@
       name="description"
       content="Web site created using create-react-app"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -30,7 +29,23 @@
       href="https://fonts.googleapis.com/css2?family=Inter&family=Kdam+Thmor+Pro&display=swap"
       rel="stylesheet"
     />
-    <title>React App</title>
+    <title>분리수집</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        font-weight: bold;
+      }
+      @media (min-width: 768px) {
+        html {
+          font-size: 30px;
+        }
+      }
+    </style>
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=%REACT_APP_KAKAOMAP_API_KEY%"
+    ></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
