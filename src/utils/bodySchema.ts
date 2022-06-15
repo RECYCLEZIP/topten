@@ -1,6 +1,12 @@
 import Joi from "joi";
 import { TRASH_CATEGORY } from "@src/utils/constans";
 
+export const userSchema = Joi.object({
+    email: Joi.string().email({ minDomainSegments: 2 }).required(),
+    username: Joi.string().min(3).required(),
+    password: Joi.string().min(8).required(),
+});
+
 export const newsSchema = Joi.object({
     url: Joi.string().required(),
     title: Joi.string().required(),

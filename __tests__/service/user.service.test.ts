@@ -8,7 +8,7 @@ const tempUser: IUser = {
 };
 
 describe("USER SERVICE LOGIC", () => {
-    it("NEWS를 생성한다.", async () => {
+    it("USER를 생성한다.", async () => {
         const createdUser = await UserService.addUser(tempUser);
         expect(createdUser.email).toEqual("test@test.com");
         expect(createdUser.username).toEqual("테스트유저");

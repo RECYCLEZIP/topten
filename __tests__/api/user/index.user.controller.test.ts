@@ -7,7 +7,7 @@ describe("USER API", () => {
     const tempUser: IUser = {
         email: "test@test.com",
         username: "테스트유저",
-        password: "test",
+        password: "testtest",
     };
 
     it("USER REGISTER 유저를 생성한다.", async () => {
