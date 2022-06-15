@@ -3,10 +3,14 @@ import React, { useState, useRef, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { AiSituationState } from "../../stores/atoms";
 
+import { Camera } from "react-camera-pro";
+
 import { img } from "../../assets/imgImport";
 
 import {
   AiImageUploadSection,
+  CameraShutterWrapper,
+  CameraShutterIcon,
   AiImageContainer,
   AiImageLayer,
   AiSpinImg,
@@ -29,7 +33,10 @@ function AiImageUpload() {
   const [notice, setNotice] = useState("");
   const [buttonText, setButtonText] = useState("");
 
+  // 카메라
+  const camera: any = useRef(null);
   const imgInput = useRef<any>();
+  const [isCameraOn, setIsCameraOn] = useState(false);
 
   // 이미지 업로드
   const onClickImgUpload = (e: any) => {
@@ -100,16 +107,58 @@ function AiImageUpload() {
     <>
       <AiImageUploadSection>
         <AiImageContainer>
-          {/* 분석 중이라면 이미지 위에 반투명 레이어, 스피너 */}
-          {situation === "analyzing" && (
-            <AiImageLayer>
-              <AiSpinImg src={img.spin} />
-            </AiImageLayer>
+          {isCameraOn ? (
+            <>
+              <Camera
+                ref={camera}
+                aspectRatio="cover"
+                errorMessages={{
+                  noCameraAccessible:
+                    "No camera device accessible. Please connect your camera or try a different browser.",
+                  permissionDenied:
+                    "Permission denied. Please refresh and give camera permission.",
+                  switchCamera:
+                    "It is not possible to switch camera to different one because there is only one video device accessible.",
+                  canvas: "Canvas is not supported.",
+                }}
+              />
+              <CameraShutterWrapper>
+                <CameraShutterIcon
+                  src={img.shutter}
+                  alt="shutter"
+                  onClick={() => {
+                    if (camera.current) {
+                      const photo: any = camera?.current?.takePhoto();
+
+                      // 촬영 시 이미지에 저장
+                      setFileImage(photo);
+                    }
+                    // 카메라 종료
+                    setIsCameraOn(false);
+                  }}
+                />
+              </CameraShutterWrapper>
+            </>
+          ) : (
+            // 분석 중이라면 이미지 위에 반투명 레이어, 스피너
+            <>
+              {situation === "analyzing" && (
+                <AiImageLayer>
+                  <AiSpinImg src={img.spin} />
+                </AiImageLayer>
+              )}
+              <AiImage src={fileImage}></AiImage>
+            </>
           )}
-          <AiImage src={fileImage}></AiImage>
         </AiImageContainer>
         <AiIconsContainer>
-          <AiIcon src={img.camera} alt="camera" />
+          <AiIcon
+            src={img.camera}
+            alt="camera"
+            onClick={() => {
+              setIsCameraOn(true);
+            }}
+          />
           {/* 업로드 아이콘 클릭 = 업로드 폼 클릭 */}
           <form>
             <input

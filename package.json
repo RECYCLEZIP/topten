@@ -21,6 +21,7 @@
     "dotenv": "^16.0.1",
     "framer-motion": "^6.3.11",
     "react": "^18.1.0",
+    "react-camera-pro": "^1.1.1",
     "react-dom": "^18.1.0",
     "react-helmet": "^6.1.0",
     "react-intersection-observer": "^9.2.2",

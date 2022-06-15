@@ -2,13 +2,18 @@ import styled2 from "styled-components";
 import { styled } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import { autocompleteClasses } from "@mui/material/Autocomplete";
+import { Button } from "../ButtonStyles";
 
+export const MapTitle = styled2.span`
+  position: fixed;
+`;
 export const MapSearchSection = styled2.section`
   margin-top: 2rem;
   margin-bottom: 1.5rem;
   display: block;
   
   align-items: center;
+  position: fixed;
   
   @media (min-width: 768px) {
     display: flex;
@@ -40,21 +45,29 @@ export const MapBinMapWrapper = styled2.div`
 width: 100%;
 height: 15rem;
 
+position: fixed;
+
+margin-top: 9rem;
+
+
 @media (min-width: 768px) {
-  width: 45%;
+  width: 40%;
+  margin-top: 5rem;
   }
 `;
 
 export const MapBinListContainer = styled2.div`
   display: block;
+  position: absolute;
 
-  margin-top: 2rem;
+  margin-top: 25rem;
 
   flex: 1;
 
   @media (min-width: 768px) {
-    margin-top: 0;
-    margin-left: 3rem;
+    margin-top: 5rem;
+    margin-left: 45%;
+    // margin-left: 3rem;
   }
 `;
 
@@ -77,11 +90,13 @@ export const MapBinLacationDes = styled2.div`
 
 export const BackWrapper = styled2.div`
     margin-bottom: 0.5rem;
+    display: flex;
+    `;
 
-    font-size: 0.53rem;
-    color: #9eacba;
+export const BackButton = styled2(Button)`
+padding: 0.3rem 0.8rem;
 
-    cursor: pointer;
+    font-size: 0.5rem;
 `;
 
 export const StyledInput = styled(InputBase)(({ theme }) => ({
