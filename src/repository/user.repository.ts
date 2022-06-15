@@ -9,4 +9,8 @@ export class User {
     static async findByEmail(email: string) {
         return UserModel.findOne({ email });
     }
+
+    static async update(id: string, userInfo: Partial<IUser>) {
+        return UserModel.findByIdAndUpdate(id, { $set: userInfo }, { new: true });
+    }
 }

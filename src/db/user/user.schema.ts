@@ -16,6 +16,9 @@ const UserSchema = new Schema<IUser>({
         type: String,
         required: true,
     },
+    token: {
+        type: String,
+    },
 });
 
 UserSchema.pre("save", async function (next) {
@@ -24,12 +27,6 @@ UserSchema.pre("save", async function (next) {
         this.password = await bcrypt.hash(this.password, 12);
         next();
     }
-});
-
-UserSchema.post("save", function (_doc) {
-    const createdUser = this.toObject();
-    delete createdUser.password;
-    return createdUser;
 });
 
 export const UserModel = model<IUser>("User", UserSchema);
