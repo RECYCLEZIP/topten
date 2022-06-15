@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const QuizContainer = styled.div`
   width: 80%;
-  padding: 2.5rem 8%;
+  padding: 2.5rem 1rem;
   margin: 0 auto;
   @media (min-width: 768px) {
     width: 45%;
@@ -18,20 +18,22 @@ export const QuizCount = styled.p`
 export const QuestionBox = styled.div`
   display: flex;
   justify-content: space-around;
-
+  width: 70%;
   align-items: center;
   background-color: #51cf66;
   border-radius: 1rem;
   margin: 0 auto;
   padding: 5% 4%;
   box-shadow: 0px 0px 10px rgba(139, 188, 153, 0.8);
+  flex-wrap: wrap;
 `;
 
 export const QuizQuestion = styled.div`
   text-align: right;
   width: 80%;
+  margin: 0.3rem 0;
   @media (min-width: 768px) {
-    width: 40%;
+    width: 50%;
   }
 `;
 

@@ -23,6 +23,7 @@ import { useNavigate } from "react-router";
  */
 function QuizCard({ display, quiz }: QuizCardType) {
   const navigate = useNavigate();
+  console.log(quiz);
 
   return (
     <RankContainer>
