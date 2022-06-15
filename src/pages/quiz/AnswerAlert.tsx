@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
@@ -21,6 +21,7 @@ function AnswerAlert({ setResult }: AlertType) {
   const [open, setOpen] = useState(false);
   const option = useRecoilValue(answerState);
   const currentQuiz = useRecoilValue(currentQuizState)[0];
+  const [isCorrect, setIsCorrect] = useState(false);
 
   console.log(currentQuiz);
 
@@ -35,12 +36,14 @@ function AnswerAlert({ setResult }: AlertType) {
       const res = await postData(`quizzes/${currentQuiz._id}/submission`, {
         answer: option,
       });
-      console.log(res);
+      setIsCorrect(res.data.isCorrect);
     } catch {
-      console.log("put data request fail");
+      console.log("post data request fail");
     }
     setOpen((cur) => !cur);
   };
+
+  console.log(isCorrect);
 
   return (
     <Stack spacing={2}>
@@ -62,11 +65,11 @@ function AnswerAlert({ setResult }: AlertType) {
             </IconButton>
           }
           onClose={handleClose}
-          severity={option ? "success" : "error"}
+          severity={isCorrect ? "success" : "error"}
           sx={{ fontSize: "0.7rem" }}
           icon={false}
         >
-          {option ? "정답입니다!" : "틀렸습니다!"}
+          {isCorrect ? "정답입니다!" : "틀렸습니다!"}
         </Alert>
       </Snackbar>
     </Stack>

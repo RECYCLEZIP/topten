@@ -8,8 +8,14 @@ export async function getData(endpoint: string) {
   return axios.get(serverUrl + endpoint);
 }
 
-export async function postData(endpoint: string, data: any) {
+export async function postData(endpoint: string, data: object) {
   const bodyData = JSON.stringify(data);
   console.log(`%cPOST 요청: ${serverUrl + endpoint}`, "color: #296aba;");
   console.log(`%cPOST 요청 데이터: ${bodyData}`, "color: #296aba;");
+
+  return axios.post(serverUrl + endpoint, bodyData, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 }
