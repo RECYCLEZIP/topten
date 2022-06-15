@@ -30,6 +30,8 @@ test:
     dependencies:
         - build
     script:
+        - echo "JWT_SECRET_KEY"=$JWT_SECRET_KEY >> ".env"
+        - echo "JWT_PUBLIC_KEY"=$JWT_PUBLIC_KEY >> ".env"
         - yarn test:ci
     cache:
         - paths:

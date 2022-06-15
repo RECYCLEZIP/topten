@@ -1,9 +1,9 @@
 import bcrypt from "bcrypt";
 import { User } from "@src/db";
+import { Document } from "mongoose";
 import { IUser } from "@src/models/interface";
 import { RequestError } from "@src/middlewares/errorHandler";
-import { createToken } from "@src/utils/jwt";
-import { Document } from "mongoose";
+import { createAccessToken, createRefreshToken } from "@src/utils/jwt";
 
 const deletePassword = (mongooseObj: Document) => {
     const obj = mongooseObj.toObject();
@@ -31,9 +31,17 @@ export class UserService {
         const isCheckedPassword = await bcrypt.compare(targetPassword, foundUser.password);
         if (!isCheckedPassword) throw new RequestError("이메일 또는 비밀번호를 확인해주세요.");
 
-        const { accessToken, refreshToken } = createToken(foundUser._id.toString());
-        const updatedUser = await User.update(foundUser._id.toString(), { token: refreshToken });
-        const user = deletePassword(updatedUser as Document);
+        const userId = foundUser._id.toString();
+        const accessToken = createAccessToken(userId);
+        const refreshToken = createRefreshToken();
+
+        const user = await User.update(userId, { token: refreshToken });
         return { user, accessToken, refreshToken };
+    }
+
+    static async updateUser(id: string, userInfo: Partial<IUser>) {
+        const updatedUser = await User.update(id, userInfo);
+        if (!updatedUser) throw new RequestError("해당 사용자를 찾을 수 없습니다.");
+        return updatedUser;
     }
 }
