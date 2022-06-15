@@ -3,8 +3,9 @@ import wrapAsyncFunc from "@src/utils/catchAsync";
 import { QuizService } from "@src/service/quiz.service";
 import { STATUS_200_OK } from "@src/utils/statusCode";
 import { Submissions } from "@src/models/interface";
-import { bodyValidator } from "@src/middlewares/bodyValidator";
+import { bodyValidator, paramsValidator } from "@src/middlewares/requestValidator";
 import { quizSchema, quizSetSchema } from "@src/utils/bodySchema";
+import { identifierSchema } from "@src/utils/paramsSchema";
 
 const quizController = Router();
 
@@ -46,6 +47,7 @@ quizController.get(
 
 quizController.get(
     "/quizzes/:id",
+    paramsValidator(identifierSchema),
     wrapAsyncFunc(async (req, res, next) => {
         /*  #swagger.tags = ["quiz"]
             #swagger.description = "quizId에 해당하는 퀴즈정보 조회" 
@@ -60,14 +62,15 @@ quizController.get(
             schema: { "$ref": "#/definitions/QuizByType" },
             description: "quizId에 해당하는 퀴즈정보 조회" } */
 
-        const { id: quizId } = req.params;
-        const quiz = await QuizService.getQuiz(quizId);
+        const { id } = req.params;
+        const quiz = await QuizService.getQuiz(id);
         return res.status(STATUS_200_OK).json(quiz);
     }),
 );
 
 quizController.post(
     "/quizzes/:id/submission",
+    paramsValidator(identifierSchema),
     bodyValidator(quizSchema),
     wrapAsyncFunc(async (req, res, next) => {
         /*  #swagger.tags = ["quiz"]
@@ -89,9 +92,9 @@ quizController.post(
             schema: { "$ref": "#/definitions/QuizResult" },
             description: "quizId에 해당하는 퀴즈 채점결과 반환" } */
 
-        const { id: quizId } = req.params;
+        const { id } = req.params;
         const answer: string = req.body.answer;
-        const result = await QuizService.getQuizResult(quizId, answer);
+        const result = await QuizService.getQuizResult(id, answer);
         return res.status(STATUS_200_OK).json(result);
     }),
 );

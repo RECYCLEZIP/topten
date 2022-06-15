@@ -2,8 +2,9 @@ import { Router } from "express";
 import wrapAsyncFunc from "@src/utils/catchAsync";
 import { INews } from "@src/models/interface";
 import { newsSchema } from "@src/utils/bodySchema";
+import { identifierSchema } from "@src/utils/paramsSchema";
 import { newsService } from "@src/service/news.service";
-import { bodyValidator } from "@src/middlewares/bodyValidator";
+import { bodyValidator, paramsValidator } from "@src/middlewares/requestValidator";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
 
 const newsController = Router();
@@ -54,6 +55,7 @@ newsController.post(
 
 newsController.put(
     "/news/:id",
+    paramsValidator(identifierSchema),
     bodyValidator(newsSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["news"]
@@ -83,6 +85,7 @@ newsController.put(
 
 newsController.delete(
     "/news/:id",
+    paramsValidator(identifierSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["news"]
             #swagger.description = "뉴스 삭제"
