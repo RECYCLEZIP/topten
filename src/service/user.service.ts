@@ -7,6 +7,7 @@ export class UserService {
         const { email } = userInfo;
         const foundEmail = await User.findByEmail(email);
         if (foundEmail) throw new RequestError("이미 사용중인 이메일입니다.");
+
         const newUser = User.create(userInfo);
         return newUser.save();
     }

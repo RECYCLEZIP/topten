@@ -67,5 +67,5 @@ export interface Result {
 export interface IUser {
     email: string;
     username: string;
-    password: string;
+    password?: string;
 }

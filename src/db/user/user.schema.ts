@@ -19,10 +19,17 @@ const UserSchema = new Schema<IUser>({
 });
 
 UserSchema.pre("save", async function (next) {
-    if (this.isModified("password")) {
+    if (!this.isModified("password")) return next();
+    if (this.password) {
         this.password = await bcrypt.hash(this.password, 12);
+        next();
     }
-    next();
+});
+
+UserSchema.post("save", function (_doc) {
+    const createdUser = this.toObject();
+    delete createdUser.password;
+    return createdUser;
 });
 
 export const UserModel = model<IUser>("User", UserSchema);
