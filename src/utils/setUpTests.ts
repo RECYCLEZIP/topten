@@ -3,9 +3,10 @@ import mongoose from "mongoose";
 import { NextFunction, Request, Response } from "express";
 import { MongoMemoryServer } from "mongodb-memory-server";
 
-export const mockRequest = (body?: object): Request => {
+export const mockRequest = (body?: object, params?: string): Request => {
     const req: unknown = {
         body,
+        params,
     };
     return req as Request;
 };
