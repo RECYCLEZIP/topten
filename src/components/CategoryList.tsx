@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { getData } from "../api";
@@ -6,6 +6,7 @@ import {
   categoryItemState,
   categoryKindState,
   categoryPageState,
+  categorySelectedState,
   categoryState,
 } from "../stores/atoms";
 import { CategoryContainer } from "../styles/trash/category";
@@ -23,8 +24,9 @@ function CategoryList({ backColor }: { backColor?: string }) {
   const setKind = useSetRecoilState(categoryKindState);
   const setList = useSetRecoilState(categoryItemState);
   const setPage = useSetRecoilState(categoryPageState);
+  const url = window.location.pathname;
 
-  const [isSelected, setIsSelected] = useState([false]);
+  const [isSelected, setIsSelected] = useRecoilState(categorySelectedState);
 
   const getCategory = async () => {
     try {
@@ -59,9 +61,13 @@ function CategoryList({ backColor }: { backColor?: string }) {
             <IMGBox>
               <IMG src={list.image}></IMG>
             </IMGBox>
-            <CategoryText isSelected={isSelected[index]}>
-              {list.name}
-            </CategoryText>
+            {url !== "/" ? (
+              <CategoryText isSelected={isSelected[index]}>
+                {list.name}
+              </CategoryText>
+            ) : (
+              <CategoryText>{list.name}</CategoryText>
+            )}
           </ImgContainer>
         ))}
       </List>

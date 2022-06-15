@@ -26,7 +26,6 @@ function Item() {
     try {
       const res = await getData(`trash/${id}`);
       setTrash(res.data);
-      console.log(typeof res.data);
     } catch {
       console.log("Error: data get request fail");
     }
@@ -36,9 +35,11 @@ function Item() {
   useEffect(() => {
     getTrash();
   }, []);
+
   if (!loading) {
     return <div>Loading...</div>;
   }
+
   return (
     <TrashContainer>
       <Helmet>

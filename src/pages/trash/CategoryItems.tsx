@@ -38,7 +38,7 @@ function CategoryItems() {
     } catch {
       console.log("Error: data get request fail");
     }
-  }, [page, kind]);
+  }, [kind, page, setList]);
 
   useEffect(() => {
     getTrashList();

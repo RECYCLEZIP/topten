@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const TrashContainer = styled.div`
-  margin: 4rem 8%;
+  margin: 4rem 10%;
 `;
 
 export const TrashImage = styled.img`
@@ -49,8 +49,8 @@ export const MiddleBox = styled.div`
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
   margin: 1rem;
-  padding: 0.7rem 2rem;
-  width: 20%;
+  padding: 0.7rem 1.5rem;
+  width: 23%;
 `;
 
 export const MiddleText = styled.p<{ margin?: string }>`

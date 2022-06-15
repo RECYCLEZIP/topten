@@ -63,12 +63,19 @@ export const categoryItemState = atom<CategoryItemType[][]>({
   default: [],
 });
 
+// trash category
 export const categoryKindState = atom<string>({
   key: "categoryKindState",
   default: "",
 });
 
+// to infinite scroll last trash id
 export const categoryPageState = atom<string>({
   key: "categoryPageState",
   default: "",
+});
+
+export const categorySelectedState = atom<boolean[]>({
+  key: "categorySelectedState",
+  default: [],
 });
