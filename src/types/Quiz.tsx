@@ -12,3 +12,19 @@ export interface AlertType {
   setResult: Dispatch<SetStateAction<boolean>>;
   answer: boolean;
 }
+
+export interface QuizType {
+  answer?: string;
+  description?: string;
+  image?: string;
+  options?: string[];
+  // result ?: {}
+  title?: string;
+  type?: string;
+  _id?: string;
+}
+
+export interface QuizCardType {
+  display?: "none";
+  quiz: QuizType;
+}

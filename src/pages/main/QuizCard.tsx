@@ -13,13 +13,17 @@ import {
   QuizQuestion,
 } from "../../styles/quizStyles/QuizzesStyle";
 import { img } from "../../assets/imgImport";
+import { QuizCardType } from "../../types/Quiz";
+import { useNavigate } from "react-router";
 
 /** main page quiz card component
  *
  * @param {"none"} display visible or not
  * @returns
  */
-function QuizCard({ display }: { display?: "none" }) {
+function QuizCard({ display, quiz }: QuizCardType) {
+  const navigate = useNavigate();
+
   return (
     <RankContainer>
       <WrongPercent>
@@ -27,11 +31,13 @@ function QuizCard({ display }: { display?: "none" }) {
         <RateBox>80%</RateBox>
       </WrongPercent>
       <QuestionBox>
-        <QuizImg src={img.sample} />
+        <QuizImg src={quiz.image} />
         <QuizQuestion>
           <LogoImg src={img.quizLogo} />
-          <CardText>퀴즈 내용입니다.</CardText>
-          <Button>지금 바로 풀어보기</Button>
+          <CardText>{quiz.title}</CardText>
+          <Button onClick={() => navigate(`${quiz._id}`)}>
+            지금 바로 풀어보기
+          </Button>
         </QuizQuestion>
       </QuestionBox>
     </RankContainer>
