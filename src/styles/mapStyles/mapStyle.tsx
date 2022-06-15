@@ -3,17 +3,32 @@ import { styled } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import { autocompleteClasses } from "@mui/material/Autocomplete";
 import { Button } from "../ButtonStyles";
+import { Container } from "../basicStyle";
+
+export const MapContainer = styled2(Container)`
+padding-top: 0;
+margin-top: 2.6rem;
+`;
+
+export const MapTop = styled2.div`
+background: white;
+z-index: 1;
+width: 100%;
+height: fit-content;
+position: fixed;
+
+padding-top: 2.5rem;
+`;
 
 export const MapTitle = styled2.span`
-  position: fixed;
+  // position: fixed;
 `;
 export const MapSearchSection = styled2.section`
-  margin-top: 2rem;
-  margin-bottom: 1.5rem;
+  margin: 1rem 0;
   display: block;
   
   align-items: center;
-  position: fixed;
+  // position: fixed;
   
   @media (min-width: 768px) {
     display: flex;
@@ -42,17 +57,20 @@ export const MapBinSection = styled2.section`
 `;
 
 export const MapBinMapWrapper = styled2.div`
-width: 100%;
+width: 85%;
 height: 15rem;
 
 position: fixed;
 
-margin-top: 9rem;
+margin-top: 11.5rem;
+margin-bottom: 3rem;
+
+z-index: 1;
 
 
 @media (min-width: 768px) {
   width: 40%;
-  margin-top: 5rem;
+  margin-top: 7.8rem;
   }
 `;
 
@@ -60,7 +78,7 @@ export const MapBinListContainer = styled2.div`
   display: block;
   position: absolute;
 
-  margin-top: 25rem;
+  margin-top: 29rem;
 
   flex: 1;
 
