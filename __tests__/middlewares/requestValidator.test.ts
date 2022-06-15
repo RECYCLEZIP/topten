@@ -1,5 +1,5 @@
-import { bodyValidator } from "@src/middlewares/requestValidator";
-import { newsSchema, trashSchema } from "@src/utils/bodySchema";
+import { bodyValidator, paramsValidator } from "@src/middlewares/requestValidator";
+import { newsSchema, trashSchema, quizSchema, quizSetSchema } from "@src/utils/bodySchema";
 import { mockRequest, mockResponse, mockNext } from "@src/utils/setUpTests";
 import { STATUS_400_BADREQUEST } from "@src/utils/statusCode";
 
@@ -58,3 +58,34 @@ describe("TRASH Request Body 유효성 검사", () => {
         expect(next).toHaveBeenCalledTimes(0);
     });
 });
+
+describe("QUIZ Request Body 유효성 검사", () => {
+    it("quizSchema: 단일 퀴즈채점 API 파라미터 TEST", () => {
+        const req = mockRequest({ answer: "1" });
+        bodyValidator(quizSchema)(req, res, next);
+        expect(next).toHaveBeenCalled();
+        expect(next).toHaveBeenCalledTimes(1);
+    });
+
+    it("quizSetSchema: 퀴즈셋 채점 API 파라미터 TEST", () => {
+        const requestBody = {
+            type: "multipleChoice",
+            answers: [
+                {
+                    quizId: "62a455ad6059af946a56e717",
+                    answer: "1",
+                },
+                {
+                    quizId: "62a455ad6059af946a56e715",
+                    answer: "2",
+                },
+            ],
+        };
+        const req = mockRequest(requestBody);
+        bodyValidator(quizSetSchema)(req, res, next);
+        expect(next).toHaveBeenCalled();
+        expect(next).toHaveBeenCalledTimes(1);
+    });
+});
+
+describe("id 파라미터를 잘 담아 요청하는지 확인하기 위한 Validator", () => {});
