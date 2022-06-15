@@ -28,7 +28,7 @@ function QuizCard({ display, quiz }: QuizCardType) {
     <RankContainer>
       <WrongPercent>
         <RateText display={display}>오답률</RateText>
-        <RateBox>80%</RateBox>
+        <RateBox>{quiz.result[0].yesterday}%</RateBox>
       </WrongPercent>
       <QuestionBox>
         <QuizImg src={quiz.image} />

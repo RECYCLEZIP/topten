@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   QuizContainer,
   TwoOption,
@@ -8,6 +8,9 @@ import QuestionCard from "./QuestionCard";
 import ClearIcon from "@mui/icons-material/Clear";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 import Answer from "./Answer";
+import { getData } from "../../api";
+import { useSetRecoilState } from "recoil";
+import { quizListState } from "../../stores/atoms";
 
 // ox quiz page component
 function OXQuiz() {
@@ -18,6 +21,7 @@ function OXQuiz() {
   ];
   //recoil로 빼도록 하자.
   const [isSelected, setIsSelected] = useState([false]);
+  const setQuizzes = useSetRecoilState(quizListState);
 
   // selected option toggle true
   const clickHandler = (idx: number) => {
@@ -26,9 +30,21 @@ function OXQuiz() {
     setIsSelected(newArr);
   };
 
+  const getQuiz = async () => {
+    try {
+      const res = await getData("quizzes?type=ox");
+      setQuizzes(res.data);
+    } catch {
+      console.log("Error: data get request fail");
+    }
+  };
+
+  useEffect(() => {
+    getQuiz();
+  }, []);
+
   return (
-    <QuizContainer>
-      <QuestionCard />
+    <>
       <TwoOptions>
         {option.map((text, index) => {
           return (
@@ -42,8 +58,7 @@ function OXQuiz() {
           );
         })}
       </TwoOptions>
-      <Answer />
-    </QuizContainer>
+    </>
   );
 }
 

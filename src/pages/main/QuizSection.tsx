@@ -10,29 +10,34 @@ import { QuizType } from "../../types/Quiz";
 function QuizSection() {
   const navigate = useNavigate();
   const [quizzes, setQuizzes] = useState<QuizType[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const getWrongRank = async () => {
     try {
       const res = await getData("quizzes/wrong");
-      console.log(res.data);
       setQuizzes(res.data);
     } catch {
       console.log("Error: data get request fail");
     }
+    setLoading(true);
   };
 
   useEffect(() => {
     getWrongRank();
   }, []);
 
+  if (!loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <QuizLank>
       <TitleText>최근 가장 많이 틀린 퀴즈</TitleText>
       {quizzes.map((quiz, index) =>
         index !== 0 ? (
-          <QuizCard display="none" quiz={quiz} />
+          <QuizCard display="none" quiz={quiz} key={index} />
         ) : (
-          <QuizCard quiz={quiz} />
+          <QuizCard quiz={quiz} key={index} />
         ),
       )}
       <QuizButton onClick={() => navigate("/quizzes")}>

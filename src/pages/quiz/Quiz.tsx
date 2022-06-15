@@ -1,34 +1,53 @@
-import { QuizList } from "../../styles/quizStyles/QuizListStyle";
-import { TitleText } from "../../styles/TextStyle";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { getData } from "../../api";
 import {
-  QuizListBox,
-  QuizNumber,
-  QuizText,
-} from "../../styles/quizStyles/QuizListStyle";
-import { useNavigate } from "react-router-dom";
+  currentPageState,
+  currentQuizState,
+  quizListState,
+} from "../../stores/atoms";
+import { QuizContainer } from "../../styles/quizStyles/QuizzesStyle";
+import Answer from "./Answer";
+import MultiQuiz from "./MultiQuiz";
+import OXQuiz from "./OXQuiz";
+import QuestionCard from "./QuestionCard";
+import VSQuiz from "./VSQuiz";
 
-//quiz list page
 function Quiz() {
-  const url = ["multiple-choice", "ox", "vs"];
-  const quizList = ["객관식 퀴즈", "OX 퀴즈", "음식물 vs 일반"];
-  const quizDescription = [
-    "다양한 보기 중에 고르는 객관식",
-    "OX 중에 고르기",
-    "헷갈리는 음식물과 일반 쓰레기",
-  ];
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const currentPage = useRecoilValue(currentPageState);
+  const type = useParams().type;
+  const setQuizzes = useSetRecoilState(quizListState);
+  const setCurrentQuiz = useSetRecoilState(currentQuizState);
+
+  const getQuizzes = async () => {
+    try {
+      const res = await getData(`quizzes?type=${type}`);
+      setQuizzes(res.data);
+      setCurrentQuiz([res.data[currentPage]]);
+    } catch {
+      console.log("Error: data get request fail");
+    }
+    setLoading(true);
+  };
+
+  useEffect(() => {
+    getQuizzes();
+  }, []);
+
+  if (!loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <QuizList>
-      <TitleText>오늘의 퀴즈</TitleText>
-      {quizList.map((quiz, index) => (
-        <QuizListBox onClick={() => navigate(`./${url[index]}`)} key={index}>
-          <QuizNumber>4문항</QuizNumber>
-          <QuizText>{quiz}</QuizText>
-          <QuizText size="0.6rem">{quizDescription[index]}</QuizText>
-        </QuizListBox>
-      ))}
-    </QuizList>
+    <QuizContainer>
+      <QuestionCard />
+      {type === "multipleChoice" && <MultiQuiz />}
+      {type === "ox" && <OXQuiz />}
+      {type === "mixUp" && <VSQuiz />}
+      <Answer />
+    </QuizContainer>
   );
 }
 

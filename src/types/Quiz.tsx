@@ -10,15 +10,14 @@ export interface ResultTextType {
 //alert component props type
 export interface AlertType {
   setResult: Dispatch<SetStateAction<boolean>>;
-  answer: boolean;
 }
 
 export interface QuizType {
   answer?: string;
   description?: string;
   image?: string;
-  options?: string[];
-  // result ?: {}
+  options: string[];
+  result: { yesterday: number }[];
   title?: string;
   type?: string;
   _id?: string;
@@ -27,4 +26,5 @@ export interface QuizType {
 export interface QuizCardType {
   display?: "none";
   quiz: QuizType;
+  index?: number;
 }
