@@ -2,9 +2,10 @@ import { Router } from "express";
 import wrapAsyncFunc from "@src/utils/catchAsync";
 import { ITrash } from "@src/models/interface";
 import { trashSchema } from "@src/utils/bodySchema";
+import { identifierSchema } from "@src/utils/paramsSchema";
 import { trashCategories } from "@src/utils/constans";
 import { trashService } from "@src/service/trash.service";
-import { bodyValidator } from "@src/middlewares/bodyValidator";
+import { bodyValidator, paramsValidator } from "@src/middlewares/requestValidator";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
 
 const trashController = Router();
@@ -48,6 +49,7 @@ trashController.get(
 
 trashController.get(
     "/trash/:id",
+    paramsValidator(identifierSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["trash"]
             #swagger.description = "개별 쓰레기 정보 조회"
@@ -91,6 +93,7 @@ trashController.post(
 
 trashController.put(
     "/trash/:id",
+    paramsValidator(identifierSchema),
     bodyValidator(trashSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["trash"]
@@ -120,6 +123,7 @@ trashController.put(
 
 trashController.delete(
     "/trash/:id",
+    paramsValidator(identifierSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["trash"]
             #swagger.description = "쓰레기 삭제"

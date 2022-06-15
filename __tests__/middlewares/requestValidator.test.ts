@@ -1,4 +1,4 @@
-import { bodyValidator } from "@src/middlewares/bodyValidator";
+import { bodyValidator } from "@src/middlewares/requestValidator";
 import { newsSchema, trashSchema } from "@src/utils/bodySchema";
 import { mockRequest, mockResponse, mockNext } from "@src/utils/setUpTests";
 import { STATUS_400_BADREQUEST } from "@src/utils/statusCode";
