@@ -17,6 +17,7 @@ import hard2 from "./img/image 53.png";
 import hard3 from "./img/image 52.png";
 import spin from "./img/spin.png";
 import mainLogo from "./img/서비스로고.png";
+import shutter from './img/shutter.png';
 
 export const img = {
   seoul: seoul,
@@ -37,4 +38,5 @@ export const img = {
   hard3: hard3,
   spin: spin,
   mainLogo: mainLogo,
+  shutter: shutter,
 };

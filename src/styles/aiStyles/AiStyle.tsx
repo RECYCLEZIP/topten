@@ -2,8 +2,6 @@ import styled from "styled-components";
 
 import { Button } from "../ButtonStyles";
 
-
-
 // 공통
 export const AiContentTitle = styled.span`
   font-size: 0.8rem;
@@ -21,7 +19,7 @@ export const AiImageContainer = styled.div`
   background: #9eacba;
 
   width: 100%;
-  height: 10rem;
+  height: 13rem;
 
   margin-bottom: 0.5rem;
 
@@ -33,6 +31,22 @@ export const AiImageContainer = styled.div`
   overflow: hidden;
 
   position: relative;
+`;
+
+export const CameraShutterWrapper = styled.div`
+  z-index: 100;
+
+  bottom: 5px;
+  position: absolute;
+`;
+
+export const CameraShutterIcon = styled.img`
+  width: 2rem;
+`;
+
+export const CameraButton = styled.button`
+  width: 3rem;
+  height: 3rem;
 `;
 
 export const AiImageLayer = styled.div`

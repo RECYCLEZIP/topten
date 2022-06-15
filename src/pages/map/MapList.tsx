@@ -14,6 +14,7 @@ import {
   MapBinLacationTitle,
   MapBinLacationDes,
   BackWrapper,
+  BackButton,
 } from "../../styles/mapStyles/mapStyle";
 
 function MapList() {
@@ -49,7 +50,6 @@ function MapList() {
       ) : (
         // 지도에서 선택된 마커가 있다면 해당 마커의 쓰레기통 정보만 띄움
         <>
-          <BackWrapper onClick={onClickBack}>이전으로</BackWrapper>
           <MapBinLocationContainer
             onClick={() =>
               onClickBin(selectedBinInform?.lat, selectedBinInform?.lng)
@@ -60,6 +60,9 @@ function MapList() {
             </MapBinLacationTitle>
             <MapBinLacationDes>{selectedBinInform?.point}</MapBinLacationDes>
           </MapBinLocationContainer>
+          <BackWrapper onClick={onClickBack}>
+            <BackButton>이전으로</BackButton>
+          </BackWrapper>
         </>
       )}
     </MapBinListContainer>
