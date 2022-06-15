@@ -1,23 +1,25 @@
-import QuestionCard from "./QuestionCard";
 import {
   TextTwoOption,
   TwoOptions,
-  QuizContainer,
 } from "../../styles/quizStyles/QuizzesStyle";
 import { useEffect, useState } from "react";
-import Answer from "./Answer";
 import { getData } from "../../api";
-import { quizListState } from "../../stores/atoms";
-import { useSetRecoilState } from "recoil";
+import {
+  answerState,
+  quizListState,
+  selectedAnswerState,
+} from "../../stores/atoms";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 // vs quiz page
 function VSQuiz() {
   const option = ["일반", "음식물"];
-  const [isSelected, setIsSelected] = useState([false]);
+  const [isSelected, setIsSelected] = useRecoilState(selectedAnswerState);
   const setQuizzes = useSetRecoilState(quizListState);
+  const setOption = useSetRecoilState(answerState);
 
   const clickHandler = (idx: number) => {
-    const newArr: boolean[] = Array(option.length).fill(false);
+    const newArr = Array<boolean>(option.length).fill(false);
     newArr[idx] = true;
     setIsSelected(newArr);
   };
@@ -34,6 +36,11 @@ function VSQuiz() {
   useEffect(() => {
     getQuiz();
   }, []);
+
+  useEffect(() => {
+    const answer = isSelected.indexOf(true);
+    setOption(option[answer]);
+  }, [isSelected]);
 
   return (
     <>
