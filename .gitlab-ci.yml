@@ -9,22 +9,17 @@ before_script:
 
 build:
     stage: build
-    image: docker:lastest
-    services:
-        - docker:18.09.7-dind
     script:
-        - docker rm $(docker ps -qa --no-trunc --filter "status=exited")
-        - docker rmi $(docker images | grep "none" | awk '/ / { print $3 }')
-        - docker network rm $(docker network ls | grep "bridge" | awk '/ / { print $1 }')
-        - docker rm $(docker ps -qa --no-trunc --filter "status=exited");docker rmi $(docker images | grep "none" | awk '/ / { print $3 }');
         - df -h
+        - yarn
+    tags:
+        - handwoong
 
 test:
     stage: test
     image: node:15-buster
     coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
     script:
-        - yarn cache clean && yarn && du -d1 -h $(yarn cache dir)
         - yarn test:ci
     cache:
         - paths:
@@ -37,6 +32,8 @@ test:
             junit:
                 - junit.xml
             cobertura: coverage/cobertura-coverage.xml
+    tags:
+        - handwoong
 
 pages:
     stage: deploy
@@ -51,3 +48,5 @@ pages:
             - public
     only:
         - dev
+    tags:
+        - handwoong
