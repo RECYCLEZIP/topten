@@ -1,6 +1,10 @@
 image: node:latest
 
+services:
+    - docker:dind
+
 before_script:
+    - docker system prune --all --volumes
     - export MONGOMS_DOWNLOAD_URL=https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-debian10-4.4.1.tgz
     - export MONGOMS_VERSION=4.4.1
 
@@ -12,7 +16,6 @@ stages:
 build:
     stage: build
     script:
-        - rm -rf /builds/ai_track/class_04/ai_project/team10/back/
         - df -h
         - yarn cache clean && yarn && du -d1 -h $(yarn cache dir)
     artifacts:
