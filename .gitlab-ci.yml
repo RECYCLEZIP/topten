@@ -10,6 +10,10 @@ before_script:
 build:
     stage: build
     script:
+        - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
+        - source ~/.bashrc
+        - nvm install --lts
+        - npm install --global yarn
         - df -h
         - yarn
     tags:
