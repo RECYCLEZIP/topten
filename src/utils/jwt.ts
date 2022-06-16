@@ -5,21 +5,21 @@ const publicKey = process.env.JWT_PUBLIC_KEY;
 if (!secretKey || !publicKey) throw new Error("SECRETKEY 또는 PUBLICKEY를 찾지 못했습니다.");
 
 export const createAccessToken = (userId: string) => {
-    return jwt.sign({ userId }, secretKey, { algorithm: "RS256", expiresIn: "1800s" });
+    return jwt.sign({ userId }, secretKey, {
+        algorithm: "RS256",
+        expiresIn: "1800s",
+        issuer: "분리수ZIP",
+    });
 };
 
 export const createRefreshToken = () => {
-    return jwt.sign({}, secretKey, { algorithm: "RS256", expiresIn: "14d" });
+    return jwt.sign({}, secretKey, { algorithm: "RS256", expiresIn: "14d", issuer: "분리수ZIP" });
 };
 
 export const verifyToken = (token: string) => {
     try {
         return jwt.verify(token, publicKey);
     } catch (error: any) {
-        return error.message;
+        return error;
     }
-};
-
-export const decodeToken = (token: string) => {
-    return jwt.decode(token);
 };

@@ -1,8 +1,8 @@
 import { RequestHandler } from "express";
+import { UserService } from "@src/service/user.service";
 import { RequestError } from "@src/middlewares/errorHandler";
 import { STATUS_401_UNAUTHORIZED } from "@src/utils/statusCode";
-import { createAccessToken, createRefreshToken, verifyToken, decodeToken } from "@src/utils/jwt";
-import { UserService } from "@src/service/user.service";
+import { createAccessToken, createRefreshToken, verifyToken } from "@src/utils/jwt";
 
 export const authRequired: RequestHandler = (req, res, next) => {
     const { accessToken, refreshToken } = req.cookies;
@@ -12,23 +12,21 @@ export const authRequired: RequestHandler = (req, res, next) => {
     const userToken = verifyToken(accessToken);
     const userRefreshToken = verifyToken(refreshToken);
 
-    if (userToken !== "jwt expired" && userRefreshToken !== "jwt expired") return next();
+    if (!(userToken instanceof Error) && !(userRefreshToken instanceof Error)) return next();
 
-    if (userToken === "jwt expired") {
-        if (userRefreshToken === "jwt expired") {
+    if (userToken.message === "jwt expired") {
+        if (userRefreshToken.message === "jwt expired") {
             throw new RequestError("로그인이 필요한 서비스입니다.", STATUS_401_UNAUTHORIZED);
         }
-        const { userId } = decodeToken(userToken) as { userId: string };
-        const newAccessToken = createAccessToken(userId);
+        const newAccessToken = createAccessToken(userToken.userId);
         res.cookie("accessToken", newAccessToken);
         req.cookies.accessToken = newAccessToken;
         return next();
     }
 
-    if (userRefreshToken === "jwt expired") {
-        const { userId } = decodeToken(userToken) as { userId: string };
+    if (userRefreshToken.message === "jwt expired") {
         const newRefreshToken = createRefreshToken();
-        UserService.updateUser(userId, { token: newRefreshToken }).then(() => {
+        UserService.updateUser(userToken.userId, { token: newRefreshToken }).then(() => {
             res.cookie("refreshToken", newRefreshToken);
             req.cookies.refreshToken = newRefreshToken;
             return next();
