@@ -1,12 +1,13 @@
 stages:
+    - build
     - test
     - deploy
 
 before_script:
     - export MONGOMS_DOWNLOAD_URL=https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-debian10-4.4.1.tgz
-    - export MONGOMS_VERSION=4.4.1
+    - export MONGOMS_VERSION=4.4.
 
-test:
+build:
     stage: build
     script:
         - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
@@ -16,8 +17,24 @@ test:
         - npm install --global yarn
         - df -h
         - yarn
-        - yarn test:ci
+    artifacts:
+        expire_in: 1 hour
+        paths:
+            - build
+    tags:
+        - handwoong
+
+test:
+    stage: test
+    image: node:15-buster
     coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+    dependencies:
+        - build
+    script:
+        - yarn test:ci
+    cache:
+        - paths:
+              - coverage/
     artifacts:
         paths:
             - coverage/
