@@ -10,17 +10,7 @@ before_script:
 build:
     stage: build
     script:
-        - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
-        - ". ~/.nvm/nvm.sh"
-        - nvm --version
-        - nvm install --lts
-        - npm install --global yarn
         - df -h
-        - yarn
-    artifacts:
-        expire_in: 1 hour
-        paths:
-            - build
     tags:
         - handwoong
 
@@ -28,9 +18,13 @@ test:
     stage: test
     image: node:15-buster
     coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
-    dependencies:
-        - build
     script:
+        - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
+        - ". ~/.nvm/nvm.sh"
+        - nvm --version
+        - nvm install --lts
+        - npm install --global yarn
+        - yarn
         - yarn test:ci
     cache:
         - paths:
