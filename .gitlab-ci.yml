@@ -3,6 +3,8 @@ image: node:latest
 before_script:
     - export MONGOMS_DOWNLOAD_URL=https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-debian10-4.4.1.tgz
     - export MONGOMS_VERSION=4.4.1
+    - export JWT_SECRET_KEY=$JWT_SECRET_KEY
+    - export JWT_PUBLIC_KEY=$JWT_PUBLIC_KEY
 
 stages:
     - build
@@ -12,8 +14,6 @@ stages:
 build:
     stage: build
     script:
-        - echo "JWT_SECRET_KEY"=$JWT_SECRET_KEY >> ".env"
-        - echo "JWT_PUBLIC_KEY"=$JWT_PUBLIC_KEY >> ".env"
         - yarn
         - apt-get install libcurl4
     cache:
