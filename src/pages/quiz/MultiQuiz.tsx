@@ -21,6 +21,10 @@ function MultiQuiz() {
   };
 
   useEffect(() => {
+    setIsSelected([]);
+  }, []);
+
+  useEffect(() => {
     const answer = isSelected.indexOf(true).toString();
     setOption(answer);
   }, [isSelected]);

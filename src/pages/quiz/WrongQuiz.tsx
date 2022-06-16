@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { getData } from "../../api";
-import { currentQuizState } from "../../stores/atoms";
+import { currentQuizState, toPostAnswerState } from "../../stores/atoms";
 import { QuizContainer } from "../../styles/quizStyles/QuizzesStyle";
 import Answer from "./Answer";
 import MultiQuiz from "./MultiQuiz";
@@ -21,6 +21,7 @@ function WrongQuiz() {
   const id = useParams().id;
   const [type, setType] = useState("");
   const [currentQuiz, setCurrentQuiz] = useRecoilState(currentQuizState);
+  const setToPostAnswer = useSetRecoilState(toPostAnswerState);
 
   const getQuiz = async () => {
     try {
@@ -35,6 +36,7 @@ function WrongQuiz() {
 
   useEffect(() => {
     getQuiz();
+    setToPostAnswer([]);
   }, []);
 
   if (!loading) {

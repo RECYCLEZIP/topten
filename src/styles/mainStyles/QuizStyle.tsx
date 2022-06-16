@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 export const RankContainer = styled.div`
-  width: 70%;
+  width: 80%;
   display: flex;
   justify-content: center;
   margin: 2% auto;
-  padding: 0 8%;
   flex-wrap: wrap;
 `;
 

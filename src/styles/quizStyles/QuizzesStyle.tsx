@@ -18,7 +18,7 @@ export const QuizCount = styled.p`
 export const QuestionBox = styled.div<{ width?: string }>`
   display: flex;
   justify-content: space-around;
-  width: ${(props) => props.width || "90%"};
+  width: ${(props) => props.width + "%" || "90%"};
   align-items: center;
   background-color: #51cf66;
   border-radius: 1rem;
@@ -26,12 +26,19 @@ export const QuestionBox = styled.div<{ width?: string }>`
   padding: 5% 4%;
   box-shadow: 0px 0px 10px rgba(139, 188, 153, 0.8);
   flex-wrap: wrap;
+
+  @media (min-width: 768px) {
+    width: ${(props) => `${Number(props.width) - 15}%`};
+  }
 `;
 
-export const QuizQuestion = styled.div`
+export const QuizQuestion = styled.div<{ width?: string }>`
   text-align: right;
-  width: 50%;
+  width: ${(props) => props.width + "%" || "50%"};
   margin: 0.3rem 0;
+  @media (min-width: 768px) {
+    width: ${(props) => `${Number(props.width) - 20}%`};
+  }
 `;
 
 export const Icons = styled.div`

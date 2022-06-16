@@ -45,6 +45,7 @@ function OXQuiz() {
 
   useEffect(() => {
     getQuiz();
+    setIsSelected([]);
   }, []);
 
   useEffect(() => {

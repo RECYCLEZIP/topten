@@ -31,9 +31,9 @@ function QuizCard({ display, quiz }: QuizCardType) {
         <RateText display={display}>오답률</RateText>
         <RateBox>{Math.round(quiz.result[0].yesterday)}%</RateBox>
       </WrongPercent>
-      <QuestionBox width="70%">
+      <QuestionBox width="80">
         <QuizImg src={quiz.image} />
-        <QuizQuestion>
+        <QuizQuestion width="73">
           <LogoImg src={img.quizLogo} />
           <CardText>{quiz.title}</CardText>
           <Button onClick={() => navigate(`/quiz/${quiz._id}`)}>

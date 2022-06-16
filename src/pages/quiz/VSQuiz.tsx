@@ -35,6 +35,7 @@ function VSQuiz() {
 
   useEffect(() => {
     getQuiz();
+    setIsSelected([]);
   }, []);
 
   useEffect(() => {
