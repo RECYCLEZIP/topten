@@ -1,9 +1,6 @@
 image: node:latest
 
 before_script:
-    - set -o allexport
-    - source $CI_ENV
-    - set +o allexport
     - export MONGOMS_DOWNLOAD_URL=https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-debian10-4.4.1.tgz
     - export MONGOMS_VERSION=4.4.1
 
