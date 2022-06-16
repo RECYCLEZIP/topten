@@ -17,7 +17,10 @@ import hard2 from "./img/image 53.png";
 import hard3 from "./img/image 52.png";
 import spin from "./img/spin.png";
 import mainLogo from "./img/서비스로고.png";
-import shutter from './img/shutter.png';
+import shutter from "./img/shutter.png";
+import greenBackLogo from "./img/greenBackLogo.png";
+import quiz1 from './img/quiz1.png';
+import quiz2 from './img/quiz2.png';
 
 export const img = {
   seoul: seoul,
@@ -39,4 +42,7 @@ export const img = {
   spin: spin,
   mainLogo: mainLogo,
   shutter: shutter,
+  greenBackLogo: greenBackLogo,
+  quiz1: quiz1,
+  quiz2: quiz2,
 };
