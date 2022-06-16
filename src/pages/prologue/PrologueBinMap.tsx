@@ -21,11 +21,11 @@ function PrologueBinMap() {
       <PrologueBinMapTextContainer>
         <PrologueBinMapTitleContainer>
           <div>
-            <BinMapLabel>서울시 전지역</BinMapLabel>
-            <PrologueTitleWhite>서울시</PrologueTitleWhite>
+            <BinMapLabel  className="fade-class" >서울시 전지역</BinMapLabel>
+            <PrologueTitleWhite  className="fade-class" >서울시</PrologueTitleWhite>
           </div>
           <div>
-            <PrologueTitleWhite>공공 쓰레기통 지도</PrologueTitleWhite>
+            <PrologueTitleWhite  className="fade-class">공공 쓰레기통 지도</PrologueTitleWhite>
           </div>
         </PrologueBinMapTitleContainer>
         <PrologueSubTitleContainer>

@@ -1,31 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { img } from "../../assets/imgImport";
 
 import {
-    PrologueSection,
-    PrologueTitle,
-    PrologueAskTitleContainer,
-    PrologueTitleLightGreen,
-    PrologueTitleGreen,
-    PrologueAskImgWrapper,
-    PrologueAskImg,
-  } from "../../styles/prologueStyles/PrologueStyle";
+  PrologueSection,
+  PrologueTitle,
+  PrologueAskTitleContainer,
+  AskTitleContainer1,
+  AskTitleContainer2,
+  PrologueTitleLightGreen,
+  PrologueTitleGreen,
+  PrologueAskImgWrapper,
+  PrologueAskImg,
+} from "../../styles/prologueStyles/PrologueStyle";
 
 function PrologueAsk() {
   return (
     <PrologueSection>
       <PrologueAskTitleContainer>
-        <div>
+        <AskTitleContainer1 className="fade-class">
           <PrologueTitleLightGreen>올바른 </PrologueTitleLightGreen>
           <PrologueTitle>분리수거,</PrologueTitle>
-        </div>
-        <div>
+        </AskTitleContainer1>
+        <AskTitleContainer2 className="fade-class">
           <PrologueTitleGreen>확실히 </PrologueTitleGreen>
           <PrologueTitle>하고 계신가요?</PrologueTitle>
-        </div>
+        </AskTitleContainer2>
       </PrologueAskTitleContainer>
-      <PrologueAskImgWrapper>
+      <PrologueAskImgWrapper className="fade-class">
         <PrologueAskImg src={img.bin} alt="bins" />
       </PrologueAskImgWrapper>
     </PrologueSection>
