@@ -31,7 +31,6 @@ const binsSchema = new Schema<Bins>(
         },
         address: {
             type: String,
-            required: true,
         },
         type: {
             type: [String],
