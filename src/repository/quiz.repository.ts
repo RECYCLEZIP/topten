@@ -11,9 +11,7 @@ export class Quiz {
     }
 
     static async findQuizByWrongRate() {
-        return await QuizModel.find({ result: { $ne: null } }) // null값을 제외하고 조회,, 적용이안됨
-            .sort({ "result.yesterday": -1 })
-            .limit(3);
+        return await QuizModel.find({}).sort({ "result.yesterday": -1 }).limit(3);
     }
 
     static async findAnswerByQuizType(type: string) {
