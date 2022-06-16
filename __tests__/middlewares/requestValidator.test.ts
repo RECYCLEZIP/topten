@@ -92,17 +92,17 @@ describe("QUIZ Request Body 유효성 검사", () => {
 describe("id 파라미터를 잘 담아 요청하는지 확인하는 Validator", () => {
     it("길이 24의 id 파라미터를 잘 담고 있다.", () => {
         const params = { id: "62a455ad6059af946a56e715" };
-        const req = mockRequest(params);
+        const req = mockRequest({}, params);
         paramsValidator(identifierSchema)(req, res, next);
         expect(next).toHaveBeenCalled();
         expect(next).toHaveBeenCalledTimes(1);
     });
 
-    // it("id 파라미터의 길이가 24가 아니면 유효성 검사에 실패한다.", () => {
-    //     const params = { id: "1234" };
-    //     const req = mockRequest(params);
-    //     paramsValidator(identifierSchema)(req, res, next);
-    //     expect(next).not.toHaveBeenCalled();
-    //     expect(next).toHaveBeenCalledTimes(0);
-    // });
+    it("id 파라미터의 길이가 24가 아니면 유효성 검사에 실패한다.", () => {
+        const params = { id: "1234" };
+        const req = mockRequest({}, params);
+        paramsValidator(identifierSchema)(req, res, next);
+        expect(next).not.toHaveBeenCalled();
+        expect(next).toHaveBeenCalledTimes(0);
+    });
 });
