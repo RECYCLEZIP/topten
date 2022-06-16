@@ -18,6 +18,7 @@ import {
   currentQuizState,
   quizListState,
   selectedAnswerState,
+  toPostAnswerState,
 } from "../../stores/atoms";
 import { useEffect } from "react";
 
@@ -28,6 +29,7 @@ function QuestionCard() {
   const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
   const [currentQuiz, setCurrentQuiz] = useRecoilState(currentQuizState);
   const quizzes = useRecoilValue(quizListState);
+  const toPostAnswer = useRecoilValue(toPostAnswerState);
 
   const initialization = () => {
     setIsSelected([false]);
@@ -63,6 +65,9 @@ function QuestionCard() {
         <MoveButton
           onClick={() => {
             if (currentPage + 1 === 4) {
+              if (toPostAnswer.length !== 4) {
+                return alert("모든 문제를 풀어주세요!");
+              }
               navigate("/quizzes/result");
               setCurrentPage(-1);
             }
