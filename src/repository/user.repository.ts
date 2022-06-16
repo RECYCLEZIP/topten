@@ -10,8 +10,8 @@ export class User {
         return UserModel.findOne({ email });
     }
 
-    static create(userInfo: IUser) {
-        return new UserModel(userInfo);
+    static async create(userInfo: IUser) {
+        return UserModel.create(userInfo);
     }
 
     static async update(id: string, userInfo: Partial<IUser>) {

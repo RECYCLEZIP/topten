@@ -19,12 +19,12 @@ export class UserService {
     }
 
     static async addUser(userInfo: IUser) {
-        const { email } = userInfo;
+        const { email, password } = userInfo;
         const foundEmail = await User.findByEmail(email);
         if (foundEmail) throw new RequestError("이미 사용중인 이메일입니다.");
 
-        const newUser = User.create(userInfo);
-        await newUser.save();
+        userInfo.password = await bcrypt.hash(password as string, 12);
+        const newUser = await User.create(userInfo);
         return deletePassword(newUser);
     }
 
@@ -46,6 +46,9 @@ export class UserService {
     }
 
     static async updateUser(id: string, userInfo: Partial<IUser>) {
+        const { email, password } = userInfo;
+        if (email) throw new RequestError("이메일은 변경하실 수 없습니다.");
+        userInfo.password = await bcrypt.hash(password as string, 12);
         const updatedUser = await User.update(id, userInfo);
         if (!updatedUser) throw new RequestError("해당 사용자를 찾을 수 없습니다.");
         return updatedUser;
