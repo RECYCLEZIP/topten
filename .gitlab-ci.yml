@@ -1,10 +1,12 @@
 image: node:latest
 
-services:
-    - docker:dind
-
 before_script:
-    - docker system prune --all --volumes
+  # 볼륨제거
+    - echo "remote volumn"
+    - docker volume rm $(docker volume ls -qf dangling=true)
+    - echo "remote docker images"
+    - docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
+    - docker images -a | sed '1 d' | awk '{print $3}' | xargs -L1 docker rmi -f
     - export MONGOMS_DOWNLOAD_URL=https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-debian10-4.4.1.tgz
     - export MONGOMS_VERSION=4.4.1
 
