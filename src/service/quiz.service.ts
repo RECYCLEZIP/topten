@@ -48,6 +48,8 @@ export class QuizService {
                 yesterday: isNaN(wrongRate) ? 0 : wrongRate,
             };
             quiz.result.push(newResult);
+            console.log(newResult);
+            console.log(quiz.result);
             await Quiz.upsertQuizInfo(quizId, newResult);
         } else {
             result.totalUser += 1;
