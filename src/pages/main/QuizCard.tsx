@@ -29,14 +29,14 @@ function QuizCard({ display, quiz }: QuizCardType) {
     <RankContainer>
       <WrongPercent>
         <RateText display={display}>오답률</RateText>
-        <RateBox>{quiz.result[0].yesterday}%</RateBox>
+        <RateBox>{Math.round(quiz.result[0].yesterday)}%</RateBox>
       </WrongPercent>
-      <QuestionBox>
+      <QuestionBox width="70%">
         <QuizImg src={quiz.image} />
         <QuizQuestion>
           <LogoImg src={img.quizLogo} />
           <CardText>{quiz.title}</CardText>
-          <Button onClick={() => navigate(`${quiz._id}`)}>
+          <Button onClick={() => navigate(`/quiz/${quiz._id}`)}>
             지금 바로 풀어보기
           </Button>
         </QuizQuestion>

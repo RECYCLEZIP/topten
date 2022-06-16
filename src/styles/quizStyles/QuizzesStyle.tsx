@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const QuizContainer = styled.div`
   width: 80%;
-  padding: 2.5rem 1rem;
+  padding: 4rem 1rem;
   margin: 0 auto;
   @media (min-width: 768px) {
     width: 45%;
@@ -15,10 +15,10 @@ export const QuizCount = styled.p`
   text-align: right;
 `;
 
-export const QuestionBox = styled.div`
+export const QuestionBox = styled.div<{ width?: string }>`
   display: flex;
   justify-content: space-around;
-  width: 70%;
+  width: ${(props) => props.width || "90%"};
   align-items: center;
   background-color: #51cf66;
   border-radius: 1rem;
@@ -52,7 +52,7 @@ export const QuizOption = styled.div<{ isSelected: boolean }>`
 
   padding: 2% 5%;
   font-size: 0.6rem;
-  margin: 1rem 0;
+  margin-top: 1rem;
 
   color: ${(props) => (props.isSelected ? "white" : "black")};
   background-color: ${(props) => (props.isSelected ? "#22be70" : "white")};
@@ -118,6 +118,7 @@ export const CorrectAnswer = styled.button`
 export const TwoOptions = styled.div`
   display: flex;
   justify-content: space-evenly;
+  margin-top: 1rem;
 `;
 
 export const TwoOption = styled.div<{ isSelected: boolean }>`

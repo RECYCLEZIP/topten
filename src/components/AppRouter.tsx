@@ -1,22 +1,21 @@
 import { Route, Routes } from "react-router-dom";
 import Main from "../pages/main/Main";
-import MultiQuiz from "../pages/quiz/MultiQuiz";
-import OXQuiz from "../pages/quiz/OXQuiz";
 import QuizList from "../pages/quiz/QuizList";
 import QuizResult from "../pages/quiz/QuizResult";
-import VSQuiz from "../pages/quiz/VSQuiz";
 import Landing from "../pages/prologue/Prologue";
 import Ai from "../pages/ai/Ai";
 import Map from "../pages/map/Map";
 import Category from "../pages/trash/Category";
 import Trash from "../pages/trash/Trash";
 import Quiz from "../pages/quiz/Quiz";
+import WrongQuiz from "../pages/quiz/WrongQuiz";
 
 //set router component
 function AppRouter() {
   return (
     <Routes>
       <Route path="/" element={<Main />} />
+      <Route path="/quiz/:id" element={<WrongQuiz />} />
       <Route path="/quizzes" element={<QuizList />} />
       <Route path="/quizzes/:type" element={<Quiz />} />
       <Route path="/quizzes/result" element={<QuizResult />} />

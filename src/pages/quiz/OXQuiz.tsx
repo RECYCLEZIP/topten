@@ -53,21 +53,19 @@ function OXQuiz() {
   }, [isSelected]);
 
   return (
-    <>
-      <TwoOptions>
-        {option.map((text, index) => {
-          return (
-            <TwoOption
-              onClick={() => clickHandler(index)}
-              isSelected={isSelected[index]}
-              key={index}
-            >
-              {text}
-            </TwoOption>
-          );
-        })}
-      </TwoOptions>
-    </>
+    <TwoOptions>
+      {option.map((text, index) => {
+        return (
+          <TwoOption
+            onClick={() => clickHandler(index)}
+            isSelected={isSelected[index]}
+            key={index}
+          >
+            {text}
+          </TwoOption>
+        );
+      })}
+    </TwoOptions>
   );
 }
 

@@ -43,21 +43,19 @@ function VSQuiz() {
   }, [isSelected]);
 
   return (
-    <>
-      <TwoOptions>
-        {option.map((text, index) => {
-          return (
-            <TextTwoOption
-              onClick={() => clickHandler(index)}
-              isSelected={isSelected[index]}
-              key={index}
-            >
-              {text}
-            </TextTwoOption>
-          );
-        })}
-      </TwoOptions>
-    </>
+    <TwoOptions>
+      {option.map((text, index) => {
+        return (
+          <TextTwoOption
+            onClick={() => clickHandler(index)}
+            isSelected={isSelected[index]}
+            key={index}
+          >
+            {text}
+          </TextTwoOption>
+        );
+      })}
+    </TwoOptions>
   );
 }
 
