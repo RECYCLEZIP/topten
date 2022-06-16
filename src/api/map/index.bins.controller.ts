@@ -9,7 +9,10 @@ const binsController = Router();
 binsController.get(
     "/bins",
     wrapAsyncFunc(async (req, res, next) => {
+        console.log("controller", req.query);
         const binsLocation = await BinsService.getBinsLocation(req.query);
         return res.status(STATUS_200_OK).json(binsLocation);
     }),
 );
+
+export default binsController;

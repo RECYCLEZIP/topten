@@ -8,7 +8,7 @@ export class BinsService {
     static async getBinsLocation(query: FilterQuery) {
         const filterList = ["region", "roads"];
         const { filteredQuery, limit } = createFilterQuery(query, filterList);
-        const locationList = await Bins.findBinsLocation({ filteredQuery, limit });
+        const locationList = await Bins.find({ filteredQuery, limit });
         if (!locationList)
             throw new RequestError(
                 "해당 조건에 일치하는 쓰레기통 위치정보가 없습니다.",

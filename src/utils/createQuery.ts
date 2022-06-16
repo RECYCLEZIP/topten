@@ -29,5 +29,7 @@ export const createFilterQuery = (query: FilterQuery, filterList: string[]) => {
         filteredQuery.$and.push({ $or: searchQuery });
     }
 
+    console.log("filteredQuery >>", filteredQuery);
+
     return { filteredQuery, limit };
 };
