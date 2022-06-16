@@ -1,7 +1,4 @@
-image: docker:latest
-
-services:
-    - docker:dind
+image: node:latest
 
 before_script:
     - export MONGOMS_DOWNLOAD_URL=https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-debian10-4.4.1.tgz
@@ -15,6 +12,7 @@ stages:
 build:
     stage: build
     script:
+        - docker system prune --all
         - yarn
     cache:
         - paths:
