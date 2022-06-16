@@ -17,6 +17,10 @@ build:
         - npm install --global yarn
         - df -h
         - yarn
+    artifacts:
+        expire_in: 1 hour
+        paths:
+            - build
     tags:
         - handwoong
 
