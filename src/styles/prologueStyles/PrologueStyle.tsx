@@ -1,6 +1,35 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
-import { motion } from "framer-motion";
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
+const bubble = keyframes`
+from {
+  transform: translateY(-80%);
+}
+to {
+  transform: translateY(0);
+}
+`;
+
+const fadeInCss = css`
+  opacity: 0;
+  animation: ${fadeIn} 1s ease;
+  animation-fill-mode: forwards;
+`;
+
+const bubbleCss = css`
+  /* 버블 효과 */
+  animation: ${bubble} 1.3s ease;
+  animation-fill-mode: forwards;
+  /* animation-delay: 2s; */
+`;
 
 // 공통
 export const PrologueSection = styled.div`
@@ -9,8 +38,14 @@ export const PrologueSection = styled.div`
   display: flow-root;
 `;
 
-export const PrologueTitle = styled.span`
+export const PrologueTitle = styled.span<{delay?: string}>`
   font-size: 1.5rem;
+
+  &.fade-in {
+    ${fadeInCss}
+
+    animation-delay: ${(props) => props.delay || "0.8s"}
+  }
 `;
 
 export const PrologueTitleWhite = styled(PrologueTitle)`
@@ -54,15 +89,10 @@ export const PrologueBubbleSection = styled(PrologueSection)`
   /* background: yellow; */
 
   margin-top: 5%;
-  /* padding-top: 10%; */
 `;
 
 // 말풍선 공통
-// export const PrologueBubble = styled.div`
-export const PrologueBubble = styled(motion.div).attrs(() => ({
-  // animate: { y: "3rem" },
-  // animate: { y: [-30, 0] },
-}))`
+export const PrologueBubble = styled.div`
   height: auto;
   padding: 1rem 2rem;
   margin: 1rem 0;
@@ -72,15 +102,14 @@ export const PrologueBubble = styled(motion.div).attrs(() => ({
   color: white;
   font-size: 0.8rem;
 
-  /* hidden: { opacity: 1; scale: 0 };
-  visible: {
-    opacity: 1;
-    scale: 1;
-    transition: {
-      delayChildren: 0.3;
-      staggerChildren: 0.2
-    }
-  } */
+  opacity: 0;
+
+  animation: ${fadeIn} 1s ease;
+  animation-fill-mode: forwards;
+
+  /* 버블 효과 */
+  /* animation:  ${bubble} 1s ease;
+  animation-fill-mode: forwards; */
 `;
 
 export const PrologueBubble1 = styled(PrologueBubble)`
@@ -93,9 +122,7 @@ export const PrologueBubble1 = styled(PrologueBubble)`
 
   box-shadow: 0px 0px 20px rgb(0 0 0 / 15%);
 
-  animate: {
-    y: 100;
-  }
+  /* animation-delay: 0.5s; */
 `;
 
 export const PrologueBubble2 = styled(PrologueBubble)`
@@ -108,6 +135,8 @@ export const PrologueBubble2 = styled(PrologueBubble)`
   text-align: right;
 
   box-shadow: 0px 0px 20px rgb(0 0 0 / 20%);
+
+  animation-delay: 0.5s;
 `;
 
 export const PrologueBubble3 = styled(PrologueBubble)`
@@ -117,21 +146,36 @@ export const PrologueBubble3 = styled(PrologueBubble)`
   float: left;
 
   box-shadow: 0px 0px 25px rgb(0 0 0 / 25%);
+
+  animation-delay: 1s;
 `;
 
 // 섹션 2 - 올바른 분리수거, 확실히 하고 계신가요?
+export const PrologueAskTitleContainer = styled.div`
+  height: auto;
+
+  margin-bottom: 5%;
+`;
+
+export const AskTitleContainer = styled.div`
+  &.fade-in {
+    ${fadeInCss}
+  }
+`;
+
+export const AskTitleContainer1 = styled(AskTitleContainer)`
+  &.fade-in {
+    animation-delay: 0.3s;
+  }
+`;
+
+export const AskTitleContainer2 = styled(AskTitleContainer)`
+  &.fade-in {
+    animation-delay: 0.8s;
+  }
+`;
+
 export const PrologueAskImgWrapper = styled.div`
-  /* background: red;
-
-  width: 100%;
-
-  overflow: hidden;
-
-  @media screen and (min-width: 768px) {
-    max-width: 80%;
-  } */
-
-  /* background: red; */
   position: relative;
   width: 15rem;
   width: 100%;
@@ -139,23 +183,14 @@ export const PrologueAskImgWrapper = styled.div`
   @media screen and (min-width: 768px) {
     max-width: 60%;
   }
-  /* height: 15rem; */
 
-  /* background: red;
-  max-width: 100%;
-  height: 10rem;
-  overflow: hidden;*/
+  &.fade-in {
+    ${fadeInCss}
+    animation-delay: 1.3s;
+  }
 `;
 
 export const PrologueAskImg = styled(PrologueImg)`
-  /* max-width: 100%;
-  height: auto;
-
-  top: 50%;
-  left: 50%;
-  transform: translate(-10%, -15%); */
-
-  /* position: absolute; */
   top: 0;
   left: 0;
   transform: 50, 50;
@@ -164,19 +199,6 @@ export const PrologueAskImg = styled(PrologueImg)`
   height: auto;
   object-fit: cover;
   margin: auto;
-
-  /* position: absolute; */
-  /* max-width: 120%;
-  height: auto;
-  top: 50%;
-  left: 50%;
-  transform: translate(-10%, -15%); */
-`;
-
-export const PrologueAskTitleContainer = styled.div`
-  height: auto;
-
-  margin-bottom: 5%;
 `;
 
 // 섹션 3 - AI가 알려주는 분리수거 3 STEP
@@ -203,6 +225,11 @@ export const PrologueStepsContainer = styled.div`
   @media screen and (min-width: 768px) {
     display: inline-block;
   }
+
+  &.fade-in {
+    ${fadeInCss}
+    animation-delay: 1.3s;
+  }
 `;
 
 export const PrologueStepContainer = styled.div`
@@ -215,6 +242,11 @@ export const PrologueStepContainer = styled.div`
   @media screen and (min-width: 768px) {
     margin: 0 1rem;
   }
+
+  &.fade-in {
+    ${bubbleCss}
+    animation-delay: 1.2s;
+  }
 `;
 
 export const PrologueStepLeftContainer = styled(PrologueStepContainer)`
@@ -223,6 +255,11 @@ export const PrologueStepLeftContainer = styled(PrologueStepContainer)`
   @media screen and (min-width: 768px) {
     margin-left: 3rem;
   }
+
+  &.fade-in {
+    ${bubbleCss}
+    animation-delay: 1.1s;
+  }
 `;
 
 export const PrologueStepRightContainer = styled(PrologueStepContainer)`
@@ -230,6 +267,11 @@ export const PrologueStepRightContainer = styled(PrologueStepContainer)`
 
   @media screen and (min-width: 768px) {
     margin-right: 3rem;
+  }
+
+  &.fade-in {
+    ${bubbleCss}
+    animation-delay: 1.3s;
   }
 `;
 
@@ -276,7 +318,7 @@ export const PrologueBinMapTitleContainer = styled.div`
   width: fit-content;
 
   margin-bottom: 0.5rem;
-  
+
   @media screen and (min-width: 768px) {
     margin-bottom: 1.5rem;
   }
