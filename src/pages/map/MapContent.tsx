@@ -7,7 +7,10 @@ import {
   selectedMarkerState,
 } from "../../stores/atoms";
 
-import { MapBinMapWrapper } from "../../styles/mapStyles/mapStyle";
+import {
+  MapBinMapContainer,
+  MapBinMapWrapper,
+} from "../../styles/mapStyles/mapStyle";
 
 declare global {
   interface Window {
@@ -84,7 +87,11 @@ function MapContent() {
     window.map.panTo(moveLatLon);
   };
 
-  return <MapBinMapWrapper id="map"></MapBinMapWrapper>;
+  return (
+    <MapBinMapContainer>
+      <MapBinMapWrapper id="map"></MapBinMapWrapper>
+    </MapBinMapContainer>
+  );
 }
 
 export default MapContent;

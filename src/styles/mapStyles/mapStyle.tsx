@@ -17,7 +17,7 @@ width: 100%;
 height: fit-content;
 position: fixed;
 
-padding-top: 2.5rem;
+padding-top: 2rem;
 `;
 
 export const MapTitle = styled2.span`
@@ -56,34 +56,50 @@ export const MapBinSection = styled2.section`
     }
 `;
 
-export const MapBinMapWrapper = styled2.div`
+export const MapBinMapContainer = styled2.div`
 width: 85%;
+height: 30vh;
 height: 15rem;
 
+
+margin-top: 11rem;
+padding-bottom: 1.5rem;
 position: fixed;
 
-margin-top: 11.5rem;
-margin-bottom: 3rem;
+background: white;
 
 z-index: 1;
+  
 
+  @media (min-width: 768px) {
+    width: 40%;
+    height: 50%;
+    margin-top: 7.3rem;
+    }
+  `;
 
-@media (min-width: 768px) {
-  width: 40%;
-  margin-top: 7.8rem;
-  }
+export const MapBinMapWrapper = styled2.div`
+  height: 100%;
+
+  @media (min-width: 768px) {
+    // height: 80%
+    // max-height: 80%;
+    }
 `;
 
 export const MapBinListContainer = styled2.div`
   display: block;
   position: absolute;
 
-  margin-top: 29rem;
+  margin-top: 28rem;
 
   flex: 1;
 
+  // padding-top: 5rem;
+  // background: red;
+
   @media (min-width: 768px) {
-    margin-top: 5rem;
+    margin-top: 7.3rem;
     margin-left: 45%;
     // margin-left: 3rem;
   }
