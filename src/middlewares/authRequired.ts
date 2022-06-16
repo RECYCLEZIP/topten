@@ -12,7 +12,10 @@ export const authRequired: RequestHandler = (req, res, next) => {
     const userToken = verifyToken(accessToken);
     const userRefreshToken = verifyToken(refreshToken);
 
-    if (!(userToken instanceof Error) && !(userRefreshToken instanceof Error)) return next();
+    if (!(userToken instanceof Error) && !(userRefreshToken instanceof Error)) {
+        req.cookies.currentUserId = userToken.userId;
+        return next();
+    }
 
     if (userToken.message === "jwt expired") {
         if (userRefreshToken.message === "jwt expired") {
@@ -21,6 +24,7 @@ export const authRequired: RequestHandler = (req, res, next) => {
         const newAccessToken = createAccessToken(userToken.userId);
         res.cookie("accessToken", newAccessToken);
         req.cookies.accessToken = newAccessToken;
+        req.cookies.currentUserId = userToken.userId;
         return next();
     }
 
@@ -29,6 +33,7 @@ export const authRequired: RequestHandler = (req, res, next) => {
         UserService.updateUser(userToken.userId, { token: newRefreshToken }).then(() => {
             res.cookie("refreshToken", newRefreshToken);
             req.cookies.refreshToken = newRefreshToken;
+            req.cookies.currentUserId = userToken.userId;
             return next();
         });
     }
