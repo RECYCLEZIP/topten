@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { postData } from "../../api";
 import { currentQuizState, toPostAnswerState } from "../../stores/atoms";
 import { QuizList } from "../../styles/quizStyles/QuizListStyle";
@@ -11,6 +11,7 @@ import {
   ResultList,
   ResultText,
   ScoreBox,
+  ScoreText,
 } from "../../styles/quizStyles/QuizResultStyle";
 import { TitleText } from "../../styles/TextStyle";
 import { ResultsType } from "../../types/Quiz";
@@ -19,9 +20,10 @@ import DropAnswer from "./DropAnswer";
 //quiz result page
 function QuizResult() {
   const navigate = useNavigate();
-  const [results, setResults] = useState<ResultsType>({});
+  const [results, setResults] = useState<ResultsType[]>([]);
+  const [score, setScore] = useState(0);
   const [isOpened, setIsOpened] = useState([false, false]);
-  const toPostAnswer = useRecoilValue(toPostAnswerState);
+  const [toPostAnswer, setToPostAnswer] = useRecoilState(toPostAnswerState);
   const [loading, setLoading] = useState(false);
   const currentQuiz = useRecoilValue(currentQuizState);
 
@@ -36,27 +38,54 @@ function QuizResult() {
     try {
       const res = await postData(`quizzes/submission`, {
         type: currentQuiz[0].type,
-        answer: toPostAnswer,
+        answers: toPostAnswer,
       });
-      setResults(res.data);
+      console.log(res.data);
+      setResults(res.data.result);
+      setScore(res.data.score);
     } catch {
       console.log("post data request fail");
     }
+    setLoading(true);
+    setToPostAnswer([]);
   };
 
   useEffect(() => {
     PostResults();
   }, []);
 
+  if (!loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <QuizList>
       <TitleText>결과</TitleText>
       <QuizResultCard>
+        {results.map((result, index) => (
+          <div key={index}>
+            <ResultList>
+              <ResultText>{index + 1}번</ResultText>
+              {result.isCorrect ? (
+                <ResultText width="70%">맞았습니다! </ResultText>
+              ) : (
+                <ResultText width="70%" color="#ce1b1b">
+                  틀렸습니다!
+                </ResultText>
+              )}
+              <ResultButton onClick={() => clickHandler(index)}>
+                {isOpened[index] ? "문제 닫기" : "문제 보기"}
+              </ResultButton>
+            </ResultList>
+            {isOpened[index] && <DropAnswer index={index} />}
+          </div>
+        ))}
+
         <ScoreBox>
-          <ResultText margin="3%">총점</ResultText>
-          <ResultText size="1.3rem" margin="0">
-            {results.score}
-          </ResultText>
+          <ScoreText>총점</ScoreText>
+          <ScoreText size="1.3rem" margin="0">
+            {score}
+          </ScoreText>
         </ScoreBox>
         <ResultBottom>
           <ResultButton

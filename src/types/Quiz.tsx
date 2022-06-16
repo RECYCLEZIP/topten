@@ -1,9 +1,8 @@
-import { Dispatch, SetStateAction } from "react";
-
 //result text style type
 export interface ResultTextType {
   size?: string;
   color?: string;
+  width?: string;
   margin?: string;
 }
 
@@ -35,6 +34,6 @@ export interface AnswerType {
 }
 
 export interface ResultsType {
-  result?: [{ quizId: string; isCorrect: boolean }];
-  score?: number;
+  quizId: string;
+  isCorrect: boolean;
 }

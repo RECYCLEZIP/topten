@@ -30,11 +30,8 @@ export const QuestionBox = styled.div<{ width?: string }>`
 
 export const QuizQuestion = styled.div`
   text-align: right;
-  width: 80%;
+  width: 50%;
   margin: 0.3rem 0;
-  @media (min-width: 768px) {
-    width: 50%;
-  }
 `;
 
 export const Icons = styled.div`
