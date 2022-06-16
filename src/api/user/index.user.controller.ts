@@ -56,4 +56,14 @@ userController.put(
     }),
 );
 
+userController.delete(
+    "/users/:id",
+    authRequired,
+    wrapAsyncFunc(async (req, res, _next) => {
+        const { id } = req.params;
+        const deleteResult = await UserService.deleteUser(id);
+        res.status(STATUS_200_OK).json(deleteResult);
+    }),
+);
+
 export default userController;

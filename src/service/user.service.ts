@@ -50,4 +50,10 @@ export class UserService {
         if (!updatedUser) throw new RequestError("해당 사용자를 찾을 수 없습니다.");
         return updatedUser;
     }
+
+    static async deleteUser(id: string) {
+        const deletedUser = await User.delete(id);
+        if (!deletedUser) throw new RequestError("해당 사용자를 찾을 수 없습니다.");
+        return { message: "삭제가 완료되었습니다." };
+    }
 }

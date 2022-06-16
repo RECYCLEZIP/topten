@@ -19,4 +19,8 @@ export class User {
             "-password",
         );
     }
+
+    static async delete(id: string) {
+        return UserModel.findByIdAndDelete(id);
+    }
 }
