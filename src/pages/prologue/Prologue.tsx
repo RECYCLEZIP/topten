@@ -11,7 +11,7 @@ function Prologue() {
   useEffect(() => {
     const targets = document.querySelectorAll(".fade-class");
 
-    const options = { root: null, threshold: 0.1, rootMargin: "-0px" };
+    const options = { root: null, threshold: 0, rootMargin: "-0px" };
 
     const observer = new IntersectionObserver(function (entries, observer) {
       entries.forEach((entry) => {
