@@ -18,6 +18,15 @@ userController.get(
     }),
 );
 
+userController.get(
+    "/users/:id",
+    wrapAsyncFunc(async (req, res, _next) => {
+        const { id } = req.params;
+        const userInfo = await UserService.getByUser(id);
+        res.status(STATUS_200_OK).json(userInfo);
+    }),
+);
+
 userController.post(
     "/users/register",
     bodyValidator(userSchema),
