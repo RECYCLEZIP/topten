@@ -12,6 +12,7 @@ stages:
 build:
     stage: build
     script:
+        - df -h
         - yarn cache clean && yarn && du -d1 -h $(yarn cache dir)
     cache:
         - paths:
