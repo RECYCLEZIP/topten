@@ -2,10 +2,21 @@ import { Router } from "express";
 import wrapAsyncFunc from "@src/utils/catchAsync";
 import { userSchema } from "@src/utils/bodySchema";
 import { UserService } from "@src/service/user.service";
-import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
+import { authRequired } from "@src/middlewares/authRequired";
 import { bodyValidator } from "@src/middlewares/bodyValidator";
+import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
 
 const userController = Router();
+
+userController.get(
+    "/users/current",
+    authRequired,
+    wrapAsyncFunc(async (req, res, _next) => {
+        const { currentUserId } = req.cookies;
+        const userInfo = await UserService.getByUser(currentUserId);
+        res.status(STATUS_200_OK).json(userInfo);
+    }),
+);
 
 userController.post(
     "/users/register",

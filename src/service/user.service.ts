@@ -12,6 +12,12 @@ const deletePassword = (mongooseObj: Document) => {
 };
 
 export class UserService {
+    static async getByUser(id: string) {
+        const foundUser = await User.findById(id);
+        if (!foundUser) throw new RequestError("해당 사용자를 찾을 수 없습니다.");
+        return foundUser;
+    }
+
     static async addUser(userInfo: IUser) {
         const { email } = userInfo;
         const foundEmail = await User.findByEmail(email);
