@@ -6,6 +6,8 @@ import {
   currentPageState,
   currentQuizState,
   quizListState,
+  toPostAnswerState,
+  viewAnswerState,
 } from "../../stores/atoms";
 import { QuizContainer } from "../../styles/quizStyles/QuizzesStyle";
 import Answer from "./Answer";
@@ -20,12 +22,15 @@ function Quiz() {
   const type = useParams().type;
   const setQuizzes = useSetRecoilState(quizListState);
   const setCurrentQuiz = useSetRecoilState(currentQuizState);
+  const [toPostAnswer, setToPostAnswer] = useRecoilState(toPostAnswerState);
+  const openResult = useRecoilValue(viewAnswerState);
 
   const getQuizzes = async () => {
     try {
       const res = await getData(`quizzes?type=${type}`);
       setQuizzes(res.data);
       setCurrentQuiz([res.data[currentPage]]);
+      setToPostAnswer([]);
     } catch {
       console.log("Error: data get request fail");
     }
@@ -43,9 +48,15 @@ function Quiz() {
   return (
     <QuizContainer>
       <QuestionCard />
-      {type === "multipleChoice" && <MultiQuiz />}
-      {type === "ox" && <OXQuiz />}
-      {type === "mixUp" && <VSQuiz />}
+      {toPostAnswer[currentPage] && openResult ? (
+        <div>이미 푼 문제입니다.</div>
+      ) : (
+        <>
+          {type === "multipleChoice" && <MultiQuiz />}
+          {type === "ox" && <OXQuiz />}
+          {type === "mixUp" && <VSQuiz />}
+        </>
+      )}
       <Answer />
     </QuizContainer>
   );

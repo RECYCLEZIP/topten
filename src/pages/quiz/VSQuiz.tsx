@@ -2,7 +2,7 @@ import {
   TextTwoOption,
   TwoOptions,
 } from "../../styles/quizStyles/QuizzesStyle";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getData } from "../../api";
 import {
   answerState,

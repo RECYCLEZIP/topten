@@ -3,11 +3,15 @@ import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import { CorrectAnswer } from "../../styles/quizStyles/QuizzesStyle";
-import { AlertType } from "../../types/Quiz";
 import { IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { useRecoilValue } from "recoil";
-import { answerState, currentQuizState } from "../../stores/atoms";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  answerState,
+  currentQuizState,
+  toPostAnswerState,
+  viewAnswerState,
+} from "../../stores/atoms";
 import { postData } from "../../api";
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
@@ -17,13 +21,13 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   return <MuiAlert ref={ref} variant="filled" {...props} />;
 });
 
-function AnswerAlert({ setResult }: AlertType) {
+function AnswerAlert() {
   const [open, setOpen] = useState(false);
   const option = useRecoilValue(answerState);
   const currentQuiz = useRecoilValue(currentQuizState)[0];
   const [isCorrect, setIsCorrect] = useState(false);
-
-  console.log(currentQuiz);
+  const setToPostAnswer = useSetRecoilState(toPostAnswerState);
+  const setResult = useSetRecoilState(viewAnswerState);
 
   const handleClose = () => {
     setOpen(false);
@@ -37,13 +41,15 @@ function AnswerAlert({ setResult }: AlertType) {
         answer: option,
       });
       setIsCorrect(res.data.isCorrect);
+      setToPostAnswer((prev) => [
+        ...prev,
+        { quizId: currentQuiz._id, answer: option },
+      ]);
     } catch {
       console.log("post data request fail");
     }
     setOpen((cur) => !cur);
   };
-
-  console.log(isCorrect);
 
   return (
     <Stack spacing={2}>

@@ -7,11 +7,6 @@ export interface ResultTextType {
   margin?: string;
 }
 
-//alert component props type
-export interface AlertType {
-  setResult: Dispatch<SetStateAction<boolean>>;
-}
-
 export interface QuizType {
   answer?: string;
   description?: string;
@@ -27,4 +22,19 @@ export interface QuizCardType {
   display?: "none";
   quiz: QuizType;
   index?: number;
+}
+
+export interface AnswerListType {
+  type?: string;
+  answers: AnswerType[];
+}
+
+export interface AnswerType {
+  quizId?: string;
+  answer?: string;
+}
+
+export interface ResultsType {
+  result?: [{ quizId: string; isCorrect: boolean }];
+  score?: number;
 }

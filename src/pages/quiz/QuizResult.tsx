@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { postData } from "../../api";
+import { currentQuizState, toPostAnswerState } from "../../stores/atoms";
 import { QuizList } from "../../styles/quizStyles/QuizListStyle";
 import {
   QuizResultCard,
@@ -10,13 +13,17 @@ import {
   ScoreBox,
 } from "../../styles/quizStyles/QuizResultStyle";
 import { TitleText } from "../../styles/TextStyle";
+import { ResultsType } from "../../types/Quiz";
 import DropAnswer from "./DropAnswer";
 
 //quiz result page
 function QuizResult() {
   const navigate = useNavigate();
-  const results = [true, false];
+  const [results, setResults] = useState<ResultsType>({});
   const [isOpened, setIsOpened] = useState([false, false]);
+  const toPostAnswer = useRecoilValue(toPostAnswerState);
+  const [loading, setLoading] = useState(false);
+  const currentQuiz = useRecoilValue(currentQuizState);
 
   //toggle open or not
   const clickHandler = (idx: number) => {
@@ -25,34 +32,30 @@ function QuizResult() {
     setIsOpened(newArr);
   };
 
+  const PostResults = async () => {
+    try {
+      const res = await postData(`quizzes/submission`, {
+        type: currentQuiz[0].type,
+        answer: toPostAnswer,
+      });
+      setResults(res.data);
+    } catch {
+      console.log("post data request fail");
+    }
+  };
+
+  useEffect(() => {
+    PostResults();
+  }, []);
+
   return (
     <QuizList>
       <TitleText>결과</TitleText>
       <QuizResultCard>
-        {results.map((result, index) => {
-          return (
-            <div key={index}>
-              <ResultList>
-                <ResultText>{index + 1}번</ResultText>
-                {result ? (
-                  <ResultText margin="50%">맞았습니다! </ResultText>
-                ) : (
-                  <ResultText margin="50%" color="#ce1b1b">
-                    틀렸습니다!
-                  </ResultText>
-                )}
-                <ResultButton onClick={() => clickHandler(index)}>
-                  {isOpened[index] ? "문제 닫기" : "문제 보기"}
-                </ResultButton>
-              </ResultList>
-              {isOpened[index] && <DropAnswer />}
-            </div>
-          );
-        })}
         <ScoreBox>
           <ResultText margin="3%">총점</ResultText>
           <ResultText size="1.3rem" margin="0">
-            25
+            {results.score}
           </ResultText>
         </ScoreBox>
         <ResultBottom>
