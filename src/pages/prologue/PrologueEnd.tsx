@@ -6,16 +6,23 @@ import {
   PrologueTitleWhite,
   PrologueEndSection,
   PrologueEndTitleContainer,
+  StartButton,
 } from "../../styles/prologueStyles/PrologueStyle";
 
 function PrologueEnd() {
   return (
     <PrologueEndSection>
       <PrologueEndTitleContainer>
-        <PrologueTitleWhite>녹색 환경을 위한 작은 첫걸음,</PrologueTitleWhite>
-        <PrologueTitleWhite>함께 하세요!</PrologueTitleWhite>
+        <PrologueTitleWhite className="fade-class">
+          녹색 환경을 위한 작은 첫걸음,
+        </PrologueTitleWhite>
+        <PrologueTitleWhite className="fade-class" delay="0.8s">
+          함께 하세요!
+        </PrologueTitleWhite>
       </PrologueEndTitleContainer>
-      <Button onClick={() => alert("시작하기")}>시작하기</Button>
+      <StartButton className="fade-class" onClick={() => alert("시작하기")}>
+        시작하기
+      </StartButton>
     </PrologueEndSection>
   );
 }

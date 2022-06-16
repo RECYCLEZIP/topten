@@ -20,8 +20,8 @@ function PrologueStep() {
         <PrologueTitle className="fade-class">AI가 알려주는</PrologueTitle>
       </div>
       <div>
-        <PrologueTitle className="fade-class" delay="1.3s">분리수거 </PrologueTitle>
-        <PrologueTitleGreen className="fade-class" delay="1.3s">3 STEP</PrologueTitleGreen>
+        <PrologueTitle className="fade-class" delay="0.8s">분리수거 </PrologueTitle>
+        <PrologueTitleGreen className="fade-class" delay="0.8s">3 STEP</PrologueTitleGreen>
       </div>
       <PrologueStepsContainer className="fade-class">
         <PrologueStepLeftContainer className="fade-class">

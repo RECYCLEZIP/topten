@@ -21,14 +21,18 @@ function PrologueBinMap() {
       <PrologueBinMapTextContainer>
         <PrologueBinMapTitleContainer>
           <div>
-            <BinMapLabel  className="fade-class" >서울시 전지역</BinMapLabel>
-            <PrologueTitleWhite  className="fade-class" >서울시</PrologueTitleWhite>
+            <BinMapLabel className="fade-class">서울시 전지역</BinMapLabel>
+            <PrologueTitleWhite className="fade-class">
+              서울시
+            </PrologueTitleWhite>
           </div>
           <div>
-            <PrologueTitleWhite  className="fade-class">공공 쓰레기통 지도</PrologueTitleWhite>
+            <PrologueTitleWhite className="fade-class" delay="0.8s">
+              공공 쓰레기통 지도
+            </PrologueTitleWhite>
           </div>
         </PrologueBinMapTitleContainer>
-        <PrologueSubTitleContainer>
+        <PrologueSubTitleContainer className="fade-class" delay="1.8s">
           <PrologueSubTitleWhite>25개 구에 설치된</PrologueSubTitleWhite>
           <PrologueSubTitleWhite>
             공공 쓰레기통의 위치를 한 눈에!
@@ -36,7 +40,7 @@ function PrologueBinMap() {
         </PrologueSubTitleContainer>
       </PrologueBinMapTextContainer>
       <PrologueBinMapImgContainer>
-        <PrologueBinMapImgWrapper>
+        <PrologueBinMapImgWrapper className="fade-class">
           <PrologueBinMapImg src={img.map} alt="map" />
         </PrologueBinMapImgWrapper>
       </PrologueBinMapImgContainer>
