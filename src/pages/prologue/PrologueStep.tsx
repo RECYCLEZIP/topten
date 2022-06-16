@@ -4,6 +4,7 @@ import {
   PrologueTitle,
   PrologueTitleGreen,
   PrologueStepSection,
+  PrologueTitleWrapper,
   PrologueStepsContainer,
   PrologueStepContainer,
   PrologueStepLeftContainer,
@@ -16,13 +17,13 @@ import {
 function PrologueStep() {
   return (
     <PrologueStepSection>
-      <div>
-        <PrologueTitle className="fade-class">AI가 알려주는</PrologueTitle>
-      </div>
-      <div>
-        <PrologueTitle className="fade-class" delay="0.8s">분리수거 </PrologueTitle>
-        <PrologueTitleGreen className="fade-class" delay="0.8s">3 STEP</PrologueTitleGreen>
-      </div>
+      <PrologueTitleWrapper className="fade-class">
+        <PrologueTitle>AI가 알려주는</PrologueTitle>
+      </PrologueTitleWrapper>
+      <PrologueTitleWrapper className="fade-class" delay="0.5s">
+        <PrologueTitle>분리수거 </PrologueTitle>
+        <PrologueTitleGreen>3 STEP</PrologueTitleGreen>
+      </PrologueTitleWrapper>
       <PrologueStepsContainer className="fade-class">
         <PrologueStepLeftContainer className="fade-class">
           <PrologueStepLabel>STEP 1</PrologueStepLabel>

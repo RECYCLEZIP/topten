@@ -3,6 +3,7 @@ import React from "react";
 import { img } from "../../assets/imgImport";
 
 import {
+  PrologueTitleWrapper,
   PrologueSubTitleWhite,
   PrologueTitleWhite,
   PrologueBinMapSection,
@@ -22,17 +23,19 @@ function PrologueBinMap() {
         <PrologueBinMapTitleContainer>
           <div>
             <BinMapLabel className="fade-class">서울시 전지역</BinMapLabel>
-            <PrologueTitleWhite className="fade-class">
-              서울시
-            </PrologueTitleWhite>
+            <PrologueTitleWrapper className="fade-class">
+              <PrologueTitleWhite>서울시</PrologueTitleWhite>
+            </PrologueTitleWrapper>
           </div>
           <div>
-            <PrologueTitleWhite className="fade-class" delay="0.8s">
-              공공 쓰레기통 지도
-            </PrologueTitleWhite>
+            <PrologueTitleWrapper className="fade-class" delay="0.5s">
+              <PrologueTitleWhite>
+                공공 쓰레기통 지도
+              </PrologueTitleWhite>
+            </PrologueTitleWrapper>
           </div>
         </PrologueBinMapTitleContainer>
-        <PrologueSubTitleContainer className="fade-class" delay="1.8s">
+        <PrologueSubTitleContainer className="fade-class" delay="0.9s">
           <PrologueSubTitleWhite>25개 구에 설치된</PrologueSubTitleWhite>
           <PrologueSubTitleWhite>
             공공 쓰레기통의 위치를 한 눈에!
