@@ -12,7 +12,7 @@ stages:
 build:
     stage: build
     script:
-        - rm -rf /usr/local/share/.cache
+        - rm -rf /builds/ai_track/class_04/ai_project/team10/back/
         - df -h
         - yarn cache clean && yarn && du -d1 -h $(yarn cache dir)
     artifacts:
