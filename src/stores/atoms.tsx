@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 import { CategoryType, NewsType } from "../types/Main";
 import { AnswerListType, AnswerType, QuizType } from "../types/Quiz";
-import { CategoryItemType } from "../types/Trash";
+import { CategoryItemType, TrashType } from "../types/Trash";
 
 export interface BinTypes {
   title: string;
@@ -128,4 +128,9 @@ export const answerListState = atom<AnswerListType>({
 export const viewAnswerState = atom<boolean>({
   key: "viewAnswerState",
   default: false,
+});
+
+export const searchTrashState = atom<TrashType[]>({
+  key: "searchTrashState",
+  default: [],
 });

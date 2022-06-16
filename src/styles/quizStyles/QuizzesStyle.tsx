@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const QuizContainer = styled.div`
   width: 80%;
-  padding: 4rem 1rem;
+  padding: 3rem 1rem;
   margin: 0 auto;
   @media (min-width: 768px) {
     width: 45%;

@@ -25,7 +25,7 @@ export const ItemListContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-export const SearchBox = styled.div`
+export const SearchBox = styled.form`
   height: 0.6rem;
   border: 1px solid black;
   border-radius: 1rem;

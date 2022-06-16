@@ -23,7 +23,7 @@ function AppRouter() {
       <Route path="/map" element={<Map />} />
       <Route path="/ai" element={<Ai />} />
       <Route path="/category/*" element={<Category />} />
-      <Route path="/category/:kind/:id" element={<Trash />} />
+      <Route path="/trash/:id" element={<Trash />} />
     </Routes>
   );
 }
