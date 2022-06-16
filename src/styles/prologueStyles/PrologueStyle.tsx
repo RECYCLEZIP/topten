@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
+import { Button } from "../../styles/ButtonStyles";
 
 const fadeIn = keyframes`
   0% {
@@ -28,7 +29,6 @@ const bubbleCss = css`
   /* 버블 효과 */
   animation: ${bubble} 1.3s ease;
   animation-fill-mode: forwards;
-  /* animation-delay: 2s; */
 `;
 
 // 공통
@@ -38,13 +38,13 @@ export const PrologueSection = styled.div`
   display: flow-root;
 `;
 
-export const PrologueTitle = styled.span<{delay?: string}>`
+export const PrologueTitle = styled.span<{ delay?: string }>`
   font-size: 1.5rem;
 
   &.fade-in {
     ${fadeInCss}
 
-    animation-delay: ${(props) => props.delay || "0.8s"}
+    animation-delay: ${(props) => props.delay || "0.5s"}
   }
 `;
 
@@ -88,11 +88,11 @@ export const PrologueImg = styled.img`
 export const PrologueBubbleSection = styled(PrologueSection)`
   /* background: yellow; */
 
-  margin-top: 5%;
+  margin-top: 8%;
 `;
 
 // 말풍선 공통
-export const PrologueBubble = styled.div`
+export const PrologueBubble = styled.div<{ delay?: string }>`
   height: auto;
   padding: 1rem 2rem;
   margin: 1rem 0;
@@ -104,12 +104,10 @@ export const PrologueBubble = styled.div`
 
   opacity: 0;
 
-  animation: ${fadeIn} 1s ease;
-  animation-fill-mode: forwards;
-
-  /* 버블 효과 */
-  /* animation:  ${bubble} 1s ease;
-  animation-fill-mode: forwards; */
+  &.fade-in {
+    ${fadeInCss}
+    animation-delay: ${(props) => props.delay}
+  }
 `;
 
 export const PrologueBubble1 = styled(PrologueBubble)`
@@ -121,8 +119,6 @@ export const PrologueBubble1 = styled(PrologueBubble)`
   color: black;
 
   box-shadow: 0px 0px 20px rgb(0 0 0 / 15%);
-
-  /* animation-delay: 0.5s; */
 `;
 
 export const PrologueBubble2 = styled(PrologueBubble)`
@@ -135,8 +131,6 @@ export const PrologueBubble2 = styled(PrologueBubble)`
   text-align: right;
 
   box-shadow: 0px 0px 20px rgb(0 0 0 / 20%);
-
-  animation-delay: 0.5s;
 `;
 
 export const PrologueBubble3 = styled(PrologueBubble)`
@@ -146,8 +140,6 @@ export const PrologueBubble3 = styled(PrologueBubble)`
   float: left;
 
   box-shadow: 0px 0px 25px rgb(0 0 0 / 25%);
-
-  animation-delay: 1s;
 `;
 
 // 섹션 2 - 올바른 분리수거, 확실히 하고 계신가요?
@@ -332,10 +324,21 @@ export const BinMapLabel = styled(PrologueLabel)`
 
   color: white;
   font-weight: bold;
+
+  &.fade-in {
+    ${fadeInCss}
+    animation-delay: 1.3s;
+  }
 `;
 
-export const PrologueSubTitleContainer = styled.div`
+export const PrologueSubTitleContainer = styled.div<{ delay?: string }>`
   display: grid;
+
+  &.fade-in {
+    ${fadeInCss}
+
+    animation-delay: ${(props) => props.delay || "0.8s"}
+  }
 `;
 
 export const PrologueBinMapImgContainer = styled.div`
@@ -364,6 +367,11 @@ export const PrologueBinMapImgWrapper = styled.div`
   border-radius: 2rem;
 
   overflow: hidden;
+
+  &.fade-in {
+    ${fadeInCss}
+    animation-delay: 1.8s;
+  }
 `;
 
 export const PrologueBinMapImg = styled.img`
@@ -386,8 +394,16 @@ export const PrologueQuizSubTitleContainer = styled(PrologueSubTitleContainer)`
   text-align: right;
 `;
 
-export const PrologueSubTitleGray = styled(PrologueSubTitle)`
+export const PrologueSubTitleGray = styled(PrologueSubTitle)<{
+  delay?: string;
+}>`
   color: #9eacba;
+
+  &.fade-in {
+    ${fadeInCss}
+
+    animation-delay: ${(props) => props.delay || "0.5s"}
+  }
 `;
 
 export const PrologueQuiz = styled.div`
@@ -419,4 +435,12 @@ export const PrologueEndTitleContainer = styled.div`
   margin-bottom: 2rem;
 
   color: white;
+`;
+
+export const StartButton = styled(Button)`
+  &.fade-in {
+    ${fadeInCss}
+
+    animation-delay: 1.3s
+  }
 `;
