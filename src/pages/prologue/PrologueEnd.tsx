@@ -1,8 +1,8 @@
 import React from "react";
 
-import { img } from "../../assets/imgImport";
+import { useNavigate } from "react-router";
 
-import { Button } from "../../styles/ButtonStyles";
+import { img } from "../../assets/imgImport";
 
 import {
   PrologueTitleWhite,
@@ -14,6 +14,8 @@ import {
 } from "../../styles/prologueStyles/PrologueStyle";
 
 function PrologueEnd() {
+  const navigate = useNavigate();
+
   return (
     <PrologueEndSection>
       <LogoImgWrapper className="fade-class">
@@ -27,7 +29,7 @@ function PrologueEnd() {
           함께 하세요!
         </PrologueTitleWhite>
       </PrologueEndTitleContainer>
-      <StartButton className="fade-class" onClick={() => alert("시작하기")}>
+      <StartButton className="fade-class" onClick={() => navigate("/")}>
         시작하기
       </StartButton>
     </PrologueEndSection>
