@@ -12,7 +12,7 @@ stages:
 build:
     stage: build
     script:
-        - rm -rf /dev/root/cache
+        - rm -rf /usr/local/share/.cache
         - df -h
         - yarn cache clean && yarn && du -d1 -h $(yarn cache dir)
     artifacts:
