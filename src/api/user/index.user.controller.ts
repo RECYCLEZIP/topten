@@ -46,4 +46,14 @@ userController.post(
     }),
 );
 
+userController.put(
+    "/users/:id",
+    authRequired,
+    wrapAsyncFunc(async (req, res, _next) => {
+        const { id } = req.params;
+        const updatedUser = await UserService.updateUser(id, req.body);
+        res.status(STATUS_200_OK).json(updatedUser);
+    }),
+);
+
 export default userController;
