@@ -1,41 +1,62 @@
-import QuestionCard from "./QuestionCard";
 import {
   TextTwoOption,
   TwoOptions,
-  QuizContainer,
 } from "../../styles/quizStyles/QuizzesStyle";
-import { useState } from "react";
-import Answer from "./Answer";
+import { useEffect } from "react";
+import { getData } from "../../api";
+import {
+  answerState,
+  quizListState,
+  selectedAnswerState,
+} from "../../stores/atoms";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 // vs quiz page
 function VSQuiz() {
   const option = ["일반", "음식물"];
-  const [isSelected, setIsSelected] = useState([false]);
+  const [isSelected, setIsSelected] = useRecoilState(selectedAnswerState);
+  const setQuizzes = useSetRecoilState(quizListState);
+  const setOption = useSetRecoilState(answerState);
 
   const clickHandler = (idx: number) => {
-    const newArr: boolean[] = Array(option.length).fill(false);
+    const newArr = Array<boolean>(option.length).fill(false);
     newArr[idx] = true;
     setIsSelected(newArr);
   };
 
+  const getQuiz = async () => {
+    try {
+      const res = await getData("quizzes?type=mixUp");
+      setQuizzes(res.data);
+    } catch {
+      console.log("Error: data get request fail");
+    }
+  };
+
+  useEffect(() => {
+    getQuiz();
+    setIsSelected([]);
+  }, []);
+
+  useEffect(() => {
+    const answer = isSelected.indexOf(true);
+    setOption(option[answer]);
+  }, [isSelected]);
+
   return (
-    <QuizContainer>
-      <QuestionCard />
-      <TwoOptions>
-        {option.map((text, index) => {
-          return (
-            <TextTwoOption
-              onClick={() => clickHandler(index)}
-              isSelected={isSelected[index]}
-              key={index}
-            >
-              {text}
-            </TextTwoOption>
-          );
-        })}
-      </TwoOptions>
-      <Answer />
-    </QuizContainer>
+    <TwoOptions>
+      {option.map((text, index) => {
+        return (
+          <TextTwoOption
+            onClick={() => clickHandler(index)}
+            isSelected={isSelected[index]}
+            key={index}
+          >
+            {text}
+          </TextTwoOption>
+        );
+      })}
+    </TwoOptions>
   );
 }
 

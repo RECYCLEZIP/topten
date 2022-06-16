@@ -3,9 +3,16 @@ import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import { CorrectAnswer } from "../../styles/quizStyles/QuizzesStyle";
-import { AlertType } from "../../types/Quiz";
 import { IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  answerState,
+  currentQuizState,
+  toPostAnswerState,
+  viewAnswerState,
+} from "../../stores/atoms";
+import { postData } from "../../api";
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -14,19 +21,39 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   return <MuiAlert ref={ref} variant="filled" {...props} />;
 });
 
-function AnswerAlert({ setResult, answer }: AlertType) {
+function AnswerAlert() {
   const [open, setOpen] = useState(false);
+  const option = useRecoilValue(answerState);
+  const currentQuiz = useRecoilValue(currentQuizState)[0];
+  const [isCorrect, setIsCorrect] = useState(false);
+  const setToPostAnswer = useSetRecoilState(toPostAnswerState);
+  const setResult = useSetRecoilState(viewAnswerState);
 
   const handleClose = () => {
     setOpen(false);
     setResult((cur) => !cur);
   };
 
+  const CheckAnswer = async () => {
+    if (option === "-1") return alert("답을 선택해주세요!");
+    try {
+      const res = await postData(`quizzes/${currentQuiz._id}/submission`, {
+        answer: option,
+      });
+      setIsCorrect(res.data.isCorrect);
+      setToPostAnswer((prev) => [
+        ...prev,
+        { quizId: currentQuiz._id, answer: option },
+      ]);
+    } catch {
+      console.log("post data request fail");
+    }
+    setOpen((cur) => !cur);
+  };
+
   return (
     <Stack spacing={2}>
-      <CorrectAnswer onClick={() => setOpen((cur) => !cur)}>
-        정답 확인
-      </CorrectAnswer>
+      <CorrectAnswer onClick={() => CheckAnswer()}>정답 확인</CorrectAnswer>
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={open}
@@ -44,11 +71,11 @@ function AnswerAlert({ setResult, answer }: AlertType) {
             </IconButton>
           }
           onClose={handleClose}
-          severity={answer ? "success" : "error"}
+          severity={isCorrect ? "success" : "error"}
           sx={{ fontSize: "0.7rem" }}
           icon={false}
         >
-          {answer ? "정답입니다!" : "틀렸습니다!"}
+          {isCorrect ? "정답입니다!" : "틀렸습니다!"}
         </Alert>
       </Snackbar>
     </Stack>

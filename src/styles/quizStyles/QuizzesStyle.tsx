@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const QuizContainer = styled.div`
   width: 80%;
-  padding: 2.5rem 8%;
+  padding: 4rem 1rem;
   margin: 0 auto;
   @media (min-width: 768px) {
     width: 45%;
@@ -15,23 +15,30 @@ export const QuizCount = styled.p`
   text-align: right;
 `;
 
-export const QuestionBox = styled.div`
+export const QuestionBox = styled.div<{ width?: string }>`
   display: flex;
   justify-content: space-around;
-
+  width: ${(props) => (props.width ? props.width + "%" : "90%")};
   align-items: center;
   background-color: #51cf66;
   border-radius: 1rem;
   margin: 0 auto;
   padding: 5% 4%;
   box-shadow: 0px 0px 10px rgba(139, 188, 153, 0.8);
+  flex-wrap: wrap;
+
+  @media (min-width: 768px) {
+    width: ${(props) => props.width && `${Number(props.width) - 15}%`};
+  }
 `;
 
-export const QuizQuestion = styled.div`
+export const QuizQuestion = styled.div<{ width?: string }>`
   text-align: right;
-  width: 80%;
+  width: ${(props) => (props.width ? `${props.width}%` : "40%")};
+  margin: 0.3rem 0;
+
   @media (min-width: 768px) {
-    width: 40%;
+    width: ${(props) => (props.width ? `${Number(props.width) - 20}%` : "30%")};
   }
 `;
 
@@ -50,7 +57,7 @@ export const QuizOption = styled.div<{ isSelected: boolean }>`
 
   padding: 2% 5%;
   font-size: 0.6rem;
-  margin: 1rem 0;
+  margin-top: 1rem;
 
   color: ${(props) => (props.isSelected ? "white" : "black")};
   background-color: ${(props) => (props.isSelected ? "#22be70" : "white")};
@@ -116,6 +123,7 @@ export const CorrectAnswer = styled.button`
 export const TwoOptions = styled.div`
   display: flex;
   justify-content: space-evenly;
+  margin-top: 1rem;
 `;
 
 export const TwoOption = styled.div<{ isSelected: boolean }>`

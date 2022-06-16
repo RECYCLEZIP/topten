@@ -14,7 +14,8 @@ export const ResultList = styled.div`
   display: flex;
   border-bottom: 1px solid black;
   align-items: center;
-  justify-content: space-around;
+  padding: 0 0.8rem;
+  justify-content: space-between;
 `;
 
 export const ResultButton = styled.p<{ background?: string }>`
@@ -29,9 +30,15 @@ export const ResultButton = styled.p<{ background?: string }>`
 `;
 
 export const ResultText = styled.p<ResultTextType>`
+  font-size: 0.8rem;
+  width: ${(props) => props.width || "2rem"};
+  color: ${(props) => props.color};
+  text-align: left;
+`;
+
+export const ScoreText = styled.span<{ size?: string; margin?: string }>`
   font-size: ${(props) => props.size || "0.8rem"};
   margin-right: ${(props) => props.margin || "3%"};
-  color: ${(props) => props.color};
 `;
 
 export const ScoreBox = styled.div`
@@ -58,20 +65,19 @@ export const AnswerCard = styled.div`
 export const AnswerProblem = styled.div`
   display: flex;
   justify-content: space-around;
-  padding: 3% 8%;
+  padding: 0.5rem 0.6rem;
   border-bottom: 1px solid black;
 `;
 
 export const AnswerDescription = styled.div`
-  width: 100%;
-  padding: 2% 0;
+  width: 70%;
+  margin: 0 auto;
 `;
 
 export const AnswerText = styled.p<ResultTextType>`
   font-size: ${(props) => props.size || "0.65rem"};
   color: ${(props) => props.color};
   text-align: left;
-  padding: 0 2%;
   margin: 0;
-  margin-bottom: ${(props) => props.margin};
+  margin-top: ${(props) => props.margin};
 `;
