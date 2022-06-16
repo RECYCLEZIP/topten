@@ -28,7 +28,7 @@ db.on("connected", async () => {
     await session.withTransaction(async () => {
         try {
             const dataBuffer = fs.readFileSync(
-                "/Users/yanghaechan/vscode_workspace/elice_project/ai-project/seeds/sample_location_data.json",
+                "/Users/yanghaechan/vscode_workspace/elice_project/ai-project/seeds/data/sample_location_data.json",
             );
             const binsData = JSON.parse(dataBuffer.toString());
             binsData.forEach(async (bins: Bins) => {
@@ -46,7 +46,7 @@ db.on("connected", async () => {
                 await BinsModel.create([data], { session });
             });
 
-            console.log(`${BinsModel.length}개의 데이터를 정상적으로 저장했습니다.`);
+            console.log(`${binsData.length}개의 데이터를 정상적으로 저장했습니다.`);
         } catch (error) {
             console.log(error);
             throw new Error(error as string);
@@ -55,6 +55,7 @@ db.on("connected", async () => {
         }
     });
 });
+
 db.on("error", (error) =>
     console.error("MongoDB 연결에 실패하였습니다...\n" + DB_URL + "\n" + error),
 );
