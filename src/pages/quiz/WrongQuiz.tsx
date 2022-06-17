@@ -15,6 +15,7 @@ import {
 import { LogoImg, QuizImg } from "../../styles/mainStyles/QuizStyle";
 import { img } from "../../assets/imgImport";
 import { CardText } from "../../styles/TextStyle";
+import { toast, ToastContainer } from "react-toastify";
 
 function WrongQuiz() {
   const [loading, setLoading] = useState(false);
@@ -45,6 +46,7 @@ function WrongQuiz() {
 
   return (
     <QuizContainer>
+      <ToastContainer style={{ fontSize: "0.7rem" }} />
       <QuestionBox>
         <QuizImg src={currentQuiz[0].image} />
         <QuizQuestion>

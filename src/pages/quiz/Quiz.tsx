@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { ToastContainer } from "react-toastify";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { getData } from "../../api";
 import {
@@ -15,6 +16,7 @@ import MultiQuiz from "./MultiQuiz";
 import OXQuiz from "./OXQuiz";
 import QuestionCard from "./QuestionCard";
 import VSQuiz from "./VSQuiz";
+import "react-toastify/dist/ReactToastify.css";
 
 function Quiz() {
   const [loading, setLoading] = useState(false);
@@ -47,6 +49,7 @@ function Quiz() {
 
   return (
     <QuizContainer>
+      <ToastContainer style={{ fontSize: "0.7rem" }} />
       <QuestionCard />
       {toPostAnswer[currentPage] && openResult ? (
         <div>이미 푼 문제입니다.</div>

@@ -134,3 +134,8 @@ export const searchTrashState = atom<TrashType[]>({
   key: "searchTrashState",
   default: [],
 });
+
+export const quizConfirmState = atom<boolean>({
+  key: "quizConfirmState",
+  default: false,
+});

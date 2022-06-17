@@ -16,11 +16,14 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
   currentPageState,
   currentQuizState,
+  quizConfirmState,
   quizListState,
   selectedAnswerState,
   toPostAnswerState,
+  viewAnswerState,
 } from "../../stores/atoms";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 //quiz question card component
 function QuestionCard() {
@@ -30,12 +33,24 @@ function QuestionCard() {
   const [currentQuiz, setCurrentQuiz] = useRecoilState(currentQuizState);
   const quizzes = useRecoilValue(quizListState);
   const toPostAnswer = useRecoilValue(toPostAnswerState);
+  const confirm = useRecoilValue(quizConfirmState);
 
   const initialization = () => {
     setIsSelected([false]);
     setCurrentQuiz([quizzes[currentPage]]);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  const alert = () =>
+    toast.warn("모든 문제를 풀어주세요!", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   useEffect(() => {
     initialization();
@@ -58,6 +73,7 @@ function QuestionCard() {
           onClick={() => {
             setCurrentPage((cur) => cur - 1);
           }}
+          disabled={confirm}
         >
           <ChevronLeftIcon style={{ color: "#9EACBA", fontSize: "1.3rem" }} />
           <MoveText>이전 문제</MoveText>
@@ -66,13 +82,14 @@ function QuestionCard() {
           onClick={() => {
             if (currentPage + 1 === 4) {
               if (toPostAnswer.length !== 4) {
-                return alert("모든 문제를 풀어주세요!");
+                return alert();
               }
               navigate("/quizzes/result");
               setCurrentPage(-1);
             }
             setCurrentPage((cur) => cur + 1);
           }}
+          disabled={confirm}
         >
           <MoveText>
             {currentPage + 1 === 4 ? "결과 확인" : "다음 문제"}
