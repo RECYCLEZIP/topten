@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
@@ -61,9 +61,9 @@ function MapContent() {
         //마커가 표시될 지도
         map: window.map,
         //마커가 표시 될 위치
-        position: new window.kakao.maps.LatLng(bin.lat, bin.lng),
+        position: new window.kakao.maps.LatLng(bin.x, bin.y),
         //마커 hover 시 보일 title
-        title: bin.title,
+        title: bin.location,
       });
 
       // 마커 click 이벤트
