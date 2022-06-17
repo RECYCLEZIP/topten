@@ -51,4 +51,12 @@ describe("binsController TEST", () => {
         expect(res.statusCode).toEqual(STATUS_200_OK);
         expect(res.body[0].region).toEqual("종로구");
     });
+
+    it("검색 조건을 쿼리스트링에 담아 보내면 쓰레기통위치정보를 반환한다. - 조건 2개(자치구, 도로명)", async () => {
+        const res = await request(app).get("/bins").query({ search: "용산구", category: "원효로" });
+        expect(res.statusCode).toEqual(STATUS_200_OK);
+        expect(res.body[0].region).toEqual("용산구");
+        expect(res.body[0].roads).toEqual("원효로");
+        expect(res.body.length).toBe(1);
+    });
 });
