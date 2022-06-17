@@ -12,7 +12,7 @@ const doc = {
         title: "분리수ZIP 서비스 API",
         description: "엘리스 AI 트랙 4기 - AI Project 10팀 TOPTEN 프로젝트 문서.",
     },
-    host: "localhost:5001",
+    host: "home.handwoong.com:5001",
     schemes: ["http"],
     securityDefinitions: {
         // * JWT 토큰 설정을 위한 코드
@@ -35,6 +35,10 @@ const doc = {
         {
             name: "trash",
             description: "쓰레기 데이터 API",
+        },
+        {
+            name: "user",
+            description: "유저 데이터 API",
         },
     ],
     definitions: {
