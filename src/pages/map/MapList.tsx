@@ -41,28 +41,11 @@ function MapList() {
     resetDoroValue();
   }, [guValue]);
 
-  // useEffect(() => {
-  //   if (guValue !== "") {
-  //     setSearchBins(bins.filter((bin) => bin.gu === guValue));
-  //     console.log(bins.filter((bin) => bin.gu === guValue));
-  //   } else {
-  //     setSearchBins([...bins]);
-  //   }
-  // }, [bins, guValue]);
-
-  // useEffect(() => {
-  //   if (doroValue !== "") {
-  //     setSearchBins(bins.filter((bin) => bin.doro === doroValue));
-  //   } else {
-  //     setSearchBins([...bins]);
-  //   }
-  // }, [bins, doroValue]);
   useEffect(() => {
     if (doroValue !== "") {
       setSearchBins(bins.filter((bin) => bin.doro === doroValue));
     } else if (guValue !== "") {
       setSearchBins(bins.filter((bin) => bin.gu === guValue));
-      console.log(bins.filter((bin) => bin.gu === guValue))
     } else {
       setSearchBins([...bins]);
     }
