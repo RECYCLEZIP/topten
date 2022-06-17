@@ -28,7 +28,7 @@ export const Menu = styled.div<{ isToggled: boolean }>`
   background-color: white;
   height: 100%;
   margin-top: 2.6rem;
-  width: 27%;
+  width: 30%;
   position: fixed;
   top: 0;
   right: 0;

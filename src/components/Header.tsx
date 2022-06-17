@@ -9,6 +9,7 @@ import {
   categoryItemState,
   categoryKindState,
   categoryPageState,
+  categorySelectedState,
 } from "../stores/atoms";
 
 //header component
@@ -19,6 +20,7 @@ function Header() {
   const setList = useSetRecoilState(categoryItemState);
   const setPage = useSetRecoilState(categoryPageState);
   const setKind = useSetRecoilState(categoryKindState);
+  const setIsSelected = useSetRecoilState(categorySelectedState);
 
   return (
     <Nav isToggled={isToggled}>
@@ -36,6 +38,7 @@ function Header() {
             setList([]);
             setPage("");
             setKind("");
+            setIsSelected([]);
           }}
         >
           분리수거 정보
