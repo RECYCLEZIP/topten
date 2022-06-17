@@ -3,6 +3,10 @@ stages:
     - test
     - deploy
 
+variables:
+    JWT_PUBLIC_KEY: $JWT_PUBLIC_KEY
+    JWT_SECRET_KEY: $JWT_SECRET_KEY
+
 before_script:
     - echo "$JWT_PUBLIC_KEY"
     - echo "$JWT_SECRET_KEY"
