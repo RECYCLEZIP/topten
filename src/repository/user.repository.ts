@@ -21,6 +21,6 @@ export class User {
     }
 
     static async delete(id: string) {
-        return UserModel.findByIdAndDelete(id);
+        return UserModel.findByIdAndDelete(id).select("-password");
     }
 }
