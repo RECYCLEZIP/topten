@@ -10,13 +10,7 @@ export class QuizService {
     }
 
     static async getQuiz(quizId: string) {
-        const quizInfo = await Quiz.findQuizById(quizId);
-        if (!quizInfo) {
-            const errorMessage = `${quizId}에 해당하는 퀴즈 정보가 없습니다.`;
-            throw new RequestError(errorMessage, STATUS_404_NOTFOUND);
-        }
-
-        return quizInfo;
+        return await Quiz.findQuizById(quizId);
     }
 
     static async getQuizByWrongRate() {
