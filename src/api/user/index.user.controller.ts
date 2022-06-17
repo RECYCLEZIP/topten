@@ -1,10 +1,10 @@
 import { Router } from "express";
 import wrapAsyncFunc from "@src/utils/catchAsync";
-import { userSchema } from "@src/utils/bodySchema";
 import { UserService } from "@src/service/user.service";
 import { authRequired } from "@src/middlewares/authRequired";
 import { bodyValidator } from "@src/middlewares/bodyValidator";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
+import { userLoginSchema, userRegisterSchema, userUpdateSchema } from "@src/utils/bodySchema";
 
 const userController = Router();
 
@@ -47,16 +47,16 @@ userController.get(
 
 userController.post(
     "/users/register",
-    bodyValidator(userSchema),
+    bodyValidator(userRegisterSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["user"]
             #swagger.description = "유저 생성"
             #swagger.parameters['body'] = {
                 in: 'body',
                 description: '생성하고자 하는 유저의 정보를 body에 담아 요청\n
-                    **email** 이메일 필수\n
-                    **password** 비밀번호 필수\n
-                    **username** 닉네임 필수
+                    **email** 이메일 **필수**\n
+                    **password** 비밀번호 **필수** 8자리 이상\n
+                    **username** 닉네임 **필수** 3자리 이상
                 ',
                 required: true,
                 schema: { $ref: "#/definitions/UserRequest" }
@@ -72,14 +72,15 @@ userController.post(
 
 userController.post(
     "/users/login",
+    bodyValidator(userLoginSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["user"]
             #swagger.description = "유저 로그인"
             #swagger.parameters['body'] = {
                 in: 'body',
                 description: '유저 로그인 정보를 담아 요청\n
-                    **email** 이메일 필수\n
-                    **password** 비밀번호 필수\n
+                    **email** 이메일 **필수**\n
+                    **password** 비밀번호 **필수** 8자리 이상\n
                 ',
                 required: true,
                 schema: { $ref: "#/definitions/UserLoginRequest" }
@@ -98,7 +99,7 @@ userController.post(
 userController.put(
     "/users/update",
     authRequired,
-    bodyValidator(userSchema),
+    bodyValidator(userUpdateSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["user"]
             #swagger.description = "유저 수정"
@@ -106,9 +107,9 @@ userController.put(
                 in: 'body',
                 description: '수정하고자 하는 유저의 정보를 body에 담아 요청\n
                     **로그인 필수**\n
-                    **email** 이메일 변경 불가\n
-                    **password** 비밀번호 선택\n
-                    **username** 닉네임 선택
+                    **email** 이메일 **필수** 변경 불가\n
+                    **password** 비밀번호 **선택**\n
+                    **username** 닉네임 **선택**
                 ',
                 required: true,
                 schema: { $ref: "#/definitions/UserRequest" }

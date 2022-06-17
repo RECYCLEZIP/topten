@@ -60,7 +60,7 @@ describe("USER API", () => {
         const res = await request(app)
             .put("/users/update")
             .set("Cookie", [`accessToken=${accessToken}`, `refreshToken=${refreshToken}`])
-            .send({ username: "updateName", password: "updatePassword" });
+            .send({ email: createdUser.email, username: "updateName", password: "updatePassword" });
         expect(res.status).toBe(STATUS_200_OK);
         expect(res.body.username).toEqual("updateName");
     });

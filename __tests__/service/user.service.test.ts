@@ -76,16 +76,6 @@ describe("USER SERVICE ERROR HANDLING", () => {
         }
     });
 
-    it("USER 정보 수정 시 이메일이 있으면 에러가 발생한다.", async () => {
-        try {
-            await UserService.updateUser("id", { email: "update@update.com" });
-        } catch (err: any) {
-            expect(err).toBeInstanceOf(RequestError);
-            expect(err.status).toBe(STATUS_400_BADREQUEST);
-            expect(err.message).toBe("이메일은 변경하실 수 없습니다.");
-        }
-    });
-
     it("USER 정보 수정 시 사용자를 못찾으면 에러가 발생한다.", async () => {
         User.update = jest.fn().mockResolvedValue(null);
         try {

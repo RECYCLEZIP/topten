@@ -46,10 +46,9 @@ export class UserService {
     }
 
     static async updateUser(id: string, userInfo: Partial<IUser>) {
-        const { email, password } = userInfo;
-        if (email) throw new RequestError("이메일은 변경하실 수 없습니다.");
+        const { username, password } = userInfo;
         userInfo.password = await bcrypt.hash(password as string, 12);
-        const updatedUser = await User.update(id, userInfo);
+        const updatedUser = await User.update(id, { username, password });
         if (!updatedUser) throw new RequestError("해당 사용자를 찾을 수 없습니다.");
         return updatedUser;
     }

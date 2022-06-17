@@ -1,8 +1,19 @@
 import Joi from "joi";
 import { TRASH_CATEGORY } from "@src/utils/constans";
 
-export const userSchema = Joi.object({
-    email: Joi.string().email({ minDomainSegments: 2 }),
+export const userRegisterSchema = Joi.object({
+    email: Joi.string().email({ minDomainSegments: 2 }).required(),
+    username: Joi.string().min(3).required(),
+    password: Joi.string().min(8).required(),
+});
+
+export const userLoginSchema = Joi.object({
+    email: Joi.string().email({ minDomainSegments: 2 }).required(),
+    password: Joi.string().min(8).required(),
+});
+
+export const userUpdateSchema = Joi.object({
+    email: Joi.string().email({ minDomainSegments: 2 }).required(),
     username: Joi.string().min(3),
     password: Joi.string().min(8),
 });
