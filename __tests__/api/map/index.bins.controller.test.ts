@@ -3,7 +3,7 @@ import request from "supertest";
 import { STATUS_200_OK, STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 import { BinsModel } from "@src/db/map/bins.schema";
 
-async function initializeDataBase() {
+export async function initializeDataBase() {
     const datas = [
         {
             region: "종로구",
