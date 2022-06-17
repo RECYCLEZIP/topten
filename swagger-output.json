@@ -467,6 +467,149 @@
           }
         }
       }
+    },
+    "/users/current": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "description": "현재 유저 상태 조회",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/UserGetResponse"
+            },
+            "description": "현재 유저 정보를 반환\n로그인중이 아니라면 **401** 상태코드"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "description": "한명의 유저 조회",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "얻고자 하는 유저정보의 ID",
+            "schema": {
+              "$ref": "#/definitions/UserId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/UserGetResponse"
+            },
+            "description": "한명의 유저 정보를 반환"
+          }
+        }
+      }
+    },
+    "/users/register": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "description": "유저 생성",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "생성하고자 하는 유저의 정보를 body에 담아 요청\n  **email** 이메일 필수\n  **password** 비밀번호 필수\n  **username** 닉네임 필수  ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/UserGetResponse"
+            },
+            "description": "생성된 유저 정보 반환"
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "description": "유저 로그인",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "유저 로그인 정보를 담아 요청\n  **email** 이메일 필수\n  **password** 비밀번호 필수\n  ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserLoginRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/UserGetResponse"
+            },
+            "description": "로그인 유저 정보 반환"
+          }
+        }
+      }
+    },
+    "/users/update": {
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "description": "유저 수정",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "수정하고자 하는 유저의 정보를 body에 담아 요청\n  **로그인 필수**\n  **email** 이메일 변경 불가\n  **password** 비밀번호 선택\n  **username** 닉네임 선택  ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/UserGetResponse"
+            },
+            "description": "수정된 유저 정보 반환"
+          }
+        }
+      }
+    },
+    "/users/delete": {
+      "delete": {
+        "tags": [
+          "user"
+        ],
+        "description": "유저 삭제 **로그인 필수**",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/DeleteResponse"
+            },
+            "description": "삭제 메시지"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -564,6 +707,61 @@
         "message": {
           "type": "string",
           "example": "삭제가 완료되었습니다."
+        }
+      }
+    },
+    "UserId": {
+      "type": "string",
+      "example": "users/{userId}"
+    },
+    "UserGetResponse": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "62acd51598886269f298521e"
+        },
+        "email": {
+          "type": "string",
+          "example": "test@test.com"
+        },
+        "username": {
+          "type": "string",
+          "example": "테스트"
+        },
+        "__v": {
+          "type": "number",
+          "example": 0
+        }
+      }
+    },
+    "UserRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "test@test.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "test1234"
+        },
+        "username": {
+          "type": "string",
+          "example": "테스트유저"
+        }
+      }
+    },
+    "UserLoginRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "test@test.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "test1234"
         }
       }
     },

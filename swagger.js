@@ -46,6 +46,22 @@ const doc = {
         NewsPutBody: { url: "http://", title: "수정된제목" },
         NewsPutResponse: { _id: "id", url: "http://", title: "수정된제목" },
         DeleteResponse: { message: "삭제가 완료되었습니다." },
+        UserId: "users/{userId}",
+        UserGetResponse: {
+            _id: "62acd51598886269f298521e",
+            email: "test@test.com",
+            username: "테스트",
+            __v: 0,
+        },
+        UserRequest: {
+            email: "test@test.com",
+            password: "test1234",
+            username: "테스트유저",
+        },
+        UserLoginRequest: {
+            email: "test@test.com",
+            password: "test1234",
+        },
         TrashId: "trash/{trashId}",
         TrashGetQuery: "?search={}&category={}&page={ID}&limit={5}",
         TrashGetResponse: [
