@@ -1,11 +1,9 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
-import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import {
   BinState,
   SearchBinState,
-  BinSelectedState,
-  selectedMarkerState,
   GuValueState,
   DoroValueState,
 } from "../../stores/atoms";
@@ -37,8 +35,11 @@ function MapSearch() {
   const [inputDoroValue, setLocalInputValue] = React.useState("");
 
   const bins = useRecoilValue(BinState);
+
   // autoComplete 선택한 값(default 전체 리스트)
   const [searchBins, setSearchBins] = useRecoilState(SearchBinState);
+
+  const [doroOptions, setDoroOptions] = useState<any>([]);
 
   const styles = useStyles();
 
@@ -50,20 +51,16 @@ function MapSearch() {
     return array.filter((v, i) => array.indexOf(v) === i);
   }, [bins]);
 
-  // 지역 옵션
-  const doroOptions = useMemo(() => {
-    if (guValue !== "") {
-      console.log("구 선택");
-      console.log(searchBins);
+  // 도로 옵션
+  useEffect(() => {
+    // 구만 채워졌을 때만 옵션 세팅
+    if (guValue !== "" && doroValue === "") {
       const array = searchBins.map((bin) => bin.doro);
 
-      console.log(array.filter((v, i) => array.indexOf(v) === i));
       // 중복 제거
-      return array.filter((v, i) => array.indexOf(v) === i);
-    } else {
-      return [];
+      setDoroOptions(array.filter((v, i) => array.indexOf(v) === i));
     }
-  }, [searchBins, guValue]);
+  }, [searchBins, guValue, doroValue]);
 
   return (
     <MapSearchSection>
