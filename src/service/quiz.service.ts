@@ -10,15 +10,17 @@ export class QuizService {
     }
 
     static async getQuiz(quizId: string) {
-        return await Quiz.findQuizById(quizId);
+        const quizInfo = await Quiz.findQuizById(quizId);
+        if (!quizInfo) {
+            const errorMessage = `${quizId}에 해당하는 퀴즈 정보가 없습니다.`;
+            throw new RequestError(errorMessage, STATUS_404_NOTFOUND);
+        }
+
+        return quizInfo;
     }
 
     static async getQuizByWrongRate() {
-        const quizWrongRate = await Quiz.findQuizByWrongRate();
-        if (!quizWrongRate) {
-            const errorMessage = `조건에 해당하는 퀴즈 정보가 없습니다.`;
-            throw new RequestError(errorMessage, STATUS_404_NOTFOUND);
-        }
+        return await Quiz.findQuizByWrongRate();
     }
 
     static async getQuizResult(quizId: string, answer: string) {
