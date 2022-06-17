@@ -20,7 +20,11 @@ export class QuizService {
     }
 
     static async getQuizByWrongRate() {
-        return await Quiz.findQuizByWrongRate();
+        const quizWrongRate = await Quiz.findQuizByWrongRate();
+        if (!quizWrongRate) {
+            const errorMessage = `조건에 해당하는 퀴즈 정보가 없습니다.`;
+            throw new RequestError(errorMessage, STATUS_404_NOTFOUND);
+        }
     }
 
     static async getQuizResult(quizId: string, answer: string) {
