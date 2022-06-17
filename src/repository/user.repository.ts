@@ -3,7 +3,7 @@ import { UserModel } from "@src/db/user/user.schema";
 
 export class User {
     static async findById(id: string) {
-        return UserModel.findById(id).select("-password");
+        return UserModel.findById(id).select("-password -token");
     }
 
     static async findByEmail(email: string) {
@@ -21,6 +21,6 @@ export class User {
     }
 
     static async delete(id: string) {
-        return UserModel.findByIdAndDelete(id).select("-password");
+        return UserModel.findByIdAndDelete(id).select("-password -token");
     }
 }
