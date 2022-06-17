@@ -33,6 +33,20 @@ function SearchList() {
           </ItemTitle>
         </ItemContainer>
       ))}
+      <ItemContainer opacity={0}>
+        <ItemImg />
+        <ItemTitle>
+          <ItemText></ItemText>
+          <MoveButton>자세히</MoveButton>
+        </ItemTitle>
+      </ItemContainer>
+      <ItemContainer opacity={0}>
+        <ItemImg />
+        <ItemTitle>
+          <ItemText></ItemText>
+          <MoveButton>자세히</MoveButton>
+        </ItemTitle>
+      </ItemContainer>
     </ItemListContainer>
   );
 }
