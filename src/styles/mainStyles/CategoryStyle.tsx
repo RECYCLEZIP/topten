@@ -50,6 +50,9 @@ export const ImgContainer = styled.button`
   margin: 0 auto;
   width: 80%;
   cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const IMGBox = styled.div`

@@ -1,4 +1,4 @@
-import { Route, Routes, useParams } from "react-router";
+import { Route, Routes } from "react-router";
 import { Helmet } from "react-helmet";
 import { CategoryTitle } from "../../styles/mainStyles/CategoryStyle";
 import CategoryItems from "./CategoryItems";
@@ -12,9 +12,6 @@ import SearchList from "./SearchList";
 
 // category page component
 function Category() {
-  const params = useParams();
-  console.log(params);
-
   return (
     <>
       <Helmet>

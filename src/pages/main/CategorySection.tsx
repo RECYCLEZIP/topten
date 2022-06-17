@@ -5,6 +5,7 @@ import {
   categoryItemState,
   categoryKindState,
   categoryPageState,
+  categorySelectedState,
 } from "../../stores/atoms";
 import {
   CategoryContainer,
@@ -18,6 +19,7 @@ function CategorySection() {
   const setKind = useSetRecoilState(categoryKindState);
   const setPage = useSetRecoilState(categoryPageState);
   const setList = useSetRecoilState(categoryItemState);
+  const setIsSelected = useSetRecoilState(categorySelectedState);
 
   return (
     <CategoryContainer>
@@ -28,6 +30,7 @@ function CategorySection() {
           setKind("");
           setPage("");
           setList([]);
+          setIsSelected([]);
         }}
       >
         자세히 보기
