@@ -2,7 +2,6 @@ import { Router } from "express";
 import wrapAsyncFunc from "@src/utils/catchAsync";
 import { STATUS_200_OK } from "@src/utils/statusCode";
 import { BinsService } from "@src/service/bins.service";
-// import { paramsValidator } from "@src/middlewares/requestValidator";
 
 const binsController = Router();
 
