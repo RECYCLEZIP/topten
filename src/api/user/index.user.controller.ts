@@ -47,21 +47,21 @@ userController.post(
 );
 
 userController.put(
-    "/users/:id",
+    "/users/update",
     authRequired,
     wrapAsyncFunc(async (req, res, _next) => {
-        const { id } = req.params;
-        const updatedUser = await UserService.updateUser(id, req.body);
+        const { currentUserId } = req.cookies;
+        const updatedUser = await UserService.updateUser(currentUserId, req.body);
         res.status(STATUS_200_OK).json(updatedUser);
     }),
 );
 
 userController.delete(
-    "/users/:id",
+    "/users/delete",
     authRequired,
     wrapAsyncFunc(async (req, res, _next) => {
-        const { id } = req.params;
-        const deleteResult = await UserService.deleteUser(id);
+        const { currentUserId } = req.cookies;
+        const deleteResult = await UserService.deleteUser(currentUserId);
         res.status(STATUS_200_OK).json(deleteResult);
     }),
 );
