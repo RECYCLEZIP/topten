@@ -480,30 +480,6 @@
           }
         ],
         "responses": {}
-      },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {}
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {}
       }
     },
     "/users/register": {
@@ -515,6 +491,20 @@
     },
     "/users/login": {
       "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/users/update": {
+      "put": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/users/delete": {
+      "delete": {
         "description": "",
         "parameters": [],
         "responses": {}

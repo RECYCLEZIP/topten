@@ -1,8 +1,9 @@
 import jwt from "jsonwebtoken";
 
+/* istanbul ignore next */
 const secretKey = process.env.JWT_SECRET_KEY || "JWT_TOKEN";
+/* istanbul ignore next */
 const publicKey = process.env.JWT_PUBLIC_KEY || "JWT_TOKEN";
-if (!secretKey || !publicKey) throw new Error("SECRETKEY 또는 PUBLICKEY를 찾지 못했습니다.");
 
 export const createAccessToken = (userId: string) => {
     return jwt.sign({ userId }, secretKey, {

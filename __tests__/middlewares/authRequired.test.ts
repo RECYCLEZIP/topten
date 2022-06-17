@@ -11,7 +11,7 @@ jest.mock("@src/utils/jwt", () => ({
 const res = mockResponse();
 const next = mockNext();
 
-describe("JWT TOKEN", () => {
+describe("AUTH MIDDLEWARE", () => {
     it("accessToken이 없으면 에러가 발생한다.", () => {
         const req = mockRequest({}, {});
         try {
