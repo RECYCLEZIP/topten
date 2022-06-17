@@ -1,42 +1,34 @@
 import styled from "styled-components";
-import { img } from "../../assets/imgImport";
 
-export const SeoulImg = styled.div`
+export const MapContainer = styled.div`
   width: 100%;
-  height: 30vh;
-  text-align: center;
+  height: auto;
   margin-top: 2%;
   position: relative;
-  @media (min-width: 560px) {
-    height: 50vh;
-  }
-  @media (min-width: 940px) {
-    height: 90vh;
-  }
-  ::before {
-    content: "";
-    background: url(${img.seoul}) no-repeat;
-    background-size: contain;
-    resize: both;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    opacity: 0.45;
-  }
+`;
+
+export const SeoulImg = styled.img`
+  width: 100%;
+  opacity: 0.45;
+`;
+
+export const ContentContainer = styled.div`
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export const MapText = styled.p`
   font-size: 1rem;
-  position: relative;
-  margin-top: 15%;
+  margin: 0.2rem;
 `;
 
 export const MapButton = styled.button`
   border: 1px solid black;
   border-radius: 1rem;
-  padding: 1% 5%;
+  padding: 0.2rem 0.8rem;
   font-size: 0.7rem;
   font-weight: bold;
   background-color: rgba(255, 255, 255, 0);

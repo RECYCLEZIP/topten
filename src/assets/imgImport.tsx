@@ -17,10 +17,12 @@ import hard2 from "./img/image 53.png";
 import hard3 from "./img/image 52.png";
 import spin from "./img/spin.png";
 import mainLogo from "./img/서비스로고.png";
-import shutter from './img/shutter.png';
+import shutter from "./img/shutter.png";
+import loading from "./img/loading.gif";
+import x from "./img/x.png";
 
 export const img = {
-  seoul: seoul,
+  seoul,
   mainAI: mainAi,
   category: [PET, GLASS, PET, GLASS, PET, GLASS, PET, GLASS],
   sample: PETs,
@@ -39,4 +41,6 @@ export const img = {
   spin: spin,
   mainLogo: mainLogo,
   shutter: shutter,
+  loading,
+  x,
 };
