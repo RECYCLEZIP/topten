@@ -40,6 +40,13 @@
         "responses": {}
       }
     },
+    "/bins": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
     "/news": {
       "get": {
         "tags": [
