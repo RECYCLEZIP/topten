@@ -3,15 +3,18 @@ import { CategoryType, NewsType } from "../types/Main";
 import { CategoryItemType } from "../types/Trash";
 
 export interface BinTypes {
-  title: string;
-  point: string;
-  lat: number;
-  lng: number;
+  gu: string;
+  doro: string;
+  location: string;
+  spot: string;
+  type: string[];
+  x: string;
+  y: string;
 }
 
 export interface BinSelectedTypes {
-  lat: number;
-  lng: number;
+  lat: string;
+  lng: string;
 }
 
 // Ai 분석 페이지의 상황
@@ -25,18 +28,46 @@ export const BinState = atom<BinTypes[]>({
   key: "BinState",
   default: [
     {
-      title: "",
-      point: "",
-      lat: 0,
-      lng: 0,
+      gu: "",
+      doro: "",
+      location: "",
+      spot: "",
+      type: [],
+      x: "",
+      y: "",
     },
   ],
 });
 
+export const SearchBinState = atom<BinTypes[]>({
+  key: "SearchBinState",
+  default: [
+    {
+      gu: "",
+      doro: "",
+      location: "",
+      spot: "",
+      type: [],
+      x: "",
+      y: "",
+    },
+  ],
+});
+
+export const GuValueState = atom({
+  key: "GuValueState",
+  default: "",
+});
+
+export const DoroValueState = atom({
+  key: "DoroValueState",
+  default: "",
+});
+
 // 선택한 쓰레기통 리스트 좌표
-export const BinSelectedState = atom<(number | undefined)[]>({
+export const BinSelectedState = atom<(string | undefined)[]>({
   key: "BinSelectedState",
-  default: [0, undefined],
+  default: ["", undefined],
 });
 
 // 선택한 쓰레기통 마커

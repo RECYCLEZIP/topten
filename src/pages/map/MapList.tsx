@@ -1,11 +1,19 @@
 import React, { useMemo, useState, useEffect } from "react";
 
-import { useRecoilValue, useSetRecoilState, useResetRecoilState } from "recoil";
+import {
+  useRecoilValue,
+  useSetRecoilState,
+  useRecoilState,
+  useResetRecoilState,
+} from "recoil";
 import {
   BinTypes,
   BinState,
+  SearchBinState,
   BinSelectedState,
   selectedMarkerState,
+  GuValueState,
+  DoroValueState,
 } from "../../stores/atoms";
 
 import {
@@ -22,8 +30,45 @@ function MapList() {
   const setBinSelected = useSetRecoilState(BinSelectedState);
   const selectedMarker = useRecoilValue(selectedMarkerState);
 
+  const guValue = useRecoilValue(GuValueState);
+  const doroValue = useRecoilValue(DoroValueState);
+
+  const [searchBins, setSearchBins] = useRecoilState(SearchBinState);
+  const resetDoroValue = useResetRecoilState(DoroValueState);
+
+  useEffect(() => {
+    // 구 선택 변경 시 도로 선택 리셋
+    resetDoroValue();
+  }, [guValue]);
+
+  // useEffect(() => {
+  //   if (guValue !== "") {
+  //     setSearchBins(bins.filter((bin) => bin.gu === guValue));
+  //     console.log(bins.filter((bin) => bin.gu === guValue));
+  //   } else {
+  //     setSearchBins([...bins]);
+  //   }
+  // }, [bins, guValue]);
+
+  // useEffect(() => {
+  //   if (doroValue !== "") {
+  //     setSearchBins(bins.filter((bin) => bin.doro === doroValue));
+  //   } else {
+  //     setSearchBins([...bins]);
+  //   }
+  // }, [bins, doroValue]);
+  useEffect(() => {
+    if (doroValue !== "") {
+      setSearchBins(bins.filter((bin) => bin.doro === doroValue));
+    } else if (guValue !== "") {
+      setSearchBins(bins.filter((bin) => bin.gu === guValue));
+      console.log(bins.filter((bin) => bin.gu === guValue))
+    } else {
+      setSearchBins([...bins]);
+    }
+  }, [bins, guValue, doroValue]);
+
   // *********************************
-  // const [randomImageList, setRandomImageList] = useState<RandomImageType[]>([]);
   const [page, setPage] = useState(1);
 
   const [lastIntersectingImage, setLastIntersectingImage] =
@@ -82,14 +127,16 @@ function MapList() {
   // *********************************
 
   // 리스트에서 항목 click 시 해당 항목의 좌표 저장
-  const onClickBin = (lat: number | undefined, lng: number | undefined) => {
-    setBinSelected([lat, lng]);
+  const onClickBin = (x: string | undefined, y: string | undefined) => {
+    setBinSelected([x, y]);
   };
 
   // 지도에서 선택된 마커의 좌표가 어떤 쓰레기통인지 찾아서 해당 정보 저장
   const selectedBinInform: BinTypes | undefined = useMemo(() => {
     return bins.find(
-      (bin) => selectedMarker.La === bin.lng && selectedMarker.Ma === bin.lat,
+      (bin) =>
+        selectedMarker.La === Number(bin.y) &&
+        selectedMarker.Ma === Number(bin.x),
     );
   }, [selectedMarker]);
 
@@ -97,54 +144,55 @@ function MapList() {
   const onClickBack = useResetRecoilState(selectedMarkerState);
 
   return (
-    <MapBinListContainer>
-      {/* 지도에서 선택된 마커가 없다면 전체 리스트 띄움 */}
-      {selectedMarker.La === 0 ? (
-        bins?.map((bin, index) =>
-          index === bins.length - 1 ? (
-            <>
-              {console.log(index)}
+    <>
+      <MapBinListContainer>
+        {/* 지도에서 선택된 마커가 없다면 전체 리스트 띄움 */}
+        {selectedMarker.La === 0 ? (
+          searchBins?.map((bin, index) =>
+            index === bins.length - 1 ? (
+              <>
+                <MapBinLocationContainer
+                  onClick={() => onClickBin(bin?.x, bin?.y)}
+                  key={index}
+                  ref={setLastIntersectingImage}
+                  style={{
+                    backgroundColor: "red",
+                  }}
+                >
+                  <MapBinLacationTitle>{bin?.location}</MapBinLacationTitle>
+                  <MapBinLacationDes>{bin?.spot}</MapBinLacationDes>
+                </MapBinLocationContainer>
+              </>
+            ) : (
               <MapBinLocationContainer
-                onClick={() => onClickBin(bin.lat, bin.lng)}
+                onClick={() => onClickBin(bin?.x, bin?.y)}
                 key={index}
-                ref={setLastIntersectingImage}
-                style={{
-                  backgroundColor: "red",
-                }}
               >
-                <MapBinLacationTitle>{bin.title}</MapBinLacationTitle>
-                <MapBinLacationDes>{bin.point}</MapBinLacationDes>
+                <MapBinLacationTitle>{bin?.location}</MapBinLacationTitle>
+                <MapBinLacationDes>{bin?.spot}</MapBinLacationDes>
               </MapBinLocationContainer>
-            </>
-          ) : (
+            ),
+          )
+        ) : (
+          // 지도에서 선택된 마커가 있다면 해당 마커의 쓰레기통 정보만 띄움
+          <>
             <MapBinLocationContainer
-              onClick={() => onClickBin(bin.lat, bin.lng)}
-              key={index}
+              onClick={() =>
+                onClickBin(selectedBinInform?.x, selectedBinInform?.y)
+              }
             >
-              <MapBinLacationTitle>{bin.title}</MapBinLacationTitle>
-              <MapBinLacationDes>{bin.point}</MapBinLacationDes>
+              <MapBinLacationTitle>
+                {selectedBinInform?.location}
+              </MapBinLacationTitle>
+              <MapBinLacationDes>{selectedBinInform?.spot}</MapBinLacationDes>
             </MapBinLocationContainer>
-          ),
-        )
-      ) : (
-        // 지도에서 선택된 마커가 있다면 해당 마커의 쓰레기통 정보만 띄움
-        <>
-          <MapBinLocationContainer
-            onClick={() =>
-              onClickBin(selectedBinInform?.lat, selectedBinInform?.lng)
-            }
-          >
-            <MapBinLacationTitle>
-              {selectedBinInform?.title}
-            </MapBinLacationTitle>
-            <MapBinLacationDes>{selectedBinInform?.point}</MapBinLacationDes>
-          </MapBinLocationContainer>
-          <BackWrapper onClick={onClickBack}>
-            <BackButton>이전으로</BackButton>
-          </BackWrapper>
-        </>
-      )}
-    </MapBinListContainer>
+            <BackWrapper onClick={onClickBack}>
+              <BackButton>이전으로</BackButton>
+            </BackWrapper>
+          </>
+        )}
+      </MapBinListContainer>
+    </>
   );
 }
 
