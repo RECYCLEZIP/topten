@@ -12,11 +12,6 @@ export const authRequired: RequestHandler = (req, res, next) => {
     const userToken = verifyToken(accessToken);
     const userRefreshToken = verifyToken(refreshToken);
 
-    if (!(userToken instanceof Error) && !(userRefreshToken instanceof Error)) {
-        req.cookies.currentUserId = userToken.userId;
-        return next();
-    }
-
     if (userToken.message === "jwt expired") {
         if (userRefreshToken.message === "jwt expired") {
             throw new RequestError("로그인이 필요한 서비스입니다.", STATUS_401_UNAUTHORIZED);
@@ -27,7 +22,6 @@ export const authRequired: RequestHandler = (req, res, next) => {
         req.cookies.currentUserId = userToken.userId;
         return next();
     }
-
     if (userRefreshToken.message === "jwt expired") {
         const newRefreshToken = createRefreshToken();
         UserService.updateUser(userToken.userId, { token: newRefreshToken }).then(() => {
@@ -36,6 +30,11 @@ export const authRequired: RequestHandler = (req, res, next) => {
             req.cookies.currentUserId = userToken.userId;
             return next();
         });
+    }
+
+    if (!(userToken instanceof Error) && !(userRefreshToken instanceof Error)) {
+        req.cookies.currentUserId = userToken.userId;
+        return next();
     }
 
     throw new RequestError("인증에 실패하였습니다.", STATUS_401_UNAUTHORIZED);
