@@ -10,7 +10,8 @@ import {
   SearchButton,
   SearchText,
   SearchTrashImg,
-} from "../../styles/trash/category";
+  ResetIcon,
+} from "../../styles/trash/search";
 import { Search as SearchIcon } from "@mui/icons-material";
 import { img } from "../../assets/imgImport";
 
@@ -78,13 +79,13 @@ function Search() {
         />
         {search !== "" &&
           (isInputValue ? (
-            <img
+            <ResetIcon
               src={img.x}
               alt="icon"
               onClick={() => {
                 listReset();
               }}
-            ></img>
+            ></ResetIcon>
           ) : (
             <img src={img.loading} alt="icon"></img>
           ))}

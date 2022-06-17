@@ -28,7 +28,8 @@ export const MapText = styled.p`
 export const MapButton = styled.button`
   border: 1px solid black;
   border-radius: 1rem;
-  padding: 0.2rem 0.8rem;
+  padding: 0.4rem 1rem;
+  margin-top: 0.3rem;
   font-size: 0.7rem;
   font-weight: bold;
   background-color: rgba(255, 255, 255, 0);
