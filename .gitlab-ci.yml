@@ -1,35 +1,30 @@
-image: node:latest
-
-before_script:
-    - export MONGOMS_DOWNLOAD_URL=https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-debian10-4.4.1.tgz
-    - export MONGOMS_VERSION=4.4.1
-
 stages:
     - build
     - test
     - deploy
 
+before_script:
+    - export MONGOMS_DOWNLOAD_URL=https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-debian10-4.4.1.tgz
+    - export MONGOMS_VERSION=4.4.
+
 build:
     stage: build
     script:
-        - yarn
-        - apt-get install libcurl4
-    cache:
-        - paths:
-              - node_modules/
-    artifacts:
-        expire_in: 1 days
-        when: on_success
-        paths:
-            - node_modules/
+        - df -h
+    tags:
+        - handwoong
 
 test:
     stage: test
     image: node:15-buster
     coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
-    dependencies:
-        - build
     script:
+        - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
+        - ". ~/.nvm/nvm.sh"
+        - nvm --version
+        - nvm install --lts
+        - npm install --global yarn
+        - yarn
         - yarn test:ci
     cache:
         - paths:
@@ -42,6 +37,8 @@ test:
             junit:
                 - junit.xml
             cobertura: coverage/cobertura-coverage.xml
+    tags:
+        - handwoong
 
 pages:
     stage: deploy
@@ -56,3 +53,5 @@ pages:
             - public
     only:
         - dev
+    tags:
+        - handwoong
