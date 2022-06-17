@@ -14,7 +14,7 @@ export const Nav = styled.div<{ isToggled: boolean }>`
   top: 0;
   left: 0;
   right: 0;
-  z-index: 2;
+  z-index: 4;
 `;
 
 export const Logo = styled.img`
