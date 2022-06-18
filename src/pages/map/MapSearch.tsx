@@ -45,7 +45,7 @@ function MapSearch() {
 
   const styles = useStyles();
 
-  // 구 옵션  
+  // 구 옵션
   const regionOptions = useMemo(() => {
     const array = bins.map((bin) => bin.region);
 
@@ -57,7 +57,7 @@ function MapSearch() {
   useEffect(() => {
     // 도로명 인풋 지우면 null -> ""로 default
     if (roadsValue === null) {
-      resetRoadsValue()
+      resetRoadsValue();
     }
 
     // 구만 채워졌을 때만 옵션 세팅
@@ -89,6 +89,7 @@ function MapSearch() {
               width: "4rem",
               height: "0.5rem",
               fontSize: "0.46rem",
+              lineHeight: "initial",
             },
           }}
           renderInput={(params) => (
@@ -138,6 +139,7 @@ function MapSearch() {
                 width: "4rem",
                 height: "0.5rem",
                 fontSize: "0.46rem",
+                lineHeight: "initial",
               },
             }}
             renderInput={(params) => (

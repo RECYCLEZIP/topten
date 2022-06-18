@@ -77,7 +77,7 @@ function AiGuide() {
           </AiGuideContainer>
           <AiGuideContainer>
             <AiGuideImgWrapper>
-              <img />
+              <AiGuideImg src={img.hard4} />
             </AiGuideImgWrapper>
             <div>
               <AiGuideTitle>어두운 곳에서 촬영된 사진</AiGuideTitle>
