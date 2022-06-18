@@ -25,27 +25,29 @@ export const MapTitle = styled2.span`
 `;
 export const MapSearchSection = styled2.section`
   margin: 1rem 0;
-  display: block;
+  display: flex;
   
   align-items: center;
   // position: fixed;
   
-  @media (min-width: 768px) {
-    display: flex;
-    }
-`;
+  `;
 
 export const AutocompleteContainer = styled2.div`
   display: flex;
-
+  
   align-items: center;
-`;
+  `;
 
 export const MapSearchTextWrapper = styled2.div`
-  margin-right: 2rem;
+margin-right: 0.5rem;
 
-  font-size: 0.6rem;
-  font-weight: 500;
+font-size: 0.6rem;
+
+font-weight: 500;
+
+@media (min-width: 768px) {
+    margin-right: 2rem;
+    }
 `;
 
 export const MapBinSection = styled2.section`
@@ -62,7 +64,7 @@ height: 30vh;
 height: 15rem;
 
 
-margin-top: 11rem;
+margin-top: 8rem;
 padding-bottom: 1.5rem;
 position: fixed;
 
@@ -91,7 +93,7 @@ export const MapBinListContainer = styled2.div`
   display: block;
   position: absolute;
 
-  margin-top: 28rem;
+  margin-top: 24.5rem;
 
   flex: 1;
 
@@ -157,6 +159,8 @@ color: black;
 export const StyledInput = styled(InputBase)(({ theme }) => ({
   padding: 10,
   width: "100%",
+
+  // backgroundColor: "pink",
 
   "& input": {
     borderRadius: "3rem",
