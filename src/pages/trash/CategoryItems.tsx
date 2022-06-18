@@ -14,9 +14,10 @@ import {
   ItemTitle,
   MoveButton,
 } from "../../styles/trash/items";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 function CategoryItems() {
+  const params = useParams().kind;
   const kind = useRecoilValue(categoryKindState);
   const [trashList, setTrashList] = useRecoilState(categoryItemState);
   const [page, setPage] = useRecoilState(categoryPageState);
@@ -32,10 +33,13 @@ function CategoryItems() {
       console.log("Error: data get request fail");
     }
   }, [kind, page, setTrashList]);
-
   useEffect(() => {
     getTrashList();
   }, [getTrashList]);
+
+  useEffect(() => {
+    setTrashList([]);
+  }, [params]);
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(intersectionObserver); // IntersectionObserver
@@ -94,6 +98,13 @@ function CategoryItems() {
             )}
           </>
         ))}
+        <ItemContainer opacity={0}>
+          <ItemImg />
+          <ItemTitle>
+            <ItemText></ItemText>
+            <MoveButton>자세히</MoveButton>
+          </ItemTitle>
+        </ItemContainer>
         <ItemContainer opacity={0}>
           <ItemImg />
           <ItemTitle>

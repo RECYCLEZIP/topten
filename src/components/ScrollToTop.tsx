@@ -6,6 +6,7 @@ export default function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    if (pathname === "/category/trash") return;
     window.scrollTo(0, 0);
   }, [pathname]);
 

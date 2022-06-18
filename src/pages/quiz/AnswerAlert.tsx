@@ -3,6 +3,7 @@ import { CorrectAnswer } from "../../styles/quizStyles/QuizzesStyle";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
   answerState,
+  currentPageState,
   currentQuizState,
   quizConfirmState,
   toPostAnswerState,
@@ -14,18 +15,19 @@ import { toast } from "react-toastify";
 function AnswerAlert() {
   const option = useRecoilValue(answerState);
   const currentQuiz = useRecoilValue(currentQuizState)[0];
+  const currentPage = useRecoilValue(currentPageState);
   const [isCorrect, setIsCorrect] = useState(false);
-  const setToPostAnswer = useSetRecoilState(toPostAnswerState);
+  const [toPostAnswer, setToPostAnswer] = useRecoilState(toPostAnswerState);
   const setOpenResult = useSetRecoilState(viewAnswerState);
   const [confirm, setConfirm] = useRecoilState(quizConfirmState);
 
   const correct = () =>
     toast.success("맞았습니다!", {
       position: "top-center",
-      autoClose: 2000,
+      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
-      pauseOnHover: true,
+      pauseOnHover: false,
       draggable: true,
       progress: undefined,
     });
@@ -33,10 +35,10 @@ function AnswerAlert() {
   const notCorrect = () =>
     toast.error("틀렸습니다!", {
       position: "top-center",
-      autoClose: 2000,
+      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
-      pauseOnHover: true,
+      pauseOnHover: false,
       draggable: true,
       progress: undefined,
     });
@@ -44,10 +46,10 @@ function AnswerAlert() {
   const alert = () =>
     toast.warn("답을 선택해주세요!", {
       position: "top-center",
-      autoClose: 2000,
+      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
-      pauseOnHover: true,
+      pauseOnHover: false,
       draggable: true,
       progress: undefined,
     });
@@ -65,14 +67,13 @@ function AnswerAlert() {
       } else {
         notCorrect();
       }
-      setToPostAnswer((prev) => [
-        ...prev,
-        { quizId: currentQuiz._id, answer: option },
-      ]);
       setTimeout(() => {
         setOpenResult((cur) => !cur);
         setConfirm(false);
-      }, 2000);
+        const answerList = [...toPostAnswer];
+        answerList[currentPage] = { quizId: currentQuiz._id, answer: option };
+        setToPostAnswer(answerList);
+      }, 1000);
     } catch {
       console.log("post data request fail");
     }

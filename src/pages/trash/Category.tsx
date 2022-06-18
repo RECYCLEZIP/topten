@@ -1,6 +1,9 @@
-import { Route, Routes } from "react-router";
+import { Route, Routes, useNavigate } from "react-router";
 import { Helmet } from "react-helmet";
-import { CategoryTitle } from "../../styles/mainStyles/CategoryStyle";
+import {
+  CategorySubTitle,
+  CategoryTitle,
+} from "../../styles/mainStyles/CategoryStyle";
 import CategoryItems from "./CategoryItems";
 import CategoryList from "../../components/CategoryList";
 import {
@@ -9,9 +12,22 @@ import {
 } from "../../styles/trash/category";
 import Search from "./Search";
 import SearchList from "./SearchList";
+import {
+  categoryKindState,
+  categoryPageState,
+  categorySelectedState,
+  categoryState,
+} from "../../stores/atoms";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 // category page component
 function Category() {
+  const navigate = useNavigate();
+  const setKind = useSetRecoilState(categoryKindState);
+  const setPage = useSetRecoilState(categoryPageState);
+  const [isSelected, setIsSelected] = useRecoilState(categorySelectedState);
+  const category = useRecoilState(categoryState);
+
   return (
     <>
       <Helmet>
@@ -19,6 +35,17 @@ function Category() {
       </Helmet>
       <CategoryTitleContainer>
         <CategoryTitle>카테고리</CategoryTitle>
+        <CategorySubTitle
+          onClick={() => {
+            navigate("/category");
+            setKind("");
+            setPage("");
+            setIsSelected(Array(category.length).fill(false));
+          }}
+          disabled={!isSelected[isSelected.indexOf(true)]}
+        >
+          전체 보기
+        </CategorySubTitle>
       </CategoryTitleContainer>
       <CategoryList backColor="#eaf0eb" />
       <TitleContainer>

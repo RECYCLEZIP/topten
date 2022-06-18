@@ -1,9 +1,5 @@
-import { useEffect, useState } from "react";
-import {
-  QuizContainer,
-  TwoOption,
-  TwoOptions,
-} from "../../styles/quizStyles/QuizzesStyle";
+import { useEffect } from "react";
+import { TwoOption, TwoOptions } from "../../styles/quizStyles/QuizzesStyle";
 import ClearIcon from "@mui/icons-material/Clear";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 import { getData } from "../../api";

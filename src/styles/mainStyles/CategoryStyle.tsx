@@ -13,7 +13,7 @@ export const CategorySubTitle = styled.button`
   cursor: pointer;
   font-size: 0.6rem;
   color: #9eacba;
-  margin-left: 0.8rem;
+  margin-left: 0.6rem;
   &:hover {
     text-decoration: underline;
     text-decoration-thickness: 1px;
@@ -43,7 +43,7 @@ export const List = styled.div`
   }
 `;
 
-export const ImgContainer = styled.button`
+export const ImgContainer = styled.button<{ isSelected: boolean }>`
   all: unset;
   display: flex;
   flex-direction: column;
@@ -51,7 +51,7 @@ export const ImgContainer = styled.button`
   width: 80%;
   cursor: pointer;
   &:hover {
-    text-decoration: underline;
+    text-decoration: ${(props) => (props.isSelected ? "none" : "underline")};
   }
 `;
 
