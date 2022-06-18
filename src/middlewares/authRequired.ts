@@ -6,7 +6,7 @@ import { createAccessToken, createRefreshToken, verifyToken } from "@src/utils/j
 
 export const authRequired: RequestHandler = (req, res, next) => {
     const { accessToken, refreshToken } = req.cookies;
-    if (!accessToken)
+    if (!accessToken || !refreshToken)
         throw new RequestError("로그인이 필요한 서비스입니다.", STATUS_401_UNAUTHORIZED);
 
     const userToken = verifyToken(accessToken);

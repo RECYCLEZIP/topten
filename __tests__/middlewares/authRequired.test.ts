@@ -68,7 +68,7 @@ describe("AUTH MIDDLEWARE", () => {
             authRequired(req, res, next);
         } catch (err: any) {
             expect(err.status).toBe(STATUS_401_UNAUTHORIZED);
-            expect(err.message).toEqual("인증에 실패하였습니다.");
+            expect(err.message).toEqual("로그인이 필요한 서비스입니다.");
         }
     });
 });

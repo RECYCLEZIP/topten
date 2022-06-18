@@ -21,7 +21,7 @@ export class User {
     }
 
     static async removeToken(id: string) {
-        return UserModel.findByIdAndUpdate(id, { $unset: { token: "" } });
+        return UserModel.findByIdAndUpdate(id, { $unset: { token: "" } }, { new: true });
     }
 
     static async delete(id: string) {

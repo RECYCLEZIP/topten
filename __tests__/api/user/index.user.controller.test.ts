@@ -53,6 +53,17 @@ describe("USER API", () => {
         expect(res.body).toHaveProperty("username");
     });
 
+    it("USER LOGOUT 유저가 로그아웃한다.", async () => {
+        const createdUser = await UserService.addUser(tempUser);
+        const accessToken = createAccessToken(createdUser._id);
+        const refreshToken = createRefreshToken();
+        const res = await request(app)
+            .get("/users/logout")
+            .set("Cookie", [`accessToken=${accessToken}`, `refreshToken=${refreshToken}`]);
+        expect(res.status).toBe(STATUS_200_OK);
+        expect(res.body.message).toEqual("정상적으로 로그아웃이 완료되었습니다.");
+    });
+
     it("USER PUT 유저 정보를 수정한다.", async () => {
         const createdUser = await UserService.addUser(tempUser);
         const accessToken = createAccessToken(createdUser._id);

@@ -116,12 +116,22 @@ describe("USER SERVICE ERROR HANDLING", () => {
         User.findByEmail = jest.fn().mockResolvedValue(tempUser);
         bcrypt.compare = jest.fn().mockResolvedValue(false);
         try {
-            const a = await UserService.login({ email: "test@test.com", password: "notsame" });
-            expect(a).toBe("asdf");
+            await UserService.login({ email: "test@test.com", password: "notsame" });
         } catch (err: any) {
             expect(err).toBeInstanceOf(RequestError);
             expect(err.status).toBe(STATUS_400_BADREQUEST);
             expect(err.message).toBe("이메일 또는 비밀번호를 확인해주세요.");
+        }
+    });
+
+    it("USER 로그아웃 시 사용자를 찾을 수 없으면 에러가 발생한다.", async () => {
+        User.removeToken = jest.fn().mockResolvedValue(null);
+        try {
+            await UserService.logout("testId");
+        } catch (err: any) {
+            expect(err).toBeInstanceOf(RequestError);
+            expect(err.status).toBe(STATUS_400_BADREQUEST);
+            expect(err.message).toBe("해당 사용자를 찾을 수 없습니다.");
         }
     });
 });
