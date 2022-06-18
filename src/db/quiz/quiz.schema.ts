@@ -50,9 +50,6 @@ const QuizSchema = new Schema<Quiz>(
         },
         image: {
             type: String,
-            required: true,
-            default:
-                "https://images.unsplash.com/photo-1557318041-1ce374d55ebf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
         },
     },
     {
