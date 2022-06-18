@@ -105,7 +105,7 @@ export const MapBinListContainer = styled2.div`
   }
 `;
 
-export const MapBinLocationContainer = styled2.div`
+export const MapBinDatailsContainer = styled2.div`
   margin-bottom: 1rem;
 
   cursor: pointer;
@@ -120,6 +120,10 @@ export const MapBinLacationDes = styled2.div`
   font-size: 0.53rem;
 
   color: #9eacba;
+`;
+
+export const typeContainer = styled2(Button)`
+
 `;
 
 export const BackWrapper = styled2.div`
