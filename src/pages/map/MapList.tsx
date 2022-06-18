@@ -14,6 +14,7 @@ import {
   selectedMarkerState,
   RegionValueState,
   RoadsValueState,
+  lastIntersectingImageState,
 } from "../../stores/atoms";
 
 import {
@@ -21,6 +22,7 @@ import {
   MapBinDatailsContainer,
   MapBinLacationTitle,
   MapBinLacationDes,
+  TypeContainer,
   BackWrapper,
   BackButton,
 } from "../../styles/mapStyles/mapStyle";
@@ -36,6 +38,9 @@ function MapList() {
 
   const [searchBins, setSearchBins] = useRecoilState(SearchBinState);
   const resetRoadsValue = useResetRecoilState(RoadsValueState);
+
+  const [lastIntersectingImage, setLastIntersectingImage] =
+  useRecoilState<HTMLDivElement | null>(lastIntersectingImageState);
 
   useEffect(() => {
     // 구 선택 변경 시 도로 선택 리셋
@@ -53,13 +58,13 @@ function MapList() {
   }, [bins, regionValue, roadsValue]);
 
   // *********************************
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
 
-  const [lastIntersectingImage, setLastIntersectingImage] =
-    useState<HTMLDivElement | null>(null);
+  // const [lastIntersectingImage, setLastIntersectingImage] =
+  //   useState<HTMLDivElement | null>(null);
 
   const getRandomImageThenSet = async () => {
-    console.log("fetching 함수 호출됨");
+    // console.log("fetching 함수 호출됨");
     // try {
     //   const { data } = await axios.get(
     // 7개 씩 요청
@@ -69,10 +74,8 @@ function MapList() {
     // } catch {
     //   console.error("fetching error");
     // }
-
     // ?
     // const productItems = apiProductItems(itemLength);
-
     // if (!productItems.length) {
     //   actions.isLoaded(dispatch)(false);
     //   return;
@@ -80,33 +83,33 @@ function MapList() {
   };
 
   //observer 콜백함수
-  const onIntersect: IntersectionObserverCallback = (entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        //뷰포트에 마지막 이미지가 들어오고, page값에 asf1을 더하여 새 fetch 요청을 보내게됨 (useEffect의 dependency배열에 page가 있음)
-        setPage((prev) => prev + 1);
-        // 현재 타겟을 unobserve한다.
-        observer.unobserve(entry.target);
-      }
-    });
-  };
+  // const onIntersect: IntersectionObserverCallback = (entries, observer) => {
+  //   entries.forEach((entry) => {
+  //     if (entry.isIntersecting) {
+  //       //뷰포트에 마지막 이미지가 들어오고, page값에 asf1을 더하여 새 fetch 요청을 보내게됨 (useEffect의 dependency배열에 page가 있음)
+  //       setPage((prev) => prev + 1);
+  //       // 현재 타겟을 unobserve한다.
+  //       observer.unobserve(entry.target);
+  //     }
+  //   });
+  // };
 
-  useEffect(() => {
-    console.log("page ? ", page);
-    getRandomImageThenSet();
-  }, [page]);
+  // useEffect(() => {
+  //   console.log("page ? ", page);
+  //   getRandomImageThenSet();
+  // }, [page]);
 
-  useEffect(() => {
-    //observer 인스턴스를 생성한 후 구독
-    let observer: IntersectionObserver;
+  // useEffect(() => {
+  //   //observer 인스턴스를 생성한 후 구독
+  //   let observer: IntersectionObserver;
 
-    if (lastIntersectingImage) {
-      observer = new IntersectionObserver(onIntersect, { threshold: 0.5 });
-      //observer 생성 시 observe할 target 요소는 불러온 이미지의 마지막아이템(randomImageList 배열의 마지막 아이템)으로 지정
-      observer.observe(lastIntersectingImage);
-    }
-    return () => observer && observer.disconnect();
-  }, [lastIntersectingImage]);
+  //   if (lastIntersectingImage) {
+  //     observer = new IntersectionObserver(onIntersect, { threshold: 0.5 });
+  //     //observer 생성 시 observe할 target 요소는 불러온 이미지의 마지막아이템(randomImageList 배열의 마지막 아이템)으로 지정
+  //     observer.observe(lastIntersectingImage);
+  //   }
+  //   return () => observer && observer.disconnect();
+  // }, [lastIntersectingImage]);
 
   // *********************************
 
@@ -148,8 +151,13 @@ function MapList() {
                     backgroundColor: "red",
                   }}
                 >
-                  <MapBinLacationTitle>{bin?.address}</MapBinLacationTitle>
+                  <MapBinLacationTitle>{bin?.details}</MapBinLacationTitle>
                   <MapBinLacationDes>{bin?.points}</MapBinLacationDes>
+                  <>
+                    {bin?.type.map((type) => (
+                      <TypeContainer>{type}</TypeContainer>
+                    ))}
+                  </>
                 </MapBinDatailsContainer>
               </>
             ) : (
@@ -157,8 +165,13 @@ function MapList() {
                 onClick={() => onClickBin(bin?.x, bin?.y)}
                 key={index}
               >
-                <MapBinLacationTitle>{bin?.address}</MapBinLacationTitle>
+                <MapBinLacationTitle>{bin?.details}</MapBinLacationTitle>
                 <MapBinLacationDes>{bin?.points}</MapBinLacationDes>
+                <>
+                  {bin?.type.map((type) => (
+                    <TypeContainer>{type}</TypeContainer>
+                  ))}
+                </>
               </MapBinDatailsContainer>
             ),
           )
@@ -171,12 +184,14 @@ function MapList() {
               }
             >
               <MapBinLacationTitle>
-                <>
-                  {console.log(selectedBinInform)}
-                  {selectedBinInform?.address}
-                </>
+                {selectedBinInform?.details}
               </MapBinLacationTitle>
               <MapBinLacationDes>{selectedBinInform?.points}</MapBinLacationDes>
+              <>
+                {selectedBinInform?.type.map((type) => (
+                  <TypeContainer>{type}</TypeContainer>
+                ))}
+              </>
             </MapBinDatailsContainer>
             <BackWrapper onClick={onClickBack}>
               <BackButton>이전으로</BackButton>
