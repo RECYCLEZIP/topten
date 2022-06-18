@@ -494,7 +494,7 @@
         "tags": [
           "user"
         ],
-        "description": "유저 로그아웃",
+        "description": "유저 로그아웃 **로그인 필수**",
         "parameters": [],
         "responses": {
           "200": {
