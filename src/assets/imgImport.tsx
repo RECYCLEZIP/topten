@@ -18,6 +18,9 @@ import hard3 from "./img/image 52.png";
 import spin from "./img/spin.png";
 import mainLogo from "./img/서비스로고.png";
 import shutter from "./img/shutter.png";
+import greenBackLogo from "./img/greenBackLogo.png";
+import quiz1 from './img/quiz1.png';
+import quiz2 from './img/quiz2.png';
 import loading from "./img/loading.gif";
 import x from "./img/x.png";
 import backPage from "./img/arrow.png";
@@ -42,6 +45,9 @@ export const img = {
   spin: spin,
   mainLogo: mainLogo,
   shutter: shutter,
+  greenBackLogo: greenBackLogo,
+  quiz1: quiz1,
+  quiz2: quiz2,
   loading,
   x,
   backPage,

@@ -4,15 +4,19 @@ import { AnswerListType, AnswerType, QuizType } from "../types/Quiz";
 import { CategoryItemType, TrashType } from "../types/Trash";
 
 export interface BinTypes {
-  title: string;
-  point: string;
-  lat: number;
-  lng: number;
+  region: string;
+  roads: string;
+  details: string;
+  points: string;
+  address: "";
+  type: string[];
+  x: string;
+  y: string;
 }
 
 export interface BinSelectedTypes {
-  lat: number;
-  lng: number;
+  lat: string;
+  lng: string;
 }
 
 // Ai 분석 페이지의 상황
@@ -26,18 +30,48 @@ export const BinState = atom<BinTypes[]>({
   key: "BinState",
   default: [
     {
-      title: "",
-      point: "",
-      lat: 0,
-      lng: 0,
+      region: "",
+      roads: "",
+      details: "",
+      points: "",
+      address: "",
+      type: [],
+      x: "",
+      y: "",
     },
   ],
 });
 
+export const SearchBinState = atom<BinTypes[]>({
+  key: "SearchBinState",
+  default: [
+    {
+      region: "",
+      roads: "",
+      details: "",
+      points: "",
+      address: "",
+      type: [],
+      x: "",
+      y: "",
+    },
+  ],
+});
+
+export const RegionValueState = atom({
+  key: "RegionValueState",
+  default: "",
+});
+
+export const RoadsValueState = atom({
+  key: "RoadsValueState",
+  default: "",
+});
+
 // 선택한 쓰레기통 리스트 좌표
-export const BinSelectedState = atom<(number | undefined)[]>({
+export const BinSelectedState = atom<(string | undefined)[]>({
   key: "BinSelectedState",
-  default: [0, undefined],
+  default: ["", undefined],
 });
 
 // 선택한 쓰레기통 마커

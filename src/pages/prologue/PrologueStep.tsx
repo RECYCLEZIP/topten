@@ -4,6 +4,7 @@ import {
   PrologueTitle,
   PrologueTitleGreen,
   PrologueStepSection,
+  PrologueTitleWrapper,
   PrologueStepsContainer,
   PrologueStepContainer,
   PrologueStepLeftContainer,
@@ -16,27 +17,27 @@ import {
 function PrologueStep() {
   return (
     <PrologueStepSection>
-      <div>
+      <PrologueTitleWrapper className="fade-class">
         <PrologueTitle>AI가 알려주는</PrologueTitle>
-      </div>
-      <div>
+      </PrologueTitleWrapper>
+      <PrologueTitleWrapper className="fade-class" delay="0.5s">
         <PrologueTitle>분리수거 </PrologueTitle>
         <PrologueTitleGreen>3 STEP</PrologueTitleGreen>
-      </div>
-      <PrologueStepsContainer>
-        <PrologueStepLeftContainer>
+      </PrologueTitleWrapper>
+      <PrologueStepsContainer className="fade-class">
+        <PrologueStepLeftContainer className="fade-class">
           <PrologueStepLabel>STEP 1</PrologueStepLabel>
           <PrologueStepTitle>사진 올리고,</PrologueStepTitle>
           <PrologueStepSubTitle>쓰레기 사진 업로드</PrologueStepSubTitle>
         </PrologueStepLeftContainer>
-        <PrologueStepContainer>
+        <PrologueStepContainer className="fade-class">
           <PrologueStepLabel>STEP 2</PrologueStepLabel>
           <PrologueStepTitle>AI 분석 확인하고,</PrologueStepTitle>
           <PrologueStepSubTitle>
             쓰레기 별 적절한 폐기 방법 분석
           </PrologueStepSubTitle>
         </PrologueStepContainer>
-        <PrologueStepRightContainer>
+        <PrologueStepRightContainer className="fade-class">
           <PrologueStepLabel>STEP 3</PrologueStepLabel>
           <PrologueStepTitle>사진 올리기</PrologueStepTitle>
           <PrologueStepSubTitle>AI가 알려준대로 분리수거</PrologueStepSubTitle>

@@ -1,6 +1,52 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
+import { Button } from "../../styles/ButtonStyles";
 
-import { motion } from "framer-motion";
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
+const fadeInBubble = keyframes`
+  0% {
+    transform: translateY(40%);    
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
+
+const bubble = keyframes`
+from {
+  transform: translateY(-80%);
+}
+to {
+  transform: translateY(0);
+}
+`;
+
+const fadeInCss = css`
+  opacity: 0;
+  animation: ${fadeIn} 0.8s ease;
+  animation-fill-mode: forwards;
+`;
+
+const fadeInBubbleCss = css`
+  opacity: 0;
+  animation: ${fadeInBubble} 0.8s ease;
+  animation-fill-mode: forwards;
+`;
+
+const bubbleCss = css`
+  /* 버블 효과 */
+  animation: ${bubble} 1.3s ease;
+  animation-fill-mode: forwards;
+`;
 
 // 공통
 export const PrologueSection = styled.div`
@@ -9,8 +55,13 @@ export const PrologueSection = styled.div`
   display: flow-root;
 `;
 
-export const PrologueTitle = styled.span`
+export const PrologueTitle = styled.span<{ delay?: string }>`
   font-size: 1.5rem;
+
+  &.fade-in {
+    ${fadeInBubbleCss}
+    animation-delay: ${(props) => props.delay || "0.3s"}
+  }
 `;
 
 export const PrologueTitleWhite = styled(PrologueTitle)`
@@ -30,6 +81,13 @@ export const PrologueSubTitle = styled.span`
 
 export const PrologueSubTitleWhite = styled(PrologueSubTitle)`
   color: white;
+`;
+
+export const PrologueTitleWrapper = styled.div<{ delay?: string }>`
+  &.fade-in {
+    ${fadeInBubbleCss}
+    animation-delay: ${(props) => props.delay || "0.3s"}
+  }
 `;
 
 export const PrologueLabel = styled.div`
@@ -53,16 +111,11 @@ export const PrologueImg = styled.img`
 export const PrologueBubbleSection = styled(PrologueSection)`
   /* background: yellow; */
 
-  margin-top: 5%;
-  /* padding-top: 10%; */
+  margin-top: 8%;
 `;
 
 // 말풍선 공통
-// export const PrologueBubble = styled.div`
-export const PrologueBubble = styled(motion.div).attrs(() => ({
-  // animate: { y: "3rem" },
-  // animate: { y: [-30, 0] },
-}))`
+export const PrologueBubble = styled.div<{ delay?: string }>`
   height: auto;
   padding: 1rem 2rem;
   margin: 1rem 0;
@@ -72,15 +125,12 @@ export const PrologueBubble = styled(motion.div).attrs(() => ({
   color: white;
   font-size: 0.8rem;
 
-  /* hidden: { opacity: 1; scale: 0 };
-  visible: {
-    opacity: 1;
-    scale: 1;
-    transition: {
-      delayChildren: 0.3;
-      staggerChildren: 0.2
-    }
-  } */
+  opacity: 0;
+
+  &.fade-in {
+    ${fadeInBubbleCss}
+    animation-delay: ${(props) => props.delay}
+  }
 `;
 
 export const PrologueBubble1 = styled(PrologueBubble)`
@@ -91,11 +141,7 @@ export const PrologueBubble1 = styled(PrologueBubble)`
 
   color: black;
 
-  box-shadow: 0px 0px 20px rgb(0 0 0 / 15%);
-
-  animate: {
-    y: 100;
-  }
+  box-shadow: 0px 0px 15px rgb(0 0 0 / 15%);
 `;
 
 export const PrologueBubble2 = styled(PrologueBubble)`
@@ -120,18 +166,20 @@ export const PrologueBubble3 = styled(PrologueBubble)`
 `;
 
 // 섹션 2 - 올바른 분리수거, 확실히 하고 계신가요?
+export const PrologueAskTitleContainer = styled.div`
+  height: auto;
+
+  margin-bottom: 5%;
+`;
+
+export const AskTitleWrapper = styled.div<{ delay?: string }>`
+  &.fade-in {
+    ${fadeInBubbleCss}
+    animation-delay: ${(props) => props.delay || "0.3s"}
+  }
+`;
+
 export const PrologueAskImgWrapper = styled.div`
-  /* background: red;
-
-  width: 100%;
-
-  overflow: hidden;
-
-  @media screen and (min-width: 768px) {
-    max-width: 80%;
-  } */
-
-  /* background: red; */
   position: relative;
   width: 15rem;
   width: 100%;
@@ -139,23 +187,14 @@ export const PrologueAskImgWrapper = styled.div`
   @media screen and (min-width: 768px) {
     max-width: 60%;
   }
-  /* height: 15rem; */
 
-  /* background: red;
-  max-width: 100%;
-  height: 10rem;
-  overflow: hidden;*/
+  &.fade-in {
+    ${fadeInCss}
+    animation-delay: 0.7s;
+  }
 `;
 
 export const PrologueAskImg = styled(PrologueImg)`
-  /* max-width: 100%;
-  height: auto;
-
-  top: 50%;
-  left: 50%;
-  transform: translate(-10%, -15%); */
-
-  /* position: absolute; */
   top: 0;
   left: 0;
   transform: 50, 50;
@@ -164,19 +203,6 @@ export const PrologueAskImg = styled(PrologueImg)`
   height: auto;
   object-fit: cover;
   margin: auto;
-
-  /* position: absolute; */
-  /* max-width: 120%;
-  height: auto;
-  top: 50%;
-  left: 50%;
-  transform: translate(-10%, -15%); */
-`;
-
-export const PrologueAskTitleContainer = styled.div`
-  height: auto;
-
-  margin-bottom: 5%;
 `;
 
 // 섹션 3 - AI가 알려주는 분리수거 3 STEP
@@ -203,6 +229,11 @@ export const PrologueStepsContainer = styled.div`
   @media screen and (min-width: 768px) {
     display: inline-block;
   }
+
+  &.fade-in {
+    ${fadeInCss}
+    animation-delay: 0.7s;
+  }
 `;
 
 export const PrologueStepContainer = styled.div`
@@ -215,6 +246,11 @@ export const PrologueStepContainer = styled.div`
   @media screen and (min-width: 768px) {
     margin: 0 1rem;
   }
+
+  &.fade-in {
+    ${fadeInBubbleCss}
+    animation-delay: 0.5s;
+  }
 `;
 
 export const PrologueStepLeftContainer = styled(PrologueStepContainer)`
@@ -223,6 +259,11 @@ export const PrologueStepLeftContainer = styled(PrologueStepContainer)`
   @media screen and (min-width: 768px) {
     margin-left: 3rem;
   }
+
+  &.fade-in {
+    ${fadeInBubbleCss}
+    animation-delay: 0.3s;
+  }
 `;
 
 export const PrologueStepRightContainer = styled(PrologueStepContainer)`
@@ -230,6 +271,11 @@ export const PrologueStepRightContainer = styled(PrologueStepContainer)`
 
   @media screen and (min-width: 768px) {
     margin-right: 3rem;
+  }
+
+  &.fade-in {
+    ${fadeInBubbleCss}
+    animation-delay: 0.7s;
   }
 `;
 
@@ -276,7 +322,7 @@ export const PrologueBinMapTitleContainer = styled.div`
   width: fit-content;
 
   margin-bottom: 0.5rem;
-  
+
   @media screen and (min-width: 768px) {
     margin-bottom: 1.5rem;
   }
@@ -290,10 +336,21 @@ export const BinMapLabel = styled(PrologueLabel)`
 
   color: white;
   font-weight: bold;
+
+  &.fade-in {
+    ${fadeInCss}
+    animation-delay: 0.7s;
+  }
 `;
 
-export const PrologueSubTitleContainer = styled.div`
+export const PrologueSubTitleContainer = styled.div<{ delay?: string }>`
   display: grid;
+
+  &.fade-in {
+    ${fadeInCss}
+
+    animation-delay: ${(props) => props.delay || "0.5s"}
+  }
 `;
 
 export const PrologueBinMapImgContainer = styled.div`
@@ -322,6 +379,11 @@ export const PrologueBinMapImgWrapper = styled.div`
   border-radius: 2rem;
 
   overflow: hidden;
+
+  &.fade-in {
+    ${fadeInCss}
+    animation-delay: 0.9s;
+  }
 `;
 
 export const PrologueBinMapImg = styled.img`
@@ -344,8 +406,18 @@ export const PrologueQuizSubTitleContainer = styled(PrologueSubTitleContainer)`
   text-align: right;
 `;
 
-export const PrologueSubTitleGray = styled(PrologueSubTitle)`
+export const PrologueSubTitleGray = styled(PrologueSubTitle)<{
+  delay?: string;
+}>`
   color: #9eacba;
+
+  display: inline-block;
+
+  &.fade-in {
+    ${fadeInCss}
+
+    animation-delay: ${(props) => props.delay || "0.5s"}
+  }
 `;
 
 export const PrologueQuiz = styled.div`
@@ -354,9 +426,41 @@ export const PrologueQuiz = styled.div`
   padding: 0.5rem 1rem;
 `;
 
-export const PrologueQuiz1 = styled(PrologueQuiz)`
-  background: #22be70;
+export const QuizImgContainer = styled.div<{ delay?: string }>`
+  width: 100%;
+  height: fit-content;
+
+  display: inline-block;
+
+  &.fade-in {
+    ${fadeInBubbleCss}
+    animation-delay: ${(props) => props.delay || "0.7s"}
+  }
 `;
+
+export const QuizImgWrapper = styled(PrologueQuiz)`
+  width: 50%;
+
+  display: flex;
+  padding: 0;
+`;
+
+export const Quiz1ImgWrapper = styled(QuizImgWrapper)`
+  float: right;
+  margin-bottom: 1rem;
+`;
+
+export const Quiz2ImgWrapper = styled(QuizImgWrapper)`
+  float: left;
+
+  margin-left: 5rem;
+  margin-bottom: 0.5rem;
+`;
+
+export const Quiz1Img = styled.img`
+  width: 100%;
+`;
+
 export const PrologueQuiz2 = styled(PrologueQuiz)`
   background: #69db7c;
 
@@ -366,10 +470,29 @@ export const PrologueQuiz2 = styled(PrologueQuiz)`
 // 섹션 6 - 최하단, 시작하기
 export const PrologueEndSection = styled(PrologueSection)`
   margin: 10% 0;
-  padding: 2rem 0;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   background: #69db7c;
 
   text-align: center;
+`;
+
+export const LogoImgWrapper = styled.div`
+  width: 5rem;
+
+  margin-bottom: 1rem;
+
+  display: inline-flex;
+  justify-content: center;
+
+  &.fade-in {
+    ${fadeInBubbleCss}
+    animation-delay: 0.3s;
+  }
+`;
+
+export const LogoImg = styled.img`
+  width: 100%;
 `;
 
 export const PrologueEndTitleContainer = styled.div`
@@ -377,4 +500,12 @@ export const PrologueEndTitleContainer = styled.div`
   margin-bottom: 2rem;
 
   color: white;
+`;
+
+export const StartButton = styled(Button)`
+  &.fade-in {
+    ${fadeInCss}
+
+    animation-delay: 1s
+  }
 `;

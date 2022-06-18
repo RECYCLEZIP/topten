@@ -3,17 +3,32 @@ import { styled } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import { autocompleteClasses } from "@mui/material/Autocomplete";
 import { Button } from "../ButtonStyles";
+import { Container } from "../basicStyle";
+
+export const MapContainer = styled2(Container)`
+padding-top: 0;
+margin-top: 2.6rem;
+`;
+
+export const MapTop = styled2.div`
+background: white;
+z-index: 1;
+width: 100%;
+height: fit-content;
+position: fixed;
+
+padding-top: 2rem;
+`;
 
 export const MapTitle = styled2.span`
-  position: fixed;
+  // position: fixed;
 `;
 export const MapSearchSection = styled2.section`
-  margin-top: 2rem;
-  margin-bottom: 1.5rem;
+  margin: 1rem 0;
   display: block;
   
   align-items: center;
-  position: fixed;
+  // position: fixed;
   
   @media (min-width: 768px) {
     display: flex;
@@ -41,37 +56,56 @@ export const MapBinSection = styled2.section`
     }
 `;
 
-export const MapBinMapWrapper = styled2.div`
-width: 100%;
+export const MapBinMapContainer = styled2.div`
+width: 85%;
+height: 30vh;
 height: 15rem;
 
+
+margin-top: 11rem;
+padding-bottom: 1.5rem;
 position: fixed;
 
-margin-top: 9rem;
+background: white;
 
+z-index: 1;
+  
 
-@media (min-width: 768px) {
-  width: 40%;
-  margin-top: 5rem;
-  }
+  @media (min-width: 768px) {
+    width: 40%;
+    height: 50%;
+    margin-top: 7.3rem;
+    }
+  `;
+
+export const MapBinMapWrapper = styled2.div`
+  height: 100%;
+
+  @media (min-width: 768px) {
+    // height: 80%
+    // max-height: 80%;
+    }
 `;
 
 export const MapBinListContainer = styled2.div`
   display: block;
   position: absolute;
 
-  margin-top: 25rem;
+  margin-top: 28rem;
 
   flex: 1;
 
+  // padding-top: 5rem;
+  // background: red;
+
   @media (min-width: 768px) {
-    margin-top: 5rem;
+    margin-top: 7.3rem;
     margin-left: 45%;
     // margin-left: 3rem;
   }
 `;
 
-export const MapBinLocationContainer = styled2.div`
+export const MapBinDatailsContainer = styled2.div`
   margin-bottom: 1rem;
 
   cursor: pointer;
@@ -86,6 +120,10 @@ export const MapBinLacationDes = styled2.div`
   font-size: 0.53rem;
 
   color: #9eacba;
+`;
+
+export const typeContainer = styled2(Button)`
+
 `;
 
 export const BackWrapper = styled2.div`
