@@ -16,7 +16,7 @@ export const AiImageUploadSection = styled.div`
 `;
 
 export const AiImageContainer = styled.div`
-  background: #9eacba;
+  background: #f0f2f5;
 
   width: 100%;
   height: 13rem;
@@ -31,6 +31,54 @@ export const AiImageContainer = styled.div`
   overflow: hidden;
 
   position: relative;
+`;
+
+export const UploadContainer = styled.div`
+  /* background: purple; */
+
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  align-self: center;
+  text-align: center;
+
+  cursor: pointer;
+`;
+
+export const UploadWrapper = styled.div`
+  align-self: center;
+`;
+
+export const UploadNoticeWrapper = styled.div`
+  /* background: red; */
+  margin: 0.2rem;
+
+  color: #9eacba;
+  font-size: 0.6rem;
+`;
+
+export const UploadButton = styled.div`
+  padding: 0.3rem 0.7rem;
+
+  border-radius: 0.7rem;
+
+  font-size: 0.53rem;
+
+  display: inline-block;
+  background-color: #21a663;
+  border: none;
+
+  color: white;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: #2b9a61;
+    transition: all 0.5s;
+  }
 `;
 
 export const CameraShutterWrapper = styled.div`
@@ -96,13 +144,12 @@ export const AiTopContainer = styled.div`
   /* background: green; */
 
   margin-bottom: 3rem;
-  
+
   display: flex;
-  
+
   @media (min-width: 768px) {
     margin: 0 1rem;
     margin-bottom: 3rem;
-    
   }
 `;
 
