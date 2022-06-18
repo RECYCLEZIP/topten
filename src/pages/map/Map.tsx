@@ -41,7 +41,6 @@ function Map() {
 
     try {
       const res = await getData(
-        // `bins`
         `bins?search=${"종로구"}&category=${roadsValue}`,
         // `bins?search=${"종로구"}&category=${roadsValue}?page=${page}&limit=2`,
       );
