@@ -111,7 +111,7 @@ export const PrologueImg = styled.img`
 export const PrologueBubbleSection = styled(PrologueSection)`
   /* background: yellow; */
 
-  margin-top: 8%;
+  margin-top: 4rem;
 `;
 
 // 말풍선 공통
