@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
 
-import { useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilValue, useResetRecoilState, useRecoilState } from "recoil";
 import {
   BinState,
   SearchBinState,
-  GuValueState,
-  DoroValueState,
+  RegionValueState,
+  RoadsValueState,
 } from "../../stores/atoms";
 
 import Autocomplete from "@mui/material/Autocomplete";
@@ -27,25 +27,27 @@ const useStyles = makeStyles({
 
 function MapSearch() {
   // 구
-  const [guValue, setGuValue] = useRecoilState(GuValueState);
+  const [regionValue, setRegionValue] = useRecoilState(RegionValueState);
   const [inputRegionValue, setRegionInputValue] = React.useState("");
 
   // 동/지역명
-  const [doroValue, setDoroValue] = useRecoilState(DoroValueState);
-  const [inputDoroValue, setLocalInputValue] = React.useState("");
+  const [roadsValue, setRoadsValue] = useRecoilState(RoadsValueState);
+  const [inputRoadsValue, setLocalInputValue] = React.useState("");
+
+  const resetRoadsValue = useResetRecoilState(RoadsValueState);
 
   const bins = useRecoilValue(BinState);
 
   // autoComplete 선택한 값(default 전체 리스트)
   const [searchBins, setSearchBins] = useRecoilState(SearchBinState);
 
-  const [doroOptions, setDoroOptions] = useState<any>([]);
+  const [roadsOptions, setRoadsOptions] = useState<any>([]);
 
   const styles = useStyles();
 
-  // 구 옵션
-  const guOptions = useMemo(() => {
-    const array = bins.map((bin) => bin.gu);
+  // 구 옵션  
+  const regionOptions = useMemo(() => {
+    const array = bins.map((bin) => bin.region);
 
     // 중복 제거
     return array.filter((v, i) => array.indexOf(v) === i);
@@ -53,29 +55,34 @@ function MapSearch() {
 
   // 도로 옵션
   useEffect(() => {
+    // 도로명 인풋 지우면 null -> ""로 default
+    if (roadsValue === null) {
+      resetRoadsValue()
+    }
+
     // 구만 채워졌을 때만 옵션 세팅
-    if (guValue !== "" && doroValue === "") {
-      const array = searchBins.map((bin) => bin.doro);
+    if (regionValue !== "" && roadsValue === "") {
+      const array = searchBins.map((bin) => bin.roads);
 
       // 중복 제거
-      setDoroOptions(array.filter((v, i) => array.indexOf(v) === i));
+      setRoadsOptions(array.filter((v, i) => array.indexOf(v) === i));
     }
-  }, [searchBins, guValue, doroValue]);
+  }, [searchBins, regionValue, roadsValue]);
 
   return (
     <MapSearchSection>
       <MapSearchTextWrapper>서울시</MapSearchTextWrapper>
       <AutocompleteContainer>
         <Autocomplete
-          value={guValue}
+          value={regionValue}
           onChange={(event: any, newValue: any) => {
-            setGuValue(newValue);
+            setRegionValue(newValue);
           }}
           inputValue={inputRegionValue}
           onInputChange={(event, newInputValue) => {
             setRegionInputValue(newInputValue);
           }}
-          options={guOptions}
+          options={regionOptions}
           sx={{
             display: "inline-block",
             "& input": {
@@ -115,16 +122,16 @@ function MapSearch() {
       <AutocompleteContainer>
         <div>
           <Autocomplete
-            value={doroValue}
+            value={roadsValue}
             // onChange={(event: any, newValue: string | null) => {
             onChange={(event: any, newValue: any) => {
-              setDoroValue(newValue);
+              setRoadsValue(newValue);
             }}
-            inputValue={inputDoroValue}
+            inputValue={inputRoadsValue}
             onInputChange={(event, newInputValue) => {
               setLocalInputValue(newInputValue);
             }}
-            options={doroOptions}
+            options={roadsOptions}
             sx={{
               display: "inline-block",
               "& input": {

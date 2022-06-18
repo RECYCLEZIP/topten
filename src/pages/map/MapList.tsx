@@ -12,13 +12,13 @@ import {
   SearchBinState,
   BinSelectedState,
   selectedMarkerState,
-  GuValueState,
-  DoroValueState,
+  RegionValueState,
+  RoadsValueState,
 } from "../../stores/atoms";
 
 import {
   MapBinListContainer,
-  MapBinLocationContainer,
+  MapBinDatailsContainer,
   MapBinLacationTitle,
   MapBinLacationDes,
   BackWrapper,
@@ -27,29 +27,30 @@ import {
 
 function MapList() {
   const bins = useRecoilValue(BinState);
-  const setBinSelected = useSetRecoilState(BinSelectedState);
+  const [binSelected, setBinSelected] = useRecoilState(BinSelectedState);
+  // const setBinSelected = useSetRecoilState(BinSelectedState);
   const selectedMarker = useRecoilValue(selectedMarkerState);
 
-  const guValue = useRecoilValue(GuValueState);
-  const doroValue = useRecoilValue(DoroValueState);
+  const regionValue = useRecoilValue(RegionValueState);
+  const roadsValue = useRecoilValue(RoadsValueState);
 
   const [searchBins, setSearchBins] = useRecoilState(SearchBinState);
-  const resetDoroValue = useResetRecoilState(DoroValueState);
+  const resetRoadsValue = useResetRecoilState(RoadsValueState);
 
   useEffect(() => {
     // 구 선택 변경 시 도로 선택 리셋
-    resetDoroValue();
-  }, [guValue]);
+    resetRoadsValue();
+  }, [regionValue]);
 
   useEffect(() => {
-    if (doroValue !== "") {
-      setSearchBins(bins.filter((bin) => bin.doro === doroValue));
-    } else if (guValue !== "") {
-      setSearchBins(bins.filter((bin) => bin.gu === guValue));
+    if (roadsValue !== "") {
+      setSearchBins(bins.filter((bin) => bin.roads === roadsValue));
+    } else if (regionValue !== "") {
+      setSearchBins(bins.filter((bin) => bin.region === regionValue));
     } else {
       setSearchBins([...bins]);
     }
-  }, [bins, guValue, doroValue]);
+  }, [bins, regionValue, roadsValue]);
 
   // *********************************
   const [page, setPage] = useState(1);
@@ -111,15 +112,20 @@ function MapList() {
 
   // 리스트에서 항목 click 시 해당 항목의 좌표 저장
   const onClickBin = (x: string | undefined, y: string | undefined) => {
+    // console.log(binSelected)
     setBinSelected([x, y]);
+    // setBinSelected([y, x]);
   };
 
   // 지도에서 선택된 마커의 좌표가 어떤 쓰레기통인지 찾아서 해당 정보 저장
   const selectedBinInform: BinTypes | undefined = useMemo(() => {
+    console.log(selectedMarker);
+    console.log(bins);
+
     return bins.find(
       (bin) =>
-        selectedMarker.La === Number(bin.y) &&
-        selectedMarker.Ma === Number(bin.x),
+        selectedMarker.Ma === Number(bin.y) &&
+        selectedMarker.La === Number(bin.x),
     );
   }, [selectedMarker]);
 
@@ -134,7 +140,7 @@ function MapList() {
           searchBins?.map((bin, index) =>
             index === bins.length - 1 ? (
               <>
-                <MapBinLocationContainer
+                <MapBinDatailsContainer
                   onClick={() => onClickBin(bin?.x, bin?.y)}
                   key={index}
                   ref={setLastIntersectingImage}
@@ -142,33 +148,36 @@ function MapList() {
                     backgroundColor: "red",
                   }}
                 >
-                  <MapBinLacationTitle>{bin?.location}</MapBinLacationTitle>
-                  <MapBinLacationDes>{bin?.spot}</MapBinLacationDes>
-                </MapBinLocationContainer>
+                  <MapBinLacationTitle>{bin?.address}</MapBinLacationTitle>
+                  <MapBinLacationDes>{bin?.points}</MapBinLacationDes>
+                </MapBinDatailsContainer>
               </>
             ) : (
-              <MapBinLocationContainer
+              <MapBinDatailsContainer
                 onClick={() => onClickBin(bin?.x, bin?.y)}
                 key={index}
               >
-                <MapBinLacationTitle>{bin?.location}</MapBinLacationTitle>
-                <MapBinLacationDes>{bin?.spot}</MapBinLacationDes>
-              </MapBinLocationContainer>
+                <MapBinLacationTitle>{bin?.address}</MapBinLacationTitle>
+                <MapBinLacationDes>{bin?.points}</MapBinLacationDes>
+              </MapBinDatailsContainer>
             ),
           )
         ) : (
           // 지도에서 선택된 마커가 있다면 해당 마커의 쓰레기통 정보만 띄움
           <>
-            <MapBinLocationContainer
+            <MapBinDatailsContainer
               onClick={() =>
                 onClickBin(selectedBinInform?.x, selectedBinInform?.y)
               }
             >
               <MapBinLacationTitle>
-                {selectedBinInform?.location}
+                <>
+                  {console.log(selectedBinInform)}
+                  {selectedBinInform?.address}
+                </>
               </MapBinLacationTitle>
-              <MapBinLacationDes>{selectedBinInform?.spot}</MapBinLacationDes>
-            </MapBinLocationContainer>
+              <MapBinLacationDes>{selectedBinInform?.points}</MapBinLacationDes>
+            </MapBinDatailsContainer>
             <BackWrapper onClick={onClickBack}>
               <BackButton>이전으로</BackButton>
             </BackWrapper>
