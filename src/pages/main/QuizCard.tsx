@@ -15,6 +15,7 @@ import {
 import { img } from "../../assets/imgImport";
 import { QuizCardType } from "../../types/Quiz";
 import { useNavigate } from "react-router";
+import CountUp from "react-countup";
 
 /** main page quiz card component
  *
@@ -23,13 +24,14 @@ import { useNavigate } from "react-router";
  */
 function QuizCard({ display, quiz }: QuizCardType) {
   const navigate = useNavigate();
-  console.log(quiz);
 
   return (
     <RankContainer>
       <WrongPercent>
         <RateText display={display}>오답률</RateText>
-        <RateBox>{Math.round(quiz.result[0].yesterday)}%</RateBox>
+        <RateBox>
+          <CountUp end={Math.round(quiz.result[0].yesterday)} duration={3} />%
+        </RateBox>
       </WrongPercent>
       <QuestionBox width="80">
         <QuizImg src={quiz.image} />

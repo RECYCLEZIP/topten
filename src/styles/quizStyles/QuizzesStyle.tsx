@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const QuizContainer = styled.div`
   width: 80%;
-  padding: 4rem 1rem;
+  padding: 3rem 1rem;
   margin: 0 auto;
   @media (min-width: 768px) {
     width: 45%;
@@ -72,26 +72,14 @@ export const OptionNumber = styled.span<{ isSelected: boolean }>`
   font-size: 0.7rem;
 `;
 
-export const MoveButton = styled.div<{ count?: number }>`
+export const MoveButton = styled.button<{ count?: number }>`
+  border: none;
+  background-color: white;
+  font-weight: 700;
   display: flex;
   align-items: center;
   cursor: pointer;
   visibility: ${(props) => props.count && props.count === 1 && "hidden"};
-`;
-
-export const SubmitButton = styled.p`
-  padding: 0 3%;
-  display: flex;
-  align-items: center;
-  font-size: 0.6rem;
-  background-color: #dfe6ed;
-  border-radius: 1rem;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #21a663;
-    color: white;
-  }
 `;
 
 export const MoveText = styled.p`

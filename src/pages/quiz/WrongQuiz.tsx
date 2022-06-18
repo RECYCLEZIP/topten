@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { getData } from "../../api";
 import { currentQuizState, toPostAnswerState } from "../../stores/atoms";
@@ -12,11 +12,18 @@ import {
   QuestionBox,
   QuizQuestion,
 } from "../../styles/quizStyles/QuizzesStyle";
-import { LogoImg, QuizImg } from "../../styles/mainStyles/QuizStyle";
+import {
+  BackButton,
+  BackIcon,
+  LogoImg,
+  QuizImg,
+} from "../../styles/mainStyles/QuizStyle";
 import { img } from "../../assets/imgImport";
 import { CardText } from "../../styles/TextStyle";
+import { toast, ToastContainer } from "react-toastify";
 
 function WrongQuiz() {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const id = useParams().id;
   const [type, setType] = useState("");
@@ -45,6 +52,10 @@ function WrongQuiz() {
 
   return (
     <QuizContainer>
+      <BackButton onClick={() => navigate("/")}>
+        <BackIcon src={img.backPage} /> 뒤로 가기
+      </BackButton>
+      <ToastContainer style={{ fontSize: "0.7rem" }} />
       <QuestionBox>
         <QuizImg src={currentQuiz[0].image} />
         <QuizQuestion>

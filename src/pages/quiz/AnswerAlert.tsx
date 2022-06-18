@@ -1,84 +1,94 @@
 import React, { useState } from "react";
-import Stack from "@mui/material/Stack";
-import Snackbar from "@mui/material/Snackbar";
-import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import { CorrectAnswer } from "../../styles/quizStyles/QuizzesStyle";
-import { IconButton } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
   answerState,
   currentQuizState,
+  quizConfirmState,
   toPostAnswerState,
   viewAnswerState,
 } from "../../stores/atoms";
 import { postData } from "../../api";
-
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
-  props,
-  ref,
-) {
-  return <MuiAlert ref={ref} variant="filled" {...props} />;
-});
+import { toast } from "react-toastify";
 
 function AnswerAlert() {
-  const [open, setOpen] = useState(false);
   const option = useRecoilValue(answerState);
   const currentQuiz = useRecoilValue(currentQuizState)[0];
   const [isCorrect, setIsCorrect] = useState(false);
   const setToPostAnswer = useSetRecoilState(toPostAnswerState);
-  const setResult = useSetRecoilState(viewAnswerState);
+  const setOpenResult = useSetRecoilState(viewAnswerState);
+  const [confirm, setConfirm] = useRecoilState(quizConfirmState);
 
-  const handleClose = () => {
-    setOpen(false);
-    setResult((cur) => !cur);
-  };
+  const correct = () =>
+    toast.success("맞았습니다!", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+  const notCorrect = () =>
+    toast.error("틀렸습니다!", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+  const alert = () =>
+    toast.warn("답을 선택해주세요!", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   const CheckAnswer = async () => {
-    if (option === "-1") return alert("답을 선택해주세요!");
+    if (option === "-1") return alert();
+    setConfirm(true);
     try {
       const res = await postData(`quizzes/${currentQuiz._id}/submission`, {
         answer: option,
       });
       setIsCorrect(res.data.isCorrect);
+      if (res.data.isCorrect) {
+        correct();
+      } else {
+        notCorrect();
+      }
       setToPostAnswer((prev) => [
         ...prev,
         { quizId: currentQuiz._id, answer: option },
       ]);
+      setTimeout(() => {
+        setOpenResult((cur) => !cur);
+        setConfirm(false);
+      }, 2000);
     } catch {
       console.log("post data request fail");
     }
-    setOpen((cur) => !cur);
   };
 
   return (
-    <Stack spacing={2}>
-      <CorrectAnswer onClick={() => CheckAnswer()}>정답 확인</CorrectAnswer>
-      <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        open={open}
-        autoHideDuration={1500}
-        onClose={handleClose}
+    <>
+      <CorrectAnswer
+        onClick={() => {
+          CheckAnswer();
+        }}
+        disabled={confirm}
       >
-        <Alert
-          action={
-            <IconButton color="inherit">
-              <CloseIcon
-                fontSize="inherit"
-                sx={{ height: "0.9rem", width: "0.9rem" }}
-                onClick={() => handleClose()}
-              />
-            </IconButton>
-          }
-          onClose={handleClose}
-          severity={isCorrect ? "success" : "error"}
-          sx={{ fontSize: "0.7rem" }}
-          icon={false}
-        >
-          {isCorrect ? "정답입니다!" : "틀렸습니다!"}
-        </Alert>
-      </Snackbar>
-    </Stack>
+        정답 확인
+      </CorrectAnswer>
+    </>
   );
 }
 

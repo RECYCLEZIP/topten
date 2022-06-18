@@ -14,7 +14,7 @@ export const Nav = styled.div<{ isToggled: boolean }>`
   top: 0;
   left: 0;
   right: 0;
-  z-index: 2;
+  z-index: 4;
 `;
 
 export const Logo = styled.img`
@@ -28,7 +28,7 @@ export const Menu = styled.div<{ isToggled: boolean }>`
   background-color: white;
   height: 100%;
   margin-top: 2.6rem;
-  width: 27%;
+  width: 30%;
   position: fixed;
   top: 0;
   right: 0;

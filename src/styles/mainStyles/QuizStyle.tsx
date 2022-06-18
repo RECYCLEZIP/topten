@@ -59,3 +59,19 @@ export const QuizButton = styled.p`
 export const LogoImg = styled.img`
   width: 1.8rem;
 `;
+
+export const BackButton = styled.button`
+  display: flex;
+  align-items: center;
+  border: none;
+  background-color: white;
+  margin: 0.5rem 0;
+  font-size: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+`;
+
+export const BackIcon = styled.img`
+  width: 1rem;
+  margin-right: 0.3rem;
+`;
