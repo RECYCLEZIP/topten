@@ -66,6 +66,7 @@ const doc = {
             email: "test@test.com",
             password: "test1234",
         },
+        UserLogoutResponse: { message: "정상적으로 로그아웃이 완료되었습니다." },
         TrashId: "trash/{trashId}",
         TrashGetQuery: "?search={}&category={}&page={ID}&limit={5}",
         TrashGetResponse: [

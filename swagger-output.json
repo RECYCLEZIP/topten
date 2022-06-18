@@ -489,6 +489,23 @@
         }
       }
     },
+    "/users/logout": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "description": "유저 로그아웃",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/UserLogoutResponse"
+            },
+            "description": "로그아웃 여부를 반환"
+          }
+        }
+      }
+    },
     "/users/{id}": {
       "get": {
         "tags": [
@@ -766,6 +783,15 @@
         "password": {
           "type": "string",
           "example": "test1234"
+        }
+      }
+    },
+    "UserLogoutResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "정상적으로 로그아웃이 완료되었습니다."
         }
       }
     },
