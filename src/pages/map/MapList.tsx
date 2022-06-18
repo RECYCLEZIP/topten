@@ -147,9 +147,9 @@ function MapList() {
                   onClick={() => onClickBin(bin?.x, bin?.y)}
                   key={index}
                   ref={setLastIntersectingImage}
-                  style={{
-                    backgroundColor: "red",
-                  }}
+                  // style={{
+                  //   backgroundColor: "red",
+                  // }}
                 >
                   <MapBinLacationTitle>{bin?.details}</MapBinLacationTitle>
                   <MapBinLacationDes>{bin?.points}</MapBinLacationDes>
