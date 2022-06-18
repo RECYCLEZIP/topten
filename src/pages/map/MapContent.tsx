@@ -23,6 +23,7 @@ function MapContent() {
   const bins = useRecoilValue(BinState);
   const binSelected = useRecoilValue(BinSelectedState);
   const setSelectedMarker = useSetRecoilState(selectedMarkerState);
+  const setBinSelected = useSetRecoilState(BinSelectedState);
 
   useEffect(() => {
     // 렌더링 후 지도 띄우기
@@ -69,6 +70,7 @@ function MapContent() {
           La: Math.round(marker.getPosition().La * 10000000000) / 10000000000,
           Ma: Math.round(marker.getPosition().Ma * 10000000000) / 10000000000,
         });
+        setBinSelected([bin.x, bin.y])
       });
     });
   };
