@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { getData } from "../api";
 import {
   categoryKindState,
@@ -54,7 +54,12 @@ function CategoryList({ backColor }: { backColor?: string }) {
     <CategoryContainer backColor={backColor}>
       <List>
         {category.map((list, index) => (
-          <ImgContainer onClick={() => selectCategory(index)} key={index}>
+          <ImgContainer
+            onClick={() => selectCategory(index)}
+            key={index}
+            disabled={isSelected[index]}
+            isSelected={isSelected[index]}
+          >
             <IMGBox>
               <IMG src={list.image}></IMG>
             </IMGBox>
