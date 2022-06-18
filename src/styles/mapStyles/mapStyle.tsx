@@ -122,8 +122,17 @@ export const MapBinLacationDes = styled2.div`
   color: #9eacba;
 `;
 
-export const typeContainer = styled2(Button)`
+export const TypeContainer = styled2.div`
+padding: 0.2rem 0.5rem;
+margin-right: 0.5rem;
 
+display: inline-block;
+background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #69DB7C;border: none;
+border-radius: 0.2rem;
+
+color: white;
+font-size: 0.4rem;
+font-weight: bold;
 `;
 
 export const BackWrapper = styled2.div`
@@ -134,7 +143,15 @@ export const BackWrapper = styled2.div`
 export const BackButton = styled2(Button)`
 padding: 0.3rem 0.8rem;
 
+background: #F0F2F5;
+color: black;
+
     font-size: 0.5rem;
+
+    &:hover {
+      background-color: #dadee4;
+      transition: all 0.5s;
+    }
 `;
 
 export const StyledInput = styled(InputBase)(({ theme }) => ({
