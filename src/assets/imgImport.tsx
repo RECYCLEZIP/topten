@@ -21,9 +21,12 @@ import shutter from "./img/shutter.png";
 import greenBackLogo from "./img/greenBackLogo.png";
 import quiz1 from './img/quiz1.png';
 import quiz2 from './img/quiz2.png';
+import loading from "./img/loading.gif";
+import x from "./img/x.png";
+import backPage from "./img/arrow.png";
 
 export const img = {
-  seoul: seoul,
+  seoul,
   mainAI: mainAi,
   category: [PET, GLASS, PET, GLASS, PET, GLASS, PET, GLASS],
   sample: PETs,
@@ -45,4 +48,7 @@ export const img = {
   greenBackLogo: greenBackLogo,
   quiz1: quiz1,
   quiz2: quiz2,
+  loading,
+  x,
+  backPage,
 };
