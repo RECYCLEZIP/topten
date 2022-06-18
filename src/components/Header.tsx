@@ -25,7 +25,7 @@ function Header() {
   return (
     <Nav isToggled={isToggled}>
       <Logo onClick={() => navigate("/")} src={img.mainLogo} />
-      <Menu isToggled={isToggled}>
+      <Menu isToggled={isToggled} onClick={() => setIsToggled(false)}>
         <Link to="/prologue" border="1px solid #efefef">
           프롤로그
         </Link>

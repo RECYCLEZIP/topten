@@ -20,6 +20,7 @@ import mainLogo from "./img/서비스로고.png";
 import shutter from "./img/shutter.png";
 import loading from "./img/loading.gif";
 import x from "./img/x.png";
+import backPage from "./img/arrow.png";
 
 export const img = {
   seoul,
@@ -43,4 +44,5 @@ export const img = {
   shutter: shutter,
   loading,
   x,
+  backPage,
 };

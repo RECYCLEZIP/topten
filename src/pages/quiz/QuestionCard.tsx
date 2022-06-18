@@ -1,5 +1,10 @@
 import { img } from "../../assets/imgImport";
-import { LogoImg, QuizImg } from "../../styles/mainStyles/QuizStyle";
+import {
+  BackButton,
+  BackIcon,
+  LogoImg,
+  QuizImg,
+} from "../../styles/mainStyles/QuizStyle";
 import {
   Icons,
   MoveButton,
@@ -59,7 +64,12 @@ function QuestionCard() {
   //퀴즈 데이터가 들어오면 map 처리
   return (
     <>
-      <QuizCount>{currentPage + 1}/4</QuizCount>
+      <Icons>
+        <BackButton onClick={() => navigate("/quizzes")}>
+          <BackIcon src={img.backPage} /> 뒤로 가기
+        </BackButton>
+        <QuizCount>{currentPage + 1}/4</QuizCount>
+      </Icons>
       <QuestionBox>
         <QuizImg src={currentQuiz[0].image} />
         <QuizQuestion>

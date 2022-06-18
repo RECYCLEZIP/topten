@@ -49,6 +49,7 @@ function Search() {
       setTrashList([]);
       setIsInputValue(false);
     }
+    setIsInputValue(false);
   };
 
   const listReset = () => {
