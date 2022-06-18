@@ -3,10 +3,11 @@ import { CategoryType, NewsType } from "../types/Main";
 import { CategoryItemType } from "../types/Trash";
 
 export interface BinTypes {
-  gu: string;
-  doro: string;
-  location: string;
-  spot: string;
+  region: string;
+  roads: string;
+  details: string;
+  points: string;
+  address: "";
   type: string[];
   x: string;
   y: string;
@@ -28,10 +29,11 @@ export const BinState = atom<BinTypes[]>({
   key: "BinState",
   default: [
     {
-      gu: "",
-      doro: "",
-      location: "",
-      spot: "",
+      region: "",
+      roads: "",
+      details: "",
+      points: "",
+      address: "",
       type: [],
       x: "",
       y: "",
@@ -43,10 +45,11 @@ export const SearchBinState = atom<BinTypes[]>({
   key: "SearchBinState",
   default: [
     {
-      gu: "",
-      doro: "",
-      location: "",
-      spot: "",
+      region: "",
+      roads: "",
+      details: "",
+      points: "",
+      address: "",
       type: [],
       x: "",
       y: "",
@@ -54,13 +57,13 @@ export const SearchBinState = atom<BinTypes[]>({
   ],
 });
 
-export const GuValueState = atom({
-  key: "GuValueState",
+export const RegionValueState = atom({
+  key: "RegionValueState",
   default: "",
 });
 
-export const DoroValueState = atom({
-  key: "DoroValueState",
+export const RoadsValueState = atom({
+  key: "RoadsValueState",
   default: "",
 });
 
