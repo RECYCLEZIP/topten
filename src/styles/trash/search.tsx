@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SearchBox = styled.form`
-  height: 0.6rem;
+  height: 1rem;
   border: 1px solid black;
   border-radius: 1rem;
   display: flex;
@@ -20,6 +20,7 @@ export const SearchText = styled.input`
 
 export const ResetIcon = styled.img`
   cursor: pointer;
+  width: 1rem;
 `;
 
 export const SearchButton = styled.button`

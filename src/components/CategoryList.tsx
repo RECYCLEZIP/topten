@@ -3,7 +3,6 @@ import { useNavigate } from "react-router";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { getData } from "../api";
 import {
-  categoryItemState,
   categoryKindState,
   categoryPageState,
   categorySelectedState,
@@ -22,7 +21,6 @@ function CategoryList({ backColor }: { backColor?: string }) {
   const navigate = useNavigate();
   const [category, setCategory] = useRecoilState(categoryState);
   const setKind = useSetRecoilState(categoryKindState);
-  const setList = useSetRecoilState(categoryItemState);
   const setPage = useSetRecoilState(categoryPageState);
   const url = window.location.pathname;
 
@@ -44,11 +42,10 @@ function CategoryList({ backColor }: { backColor?: string }) {
   // selected category color change
   const selectCategory = (index: number) => {
     const newArr = Array(category.length).fill(false);
-    newArr[index] = newArr[index] ? false : true;
+    newArr[index] = true;
     setIsSelected(newArr);
     setPage("");
     setKind(category[index].name);
-    setList([]);
 
     navigate(`/category/${category[index].name}`);
   };

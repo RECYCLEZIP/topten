@@ -88,10 +88,10 @@ function Search() {
               }}
             ></ResetIcon>
           ) : (
-            <img src={img.loading} alt="icon"></img>
+            <ResetIcon src={img.loading} alt="icon"></ResetIcon>
           ))}
         <SearchButton type="submit">
-          <SearchIcon style={{ fontSize: "0.6rem" }}></SearchIcon>
+          <SearchIcon style={{ fontSize: "1rem" }}></SearchIcon>
         </SearchButton>
         {isInputValue && (
           <DropDownBox>
