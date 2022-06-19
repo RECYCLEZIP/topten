@@ -70,3 +70,14 @@ export interface IUser {
     password?: string;
     token?: string;
 }
+
+export interface IBins {
+    region: string;
+    roads: string;
+    details: string;
+    points: string;
+    address: string;
+    type: string[];
+    x: string;
+    y: string;
+}
