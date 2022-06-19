@@ -279,6 +279,10 @@ const doc = {
                 __v: 0,
             },
         ],
+        LocationList: {
+            uniqueRegionList: ["종로구", "용산구", "성동구", "광진구", "중랑구"],
+            uniqueRoadList: ["자하문로", "삼청로", "원효로", "마장로", "왕십리로", "마조로"],
+        },
     },
 };
 

@@ -75,6 +75,23 @@
         }
       }
     },
+    "/bins/locations": {
+      "get": {
+        "tags": [
+          "bins"
+        ],
+        "description": "자치구명, 도로명 리스트 조회",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/LocationList"
+            },
+            "description": "유니크한 자치구명, 도로명 리스트 조회"
+          }
+        }
+      }
+    },
     "/news": {
       "get": {
         "tags": [
@@ -1432,6 +1449,38 @@
           "__v": {
             "type": "number",
             "example": 0
+          }
+        }
+      }
+    },
+    "LocationList": {
+      "type": "object",
+      "properties": {
+        "uniqueRegionList": {
+          "type": "array",
+          "example": [
+            "종로구",
+            "용산구",
+            "성동구",
+            "광진구",
+            "중랑구"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "uniqueRoadList": {
+          "type": "array",
+          "example": [
+            "자하문로",
+            "삼청로",
+            "원효로",
+            "마장로",
+            "왕십리로",
+            "마조로"
+          ],
+          "items": {
+            "type": "string"
           }
         }
       }

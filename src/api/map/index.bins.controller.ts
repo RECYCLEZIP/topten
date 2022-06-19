@@ -28,6 +28,13 @@ binsController.get(
 binsController.get(
     "/bins/locations",
     wrapAsyncFunc(async (req, res, next) => {
+        /*  #swagger.tags = ["bins"]
+            #swagger.description = "자치구명, 도로명 리스트 조회" 
+             
+            #swagger.responses[200] = { 
+            schema: { "$ref": "#/definitions/LocationList" },
+            description: "유니크한 자치구명, 도로명 리스트 조회" } */
+
         const locationList = await BinsService.getLocationList();
         return res.status(STATUS_200_OK).json(locationList);
     }),
