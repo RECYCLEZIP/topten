@@ -81,3 +81,13 @@ export interface IBins {
     x: string;
     y: string;
 }
+
+export interface IQuiz {
+    title: string;
+    description: string;
+    options: string[];
+    answer: string;
+    result: Result[];
+    type: string;
+    image: string;
+}
