@@ -25,4 +25,12 @@ binsController.get(
     }),
 );
 
+binsController.get(
+    "/bins/locations",
+    wrapAsyncFunc(async (req, res, next) => {
+        const locationList = await BinsService.getLocationList();
+        return res.status(STATUS_200_OK).json(locationList);
+    }),
+);
+
 export default binsController;
