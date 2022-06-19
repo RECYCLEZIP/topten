@@ -40,6 +40,10 @@ const doc = {
             name: "user",
             description: "유저 데이터 API",
         },
+        {
+            name: "bins",
+            description: "쓰레기통위치 데이터 API",
+        },
     ],
     definitions: {
         NewsId: "news/{newsId}",
@@ -257,6 +261,21 @@ const doc = {
                         _id: "62a455ad6059af946a56e718",
                     },
                 ],
+                __v: 0,
+            },
+        ],
+        BinsQuery: "?search=종로구&category=삼청로",
+        BinsLocation: [
+            {
+                _id: "62ab6bef76d07566b0026be9",
+                region: "종로구",
+                roads: "삼청로",
+                details: "삼청로1 맞은편 인도",
+                points: "광장, 공원 등 다중집합장소",
+                address: "서울 종로구 삼청로 1",
+                type: ["일반", "재활용"],
+                x: "126.9794122718",
+                y: "37.5760952177",
                 __v: 0,
             },
         ],

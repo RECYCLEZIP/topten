@@ -16,7 +16,6 @@ export class BinsService {
             roads = query.category;
             filterQuery.push({ roads });
         }
-        console.log(filterQuery);
 
         const locationList = await Bins.findLocation(filterQuery);
         if (locationList.length === 0) {
