@@ -10,4 +10,8 @@ export class Bins {
     ) {
         return await BinsModel.find({ $and: filterQuery });
     }
+
+    static async findAll() {
+        return await BinsModel.find({});
+    }
 }
