@@ -54,6 +54,7 @@ function Map() {
       );
       // console.log(res.data);
       setBin(res.data);
+      console.log(res.data)
     } catch (e) {
       console.log(e);
     }
@@ -99,6 +100,7 @@ function Map() {
       </MapTop>
       <MapBinSection>
         <MapTest
+          type="bin"
           props={bins}
           propsSelected={binSelected}
           setSelectedMarker={setSelectedMarker}
