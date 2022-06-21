@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router";
 import { postData } from "../../api";
 import { Button } from "../../styles/ButtonStyles";
@@ -37,6 +38,9 @@ function Register() {
 
   return (
     <RightContainer>
+      <Helmet>
+        <title>회원가입 - 분리수ZIP</title>
+      </Helmet>
       <TitleText>회원가입</TitleText>
       <EachInput>
         <RegisterText>이메일</RegisterText>
