@@ -58,7 +58,7 @@ export const MapBinSection = styled2.section`
     }
 `;
 
-export const MapBinMapContainer = styled2.div`
+export const MapContentContainer = styled2.div`
 width: 85%;
 height: 30vh;
 height: 15rem;
@@ -80,7 +80,7 @@ z-index: 1;
     }
   `;
 
-export const MapBinMapWrapper = styled2.div`
+export const MapContentWrapper = styled2.div`
   height: 100%;
 
   @media (min-width: 768px) {

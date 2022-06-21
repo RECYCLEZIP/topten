@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 
 import MapSearch from "./MapSearch";
-import MapContent from "./MapContent";
+// import MapContent from "./MapContent";
 import MapList from "./MapList";
+import MapTest from "../../components/MapTest";
 
 import { getData } from "../../api";
 
-import { useRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
 
 import {
   BinTypes,
   BinState,
+  BinSelectedState,
+  selectedMarkerState,
   SearchBinState,
   RegionValueState,
   RoadsValueState,
@@ -32,6 +35,11 @@ function Map() {
   const [roadsValue, setRoadsValue] = useRecoilState(RoadsValueState);
 
   const [page, setPage] = useState(1);
+
+  const bins = useRecoilValue(BinState);
+  const binSelected = useRecoilValue(BinSelectedState);
+  const setSelectedMarker = useSetRecoilState(selectedMarkerState);
+  const setBinSelected = useSetRecoilState(BinSelectedState);
 
   const [lastIntersectingImage, setLastIntersectingImage] =
     useRecoilState<HTMLDivElement | null>(lastIntersectingImageState);
@@ -90,7 +98,12 @@ function Map() {
         <MapSearch />
       </MapTop>
       <MapBinSection>
-        <MapContent />
+        <MapTest
+          props={bins}
+          propsSelected={binSelected}
+          setSelectedMarker={setSelectedMarker}
+          setPropsSelected={setBinSelected}
+        />
         <MapList />
       </MapBinSection>
     </MapContainer>
