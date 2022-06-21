@@ -20,4 +20,4 @@ if (process.env.NODE_ENV !== "test") {
     );
 }
 
-export { User, Quiz, Trash, News };
+export { User, Quiz, Trash, News, Bins };
