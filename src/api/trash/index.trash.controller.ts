@@ -1,13 +1,17 @@
+import multer from "multer";
 import { Router } from "express";
-import wrapAsyncFunc from "@src/utils/catchAsync";
 import { ITrash } from "@src/models/interface";
+import { storage } from "@src/utils/fileUpload";
+import wrapAsyncFunc from "@src/utils/catchAsync";
 import { trashSchema } from "@src/utils/bodySchema";
-import { identifierSchema } from "@src/utils/paramsSchema";
 import { trashCategories } from "@src/utils/constans";
 import { TrashService } from "@src/service/trash.service";
-import { bodyValidator, paramsValidator } from "@src/middlewares/requestValidator";
+import { identifierSchema } from "@src/utils/paramsSchema";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
+import { bodyValidator, paramsValidator } from "@src/middlewares/requestValidator";
+import { RequestError } from "@src/middlewares/errorHandler";
 
+const upload = multer({ storage });
 const trashController = Router();
 
 trashController.get(
@@ -88,6 +92,31 @@ trashController.post(
         const trashInfo: ITrash = req.body;
         const createdTrash = await TrashService.addTrash(trashInfo);
         res.status(STATUS_201_CREATED).json(createdTrash);
+    }),
+);
+
+trashController.post(
+    "/trash/ai",
+    upload.single("aiImage"),
+    wrapAsyncFunc(async (req, res, _next) => {
+        /*  #swagger.tags = ["trash"]
+            #swagger.description = "쓰레기 AI 분석"
+            #swagger.consumes = ['multipart/form-data']
+            #swagger.parameters['multFiles'] = {
+                in: 'formData',
+                type: 'single',
+                required: true,
+                description: '쓰레기 이미지 파일\nmultipart/form-data',
+                collectionFormat: 'multi',
+                items: { type: 'file' }
+            }
+            #swagger.responses[200] = {
+            schema: { "$ref": "#/definitions/TrashAiResponse" },
+            description: "AI 분석결과를 반환" } */
+
+        if (!req.file) throw new RequestError();
+        const aiTrashResult = await TrashService.aiTrash(req.file.path);
+        res.status(STATUS_200_OK).json(aiTrashResult);
     }),
 );
 

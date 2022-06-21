@@ -472,6 +472,38 @@
         }
       }
     },
+    "/trash/ai": {
+      "post": {
+        "tags": [
+          "trash"
+        ],
+        "description": "쓰레기 AI 분석",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "multFiles",
+            "in": "formData",
+            "type": "single",
+            "required": true,
+            "description": "쓰레기 이미지 파일\nmultipart/form-data",
+            "collectionFormat": "multi",
+            "items": {
+              "type": "file"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/TrashAiResponse"
+            },
+            "description": "AI 분석결과를 반환"
+          }
+        }
+      }
+    },
     "/users/current": {
       "get": {
         "tags": [
@@ -870,6 +902,45 @@
           "__v": {
             "type": "number",
             "example": 0
+          }
+        }
+      }
+    },
+    "TrashAiResponse": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "페트병"
+        },
+        "kind": {
+          "type": "string",
+          "example": "플라스틱"
+        },
+        "section": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "example": "라벨"
+              },
+              "score": {
+                "type": "number",
+                "example": 0
+              }
+            }
+          }
+        },
+        "throwAway": {
+          "type": "array",
+          "example": [
+            "내용물을 비운 뒤 세척",
+            "부착 상표 등을 제거 후 일반 쓰레기에 버리기"
+          ],
+          "items": {
+            "type": "string"
           }
         }
       }
