@@ -48,7 +48,7 @@ export const Menu = styled.div<{ isToggled: boolean }>`
 
   animation: fadeIn 0.3s ease-in-out;
 
-  @media (min-width: 940px) {
+  @media (min-width: 1065px) {
     all: unset;
     display: flex;
     flex-direction: row;
@@ -63,7 +63,7 @@ export const Link = styled(RouterLink)<{ border?: string }>`
   margin: 0 0.5rem;
   text-align: left;
   border-bottom: ${(props) => props.border};
-  @media (min-width: 940px) {
+  @media (min-width: 1065px) {
     display: flex;
     flex-direction: row;
     text-align: center;
@@ -74,7 +74,7 @@ export const Link = styled(RouterLink)<{ border?: string }>`
 `;
 
 export const IconMenu = styled.div`
-  @media (min-width: 940px) {
+  @media (min-width: 1065px) {
     display: none;
   }
 `;

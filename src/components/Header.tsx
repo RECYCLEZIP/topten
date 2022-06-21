@@ -43,6 +43,7 @@ function Header() {
         >
           분리수거 정보
         </Link>
+        <Link to="/users/login">로그인</Link>
       </Menu>
       <IconMenu onClick={() => setIsToggled((cur) => !cur)}>
         {isToggled ? <CloseOutlinedIcon /> : <MenuOutlinedIcon />}
