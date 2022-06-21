@@ -6,13 +6,7 @@ import {
   categoryKindState,
   categoryPageState,
 } from "../../stores/atoms";
-import {
-  SearchBox,
-  SearchText,
-  SearchIcon,
-  TitleContainer,
-  ItemListContainer,
-} from "../../styles/trash/category";
+import { ItemListContainer } from "../../styles/trash/category";
 import {
   ItemContainer,
   ItemImg,
@@ -20,12 +14,12 @@ import {
   ItemTitle,
   MoveButton,
 } from "../../styles/trash/items";
-import { CategoryTitle } from "../../styles/mainStyles/CategoryStyle";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 function CategoryItems() {
+  const params = useParams().kind;
   const kind = useRecoilValue(categoryKindState);
-  const [list, setList] = useRecoilState(categoryItemState);
+  const [trashList, setTrashList] = useRecoilState(categoryItemState);
   const [page, setPage] = useRecoilState(categoryPageState);
   const observerRef = useRef<IntersectionObserver>();
   const boxRef = useRef<HTMLDivElement>(null);
@@ -34,20 +28,23 @@ function CategoryItems() {
   const getTrashList = useCallback(async () => {
     try {
       const res = await getData(`trash?category=${kind}&page=${page}`);
-      setList((prev) => [...prev, res.data]);
+      setTrashList((prev) => [...prev, res.data]);
     } catch {
       console.log("Error: data get request fail");
     }
-  }, [kind, page, setList]);
-
+  }, [kind, page, setTrashList]);
   useEffect(() => {
     getTrashList();
   }, [getTrashList]);
 
   useEffect(() => {
+    setTrashList([]);
+  }, [params]);
+
+  useEffect(() => {
     observerRef.current = new IntersectionObserver(intersectionObserver); // IntersectionObserver
     boxRef.current && observerRef.current.observe(boxRef.current);
-  }, [list]);
+  }, [trashList]);
 
   const intersectionObserver = (
     entries: IntersectionObserverEntry[],
@@ -56,26 +53,19 @@ function CategoryItems() {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         io.unobserve(entry.target);
-        setPage(list.slice(-1)[0].slice(-1)[0]._id);
+        setPage(trashList.slice(-1)[0].slice(-1)[0]._id);
       }
     });
   };
 
   const moveItem = (id: string) => {
-    navigate(`./${id}`);
+    navigate(`/trash/${id}`);
   };
 
   return (
     <>
-      <TitleContainer>
-        <CategoryTitle>목록</CategoryTitle>
-        <SearchBox>
-          <SearchText />
-          <SearchIcon></SearchIcon>
-        </SearchBox>
-      </TitleContainer>
       <ItemListContainer>
-        {list.map((items, index) => (
+        {trashList.map((items, index) => (
           <>
             {items.map((item, index) =>
               items.length - 1 === index ? (
@@ -108,6 +98,13 @@ function CategoryItems() {
             )}
           </>
         ))}
+        <ItemContainer opacity={0}>
+          <ItemImg />
+          <ItemTitle>
+            <ItemText></ItemText>
+            <MoveButton>자세히</MoveButton>
+          </ItemTitle>
+        </ItemContainer>
         <ItemContainer opacity={0}>
           <ItemImg />
           <ItemTitle>

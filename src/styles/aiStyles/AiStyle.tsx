@@ -16,7 +16,7 @@ export const AiImageUploadSection = styled.div`
 `;
 
 export const AiImageContainer = styled.div`
-  background: #9eacba;
+  background: #f0f2f5;
 
   width: 100%;
   height: 13rem;
@@ -31,6 +31,54 @@ export const AiImageContainer = styled.div`
   overflow: hidden;
 
   position: relative;
+`;
+
+export const UploadContainer = styled.div`
+  /* background: purple; */
+
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  align-self: center;
+  text-align: center;
+
+  cursor: pointer;
+`;
+
+export const UploadWrapper = styled.div`
+  align-self: center;
+`;
+
+export const UploadNoticeWrapper = styled.div`
+  /* background: red; */
+  margin: 0.2rem;
+
+  color: #9eacba;
+  font-size: 0.6rem;
+`;
+
+export const UploadButton = styled.div`
+  padding: 0.3rem 0.7rem;
+
+  border-radius: 0.7rem;
+
+  font-size: 0.53rem;
+
+  display: inline-block;
+  background-color: #21a663;
+  border: none;
+
+  color: white;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: #2b9a61;
+    transition: all 0.5s;
+  }
 `;
 
 export const CameraShutterWrapper = styled.div`
@@ -95,10 +143,14 @@ export const AiIcon = styled.img`
 export const AiTopContainer = styled.div`
   /* background: green; */
 
-  margin: 0 1rem;
   margin-bottom: 3rem;
 
   display: flex;
+
+  @media (min-width: 768px) {
+    margin: 0 1rem;
+    margin-bottom: 3rem;
+  }
 `;
 
 export const AiNoticeWrapper = styled.div`
@@ -160,7 +212,7 @@ export const AiGuidesTitle = styled(AiContentTitle)`
 
 export const AiGuidesContainer = styled.div`
   margin-top: 0.8rem;
-  padding: 1rem;
+  padding: 2rem 3rem;
 
   display: grid;
   justify-items: center;
@@ -175,7 +227,8 @@ export const AiGuideContainer = styled.div`
 
   width: fit-content;
 
-  margin: 0.5rem;
+  margin: 1rem 0;
+  /* margin-bottom: 2rem; */
 
   text-align: center;
 `;
@@ -183,8 +236,7 @@ export const AiGuideContainer = styled.div`
 export const AiGuideImgWrapper = styled.div`
   /* background: lightblue; */
 
-  width: 10rem;
-  height: 5.5rem;
+  width: 100%;
 
   display: flex;
 
@@ -193,6 +245,11 @@ export const AiGuideImgWrapper = styled.div`
   overflow: hidden;
 
   justify-content: center;
+
+  @media (min-width: 768px) {
+    width: 10rem;
+    height: 5.5rem;
+  }
 `;
 
 export const AiGuideImg = styled.img`

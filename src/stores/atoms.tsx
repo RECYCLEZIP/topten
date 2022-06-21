@@ -1,17 +1,22 @@
 import { atom } from "recoil";
 import { CategoryType, NewsType } from "../types/Main";
-import { CategoryItemType } from "../types/Trash";
+import { AnswerListType, AnswerType, QuizType } from "../types/Quiz";
+import { CategoryItemType, TrashType } from "../types/Trash";
 
 export interface BinTypes {
-  title: string;
-  point: string;
-  lat: number;
-  lng: number;
+  region: string;
+  roads: string;
+  details: string;
+  points: string;
+  address: "";
+  type: string[];
+  x: string;
+  y: string;
 }
 
 export interface BinSelectedTypes {
-  lat: number;
-  lng: number;
+  lat: string;
+  lng: string;
 }
 
 // Ai 분석 페이지의 상황
@@ -25,18 +30,48 @@ export const BinState = atom<BinTypes[]>({
   key: "BinState",
   default: [
     {
-      title: "",
-      point: "",
-      lat: 0,
-      lng: 0,
+      region: "",
+      roads: "",
+      details: "",
+      points: "",
+      address: "",
+      type: [],
+      x: "",
+      y: "",
     },
   ],
 });
 
+export const SearchBinState = atom<BinTypes[]>({
+  key: "SearchBinState",
+  default: [
+    {
+      region: "",
+      roads: "",
+      details: "",
+      points: "",
+      address: "",
+      type: [],
+      x: "",
+      y: "",
+    },
+  ],
+});
+
+export const RegionValueState = atom({
+  key: "RegionValueState",
+  default: "",
+});
+
+export const RoadsValueState = atom({
+  key: "RoadsValueState",
+  default: "",
+});
+
 // 선택한 쓰레기통 리스트 좌표
-export const BinSelectedState = atom<(number | undefined)[]>({
+export const BinSelectedState = atom<(string | undefined)[]>({
   key: "BinSelectedState",
-  default: [0, undefined],
+  default: ["", undefined],
 });
 
 // 선택한 쓰레기통 마커
@@ -44,6 +79,11 @@ export const selectedMarkerState = atom({
   key: "selectedMarkerState",
   default: { La: 0, Ma: 0 },
 });
+
+export const lastIntersectingImageState = atom<HTMLDivElement | null>({
+  key: 'lastIntersectingImage', 
+  default: null
+})
 
 // category list
 export const categoryState = atom<CategoryType[]>({
@@ -78,4 +118,63 @@ export const categoryPageState = atom<string>({
 export const categorySelectedState = atom<boolean[]>({
   key: "categorySelectedState",
   default: [],
+});
+
+//quiz list
+export const quizListState = atom<QuizType[]>({
+  key: "quizListState",
+  default: [],
+});
+
+export const quizNumberState = atom<number>({
+  key: "quizNumberState",
+  default: 0,
+});
+
+export const selectedAnswerState = atom<boolean[]>({
+  key: "selectedAnswerState",
+  default: [false],
+});
+
+export const currentQuizState = atom<QuizType[]>({
+  key: "currentQuizState",
+  default: [],
+});
+
+export const currentPageState = atom<number>({
+  key: "currentPageState",
+  default: 0,
+});
+
+export const answerState = atom<string>({
+  key: "answerState",
+  default: "",
+});
+
+export const toPostAnswerState = atom<AnswerType[]>({
+  key: "toPostAnswerState",
+  default: [],
+});
+
+export const answerListState = atom<AnswerListType>({
+  key: "answerListState",
+  default: {
+    type: "",
+    answers: [],
+  },
+});
+
+export const viewAnswerState = atom<boolean>({
+  key: "viewAnswerState",
+  default: false,
+});
+
+export const searchTrashState = atom<TrashType[]>({
+  key: "searchTrashState",
+  default: [],
+});
+
+export const quizConfirmState = atom<boolean>({
+  key: "quizConfirmState",
+  default: false,
 });

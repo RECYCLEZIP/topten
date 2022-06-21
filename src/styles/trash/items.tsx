@@ -3,9 +3,12 @@ import styled from "styled-components";
 export const ItemContainer = styled.div<{ opacity?: number }>`
   display: flex;
   align-items: center;
-  width: 10rem;
+  width: 8rem;
   margin-bottom: 7%;
   opacity: ${(props) => props.opacity};
+  @media (min-width: 768px) {
+    width: 10rem;
+  }
 `;
 
 export const ItemTitle = styled.div`

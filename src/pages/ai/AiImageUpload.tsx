@@ -9,6 +9,10 @@ import { img } from "../../assets/imgImport";
 
 import {
   AiImageUploadSection,
+  UploadContainer,
+  UploadWrapper,
+  UploadNoticeWrapper,
+  UploadButton,
   CameraShutterWrapper,
   CameraShutterIcon,
   AiImageContainer,
@@ -22,6 +26,7 @@ import {
   AiButtonWrapper,
   AiButton,
 } from "../../styles/aiStyles/AiStyle";
+import { Upload } from "@mui/icons-material";
 
 function AiImageUpload() {
   const [fileImage, setFileImage] = useState("");
@@ -40,6 +45,7 @@ function AiImageUpload() {
 
   // 이미지 업로드
   const onClickImgUpload = (e: any) => {
+    console.log("asdfds");
     imgInput.current.click();
 
     setFileImage(URL.createObjectURL(e.target.files[0]));
@@ -47,6 +53,7 @@ function AiImageUpload() {
 
   // 이미지 업로드 시
   useEffect(() => {
+    console.log(fileImage);
     fileImage && setSituation("imgUploaded");
   }, [fileImage]);
 
@@ -107,6 +114,24 @@ function AiImageUpload() {
     <>
       <AiImageUploadSection>
         <AiImageContainer>
+          {situation === "beforeImgUpload" && (
+            <UploadContainer onClick={onClickImgUpload}>
+              <UploadWrapper>
+                <UploadNoticeWrapper>사진을 업로드 하세요.</UploadNoticeWrapper>
+                <form>
+                  <input
+                    name="imgUpload"
+                    type="file"
+                    accept="image/*"
+                    onChange={onClickImgUpload}
+                    ref={imgInput}
+                    style={{ display: "none" }}
+                  />
+                  <UploadButton>사진 업로드</UploadButton>
+                </form>
+              </UploadWrapper>
+            </UploadContainer>
+          )}
           {isCameraOn ? (
             <>
               <Camera
@@ -147,20 +172,40 @@ function AiImageUpload() {
                   <AiSpinImg src={img.spin} />
                 </AiImageLayer>
               )}
-              <AiImage src={fileImage}></AiImage>
+              {situation !== "beforeImgUpload" &&
+                (situation === "imgUploaded" ? (
+                  <form style={{ display: "contents" }}>
+                    <input
+                      name="imgUpload"
+                      type="file"
+                      accept="image/*"
+                      onChange={onClickImgUpload}
+                      ref={imgInput}
+                      style={{ display: "none" }}
+                    />
+                    <AiImage
+                      src={fileImage}
+                      alt="img"
+                      onClick={onClickImgUpload}
+                      style={{ cursor: "pointer" }}
+                    />
+                  </form>
+                ) : (
+                  <AiImage src={fileImage}></AiImage>
+                ))}
             </>
           )}
         </AiImageContainer>
         <AiIconsContainer>
-          <AiIcon
+          {/* <AiIcon
             src={img.camera}
             alt="camera"
             onClick={() => {
               setIsCameraOn(true);
             }}
-          />
+          /> */}
           {/* 업로드 아이콘 클릭 = 업로드 폼 클릭 */}
-          <form>
+          {/* <form>
             <input
               name="imgUpload"
               type="file"
@@ -170,7 +215,7 @@ function AiImageUpload() {
               style={{ display: "none" }}
             />
             <AiIcon src={img.image} alt="pic" onClick={onClickImgUpload} />
-          </form>
+          </form> */}
         </AiIconsContainer>
       </AiImageUploadSection>
       <AiTopContainer>

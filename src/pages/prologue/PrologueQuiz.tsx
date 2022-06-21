@@ -1,13 +1,19 @@
 import React from "react";
 
+import { img } from "../../../src/assets/imgImport";
+
 import {
   PrologueSection,
+  PrologueTitleWrapper,
   PrologueTitle,
   PrologueSubTitleWhite,
   PrologueQuizTitleContainer,
   PrologueQuizSubTitleContainer,
   PrologueSubTitleGray,
-  PrologueQuiz1,
+  QuizImgContainer,
+  Quiz1ImgWrapper,
+  Quiz2ImgWrapper,
+  Quiz1Img,
   PrologueQuiz2,
 } from "../../styles/prologueStyles/PrologueStyle";
 
@@ -15,23 +21,29 @@ function PrologueQuiz() {
   return (
     <PrologueSection>
       <PrologueQuizTitleContainer>
-        <PrologueTitle>분리수거 퀴즈</PrologueTitle>
+        <PrologueTitleWrapper className="fade-class">
+          <PrologueTitle>분리수거 퀴즈</PrologueTitle>
+        </PrologueTitleWrapper>
       </PrologueQuizTitleContainer>
-      <PrologueQuizSubTitleContainer>
+      <PrologueQuizSubTitleContainer className="fade-class">
         <PrologueSubTitleGray>분리수거 상식,</PrologueSubTitleGray>
         <PrologueSubTitleGray>퀴즈로 재밌게 배우자!</PrologueSubTitleGray>
       </PrologueQuizSubTitleContainer>
-      <PrologueQuiz1>
-        <PrologueSubTitleWhite>페트병의 올바른</PrologueSubTitleWhite>
-        <PrologueSubTitleWhite>폐기 방법을 고르세요.</PrologueSubTitleWhite>
-      </PrologueQuiz1>
-      <PrologueQuiz2>
-        <PrologueSubTitleWhite>폐트병은 뚜껑와 라벨을</PrologueSubTitleWhite>
-        <PrologueSubTitleWhite> 분리하여 버려야 한다?</PrologueSubTitleWhite>
-      </PrologueQuiz2>
-      <PrologueSubTitleGray>
-        객관식부터 OX까지 다양한 질문 수록
-      </PrologueSubTitleGray>
+      <QuizImgContainer className="fade-class">
+        <Quiz1ImgWrapper>
+          <Quiz1Img src={img.quiz1} />
+        </Quiz1ImgWrapper>
+      </QuizImgContainer>
+      <QuizImgContainer className="fade-class" delay="0.7s">
+        <Quiz2ImgWrapper>
+          <Quiz1Img src={img.quiz2} />
+        </Quiz2ImgWrapper>
+      </QuizImgContainer>
+      <div>
+        <PrologueSubTitleGray className="fade-class" delay="0.9s">
+          객관식부터 OX까지 다양한 질문 수록
+        </PrologueSubTitleGray>
+      </div>
     </PrologueSection>
   );
 }
