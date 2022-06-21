@@ -25,6 +25,7 @@ import quiz2 from "./img/quiz2.png";
 import loading from "./img/loading.gif";
 import x from "./img/x.png";
 import backPage from "./img/arrow.png";
+import user from "./img/user.jpg";
 
 export const img = {
   seoul,
@@ -53,4 +54,5 @@ export const img = {
   loading,
   x,
   backPage,
+  user,
 };
