@@ -4,12 +4,14 @@ import { Link, Logo, Nav, Menu, IconMenu } from "../styles/HeaderStyle";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { useState } from "react";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
   categoryItemState,
   categoryKindState,
   categoryPageState,
   categorySelectedState,
+  loginState,
+  userState,
 } from "../stores/atoms";
 
 //header component
@@ -21,6 +23,8 @@ function Header() {
   const setPage = useSetRecoilState(categoryPageState);
   const setKind = useSetRecoilState(categoryKindState);
   const setIsSelected = useSetRecoilState(categorySelectedState);
+  const isLogin = useRecoilValue(loginState);
+  const user = useRecoilValue(userState);
 
   return (
     <Nav isToggled={isToggled}>
@@ -43,7 +47,9 @@ function Header() {
         >
           분리수거 정보
         </Link>
-        <Link to="/users/login">로그인</Link>
+        <Link to={isLogin ? `/user/${user._id}` : "/users/login"}>
+          {isLogin ? "마이페이지" : "로그인"}
+        </Link>
       </Menu>
       <IconMenu onClick={() => setIsToggled((cur) => !cur)}>
         {isToggled ? <CloseOutlinedIcon /> : <MenuOutlinedIcon />}
