@@ -4,6 +4,7 @@ import request from "supertest";
 import { STATUS_200_OK } from "@src/utils/statusCode";
 import { QuizModel } from "@src/db/quiz/quiz.schema";
 import { QuizService } from "@src/service/quiz.service";
+import { QuizType } from "@src/models/interface";
 
 interface Result {
     date: Date;
@@ -31,12 +32,12 @@ async function initializeMemoryServer() {
                 "폐의약품을 그냥 버릴 경우 환경오염을 일으킬 수 있다. 약국에 비치된 폐의약품 수거함에 버린다.",
             options: ["일반쓰레기로 버린다."],
             answer: "1",
-            type: "multipleChoice",
+            type: QuizType.MULTI,
             image: "test.image.url",
         };
         await QuizModel.create(data);
     }
-    return QuizModel.find({ type: "multipleChoice" });
+    return QuizModel.find({ type: QuizType.MULTI });
 }
 
 describe("Quiz API Test", () => {

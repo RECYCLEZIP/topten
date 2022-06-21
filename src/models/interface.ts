@@ -25,6 +25,12 @@ export enum Answer {
     GENERAL = "일반",
 }
 
+export enum QuizType {
+    MULTI = "multipleChoice",
+    OX = "ox",
+    MIXUP = "mixUp",
+}
+
 export interface ITrash {
     title: string;
     description: { throwAway: string[]; note: string[] };
