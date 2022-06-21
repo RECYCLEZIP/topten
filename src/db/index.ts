@@ -4,6 +4,7 @@ import { User } from "@src/repository/user.repository";
 import { News } from "@src/repository/news.repository";
 import { Quiz } from "@src/repository/quiz.repository";
 import { Trash } from "@src/repository/trash.repository";
+import { Bins } from "@src/repository/bins.repository";
 
 const DB_URL =
     process.env.MONGODB_URL ||

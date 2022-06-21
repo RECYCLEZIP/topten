@@ -1,5 +1,4 @@
 import { BinsModel } from "@src/db/map/bins.schema";
-// import { MongooseQuery } from "@src/models/interface";
 
 export class Bins {
     static async findLocation(
