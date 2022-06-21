@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Button } from "../ButtonStyles";
 import { Container } from "../basicStyle";
 
@@ -54,24 +54,36 @@ export const MapBinSection = styled.section`
   }
 `;
 
-export const MapContentContainer = styled.div`
-  width: 85%;
-  height: 30vh;
-  height: 15rem;
+export const MapContentContainer = styled.div<{ type: any }>`
+  ${(props) =>
+    props?.type === "bin"
+      ? css`
+          width: 85%;
+          height: 30vh;
+          height: 15rem;
 
-  margin-top: 8rem;
-  padding-bottom: 1.5rem;
-  position: fixed;
+          margin-top: 8rem;
+          padding-bottom: 1.5rem;
+          position: fixed;
 
-  background: white;
+          background: white;
 
-  z-index: 1;
+          z-index: 1;
 
-  @media (min-width: 768px) {
-    width: 40%;
-    height: 50%;
-    margin-top: 7.3rem;
-  }
+          @media (min-width: 768px) {
+            width: 40%;
+            height: 50%;
+            margin-top: 7.3rem;
+          }
+        `
+      : css`
+          width: 85%;
+          height: 10rem;
+
+          @media (min-width: 768px) {
+            width: 40%;
+          }
+        `}
 `;
 
 export const MapContentWrapper = styled.div`
