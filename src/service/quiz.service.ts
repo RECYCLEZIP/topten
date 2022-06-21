@@ -40,7 +40,7 @@ export class QuizService {
         }
 
         if (dayjs(todayDate).format("YYYY.MM.DD") !== dayjs(result.date).format("YYYY.MM.DD")) {
-            const wrongRate = Number((result.wrong / result.totalUser) * 100);
+            const wrongRate = Math.round((result.wrong / result.totalUser) * 100);
             const newResult = {
                 date: todayDate,
                 totalUser: 1,
@@ -80,8 +80,6 @@ export class QuizService {
 
             return { quizId, isCorrect };
         });
-        const quizSetResult = { result, score };
-
-        return quizSetResult;
+        return { result, score };
     }
 }

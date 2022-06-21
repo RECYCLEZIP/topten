@@ -2,10 +2,10 @@ import * as fs from "fs";
 import mongoose from "mongoose";
 import "dotenv/config";
 import { TrashModel } from "../src/db/trash/trash.schema";
-import { styrofoam } from "./styrofoamSeed";
-import { can } from "./canSeed";
-import { glass } from "./glassSeed";
-import { plastic } from "./plasticSeed";
+import { styrofoam } from "./data/styrofoamSeed";
+import { can } from "./data/canSeed";
+import { glass } from "./data/glassSeed";
+import { plastic } from "./data/plasticSeed";
 
 interface Trash {
     title: string;
