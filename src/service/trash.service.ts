@@ -1,4 +1,6 @@
+import axios from "axios";
 import { Trash } from "@src/db";
+import { createAiResult } from "@src/utils/createAiResult";
 import { createFilterQuery } from "@src/utils/createQuery";
 import { RequestError } from "@src/middlewares/errorHandler";
 import { FilterQuery, ITrash } from "@src/models/interface";
@@ -24,6 +26,15 @@ export class TrashService {
         const createdTrash = await Trash.create(trashInfo);
         if (!createdTrash) throw new RequestError("쓰레기 생성에 실패하였습니다.");
         return createdTrash;
+    }
+
+    static async aiTrash(image: string) {
+        const res = await axios.post(process.env.AI_SERVER_URL as string, {
+            image,
+        });
+        if (!res.data)
+            throw new RequestError("AI 분석 결과를 찾을 수 없습니다.", STATUS_404_NOTFOUND);
+        return createAiResult(res.data);
     }
 
     static async updateTrash(id: string, trashInfo: ITrash) {

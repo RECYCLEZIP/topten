@@ -94,6 +94,16 @@ const doc = {
                 __v: 0,
             },
         ],
+        TrashAiResponse: {
+            title: "페트병",
+            kind: "플라스틱",
+            section: [
+                { title: "페트병", score: 0 },
+                { title: "뚜껑", score: 0 },
+                { title: "라벨", score: 0 },
+            ],
+            throwAway: ["내용물을 비운 뒤 세척", "부착 상표 등을 제거 후 일반 쓰레기에 버리기"],
+        },
         TrashOneGetResponse: {
             _id: "62a1624d1458dc8c48ab52ca",
             title: "컵라면",

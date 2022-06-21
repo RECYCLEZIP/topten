@@ -3,6 +3,7 @@ import { Category, ITrash } from "@src/models/interface";
 import { TrashService } from "@src/service/trash.service";
 import { RequestError } from "@src/middlewares/errorHandler";
 import { STATUS_400_BADREQUEST, STATUS_404_NOTFOUND } from "@src/utils/statusCode";
+import axios from "axios";
 
 const tempTrash: ITrash = {
     title: "사이다",
@@ -36,6 +37,20 @@ describe("TRASH SERVICE LOGIC", () => {
         const createdTrash = await TrashService.addTrash({ ...tempTrash, title: "환타" });
         expect(createdTrash.title).toEqual("환타");
         expect(createdTrash.category[0]).toEqual("캔");
+    });
+
+    it("TRASH AI 분석 결과를 반환한다.", async () => {
+        axios.post = jest.fn().mockResolvedValue({
+            data: {
+                type: "PET",
+                0: { score: 88.888 },
+                1: { score: 77.777 },
+                2: { score: 66.666 },
+            },
+        });
+        const trashAiResult = await TrashService.aiTrash("testImage");
+        expect(trashAiResult?.title).toEqual("페트병");
+        expect(trashAiResult?.kind).toEqual("플라스틱");
     });
 
     it("TRASH를 수정한다.", async () => {
@@ -90,6 +105,15 @@ describe("TRASH SERVICE ERROR HANDLING", () => {
             expect(err).toBeInstanceOf(RequestError);
             expect(err.status).toBe(STATUS_400_BADREQUEST);
             expect(err.message).toBe("쓰레기 생성에 실패하였습니다.");
+        }
+    });
+
+    it("TRASH AI 분석 시 type이 없으면 에러가 발생한다", async () => {
+        axios.post = jest.fn().mockResolvedValue({ data: null });
+        try {
+            await TrashService.aiTrash("testImage");
+        } catch (err: any) {
+            expect(err).toBeInstanceOf(RequestError);
         }
     });
 
