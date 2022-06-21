@@ -72,7 +72,7 @@ function AiResultMap() {
   ];
 
   // 사용자 위치 정보 - Geolocation
-  function success({ coords, timestamp }: any) {
+  function success({ coords, timestamp }: GeolocationPosition) {
     // console.log(coords)
     const latitude = coords.latitude; // 위도
     const longitude = coords.longitude; // 경도
@@ -102,7 +102,7 @@ function AiResultMap() {
       //   );
       // console.log(res.data);
       //   setBin(res.data);
-      mock.map((prop) => console.log(prop.x));
+    //   mock.map((prop) => console.log(prop.x));
 
       setBin(mock);
       console.log(mock);
