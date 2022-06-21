@@ -15,8 +15,9 @@ import {
   MapSearchSection,
   AutocompleteContainer,
   MapSearchTextWrapper,
-  StyledInput,
 } from "../../styles/mapStyles/mapStyle";
+
+import { StyledInput } from "../../styles/mapStyles/MapMuiStyle";
 
 // 검색어가 항목에 없을 시 문구 style
 const useStyles = makeStyles({
@@ -75,8 +76,10 @@ function MapSearch() {
       <AutocompleteContainer>
         <Autocomplete
           value={regionValue}
-          onChange={(event: any, newValue: any) => {
-            setRegionValue(newValue);
+          onChange={(event, newValue) => {
+            if (newValue !== null) {
+              setRegionValue(newValue);
+            }
           }}
           inputValue={inputRegionValue}
           onInputChange={(event, newInputValue) => {
