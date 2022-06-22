@@ -11,6 +11,7 @@ import Quiz from "../pages/quiz/Quiz";
 import WrongQuiz from "../pages/quiz/WrongQuiz";
 import LoginPage from "../pages/user/Users";
 import UserPage from "../pages/user/UserPage";
+import Game from "../pages/game/Game";
 
 //set router component
 function AppRouter() {
@@ -28,6 +29,7 @@ function AppRouter() {
       <Route path="/trash/:id" element={<Trash />} />
       <Route path="/user/:id" element={<UserPage />} />
       <Route path="/users/*" element={<LoginPage />} />
+      <Route path="/game" element={<Game />} />
     </Routes>
   );
 }
