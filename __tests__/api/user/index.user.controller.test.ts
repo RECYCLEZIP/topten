@@ -35,6 +35,14 @@ describe("USER API", () => {
         expect(res.body.password).toBeUndefined();
     });
 
+    it("USER 점수에 따른 랭킹을 조회한다.", async () => {
+        const createdUser = await UserService.addUser(tempUser);
+        const res = await request(app).get(`/users/rank`);
+        expect(res.status).toBe(STATUS_200_OK);
+        expect(res.body[0].email).toEqual(createdUser.email);
+        expect(res.body[0].username).toEqual(createdUser.username);
+    });
+
     it("USER REGISTER 유저를 생성한다.", async () => {
         const res = await request(app).post("/users/register").send(tempUser);
         expect(res.status).toBe(STATUS_201_CREATED);
