@@ -9,6 +9,8 @@ import Category from "../pages/trash/Category";
 import Trash from "../pages/trash/Trash";
 import Quiz from "../pages/quiz/Quiz";
 import WrongQuiz from "../pages/quiz/WrongQuiz";
+import LoginPage from "../pages/user/Users";
+import UserPage from "../pages/user/UserPage";
 
 //set router component
 function AppRouter() {
@@ -24,6 +26,8 @@ function AppRouter() {
       <Route path="/ai" element={<Ai />} />
       <Route path="/category/*" element={<Category />} />
       <Route path="/trash/:id" element={<Trash />} />
+      <Route path="/user/:id" element={<UserPage />} />
+      <Route path="/users/*" element={<LoginPage />} />
     </Routes>
   );
 }
