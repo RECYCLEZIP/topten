@@ -8,4 +8,10 @@ describe("Bins Repository TEST", () => {
         await Bins.findLocation(filterQuery);
         expect(spy).toHaveBeenCalled();
     });
+
+    it("findAll: 모든 쓰레기통 위치정보 데이터를 조회한다.", async () => {
+        const spy = jest.spyOn(BinsModel, "find");
+        await Bins.findAll();
+        expect(spy).toHaveBeenCalled();
+    });
 });
