@@ -6,10 +6,12 @@ const UserSchema = new Schema<IUser>({
         type: String,
         required: true,
         unique: true,
+        index: true,
     },
     username: {
         type: String,
         required: true,
+        index: true,
     },
     password: {
         type: String,

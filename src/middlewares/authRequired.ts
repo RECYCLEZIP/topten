@@ -22,6 +22,7 @@ export const authRequired: RequestHandler = (req, res, next) => {
         req.cookies.currentUserId = userToken.userId;
         return next();
     }
+
     if (userRefreshToken.message === "jwt expired") {
         const newRefreshToken = createRefreshToken();
         UserService.updateUser(userToken.userId, { token: newRefreshToken }).then(() => {
