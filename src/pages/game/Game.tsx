@@ -40,6 +40,7 @@ function Game() {
       setScore((prev) => prev + 40);
     }
   };
+  resetServerContext();
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <GameContainer>
