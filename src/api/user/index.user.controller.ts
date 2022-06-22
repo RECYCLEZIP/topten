@@ -143,6 +143,17 @@ userController.put(
     }),
 );
 
+userController.put(
+    "/users/score",
+    authRequired,
+    wrapAsyncFunc(async (req, res, next) => {
+        const { score } = req.body;
+        const { currentUserId } = req.cookies;
+        const updatedScore = await UserService.updateScore(currentUserId, +score);
+        res.status(STATUS_200_OK).json(updatedScore);
+    }),
+);
+
 userController.delete(
     "/users/delete",
     authRequired,

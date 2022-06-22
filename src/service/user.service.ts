@@ -58,6 +58,15 @@ export class UserService {
         return updatedUser;
     }
 
+    static async updateScore(id: string, score: number) {
+        const currentUser = await User.findById(id);
+        if (!currentUser) throw new RequestError("해당 사용자를 찾을 수 없습니다.");
+        if ((currentUser.topscore as number) < score) {
+            await User.update(id, { topscore: score });
+        }
+        return { message: "점수 갱신이 완료되었습니다." };
+    }
+
     static async deleteUser(id: string) {
         const deletedUser = await User.delete(id);
         if (!deletedUser) throw new RequestError("해당 사용자를 찾을 수 없습니다.");
