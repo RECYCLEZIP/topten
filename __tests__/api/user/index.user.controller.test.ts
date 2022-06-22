@@ -84,6 +84,18 @@ describe("USER API", () => {
         expect(res.body.username).toEqual("updateName");
     });
 
+    it("USER SCORE PUT/ 유저 미니게임 점수를 갱신한다.", async () => {
+        const createdUser = await UserService.addUser(tempUser);
+        const accessToken = createAccessToken(createdUser._id);
+        const refreshToken = createRefreshToken();
+        const res = await request(app)
+            .put("/users/score")
+            .set("Cookie", [`accessToken=${accessToken}`, `refreshToken=${refreshToken}`])
+            .send({ score: 80 });
+        expect(res.status).toBe(STATUS_200_OK);
+        expect(res.body.message).toEqual("점수 갱신이 완료되었습니다.");
+    });
+
     it("USER DELETE 유저를 삭제한다.", async () => {
         const createdUser = await UserService.addUser(tempUser);
         const accessToken = createAccessToken(createdUser._id);
