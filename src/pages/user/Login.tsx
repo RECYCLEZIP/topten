@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { useSetRecoilState } from "recoil";
@@ -44,6 +45,9 @@ function Login() {
 
   return (
     <RightContainer>
+      <Helmet>
+        <title>로그인 - 분리수ZIP</title>
+      </Helmet>
       <TitleText>로그인</TitleText>
       <LoginInput
         placeholder="이메일"
