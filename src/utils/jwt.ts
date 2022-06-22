@@ -9,12 +9,16 @@ export const createAccessToken = (userId: string) => {
     return jwt.sign({ userId }, secretKey, {
         algorithm: "RS256",
         expiresIn: "1800s",
-        issuer: "분리수ZIP",
+        issuer: "recyclezip.com",
     });
 };
 
 export const createRefreshToken = () => {
-    return jwt.sign({}, secretKey, { algorithm: "RS256", expiresIn: "14d", issuer: "분리수ZIP" });
+    return jwt.sign({}, secretKey, {
+        algorithm: "RS256",
+        expiresIn: "14d",
+        issuer: "recyclezip.com",
+    });
 };
 
 export const verifyToken = (token: string) => {

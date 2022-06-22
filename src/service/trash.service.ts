@@ -28,9 +28,9 @@ export class TrashService {
         return createdTrash;
     }
 
-    static async aiTrash(image: string) {
+    static async aiTrash(imageUrl: string) {
         const res = await axios.post(process.env.AI_SERVER_URL as string, {
-            image,
+            imageUrl,
         });
         if (!res.data)
             throw new RequestError("AI 분석 결과를 찾을 수 없습니다.", STATUS_404_NOTFOUND);
