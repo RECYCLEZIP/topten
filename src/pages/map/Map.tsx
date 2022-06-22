@@ -48,13 +48,11 @@ function Map() {
     console.log("fetching 함수 호출됨");
 
     try {
+      // 선택된 지역에 따라 쓰레기통 정보 get
       const res = await getData(
-        `bins?search=${"종로구"}&category=${roadsValue}`,
-        // `bins?search=${"종로구"}&category=${roadsValue}?page=${page}&limit=2`,
+        `bins?search=${regionValue}&category=${roadsValue}&limit=5`,
       );
-      // console.log(res.data);
       setBin(res.data);
-      console.log(res.data)
     } catch (e) {
       console.log(e);
     }
