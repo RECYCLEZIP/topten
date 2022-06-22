@@ -10,6 +10,10 @@ export class User {
         return UserModel.findOne({ email });
     }
 
+    static async isEmailExist(email: string) {
+        return UserModel.exists({ email });
+    }
+
     static async create(userInfo: IUser) {
         return UserModel.create(userInfo);
     }

@@ -55,7 +55,7 @@ describe("USER SERVICE LOGIC", () => {
 
 describe("USER SERVICE ERROR HANDLING", () => {
     it("회원가입 시 이미 존재하는 이메일이 있으면 에러가 발생한다.", async () => {
-        User.findByEmail = jest.fn().mockResolvedValue(tempUser);
+        User.isEmailExist = jest.fn().mockResolvedValue(true);
         try {
             await UserService.addUser(tempUser);
         } catch (err: any) {

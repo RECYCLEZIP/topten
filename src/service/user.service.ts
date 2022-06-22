@@ -20,7 +20,7 @@ export class UserService {
 
     static async addUser(userInfo: IUser) {
         const { email, password } = userInfo;
-        const foundEmail = await User.findByEmail(email);
+        const foundEmail = await User.isEmailExist(email);
         if (foundEmail) throw new RequestError("이미 사용중인 이메일입니다.");
 
         userInfo.password = await bcrypt.hash(password as string, 12);
