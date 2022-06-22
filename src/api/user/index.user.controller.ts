@@ -44,6 +44,14 @@ userController.get(
 );
 
 userController.get(
+    "/users/rank",
+    wrapAsyncFunc(async (req, res, _next) => {
+        const rankingList = await UserService.getByRanking();
+        res.status(STATUS_200_OK).json(rankingList);
+    }),
+);
+
+userController.get(
     "/users/:id",
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["user"]
@@ -146,7 +154,7 @@ userController.put(
 userController.put(
     "/users/score",
     authRequired,
-    wrapAsyncFunc(async (req, res, next) => {
+    wrapAsyncFunc(async (req, res, _next) => {
         const { score } = req.body;
         const { currentUserId } = req.cookies;
         const updatedScore = await UserService.updateScore(currentUserId, +score);

@@ -10,6 +10,10 @@ export class User {
         return UserModel.findOne({ email });
     }
 
+    static async findByRanking() {
+        return UserModel.find({}).sort({ topscore: -1 }).limit(10);
+    }
+
     static async isEmailExist(email: string) {
         return UserModel.exists({ email });
     }

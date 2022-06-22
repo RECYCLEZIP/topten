@@ -18,6 +18,10 @@ export class UserService {
         return foundUser;
     }
 
+    static async getByRanking() {
+        return User.findByRanking();
+    }
+
     static async addUser(userInfo: IUser) {
         const { email, password } = userInfo;
         const foundEmail = await User.isEmailExist(email);
