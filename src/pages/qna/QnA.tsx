@@ -11,7 +11,6 @@ import {
   ListTitle,
   ListAuthor,
   ListDate,
-  ListAnswerLabel,
 } from "../../styles/qnaStyles/QnAStyle";
 
 import { TitleText } from "../../styles/TextStyle";
@@ -43,10 +42,9 @@ function QnA() {
           <ListTr>
             {/* 페이지 번호 */}
             <ListNumber>12</ListNumber>
-            <ListTitle>어떻게?ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅇㄴㄹㅇㄴㄹㄴㅇㄹ</ListTitle>
+            <ListTitle>어떻게? 하는 거</ListTitle>
             <ListAuthor>강*선</ListAuthor>
             <ListDate>2022.01.10</ListDate>
-            <ListAnswerLabel>답변완료</ListAnswerLabel>
           </ListTr>
           <ListTr>
             {/* 페이지 번호 */}
@@ -54,7 +52,6 @@ function QnA() {
             <ListTitle>어떻게?</ListTitle>
             <ListAuthor>강*선</ListAuthor>
             <ListDate>2022.01.10</ListDate>
-            <ListAnswerLabel>답변완료</ListAnswerLabel>
           </ListTr>
           <ListTr>
             {/* 페이지 번호 */}
@@ -62,7 +59,6 @@ function QnA() {
             <ListTitle>어떻게?</ListTitle>
             <ListAuthor>강*선</ListAuthor>
             <ListDate>2022.01.10</ListDate>
-            <ListAnswerLabel>답변완료</ListAnswerLabel>
           </ListTr>
         </ListTbody>
       </ListTable>
