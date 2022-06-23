@@ -25,8 +25,8 @@
       "description": "유저 데이터 API"
     },
     {
-      "name": "bins",
-      "description": "쓰레기통위치 데이터 API"
+      "name": "map",
+      "description": "쓰레기통위치/로봇위치 데이터 API"
     }
   ],
   "schemes": [
@@ -51,7 +51,7 @@
     "/bins": {
       "get": {
         "tags": [
-          "bins"
+          "map"
         ],
         "description": "조건에 따른 쓰레기통 위치정보 조회",
         "parameters": [
@@ -78,14 +78,14 @@
     "/bins/locations": {
       "get": {
         "tags": [
-          "bins"
+          "map"
         ],
         "description": "자치구명, 도로명 리스트 조회",
         "parameters": [],
         "responses": {
           "200": {
             "schema": {
-              "$ref": "#/definitions/LocationList"
+              "$ref": "#/definitions/BinsLocationList"
             },
             "description": "유니크한 자치구명, 도로명 리스트 조회"
           }
@@ -94,9 +94,29 @@
     },
     "/robot": {
       "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
+        "tags": [
+          "map"
+        ],
+        "description": "반경 10km이내 로봇위치 정보 조회",
+        "parameters": [
+          {
+            "name": "queryString",
+            "in": "query",
+            "description": "유저의 현재 위치정보(경도/위도)를 쿼리스트링으로 담아 보낸다.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CoordinatesQuery"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/RobotLocationList"
+            },
+            "description": "반경 10km 내 로봇위치 리스트 반환"
+          }
+        }
       }
     },
     "/news": {
@@ -1531,7 +1551,7 @@
         }
       }
     },
-    "LocationList": {
+    "BinsLocationList": {
       "type": "object",
       "properties": {
         "uniqueRegionList": {
@@ -1559,6 +1579,53 @@
           ],
           "items": {
             "type": "string"
+          }
+        }
+      }
+    },
+    "CoordinatesQuery": {
+      "type": "string",
+      "example": "?x=127.087316644307&y=37.5886172687013"
+    },
+    "RobotLocationList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "Point"
+              },
+              "coordinates": {
+                "type": "array",
+                "example": [
+                  127.093510289011,
+                  37.58923330814
+                ],
+                "items": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "_id": {
+            "type": "string",
+            "example": "62b4385656b6e08d18a0978d"
+          },
+          "name": {
+            "type": "string",
+            "example": "세븐일레븐 면목엠비스점(투명페트병)"
+          },
+          "address": {
+            "type": "string",
+            "example": "서울 중랑구 상봉로 37"
+          },
+          "__v": {
+            "type": "number",
+            "example": 0
           }
         }
       }

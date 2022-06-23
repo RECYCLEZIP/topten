@@ -41,8 +41,8 @@ const doc = {
             description: "유저 데이터 API",
         },
         {
-            name: "bins",
-            description: "쓰레기통위치 데이터 API",
+            name: "map",
+            description: "쓰레기통위치/로봇위치 데이터 API",
         },
     ],
     definitions: {
@@ -289,10 +289,33 @@ const doc = {
                 __v: 0,
             },
         ],
-        LocationList: {
+        BinsLocationList: {
             uniqueRegionList: ["종로구", "용산구", "성동구", "광진구", "중랑구"],
             uniqueRoadList: ["자하문로", "삼청로", "원효로", "마장로", "왕십리로", "마조로"],
         },
+        CoordinatesQuery: "?x=127.087316644307&y=37.5886172687013",
+        RobotLocationList: [
+            {
+                location: {
+                    type: "Point",
+                    coordinates: [127.087316644307, 37.5886172687013],
+                },
+                _id: "62b4385656b6e08d18a09812",
+                name: "중랑구 면목역공원(투명페트병/캔)",
+                address: "서울 중랑구 면목동 120-30, 면목역 3번출구",
+                __v: 0,
+            },
+            {
+                location: {
+                    type: "Point",
+                    coordinates: [127.093510289011, 37.58923330814],
+                },
+                _id: "62b4385656b6e08d18a0978d",
+                name: "세븐일레븐 면목엠비스점(투명페트병)",
+                address: "서울 중랑구 상봉로 37",
+                __v: 0,
+            },
+        ],
     },
 };
 
