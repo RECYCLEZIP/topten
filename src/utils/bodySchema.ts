@@ -18,6 +18,10 @@ export const userUpdateSchema = Joi.object({
     password: Joi.string().min(8),
 });
 
+export const userScoreSchema = Joi.object({
+    score: Joi.number().required(),
+});
+
 export const newsSchema = Joi.object({
     url: Joi.string().required(),
     title: Joi.string().required(),
