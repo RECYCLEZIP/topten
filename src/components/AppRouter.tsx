@@ -12,6 +12,7 @@ import WrongQuiz from "../pages/quiz/WrongQuiz";
 import LoginPage from "../pages/user/Users";
 import UserPage from "../pages/user/UserPage";
 import Game from "../pages/game/Game";
+import Rank from "../pages/game/Rank";
 
 //set router component
 function AppRouter() {
@@ -29,7 +30,8 @@ function AppRouter() {
       <Route path="/trash/:id" element={<Trash />} />
       <Route path="/user/:id" element={<UserPage />} />
       <Route path="/users/*" element={<LoginPage />} />
-      <Route path="/game" element={<Game />} />
+      <Route path="/game/play" element={<Game />} />
+      <Route path="/game/ranking" element={<Rank />} />
     </Routes>
   );
 }
