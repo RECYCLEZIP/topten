@@ -207,6 +207,13 @@
         }
       }
     },
+    "/posts": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
     "/quizzes": {
       "get": {
         "tags": [

@@ -1,3 +1,5 @@
+import { Schema } from "mongoose";
+
 export interface INews {
     url: string;
     title: string;
@@ -97,4 +99,11 @@ export interface IQuiz {
     result: Result[];
     type: string;
     image: string;
+}
+
+export interface IPost {
+    title: string;
+    author: IUser;
+    content: string;
+    comment?: Schema.Types.ObjectId[];
 }

@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-// import { INews } from "@src/models/interface";
+import { IPost } from "@src/models/interface";
 
-const PostSchema = new Schema(
+const PostSchema = new Schema<IPost>(
     {
         title: {
             type: String,
@@ -25,4 +25,4 @@ const PostSchema = new Schema(
     { timestamps: true },
 );
 
-export const PostModel = model("Post", PostSchema);
+export const PostModel = model<IPost>("Post", PostSchema);
