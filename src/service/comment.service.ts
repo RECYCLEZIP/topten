@@ -14,7 +14,7 @@ export class CommentService {
         if (!postInfo) throw new RequestError("게시글 정보를 찾을 수 없습니다.");
         commentInfo.author = userInfo;
         const newComment = Comment.create(commentInfo);
-        postInfo?.comment?.push(newComment);
+        postInfo?.comments?.push(newComment);
 
         const [updatedPost, createdComment] = await Promise.all([
             postInfo.save(),

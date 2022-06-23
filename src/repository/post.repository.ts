@@ -6,11 +6,20 @@ export class Post {
         return PostModel.find(filteredQuery)
             .sort({ _id: -1 })
             .limit(limit)
-            .populate("author", "-password -token");
+            .populate("author", "-password -token")
+            .populate({
+                path: "comments",
+                populate: { path: "author", select: "-password -token" },
+            });
     }
 
     static async findById(id: string) {
-        return PostModel.findById(id).populate("author", "-password -token");
+        return PostModel.findById(id)
+            .populate("author", "-password -token")
+            .populate({
+                path: "comments",
+                populate: { path: "author", select: "-password -token" },
+            });
     }
 
     static async create(postInfo: IPost) {

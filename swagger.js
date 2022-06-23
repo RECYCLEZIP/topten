@@ -94,7 +94,7 @@ const doc = {
         PostGetQuery: "?search={}&page={ID}&limit={5}",
         PostGetResponse: [
             {
-                _id: "62b41e2ba920315d1db3df31",
+                _id: "62b469693311af4335ff10ed",
                 title: "게시글제목",
                 author: {
                     _id: "62b265a4bec0b04d29f2c896",
@@ -104,15 +104,30 @@ const doc = {
                     topscore: 90,
                 },
                 content: "게시글내용",
-                comment: [],
-                createdAt: "2022-06-23T08:02:51.974Z",
-                updatedAt: "2022-06-23T08:02:51.974Z",
-                __v: 0,
+                comments: [
+                    {
+                        _id: "62b46998c421caecd32fcd1b",
+                        author: {
+                            _id: "62b265a4bec0b04d29f2c896",
+                            email: "test@test.com",
+                            username: "수정함",
+                            __v: 0,
+                            topscore: 90,
+                        },
+                        content: "댓글댓글",
+                        createdAt: "2022-06-23T13:24:40.603Z",
+                        updatedAt: "2022-06-23T13:24:40.603Z",
+                        __v: 0,
+                    },
+                ],
+                createdAt: "2022-06-23T13:23:53.939Z",
+                updatedAt: "2022-06-23T13:24:40.603Z",
+                __v: 1,
             },
         ],
         PostOneGetResponse: {
-            _id: "62b408be5063046c83b8483a",
-            title: "수정된",
+            _id: "62b469693311af4335ff10ed",
+            title: "게시글제목",
             author: {
                 _id: "62b265a4bec0b04d29f2c896",
                 email: "test@test.com",
@@ -120,11 +135,26 @@ const doc = {
                 __v: 0,
                 topscore: 90,
             },
-            content: "수정된",
-            comment: [],
-            createdAt: "2022-06-23T06:31:26.994Z",
-            updatedAt: "2022-06-23T07:55:01.952Z",
-            __v: 0,
+            content: "게시글내용",
+            comments: [
+                {
+                    _id: "62b46998c421caecd32fcd1b",
+                    author: {
+                        _id: "62b265a4bec0b04d29f2c896",
+                        email: "test@test.com",
+                        username: "수정함",
+                        __v: 0,
+                        topscore: 90,
+                    },
+                    content: "댓글댓글",
+                    createdAt: "2022-06-23T13:24:40.603Z",
+                    updatedAt: "2022-06-23T13:24:40.603Z",
+                    __v: 0,
+                },
+            ],
+            createdAt: "2022-06-23T13:23:53.939Z",
+            updatedAt: "2022-06-23T13:24:40.603Z",
+            __v: 1,
         },
         PostCreateRequest: {
             title: "제목",
