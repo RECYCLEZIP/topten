@@ -8,7 +8,7 @@ export interface BinTypes {
   roads: string;
   details: string;
   points: string;
-  address: "";
+  address: string;
   type: string[];
   x: string;
   y: string;
@@ -60,7 +60,7 @@ export const SearchBinState = atom<BinTypes[]>({
 
 export const RegionValueState = atom({
   key: "RegionValueState",
-  default: "",
+  default: "종로구",
 });
 
 export const RoadsValueState = atom({
