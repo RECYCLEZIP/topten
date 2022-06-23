@@ -1,10 +1,8 @@
 import { Router } from "express";
-// import { IPost } from "@src/models/interface";
 import wrapAsyncFunc from "@src/utils/catchAsync";
 import { PostService } from "@src/service/post.service";
 import { authRequired } from "@src/middlewares/authRequired";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
-// import { bodyValidator, paramsValidator } from "@src/middlewares/requestValidator";
 
 const postController = Router();
 

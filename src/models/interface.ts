@@ -103,7 +103,7 @@ export interface IQuiz {
 
 export interface IPost {
     title: string;
-    author: IUser;
+    author?: IUser;
     content: string;
     comment?: Schema.Types.ObjectId[];
 }
