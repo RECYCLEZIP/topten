@@ -31,17 +31,33 @@ export const ListTr = styled.tr`
 `;
 
 export const ListNumber = styled.td`
+  width: 2rem;
+
+  padding: 0.5rem;
+  padding-left: 0rem;
+
   color: #979797;
 `;
 
-export const ListTitle = styled.td``;
+export const ListTitle = styled.td`
+  padding: 0.5rem;
+`;
 
 export const ListAuthor = styled.td`
+  width: 3rem;
+
+  padding: 0.5rem;
+
+  text-align: center;
   color: #979797;
 `;
 
 export const ListDate = styled.td`
+  width: 5rem;
+
+  padding: 0.5rem;
+  padding-right: 0rem;
+
+  text-align: right;
   color: #979797;
 `;
-
-export const ListAnswerLabel = styled.td``;
