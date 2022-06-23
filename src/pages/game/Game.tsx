@@ -25,6 +25,10 @@ function Game() {
     { type: "일반", img: img.camera },
   ];
 
+  const [visibility, setVisibility] = useState(
+    Array(datas.length).fill("visible"),
+  );
+
   const [score, setScore] = useState(initialData.totalScore);
 
   const onDragEnd = (info: DropResult) => {
@@ -32,11 +36,9 @@ function Game() {
     const { destination, source } = info;
     if (!destination) return;
     if (destination.droppableId === source.droppableId) {
-      setDatas((prev) => {
-        const arr = [...prev];
-        arr.splice(source.index, 1);
-        return [...arr];
-      });
+      const newArr = [...visibility];
+      newArr[source.index] = "hidden";
+      setVisibility(newArr);
       setScore((prev) => prev + 40);
     }
   };
@@ -45,12 +47,19 @@ function Game() {
     <DragDropContext onDragEnd={onDragEnd}>
       <GameContainer>
         <TitleText>score: {score}</TitleText>
-        {datas.map((data, index) => (
-          <TrashZone data={data} index={index} key={index} />
-        ))}
-        <div>
+        <div style={{ height: "50vh", position: "relative" }}>
+          {datas.map((data, index) => (
+            <TrashZone
+              data={data}
+              index={index}
+              key={index}
+              visibility={visibility}
+            />
+          ))}
+        </div>
+        <div style={{ display: "flex" }}>
           {datas2.map((data, index) => (
-            <BinZone id={data.type} data={data} key={index} />
+            <BinZone index={data.type} data={data} key={index} />
           ))}
         </div>
       </GameContainer>
