@@ -1,3 +1,5 @@
+import { Robot } from "@src/repository/robot.repository";
+
 export class RobotService {
     static async getCloseRobots(x: string, y: string) {
         const geoQuery = {

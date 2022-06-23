@@ -51,6 +51,19 @@ export interface MongooseQuery {
     $and?: any;
 }
 
+export interface GeoQuery {
+    location: {
+        $nearSphere: {
+            $geometry: {
+                type: string;
+                coordinates: string[];
+            };
+            $minDistance: number;
+            $maxDistance: number;
+        };
+    };
+}
+
 export interface Submissions {
     type: string;
     answers: { quizId: string; answer: string }[];
