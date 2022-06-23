@@ -189,3 +189,13 @@ export const userState = atom<UserType>({
   key: "userState",
   default: {},
 });
+
+export const currentGameState = atom({
+  key: "gameState",
+  default: "ready",
+});
+
+export const gameLevelState = atom<number>({
+  key: "gameLevelState",
+  default: 1,
+});
