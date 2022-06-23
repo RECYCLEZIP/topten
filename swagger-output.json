@@ -29,6 +29,10 @@
       "description": "게시글 데이터 API"
     },
     {
+      "name": "comment",
+      "description": "댓글 데이터 API"
+    },
+    {
       "name": "bins",
       "description": "쓰레기통위치 데이터 API"
     }
@@ -1487,6 +1491,65 @@
         "content": {
           "type": "string",
           "example": "댓글댓글"
+        },
+        "_id": {
+          "type": "string",
+          "example": "62b45eda265c75394cc5ba0e"
+        },
+        "createdAt": {
+          "type": "string",
+          "example": "2022-06-23T12:38:50.274Z"
+        },
+        "updatedAt": {
+          "type": "string",
+          "example": "2022-06-23T12:38:50.274Z"
+        },
+        "__v": {
+          "type": "number",
+          "example": 0
+        }
+      }
+    },
+    "CommentPutRequest": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "example": "수정할 댓글 내용"
+        }
+      }
+    },
+    "CommentPutResponse": {
+      "type": "object",
+      "properties": {
+        "author": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string",
+              "example": "62b265a4bec0b04d29f2c896"
+            },
+            "email": {
+              "type": "string",
+              "example": "test@test.com"
+            },
+            "username": {
+              "type": "string",
+              "example": "수정함"
+            },
+            "__v": {
+              "type": "number",
+              "example": 0
+            },
+            "topscore": {
+              "type": "number",
+              "example": 90
+            }
+          }
+        },
+        "content": {
+          "type": "string",
+          "example": "수정할 댓글 내용"
         },
         "_id": {
           "type": "string",

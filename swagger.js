@@ -45,6 +45,10 @@ const doc = {
             description: "게시글 데이터 API",
         },
         {
+            name: "comment",
+            description: "댓글 데이터 API",
+        },
+        {
             name: "bins",
             description: "쓰레기통위치 데이터 API",
         },
@@ -167,6 +171,21 @@ const doc = {
                 topscore: 90,
             },
             content: "댓글댓글",
+            _id: "62b45eda265c75394cc5ba0e",
+            createdAt: "2022-06-23T12:38:50.274Z",
+            updatedAt: "2022-06-23T12:38:50.274Z",
+            __v: 0,
+        },
+        CommentPutRequest: { content: "수정할 댓글 내용" },
+        CommentPutResponse: {
+            author: {
+                _id: "62b265a4bec0b04d29f2c896",
+                email: "test@test.com",
+                username: "수정함",
+                __v: 0,
+                topscore: 90,
+            },
+            content: "수정할 댓글 내용",
             _id: "62b45eda265c75394cc5ba0e",
             createdAt: "2022-06-23T12:38:50.274Z",
             updatedAt: "2022-06-23T12:38:50.274Z",
