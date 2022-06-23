@@ -7,6 +7,10 @@ const robotSchema = new Schema<IRobot>(
             type: String,
             required: true,
         },
+        address: {
+            type: String,
+            required: true,
+        },
         location: {
             type: { type: String, coordinates: [Number] },
             required: true,

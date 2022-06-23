@@ -100,5 +100,6 @@ export interface IQuiz {
 
 export interface IRobot {
     name: string;
+    address: string;
     location: object;
 }
