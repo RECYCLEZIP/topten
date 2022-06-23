@@ -16,6 +16,15 @@ postController.get(
     }),
 );
 
+postController.get(
+    "/posts/:id",
+    wrapAsyncFunc(async (req, res, _next) => {
+        const { id } = req.params;
+        const postInfo = await PostService.getByPost(id);
+        res.status(STATUS_200_OK).json(postInfo);
+    }),
+);
+
 postController.post(
     "/posts",
     authRequired,

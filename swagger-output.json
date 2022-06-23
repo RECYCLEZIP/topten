@@ -208,9 +208,52 @@
       }
     },
     "/posts": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      },
       "post": {
         "description": "",
         "parameters": [],
+        "responses": {}
+      }
+    },
+    "/posts/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {}
       }
     },

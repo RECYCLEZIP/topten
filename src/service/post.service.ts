@@ -15,6 +15,12 @@ export class PostService {
         return foundPostList;
     }
 
+    static async getByPost(id: string) {
+        const foundPostInfo = await Post.findById(id);
+        if (!foundPostInfo) throw new RequestError("게시글 정보를 가져올 수 없습니다.");
+        return foundPostInfo;
+    }
+
     static async addPost(id: string, postInfo: IPost) {
         const foundUser = await UserService.getByUser(id);
         if (!foundUser) throw new RequestError("로그인 사용자를 찾을 수 없습니다.");

@@ -3,11 +3,14 @@ import { IPost, MongooseQuery } from "@src/models/interface";
 
 export class Post {
     static async find({ filteredQuery, limit }: { filteredQuery: MongooseQuery; limit: number }) {
-        return PostModel.find(filteredQuery).sort({ _id: -1 }).limit(limit);
+        return PostModel.find(filteredQuery)
+            .sort({ _id: -1 })
+            .limit(limit)
+            .populate("author", "-password -token");
     }
 
     static async findById(id: string) {
-        return PostModel.findById(id).populate("author");
+        return PostModel.findById(id).populate("author", "-password -token");
     }
 
     static async create(postInfo: IPost) {
