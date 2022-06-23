@@ -4,7 +4,12 @@ import { UserService } from "@src/service/user.service";
 import { authRequired } from "@src/middlewares/authRequired";
 import { bodyValidator } from "@src/middlewares/requestValidator";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
-import { userLoginSchema, userRegisterSchema, userUpdateSchema } from "@src/utils/bodySchema";
+import {
+    userLoginSchema,
+    userRegisterSchema,
+    userUpdateSchema,
+    userScoreSchema,
+} from "@src/utils/bodySchema";
 
 const userController = Router();
 
@@ -160,6 +165,7 @@ userController.put(
 userController.put(
     "/users/score",
     authRequired,
+    bodyValidator(userScoreSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["user"]
             #swagger.description = "유저의 미니게임 점수 갱신"
