@@ -36,6 +36,7 @@ function Header() {
         <Link to="/ai">AI 분리수거</Link>
         <Link to="/map">서울시 쓰레기통</Link>
         <Link to="/quizzes">퀴즈</Link>
+        <Link to="/game">게임</Link>
         <Link
           to="/category"
           onClick={() => {
