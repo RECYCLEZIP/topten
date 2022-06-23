@@ -2,8 +2,8 @@ import { IComment } from "@src/models/interface";
 import { CommentModel } from "@src/db/comment/comment.schema";
 
 export class Comment {
-    static async create(commentInfo: IComment) {
-        return CommentModel.create(commentInfo);
+    static create(commentInfo: IComment) {
+        return new CommentModel(commentInfo);
     }
 
     static async update(id: string, commentInfo: IComment) {

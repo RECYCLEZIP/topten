@@ -156,6 +156,22 @@ const doc = {
             updatedAt: "2022-06-23T08:53:57.391Z",
             __v: 0,
         },
+        CommentId: "comments/{commentId}",
+        CommentCreateRequest: { content: "댓글 내용" },
+        CommentCreateResponse: {
+            author: {
+                _id: "62b265a4bec0b04d29f2c896",
+                email: "test@test.com",
+                username: "수정함",
+                __v: 0,
+                topscore: 90,
+            },
+            content: "댓글댓글",
+            _id: "62b45eda265c75394cc5ba0e",
+            createdAt: "2022-06-23T12:38:50.274Z",
+            updatedAt: "2022-06-23T12:38:50.274Z",
+            __v: 0,
+        },
         TrashId: "trash/{trashId}",
         TrashGetQuery: "?search={}&category={}&page={ID}&limit={5}",
         TrashGetResponse: [

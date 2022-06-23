@@ -45,6 +45,106 @@
     }
   },
   "paths": {
+    "/comments/{postId}": {
+      "post": {
+        "tags": [
+          "comment"
+        ],
+        "description": "댓글 생성 **로그인 필수**",
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "댓글을 달 게시글의 ID",
+            "schema": {
+              "$ref": "#/definitions/PostId"
+            }
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "생성하고자 하는 댓글의 정보를 body에 담아 요청",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CommentCreateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/CommentCreateResponse"
+            },
+            "description": "생성된 댓글 정보 반환"
+          }
+        }
+      }
+    },
+    "/comments/{id}": {
+      "put": {
+        "tags": [
+          "comment"
+        ],
+        "description": "댓글 정보 수정 **로그인 필수**",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "수정하고자 하는 댓글의 ID",
+            "schema": {
+              "$ref": "#/definitions/CommentId"
+            }
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "수정하고자 하는 댓글의 정보를 body에 담아 요청",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CommentPutRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/CommentPutResponse"
+            },
+            "description": "수정된 댓글 정보 반환"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "comment"
+        ],
+        "description": "댓글 삭제 **로그인 필수**",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "삭제하고자 하는 댓글의 ID",
+            "schema": {
+              "$ref": "#/definitions/CommentId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/DeleteResponse"
+            },
+            "description": "삭제 메시지"
+          }
+        }
+      }
+    },
     "/": {
       "get": {
         "description": "",
@@ -1336,6 +1436,69 @@
         "updatedAt": {
           "type": "string",
           "example": "2022-06-23T08:53:57.391Z"
+        },
+        "__v": {
+          "type": "number",
+          "example": 0
+        }
+      }
+    },
+    "CommentId": {
+      "type": "string",
+      "example": "comments/{commentId}"
+    },
+    "CommentCreateRequest": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "example": "댓글 내용"
+        }
+      }
+    },
+    "CommentCreateResponse": {
+      "type": "object",
+      "properties": {
+        "author": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string",
+              "example": "62b265a4bec0b04d29f2c896"
+            },
+            "email": {
+              "type": "string",
+              "example": "test@test.com"
+            },
+            "username": {
+              "type": "string",
+              "example": "수정함"
+            },
+            "__v": {
+              "type": "number",
+              "example": 0
+            },
+            "topscore": {
+              "type": "number",
+              "example": 90
+            }
+          }
+        },
+        "content": {
+          "type": "string",
+          "example": "댓글댓글"
+        },
+        "_id": {
+          "type": "string",
+          "example": "62b45eda265c75394cc5ba0e"
+        },
+        "createdAt": {
+          "type": "string",
+          "example": "2022-06-23T12:38:50.274Z"
+        },
+        "updatedAt": {
+          "type": "string",
+          "example": "2022-06-23T12:38:50.274Z"
         },
         "__v": {
           "type": "number",
