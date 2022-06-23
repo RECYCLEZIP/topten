@@ -10,6 +10,7 @@ import Trash from "../pages/trash/Trash";
 import Quiz from "../pages/quiz/Quiz";
 import WrongQuiz from "../pages/quiz/WrongQuiz";
 import QnA from "../pages/qna/QnA";
+import QnAWrite from "../pages/qna/QnAWrite";
 
 //set router component
 function AppRouter() {
@@ -26,6 +27,7 @@ function AppRouter() {
       <Route path="/category/*" element={<Category />} />
       <Route path="/trash/:id" element={<Trash />} />
       <Route path="/qna" element={<QnA />} />
+      <Route path="/qna/write" element={<QnAWrite />} />
     </Routes>
   );
 }
