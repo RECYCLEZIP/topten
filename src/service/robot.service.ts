@@ -4,13 +4,12 @@ export class RobotService {
     static async getCloseRobots(x: string, y: string) {
         const geoQuery = {
             location: {
-                $nearSphere: {
+                $near: {
                     $geometry: {
                         type: "Point",
-                        coordinates: [x, y],
+                        coordinates: [Number(x), Number(y)],
                     },
-                    $minDistance: 1000,
-                    $maxDistance: 10000,
+                    $maxDistance: 5000,
                 },
             },
         };

@@ -53,12 +53,11 @@ export interface MongooseQuery {
 
 export interface GeoQuery {
     location: {
-        $nearSphere: {
+        $near: {
             $geometry: {
                 type: string;
-                coordinates: string[];
+                coordinates: number[];
             };
-            $minDistance: number;
             $maxDistance: number;
         };
     };

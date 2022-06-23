@@ -92,6 +92,13 @@
         }
       }
     },
+    "/robot": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
     "/news": {
       "get": {
         "tags": [
