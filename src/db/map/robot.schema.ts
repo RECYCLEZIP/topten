@@ -12,8 +12,15 @@ const robotSchema = new Schema<IRobot>(
             required: true,
         },
         location: {
-            type: { type: String, coordinates: [Number] },
-            required: true,
+            type: {
+                type: String,
+                enum: ["Point"],
+                required: true,
+            },
+            coordinates: {
+                type: [Number],
+                required: true,
+            },
         },
     },
     {
