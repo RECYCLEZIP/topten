@@ -71,6 +71,17 @@ const doc = {
             password: "test1234",
         },
         UserLogoutResponse: { message: "정상적으로 로그아웃이 완료되었습니다." },
+        UserScoreRequest: { score: 80 },
+        UserScoreResponse: { message: "점수 갱신이 완료되었습니다." },
+        UserRankingResponse: [
+            {
+                _id: "62acd51598886269f298521e",
+                email: "test@test.com",
+                username: "테스트",
+                topscore: 1000,
+                __v: 0,
+            },
+        ],
         TrashId: "trash/{trashId}",
         TrashGetQuery: "?search={}&category={}&page={ID}&limit={5}",
         TrashGetResponse: [
