@@ -97,3 +97,8 @@ export interface IQuiz {
     type: string;
     image: string;
 }
+
+export interface IRobot {
+    name: string;
+    location: object;
+}
