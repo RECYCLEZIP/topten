@@ -107,3 +107,8 @@ export interface IPost {
     content: string;
     comment?: Schema.Types.ObjectId[];
 }
+
+export interface IComment {
+    author?: IUser;
+    content: string;
+}

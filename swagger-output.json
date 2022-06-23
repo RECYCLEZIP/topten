@@ -241,7 +241,7 @@
         "tags": [
           "post"
         ],
-        "description": "게시글 생성",
+        "description": "게시글 생성 **로그인 필수**",
         "parameters": [
           {
             "name": "body",
@@ -294,7 +294,7 @@
         "tags": [
           "post"
         ],
-        "description": "게시글 정보 수정",
+        "description": "게시글 정보 수정 **로그인 필수**",
         "parameters": [
           {
             "name": "id",
@@ -329,7 +329,7 @@
         "tags": [
           "post"
         ],
-        "description": "게시글 삭제",
+        "description": "게시글 삭제 **로그인 필수**",
         "parameters": [
           {
             "name": "id",
