@@ -2,6 +2,7 @@ import { atom } from "recoil";
 import { CategoryType, NewsType } from "../types/Main";
 import { AnswerListType, AnswerType, QuizType } from "../types/Quiz";
 import { CategoryItemType, TrashType } from "../types/Trash";
+import { QnAType } from "../types/QnA";
 
 export interface BinTypes {
   region: string;
@@ -81,9 +82,9 @@ export const selectedMarkerState = atom({
 });
 
 export const lastIntersectingImageState = atom<HTMLDivElement | null>({
-  key: 'lastIntersectingImage', 
-  default: null
-})
+  key: "lastIntersectingImage",
+  default: null,
+});
 
 // category list
 export const categoryState = atom<CategoryType[]>({
@@ -177,4 +178,9 @@ export const searchTrashState = atom<TrashType[]>({
 export const quizConfirmState = atom<boolean>({
   key: "quizConfirmState",
   default: false,
+});
+
+export const QnAListState = atom<QnAType[]>({
+  key: "QnAListState",
+  default: [],
 });
