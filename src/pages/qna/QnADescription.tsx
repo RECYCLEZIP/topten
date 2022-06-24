@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 
+import markdownIt from "markdown-it";
+import DOMPurify from "dompurify";
+
 import { getData } from "../../api";
 
 import { QnAType } from "../../types/QnA";
@@ -47,8 +50,25 @@ function QnADescription() {
     return prop.split("T")[0].split("-").join(".");
   };
 
+  // ****************************************************************
+  const sanitizer = DOMPurify.sanitize;
+  const handleClick = () => {
+    // setText(editorRef.current.getInstance().getMarkdown());
+    // console.log("작동함", text);
+
+    qna?.content && console.log(markdownIt().render(qna?.content));
+  };
+
+  // const handleFocus = () => {
+  //   console.log("focus!!");
+  //   editorRef.current.getRootElement().classList.add("my-editor-root");
+  // };
+
+  // ********************************
+
   useEffect(() => {
     get();
+    handleClick();
   }, []);
 
   return (
@@ -66,6 +86,14 @@ function QnADescription() {
       </TitleContainer>
       <GrayHr />
       <ContentContainer>{qna?.content}</ContentContainer>
+      {/* **************************************************************** */}
+      {qna?.content && (
+        <div
+          dangerouslySetInnerHTML={{
+            __html: sanitizer(markdownIt().render(qna?.content)),
+          }}
+        ></div>
+      )}
       <BlackHr />
       <ButtonContainer>
         <GrayButton>수정</GrayButton>
