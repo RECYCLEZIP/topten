@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router";
 
 import { postData } from "../../api";
 
@@ -11,15 +12,21 @@ import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 
 import "@toast-ui/editor/dist/i18n/ko-kr";
 
+import { Button } from "../../styles/ButtonStyles";
 import { Container } from "../../styles/basicStyle";
 import { TitleText } from "../../styles/TextStyle";
 import {
   TitleInputContainer,
   TitleInputText,
   TitleInput,
+  PostButtonWrapper,
+  PostButton,
+  PostCancleButton,
 } from "../../styles/qnaStyles/QnAPostStyle";
 
 function QnAPost() {
+  const navigate = useNavigate();
+
   const editorRef: any = useRef();
 
   const [titleValue, setTitleValue] = useState<string>();
@@ -64,7 +71,12 @@ function QnAPost() {
         plugins={[colorSyntax]} // colorSyntax 플러그인 적용
         language="ko-KR"
       />
-      <button onClick={onClickSubmit}>등록</button>
+      <PostButtonWrapper>
+        <PostCancleButton onClick={() => navigate(`/qna`)}>
+          작성 취소
+        </PostCancleButton>
+        <PostButton onClick={onClickSubmit}>작성 완료</PostButton>
+      </PostButtonWrapper>
     </Container>
   );
 }
