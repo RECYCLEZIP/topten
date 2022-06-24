@@ -127,8 +127,8 @@ userController.post(
             schema: { "$ref": "#/definitions/UserLoginResponse" },
             description: "로그인 유저 정보 및 액세스토큰 반환" } */
 
-        const { user, accessToken } = await UserService.login(req.body);
-        res.status(STATUS_200_OK).json({ user, token: accessToken });
+        const accessToken = await UserService.login(req.body);
+        res.status(STATUS_200_OK).json({ token: accessToken });
     }),
 );
 

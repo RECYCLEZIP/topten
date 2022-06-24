@@ -13,14 +13,6 @@ export const createAccessToken = (userId: string) => {
     });
 };
 
-export const createRefreshToken = () => {
-    return jwt.sign({}, secretKey, {
-        algorithm: "RS256",
-        expiresIn: "14d",
-        issuer: "recyclezip.com",
-    });
-};
-
 export const verifyToken = (token: string) => {
     try {
         return jwt.verify(token, publicKey);

@@ -89,7 +89,6 @@ export interface IUser {
     username?: string;
     password?: string;
     topscore?: number;
-    token?: string;
 }
 
 export interface IBins {
