@@ -1,8 +1,11 @@
 import { Router } from "express";
 import wrapAsyncFunc from "@src/utils/catchAsync";
+import { postSchema } from "@src/utils/bodySchema";
 import { PostService } from "@src/service/post.service";
+import { identifierSchema } from "@src/utils/paramsSchema";
 import { authRequired } from "@src/middlewares/authRequired";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
+import { bodyValidator, paramsValidator } from "@src/middlewares/requestValidator";
 
 const postController = Router();
 
@@ -30,6 +33,7 @@ postController.get(
 
 postController.get(
     "/posts/:id",
+    paramsValidator(identifierSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["post"]
             #swagger.description = "개별 게시글 정보 조회"
@@ -52,6 +56,7 @@ postController.get(
 postController.post(
     "/posts",
     authRequired,
+    bodyValidator(postSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["post"]
             #swagger.description = "게시글 생성 **로그인 필수**"
@@ -74,6 +79,8 @@ postController.post(
 postController.put(
     "/posts/:id",
     authRequired,
+    paramsValidator(identifierSchema),
+    bodyValidator(postSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["post"]
             #swagger.description = "게시글 정보 수정 **로그인 필수**"
@@ -102,6 +109,7 @@ postController.put(
 postController.delete(
     "/posts/:id",
     authRequired,
+    paramsValidator(identifierSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["post"]
             #swagger.description = "게시글 삭제 **로그인 필수**"
