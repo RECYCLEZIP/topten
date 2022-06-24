@@ -2,8 +2,8 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { useSetRecoilState } from "recoil";
-import { currentGameState } from "../../stores/atoms";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { currentGameState, gameLevelState } from "../../stores/atoms";
 import { initialState } from "./Game";
 import { useNavigate } from "react-router";
 import { GameButton, ResultButton } from "../../styles/gameStyles/game";
@@ -31,6 +31,8 @@ function ResultModal({
 }) {
   const navigate = useNavigate();
   const setGameState = useSetRecoilState(currentGameState);
+  const [level, setLevel] = useRecoilState(gameLevelState);
+
   const handleClose = () => {
     setGameState(initialState.gameState.PLAYING);
     navigate("/game/ranking");
@@ -55,7 +57,7 @@ function ResultModal({
             id="modal-modal-description"
             sx={{ fontWeight: 700, mt: 1 }}
           >
-            STAGE 1
+            STAGE {level}
           </Typography>
           <Typography
             id="modal-modal-description"
@@ -67,18 +69,26 @@ function ResultModal({
             id="modal-modal-description"
             sx={{ mt: 1, fontSize: "0.8rem", fontWeight: 700 }}
           >
-            마지막 단계까지 도전하세요!
+            {level !== 3
+              ? "마지막 단계까지 도전하세요!"
+              : "오늘도 환경보호에 기여하셨습니다!"}
           </Typography>
           <ResultButton onClick={() => navigate("/game/ranking")}>
             랭킹으로
           </ResultButton>
           <GameButton
             onClick={() => {
+              if (level !== 3) {
+                setLevel((prev) => prev + 1);
+              }
+              if (level === 3) {
+                setLevel(1);
+              }
               setGameState(initialState.gameState.PLAYING);
               setTimeLeft(30);
             }}
           >
-            다시하기
+            {level !== 3 ? "다음 레벨" : "다시하기"}
           </GameButton>
         </Box>
       </Modal>

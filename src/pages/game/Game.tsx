@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import BinZone from "./BinZone";
 import GameModal from "./GameModal";
 import { useRecoilState } from "recoil";
-import { currentGameState } from "../../stores/atoms";
+import { currentGameState, gameLevelState } from "../../stores/atoms";
 import ResultModal from "./ResultModal";
 
 export const initialState = {
@@ -43,6 +43,7 @@ function Game() {
   const [score, setScore] = useState(initialState.totalScore);
   const [gameState, setGameState] = useRecoilState(currentGameState);
   const [timeLeft, setTimeLeft] = useState(initialState.timeLeft);
+  const [level, setLevel] = useRecoilState(gameLevelState);
 
   const onDragEnd = (info: DropResult) => {
     console.log(info);
@@ -85,7 +86,7 @@ function Game() {
         <DragDropContext onDragEnd={onDragEnd}>
           <GameContainer>
             <GameBar>
-              <GameLevel>STAGE 1</GameLevel>
+              <GameLevel>STAGE {level}</GameLevel>
               <GameBox>
                 <span>SCORE</span>
                 <span>{score}</span>
