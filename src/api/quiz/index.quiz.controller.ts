@@ -6,6 +6,7 @@ import { Submissions } from "@src/models/interface";
 import { bodyValidator, paramsValidator } from "@src/middlewares/requestValidator";
 import { quizSchema, quizSetSchema } from "@src/utils/bodySchema";
 import { identifierSchema } from "@src/utils/paramsSchema";
+import { MINIGAME_STEP } from "@src/utils/constans";
 
 const quizController = Router();
 
@@ -60,7 +61,8 @@ quizController.get(
             schema: { "$ref": "#/definitions/QuizGameImgSet" },
             description: "단계별 미니게임에 필요한 쓰레기 이미지를 반환" } */
 
-        res.status(STATUS_200_OK).json();
+        const { step } = req.params;
+        res.status(STATUS_200_OK).json(MINIGAME_STEP[+step]);
     }),
 );
 
