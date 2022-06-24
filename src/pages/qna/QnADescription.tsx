@@ -6,6 +6,7 @@ import markdownIt from "markdown-it";
 import DOMPurify from "dompurify";
 
 import { getData } from "../../api";
+import { delData } from "../../api";
 
 import { QnAType } from "../../types/QnA";
 
@@ -48,6 +49,14 @@ function QnADescription() {
 
   const date = (prop: any) => {
     return prop.split("T")[0].split("-").join(".");
+  };
+
+  const onClickDelete = async () => {
+    try {
+      await delData(`post/${id}`);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   // ****************************************************************
@@ -96,8 +105,10 @@ function QnADescription() {
       )}
       <BlackHr />
       <ButtonContainer>
-        <GrayButton>수정</GrayButton>
-        <RedButton>삭제</RedButton>
+        <GrayButton onClick={() => navigate(`qna/edit/${qna?._id}`)}>
+          수정
+        </GrayButton>
+        <RedButton onClick={onClickDelete}>삭제</RedButton>
       </ButtonContainer>
       <AnswerContainer>
         <AnswerTitle>답변</AnswerTitle>
