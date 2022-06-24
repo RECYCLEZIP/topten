@@ -25,12 +25,17 @@ function Rank() {
         <ScoreText>202점</ScoreText>
       </Top3Rank>
       <Top3Rank>
-        <NumberText>3</NumberText>
+        <NumberText>🥈</NumberText>
         <RankNameText>이 구역의 쓰레기 형님</RankNameText>
         <ScoreText>202점</ScoreText>
       </Top3Rank>
       <Top3Rank>
-        <NumberText>🥇</NumberText>
+        <NumberText>🥉</NumberText>
+        <RankNameText>이 구역의 쓰레기 형님</RankNameText>
+        <ScoreText>202점</ScoreText>
+      </Top3Rank>
+      <Top3Rank color="#c7ebff">
+        <NumberText>4</NumberText>
         <RankNameText>이 구역의 쓰레기 형님</RankNameText>
         <ScoreText>202점</ScoreText>
       </Top3Rank>

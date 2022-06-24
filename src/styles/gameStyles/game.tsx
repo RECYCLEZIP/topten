@@ -2,7 +2,9 @@ import styled from "styled-components";
 import { Button } from "../ButtonStyles";
 
 export const GameContainer = styled.div`
-  margin: 4rem 2rem;
+  padding: 3rem 2rem;
+  margin: 0 2rem;
+  background-color: gray;
 `;
 
 export const TrashCard = styled.div<{
@@ -62,11 +64,11 @@ export const RankTitleText = styled.p`
   text-align: center;
 `;
 
-export const Top3Rank = styled.div`
+export const Top3Rank = styled.div<{ color?: string }>`
   margin-top: 0.7rem;
   padding: 0.2rem 0.7rem;
   width: 100%;
-  background-color: #65c8ff;
+  background-color: ${(props) => (props.color ? props.color : "#65c8ff")};
   box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
@@ -95,4 +97,14 @@ export const NumberText = styled.p`
   font-size: 1rem;
   margin-right: 0.3rem;
   width: 1.2rem;
+`;
+
+export const GameBar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const GameLevel = styled.span`
+  color: white;
 `;
