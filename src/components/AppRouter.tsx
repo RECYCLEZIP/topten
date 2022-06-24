@@ -11,6 +11,9 @@ import Quiz from "../pages/quiz/Quiz";
 import WrongQuiz from "../pages/quiz/WrongQuiz";
 import LoginPage from "../pages/user/Users";
 import UserPage from "../pages/user/UserPage";
+import QnA from "../pages/qna/QnA";
+import QnAPost from "../pages/qna/QnAPost";
+import QnADescription from "../pages/qna/QnADescription";
 
 //set router component
 function AppRouter() {
@@ -28,6 +31,9 @@ function AppRouter() {
       <Route path="/trash/:id" element={<Trash />} />
       <Route path="/user/:id" element={<UserPage />} />
       <Route path="/users/*" element={<LoginPage />} />
+      <Route path="/qna" element={<QnA />} />
+      <Route path="/qna/:id" element={<QnADescription />} />
+      <Route path="/qna/post" element={<QnAPost />} />
     </Routes>
   );
 }

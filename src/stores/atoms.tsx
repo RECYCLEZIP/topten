@@ -3,13 +3,14 @@ import { CategoryType, NewsType } from "../types/Main";
 import { AnswerListType, AnswerType, QuizType } from "../types/Quiz";
 import { CategoryItemType, TrashType } from "../types/Trash";
 import { UserType } from "../types/User";
+import { QnAType } from "../types/QnA";
 
 export interface BinTypes {
   region: string;
   roads: string;
   details: string;
   points: string;
-  address: "";
+  address: string;
   type: string[];
   x: string;
   y: string;
@@ -61,7 +62,7 @@ export const SearchBinState = atom<BinTypes[]>({
 
 export const RegionValueState = atom({
   key: "RegionValueState",
-  default: "",
+  default: "종로구",
 });
 
 export const RoadsValueState = atom({
@@ -188,4 +189,9 @@ export const loginState = atom<boolean>({
 export const userState = atom<UserType>({
   key: "userState",
   default: {},
+});
+
+export const QnAListState = atom<QnAType[]>({
+  key: "QnAListState",
+  default: [],
 });
