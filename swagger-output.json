@@ -83,7 +83,12 @@
             },
             "description": "생성된 댓글 정보 반환"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/comments/{id}": {
@@ -120,7 +125,12 @@
             },
             "description": "수정된 댓글 정보 반환"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/comments/{id}/posts/{postId}": {
@@ -158,7 +168,12 @@
             },
             "description": "삭제 메시지"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/": {
@@ -403,7 +418,12 @@
             },
             "description": "생성된 게시글 정보 반환"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/posts/{id}": {
@@ -466,7 +486,12 @@
             },
             "description": "수정된 게시글 정보 반환"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -492,7 +517,12 @@
             },
             "description": "삭제 메시지"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/quizzes": {
@@ -835,24 +865,12 @@
             },
             "description": "현재 유저 정보를 반환\n로그인중이 아니라면 **401** 상태코드"
           }
-        }
-      }
-    },
-    "/users/logout": {
-      "get": {
-        "tags": [
-          "user"
-        ],
-        "description": "유저 로그아웃 **로그인 필수**",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "schema": {
-              "$ref": "#/definitions/UserLogoutResponse"
-            },
-            "description": "로그아웃 여부를 반환"
+        },
+        "security": [
+          {
+            "bearerAuth": []
           }
-        }
+        ]
       }
     },
     "/users/rank": {
@@ -947,9 +965,9 @@
         "responses": {
           "200": {
             "schema": {
-              "$ref": "#/definitions/UserGetResponse"
+              "$ref": "#/definitions/UserLoginResponse"
             },
-            "description": "로그인 유저 정보 반환"
+            "description": "로그인 유저 정보 및 액세스토큰 반환"
           }
         }
       }
@@ -978,7 +996,12 @@
             },
             "description": "수정된 유저 정보 반환"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/users/score": {
@@ -1005,7 +1028,12 @@
             },
             "description": "점수 갱신 메시지 반환"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/users/delete": {
@@ -1022,7 +1050,12 @@
             },
             "description": "삭제 메시지"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     }
   },
@@ -1176,6 +1209,36 @@
         "password": {
           "type": "string",
           "example": "test1234"
+        }
+      }
+    },
+    "UserLoginResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string",
+              "example": "62acd51598886269f298521e"
+            },
+            "email": {
+              "type": "string",
+              "example": "test@test.com"
+            },
+            "username": {
+              "type": "string",
+              "example": "테스트"
+            },
+            "__v": {
+              "type": "number",
+              "example": 0
+            }
+          }
+        },
+        "token": {
+          "type": "string",
+          "example": "accessToken"
         }
       }
     },

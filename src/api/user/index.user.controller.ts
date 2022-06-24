@@ -19,6 +19,9 @@ userController.get(
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["user"]
             #swagger.description = "현재 유저 상태 조회"
+            #swagger.security = [{
+               "bearerAuth": []
+            }]
             #swagger.responses[200] = {
             schema: { "$ref": "#/definitions/UserGetResponse" },
             description: "현재 유저 정보를 반환\n로그인중이 아니라면 **401** 상태코드" } */
@@ -120,6 +123,9 @@ userController.put(
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["user"]
             #swagger.description = "유저 수정"
+            #swagger.security = [{
+               "bearerAuth": []
+            }]
             #swagger.parameters['body'] = {
                 in: 'body',
                 description: '수정하고자 하는 유저의 정보를 body에 담아 요청\n
@@ -148,6 +154,9 @@ userController.put(
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["user"]
             #swagger.description = "유저의 미니게임 점수 갱신"
+            #swagger.security = [{
+               "bearerAuth": []
+            }]
             #swagger.parameters['body'] = {
                 in: 'body',
                 description: '수정하고자 하는 유저의 정보를 body에 담아 요청\n
@@ -174,6 +183,9 @@ userController.delete(
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["user"]
             #swagger.description = "유저 삭제 **로그인 필수**"
+            #swagger.security = [{
+               "bearerAuth": []
+            }]
             #swagger.responses[200] = {
             schema: { "$ref": "#/definitions/DeleteResponse" },
             description: "삭제 메시지" } */
