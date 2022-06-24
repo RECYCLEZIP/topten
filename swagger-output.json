@@ -967,7 +967,7 @@
             "schema": {
               "$ref": "#/definitions/UserLoginResponse"
             },
-            "description": "로그인 유저 정보 및 액세스토큰 반환"
+            "description": "로그인 유저 ID 및 액세스토큰 반환"
           }
         }
       }
@@ -1215,26 +1215,9 @@
     "UserLoginResponse": {
       "type": "object",
       "properties": {
-        "user": {
-          "type": "object",
-          "properties": {
-            "_id": {
-              "type": "string",
-              "example": "62acd51598886269f298521e"
-            },
-            "email": {
-              "type": "string",
-              "example": "test@test.com"
-            },
-            "username": {
-              "type": "string",
-              "example": "테스트"
-            },
-            "__v": {
-              "type": "number",
-              "example": 0
-            }
-          }
+        "userId": {
+          "type": "string",
+          "example": "62acd51598886269f298521e"
         },
         "token": {
           "type": "string",

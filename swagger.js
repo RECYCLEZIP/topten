@@ -79,12 +79,7 @@ const doc = {
             password: "test1234",
         },
         UserLoginResponse: {
-            user: {
-                _id: "62acd51598886269f298521e",
-                email: "test@test.com",
-                username: "테스트",
-                __v: 0,
-            },
+            userId: "62acd51598886269f298521e",
             token: "accessToken",
         },
         UserLogoutResponse: { message: "정상적으로 로그아웃이 완료되었습니다." },

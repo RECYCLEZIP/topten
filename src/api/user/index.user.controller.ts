@@ -109,10 +109,10 @@ userController.post(
             }
             #swagger.responses[200] = {
             schema: { "$ref": "#/definitions/UserLoginResponse" },
-            description: "로그인 유저 정보 및 액세스토큰 반환" } */
+            description: "로그인 유저 ID 및 액세스토큰 반환" } */
 
-        const accessToken = await UserService.login(req.body);
-        res.status(STATUS_200_OK).json({ token: accessToken });
+        const loginInfo = await UserService.login(req.body);
+        res.status(STATUS_200_OK).json(loginInfo);
     }),
 );
 

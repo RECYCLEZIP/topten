@@ -42,11 +42,12 @@ describe("USER SERVICE LOGIC", () => {
         expect(deletedUser.message).toEqual("삭제가 완료되었습니다.");
     });
 
-    it("USER 로그인에 성공하면 토큰을 발급한다.", async () => {
+    it("USER 로그인에 성공하면 유저아이디와 토큰을 반환한다.", async () => {
         bcrypt.compare = jest.fn().mockResolvedValue(true);
         await UserService.addUser(tempUser);
-        const token = await UserService.login({ email: "test@test.com", password: "test" });
-        expect(token).toBeTruthy();
+        const loginInfo = await UserService.login({ email: "test@test.com", password: "test" });
+        expect(loginInfo).toHaveProperty("token");
+        expect(loginInfo).toHaveProperty("userId");
     });
 });
 

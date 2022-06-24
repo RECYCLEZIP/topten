@@ -42,7 +42,8 @@ export class UserService {
         if (!isCheckedPassword) throw new RequestError("이메일 또는 비밀번호를 확인해주세요.");
 
         const userId = foundUser._id.toString();
-        return createAccessToken(userId);
+        const accessToken = createAccessToken(userId);
+        return { userId, token: accessToken };
     }
 
     static async updateUser(id: string, userInfo: Partial<IUser>) {
