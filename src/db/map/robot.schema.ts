@@ -28,4 +28,5 @@ const robotSchema = new Schema<IRobot>(
     },
 );
 
+robotSchema.index({ location: "2dsphere" });
 export const RobotModel = model<IRobot>("Robot", robotSchema);
