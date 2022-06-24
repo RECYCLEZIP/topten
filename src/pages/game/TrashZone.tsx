@@ -1,6 +1,5 @@
 import { Droppable } from "react-beautiful-dnd";
 import TrashImg from "./TrashImg";
-import { img } from "../../assets/imgImport";
 
 function TrashZone({
   data,

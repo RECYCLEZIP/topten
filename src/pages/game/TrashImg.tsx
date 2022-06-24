@@ -11,9 +11,7 @@ function TrashImg({
   index: number;
   visibility: string[];
 }) {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const left = useMemo(() => Math.random() * 90, []);
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const top = useMemo(() => Math.random() * 90, []);
   return (
     <Draggable draggableId={index.toString()} index={index}>

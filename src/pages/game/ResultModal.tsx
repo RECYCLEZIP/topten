@@ -1,12 +1,13 @@
-import * as React from "react";
+import { useEffect, useRef } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { currentGameState, gameLevelState } from "../../stores/atoms";
 import { initialState } from "./Game";
 import { useNavigate } from "react-router";
 import { GameButton, ResultButton } from "../../styles/gameStyles/game";
+import gameOverBgm from "../../assets/gameover.mp3";
 
 const style = {
   position: "absolute" as "absolute",
@@ -30,13 +31,26 @@ function ResultModal({
   setTimeLeft: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const navigate = useNavigate();
-  const setGameState = useSetRecoilState(currentGameState);
+  const [gameState, setGameState] = useRecoilState(currentGameState);
   const [level, setLevel] = useRecoilState(gameLevelState);
 
   const handleClose = () => {
     setGameState(initialState.gameState.PLAYING);
     navigate("/game/ranking");
   };
+
+  const bgm = useRef(new Audio(gameOverBgm));
+
+  useEffect(() => {
+    if (gameState === initialState.gameState.GAMEOVER) {
+      const bgmAudio = bgm.current;
+      bgmAudio.play();
+      return () => {
+        bgmAudio.pause();
+        bgmAudio.currentTime = 0;
+      };
+    }
+  }, []);
 
   return (
     <div style={{ marginTop: "2rem" }}>
@@ -49,9 +63,17 @@ function ResultModal({
         <Box sx={style}>
           <Typography
             id="modal-modal-title"
-            sx={{ fontWeight: 700, color: "#dd0000" }}
+            sx={{
+              fontWeight: 700,
+              color:
+                gameState === initialState.gameState.GAMEOVER
+                  ? "#dd0000"
+                  : "#21A663",
+            }}
           >
-            GAME OVER
+            {gameState === initialState.gameState.GAMEOVER
+              ? "GAME OVER"
+              : "GAME CLEAR!"}
           </Typography>
           <Typography
             id="modal-modal-description"
@@ -77,8 +99,10 @@ function ResultModal({
             랭킹으로
           </ResultButton>
           <GameButton
-            onClick={() => {
-              if (level !== 3) {
+            onClick={(e) => {
+              if (gameState === initialState.gameState.GAMEOVER) {
+                setLevel(1);
+              } else if (level !== 3) {
                 setLevel((prev) => prev + 1);
               }
               if (level === 3) {
@@ -88,7 +112,11 @@ function ResultModal({
               setTimeLeft(30);
             }}
           >
-            {level !== 3 ? "다음 레벨" : "다시하기"}
+            {level !== 3
+              ? gameState === initialState.gameState.WIN
+                ? "다음 레벨"
+                : "다시하기"
+              : "다시하기"}
           </GameButton>
         </Box>
       </Modal>
