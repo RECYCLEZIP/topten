@@ -1,11 +1,11 @@
 import app from "@src/app";
 import request from "supertest";
-import { IComment, IPost, IUser } from "@src/models/interface";
+import { createAccessToken } from "@src/utils/jwt";
 import { PostService } from "@src/service/post.service";
 import { UserService } from "@src/service/user.service";
-import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
-import { createAccessToken, createRefreshToken } from "@src/utils/jwt";
 import { CommentService } from "@src/service/comment.service";
+import { IComment, IPost, IUser } from "@src/models/interface";
+import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
 
 describe("COMMENT API", () => {
     const tempComment = {
@@ -27,10 +27,9 @@ describe("COMMENT API", () => {
         const createdUser = await UserService.addUser(tempUser);
         const createdPost = await PostService.addPost(createdUser._id, tempPost);
         const accessToken = createAccessToken(createdUser._id);
-        const refreshToken = createRefreshToken();
         const res = await request(app)
             .post(`/comments/${createdPost._id}`)
-            .set("Cookie", [`accessToken=${accessToken}`, `refreshToken=${refreshToken}`])
+            .set("Authorization", `Bearer ${accessToken}`)
             .send(tempComment);
         expect(res.status).toBe(STATUS_201_CREATED);
         expect(res.body).toHaveProperty("author");
@@ -41,7 +40,6 @@ describe("COMMENT API", () => {
         const createdUser = await UserService.addUser(tempUser);
         const createdPost = await PostService.addPost(createdUser._id, tempPost);
         const accessToken = createAccessToken(createdUser._id);
-        const refreshToken = createRefreshToken();
         const createdComment = await CommentService.addComment(
             createdUser._id,
             createdPost._id.toString(),
@@ -49,7 +47,7 @@ describe("COMMENT API", () => {
         );
         const res = await request(app)
             .put(`/comments/${createdComment._id}`)
-            .set("Cookie", [`accessToken=${accessToken}`, `refreshToken=${refreshToken}`])
+            .set("Authorization", `Bearer ${accessToken}`)
             .send({ content: "수정된 내용" });
         expect(res.status).toBe(STATUS_200_OK);
         expect(res.body.content).toEqual("수정된 내용");
@@ -60,7 +58,6 @@ describe("COMMENT API", () => {
         const createdUser = await UserService.addUser(tempUser);
         const createdPost = await PostService.addPost(createdUser._id, tempPost);
         const accessToken = createAccessToken(createdUser._id);
-        const refreshToken = createRefreshToken();
         const createdComment = await CommentService.addComment(
             createdUser._id,
             createdPost._id.toString(),
@@ -68,7 +65,7 @@ describe("COMMENT API", () => {
         );
         const res = await request(app)
             .delete(`/comments/${createdComment._id}/posts/${createdPost._id}`)
-            .set("Cookie", [`accessToken=${accessToken}`, `refreshToken=${refreshToken}`]);
+            .set("Authorization", `Bearer ${accessToken}`);
         expect(res.status).toBe(STATUS_200_OK);
         expect(res.body.message).toEqual("삭제가 완료되었습니다.");
     });

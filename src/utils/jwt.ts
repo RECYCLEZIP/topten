@@ -8,7 +8,6 @@ const publicKey = process.env.JWT_PUBLIC_KEY || "JWT_TOKEN";
 export const createAccessToken = (userId: string) => {
     return jwt.sign({ userId }, secretKey, {
         algorithm: "RS256",
-        expiresIn: "7200s",
         issuer: "recyclezip.com",
     });
 };

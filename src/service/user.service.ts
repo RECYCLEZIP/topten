@@ -45,11 +45,6 @@ export class UserService {
         return createAccessToken(userId);
     }
 
-    static async logout(id: string) {
-        const loggedoutUser = await User.removeToken(id);
-        if (!loggedoutUser) throw new RequestError("해당 사용자를 찾을 수 없습니다.");
-    }
-
     static async updateUser(id: string, userInfo: Partial<IUser>) {
         const { username, password } = userInfo;
         if (password) userInfo.password = await bcrypt.hash(password, 12);

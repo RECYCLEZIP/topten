@@ -28,10 +28,6 @@ export class User {
         );
     }
 
-    static async removeToken(id: string) {
-        return UserModel.findByIdAndUpdate(id, { $unset: { token: "" } }, { new: true });
-    }
-
     static async delete(id: string) {
         return UserModel.findByIdAndDelete(id).select("-password -token");
     }

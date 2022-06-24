@@ -30,25 +30,6 @@ userController.get(
 );
 
 userController.get(
-    "/users/logout",
-    authRequired,
-    wrapAsyncFunc(async (req, res, _next) => {
-        /*  #swagger.tags = ["user"]
-            #swagger.description = "유저 로그아웃 **로그인 필수**"
-            #swagger.responses[200] = {
-            schema: { "$ref": "#/definitions/UserLogoutResponse" },
-            description: "로그아웃 여부를 반환" } */
-
-        const { currentUserId } = req.cookies;
-        await UserService.logout(currentUserId);
-        res.clearCookie("accessToken");
-        res.clearCookie("refreshToken");
-        res.clearCookie("currentUserId");
-        res.status(STATUS_200_OK).json({ message: "정상적으로 로그아웃이 완료되었습니다." });
-    }),
-);
-
-userController.get(
     "/users/rank",
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["user"]
@@ -199,9 +180,6 @@ userController.delete(
 
         const { currentUserId } = req.cookies;
         const deleteResult = await UserService.deleteUser(currentUserId);
-        res.clearCookie("accessToken");
-        res.clearCookie("refreshToken");
-        res.clearCookie("currentUserId");
         res.status(STATUS_200_OK).json(deleteResult);
     }),
 );
