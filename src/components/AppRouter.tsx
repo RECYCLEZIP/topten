@@ -14,6 +14,7 @@ import UserPage from "../pages/user/UserPage";
 import QnA from "../pages/qna/QnA";
 import QnAPost from "../pages/qna/QnAPost";
 import QnADescription from "../pages/qna/QnADescription";
+import QnAEdit from "../pages/qna/QnAEdit";
 
 //set router component
 function AppRouter() {
@@ -34,6 +35,7 @@ function AppRouter() {
       <Route path="/qna" element={<QnA />} />
       <Route path="/qna/:id" element={<QnADescription />} />
       <Route path="/qna/post" element={<QnAPost />} />
+      <Route path="/qna/edit/:id" element={<QnAEdit />} />
     </Routes>
   );
 }
