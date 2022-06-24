@@ -1,4 +1,5 @@
 import { atom } from "recoil";
+import { initialState } from "../pages/game/Game";
 import { CategoryType, NewsType } from "../types/Main";
 import { AnswerListType, AnswerType, QuizType } from "../types/Quiz";
 import { CategoryItemType, TrashType } from "../types/Trash";
@@ -192,7 +193,7 @@ export const userState = atom<UserType>({
 
 export const currentGameState = atom({
   key: "gameState",
-  default: "ready",
+  default: initialState.gameState.READY,
 });
 
 export const gameLevelState = atom<number>({

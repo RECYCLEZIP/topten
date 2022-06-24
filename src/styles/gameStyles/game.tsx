@@ -5,11 +5,21 @@ export const GameContainer = styled.div`
   padding: 3.3rem 1rem;
   margin: 0 auto;
   background-color: gray;
-  width: 30rem;
+  width: auto;
 
   @media (min-width: 768px) {
     width: 60vw;
   }
+`;
+
+export const RankContainer = styled(GameContainer)`
+  width: unset;
+  display: flex;
+  justify-content: center;
+  margin: 0 2rem;
+  padding: 3rem 0;
+  flex-wrap: wrap;
+  background-color: white;
 `;
 
 export const TrashCard = styled.div<{
@@ -55,15 +65,6 @@ export const ResultButton = styled(GameButton)`
   }
 `;
 
-export const RankContainer = styled(GameContainer)`
-  display: flex;
-  justify-content: center;
-  margin: 0 2rem;
-  padding: 3rem 0;
-  flex-wrap: wrap;
-  background-color: white;
-`;
-
 export const RankTitleText = styled.p`
   font-size: 1rem;
   width: 100%;
@@ -72,7 +73,8 @@ export const RankTitleText = styled.p`
   text-align: center;
 `;
 
-export const Top3Rank = styled.div<{ color?: string }>`
+export const Top3Rank = styled.div<{ color?: string; index: number }>`
+  opacity: 0;
   margin-top: 0.7rem;
   padding: 0.2rem 0.7rem;
   width: 100%;
@@ -82,10 +84,21 @@ export const Top3Rank = styled.div<{ color?: string }>`
   align-items: center;
   justify-content: space-between;
   border-radius: 0.5rem;
+  animation: ${(props) => `appear 1s 0.${props.index}s`};
+  animation-fill-mode: forwards;
 
   &:hover {
     transform: scale(1.03);
     transition: transform 0.5s;
+  }
+
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 `;
 

@@ -19,22 +19,22 @@ function Rank() {
         TOP 10
       </RankTitleText>
       <Button onClick={() => navigate("/game/play")}>신기록 도전</Button>
-      <Top3Rank>
+      <Top3Rank index={1}>
         <NumberText font="1rem">🥇</NumberText>
         <RankNameText>이 구역의 쓰레기 형님</RankNameText>
         <ScoreText>202점</ScoreText>
       </Top3Rank>
-      <Top3Rank>
+      <Top3Rank index={2}>
         <NumberText font="1rem">🥈</NumberText>
         <RankNameText>이 구역의 쓰레기 형님</RankNameText>
         <ScoreText>202점</ScoreText>
       </Top3Rank>
-      <Top3Rank>
+      <Top3Rank index={3}>
         <NumberText font="1rem">🥉</NumberText>
         <RankNameText>이 구역의 쓰레기 형님</RankNameText>
         <ScoreText>202점</ScoreText>
       </Top3Rank>
-      <Top3Rank color="#c7ebff">
+      <Top3Rank index={4} color="#c7ebff">
         <NumberText>4</NumberText>
         <RankNameText>이 구역의 쓰레기 형님</RankNameText>
         <ScoreText>202점</ScoreText>
