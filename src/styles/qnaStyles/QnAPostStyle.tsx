@@ -4,7 +4,7 @@ export const TitleInputContainer = styled.div`
   margin-bottom: 1rem;
 `;
 export const TitleInputText = styled.div`
-  color: #9eacba;
+  /* color: #9eacba; */
   font-size: 0.6rem;
 `;
 

@@ -13,7 +13,8 @@ import { Container } from "../../styles/basicStyle";
 import { TitleText } from "../../styles/TextStyle";
 import {
   TitleInputContainer,
-  TitleInputText,TitleInput,
+  TitleInputText,
+  TitleInput,
 } from "../../styles/qnaStyles/QnAPostStyle";
 
 function QnAPost() {
@@ -28,6 +29,8 @@ function QnAPost() {
   const onClickSubmit = async () => {
     const data = editorRef.current.getInstance().getMarkdown();
 
+    console.log(data);
+
     try {
       await postData(`posts`, { title: titleValue, content: data }).then(
         (res) => console.log(res),
@@ -39,11 +42,16 @@ function QnAPost() {
 
   return (
     <Container>
-      <TitleText>QnA 작성</TitleText>
+      <TitleText>Q&A 글 쓰기</TitleText>
       <TitleInputContainer>
         <TitleInputText>제목</TitleInputText>
-        <TitleInput id="title" type="text" onChange={onTitleChange}></TitleInput>
+        <TitleInput
+          id="title"
+          type="text"
+          onChange={onTitleChange}
+        ></TitleInput>
       </TitleInputContainer>
+      <TitleInputText>내용</TitleInputText>
       <Editor
         initialValue="hello react editor world!"
         ref={editorRef}
