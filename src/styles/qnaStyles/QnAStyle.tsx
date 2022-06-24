@@ -41,6 +41,8 @@ export const ListNumber = styled.td`
 
 export const ListTitle = styled.td`
   padding: 0.5rem;
+
+  cursor: pointer;
 `;
 
 export const ListAuthor = styled.td`
