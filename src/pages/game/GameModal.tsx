@@ -12,14 +12,12 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "50%",
-  height: "5rem",
+  width: "18rem",
+  height: "6.5rem",
   bgcolor: "background.paper",
-  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
   borderRadius: "1rem",
-  fontWeight: 700,
   textAlign: "center",
 };
 
@@ -36,12 +34,15 @@ function GameModal() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title">분리수거 게임</Typography>
+          <Typography id="modal-modal-title" sx={{ fontWeight: 700 }}>
+            분리수거 게임
+          </Typography>
           <Typography
             id="modal-modal-description"
-            sx={{ mt: 2, fontSize: "0.8rem" }}
+            sx={{ mt: 2, fontSize: "0.8rem", fontWeight: 700 }}
           >
-            쓰레기들을 알맞은 쓰레기통에 넣어주세요!
+            쓰레기들을 알맞은 쓰레기통에 넣어주세요! <br />
+            빨리 분리할수록 점수가 높아져요!
           </Typography>
           <GameButton
             onClick={() => setGameState(initialState.gameState.PLAYING)}
