@@ -27,6 +27,10 @@ export const newsSchema = Joi.object({
     title: Joi.string().required(),
 });
 
+export const commentSchema = Joi.object({
+    content: Joi.string().required(),
+});
+
 export const trashSchema = Joi.object({
     title: Joi.string().required(),
     description: Joi.object({

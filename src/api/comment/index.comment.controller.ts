@@ -1,14 +1,19 @@
 import { Router } from "express";
 import wrapAsyncFunc from "@src/utils/catchAsync";
-import { CommentService } from "@src/service/comment.service";
+import { commentSchema } from "@src/utils/bodySchema";
 import { authRequired } from "@src/middlewares/authRequired";
+import { CommentService } from "@src/service/comment.service";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
+import { identifierSchema, postIdentifierSchema } from "@src/utils/paramsSchema";
+import { bodyValidator, paramsValidator } from "@src/middlewares/requestValidator";
 
 const commentController = Router();
 
 commentController.post(
     "/comments/:postId",
     authRequired,
+    paramsValidator(postIdentifierSchema),
+    bodyValidator(commentSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["comment"]
             #swagger.description = "댓글 생성 **로그인 필수**"
@@ -38,6 +43,8 @@ commentController.post(
 commentController.put(
     "/comments/:id",
     authRequired,
+    paramsValidator(identifierSchema),
+    bodyValidator(commentSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["comment"]
             #swagger.description = "댓글 정보 수정 **로그인 필수**"
@@ -66,6 +73,7 @@ commentController.put(
 commentController.delete(
     "/comments/:id",
     authRequired,
+    paramsValidator(identifierSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["comment"]
             #swagger.description = "댓글 삭제 **로그인 필수**"
