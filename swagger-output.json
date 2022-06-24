@@ -581,7 +581,7 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "미니게임 단계를 1, 2, 3 중에서 요청",
+            "description": "미니게임 단계를 0, 1, 2 중에서 요청",
             "schema": {
               "$ref": "#/definitions/QuizStep"
             }

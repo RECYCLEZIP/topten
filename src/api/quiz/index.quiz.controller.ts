@@ -53,7 +53,7 @@ quizController.get(
             #swagger.description = "미니게임 쓰레기 이미지 조회"
             #swagger.parameters['step'] = {
                 in: 'path',
-                description: '미니게임 단계를 1, 2, 3 중에서 요청',
+                description: '미니게임 단계를 0, 1, 2 중에서 요청',
                 required: true,
                 schema: { $ref: "#/definitions/QuizStep" }
             }
