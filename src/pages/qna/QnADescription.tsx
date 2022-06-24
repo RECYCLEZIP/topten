@@ -37,10 +37,14 @@ function QnADescription() {
 
   const get = async () => {
     try {
-      await getData(`posts/${id}`).then((res) => console.log(res.data));
+      await getData(`posts/${id}`).then((res) => setQna(res.data));
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const date = (prop: any) => {
+    return prop.split("T")[0].split("-").join(".");
   };
 
   useEffect(() => {
@@ -52,16 +56,16 @@ function QnADescription() {
       <TitleText>Q&A</TitleText>
       <BlackHr />
       <TitleContainer>
-        <Title>제목</Title>
+        <Title>{qna?.title}</Title>
         <RightContainer>
           <Date>
-            <span>2022.06.14</span>
+            <span>{date(qna?.createdAt)}</span>
           </Date>
-          <Author>강*선</Author>
+          <Author>{qna?.author?.username}</Author>
         </RightContainer>
       </TitleContainer>
       <GrayHr />
-      <ContentContainer>내용</ContentContainer>
+      <ContentContainer>{qna?.content}</ContentContainer>
       <BlackHr />
       <ButtonContainer>
         <GrayButton>수정</GrayButton>
@@ -78,9 +82,7 @@ function QnADescription() {
         </AnswerWrapper>
       </AnswerContainer>
       <BlackHr />
-      <SquareButton onClick={() => navigate(`/qna/`)}>
-        목록
-      </SquareButton>
+      <SquareButton onClick={() => navigate(`/qna/`)}>목록</SquareButton>
     </Container>
   );
 }
