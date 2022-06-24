@@ -49,8 +49,8 @@ const doc = {
             description: "댓글 데이터 API",
         },
         {
-            name: "bins",
-            description: "쓰레기통위치 데이터 API",
+            name: "map",
+            description: "쓰레기통위치/로봇위치 데이터 API",
         },
     ],
     definitions: {

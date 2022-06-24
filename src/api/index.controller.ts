@@ -10,6 +10,7 @@ import trashController from "@src/api/trash/index.trash.controller";
 import binsController from "@src/api/map/index.bins.controller";
 import postController from "@src/api/post/index.post.controller";
 import commentController from "@src/api/comment/index.comment.controller";
+import robotController from "@src/api/map/index.robot.controller";
 
 export const indexController = (app: Express) => {
     app.use(userController);
@@ -19,6 +20,7 @@ export const indexController = (app: Express) => {
     app.use(binsController);
     app.use(postController);
     app.use(commentController);
+    app.use(robotController);
     app.get("/", (_req, res) => {
         res.redirect("/swagger");
     });

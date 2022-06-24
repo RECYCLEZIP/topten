@@ -124,3 +124,9 @@ export interface IComment extends Schema.Types.ObjectId {
     author?: IUser;
     content: string;
 }
+
+export interface IRobot {
+    name: string;
+    address: string;
+    location: object;
+}
