@@ -8,7 +8,7 @@ const binsController = Router();
 binsController.get(
     "/bins",
     wrapAsyncFunc(async (req, res, next) => {
-        /*  #swagger.tags = ["bins"]
+        /*  #swagger.tags = ["map"]
             #swagger.description = "조건에 따른 쓰레기통 위치정보 조회" 
             #swagger.parameters['queryString'] = {
                 in: 'query',
@@ -28,11 +28,11 @@ binsController.get(
 binsController.get(
     "/bins/locations",
     wrapAsyncFunc(async (req, res, next) => {
-        /*  #swagger.tags = ["bins"]
+        /*  #swagger.tags = ["map"]
             #swagger.description = "자치구명, 도로명 리스트 조회" 
              
             #swagger.responses[200] = { 
-            schema: { "$ref": "#/definitions/LocationList" },
+            schema: { "$ref": "#/definitions/BinsLocationList" },
             description: "유니크한 자치구명, 도로명 리스트 조회" } */
 
         const locationList = await BinsService.getLocationList();
