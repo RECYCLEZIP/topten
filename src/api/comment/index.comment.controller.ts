@@ -71,7 +71,7 @@ commentController.put(
 );
 
 commentController.delete(
-    "/comments/:id",
+    "/comments/:id/posts/:postId",
     authRequired,
     paramsValidator(identifierSchema),
     wrapAsyncFunc(async (req, res, _next) => {
@@ -83,12 +83,18 @@ commentController.delete(
                 required: true,
                 schema: { $ref: "#/definitions/CommentId" }
             }
+            #swagger.parameters['postId'] = {
+                in: 'path',
+                description: '삭제하고자 하는 댓글이 달려있는 게시글 ID',
+                required: true,
+                schema: { $ref: "#/definitions/PostId" }
+            }
             #swagger.responses[200] = {
             schema: { "$ref": "#/definitions/DeleteResponse" },
             description: "삭제 메시지" } */
 
-        const { id } = req.params;
-        const deletedComment = await CommentService.deleteComment(id);
+        const { id, postId } = req.params;
+        const deletedComment = await CommentService.deleteComment(id, postId);
         res.status(STATUS_200_OK).json(deletedComment);
     }),
 );

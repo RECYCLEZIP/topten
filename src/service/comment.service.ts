@@ -31,8 +31,11 @@ export class CommentService {
         return updatedComment;
     }
 
-    static async deleteComment(id: string) {
-        const deletedComment = await Comment.delete(id);
+    static async deleteComment(id: string, postId: string) {
+        const [deletedComment] = await Promise.all([
+            Comment.delete(id),
+            PostService.deleteComment(postId, id),
+        ]);
         if (!deletedComment) throw new RequestError("해당 댓글을 찾을 수 없습니다.");
         return { message: "삭제가 완료되었습니다." };
     }

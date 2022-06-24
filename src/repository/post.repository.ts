@@ -33,4 +33,8 @@ export class Post {
     static async delete(id: string) {
         return PostModel.findByIdAndDelete(id);
     }
+
+    static async pullComment(id: string, commentId: string) {
+        return PostModel.findByIdAndUpdate(id, { $pull: { comments: commentId } }, { new: true });
+    }
 }

@@ -67,7 +67,7 @@ describe("COMMENT API", () => {
             tempComment as IComment,
         );
         const res = await request(app)
-            .delete(`/comments/${createdComment._id}`)
+            .delete(`/comments/${createdComment._id}/posts/${createdPost._id}`)
             .set("Cookie", [`accessToken=${accessToken}`, `refreshToken=${refreshToken}`]);
         expect(res.status).toBe(STATUS_200_OK);
         expect(res.body.message).toEqual("삭제가 완료되었습니다.");

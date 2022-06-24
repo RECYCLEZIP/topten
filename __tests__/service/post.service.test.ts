@@ -133,4 +133,15 @@ describe("POSTS SERVICE ERROR HANDLING", () => {
             expect(err.message).toBe("해당 게시글을 찾을 수 없습니다.");
         }
     });
+
+    it("POSTS의 댓글 삭제 시 댓글을 찾을 수 없으면 에러가 발생한다.", async () => {
+        Post.pullComment = jest.fn().mockResolvedValue(null);
+        try {
+            await PostService.deleteComment("id", "postId");
+        } catch (err: any) {
+            expect(err).toBeInstanceOf(RequestError);
+            expect(err.status).toBe(STATUS_400_BADREQUEST);
+            expect(err.message).toBe("게시글에서 해당 댓글을 찾을 수 없습니다.");
+        }
+    });
 });

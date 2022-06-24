@@ -61,7 +61,10 @@ describe("COMMENTS SERVICE LOGIC", () => {
             createdPost._id.toString(),
             tempComment as IComment,
         );
-        const deleteResult = await CommentService.deleteComment(createdComment._id.toString());
+        const deleteResult = await CommentService.deleteComment(
+            createdComment._id.toString(),
+            createdPost._id.toString(),
+        );
         expect(spyFn).toBeCalledTimes(1);
         expect(deleteResult.message).toBe("삭제가 완료되었습니다.");
     });
@@ -105,8 +108,9 @@ describe("COMMENT SERVICE ERROR HANDLING", () => {
 
     it("POSTS 삭제 시 댓글을 찾을 수 없으면 에러가 발생한다.", async () => {
         Comment.delete = jest.fn().mockResolvedValue(null);
+        PostService.deleteComment = jest.fn().mockResolvedValue(true);
         try {
-            await CommentService.deleteComment("id");
+            await CommentService.deleteComment("id", "postId");
         } catch (err: any) {
             expect(err).toBeInstanceOf(RequestError);
             expect(err.status).toBe(STATUS_400_BADREQUEST);
