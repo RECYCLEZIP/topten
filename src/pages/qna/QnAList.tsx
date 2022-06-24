@@ -31,7 +31,7 @@ function QnAList() {
         <ListTbody>
           {qnaList.map((qna, idx) => (
             <>
-              {console.log(qna.author?.username)}
+              {console.log(qna)}
               <ListTr>
                 {/* 페이지 번호 */}
                 <ListNumber>{qnaList.length - idx}</ListNumber>
