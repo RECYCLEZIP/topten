@@ -9,6 +9,8 @@ import "tui-color-picker/dist/tui-color-picker.css";
 import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
 import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 
+import "@toast-ui/editor/dist/i18n/ko-kr";
+
 import { Container } from "../../styles/basicStyle";
 import { TitleText } from "../../styles/TextStyle";
 import {
@@ -60,7 +62,7 @@ function QnAPost() {
         initialEditType="markdown"
         useCommandShortcut={true}
         plugins={[colorSyntax]} // colorSyntax 플러그인 적용
-        // language="ko-KR"
+        language="ko-KR"
       />
       <button onClick={onClickSubmit}>등록</button>
     </Container>
