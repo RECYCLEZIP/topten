@@ -428,6 +428,11 @@ const doc = {
                 __v: 0,
             },
         ],
+        QuizStep: "/quizzes/game/1",
+        QuizGameImgSet: {
+            trash: [{ image: "imgURL", category: "일반" }],
+            bins: [{ image: "imgURL", category: "일반" }],
+        },
         BinsQuery: "?search=종로구&category=삼청로",
         BinsLocation: [
             {

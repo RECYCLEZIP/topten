@@ -569,6 +569,34 @@
         }
       }
     },
+    "/quizzes/game/{step}": {
+      "get": {
+        "tags": [
+          "quiz"
+        ],
+        "description": "미니게임 쓰레기 이미지 조회",
+        "parameters": [
+          {
+            "name": "step",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "미니게임 단계를 1, 2, 3 중에서 요청",
+            "schema": {
+              "$ref": "#/definitions/QuizStep"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/QuizGameImgSet"
+            },
+            "description": "단계별 미니게임에 필요한 쓰레기 이미지를 반환"
+          }
+        }
+      }
+    },
     "/quizzes/{id}": {
       "get": {
         "tags": [
@@ -2356,6 +2384,47 @@
           "__v": {
             "type": "number",
             "example": 0
+          }
+        }
+      }
+    },
+    "QuizStep": {
+      "type": "string",
+      "example": "/quizzes/game/1"
+    },
+    "QuizGameImgSet": {
+      "type": "object",
+      "properties": {
+        "trash": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "image": {
+                "type": "string",
+                "example": "imgURL"
+              },
+              "category": {
+                "type": "string",
+                "example": "일반"
+              }
+            }
+          }
+        },
+        "bins": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "image": {
+                "type": "string",
+                "example": "imgURL"
+              },
+              "category": {
+                "type": "string",
+                "example": "일반"
+              }
+            }
           }
         }
       }

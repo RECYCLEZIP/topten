@@ -63,6 +63,13 @@ describe("Quiz API Test", () => {
         });
     });
 
+    it("GET /quizzes/game/:step 미니게임 이미지 데이터를 받는다.", async () => {
+        const res = await request(app).get("/quizzes/game/1");
+        expect(res.statusCode).toBe(STATUS_200_OK);
+        expect(res.body).toHaveProperty("trash");
+        expect(res.body).toHaveProperty("bins");
+    });
+
     describe("GET /quizzes/:id", () => {
         it("quizId를 경로 파라미터로 요청하면 해당하는 퀴즈 정보를 반환한다.", async () => {
             QuizService.getQuiz = jest.fn().mockResolvedValue(resData[0]);
