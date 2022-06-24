@@ -56,8 +56,7 @@ describe("USER API", () => {
             .post("/users/login")
             .send({ email: "test@test.com", password: "testtest" });
         expect(res.status).toBe(STATUS_200_OK);
-        expect(res.body).toHaveProperty("email");
-        expect(res.body).toHaveProperty("username");
+        expect(res.body).toHaveProperty("token");
     });
 
     it("USER PUT 유저 정보를 수정한다.", async () => {
