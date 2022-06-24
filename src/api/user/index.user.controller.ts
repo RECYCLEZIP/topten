@@ -124,13 +124,11 @@ userController.post(
                 schema: { $ref: "#/definitions/UserLoginRequest" }
             }
             #swagger.responses[200] = {
-            schema: { "$ref": "#/definitions/UserGetResponse" },
-            description: "로그인 유저 정보 반환" } */
+            schema: { "$ref": "#/definitions/UserLoginResponse" },
+            description: "로그인 유저 정보 및 액세스토큰 반환" } */
 
-        const { user, accessToken, refreshToken } = await UserService.login(req.body);
-        res.cookie("accessToken", accessToken);
-        res.cookie("refreshToken", refreshToken);
-        res.status(STATUS_200_OK).json(user);
+        const { user, accessToken } = await UserService.login(req.body);
+        res.status(STATUS_200_OK).json({ user, token: accessToken });
     }),
 );
 

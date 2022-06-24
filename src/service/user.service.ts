@@ -46,7 +46,7 @@ export class UserService {
         const refreshToken = createRefreshToken();
 
         const user = await User.update(userId, { token: refreshToken });
-        return { user, accessToken, refreshToken };
+        return { user, accessToken };
     }
 
     static async logout(id: string) {
