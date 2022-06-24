@@ -14,13 +14,11 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: "50%",
-  height: "5.5rem",
+  height: "8rem",
   bgcolor: "background.paper",
-  border: "2px solid #000",
   boxShadow: 24,
   borderRadius: "1rem",
   p: 4,
-  fontWeight: 700,
   textAlign: "center",
 };
 
@@ -47,9 +45,29 @@ function ResultModal({
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title">당신의 점수는</Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {score}
+          <Typography
+            id="modal-modal-title"
+            sx={{ fontWeight: 700, color: "#dd0000" }}
+          >
+            GAME OVER
+          </Typography>
+          <Typography
+            id="modal-modal-description"
+            sx={{ fontWeight: 700, mt: 1 }}
+          >
+            STAGE 1
+          </Typography>
+          <Typography
+            id="modal-modal-description"
+            sx={{ mt: 0.3, fontSize: "0.8rem", fontWeight: 700 }}
+          >
+            {score} 점
+          </Typography>
+          <Typography
+            id="modal-modal-description"
+            sx={{ mt: 1, fontSize: "0.8rem", fontWeight: 700 }}
+          >
+            마지막 단계까지 도전하세요!
           </Typography>
           <ResultButton onClick={() => navigate("/game/ranking")}>
             랭킹으로
