@@ -20,17 +20,17 @@ function Rank() {
       </RankTitleText>
       <Button onClick={() => navigate("/game/play")}>신기록 도전</Button>
       <Top3Rank>
-        <NumberText>🥇</NumberText>
+        <NumberText font="1rem">🥇</NumberText>
         <RankNameText>이 구역의 쓰레기 형님</RankNameText>
         <ScoreText>202점</ScoreText>
       </Top3Rank>
       <Top3Rank>
-        <NumberText>🥈</NumberText>
+        <NumberText font="1rem">🥈</NumberText>
         <RankNameText>이 구역의 쓰레기 형님</RankNameText>
         <ScoreText>202점</ScoreText>
       </Top3Rank>
       <Top3Rank>
-        <NumberText>🥉</NumberText>
+        <NumberText font="1rem">🥉</NumberText>
         <RankNameText>이 구역의 쓰레기 형님</RankNameText>
         <ScoreText>202점</ScoreText>
       </Top3Rank>

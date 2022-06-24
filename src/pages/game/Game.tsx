@@ -1,11 +1,15 @@
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { GameContainer } from "../../styles/gameStyles/game";
+import {
+  GameBar,
+  GameBox,
+  GameContainer,
+  GameLevel,
+} from "../../styles/gameStyles/game";
 import TrashZone from "./TrashZone";
 import { resetServerContext } from "react-beautiful-dnd";
 import { img } from "../../assets/imgImport";
 import { useEffect, useState } from "react";
 import BinZone from "./BinZone";
-import { TitleText } from "../../styles/TextStyle";
 import GameModal from "./GameModal";
 import { useRecoilState } from "recoil";
 import { currentGameState } from "../../stores/atoms";
@@ -15,6 +19,8 @@ export const initialState = {
   totalScore: 0,
   gameState: { READY: "ready", PLAYING: "playing", DONE: "done" },
   timeLeft: 30,
+  tree: { small: img.tree.small, middle: img.tree.middle, big: img.tree.big },
+  gameLevel: 1,
 };
 
 function Game() {
@@ -78,8 +84,19 @@ function Game() {
       {gameState === initialState.gameState.PLAYING && (
         <DragDropContext onDragEnd={onDragEnd}>
           <GameContainer>
-            <TitleText>점수: {score}</TitleText>
-            <TitleText>시간: {timeLeft}</TitleText>
+            <GameBar>
+              <GameLevel>STAGE 1</GameLevel>
+              <GameBox>
+                <span>SCORE</span>
+                <span>{score}</span>
+              </GameBox>
+              <GameBox>
+                <span>TIME</span>
+                <span>{timeLeft}</span>
+              </GameBox>
+            </GameBar>
+            {/* <TitleText>점수: {score}</TitleText>
+            <TitleText>시간: {timeLeft}</TitleText> */}
             <div style={{ height: "50vh", position: "relative" }}>
               {datas.map((data, index) => (
                 <TrashZone

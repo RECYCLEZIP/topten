@@ -2,9 +2,14 @@ import styled from "styled-components";
 import { Button } from "../ButtonStyles";
 
 export const GameContainer = styled.div`
-  padding: 3rem 2rem;
-  margin: 0 2rem;
+  padding: 3.3rem 1rem;
+  margin: 0 auto;
   background-color: gray;
+  width: 30rem;
+
+  @media (min-width: 768px) {
+    width: 60vw;
+  }
 `;
 
 export const TrashCard = styled.div<{
@@ -53,7 +58,10 @@ export const ResultButton = styled(GameButton)`
 export const RankContainer = styled(GameContainer)`
   display: flex;
   justify-content: center;
+  margin: 0 2rem;
+  padding: 3rem 0;
   flex-wrap: wrap;
+  background-color: white;
 `;
 
 export const RankTitleText = styled.p`
@@ -92,9 +100,9 @@ export const ScoreText = styled.p`
   font-size: 0.8rem;
 `;
 
-export const NumberText = styled.p`
+export const NumberText = styled.p<{ font?: string }>`
   text-align: center;
-  font-size: 1rem;
+  font-size: ${(props) => (props.font ? props.font : "0.8rem")};
   margin-right: 0.3rem;
   width: 1.2rem;
 `;
@@ -102,9 +110,20 @@ export const NumberText = styled.p`
 export const GameBar = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 `;
 
 export const GameLevel = styled.span`
   color: white;
+`;
+
+export const GameBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 0.2rem 0.4rem;
+  color: white;
+  background: rgba(255, 255, 255, 0.16);
+  border: 2px solid white;
+  border-radius: 0.5rem;
+  width: 30%;
 `;
