@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 import { IPost } from "@src/models/interface";
+import { CommentModel } from "@src/db/comment/comment.schema";
 
 const PostSchema = new Schema<IPost>(
     {
@@ -24,5 +25,11 @@ const PostSchema = new Schema<IPost>(
     },
     { timestamps: true },
 );
+
+PostSchema.post("findOneAndDelete", async function (doc) {
+    if (doc) {
+        await CommentModel.deleteMany({ _id: { $in: doc.comments } });
+    }
+});
 
 export const PostModel = model<IPost>("Post", PostSchema);

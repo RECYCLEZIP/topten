@@ -31,7 +31,7 @@ export class Post {
     }
 
     static async delete(id: string) {
-        return PostModel.findByIdAndDelete(id);
+        return PostModel.findOneAndDelete({ _id: id });
     }
 
     static async pullComment(id: string, commentId: string) {
