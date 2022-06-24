@@ -40,12 +40,6 @@ describe("USER 모델 접근", () => {
         expect(updatedUser?.username).toEqual("수정된유저");
     });
 
-    it("removeToken은 유저 정보에서 토큰 필드를 삭제한다.", async () => {
-        const createdUser = await User.create({ ...tempUser, token: "테스트토큰" });
-        const removeTokenUser = await User.removeToken(createdUser._id.toString());
-        expect(removeTokenUser?.token).toBeUndefined();
-    });
-
     it("delete는 유저를 삭제한다.", async () => {
         const createdUser = await User.create(tempUser);
         const deletedUser = await User.delete(createdUser._id.toString());

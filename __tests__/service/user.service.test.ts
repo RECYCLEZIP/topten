@@ -42,14 +42,11 @@ describe("USER SERVICE LOGIC", () => {
         expect(deletedUser.message).toEqual("삭제가 완료되었습니다.");
     });
 
-    it("USER 로그인에 성공하면 유저와 토큰을 발급한다.", async () => {
+    it("USER 로그인에 성공하면 토큰을 발급한다.", async () => {
         bcrypt.compare = jest.fn().mockResolvedValue(true);
         await UserService.addUser(tempUser);
-        const loginedUser = await UserService.login({ email: "test@test.com", password: "test" });
-
-        expect(loginedUser).toHaveProperty("user");
-        expect(loginedUser).toHaveProperty("accessToken");
-        expect(loginedUser).toHaveProperty("refreshToken");
+        const token = await UserService.login({ email: "test@test.com", password: "test" });
+        expect(token).toBeTruthy();
     });
 });
 
@@ -132,17 +129,6 @@ describe("USER SERVICE ERROR HANDLING", () => {
             expect(err).toBeInstanceOf(RequestError);
             expect(err.status).toBe(STATUS_400_BADREQUEST);
             expect(err.message).toBe("이메일 또는 비밀번호를 확인해주세요.");
-        }
-    });
-
-    it("USER 로그아웃 시 사용자를 찾을 수 없으면 에러가 발생한다.", async () => {
-        User.removeToken = jest.fn().mockResolvedValue(null);
-        try {
-            await UserService.logout("testId");
-        } catch (err: any) {
-            expect(err).toBeInstanceOf(RequestError);
-            expect(err.status).toBe(STATUS_400_BADREQUEST);
-            expect(err.message).toBe("해당 사용자를 찾을 수 없습니다.");
         }
     });
 });

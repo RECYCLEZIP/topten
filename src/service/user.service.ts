@@ -2,8 +2,8 @@ import bcrypt from "bcrypt";
 import { User } from "@src/db";
 import { Document } from "mongoose";
 import { IUser } from "@src/models/interface";
+import { createAccessToken } from "@src/utils/jwt";
 import { RequestError } from "@src/middlewares/errorHandler";
-import { createAccessToken, createRefreshToken } from "@src/utils/jwt";
 
 const deletePassword = (mongooseObj: Document) => {
     const obj = mongooseObj.toObject();
@@ -42,16 +42,7 @@ export class UserService {
         if (!isCheckedPassword) throw new RequestError("이메일 또는 비밀번호를 확인해주세요.");
 
         const userId = foundUser._id.toString();
-        const accessToken = createAccessToken(userId);
-        const refreshToken = createRefreshToken();
-
-        const user = await User.update(userId, { token: refreshToken });
-        return { user, accessToken, refreshToken };
-    }
-
-    static async logout(id: string) {
-        const loggedoutUser = await User.removeToken(id);
-        if (!loggedoutUser) throw new RequestError("해당 사용자를 찾을 수 없습니다.");
+        return createAccessToken(userId);
     }
 
     static async updateUser(id: string, userInfo: Partial<IUser>) {

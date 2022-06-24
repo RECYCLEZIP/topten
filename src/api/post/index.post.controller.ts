@@ -60,6 +60,9 @@ postController.post(
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["post"]
             #swagger.description = "게시글 생성 **로그인 필수**"
+            #swagger.security = [{
+               "bearerAuth": []
+            }]
             #swagger.parameters['body'] = {
                 in: 'body',
                 description: '생성하고자 하는 게시글의 정보를 body에 담아 요청',
@@ -84,6 +87,9 @@ postController.put(
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["post"]
             #swagger.description = "게시글 정보 수정 **로그인 필수**"
+            #swagger.security = [{
+               "bearerAuth": []
+            }]
             #swagger.parameters['id'] = {
                 in: 'path',
                 description: '수정하고자 하는 게시글의 ID',
@@ -113,6 +119,9 @@ postController.delete(
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["post"]
             #swagger.description = "게시글 삭제 **로그인 필수**"
+            #swagger.security = [{
+               "bearerAuth": []
+            }]
             #swagger.parameters['id'] = {
                 in: 'path',
                 description: '삭제하고자 하는 게시글의 ID',

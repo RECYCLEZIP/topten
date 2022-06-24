@@ -1,10 +1,10 @@
 import app from "@src/app";
 import request from "supertest";
+import { createAccessToken } from "@src/utils/jwt";
 import { IPost, IUser } from "@src/models/interface";
 import { PostService } from "@src/service/post.service";
 import { UserService } from "@src/service/user.service";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
-import { createAccessToken, createRefreshToken } from "@src/utils/jwt";
 
 describe("POST API", () => {
     const tempPost: IPost = {
@@ -33,10 +33,9 @@ describe("POST API", () => {
     it("POST POST/ 게시글을 생성한다.", async () => {
         const createdUser = await UserService.addUser(tempUser);
         const accessToken = createAccessToken(createdUser._id);
-        const refreshToken = createRefreshToken();
         const res = await request(app)
             .post("/posts")
-            .set("Cookie", [`accessToken=${accessToken}`, `refreshToken=${refreshToken}`])
+            .set("Authorization", `Bearer ${accessToken}`)
             .send(tempPost);
         expect(res.status).toBe(STATUS_201_CREATED);
         expect(res.body).toHaveProperty("title");
@@ -46,11 +45,10 @@ describe("POST API", () => {
     it("POST PUT/ 게시글을 수정한다.", async () => {
         const createdUser = await UserService.addUser(tempUser);
         const accessToken = createAccessToken(createdUser._id);
-        const refreshToken = createRefreshToken();
         const posts = await PostService.addPost(createdUser._id, tempPost);
         const res = await request(app)
             .put(`/posts/${posts._id}`)
-            .set("Cookie", [`accessToken=${accessToken}`, `refreshToken=${refreshToken}`])
+            .set("Authorization", `Bearer ${accessToken}`)
             .send({ title: "수정된 제목", content: "수정된 내용" });
         expect(res.status).toBe(STATUS_200_OK);
         expect(res.body.title).toEqual("수정된 제목");
@@ -61,11 +59,10 @@ describe("POST API", () => {
     it("POST DELETE/ 게시글을 삭제한다.", async () => {
         const createdUser = await UserService.addUser(tempUser);
         const accessToken = createAccessToken(createdUser._id);
-        const refreshToken = createRefreshToken();
         const posts = await PostService.addPost(createdUser._id, tempPost);
         const res = await request(app)
             .delete(`/posts/${posts._id}`)
-            .set("Cookie", [`accessToken=${accessToken}`, `refreshToken=${refreshToken}`]);
+            .set("Authorization", `Bearer ${accessToken}`);
         expect(res.status).toBe(STATUS_200_OK);
         expect(res.body.message).toEqual("삭제가 완료되었습니다.");
     });

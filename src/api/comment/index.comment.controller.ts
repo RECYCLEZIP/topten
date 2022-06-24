@@ -17,6 +17,9 @@ commentController.post(
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["comment"]
             #swagger.description = "댓글 생성 **로그인 필수**"
+            #swagger.security = [{
+               "bearerAuth": []
+            }]
             #swagger.parameters['postId'] = {
                 in: 'path',
                 description: '댓글을 달 게시글의 ID',
@@ -48,6 +51,9 @@ commentController.put(
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["comment"]
             #swagger.description = "댓글 정보 수정 **로그인 필수**"
+            #swagger.security = [{
+               "bearerAuth": []
+            }]
             #swagger.parameters['id'] = {
                 in: 'path',
                 description: '수정하고자 하는 댓글의 ID',
@@ -77,6 +83,9 @@ commentController.delete(
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["comment"]
             #swagger.description = "댓글 삭제 **로그인 필수**"
+            #swagger.security = [{
+               "bearerAuth": []
+            }]
             #swagger.parameters['id'] = {
                 in: 'path',
                 description: '삭제하고자 하는 댓글의 ID',

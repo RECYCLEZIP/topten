@@ -21,9 +21,6 @@ const UserSchema = new Schema<IUser>({
         type: Number,
         default: 0,
     },
-    token: {
-        type: String,
-    },
 });
 
 export const UserModel = model<IUser>("User", UserSchema);

@@ -1,3 +1,4 @@
+import { Request } from "express";
 import { Schema } from "mongoose";
 
 export interface INews {
@@ -89,7 +90,6 @@ export interface IUser {
     username?: string;
     password?: string;
     topscore?: number;
-    token?: string;
 }
 
 export interface IBins {
@@ -129,4 +129,8 @@ export interface IRobot {
     name: string;
     address: string;
     location: object;
+}
+
+export interface IRequestUserAuthInfo extends Request {
+    currentUserId: string;
 }

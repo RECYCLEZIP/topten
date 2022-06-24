@@ -19,6 +19,9 @@ userController.get(
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["user"]
             #swagger.description = "현재 유저 상태 조회"
+            #swagger.security = [{
+               "bearerAuth": []
+            }]
             #swagger.responses[200] = {
             schema: { "$ref": "#/definitions/UserGetResponse" },
             description: "현재 유저 정보를 반환\n로그인중이 아니라면 **401** 상태코드" } */
@@ -26,25 +29,6 @@ userController.get(
         const { currentUserId } = req.cookies;
         const userInfo = await UserService.getByUser(currentUserId);
         res.status(STATUS_200_OK).json(userInfo);
-    }),
-);
-
-userController.get(
-    "/users/logout",
-    authRequired,
-    wrapAsyncFunc(async (req, res, _next) => {
-        /*  #swagger.tags = ["user"]
-            #swagger.description = "유저 로그아웃 **로그인 필수**"
-            #swagger.responses[200] = {
-            schema: { "$ref": "#/definitions/UserLogoutResponse" },
-            description: "로그아웃 여부를 반환" } */
-
-        const { currentUserId } = req.cookies;
-        await UserService.logout(currentUserId);
-        res.clearCookie("accessToken");
-        res.clearCookie("refreshToken");
-        res.clearCookie("currentUserId");
-        res.status(STATUS_200_OK).json({ message: "정상적으로 로그아웃이 완료되었습니다." });
     }),
 );
 
@@ -124,13 +108,11 @@ userController.post(
                 schema: { $ref: "#/definitions/UserLoginRequest" }
             }
             #swagger.responses[200] = {
-            schema: { "$ref": "#/definitions/UserGetResponse" },
-            description: "로그인 유저 정보 반환" } */
+            schema: { "$ref": "#/definitions/UserLoginResponse" },
+            description: "로그인 유저 정보 및 액세스토큰 반환" } */
 
-        const { user, accessToken, refreshToken } = await UserService.login(req.body);
-        res.cookie("accessToken", accessToken);
-        res.cookie("refreshToken", refreshToken);
-        res.status(STATUS_200_OK).json(user);
+        const accessToken = await UserService.login(req.body);
+        res.status(STATUS_200_OK).json({ token: accessToken });
     }),
 );
 
@@ -141,6 +123,9 @@ userController.put(
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["user"]
             #swagger.description = "유저 수정"
+            #swagger.security = [{
+               "bearerAuth": []
+            }]
             #swagger.parameters['body'] = {
                 in: 'body',
                 description: '수정하고자 하는 유저의 정보를 body에 담아 요청\n
@@ -169,6 +154,9 @@ userController.put(
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["user"]
             #swagger.description = "유저의 미니게임 점수 갱신"
+            #swagger.security = [{
+               "bearerAuth": []
+            }]
             #swagger.parameters['body'] = {
                 in: 'body',
                 description: '수정하고자 하는 유저의 정보를 body에 담아 요청\n
@@ -195,15 +183,15 @@ userController.delete(
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["user"]
             #swagger.description = "유저 삭제 **로그인 필수**"
+            #swagger.security = [{
+               "bearerAuth": []
+            }]
             #swagger.responses[200] = {
             schema: { "$ref": "#/definitions/DeleteResponse" },
             description: "삭제 메시지" } */
 
         const { currentUserId } = req.cookies;
         const deleteResult = await UserService.deleteUser(currentUserId);
-        res.clearCookie("accessToken");
-        res.clearCookie("refreshToken");
-        res.clearCookie("currentUserId");
         res.status(STATUS_200_OK).json(deleteResult);
     }),
 );
