@@ -1,8 +1,5 @@
 import seoul from "./img/seoul.jpg";
 import mainAi from "./img/ai.png";
-import PET from "./img/PET.jpg";
-import GLASS from "./img/GLASS.png";
-import PETs from "./img/PETs.jpg";
 import QuizLogo from "./img/QuizLogo.png";
 import QuizLogoB from "./img/QuizLogoB.png";
 import bin from "./img/bins.png";
@@ -26,12 +23,13 @@ import loading from "./img/loading.gif";
 import x from "./img/x.png";
 import backPage from "./img/arrow.png";
 import user from "./img/user.jpg";
+import tree1 from "./img/tree1.png";
+import tree2 from "./img/tree2.png";
+import tree3 from "./img/tree3.png";
 
 export const img = {
   seoul,
   mainAI: mainAi,
-  category: [PET, GLASS, PET, GLASS, PET, GLASS, PET, GLASS],
-  sample: PETs,
   quizLogo: QuizLogo,
   quizLogoB: QuizLogoB,
   bin: bin,
@@ -55,4 +53,5 @@ export const img = {
   x,
   backPage,
   user,
+  tree: { small: tree1, middle: tree2, big: tree3 },
 };
