@@ -15,6 +15,8 @@ import {
   ListDate,
 } from "../../styles/qnaStyles/QnAStyle";
 
+import { BlackHr } from "../../styles/qnaStyles/QnADescriptionStyle";
+
 function QnAList() {
   const navigate = useNavigate();
 
@@ -26,6 +28,7 @@ function QnAList() {
 
   return (
     <>
+      <BlackHr />
       <ListTable>
         {/* 리스트 tbody */}
         <ListTbody>
@@ -45,6 +48,7 @@ function QnAList() {
           ))}
         </ListTbody>
       </ListTable>
+      <BlackHr />
     </>
   );
 }

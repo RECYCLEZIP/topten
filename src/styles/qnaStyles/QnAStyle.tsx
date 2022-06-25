@@ -18,6 +18,8 @@ export const ListSection = styled.section``;
 
 export const ListTable = styled.table`
   width: 100%;
+
+  border-collapse: collapse;
 `;
 
 export const ListTbody = styled.tbody`
@@ -25,16 +27,20 @@ export const ListTbody = styled.tbody`
 `;
 
 export const ListTr = styled.tr`
-  margin: 0.5rem 0rem;
+  margin: 0.5rem 1rem;
 
-  /* display: flex; */
+  border-bottom: 1px solid #e3e3e3;
+
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
 export const ListNumber = styled.td`
   width: 2rem;
 
-  padding: 0.5rem;
-  padding-left: 0rem;
+  padding: 0.8rem 0.5rem;
+  padding-left: 1rem;
 
   font-weight: 500;
   color: #979797;
@@ -60,7 +66,7 @@ export const ListDate = styled.td`
   width: 5rem;
 
   padding: 0.5rem;
-  padding-right: 0rem;
+  padding-right: 1rem;
 
   font-weight: 500;
   text-align: right;
