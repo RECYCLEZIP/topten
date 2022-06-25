@@ -46,6 +46,10 @@ export const TitleContainer = styled.div`
 
 export const Title = styled.div`
   /* background: red; */
+  font-size: 0.6rem;
+`;
+
+export const SectionTitle = styled.div`
   font-size: 0.8rem;
 `;
 
@@ -90,16 +94,26 @@ export const CommentContainer = styled.div`
 `;
 
 export const CommentWrapper = styled.div`
-  padding: 1rem;
+  padding: 0.8rem 1rem;
+  padding-top: 0.4rem;
   margin-bottom: 1rem;
 
   display: flex;
+  position: relative;
 
   background-color: #ececec;
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
 `;
 
-export const CommentTitle = styled(Title)`
+export const CommentRight = styled.div`
+  margin-bottom: 1rem;
+  bottom: 0;
+
+  position: absolute;
+  right: 0;
+`;
+
+export const CommentTitle = styled(SectionTitle)`
   display: inline-block;
 
   margin: 1rem 0;
@@ -108,6 +122,36 @@ export const CommentTitle = styled(Title)`
 
 export const CommentContent = styled(ContentContainer)`
   padding: 0;
+  margin: 0.2rem 0;
+
+  font-weight: 500;
+`;
+
+export const CommentAuthorContainer = styled.div`
+  display: inline-flex;
+`;
+
+export const CommentAuthor = styled.div`
+  font-size: 0.6rem;
+`;
+
+export const CommentAuthorLabel = styled.div`
+  background: #21a663;
+  /* background: #69db7c; */
+  font-size: 0.4rem;
+  font-weight: 500;
+  color: white;
+  border-radius: 0.1rem;
+  padding: 0.1rem 0.2rem;
+  height: fit-content;
+  align-self: center;
+  margin-left: 0.5rem;
+`;
+
+export const CommentDate = styled.div`
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: #979797;
 `;
 
 export const SquareButton = styled(Button)`
@@ -151,7 +195,7 @@ export const CommnetButtonWrapper = styled.div`
   /* background: purple; */
 `;
 
-export const CommentButton = styled(Button)`
+export const CommentPostButton = styled(Button)`
   width: max-content;
   height: 1.7rem;
 
@@ -166,4 +210,10 @@ export const CommentButton = styled(Button)`
     background: #86919c;
     outline: none;
   }
+`;
+
+export const CommentRightButton = styled(RedButton)`
+  margin-right: 1rem;
+
+  /* font-size: 0.6rem  */
 `;
