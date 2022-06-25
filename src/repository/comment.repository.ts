@@ -1,5 +1,5 @@
+import { CommentModel } from "@src/db";
 import { IComment } from "@src/models/interface";
-import { CommentModel } from "@src/db/comment/comment.schema";
 
 export class Comment {
     static create(commentInfo: IComment) {

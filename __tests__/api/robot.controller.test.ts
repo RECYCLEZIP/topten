@@ -1,6 +1,6 @@
 import app from "@src/app";
 import request from "supertest";
-import { RobotModel } from "@src/db/map/robot.schema";
+import { RobotModel } from "@src/db";
 import { STATUS_200_OK } from "@src/utils/statusCode";
 
 async function initializeDataBase() {

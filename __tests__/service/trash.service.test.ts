@@ -1,4 +1,4 @@
-import { Trash } from "@src/db";
+import { Trash } from "@src/repository";
 import { Category, ITrash } from "@src/models/interface";
 import { TrashService } from "@src/service/trash.service";
 import { RequestError } from "@src/middlewares/errorHandler";

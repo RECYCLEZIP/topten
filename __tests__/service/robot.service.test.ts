@@ -1,4 +1,4 @@
-import { Robot } from "@src/db";
+import { Robot } from "@src/repository";
 import { RobotService } from "@src/service/robot.service";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 

@@ -1,4 +1,4 @@
-import { Quiz } from "@src/db";
+import { Quiz } from "@src/repository";
 import { QuizService } from "@src/service/quiz.service";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 

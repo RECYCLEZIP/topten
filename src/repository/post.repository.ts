@@ -1,4 +1,4 @@
-import { PostModel } from "@src/db/post/post.schema";
+import { PostModel } from "@src/db";
 import { IPost, MongooseQuery } from "@src/models/interface";
 
 export class Post {

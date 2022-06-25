@@ -1,9 +1,9 @@
-import { Post } from "@src/db";
-import { FilterQuery, IPost } from "@src/models/interface";
-import { RequestError } from "@src/middlewares/errorHandler";
+import { Post } from "@src/repository";
 import { UserService } from "@src/service/user.service";
+import { FilterQuery, IPost } from "@src/models/interface";
 import { createFilterQuery } from "@src/utils/createQuery";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
+import { RequestError } from "@src/middlewares/errorHandler";
 
 export class PostService {
     static async getPostList(query: FilterQuery) {

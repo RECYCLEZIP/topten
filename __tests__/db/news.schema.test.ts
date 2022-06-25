@@ -1,4 +1,4 @@
-import { NewsModel } from "@src/db/news/news.schema";
+import { NewsModel } from "@src/db";
 
 describe("NewsModel 유효성 검사", () => {
     it("url과 title은 필수로 입력해야한다.", () => {

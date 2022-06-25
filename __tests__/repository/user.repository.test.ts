@@ -1,5 +1,5 @@
+import { User } from "@src/repository";
 import { IUser } from "@src/models/interface";
-import { User } from "@src/repository/user.repository";
 
 describe("USER 모델 접근", () => {
     const tempUser: IUser = {

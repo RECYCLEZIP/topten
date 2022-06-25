@@ -1,5 +1,5 @@
+import { TrashModel } from "@src/db";
 import { Category } from "@src/models/interface";
-import { TrashModel } from "@src/db/trash/trash.schema";
 
 describe("TrashModel 유효성 검사", () => {
     const tempTrash = {

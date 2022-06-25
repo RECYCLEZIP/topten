@@ -1,5 +1,5 @@
-import { QuizModel } from "@src/db/quiz/quiz.schema";
-import { Quiz } from "@src/db";
+import { QuizModel } from "@src/db";
+import { Quiz } from "@src/repository";
 
 describe("Quiz Repository Test", () => {
     const quizType = "multipleChoice";

@@ -1,4 +1,4 @@
-import { Comment } from "@src/db";
+import { Comment } from "@src/repository";
 import { IComment } from "@src/models/interface";
 
 describe("Comment 모델 접근", () => {

@@ -1,6 +1,6 @@
-import { Post } from "@src/db";
+import { Post } from "@src/repository";
 import { IPost } from "@src/models/interface";
-import { PostModel } from "@src/db/post/post.schema";
+import { PostModel } from "@src/db/post.schema";
 
 describe("Post 모델 접근", () => {
     const tempPost: IPost = {

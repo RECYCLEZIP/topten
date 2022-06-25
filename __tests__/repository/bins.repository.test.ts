@@ -1,5 +1,5 @@
-import { Bins } from "@src/db/index";
-import { BinsModel } from "@src/db/map/bins.schema";
+import { BinsModel } from "@src/db";
+import { Bins } from "@src/repository";
 
 describe("Bins Repository TEST", () => {
     it("findLocation: filteredQuery 조건에 일치하는 데이터를 반환한다.", async () => {

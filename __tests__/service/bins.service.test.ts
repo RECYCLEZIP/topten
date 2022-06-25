@@ -1,4 +1,4 @@
-import { Bins } from "@src/db";
+import { Bins } from "@src/repository";
 import { BinsService } from "@src/service/bins.service";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 

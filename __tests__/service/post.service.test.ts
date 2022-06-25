@@ -1,4 +1,4 @@
-import { Post } from "@src/db";
+import { Post } from "@src/repository";
 import { IPost, IUser } from "@src/models/interface";
 import { PostService } from "@src/service/post.service";
 import { UserService } from "@src/service/user.service";

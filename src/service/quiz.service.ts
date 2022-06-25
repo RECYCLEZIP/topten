@@ -1,8 +1,8 @@
 import dayjs from "dayjs";
-import { Quiz } from "../db/index";
+import { Quiz } from "@src/repository";
 import { Submissions } from "@src/models/interface";
-import { RequestError } from "@src/middlewares/errorHandler";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
+import { RequestError } from "@src/middlewares/errorHandler";
 
 export class QuizService {
     static async getQuizList(quizType: string) {

@@ -1,7 +1,7 @@
 import app from "@src/app";
 import request from "supertest";
+import { BinsModel } from "@src/db";
 import { STATUS_200_OK, STATUS_404_NOTFOUND } from "@src/utils/statusCode";
-import { BinsModel } from "@src/db/map/bins.schema";
 
 export async function initializeDataBase() {
     const datas = [

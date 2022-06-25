@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
-import { User } from "@src/db";
 import { Document } from "mongoose";
+import { User } from "@src/repository";
 import { IUser } from "@src/models/interface";
 import { createAccessToken } from "@src/utils/jwt";
 import { RequestError } from "@src/middlewares/errorHandler";

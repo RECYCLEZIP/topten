@@ -1,8 +1,8 @@
-import { Comment } from "@src/db";
+import { Comment } from "@src/repository";
 import { IComment } from "@src/models/interface";
 import { UserService } from "@src/service/user.service";
-import { RequestError } from "@src/middlewares/errorHandler";
 import { PostService } from "@src/service/post.service";
+import { RequestError } from "@src/middlewares/errorHandler";
 
 export class CommentService {
     static async addComment(userId: string, postId: string, commentInfo: IComment) {

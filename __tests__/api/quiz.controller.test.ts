@@ -1,10 +1,10 @@
-import { Types } from "mongoose";
 import app from "@src/app";
 import request from "supertest";
-import { STATUS_200_OK } from "@src/utils/statusCode";
-import { QuizModel } from "@src/db/quiz/quiz.schema";
-import { QuizService } from "@src/service/quiz.service";
+import { Types } from "mongoose";
+import { QuizModel } from "@src/db";
 import { QuizType } from "@src/models/interface";
+import { STATUS_200_OK } from "@src/utils/statusCode";
+import { QuizService } from "@src/service/quiz.service";
 
 interface Result {
     date: Date;

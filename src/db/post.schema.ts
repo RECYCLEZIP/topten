@@ -1,6 +1,6 @@
+import { CommentModel } from "@src/db";
 import { Schema, model } from "mongoose";
 import { IPost } from "@src/models/interface";
-import { CommentModel } from "@src/db/comment/comment.schema";
 
 const PostSchema = new Schema<IPost>(
     {

@@ -1,4 +1,4 @@
-import { News } from "@src/db";
+import { News } from "@src/repository";
 import { INews } from "@src/models/interface";
 import { NewsService } from "@src/service/news.service";
 import { RequestError } from "@src/middlewares/errorHandler";

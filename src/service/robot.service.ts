@@ -1,6 +1,6 @@
-import { RequestError } from "@src/middlewares/errorHandler";
-import { Robot } from "@src/repository/robot.repository";
+import { Robot } from "@src/repository";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
+import { RequestError } from "@src/middlewares/errorHandler";
 
 export class RobotService {
     static async getCloseRobots(x: string, y: string) {

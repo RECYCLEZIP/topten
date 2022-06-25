@@ -1,5 +1,5 @@
+import { UserModel } from "@src/db";
 import { IUser } from "@src/models/interface";
-import { UserModel } from "@src/db/user/user.schema";
 
 export class User {
     static async findById(id: string) {

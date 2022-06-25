@@ -1,4 +1,4 @@
-import { News } from "@src/db";
+import { News } from "@src/repository";
 import { createFilterQuery } from "@src/utils/createQuery";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 import { RequestError } from "@src/middlewares/errorHandler";

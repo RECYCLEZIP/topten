@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import mongoose from "mongoose";
-import { RobotModel } from "../src/db/map/robot.schema";
+import { RobotModel } from "../src/db";
 import "dotenv/config";
 
 interface RobotData {

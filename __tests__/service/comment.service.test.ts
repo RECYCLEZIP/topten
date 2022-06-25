@@ -1,4 +1,4 @@
-import { Comment } from "@src/db";
+import { Comment } from "@src/repository";
 import { IComment, IPost, IUser } from "@src/models/interface";
 import { CommentService } from "@src/service/comment.service";
 import { UserService } from "@src/service/user.service";
