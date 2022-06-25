@@ -62,7 +62,7 @@ function QnAPost() {
       </TitleInputContainer>
       <TitleInputText>내용</TitleInputText>
       <Editor
-        initialValue="hello react editor world!"
+        initialValue=' '
         ref={editorRef}
         previewStyle="vertical"
         height="600px"
