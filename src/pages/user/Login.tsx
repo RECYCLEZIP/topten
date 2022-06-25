@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { useSetRecoilState } from "recoil";
 import { postData } from "../../api";
-import { loginState, userState } from "../../stores/atoms";
+import { loginState } from "../../stores/atoms";
 import { Button } from "../../styles/ButtonStyles";
 import { TitleText } from "../../styles/TextStyle";
 import {
@@ -17,14 +17,14 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const setIsLogin = useSetRecoilState(loginState);
-  const setUser = useSetRecoilState(userState);
   const navigate = useNavigate();
 
   const loginUser = async () => {
     try {
       const res = await postData("users/login", { email, password });
-      setUser(res.data);
+      console.log(res.data);
       setIsLogin(true);
+      sessionStorage.setItem("token", res.data.token);
       navigate("/");
     } catch {
       notCorrect();

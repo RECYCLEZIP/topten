@@ -29,6 +29,7 @@ function UserPage() {
 
   const logout = () => {
     setIsLogin(false);
+    sessionStorage.removeItem("token");
     navigate("/");
   };
 
