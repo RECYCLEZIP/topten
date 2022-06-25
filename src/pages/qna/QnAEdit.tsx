@@ -34,7 +34,8 @@ function QnAEdit() {
   const editorRef: any = useRef();
 
   const [qna, setQna] = useState<QnAType>();
-  const [titleValue, setTitleValue] = useState<string>();
+  const [titleValue, setTitleValue] = useState<string | undefined>("");
+  const [contentValue, setContentValue] = useState<string | undefined>("");
 
   const get = async () => {
     try {
@@ -46,6 +47,7 @@ function QnAEdit() {
 
   const setValues = () => {
     setTitleValue(qna?.title);
+    setContentValue(qna?.content);
   };
 
   const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,8 +70,13 @@ function QnAEdit() {
 
   useEffect(() => {
     get();
-    setValues();
   }, []);
+
+  useEffect(() => {
+    setValues();
+  }, [qna]);
+
+  const test = "제발";
 
   return (
     <Container>
@@ -79,21 +86,26 @@ function QnAEdit() {
         <TitleInput
           id="title"
           type="text"
-          value-={titleValue}
+          value={titleValue}
           onChange={onTitleChange}
         ></TitleInput>
       </TitleInputContainer>
-      <TitleInputText>내용</TitleInputText>
-      <Editor
-        initialValue={qna?.content}
-        ref={editorRef}
-        previewStyle="vertical"
-        height="600px"
-        initialEditType="markdown"
-        useCommandShortcut={true}
-        plugins={[colorSyntax]} // colorSyntax 플러그인 적용
-        language="ko-KR"
-      />
+      <>
+        <TitleInputText>내용</TitleInputText>
+        {console.log(contentValue)}
+        <Editor
+          // initialValue="***오늘***"
+          // initialValue={test}
+          initialValue={contentValue}
+          ref={editorRef}
+          previewStyle="vertical"
+          height="600px"
+          initialEditType="markdown"
+          useCommandShortcut={true}
+          plugins={[colorSyntax]} // colorSyntax 플러그인 적용
+          language="ko-KR"
+        />
+      </>
       <PostButtonWrapper>
         <PostCancleButton onClick={() => navigate(`/qna`)}>
           수정 취소
