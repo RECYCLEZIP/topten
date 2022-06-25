@@ -7,10 +7,10 @@ export class Bins {
             | { roads: string; region?: undefined }
         )[],
     ) {
-        return await BinsModel.find({ $and: filterQuery });
+        return BinsModel.find({ $and: filterQuery });
     }
 
     static async findAll() {
-        return await BinsModel.find({});
+        return BinsModel.find({});
     }
 }
