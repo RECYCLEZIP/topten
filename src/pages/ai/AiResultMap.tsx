@@ -79,8 +79,6 @@ function AiResultMap() {
     setLatitude(coords.latitude); // 위도
     setLongitude(coords.longitude); // 경도
 
-    console.log(coords.latitude); // 위도
-
     // const latitude = coords.latitude; // 위도
     // const longitude = coords.longitude; // 경도
 
@@ -101,8 +99,6 @@ function AiResultMap() {
 
   const getRobots = async () => {
     console.log("fetching 함수 호출됨");
-
-    console.log(latitude);
 
     try {
       const res = await getData(
@@ -135,7 +131,10 @@ function AiResultMap() {
   return (
     <>
       <AiContentTitle>근처 순환자원 회수로봇</AiContentTitle>
-      <DetailTitle>* 순환자원 회수로봇이란?</DetailTitle>
+      <DetailTitle>
+        현위치 반경 10km 범위의 순환자원 회수로봇입니다.
+      </DetailTitle>
+      {/* <DetailTitle>* 순환자원 회수로봇이란?</DetailTitle> */}
       {error ? (
         <span>{error}</span>
       ) : (
@@ -145,6 +144,10 @@ function AiResultMap() {
           propsSelected={robotSelected}
           setSelectedMarker={setSelectedMarker}
           setPropsSelected={setRobotSelected}
+          // currentLon={126.89196610216352}
+          // currentLat={37.52606733350417}
+          currentLon={longitude}
+          currentLat={latitude}
         ></MapTest>
       )}
     </>
