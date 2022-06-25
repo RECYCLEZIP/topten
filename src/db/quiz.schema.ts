@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
-import { Answer } from "@src/models/interface";
 import { IQuiz } from "@src/models/interface";
+import { Answer } from "@src/models/interface";
 
 const QuizSchema = new Schema<IQuiz>(
     {

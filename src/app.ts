@@ -1,9 +1,9 @@
 import "dotenv/config";
 import cors from "cors";
 import express from "express";
+import indexController from "@src/api";
 import cookieParser from "cookie-parser";
 import { errorMiddleware } from "@src/middlewares/errorHandler";
-import indexController from "@src/api";
 
 const app = express();
 

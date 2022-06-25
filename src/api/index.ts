@@ -1,16 +1,16 @@
 import { Express } from "express";
 import swaggerUi from "swagger-ui-express";
 import swaggerFile from "../../swagger-output.json";
-import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
-import { RequestError } from "@src/middlewares/errorHandler";
 import userController from "@src/api/user.controller";
 import newsController from "@src/api/news.controller";
 import quizController from "@src/api/quiz.controller";
-import trashController from "@src/api/trash.controller";
 import binsController from "@src/api/bins.controller";
 import postController from "@src/api/post.controller";
-import commentController from "@src/api/comment.controller";
+import trashController from "@src/api/trash.controller";
 import robotController from "@src/api/robot.controller";
+import commentController from "@src/api/comment.controller";
+import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
+import { RequestError } from "@src/middlewares/errorHandler";
 
 const indexController = (app: Express) => {
     app.use(userController);
