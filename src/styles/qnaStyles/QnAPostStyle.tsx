@@ -22,16 +22,26 @@ export const TitleInput = styled.input`
   font-size: 0.6rem;
 `;
 
-export const PostButtonWrapper = styled.div`
+export const PostButtonContainer = styled.div`
   margin: 1rem 0;
-  float: right;
+
+  display: flex;
+`;
+
+export const PostButtonWrapper = styled.div`
+  margin-left: auto;
+  /* float: right; */
 `;
 
 export const PostButton = styled(Button)`
+  margin-left: auto;
+
   border-radius: 0.7rem;
 `;
 
 export const PostCancleButton = styled(Button)`
+  margin-left: auto;
+
   border-radius: 0.7rem;
 
   background: #f0f2f5;

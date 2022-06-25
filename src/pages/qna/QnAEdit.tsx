@@ -21,6 +21,7 @@ import {
   TitleInputContainer,
   TitleInputText,
   TitleInput,
+  PostButtonContainer,
   PostButtonWrapper,
   PostButton,
   PostCancleButton,
@@ -92,30 +93,28 @@ function QnAEdit() {
           onChange={onTitleChange}
         ></TitleInput>
       </TitleInputContainer>
-      <>
-        {/* <TitleInputText>내용</TitleInputText> */}
-        {console.log(contentValue)}
-        {contentValue && (
-          <Editor
-            // initialValue="***오늘***"
-            // initialValue={test}
-            initialValue={contentValue}
-            ref={editorRef}
-            previewStyle="vertical"
-            height="600px"
-            initialEditType="wysiwyg"
-            useCommandShortcut={true}
-            plugins={[colorSyntax]} // colorSyntax 플러그인 적용
-            language="ko-KR"
-          />
-        )}
-      </>
-      <PostButtonWrapper>
-        <PostCancleButton onClick={() => navigate(`/qna/${id}`)}>
-          수정 취소
-        </PostCancleButton>
-        <PostButton onClick={onClickSubmit}>수정 완료</PostButton>
-      </PostButtonWrapper>
+      {contentValue && (
+        <Editor
+          // initialValue="***오늘***"
+          // initialValue={test}
+          initialValue={contentValue}
+          ref={editorRef}
+          previewStyle="vertical"
+          height="600px"
+          initialEditType="wysiwyg"
+          useCommandShortcut={true}
+          plugins={[colorSyntax]} // colorSyntax 플러그인 적용
+          language="ko-KR"
+        />
+      )}
+      <PostButtonContainer>
+        <PostButtonWrapper>
+          <PostCancleButton onClick={() => navigate(`/qna/${id}`)}>
+            수정 취소
+          </PostCancleButton>
+          <PostButton onClick={onClickSubmit}>수정 완료</PostButton>
+        </PostButtonWrapper>
+      </PostButtonContainer>
     </Container>
   );
 }

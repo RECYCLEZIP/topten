@@ -11,6 +11,10 @@ export const GrayHr = styled.hr`
 `;
 
 export const ButtonContainer = styled.div`
+  display: flex;
+`;
+
+export const ButtonWrapper = styled.div`
   /* background: green; */
   width: 100%;
 
@@ -155,8 +159,9 @@ export const CommentDate = styled.div`
 `;
 
 export const SquareButton = styled(Button)`
-  float: right;
+  /* float: right; */
 
+  margin-left: auto;
   margin-top: 0.5rem;
 
   border-radius: 0.3rem;

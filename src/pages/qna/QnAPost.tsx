@@ -19,6 +19,7 @@ import {
   TitleInputContainer,
   TitleInputText,
   TitleInput,
+  PostButtonContainer,
   PostButtonWrapper,
   PostButton,
   PostCancleButton,
@@ -89,12 +90,14 @@ function QnAPost() {
         plugins={[colorSyntax]} // colorSyntax 플러그인 적용
         language="ko-KR"
       />
-      <PostButtonWrapper>
-        <PostCancleButton onClick={() => navigate(`/qna`)}>
-          작성 취소
-        </PostCancleButton>
-        <PostButton onClick={onClickSubmit}>작성 완료</PostButton>
-      </PostButtonWrapper>
+      <PostButtonContainer>
+        <PostButtonWrapper>
+          <PostCancleButton onClick={() => navigate(`/qna`)}>
+            작성 취소
+          </PostCancleButton>
+          <PostButton onClick={onClickSubmit}>작성 완료</PostButton>
+        </PostButtonWrapper>
+      </PostButtonContainer>
     </Container>
   );
 }
