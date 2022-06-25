@@ -60,9 +60,11 @@ function QnAEdit() {
     console.log(data);
 
     try {
-      await putData(`posts`, { title: titleValue, content: data }).then((res) =>
+      await putData(`posts/${id}`, { title: titleValue, content: data }).then((res) =>
         console.log(res),
       );
+
+      navigate(`/qna`);
     } catch (err) {
       console.log(err);
     }
