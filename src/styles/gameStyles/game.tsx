@@ -27,12 +27,12 @@ export const RankContainer = styled.div`
 `;
 
 export const DragTrashContainer = styled.div`
-  height: 31rem;
+  height: 50vh;
   position: relative;
 
   @media (min-width: 768px) {
     width: 60vw;
-    height: 20rem;
+    height: 18rem;
   }
 `;
 
