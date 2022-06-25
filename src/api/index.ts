@@ -8,7 +8,6 @@ import binsController from "@src/api/bins.controller";
 import postController from "@src/api/post.controller";
 import trashController from "@src/api/trash.controller";
 import robotController from "@src/api/robot.controller";
-import commentController from "@src/api/comment.controller";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 import { RequestError } from "@src/middlewares/errorHandler";
 
@@ -16,10 +15,9 @@ const indexController = (app: Express) => {
     app.use(userController);
     app.use(newsController);
     app.use(quizController);
-    app.use(trashController);
     app.use(binsController);
     app.use(postController);
-    app.use(commentController);
+    app.use(trashController);
     app.use(robotController);
     app.get("/", (_req, res) => {
         res.redirect("/swagger");

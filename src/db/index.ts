@@ -7,7 +7,6 @@ import { NewsModel } from "@src/db/news.schema";
 import { BinsModel } from "@src/db/bins.schema";
 import { RobotModel } from "@src/db/robot.schema";
 import { TrashModel } from "@src/db/trash.schema";
-import { CommentModel } from "@src/db/comment.schema";
 
 const DB_URL =
     process.env.MONGODB_URL ||
@@ -23,13 +22,4 @@ if (process.env.NODE_ENV !== "test") {
     );
 }
 
-export {
-    UserModel,
-    QuizModel,
-    TrashModel,
-    NewsModel,
-    BinsModel,
-    PostModel,
-    CommentModel,
-    RobotModel,
-};
+export { UserModel, QuizModel, TrashModel, NewsModel, BinsModel, PostModel, RobotModel };

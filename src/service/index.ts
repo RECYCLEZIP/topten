@@ -5,7 +5,6 @@ import { PostService } from "@src/service/post.service";
 import { QuizService } from "@src/service/quiz.service";
 import { RobotService } from "@src/service/robot.service";
 import { TrashService } from "@src/service/trash.service";
-import { CommentService } from "@src/service/comment.service";
 
 export {
     UserService,
@@ -15,5 +14,4 @@ export {
     QuizService,
     RobotService,
     TrashService,
-    CommentService,
 };
