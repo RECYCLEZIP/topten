@@ -1,6 +1,20 @@
 import { CommentModel } from "@src/db";
 import { Schema, model } from "mongoose";
-import { IPost } from "@src/models/interface";
+import { IComment, IPost } from "@src/models/interface";
+
+const CommentSchema = new Schema<IComment>(
+    {
+        author: {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        },
+        content: {
+            type: String,
+            required: true,
+        },
+    },
+    { timestamps: true },
+);
 
 const PostSchema = new Schema<IPost>(
     {
@@ -16,12 +30,7 @@ const PostSchema = new Schema<IPost>(
             type: String,
             required: true,
         },
-        comments: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: "Comment",
-            },
-        ],
+        comments: [CommentSchema],
     },
     { timestamps: true },
 );

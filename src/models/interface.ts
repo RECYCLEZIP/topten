@@ -105,16 +105,16 @@ export interface IQuiz {
     image: string;
 }
 
+export interface IComment extends Schema.Types.ObjectId {
+    author?: IUser;
+    content: string;
+}
+
 export interface IPost {
     title: string;
     author?: IUser;
     content: string;
-    comments?: Schema.Types.ObjectId[];
-}
-
-export interface IComment extends Schema.Types.ObjectId {
-    author?: IUser;
-    content: string;
+    comments?: IComment[];
 }
 
 export interface IRobot {
