@@ -11,7 +11,9 @@ export const TitleInputText = styled.div`
 `;
 
 export const TitleInput = styled.input`
-  width: 100%;
+  width: 97.5%;
+
+  padding: 0.5rem;
   line-height: 1rem;
 
   border: 1px solid #dadde6;
