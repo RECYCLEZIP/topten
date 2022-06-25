@@ -24,6 +24,7 @@
     "axios": "^0.27.2",
     "dotenv": "^16.0.1",
     "framer-motion": "^6.3.11",
+    "markdown-it": "^13.0.1",
     "react": "^18.1.0",
     "react-camera-pro": "^1.1.1",
     "react-countup": "^6.2.0",

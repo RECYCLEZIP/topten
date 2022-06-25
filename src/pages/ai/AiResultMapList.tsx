@@ -1,11 +1,6 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo } from "react";
 
-import {
-  useRecoilValue,
-  useSetRecoilState,
-  useRecoilState,
-  useResetRecoilState,
-} from "recoil";
+import { useRecoilValue, useRecoilState, useResetRecoilState } from "recoil";
 import {
   RobotState,
   RobotSelectedState,
@@ -16,7 +11,6 @@ import {
 import { RobotType } from "../../types/Robot";
 
 import {
-  MapBinListContainer,
   MapBinDatailsContainer,
   MapBinLacationTitle,
   MapBinLacationDes,
@@ -32,10 +26,6 @@ function AiResultMapList() {
 
   const [lastIntersectingImage, setLastIntersectingImage] =
     useRecoilState<HTMLDivElement | null>(lastIntersectingImageState);
-
-  //   useEffect(() => {
-  //     setSearchBins([...bins]);
-  //   }, [bins]);
 
   // *********************************
   // const [page, setPage] = useState(1);
@@ -95,9 +85,7 @@ function AiResultMapList() {
 
   // 리스트에서 항목 click 시 해당 항목의 좌표 저장
   const onClickBin = (x: number | undefined, y: number | undefined) => {
-    // console.log(robotSelected)
     setRobotSelected([x, y]);
-    // setRobotSelected([y, x]);
   };
 
   // 지도에서 선택된 마커의 좌표가 어떤 쓰레기통인지 찾아서 해당 정보 저장
@@ -150,7 +138,6 @@ function AiResultMapList() {
               <MapBinLacationTitle>
                 {selectedBinInform?.address}
               </MapBinLacationTitle>
-              {/* <MapBinLacationDes>{selectedBinInform?.points}</MapBinLacationDes> */}
             </MapBinDatailsContainer>
             <BackWrapper onClick={onClickBack}>
               <BackButton>이전으로</BackButton>

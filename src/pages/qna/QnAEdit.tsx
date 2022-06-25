@@ -14,13 +14,12 @@ import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 
 import "@toast-ui/editor/dist/i18n/ko-kr";
 
-import { Button } from "../../styles/ButtonStyles";
 import { Container } from "../../styles/basicStyle";
 import { TitleText } from "../../styles/TextStyle";
 import {
   TitleInputContainer,
-  TitleInputText,
   TitleInput,
+  PostButtonContainer,
   PostButtonWrapper,
   PostButton,
   PostCancleButton,
@@ -29,6 +28,7 @@ import {
 function QnAEdit() {
   const navigate = useNavigate();
 
+  // 글의 id
   const id = useParams().id;
 
   const editorRef: any = useRef();
@@ -57,12 +57,12 @@ function QnAEdit() {
   const onClickSubmit = async () => {
     const data = editorRef.current.getInstance().getMarkdown();
 
-    console.log(data);
-
     try {
-      await putData(`posts`, { title: titleValue, content: data }).then((res) =>
-        console.log(res),
+      await putData(`posts/${id}`, { title: titleValue, content: data }).then(
+        (res) => console.log(res),
       );
+
+      navigate(`/qna/${id}`);
     } catch (err) {
       console.log(err);
     }
@@ -76,13 +76,10 @@ function QnAEdit() {
     setValues();
   }, [qna]);
 
-  const test = "제발";
-
   return (
     <Container>
-      <TitleText>Q&A 글 쓰기</TitleText>
+      <TitleText>Q&A 수정하기</TitleText>
       <TitleInputContainer>
-        <TitleInputText>제목</TitleInputText>
         <TitleInput
           id="title"
           type="text"
@@ -90,28 +87,26 @@ function QnAEdit() {
           onChange={onTitleChange}
         ></TitleInput>
       </TitleInputContainer>
-      <>
-        <TitleInputText>내용</TitleInputText>
-        {console.log(contentValue)}
+      {contentValue && (
         <Editor
-          // initialValue="***오늘***"
-          // initialValue={test}
           initialValue={contentValue}
           ref={editorRef}
           previewStyle="vertical"
           height="600px"
-          initialEditType="markdown"
+          initialEditType="wysiwyg"
           useCommandShortcut={true}
           plugins={[colorSyntax]} // colorSyntax 플러그인 적용
           language="ko-KR"
         />
-      </>
-      <PostButtonWrapper>
-        <PostCancleButton onClick={() => navigate(`/qna`)}>
-          수정 취소
-        </PostCancleButton>
-        <PostButton onClick={onClickSubmit}>수정 완료</PostButton>
-      </PostButtonWrapper>
+      )}
+      <PostButtonContainer>
+        <PostButtonWrapper>
+          <PostCancleButton onClick={() => navigate(`/qna/${id}`)}>
+            수정 취소
+          </PostCancleButton>
+          <PostButton onClick={onClickSubmit}>수정 완료</PostButton>
+        </PostButtonWrapper>
+      </PostButtonContainer>
     </Container>
   );
 }

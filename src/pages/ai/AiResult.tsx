@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { AiContentTitle, AiContentText } from "../../styles/aiStyles/AiStyle";
 
@@ -17,8 +17,6 @@ import {
   AiResultDesContainer,
   AiResultDesLastContainer,
 } from "../../styles/aiStyles/AiResultStyle";
-
-import { MapBinSection } from "../../styles/mapStyles/mapStyle";
 
 function AiResult() {
   return (
