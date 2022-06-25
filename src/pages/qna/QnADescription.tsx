@@ -27,7 +27,7 @@ import {
   Author,
   Date,
   ContentContainer,
-  ButtonContainer,
+  ButtonWrapper,
   GrayButton,
   RedButton,
   CommentContainer,
@@ -45,6 +45,7 @@ import {
   CommnetButtonWrapper,
   CommentPostButton,
   CommentRightButton,
+  ButtonContainer,
 } from "../../styles/qnaStyles/QnADescriptionStyle";
 
 function QnADescription() {
@@ -141,10 +142,10 @@ function QnADescription() {
       <BlackHr />
       <>
         {user._id === qna?.author._id && (
-          <ButtonContainer>
+          <ButtonWrapper>
             <GrayButton onClick={() => navigate(`edit/`)}>수정</GrayButton>
             <RedButton onClick={onClickDelete}>삭제</RedButton>
-          </ButtonContainer>
+          </ButtonWrapper>
         )}
       </>
       <CommentContainer>
@@ -186,7 +187,9 @@ function QnADescription() {
         ))}
       </CommentContainer>
       <BlackHr />
-      <SquareButton onClick={() => navigate(`/qna/`)}>목록</SquareButton>
+      <ButtonContainer>
+        <SquareButton onClick={() => navigate(`/qna/`)}>목록</SquareButton>
+      </ButtonContainer>
     </Container>
   );
 }
