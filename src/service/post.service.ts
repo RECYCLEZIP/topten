@@ -50,14 +50,14 @@ export class PostService {
     }
 
     static async deletePost(id: string) {
-        const deletedPost = await Post.delete(id);
+        const deletedPost = await Post.deletePost(id);
         if (!deletedPost) throw new RequestError("해당 게시글을 찾을 수 없습니다.");
         return { message: "삭제가 완료되었습니다." };
     }
 
-    static async deleteComment(id: string, commentId: string) {
-        const deletedPostComment = await Post.pullComment(id, commentId);
+    static async deleteComment(postId: string, commentId: string) {
+        const deletedPostComment = await Post.deleteComment(postId, commentId);
         if (!deletedPostComment) throw new RequestError("게시글에서 해당 댓글을 찾을 수 없습니다.");
-        return { message: "OK" };
+        return { message: "삭제가 완료되었습니다." };
     }
 }

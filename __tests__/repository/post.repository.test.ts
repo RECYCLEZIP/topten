@@ -38,7 +38,7 @@ describe("Post 모델 접근", () => {
 
     it("게시글를 삭제한다.", async () => {
         const post = await Post.create(tempPost);
-        const deletedPost = await Post.delete(post._id.toString());
+        const deletedPost = await Post.deletePost(post._id.toString());
         expect(deletedPost?.title).toEqual("여름");
         expect(deletedPost?.content).toEqual("너무덥다.");
     });

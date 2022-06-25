@@ -3,8 +3,12 @@ import request from "supertest";
 import { PostService } from "@src/service";
 import { UserService } from "@src/service";
 import { createAccessToken } from "@src/utils/jwt";
-import { IPost, IUser } from "@src/models/interface";
+import { IComment, IPost, IUser } from "@src/models/interface";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
+
+interface ITestComment extends IComment {
+    _id?: string;
+}
 
 describe("POST API", () => {
     const tempPost: IPost = {
@@ -75,6 +79,24 @@ describe("POST API", () => {
         const posts = await PostService.addPost(createdUser._id, tempPost);
         const res = await request(app)
             .delete(`/posts/${posts._id}`)
+            .set("Authorization", `Bearer ${accessToken}`);
+        expect(res.status).toBe(STATUS_200_OK);
+        expect(res.body.message).toEqual("삭제가 완료되었습니다.");
+    });
+
+    it("COMMENT DELETE/ 댓글을 삭제한다.", async () => {
+        const createdUser = await UserService.addUser(tempUser);
+        const accessToken = createAccessToken(createdUser._id);
+        const createdPost = await PostService.addPost(createdUser._id, tempPost);
+        const createdComment: ITestComment = await PostService.addComment(
+            createdUser._id,
+            createdPost._id.toString(),
+            {
+                content: "테스트",
+            } as IComment,
+        );
+        const res = await request(app)
+            .delete(`/posts/${createdPost._id}/comments/${createdComment._id}`)
             .set("Authorization", `Bearer ${accessToken}`);
         expect(res.status).toBe(STATUS_200_OK);
         expect(res.body.message).toEqual("삭제가 완료되었습니다.");

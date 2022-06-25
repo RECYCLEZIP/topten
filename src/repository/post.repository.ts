@@ -21,11 +21,15 @@ export class Post {
         return PostModel.findByIdAndUpdate(id, postInfo, { new: true });
     }
 
-    static async delete(id: string) {
+    static async deletePost(id: string) {
         return PostModel.findOneAndDelete({ _id: id });
     }
 
-    static async pullComment(id: string, commentId: string) {
-        return PostModel.findByIdAndUpdate(id, { $pull: { comments: commentId } }, { new: true });
+    static async deleteComment(postId: string, commentId: string) {
+        return PostModel.findByIdAndUpdate(
+            postId,
+            { $pull: { comments: commentId } },
+            { new: true },
+        );
     }
 }

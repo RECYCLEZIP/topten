@@ -5,6 +5,10 @@ import { RequestError } from "@src/middlewares/errorHandler";
 import { IComment, IPost, IUser } from "@src/models/interface";
 import { STATUS_400_BADREQUEST, STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 
+interface ITestComment extends IComment {
+    _id?: string;
+}
+
 const tempPost: IPost = {
     title: "게시글 제목",
     content: "게시글 내용",
@@ -44,7 +48,7 @@ describe("POSTS SERVICE LOGIC", () => {
     });
 
     it("COMMENT를 생성한다.", async () => {
-        Post.findById = jest.fn().mockResolvedValue({ save: jest.fn() });
+        Post.findById = jest.fn().mockResolvedValue({ save: jest.fn(), comments: [] });
         const createdUser = await UserService.addUser(tempUser);
         const createdPost = await PostService.addPost(createdUser._id, tempPost);
         const commentInfo = await PostService.addComment(
@@ -71,10 +75,29 @@ describe("POSTS SERVICE LOGIC", () => {
     });
 
     it("POSTS를 삭제한다.", async () => {
-        const spyFn = jest.spyOn(Post, "delete");
+        const spyFn = jest.spyOn(Post, "deletePost");
         const createdUser = await UserService.addUser(tempUser);
         const targetPost = await PostService.addPost(createdUser._id, tempPost);
         const deleteResult = await PostService.deletePost(targetPost._id.toString());
+        expect(spyFn).toBeCalledTimes(1);
+        expect(deleteResult.message).toBe("삭제가 완료되었습니다.");
+    });
+
+    it("COMMENT를 삭제한다.", async () => {
+        const spyFn = jest.spyOn(Post, "deleteComment");
+        const createdUser = await UserService.addUser(tempUser);
+        const createdPost = await PostService.addPost(createdUser._id, tempPost);
+        const createdComment: ITestComment = await PostService.addComment(
+            createdUser._id,
+            createdPost._id.toString(),
+            {
+                content: "테스트",
+            } as IComment,
+        );
+        const deleteResult = await PostService.deleteComment(
+            createdPost._id.toString(),
+            createdComment._id as string,
+        );
         expect(spyFn).toBeCalledTimes(1);
         expect(deleteResult.message).toBe("삭제가 완료되었습니다.");
     });
@@ -162,7 +185,7 @@ describe("POSTS SERVICE ERROR HANDLING", () => {
     });
 
     it("POSTS 삭제 시 게시글을 찾을 수 없으면 에러가 발생한다.", async () => {
-        Post.delete = jest.fn().mockResolvedValue(null);
+        Post.deletePost = jest.fn().mockResolvedValue(null);
         try {
             await PostService.deletePost("id");
         } catch (err: any) {
@@ -172,8 +195,8 @@ describe("POSTS SERVICE ERROR HANDLING", () => {
         }
     });
 
-    it("POSTS의 댓글 삭제 시 댓글을 찾을 수 없으면 에러가 발생한다.", async () => {
-        Post.pullComment = jest.fn().mockResolvedValue(null);
+    it("COMMENT 삭제 시 댓글을 찾을 수 없으면 에러가 발생한다.", async () => {
+        Post.deleteComment = jest.fn().mockResolvedValue(null);
         try {
             await PostService.deleteComment("id", "postId");
         } catch (err: any) {
