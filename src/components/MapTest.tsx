@@ -61,14 +61,28 @@ function MapTest({
 
     props.forEach((prop: any) => {
       // 마커 생성
-      var marker = new window.kakao.maps.Marker({
-        //마커가 표시될 지도
-        map: window.map,
-        //마커가 표시 될 위치
-        position: new window.kakao.maps.LatLng(prop.y, prop.x),
-        //마커 hover 시 보일 title
-        title: prop.details,
-      });
+      if (type === "bin") {
+        var marker = new window.kakao.maps.Marker({
+          //마커가 표시될 지도
+          map: window.map,
+          //마커가 표시 될 위치
+          position: new window.kakao.maps.LatLng(prop.y, prop.x),
+          //마커 hover 시 보일 title
+          title: prop.details,
+        });
+      } else if (type === "robot") {
+        var marker = new window.kakao.maps.Marker({
+          //마커가 표시될 지도
+          map: window.map,
+          //마커가 표시 될 위치
+          position: new window.kakao.maps.LatLng(
+            prop.location?.coordinates[1],
+            prop.location?.coordinates[0],
+          ),
+          //마커 hover 시 보일 title
+          title: prop.name,
+        });
+      }
 
       // 마커 click 이벤트
       window.kakao.maps.event.addListener(marker, "click", function () {
@@ -76,11 +90,27 @@ function MapTest({
           La: Math.round(marker.getPosition().La * 10000000000) / 10000000000,
           Ma: Math.round(marker.getPosition().Ma * 10000000000) / 10000000000,
         });
-        setPropsSelected([prop.x, prop.y]);
+        if (type === "bin") {
+          setPropsSelected([prop.x, prop.y]);
+        } else {
+          setPropsSelected([
+            prop.location?.coordinates[0],
+            prop.location?.coordinates[1],
+          ]);
+        }
       });
 
       // 모든 마커가 나오도록 중심좌표 설정
-      bounds.extend(new window.kakao.maps.LatLng(prop.y, prop.x));
+      if (type === "bin") {
+        bounds.extend(new window.kakao.maps.LatLng(prop.y, prop.x));
+      } else {
+        bounds.extend(
+          new window.kakao.maps.LatLng(
+            prop.location?.coordinates[1],
+            prop.location?.coordinates[0],
+          ),
+        );
+      }
       window.map.setBounds(bounds);
     });
   };
