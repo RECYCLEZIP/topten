@@ -37,8 +37,14 @@ import {
   SquareButton,
   CommnetInputContainer,
   CommentInput,
+  CommentAuthorContainer,
+  CommentAuthor,
+  CommentAuthorLabel,
+  CommentDate,
+  CommentRight,
   CommnetButtonWrapper,
-  CommentButton,
+  CommentPostButton,
+  CommentRightButton,
 } from "../../styles/qnaStyles/QnADescriptionStyle";
 
 function QnADescription() {
@@ -86,6 +92,19 @@ function QnADescription() {
 
       setCommentValue("");
       get();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // 백 수정 후 연동
+  const onClickCommentEdit = async () => {};
+
+  const onClickCommentDelete = async () => {
+    try {
+      await delData(`posts/${id}`);
+
+      navigate(`/qna`);
     } catch (err) {
       console.log(err);
     }
@@ -139,16 +158,30 @@ function QnADescription() {
             onChange={onCommentChange}
           ></CommentInput>
           <CommnetButtonWrapper>
-            <CommentButton onClick={onClickCommentSubmit}>등록</CommentButton>
+            <CommentPostButton onClick={onClickCommentSubmit}>
+              등록
+            </CommentPostButton>
           </CommnetButtonWrapper>
         </CommnetInputContainer>
         {qna?.comments.map((comment) => (
           <CommentWrapper>
-            <CommentContent>{comment?.content}</CommentContent>
-            <RightContainer>
-              <Date>{date(comment?.createdAt)}</Date>
-              <Author>{comment?.author.username}</Author>
-            </RightContainer>
+            <div>
+              <CommentAuthorContainer>
+                <CommentAuthor>{comment?.author.username}</CommentAuthor>
+                {qna?.author?._id === comment?.author._id && (
+                  <CommentAuthorLabel>작성자</CommentAuthorLabel>
+                )}
+              </CommentAuthorContainer>
+              <CommentContent>{comment?.content}</CommentContent>
+              <CommentDate>{date(comment?.createdAt)}</CommentDate>
+            </div>
+            {/* <RightContainer></RightContainer> */}
+            {user._id === comment?.author._id && (
+              <CommentRight>
+                <GrayButton>수정</GrayButton>
+                <CommentRightButton>삭제</CommentRightButton>
+              </CommentRight>
+            )}
           </CommentWrapper>
         ))}
       </CommentContainer>
