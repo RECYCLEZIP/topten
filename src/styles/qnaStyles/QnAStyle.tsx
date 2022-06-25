@@ -72,3 +72,11 @@ export const ListDate = styled.td`
   text-align: right;
   color: #979797;
 `;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+`;
+
+export const ButtonWrapper = styled.div`
+  margin-left: auto;
+`;

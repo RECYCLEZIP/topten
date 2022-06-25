@@ -7,6 +7,11 @@ import QnAList from "../../pages/qna/QnAList";
 
 import { TitleText } from "../../styles/TextStyle";
 import { Container } from "../../styles/basicStyle";
+import { Button } from "../../styles/ButtonStyles";
+import {
+  ButtonContainer,
+  ButtonWrapper,
+} from "../../styles/qnaStyles/QnAStyle";
 
 function QnA() {
   const navigate = useNavigate();
@@ -20,8 +25,11 @@ function QnA() {
       {/* 게시글 리스트 섹션 */}
       <QnAList />
       {/* 페이지네이션 */}
-      <button onClick={() => navigate(`/qna/post`)}>작성하기</button>
-      <div></div>
+      <ButtonContainer>
+        <ButtonWrapper>
+          <Button onClick={() => navigate(`/qna/post`)}>작성하기</Button>
+        </ButtonWrapper>
+      </ButtonContainer>
     </Container>
   );
 }
