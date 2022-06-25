@@ -1,18 +1,22 @@
 import styled from "styled-components";
 import { Button } from "../ButtonStyles";
+import { img as Img } from "../../assets/imgImport";
 
 export const GameContainer = styled.div`
-  padding: 3.3rem 1rem;
+  padding: 3.3rem 1rem 0.1rem;
   margin: 0 auto;
-  background-color: gray;
   width: auto;
+  height: auto;
+
+  background-image: url(${Img.gameBackground});
+  background-size: cover;
 
   @media (min-width: 768px) {
     width: 60vw;
   }
 `;
 
-export const RankContainer = styled(GameContainer)`
+export const RankContainer = styled.div`
   width: unset;
   display: flex;
   justify-content: center;
@@ -22,6 +26,21 @@ export const RankContainer = styled(GameContainer)`
   background-color: white;
 `;
 
+export const DragTrashContainer = styled.div`
+  height: 31rem;
+  position: relative;
+
+  @media (min-width: 768px) {
+    width: 60vw;
+    height: 20rem;
+  }
+`;
+
+export const DropTrashContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export const TrashCard = styled.div<{
   left: string;
   top: string;
@@ -29,13 +48,24 @@ export const TrashCard = styled.div<{
   visibility: string;
 }>`
   position: absolute;
-  width: 40px;
-  height: 40px;
+  width: 2rem;
+  height: 2rem;
   left: ${(props) => props.left};
   top: ${(props) => props.top};
   background-image: url(${(props) => props.img});
   background-size: cover;
   visibility: ${(props) => props.visibility};
+`;
+
+export const BinCard = styled.div<{ image: string }>`
+  width: 3.4rem;
+  height: 5rem;
+  background-image: url(${(props) => props.image});
+  background-size: cover;
+`;
+
+export const BinList = styled.div`
+  height: 5rem;
 `;
 
 export const GameButton = styled(Button)`

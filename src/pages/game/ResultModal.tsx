@@ -101,12 +101,12 @@ function ResultModal({
           <GameButton
             onClick={(e) => {
               if (gameState === initialState.gameState.GAMEOVER) {
-                setLevel(1);
+                setLevel(0);
               } else if (level !== 3) {
                 setLevel((prev) => prev + 1);
               }
               if (level === 3) {
-                setLevel(1);
+                setLevel(0);
               }
               setGameState(initialState.gameState.PLAYING);
               setTimeLeft(30);

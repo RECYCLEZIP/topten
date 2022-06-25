@@ -4,6 +4,8 @@ import {
   GameBox,
   GameContainer,
   GameLevel,
+  DragTrashContainer,
+  DropTrashContainer,
 } from "../../styles/gameStyles/game";
 import TrashZone from "./TrashZone";
 import { resetServerContext } from "react-beautiful-dnd";
@@ -16,6 +18,8 @@ import { currentGameState, gameLevelState } from "../../stores/atoms";
 import ResultModal from "./ResultModal";
 import bgm from "../../assets/bgm.mp3";
 import selectBgm from "../../assets/select.mp3";
+import { getData } from "../../api";
+import { GameDataType } from "../../types/Game";
 
 export const initialState = {
   totalScore: 0,
@@ -33,28 +37,16 @@ export const initialState = {
 resetServerContext();
 
 function Game() {
-  const [datas, setDatas] = useState([
-    { type: "플라스틱", img: img.camera },
-    { type: "유리", img: img.camera },
-    { type: "일반", img: img.camera },
-    { type: "일반", img: img.camera },
-  ]);
-  const datas2 = [
-    { type: "플라스틱", img: img.camera },
-    { type: "유리", img: img.camera },
-    { type: "일반", img: img.camera },
-  ];
+  const [trash, setTrash] = useState<GameDataType[]>([]);
+  const [bins, setBins] = useState<GameDataType[]>([]);
 
-  const [visibility, setVisibility] = useState(
-    Array(datas.length).fill("visible"),
-  );
+  const [visibility, setVisibility] = useState(["visibility"]);
   const [score, setScore] = useState(initialState.totalScore);
   const [gameState, setGameState] = useRecoilState(currentGameState);
   const [timeLeft, setTimeLeft] = useState(initialState.timeLeft);
   const [level, setLevel] = useRecoilState(gameLevelState);
-  const [leftTrash, setLeftTrash] = useState<boolean[]>(
-    Array(datas.length).fill(false),
-  );
+  const [leftTrash, setLeftTrash] = useState<boolean[]>([false]);
+  const [loading, setLoading] = useState(false);
 
   const bgmMusic = useRef(new Audio(bgm));
   const selectMusic = useRef(new Audio(selectBgm));
@@ -82,6 +74,14 @@ function Game() {
     setTimeLeft(initialState.timeLeft);
     setLevel(1);
     setScore(0);
+    const bgmAudio = bgmMusic.current;
+    bgmAudio.volume = 0.5;
+    bgmAudio.loop = true;
+    bgmAudio.play();
+    return () => {
+      bgmAudio.pause();
+      bgmAudio.currentTime = 0;
+    };
   }, []);
 
   useEffect(() => {
@@ -91,9 +91,27 @@ function Game() {
   }, [leftTrash]);
 
   useEffect(() => {
-    setTimeLeft(initialState.timeLeft);
-    if (level === 1) {
+    setLoading(false);
+    const getLevelData = async () => {
+      const res = await getData(`quizzes/game/${level - 1}`);
+      console.log(res.data);
+      setTrash(res.data.trash);
+      setBins(res.data.bins);
+      setLeftTrash(Array(res.data.trash.length).fill(false));
+      setVisibility(Array(trash.length).fill("visible"));
+      setLoading(true);
+    };
+    if (level === 0) {
+      const bgmAudio = bgmMusic.current;
+      bgmAudio.volume = 0.5;
+      bgmAudio.loop = true;
+      bgmAudio.play();
       setScore(0);
+      setLevel(1);
+      getLevelData();
+    } else {
+      getLevelData();
+      setTimeLeft(initialState.timeLeft);
     }
   }, [level]);
 
@@ -114,16 +132,9 @@ function Game() {
     return () => clearInterval(timer);
   }, [timeLeft, gameState]);
 
-  useEffect(() => {
-    const bgmAudio = bgmMusic.current;
-    bgmAudio.volume = 0.5;
-    bgmAudio.loop = true;
-    bgmAudio.play();
-    return () => {
-      bgmAudio.pause();
-      bgmAudio.currentTime = 0;
-    };
-  }, []);
+  if (!loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -146,10 +157,8 @@ function Game() {
                 <span>{timeLeft}</span>
               </GameBox>
             </GameBar>
-            {/* <TitleText>점수: {score}</TitleText>
-            <TitleText>시간: {timeLeft}</TitleText> */}
-            <div style={{ height: "50vh", position: "relative" }}>
-              {datas.map((data, index) => (
+            <DragTrashContainer>
+              {trash.map((data, index) => (
                 <TrashZone
                   data={data}
                   index={index}
@@ -157,12 +166,12 @@ function Game() {
                   visibility={visibility}
                 />
               ))}
-            </div>
-            <div style={{ display: "flex" }}>
-              {datas2.map((data, index) => (
-                <BinZone index={data.type} data={data} key={index} />
+            </DragTrashContainer>
+            <DropTrashContainer>
+              {bins.map((bin, index) => (
+                <BinZone index={bin.category} bin={bin} key={index} />
               ))}
-            </div>
+            </DropTrashContainer>
           </GameContainer>
         </DragDropContext>
       )}

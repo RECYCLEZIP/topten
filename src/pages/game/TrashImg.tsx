@@ -1,13 +1,14 @@
 import { useMemo } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { TrashCard } from "../../styles/gameStyles/game";
+import { GameDataType } from "../../types/Game";
 
 function TrashImg({
   data,
   index,
   visibility,
 }: {
-  data: { type: string; img: string };
+  data: GameDataType;
   index: number;
   visibility: string[];
 }) {
@@ -23,7 +24,7 @@ function TrashImg({
             {...magic.dragHandleProps}
             left={`${left}%`}
             top={`${top}%`}
-            img={data.img}
+            img={data.image}
             visibility={visibility[index]}
           ></TrashCard>
         );

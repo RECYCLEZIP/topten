@@ -1,4 +1,5 @@
 import { Droppable } from "react-beautiful-dnd";
+import { GameDataType } from "../../types/Game";
 import TrashImg from "./TrashImg";
 
 function TrashZone({
@@ -6,13 +7,13 @@ function TrashZone({
   index,
   visibility,
 }: {
-  data: { type: string; img: string };
+  data: GameDataType;
   index: number;
   visibility: string[];
 }) {
   return (
-    <Droppable droppableId={data.type} type={data.type}>
-      {(provided, snapshot) => {
+    <Droppable droppableId={data.category} type={data.category}>
+      {(provided) => {
         return (
           <div {...provided.droppableProps} ref={provided.innerRef}>
             <TrashImg data={data} index={index} visibility={visibility} />
