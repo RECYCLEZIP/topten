@@ -121,8 +121,7 @@ function AiResultMapList() {
         {selectedMarker.La === 0 ? (
           robots?.map((bin, index) => (
             <>
-              {console.log("asdfas")}
-              {console.log(bin)}
+              {/* {console.log(bin)} */}
               <MapBinDatailsContainer
                 onClick={() =>
                   onClickBin(
@@ -140,7 +139,6 @@ function AiResultMapList() {
         ) : (
           // 지도에서 선택된 마커가 있다면 해당 마커의 쓰레기통 정보만 띄움
           <>
-            {console.log("asdfas")}
             <MapBinDatailsContainer
               onClick={() =>
                 onClickBin(
