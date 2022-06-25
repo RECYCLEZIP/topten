@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { AiContentTitle, AiContentText } from "../../styles/aiStyles/AiStyle";
 
 import AiResultMap from ".//AiResultMap";
+import AiResultMapList from "./AiResultMapList";
 
 import {
   AiResultSubjectSection,
@@ -16,6 +17,8 @@ import {
   AiResultDesContainer,
   AiResultDesLastContainer,
 } from "../../styles/aiStyles/AiResultStyle";
+
+import { MapBinSection } from "../../styles/mapStyles/mapStyle";
 
 function AiResult() {
   return (
@@ -72,7 +75,10 @@ function AiResult() {
           <AiContentText>버리는 법 상세 내용</AiContentText>
         </AiResultDesContainer>
       </div>
-      <AiResultMap />
+      <div>
+        <AiResultMap />
+        <AiResultMapList />
+      </div>
     </>
   );
 }

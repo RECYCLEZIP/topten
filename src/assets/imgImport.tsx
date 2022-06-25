@@ -26,6 +26,7 @@ import loading from "./img/loading.gif";
 import x from "./img/x.png";
 import backPage from "./img/arrow.png";
 import user from "./img/user.jpg";
+import current_marker from "./img/current_marker.png";
 
 export const img = {
   seoul,
@@ -55,4 +56,5 @@ export const img = {
   x,
   backPage,
   user,
+  current_marker: current_marker,
 };

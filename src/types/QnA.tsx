@@ -4,5 +4,6 @@ export type QnAType = {
   author: {
     username: string;
   };
+  content: string;
   createdAt: string;
 };

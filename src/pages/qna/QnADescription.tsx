@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 
+import markdownIt from "markdown-it";
+import DOMPurify from "dompurify";
+
 import { getData } from "../../api";
+import { delData } from "../../api";
 
 import { QnAType } from "../../types/QnA";
 
@@ -37,14 +41,44 @@ function QnADescription() {
 
   const get = async () => {
     try {
-      await getData(`posts/${id}`).then((res) => console.log(res.data));
+      await getData(`posts/${id}`).then((res) => setQna(res.data));
     } catch (err) {
       console.log(err);
     }
   };
 
+  const date = (prop: any) => {
+    return prop?.split("T")[0].split("-").join(".");
+  };
+
+  const onClickDelete = async () => {
+    try {
+      await delData(`post/${id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // ****************************************************************
+  const sanitizer = DOMPurify.sanitize;
+  const handleClick = () => {
+    // setText(editorRef.current.getInstance().getMarkdown());
+    // console.log("작동함", text);
+
+    console.log(qna?.content);
+    qna?.content && console.log(markdownIt().render(qna?.content));
+  };
+
+  // const handleFocus = () => {
+  //   console.log("focus!!");
+  //   editorRef.current.getRootElement().classList.add("my-editor-root");
+  // };
+
+  // ********************************
+
   useEffect(() => {
     get();
+    handleClick();
   }, []);
 
   return (
@@ -52,20 +86,31 @@ function QnADescription() {
       <TitleText>Q&A</TitleText>
       <BlackHr />
       <TitleContainer>
-        <Title>제목</Title>
+        <Title>{qna?.title}</Title>
         <RightContainer>
           <Date>
-            <span>2022.06.14</span>
+            <>
+              {console.log(qna?.createdAt)}
+              <span>{date(qna?.createdAt)}</span>
+            </>
           </Date>
-          <Author>강*선</Author>
+          <Author>{qna?.author?.username}</Author>
         </RightContainer>
       </TitleContainer>
       <GrayHr />
-      <ContentContainer>내용</ContentContainer>
+      {/* <ContentContainer>{qna?.content}</ContentContainer> */}
+      {/* **************************************************************** */}
+      {qna?.content && (
+        <ContentContainer
+          dangerouslySetInnerHTML={{
+            __html: sanitizer(markdownIt().render(qna?.content)),
+          }}
+        ></ContentContainer>
+      )}
       <BlackHr />
       <ButtonContainer>
-        <GrayButton>수정</GrayButton>
-        <RedButton>삭제</RedButton>
+        <GrayButton onClick={() => navigate(`edit/`)}>수정</GrayButton>
+        <RedButton onClick={onClickDelete}>삭제</RedButton>
       </ButtonContainer>
       <AnswerContainer>
         <AnswerTitle>답변</AnswerTitle>
@@ -78,9 +123,7 @@ function QnADescription() {
         </AnswerWrapper>
       </AnswerContainer>
       <BlackHr />
-      <SquareButton onClick={() => navigate(`/qna/`)}>
-        목록
-      </SquareButton>
+      <SquareButton onClick={() => navigate(`/qna/`)}>목록</SquareButton>
     </Container>
   );
 }

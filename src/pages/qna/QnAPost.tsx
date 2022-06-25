@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router";
 
 import { postData } from "../../api";
 
@@ -9,14 +10,23 @@ import "tui-color-picker/dist/tui-color-picker.css";
 import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
 import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 
+import "@toast-ui/editor/dist/i18n/ko-kr";
+
+import { Button } from "../../styles/ButtonStyles";
 import { Container } from "../../styles/basicStyle";
 import { TitleText } from "../../styles/TextStyle";
 import {
   TitleInputContainer,
-  TitleInputText,TitleInput,
+  TitleInputText,
+  TitleInput,
+  PostButtonWrapper,
+  PostButton,
+  PostCancleButton,
 } from "../../styles/qnaStyles/QnAPostStyle";
 
 function QnAPost() {
+  const navigate = useNavigate();
+
   const editorRef: any = useRef();
 
   const [titleValue, setTitleValue] = useState<string>();
@@ -27,6 +37,8 @@ function QnAPost() {
 
   const onClickSubmit = async () => {
     const data = editorRef.current.getInstance().getMarkdown();
+
+    console.log(data);
 
     try {
       await postData(`posts`, { title: titleValue, content: data }).then(
@@ -39,22 +51,32 @@ function QnAPost() {
 
   return (
     <Container>
-      <TitleText>QnA 작성</TitleText>
+      <TitleText>Q&A 글 쓰기</TitleText>
       <TitleInputContainer>
         <TitleInputText>제목</TitleInputText>
-        <TitleInput id="title" type="text" onChange={onTitleChange}></TitleInput>
+        <TitleInput
+          id="title"
+          type="text"
+          onChange={onTitleChange}
+        ></TitleInput>
       </TitleInputContainer>
+      <TitleInputText>내용</TitleInputText>
       <Editor
-        initialValue="hello react editor world!"
+        initialValue=' '
         ref={editorRef}
         previewStyle="vertical"
         height="600px"
         initialEditType="markdown"
         useCommandShortcut={true}
         plugins={[colorSyntax]} // colorSyntax 플러그인 적용
-        // language="ko-KR"
+        language="ko-KR"
       />
-      <button onClick={onClickSubmit}>등록</button>
+      <PostButtonWrapper>
+        <PostCancleButton onClick={() => navigate(`/qna`)}>
+          작성 취소
+        </PostCancleButton>
+        <PostButton onClick={onClickSubmit}>작성 완료</PostButton>
+      </PostButtonWrapper>
     </Container>
   );
 }

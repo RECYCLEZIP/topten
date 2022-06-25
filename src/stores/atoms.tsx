@@ -4,6 +4,7 @@ import { AnswerListType, AnswerType, QuizType } from "../types/Quiz";
 import { CategoryItemType, TrashType } from "../types/Trash";
 import { UserType } from "../types/User";
 import { QnAType } from "../types/QnA";
+import { RobotType } from "../types/Robot";
 
 export interface BinTypes {
   region: string;
@@ -24,7 +25,8 @@ export interface BinSelectedTypes {
 // Ai 분석 페이지의 상황
 export const AiSituationState = atom({
   key: "AiSituationState",
-  default: "beforeImgUpload",
+  default: "done",
+  // default: "beforeImgUpload",
 });
 
 // 서울시 쓰레기통 데이터셋
@@ -194,4 +196,22 @@ export const userState = atom<UserType>({
 export const QnAListState = atom<QnAType[]>({
   key: "QnAListState",
   default: [],
+});
+
+export const RobotState = atom<RobotType[]>({
+  key: "RobotState",
+  default: [
+    {
+      name: "",
+      address: "",
+      location: {
+        coordinates: [0, 0],
+      },
+    },
+  ],
+});
+
+export const RobotSelectedState = atom<(number | undefined)[]>({
+  key: "RobotSelectedState",
+  default: [0, undefined],
 });
