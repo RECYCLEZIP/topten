@@ -26,6 +26,7 @@ import user from "./img/user.jpg";
 import tree1 from "./img/tree1.png";
 import tree2 from "./img/tree2.png";
 import tree3 from "./img/tree3.png";
+import gameBackground from "./img/game_back_img.png";
 
 export const img = {
   seoul,
@@ -54,4 +55,5 @@ export const img = {
   backPage,
   user,
   tree: { small: tree1, middle: tree2, big: tree3 },
+  gameBackground,
 };
