@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 
+import { img } from "../assets/imgImport";
+
 import {
   MapContentContainer,
   MapContentWrapper,
@@ -18,6 +20,8 @@ function MapTest({
   propsSelected,
   setSelectedMarker,
   setPropsSelected,
+  currentLon,
+  currentLat,
 }: any) {
   // const props = useRecoilValue(BinState);
   // const propsSelected = useRecoilValue(BinSelectedState);
@@ -25,6 +29,19 @@ function MapTest({
   // const setPropsSelected = useSetRecoilState(BinSelectedState);
 
   // console.log(type, props, propsSelected, setSelectedMarker, setPropsSelected);
+
+  // 현위치 마커
+  var imageSrc = img.current_marker, // 마커이미지의 주소입니다
+    imageSize = new window.kakao.maps.Size(25, 25), // 마커이미지의 크기입니다
+    imageOption = { offset: new window.kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+  // 현위치 마커 이미지
+  var markerImage = new window.kakao.maps.MarkerImage(
+      imageSrc,
+      imageSize,
+      imageOption,
+    ),
+    markerPosition = new window.kakao.maps.LatLng(currentLat, currentLon); // 마커가 표시될 위치입니다
 
   useEffect(() => {
     // 렌더링 후 지도 띄우기
@@ -58,6 +75,20 @@ function MapTest({
 
     // 중심 좌표 범위정보
     var bounds = new window.kakao.maps.LatLngBounds();
+
+    // 현위치
+    if (type === "robot") {
+      // 현위치 마커 생성
+      var current_marker = new window.kakao.maps.Marker({
+        map: window.map,
+        position: markerPosition,
+        image: markerImage, // 마커이미지 설정
+        title: "현위치",
+      });
+
+      // 중심 좌표 범위에 현위치 추가
+      bounds.extend(new window.kakao.maps.LatLng(currentLat, currentLon));
+    }
 
     props.forEach((prop: any) => {
       // 마커 생성
