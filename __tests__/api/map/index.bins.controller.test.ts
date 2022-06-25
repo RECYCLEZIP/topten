@@ -36,13 +36,13 @@ export async function initializeDataBase() {
             y: 37.5770099711,
         },
     ];
-    datas.forEach(async (data) => {
+    for (const data of datas) {
         await BinsModel.create(data);
-    });
+    }
 }
 
 describe("binsController TEST", () => {
-    beforeEach(async () => {
+    beforeEach(() => {
         initializeDataBase();
     });
 
