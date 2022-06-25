@@ -48,7 +48,9 @@ describe("POSTS SERVICE LOGIC", () => {
     });
 
     it("COMMENT를 생성한다.", async () => {
-        Post.findById = jest.fn().mockResolvedValue({ save: jest.fn(), comments: [] });
+        Post.findById = jest
+            .fn()
+            .mockResolvedValue({ save: jest.fn(), comments: { push: jest.fn() } });
         const createdUser = await UserService.addUser(tempUser);
         const createdPost = await PostService.addPost(createdUser._id, tempPost);
         const commentInfo = await PostService.addComment(
