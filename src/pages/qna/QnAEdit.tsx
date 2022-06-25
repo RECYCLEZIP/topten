@@ -82,7 +82,7 @@ function QnAEdit() {
 
   return (
     <Container>
-      <TitleText>Q&A 글 쓰기</TitleText>
+      <TitleText>Q&A 수정하기</TitleText>
       <TitleInputContainer>
         {/* <TitleInputText>제목</TitleInputText> */}
         <TitleInput
