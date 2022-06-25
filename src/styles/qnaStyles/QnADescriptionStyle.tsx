@@ -46,7 +46,7 @@ export const TitleContainer = styled.div`
 
 export const Title = styled.div`
   /* background: red; */
-  font-size: 0.8rem;
+  font-size: 0.6rem;
 `;
 
 export const RightContainer = styled.div`
@@ -61,6 +61,7 @@ export const Author = styled.div`
   margin-right: 1.5rem;
 
   font-size: 0.6rem;
+  font-weight: 500;
   /* flex-grow: 1; */
   float: right;
   /* text-align: right; */
@@ -69,6 +70,7 @@ export const Author = styled.div`
 export const Date = styled.div`
   /* background: green; */
   font-size: 0.6rem;
+  font-weight: 500;
 
   /* flex-grow: 1; */
   float: right;
@@ -78,7 +80,7 @@ export const Date = styled.div`
 export const ContentContainer = styled.div`
   padding: 0.5rem 1.5rem;
   font-size: 0.6rem;
-  color: #979797;
+  /* color: #979797; */
 `;
 
 export const AnswerContainer = styled.div`
