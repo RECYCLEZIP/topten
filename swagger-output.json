@@ -49,140 +49,6 @@
     }
   },
   "paths": {
-    "/comments/{postId}": {
-      "post": {
-        "tags": [
-          "comment"
-        ],
-        "description": "댓글 생성 **로그인 필수**",
-        "parameters": [
-          {
-            "name": "postId",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "댓글을 달 게시글의 ID",
-            "schema": {
-              "$ref": "#/definitions/PostId"
-            }
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "description": "생성하고자 하는 댓글의 정보를 body에 담아 요청",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/CommentCreateRequest"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "schema": {
-              "$ref": "#/definitions/CommentCreateResponse"
-            },
-            "description": "생성된 댓글 정보 반환"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/comments/{id}": {
-      "put": {
-        "tags": [
-          "comment"
-        ],
-        "description": "댓글 정보 수정 **로그인 필수**",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "수정하고자 하는 댓글의 ID",
-            "schema": {
-              "$ref": "#/definitions/CommentId"
-            }
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "description": "수정하고자 하는 댓글의 정보를 body에 담아 요청",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/CommentPutRequest"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "schema": {
-              "$ref": "#/definitions/CommentPutResponse"
-            },
-            "description": "수정된 댓글 정보 반환"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/comments/{id}/posts/{postId}": {
-      "delete": {
-        "tags": [
-          "comment"
-        ],
-        "description": "댓글 삭제 **로그인 필수**",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "삭제하고자 하는 댓글의 ID",
-            "schema": {
-              "$ref": "#/definitions/CommentId"
-            }
-          },
-          {
-            "name": "postId",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "삭제하고자 하는 댓글이 달려있는 게시글 ID",
-            "schema": {
-              "$ref": "#/definitions/PostId"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "schema": {
-              "$ref": "#/definitions/DeleteResponse"
-            },
-            "description": "삭제 메시지"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      }
-    },
     "/bins": {
       "get": {
         "tags": [
@@ -227,31 +93,11 @@
         }
       }
     },
-    "/robot": {
+    "/": {
       "get": {
-        "tags": [
-          "map"
-        ],
-        "description": "반경 10km이내 로봇위치 정보 조회",
-        "parameters": [
-          {
-            "name": "queryString",
-            "in": "query",
-            "description": "유저의 현재 위치정보(경도/위도)를 쿼리스트링으로 담아 보낸다.",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/CoordinatesQuery"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "schema": {
-              "$ref": "#/definitions/RobotLocationList"
-            },
-            "description": "반경 10km 내 로봇위치 리스트 반환"
-          }
-        }
+        "description": "",
+        "parameters": [],
+        "responses": {}
       }
     },
     "/news": {
@@ -525,6 +371,48 @@
         ]
       }
     },
+    "/posts/{postId}/comments": {
+      "post": {
+        "tags": [
+          "comment"
+        ],
+        "description": "댓글 생성 **로그인 필수**",
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "댓글을 달 게시글의 ID",
+            "schema": {
+              "$ref": "#/definitions/PostId"
+            }
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "생성하고자 하는 댓글의 정보를 body에 담아 요청",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CommentCreateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/CommentCreateResponse"
+            },
+            "description": "생성된 댓글 정보 반환"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
     "/quizzes": {
       "get": {
         "tags": [
@@ -685,6 +573,33 @@
               "$ref": "#/definitions/QuizSetResult"
             },
             "description": "퀴즈셋 채점결과 반환"
+          }
+        }
+      }
+    },
+    "/robot": {
+      "get": {
+        "tags": [
+          "map"
+        ],
+        "description": "반경 10km이내 로봇위치 정보 조회",
+        "parameters": [
+          {
+            "name": "queryString",
+            "in": "query",
+            "description": "유저의 현재 위치정보(경도/위도)를 쿼리스트링으로 담아 보낸다.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CoordinatesQuery"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/RobotLocationList"
+            },
+            "description": "반경 10km 내 로봇위치 리스트 반환"
           }
         }
       }
@@ -1323,18 +1238,18 @@
         "properties": {
           "_id": {
             "type": "string",
-            "example": "62b469693311af4335ff10ed"
+            "example": "62b7466debf07fab781dc931"
           },
           "title": {
             "type": "string",
-            "example": "게시글제목"
+            "example": "게시글adf제목"
           },
           "author": {
             "type": "object",
             "properties": {
               "_id": {
                 "type": "string",
-                "example": "62b265a4bec0b04d29f2c896"
+                "example": "62b513e76ae88bc07ab1c6b5"
               },
               "email": {
                 "type": "string",
@@ -1342,15 +1257,15 @@
               },
               "username": {
                 "type": "string",
-                "example": "수정함"
+                "example": "테스트"
+              },
+              "topscore": {
+                "type": "number",
+                "example": 0
               },
               "__v": {
                 "type": "number",
                 "example": 0
-              },
-              "topscore": {
-                "type": "number",
-                "example": 90
               }
             }
           },
@@ -1363,16 +1278,16 @@
             "items": {
               "type": "object",
               "properties": {
-                "_id": {
-                  "type": "string",
-                  "example": "62b46998c421caecd32fcd1b"
-                },
                 "author": {
                   "type": "object",
                   "properties": {
+                    "topscore": {
+                      "type": "number",
+                      "example": 0
+                    },
                     "_id": {
                       "type": "string",
-                      "example": "62b265a4bec0b04d29f2c896"
+                      "example": "62b74a11bc205e616076c5ce"
                     },
                     "email": {
                       "type": "string",
@@ -1380,44 +1295,36 @@
                     },
                     "username": {
                       "type": "string",
-                      "example": "수정함"
-                    },
-                    "__v": {
-                      "type": "number",
-                      "example": 0
-                    },
-                    "topscore": {
-                      "type": "number",
-                      "example": 90
+                      "example": "테스트"
                     }
                   }
                 },
                 "content": {
                   "type": "string",
-                  "example": "댓글댓글"
+                  "example": "댓글댓글11"
+                },
+                "_id": {
+                  "type": "string",
+                  "example": "62b74674ebf07fab781dc936"
                 },
                 "createdAt": {
                   "type": "string",
-                  "example": "2022-06-23T13:24:40.603Z"
+                  "example": "2022-06-25T17:31:32.404Z"
                 },
                 "updatedAt": {
                   "type": "string",
-                  "example": "2022-06-23T13:24:40.603Z"
-                },
-                "__v": {
-                  "type": "number",
-                  "example": 0
+                  "example": "2022-06-25T17:31:32.404Z"
                 }
               }
             }
           },
           "createdAt": {
             "type": "string",
-            "example": "2022-06-23T13:23:53.939Z"
+            "example": "2022-06-25T17:31:25.100Z"
           },
           "updatedAt": {
             "type": "string",
-            "example": "2022-06-23T13:24:40.603Z"
+            "example": "2022-06-25T17:31:32.404Z"
           },
           "__v": {
             "type": "number",
@@ -1431,18 +1338,18 @@
       "properties": {
         "_id": {
           "type": "string",
-          "example": "62b469693311af4335ff10ed"
+          "example": "62b7466debf07fab781dc931"
         },
         "title": {
           "type": "string",
-          "example": "게시글제목"
+          "example": "게시글adf제목"
         },
         "author": {
           "type": "object",
           "properties": {
             "_id": {
               "type": "string",
-              "example": "62b265a4bec0b04d29f2c896"
+              "example": "62b513e76ae88bc07ab1c6b5"
             },
             "email": {
               "type": "string",
@@ -1450,15 +1357,15 @@
             },
             "username": {
               "type": "string",
-              "example": "수정함"
+              "example": "테스트"
+            },
+            "topscore": {
+              "type": "number",
+              "example": 0
             },
             "__v": {
               "type": "number",
               "example": 0
-            },
-            "topscore": {
-              "type": "number",
-              "example": 90
             }
           }
         },
@@ -1471,16 +1378,16 @@
           "items": {
             "type": "object",
             "properties": {
-              "_id": {
-                "type": "string",
-                "example": "62b46998c421caecd32fcd1b"
-              },
               "author": {
                 "type": "object",
                 "properties": {
+                  "topscore": {
+                    "type": "number",
+                    "example": 0
+                  },
                   "_id": {
                     "type": "string",
-                    "example": "62b265a4bec0b04d29f2c896"
+                    "example": "62b74a11bc205e616076c5ce"
                   },
                   "email": {
                     "type": "string",
@@ -1488,44 +1395,36 @@
                   },
                   "username": {
                     "type": "string",
-                    "example": "수정함"
-                  },
-                  "__v": {
-                    "type": "number",
-                    "example": 0
-                  },
-                  "topscore": {
-                    "type": "number",
-                    "example": 90
+                    "example": "테스트"
                   }
                 }
               },
               "content": {
                 "type": "string",
-                "example": "댓글댓글"
+                "example": "댓글댓글11"
+              },
+              "_id": {
+                "type": "string",
+                "example": "62b74674ebf07fab781dc936"
               },
               "createdAt": {
                 "type": "string",
-                "example": "2022-06-23T13:24:40.603Z"
+                "example": "2022-06-25T17:31:32.404Z"
               },
               "updatedAt": {
                 "type": "string",
-                "example": "2022-06-23T13:24:40.603Z"
-              },
-              "__v": {
-                "type": "number",
-                "example": 0
+                "example": "2022-06-25T17:31:32.404Z"
               }
             }
           }
         },
         "createdAt": {
           "type": "string",
-          "example": "2022-06-23T13:23:53.939Z"
+          "example": "2022-06-25T17:31:25.100Z"
         },
         "updatedAt": {
           "type": "string",
-          "example": "2022-06-23T13:24:40.603Z"
+          "example": "2022-06-25T17:31:32.404Z"
         },
         "__v": {
           "type": "number",
@@ -1665,19 +1564,23 @@
       "properties": {
         "content": {
           "type": "string",
-          "example": "댓글 내용"
+          "example": "댓글댓글"
         }
       }
     },
     "CommentCreateResponse": {
       "type": "object",
       "properties": {
+        "content": {
+          "type": "string",
+          "example": "댓글댓글"
+        },
         "author": {
           "type": "object",
           "properties": {
             "_id": {
               "type": "string",
-              "example": "62b265a4bec0b04d29f2c896"
+              "example": "62b513e76ae88bc07ab1c6b5"
             },
             "email": {
               "type": "string",
@@ -1685,37 +1588,17 @@
             },
             "username": {
               "type": "string",
-              "example": "수정함"
+              "example": "테스트"
+            },
+            "topscore": {
+              "type": "number",
+              "example": 0
             },
             "__v": {
               "type": "number",
               "example": 0
-            },
-            "topscore": {
-              "type": "number",
-              "example": 90
             }
           }
-        },
-        "content": {
-          "type": "string",
-          "example": "댓글댓글"
-        },
-        "_id": {
-          "type": "string",
-          "example": "62b45eda265c75394cc5ba0e"
-        },
-        "createdAt": {
-          "type": "string",
-          "example": "2022-06-23T12:38:50.274Z"
-        },
-        "updatedAt": {
-          "type": "string",
-          "example": "2022-06-23T12:38:50.274Z"
-        },
-        "__v": {
-          "type": "number",
-          "example": 0
         }
       }
     },

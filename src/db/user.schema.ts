@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 import { IUser } from "@src/models/interface";
 
-const UserSchema = new Schema<IUser>({
+export const UserSchema = new Schema<IUser>({
     email: {
         type: String,
         required: true,
@@ -15,7 +15,6 @@ const UserSchema = new Schema<IUser>({
     },
     password: {
         type: String,
-        required: true,
     },
     topscore: {
         type: Number,

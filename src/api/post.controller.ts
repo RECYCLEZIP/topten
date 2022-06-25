@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { PostService } from "@src/service";
 import wrapAsyncFunc from "@src/utils/catchAsync";
-import { postSchema } from "@src/utils/bodySchema";
+import { commentSchema, postSchema } from "@src/utils/bodySchema";
 import { identifierSchema } from "@src/utils/paramsSchema";
 import { authRequired } from "@src/middlewares/authRequired";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
@@ -76,6 +76,39 @@ postController.post(
         const { currentUserId } = req.cookies;
         const createdPost = await PostService.addPost(currentUserId, req.body);
         res.status(STATUS_201_CREATED).json(createdPost);
+    }),
+);
+
+postController.post(
+    "/posts/:postId/comments",
+    authRequired,
+    bodyValidator(commentSchema),
+    wrapAsyncFunc(async (req, res, _next) => {
+        /*  #swagger.tags = ["comment"]
+            #swagger.description = "댓글 생성 **로그인 필수**"
+            #swagger.security = [{
+               "bearerAuth": []
+            }]
+            #swagger.parameters['postId'] = {
+                in: 'path',
+                description: '댓글을 달 게시글의 ID',
+                required: true,
+                schema: { $ref: "#/definitions/PostId" }
+            }
+            #swagger.parameters['body'] = {
+                in: 'body',
+                description: '생성하고자 하는 댓글의 정보를 body에 담아 요청',
+                required: true,
+                schema: { $ref: "#/definitions/CommentCreateRequest" }
+            }
+            #swagger.responses[201] = {
+            schema: { "$ref": "#/definitions/CommentCreateResponse" },
+            description: "생성된 댓글 정보 반환" } */
+
+        const { postId } = req.params;
+        const { currentUserId } = req.cookies;
+        const createdComment = await PostService.addComment(currentUserId, postId, req.body);
+        res.status(STATUS_201_CREATED).json(createdComment);
     }),
 );
 

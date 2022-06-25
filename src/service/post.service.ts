@@ -1,9 +1,9 @@
 import { Post } from "@src/repository";
 import { UserService } from "@src/service";
-import { FilterQuery, IPost } from "@src/models/interface";
 import { createFilterQuery } from "@src/utils/createQuery";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 import { RequestError } from "@src/middlewares/errorHandler";
+import { FilterQuery, IComment, IPost } from "@src/models/interface";
 
 export class PostService {
     static async getPostList(query: FilterQuery) {
@@ -28,6 +28,19 @@ export class PostService {
         const createdPost = await Post.create(postInfo);
         if (!createdPost) throw new RequestError("게시글 등록에 실패하였습니다.");
         return createdPost;
+    }
+
+    static async addComment(userId: string, postId: string, commentInfo: IComment) {
+        const [foundUser, foundPost] = await Promise.all([
+            UserService.getByUser(userId),
+            Post.findById(postId),
+        ]);
+        if (!foundUser) throw new RequestError("로그인 사용자를 찾을 수 없습니다.");
+        if (!foundPost) throw new RequestError("게시글 정보를 찾을 수 없습니다.");
+        commentInfo.author = foundUser;
+        foundPost?.comments?.push(commentInfo);
+        await foundPost.save();
+        return commentInfo;
     }
 
     static async updatePost(id: string, postInfo: IPost) {

@@ -1,12 +1,10 @@
 import { Schema, model } from "mongoose";
+import { UserSchema } from "@src/db/user.schema";
 import { IComment, IPost } from "@src/models/interface";
 
 const CommentSchema = new Schema<IComment>(
     {
-        author: {
-            type: Schema.Types.ObjectId,
-            ref: "User",
-        },
+        author: UserSchema,
         content: {
             type: String,
             required: true,
