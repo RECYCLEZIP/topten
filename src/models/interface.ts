@@ -1,4 +1,3 @@
-import { Request } from "express";
 import { Schema } from "mongoose";
 
 export interface INews {
@@ -71,13 +70,6 @@ export interface Submissions {
     answers: { quizId: string; answer: string }[];
 }
 
-export interface ToUpdate {
-    date?: Date;
-    totalUser: number;
-    wrong: number;
-    yesterday?: number;
-}
-
 export interface Result {
     date: Date;
     totalUser: number;
@@ -129,8 +121,4 @@ export interface IRobot {
     name: string;
     address: string;
     location: object;
-}
-
-export interface IRequestUserAuthInfo extends Request {
-    currentUserId: string;
 }
