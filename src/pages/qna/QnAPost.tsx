@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router";
 
-import { postData } from "../../api";
+import { qnaPostData } from "../../api";
 
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { Editor } from "@toast-ui/react-editor";
@@ -40,10 +40,26 @@ function QnAPost() {
 
     console.log(data);
 
+    // var myHeaders = new Headers();
+    // myHeaders.append("Authorization", "Bearer mF_9.B5f-4.1JqM");
+
+    // console.log(`${sessionStorage.getItem("token")}`);
     try {
-      await postData(`posts`, { title: titleValue, content: data }).then(
-        (res) => console.log(res),
-      );
+      await qnaPostData(`posts`, {
+        title: titleValue,
+        content: data,
+      }).then((res) => console.log(res));
+
+      navigate(`/qna`)
+      // await postData(`posts`, {
+      //   body: {
+      //     title: titleValue,
+      //     content: data,
+      //   },
+      //   headers: {
+      //     authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      //   },
+      // }).then((res) => console.log(res));
     } catch (err) {
       console.log(err);
     }
@@ -62,7 +78,7 @@ function QnAPost() {
       </TitleInputContainer>
       <TitleInputText>내용</TitleInputText>
       <Editor
-        initialValue=' '
+        initialValue=" "
         ref={editorRef}
         previewStyle="vertical"
         height="600px"
