@@ -15,8 +15,11 @@ import {
   MapSearchSection,
   AutocompleteContainer,
   MapSearchTextWrapper,
-  StyledInput,
 } from "../../styles/mapStyles/mapStyle";
+
+import { StyledInput } from "../../styles/mapStyles/MapMuiStyle";
+
+import { getData } from "../../api";
 
 // 검색어가 항목에 없을 시 문구 style
 const useStyles = makeStyles({
@@ -41,17 +44,20 @@ function MapSearch() {
   // autoComplete 선택한 값(default 전체 리스트)
   const [searchBins, setSearchBins] = useRecoilState(SearchBinState);
 
+  const [regionOptions, setRegionOptions] = useState([]);
   const [roadsOptions, setRoadsOptions] = useState<any>([]);
 
   const styles = useStyles();
 
   // 구 옵션
-  const regionOptions = useMemo(() => {
-    const array = bins.map((bin) => bin.region);
+  const getRegionOptions = async () => {
+    const res = await getData(`bins/locations`);
+    setRegionOptions(res.data.uniqueRegionList);
+  };
 
-    // 중복 제거
-    return array.filter((v, i) => array.indexOf(v) === i);
-  }, [bins]);
+  useEffect(() => {
+    getRegionOptions();
+  }, [regionValue]);
 
   // 도로 옵션
   useEffect(() => {
@@ -75,8 +81,10 @@ function MapSearch() {
       <AutocompleteContainer>
         <Autocomplete
           value={regionValue}
-          onChange={(event: any, newValue: any) => {
-            setRegionValue(newValue);
+          onChange={(event, newValue) => {
+            if (newValue !== null) {
+              setRegionValue(newValue);
+            }
           }}
           inputValue={inputRegionValue}
           onInputChange={(event, newInputValue) => {

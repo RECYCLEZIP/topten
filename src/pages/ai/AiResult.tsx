@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { AiContentTitle, AiContentText } from "../../styles/aiStyles/AiStyle";
+
+import AiResultMap from ".//AiResultMap";
 
 import {
   AiResultSubjectSection,
@@ -70,6 +72,7 @@ function AiResult() {
           <AiContentText>버리는 법 상세 내용</AiContentText>
         </AiResultDesContainer>
       </div>
+      <AiResultMap />
     </>
   );
 }
