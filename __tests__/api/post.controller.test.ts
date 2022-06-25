@@ -42,6 +42,19 @@ describe("POST API", () => {
         expect(res.body).toHaveProperty("content");
     });
 
+    it("POST COMMENT/ 게시글의 댓글을 생성한다.", async () => {
+        const createdUser = await UserService.addUser(tempUser);
+        const accessToken = createAccessToken(createdUser._id);
+        const posts = await PostService.addPost(createdUser._id, tempPost);
+        const res = await request(app)
+            .post(`/posts/${posts._id}/comments`)
+            .set("Authorization", `Bearer ${accessToken}`)
+            .send({ content: "댓글생성테스트" });
+        expect(res.status).toBe(STATUS_201_CREATED);
+        expect(res.body).toHaveProperty("author");
+        expect(res.body.content).toEqual("댓글생성테스트");
+    });
+
     it("POST PUT/ 게시글을 수정한다.", async () => {
         const createdUser = await UserService.addUser(tempUser);
         const accessToken = createAccessToken(createdUser._id);

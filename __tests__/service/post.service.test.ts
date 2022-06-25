@@ -1,8 +1,8 @@
 import { Post } from "@src/repository";
 import { PostService } from "@src/service";
 import { UserService } from "@src/service";
-import { IPost, IUser } from "@src/models/interface";
 import { RequestError } from "@src/middlewares/errorHandler";
+import { IComment, IPost, IUser } from "@src/models/interface";
 import { STATUS_400_BADREQUEST, STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 
 const tempPost: IPost = {
@@ -41,6 +41,20 @@ describe("POSTS SERVICE LOGIC", () => {
         expect(createdPost.title).toEqual("게시글 생성");
         expect(createdPost.content).toEqual("게시글 내용");
         expect(createdPost.author).toHaveProperty("username");
+    });
+
+    it("COMMENT를 생성한다.", async () => {
+        Post.findById = jest.fn().mockResolvedValue({ save: jest.fn() });
+        const createdUser = await UserService.addUser(tempUser);
+        const createdPost = await PostService.addPost(createdUser._id, tempPost);
+        const commentInfo = await PostService.addComment(
+            createdUser._id.toString(),
+            createdPost._id.toString(),
+            {
+                content: "댓글생성테스트",
+            } as IComment,
+        );
+        expect(commentInfo.content).toEqual("댓글생성테스트");
     });
 
     it("POSTS를 수정한다.", async () => {
@@ -109,6 +123,30 @@ describe("POSTS SERVICE ERROR HANDLING", () => {
             expect(err).toBeInstanceOf(RequestError);
             expect(err.status).toBe(STATUS_400_BADREQUEST);
             expect(err.message).toBe("게시글 등록에 실패하였습니다.");
+        }
+    });
+
+    it("COMMENT 생성 시 게시글을 찾지 못하면 에러가 발생한다.", async () => {
+        UserService.getByUser = jest.fn().mockResolvedValue(true);
+        Post.findById = jest.fn().mockResolvedValue(null);
+        try {
+            await PostService.addComment("userId", "postId", { content: "테스트" } as IComment);
+        } catch (err: any) {
+            expect(err).toBeInstanceOf(RequestError);
+            expect(err.status).toBe(STATUS_400_BADREQUEST);
+            expect(err.message).toBe("게시글 정보를 찾을 수 없습니다.");
+        }
+    });
+
+    it("COMMENT 생성 시 유저를 찾지 못하면 에러가 발생한다.", async () => {
+        UserService.getByUser = jest.fn().mockResolvedValue(null);
+        Post.findById = jest.fn().mockResolvedValue(true);
+        try {
+            await PostService.addComment("userId", "postId", { content: "테스트" } as IComment);
+        } catch (err: any) {
+            expect(err).toBeInstanceOf(RequestError);
+            expect(err.status).toBe(STATUS_400_BADREQUEST);
+            expect(err.message).toBe("로그인 사용자를 찾을 수 없습니다.");
         }
     });
 

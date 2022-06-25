@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { PostService } from "@src/service";
 import wrapAsyncFunc from "@src/utils/catchAsync";
-import { commentSchema, postSchema } from "@src/utils/bodySchema";
 import { identifierSchema } from "@src/utils/paramsSchema";
 import { authRequired } from "@src/middlewares/authRequired";
+import { commentSchema, postSchema } from "@src/utils/bodySchema";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
 import { bodyValidator, paramsValidator } from "@src/middlewares/requestValidator";
 
