@@ -36,6 +36,7 @@ export const ListNumber = styled.td`
   padding: 0.5rem;
   padding-left: 0rem;
 
+  font-weight: 500;
   color: #979797;
 `;
 
@@ -50,6 +51,7 @@ export const ListAuthor = styled.td`
 
   padding: 0.5rem;
 
+  font-weight: 500;
   text-align: center;
   color: #979797;
 `;
@@ -60,6 +62,7 @@ export const ListDate = styled.td`
   padding: 0.5rem;
   padding-right: 0rem;
 
+  font-weight: 500;
   text-align: right;
   color: #979797;
 `;
