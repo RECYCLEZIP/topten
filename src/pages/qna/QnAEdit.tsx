@@ -60,11 +60,11 @@ function QnAEdit() {
     console.log(data);
 
     try {
-      await putData(`posts/${id}`, { title: titleValue, content: data }).then((res) =>
-        console.log(res),
+      await putData(`posts/${id}`, { title: titleValue, content: data }).then(
+        (res) => console.log(res),
       );
 
-      navigate(`/qna`);
+      navigate(`/qna/${id}`);
     } catch (err) {
       console.log(err);
     }
@@ -84,7 +84,7 @@ function QnAEdit() {
     <Container>
       <TitleText>Q&A 글 쓰기</TitleText>
       <TitleInputContainer>
-        <TitleInputText>제목</TitleInputText>
+        {/* <TitleInputText>제목</TitleInputText> */}
         <TitleInput
           id="title"
           type="text"
@@ -93,23 +93,25 @@ function QnAEdit() {
         ></TitleInput>
       </TitleInputContainer>
       <>
-        <TitleInputText>내용</TitleInputText>
+        {/* <TitleInputText>내용</TitleInputText> */}
         {console.log(contentValue)}
-        <Editor
-          // initialValue="***오늘***"
-          // initialValue={test}
-          initialValue={contentValue}
-          ref={editorRef}
-          previewStyle="vertical"
-          height="600px"
-          initialEditType="markdown"
-          useCommandShortcut={true}
-          plugins={[colorSyntax]} // colorSyntax 플러그인 적용
-          language="ko-KR"
-        />
+        {contentValue && (
+          <Editor
+            // initialValue="***오늘***"
+            // initialValue={test}
+            initialValue={contentValue}
+            ref={editorRef}
+            previewStyle="vertical"
+            height="600px"
+            initialEditType="wysiwyg"
+            useCommandShortcut={true}
+            plugins={[colorSyntax]} // colorSyntax 플러그인 적용
+            language="ko-KR"
+          />
+        )}
       </>
       <PostButtonWrapper>
-        <PostCancleButton onClick={() => navigate(`/qna`)}>
+        <PostCancleButton onClick={() => navigate(`/qna/${id}`)}>
           수정 취소
         </PostCancleButton>
         <PostButton onClick={onClickSubmit}>수정 완료</PostButton>
