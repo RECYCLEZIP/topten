@@ -157,7 +157,7 @@ function MapTest({
 
     // 지도 중심으로 부드럽게 이동, 레벨 3으로 줌 인
     // 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동
-    window.map.setLevel(3);
+    window.map.setLevel(5);
     window.map.panTo(moveLatLon);
   };
 
