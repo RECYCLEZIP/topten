@@ -19,3 +19,16 @@ export async function postData(endpoint: string, data: object) {
     },
   });
 }
+
+export async function putData(endpoint: string, data: object) {
+  const bodyData = JSON.stringify(data);
+  console.log(`%cPUT 요청: ${serverUrl + endpoint}`, "color: #29ba6a;");
+  console.log(`%cPUT 요청 데이터: ${bodyData}`, "color: #29ba6a;");
+
+  return axios.put(serverUrl + endpoint, bodyData, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  });
+}
