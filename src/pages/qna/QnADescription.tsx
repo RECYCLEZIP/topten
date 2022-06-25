@@ -48,7 +48,7 @@ function QnADescription() {
   };
 
   const date = (prop: any) => {
-    return prop.split("T")[0].split("-").join(".");
+    return prop?.split("T")[0].split("-").join(".");
   };
 
   const onClickDelete = async () => {
@@ -65,6 +65,7 @@ function QnADescription() {
     // setText(editorRef.current.getInstance().getMarkdown());
     // console.log("작동함", text);
 
+    console.log(qna?.content);
     qna?.content && console.log(markdownIt().render(qna?.content));
   };
 
@@ -88,26 +89,27 @@ function QnADescription() {
         <Title>{qna?.title}</Title>
         <RightContainer>
           <Date>
-            <span>{date(qna?.createdAt)}</span>
+            <>
+              {console.log(qna?.createdAt)}
+              <span>{date(qna?.createdAt)}</span>
+            </>
           </Date>
           <Author>{qna?.author?.username}</Author>
         </RightContainer>
       </TitleContainer>
       <GrayHr />
-      <ContentContainer>{qna?.content}</ContentContainer>
+      {/* <ContentContainer>{qna?.content}</ContentContainer> */}
       {/* **************************************************************** */}
       {qna?.content && (
-        <div
+        <ContentContainer
           dangerouslySetInnerHTML={{
             __html: sanitizer(markdownIt().render(qna?.content)),
           }}
-        ></div>
+        ></ContentContainer>
       )}
       <BlackHr />
       <ButtonContainer>
-        <GrayButton onClick={() => navigate(`qna/edit/${qna?._id}`)}>
-          수정
-        </GrayButton>
+        <GrayButton onClick={() => navigate(`edit/`)}>수정</GrayButton>
         <RedButton onClick={onClickDelete}>삭제</RedButton>
       </ButtonContainer>
       <AnswerContainer>
