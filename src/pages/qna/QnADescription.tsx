@@ -13,6 +13,9 @@ import { delData } from "../../api";
 
 import { QnAType } from "../../types/QnA";
 
+import { useRecoilValue } from "recoil";
+import { userState } from "../../stores/atoms";
+
 import { Container } from "../../styles/basicStyle";
 import { TitleText } from "../../styles/TextStyle";
 import {
@@ -43,6 +46,8 @@ function QnADescription() {
   console.log(id);
 
   const navigate = useNavigate();
+
+  const user = useRecoilValue(userState);
 
   const [qna, setQna] = useState<QnAType>();
   const [commentValue, setCommentValue] = useState<string>();
@@ -115,10 +120,14 @@ function QnADescription() {
         </ContentContainer>
       )}
       <BlackHr />
-      <ButtonContainer>
-        <GrayButton onClick={() => navigate(`edit/`)}>수정</GrayButton>
-        <RedButton onClick={onClickDelete}>삭제</RedButton>
-      </ButtonContainer>
+      <>
+        {user._id === qna?.author._id && (
+          <ButtonContainer>
+            <GrayButton onClick={() => navigate(`edit/`)}>수정</GrayButton>
+            <RedButton onClick={onClickDelete}>삭제</RedButton>
+          </ButtonContainer>
+        )}
+      </>
       <CommentContainer>
         <CommentTitle>답변</CommentTitle>
         <CommnetInputContainer>
