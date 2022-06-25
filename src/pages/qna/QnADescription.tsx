@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 
+import "@toast-ui/editor/dist/toastui-editor-viewer.css";
+import { Viewer } from "@toast-ui/react-editor";
+
 import markdownIt from "markdown-it";
 import DOMPurify from "dompurify";
 
@@ -61,26 +64,8 @@ function QnADescription() {
     }
   };
 
-  // ****************************************************************
-  const sanitizer = DOMPurify.sanitize;
-  const handleClick = () => {
-    // setText(editorRef.current.getInstance().getMarkdown());
-    // console.log("작동함", text);
-
-    console.log(qna?.content);
-    qna?.content && console.log(markdownIt().render(qna?.content));
-  };
-
-  // const handleFocus = () => {
-  //   console.log("focus!!");
-  //   editorRef.current.getRootElement().classList.add("my-editor-root");
-  // };
-
-  // ********************************
-
   useEffect(() => {
     get();
-    handleClick();
   }, []);
 
   return (
@@ -100,14 +85,10 @@ function QnADescription() {
         </RightContainer>
       </TitleContainer>
       <GrayHr />
-      {/* <ContentContainer>{qna?.content}</ContentContainer> */}
-      {/* **************************************************************** */}
       {qna?.content && (
-        <ContentContainer
-          dangerouslySetInnerHTML={{
-            __html: sanitizer(markdownIt().render(qna?.content)),
-          }}
-        ></ContentContainer>
+        <ContentContainer>
+          <Viewer initialValue={qna?.content} />
+        </ContentContainer>
       )}
       <BlackHr />
       <ButtonContainer>
