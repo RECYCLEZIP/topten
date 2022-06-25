@@ -6,19 +6,19 @@ export class Post {
         return PostModel.find(filteredQuery)
             .sort({ _id: -1 })
             .limit(limit)
-            .populate("author", "-password -token")
+            .populate("author", "-password")
             .populate({
                 path: "comments",
-                populate: { path: "author", select: "-password -token" },
+                populate: { path: "author", select: "-password" },
             });
     }
 
     static async findById(id: string) {
         return PostModel.findById(id)
-            .populate("author", "-password -token")
+            .populate("author", "-password")
             .populate({
                 path: "comments",
-                populate: { path: "author", select: "-password -token" },
+                populate: { path: "author", select: "-password" },
             });
     }
 

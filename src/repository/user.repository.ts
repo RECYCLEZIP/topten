@@ -3,7 +3,7 @@ import { UserModel } from "@src/db/user/user.schema";
 
 export class User {
     static async findById(id: string) {
-        return UserModel.findById(id).select("-password -token");
+        return UserModel.findById(id).select("-password");
     }
 
     static async findByEmail(email: string) {
@@ -11,7 +11,7 @@ export class User {
     }
 
     static async findByRanking() {
-        return UserModel.find({}).sort({ topscore: -1 }).limit(10).select("-password -token");
+        return UserModel.find({}).sort({ topscore: -1 }).limit(10).select("-password");
     }
 
     static async isEmailExist(email: string) {
@@ -24,11 +24,11 @@ export class User {
 
     static async update(id: string, userInfo: Partial<IUser>) {
         return UserModel.findByIdAndUpdate(id, { $set: userInfo }, { new: true }).select(
-            "-password -token",
+            "-password",
         );
     }
 
     static async delete(id: string) {
-        return UserModel.findByIdAndDelete(id).select("-password -token");
+        return UserModel.findByIdAndDelete(id).select("-password");
     }
 }
