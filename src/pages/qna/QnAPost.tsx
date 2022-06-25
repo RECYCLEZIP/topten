@@ -50,7 +50,7 @@ function QnAPost() {
         content: data,
       }).then((res) => console.log(res));
 
-      navigate(`/qna`)
+      navigate(`/qna`);
       // await postData(`posts`, {
       //   body: {
       //     title: titleValue,
@@ -69,21 +69,23 @@ function QnAPost() {
     <Container>
       <TitleText>Q&A 글 쓰기</TitleText>
       <TitleInputContainer>
-        <TitleInputText>제목</TitleInputText>
+        {/* <TitleInputText>제목</TitleInputText> */}
         <TitleInput
           id="title"
           type="text"
+          placeholder="제목을 입력해주세요."
           onChange={onTitleChange}
         ></TitleInput>
       </TitleInputContainer>
-      <TitleInputText>내용</TitleInputText>
+      {/* <TitleInputText>내용</TitleInputText> */}
       <Editor
-        initialValue=" "
         ref={editorRef}
+        initialValue=" "
+        placeholder="내용을 입력해주세요."
         previewStyle="vertical"
         height="600px"
-        initialEditType="markdown"
-        useCommandShortcut={true}
+        initialEditType="wysiwyg"
+        useCommandShortcut={false}
         plugins={[colorSyntax]} // colorSyntax 플러그인 적용
         language="ko-KR"
       />
