@@ -3,16 +3,16 @@ import swaggerUi from "swagger-ui-express";
 import swaggerFile from "../../swagger-output.json";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 import { RequestError } from "@src/middlewares/errorHandler";
-import userController from "@src/api/user/index.user.controller";
-import newsController from "@src/api/news/index.news.controller";
-import quizController from "@src/api/quiz/index.quiz.controller";
-import trashController from "@src/api/trash/index.trash.controller";
-import binsController from "@src/api/map/index.bins.controller";
-import postController from "@src/api/post/index.post.controller";
-import commentController from "@src/api/comment/index.comment.controller";
-import robotController from "@src/api/map/index.robot.controller";
+import userController from "@src/api/user.controller";
+import newsController from "@src/api/news.controller";
+import quizController from "@src/api/quiz.controller";
+import trashController from "@src/api/trash.controller";
+import binsController from "@src/api/bins.controller";
+import postController from "@src/api/post.controller";
+import commentController from "@src/api/comment.controller";
+import robotController from "@src/api/robot.controller";
 
-export const indexController = (app: Express) => {
+const indexController = (app: Express) => {
     app.use(userController);
     app.use(newsController);
     app.use(quizController);
@@ -29,3 +29,5 @@ export const indexController = (app: Express) => {
         throw new RequestError("요청하신 페이지를 찾을 수 없습니다.", STATUS_404_NOTFOUND);
     });
 };
+
+export default indexController;
