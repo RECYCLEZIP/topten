@@ -17,7 +17,7 @@ export const ButtonContainer = styled.div`
   float: right;
   text-align-last: right;
 
-  padding-right: 1.5rem;
+  padding-right: 1rem;
 `;
 
 export const GrayButton = styled.button`
@@ -46,12 +46,14 @@ export const TitleContainer = styled.div`
 
 export const Title = styled.div`
   /* background: red; */
-  font-size: 0.6rem;
+  font-size: 0.8rem;
 `;
 
 export const RightContainer = styled.div`
   /* float: right; */
   flex-grow: 1;
+
+  align-self: center;
 
   color: #979797;
 `;
@@ -60,7 +62,7 @@ export const Author = styled.div`
   /* background: yellow; */
   margin-right: 1.5rem;
 
-  font-size: 0.6rem;
+  font-size: 0.53rem;
   font-weight: 500;
   /* flex-grow: 1; */
   float: right;
@@ -69,7 +71,7 @@ export const Author = styled.div`
 
 export const Date = styled.div`
   /* background: green; */
-  font-size: 0.6rem;
+  font-size: 0.53rem;
   font-weight: 500;
 
   /* flex-grow: 1; */
@@ -83,13 +85,13 @@ export const ContentContainer = styled.div`
   /* color: #979797; */
 `;
 
-export const AnswerContainer = styled.div`
+export const CommentContainer = styled.div`
   padding: 0.5rem 1.5rem;
 `;
 
-export const AnswerWrapper = styled.div`
-  background-color: pink;
+export const CommentWrapper = styled.div`
   padding: 1rem;
+  margin-bottom: 1rem;
 
   display: flex;
 
@@ -97,14 +99,14 @@ export const AnswerWrapper = styled.div`
   border-radius: 0.5rem;
 `;
 
-export const AnswerTitle = styled(Title)`
+export const CommentTitle = styled(Title)`
   display: inline-block;
 
   margin: 1rem 0;
   padding: 0;
 `;
 
-export const AnswerContent = styled(ContentContainer)`
+export const CommentContent = styled(ContentContainer)`
   padding: 0;
 `;
 
@@ -114,4 +116,54 @@ export const SquareButton = styled(Button)`
   margin-top: 0.5rem;
 
   border-radius: 0.3rem;
+`;
+
+export const CommnetInputContainer = styled.div`
+  /* display: */
+  display: flex;
+
+  margin-bottom: 1rem;
+  /* background-color: pink; */
+`;
+
+export const CommentInput = styled.input`
+  width: 90%;
+
+  margin-right: 1rem;
+  padding: 0.5rem;
+
+  font-size: 0.53rem;
+
+  background: #f0f2f5;
+  border: none;
+  border-radius: 0.3rem;
+
+  &:focus {
+    background: #e2e4e8;
+    outline: none;
+  }
+`;
+
+export const CommnetButtonWrapper = styled.div`
+  flex-grow: 1;
+  align-self: center;
+
+  /* background: purple; */
+`;
+
+export const CommentButton = styled(Button)`
+  width: max-content;
+  height: 1.7rem;
+
+  padding: 0.5rem 0.7rem;
+
+  float: right;
+
+  border-radius: 0.3rem;
+  background: #9eacba;
+
+  &:hover {
+    background: #86919c;
+    outline: none;
+  }
 `;
