@@ -8,7 +8,7 @@ import { Viewer } from "@toast-ui/react-editor";
 import markdownIt from "markdown-it";
 import DOMPurify from "dompurify";
 
-import { getData } from "../../api";
+import { getData, qnaPostData } from "../../api";
 import { delData } from "../../api";
 
 import { QnAType } from "../../types/QnA";
@@ -27,11 +27,15 @@ import {
   ButtonContainer,
   GrayButton,
   RedButton,
-  AnswerContainer,
-  AnswerWrapper,
-  AnswerTitle,
-  AnswerContent,
+  CommentContainer,
+  CommentWrapper,
+  CommentTitle,
+  CommentContent,
   SquareButton,
+  CommnetInputContainer,
+  CommentInput,
+  CommnetButtonWrapper,
+  CommentButton,
 } from "../../styles/qnaStyles/QnADescriptionStyle";
 
 function QnADescription() {
@@ -41,6 +45,11 @@ function QnADescription() {
   const navigate = useNavigate();
 
   const [qna, setQna] = useState<QnAType>();
+  const [commentValue, setCommentValue] = useState<string>();
+
+  const onCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCommentValue(e.target.value);
+  };
 
   const get = async () => {
     try {
@@ -64,9 +73,24 @@ function QnADescription() {
     }
   };
 
+  const onClickCommentSubmit = async () => {
+    try {
+      await qnaPostData(`comments/${id}`, {
+        content: commentValue,
+      }).then((res) => console.log(res));
+
+      setCommentValue("");
+      get();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     get();
   }, []);
+
+  console.log(qna?.comments);
 
   return (
     <Container>
@@ -95,16 +119,30 @@ function QnADescription() {
         <GrayButton onClick={() => navigate(`edit/`)}>수정</GrayButton>
         <RedButton onClick={onClickDelete}>삭제</RedButton>
       </ButtonContainer>
-      <AnswerContainer>
-        <AnswerTitle>답변</AnswerTitle>
-        <AnswerWrapper>
-          <AnswerContent>안녕</AnswerContent>
-          <RightContainer>
-            <Date>2022.06.24</Date>
-            <Author>임*민</Author>
-          </RightContainer>
-        </AnswerWrapper>
-      </AnswerContainer>
+      <CommentContainer>
+        <CommentTitle>답변</CommentTitle>
+        <CommnetInputContainer>
+          <CommentInput
+            id="comment-write"
+            type="text"
+            placeholder="댓글을 입력해주세요."
+            value={commentValue}
+            onChange={onCommentChange}
+          ></CommentInput>
+          <CommnetButtonWrapper>
+            <CommentButton onClick={onClickCommentSubmit}>등록</CommentButton>
+          </CommnetButtonWrapper>
+        </CommnetInputContainer>
+        {qna?.comments.map((comment) => (
+          <CommentWrapper>
+            <CommentContent>{comment?.content}</CommentContent>
+            <RightContainer>
+              <Date>{date(comment?.createdAt)}</Date>
+              <Author>{comment?.author.username}</Author>
+            </RightContainer>
+          </CommentWrapper>
+        ))}
+      </CommentContainer>
       <BlackHr />
       <SquareButton onClick={() => navigate(`/qna/`)}>목록</SquareButton>
     </Container>
