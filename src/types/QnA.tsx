@@ -6,4 +6,15 @@ export type QnAType = {
   };
   content: string;
   createdAt: string;
+  comments: [
+    {
+      _id: string;
+      author: {
+        _id: string;
+        username: string;
+      };
+      content: string;
+      createdAt: string;
+    },
+  ];
 };
