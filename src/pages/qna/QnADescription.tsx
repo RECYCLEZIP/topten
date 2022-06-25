@@ -53,7 +53,9 @@ function QnADescription() {
 
   const onClickDelete = async () => {
     try {
-      await delData(`post/${id}`);
+      await delData(`posts/${id}`);
+
+      navigate(`/qna`);
     } catch (err) {
       console.log(err);
     }
