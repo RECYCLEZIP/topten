@@ -18,13 +18,9 @@ function QnA() {
 
   return (
     <Container>
-      {/* 페이지 타이틀 */}
       <TitleText>Q&A</TitleText>
-      {/* 바 섹션 */}
       <QnABar />
-      {/* 게시글 리스트 섹션 */}
       <QnAList />
-      {/* 페이지네이션 */}
       <ButtonContainer>
         <ButtonWrapper>
           <Button onClick={() => navigate(`/qna/post`)}>작성하기</Button>

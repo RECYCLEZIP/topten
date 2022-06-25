@@ -12,12 +12,10 @@ import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 
 import "@toast-ui/editor/dist/i18n/ko-kr";
 
-import { Button } from "../../styles/ButtonStyles";
 import { Container } from "../../styles/basicStyle";
 import { TitleText } from "../../styles/TextStyle";
 import {
   TitleInputContainer,
-  TitleInputText,
   TitleInput,
   PostButtonContainer,
   PostButtonWrapper,
@@ -39,12 +37,6 @@ function QnAPost() {
   const onClickSubmit = async () => {
     const data = editorRef.current.getInstance().getMarkdown();
 
-    console.log(data);
-
-    // var myHeaders = new Headers();
-    // myHeaders.append("Authorization", "Bearer mF_9.B5f-4.1JqM");
-
-    // console.log(`${sessionStorage.getItem("token")}`);
     try {
       await qnaPostData(`posts`, {
         title: titleValue,
@@ -52,15 +44,6 @@ function QnAPost() {
       }).then((res) => console.log(res));
 
       navigate(`/qna`);
-      // await postData(`posts`, {
-      //   body: {
-      //     title: titleValue,
-      //     content: data,
-      //   },
-      //   headers: {
-      //     authorization: `Bearer ${sessionStorage.getItem("token")}`,
-      //   },
-      // }).then((res) => console.log(res));
     } catch (err) {
       console.log(err);
     }
@@ -70,7 +53,6 @@ function QnAPost() {
     <Container>
       <TitleText>Q&A 글 쓰기</TitleText>
       <TitleInputContainer>
-        {/* <TitleInputText>제목</TitleInputText> */}
         <TitleInput
           id="title"
           type="text"
@@ -78,7 +60,6 @@ function QnAPost() {
           onChange={onTitleChange}
         ></TitleInput>
       </TitleInputContainer>
-      {/* <TitleInputText>내용</TitleInputText> */}
       <Editor
         ref={editorRef}
         initialValue=" "

@@ -5,9 +5,6 @@ import { useNavigate } from "react-router";
 import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 import { Viewer } from "@toast-ui/react-editor";
 
-import markdownIt from "markdown-it";
-import DOMPurify from "dompurify";
-
 import { getData, qnaPostData } from "../../api";
 import { delData } from "../../api";
 
@@ -49,19 +46,16 @@ import {
 } from "../../styles/qnaStyles/QnADescriptionStyle";
 
 function QnADescription() {
-  const id = useParams().id;
-  console.log(id);
-
   const navigate = useNavigate();
 
+  // 게시글 id
+  const id = useParams().id;
+
+  // 로그인한 사용자
   const user = useRecoilValue(userState);
 
   const [qna, setQna] = useState<QnAType>();
   const [commentValue, setCommentValue] = useState<string>();
-
-  const onCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCommentValue(e.target.value);
-  };
 
   const get = async () => {
     try {
@@ -85,12 +79,17 @@ function QnADescription() {
     }
   };
 
+  const onCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCommentValue(e.target.value);
+  };
+
   const onClickCommentSubmit = async () => {
     try {
       await qnaPostData(`comments/${id}`, {
         content: commentValue,
       }).then((res) => console.log(res));
 
+      // 댓글 전송 후 input 초기화
       setCommentValue("");
       get();
     } catch (err) {
@@ -115,8 +114,6 @@ function QnADescription() {
     get();
   }, []);
 
-  console.log(qna?.comments);
-
   return (
     <Container>
       <TitleText>Q&A</TitleText>
@@ -125,10 +122,7 @@ function QnADescription() {
         <Title>{qna?.title}</Title>
         <RightContainer>
           <Date>
-            <>
-              {console.log(qna?.createdAt)}
-              <span>{date(qna?.createdAt)}</span>
-            </>
+            <span>{date(qna?.createdAt)}</span>
           </Date>
           <Author>{qna?.author?.username}</Author>
         </RightContainer>
@@ -141,6 +135,7 @@ function QnADescription() {
       )}
       <BlackHr />
       <>
+        {/* 현재 로그인한 사용자가 게시글의 작성자일 시 */}
         {user._id === qna?.author._id && (
           <ButtonWrapper>
             <GrayButton onClick={() => navigate(`edit/`)}>수정</GrayButton>
@@ -169,6 +164,7 @@ function QnADescription() {
             <div>
               <CommentAuthorContainer>
                 <CommentAuthor>{comment?.author.username}</CommentAuthor>
+                {/* 글의 작성자가 작성한 댓글일 시 */}
                 {qna?.author?._id === comment?.author._id && (
                   <CommentAuthorLabel>작성자</CommentAuthorLabel>
                 )}
@@ -176,7 +172,7 @@ function QnADescription() {
               <CommentContent>{comment?.content}</CommentContent>
               <CommentDate>{date(comment?.createdAt)}</CommentDate>
             </div>
-            {/* <RightContainer></RightContainer> */}
+            {/* 현재 로그인한 사용자가 댓글의 작성자일 시 */}
             {user._id === comment?.author._id && (
               <CommentRight>
                 <GrayButton>수정</GrayButton>

@@ -14,12 +14,10 @@ import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 
 import "@toast-ui/editor/dist/i18n/ko-kr";
 
-import { Button } from "../../styles/ButtonStyles";
 import { Container } from "../../styles/basicStyle";
 import { TitleText } from "../../styles/TextStyle";
 import {
   TitleInputContainer,
-  TitleInputText,
   TitleInput,
   PostButtonContainer,
   PostButtonWrapper,
@@ -30,6 +28,7 @@ import {
 function QnAEdit() {
   const navigate = useNavigate();
 
+  // 글의 id
   const id = useParams().id;
 
   const editorRef: any = useRef();
@@ -58,8 +57,6 @@ function QnAEdit() {
   const onClickSubmit = async () => {
     const data = editorRef.current.getInstance().getMarkdown();
 
-    console.log(data);
-
     try {
       await putData(`posts/${id}`, { title: titleValue, content: data }).then(
         (res) => console.log(res),
@@ -79,13 +76,10 @@ function QnAEdit() {
     setValues();
   }, [qna]);
 
-  const test = "제발";
-
   return (
     <Container>
       <TitleText>Q&A 수정하기</TitleText>
       <TitleInputContainer>
-        {/* <TitleInputText>제목</TitleInputText> */}
         <TitleInput
           id="title"
           type="text"
@@ -95,8 +89,6 @@ function QnAEdit() {
       </TitleInputContainer>
       {contentValue && (
         <Editor
-          // initialValue="***오늘***"
-          // initialValue={test}
           initialValue={contentValue}
           ref={editorRef}
           previewStyle="vertical"
