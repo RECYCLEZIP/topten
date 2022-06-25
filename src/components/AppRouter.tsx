@@ -35,7 +35,7 @@ function AppRouter() {
       <Route path="/qna" element={<QnA />} />
       <Route path="/qna/:id" element={<QnADescription />} />
       <Route path="/qna/post" element={<QnAPost />} />
-      <Route path="/qna/edit/:id" element={<QnAEdit />} />
+      <Route path="/qna/:id/edit" element={<QnAEdit />} />
     </Routes>
   );
 }
