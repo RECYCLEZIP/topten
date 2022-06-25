@@ -1,11 +1,11 @@
 import { Router } from "express";
-import wrapAsyncFunc from "@src/utils/catchAsync";
+import { NewsService } from "@src/service";
 import { INews } from "@src/models/interface";
+import wrapAsyncFunc from "@src/utils/catchAsync";
 import { newsSchema } from "@src/utils/bodySchema";
 import { identifierSchema } from "@src/utils/paramsSchema";
-import { NewsService } from "@src/service/news.service";
-import { bodyValidator, paramsValidator } from "@src/middlewares/requestValidator";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
+import { bodyValidator, paramsValidator } from "@src/middlewares/requestValidator";
 
 const newsController = Router();
 

@@ -1,7 +1,7 @@
 import { Post } from "@src/repository";
+import { PostService } from "@src/service";
+import { UserService } from "@src/service";
 import { IPost, IUser } from "@src/models/interface";
-import { PostService } from "@src/service/post.service";
-import { UserService } from "@src/service/user.service";
 import { RequestError } from "@src/middlewares/errorHandler";
 import { STATUS_400_BADREQUEST, STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 

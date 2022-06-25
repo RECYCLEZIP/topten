@@ -1,5 +1,5 @@
 import { Bins } from "@src/repository";
-import { BinsService } from "@src/service/bins.service";
+import { BinsService } from "@src/service";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 
 describe("BinsService TEST", () => {

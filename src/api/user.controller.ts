@@ -1,6 +1,6 @@
 import { Router } from "express";
+import { UserService } from "@src/service";
 import wrapAsyncFunc from "@src/utils/catchAsync";
-import { UserService } from "@src/service/user.service";
 import { authRequired } from "@src/middlewares/authRequired";
 import { bodyValidator } from "@src/middlewares/requestValidator";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";

@@ -1,5 +1,5 @@
 import { Post } from "@src/repository";
-import { UserService } from "@src/service/user.service";
+import { UserService } from "@src/service";
 import { FilterQuery, IPost } from "@src/models/interface";
 import { createFilterQuery } from "@src/utils/createQuery";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";

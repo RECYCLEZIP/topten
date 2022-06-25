@@ -1,9 +1,9 @@
+import axios from "axios";
 import { Trash } from "@src/repository";
+import { TrashService } from "@src/service";
 import { Category, ITrash } from "@src/models/interface";
-import { TrashService } from "@src/service/trash.service";
 import { RequestError } from "@src/middlewares/errorHandler";
 import { STATUS_400_BADREQUEST, STATUS_404_NOTFOUND } from "@src/utils/statusCode";
-import axios from "axios";
 
 const tempTrash: ITrash = {
     title: "사이다",

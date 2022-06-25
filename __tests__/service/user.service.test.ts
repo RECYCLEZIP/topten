@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import { User } from "@src/repository";
+import { UserService } from "@src/service";
 import { IUser } from "@src/models/interface";
-import { UserService } from "@src/service/user.service";
 import { RequestError } from "@src/middlewares/errorHandler";
 import { STATUS_400_BADREQUEST } from "@src/utils/statusCode";
 

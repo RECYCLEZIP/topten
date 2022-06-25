@@ -2,9 +2,9 @@ import app from "@src/app";
 import request from "supertest";
 import { Types } from "mongoose";
 import { QuizModel } from "@src/db";
+import { QuizService } from "@src/service";
 import { QuizType } from "@src/models/interface";
 import { STATUS_200_OK } from "@src/utils/statusCode";
-import { QuizService } from "@src/service/quiz.service";
 
 interface Result {
     date: Date;

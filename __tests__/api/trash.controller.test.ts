@@ -1,7 +1,7 @@
 import app from "@src/app";
 import request from "supertest";
+import { TrashService } from "@src/service";
 import { Category, ITrash } from "@src/models/interface";
-import { TrashService } from "@src/service/trash.service";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
 
 describe("TRASH API", () => {

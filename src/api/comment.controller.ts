@@ -1,8 +1,8 @@
 import { Router } from "express";
+import { CommentService } from "@src/service";
 import wrapAsyncFunc from "@src/utils/catchAsync";
 import { commentSchema } from "@src/utils/bodySchema";
 import { authRequired } from "@src/middlewares/authRequired";
-import { CommentService } from "@src/service/comment.service";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
 import { identifierSchema, postIdentifierSchema } from "@src/utils/paramsSchema";
 import { bodyValidator, paramsValidator } from "@src/middlewares/requestValidator";

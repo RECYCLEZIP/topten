@@ -1,5 +1,5 @@
 import { Robot } from "@src/repository";
-import { RobotService } from "@src/service/robot.service";
+import { RobotService } from "@src/service";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 
 describe("RobotService TEST", () => {

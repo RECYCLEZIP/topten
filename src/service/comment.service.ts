@@ -1,7 +1,7 @@
 import { Comment } from "@src/repository";
+import { UserService } from "@src/service";
+import { PostService } from "@src/service";
 import { IComment } from "@src/models/interface";
-import { UserService } from "@src/service/user.service";
-import { PostService } from "@src/service/post.service";
 import { RequestError } from "@src/middlewares/errorHandler";
 
 export class CommentService {

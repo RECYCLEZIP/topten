@@ -1,9 +1,9 @@
 import app from "@src/app";
 import bcrypt from "bcrypt";
 import request from "supertest";
+import { UserService } from "@src/service";
 import { IUser } from "@src/models/interface";
 import { createAccessToken } from "@src/utils/jwt";
-import { UserService } from "@src/service/user.service";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
 
 describe("USER API", () => {

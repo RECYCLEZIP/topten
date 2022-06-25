@@ -1,15 +1,15 @@
 import multer from "multer";
 import { Router } from "express";
+import { TrashService } from "@src/service";
 import { ITrash } from "@src/models/interface";
 import { storage } from "@src/utils/fileUpload";
 import wrapAsyncFunc from "@src/utils/catchAsync";
 import { trashSchema } from "@src/utils/bodySchema";
 import { trashCategories } from "@src/utils/constans";
-import { TrashService } from "@src/service/trash.service";
 import { identifierSchema } from "@src/utils/paramsSchema";
+import { RequestError } from "@src/middlewares/errorHandler";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
 import { bodyValidator, paramsValidator } from "@src/middlewares/requestValidator";
-import { RequestError } from "@src/middlewares/errorHandler";
 
 const upload = multer({ storage });
 const trashController = Router();

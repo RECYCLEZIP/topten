@@ -1,9 +1,9 @@
 import app from "@src/app";
 import request from "supertest";
+import { PostService } from "@src/service";
+import { UserService } from "@src/service";
+import { CommentService } from "@src/service";
 import { createAccessToken } from "@src/utils/jwt";
-import { PostService } from "@src/service/post.service";
-import { UserService } from "@src/service/user.service";
-import { CommentService } from "@src/service/comment.service";
 import { IComment, IPost, IUser } from "@src/models/interface";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
 

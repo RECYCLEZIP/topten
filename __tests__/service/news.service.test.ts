@@ -1,6 +1,6 @@
 import { News } from "@src/repository";
+import { NewsService } from "@src/service";
 import { INews } from "@src/models/interface";
-import { NewsService } from "@src/service/news.service";
 import { RequestError } from "@src/middlewares/errorHandler";
 import { STATUS_400_BADREQUEST, STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 

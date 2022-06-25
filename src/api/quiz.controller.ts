@@ -1,12 +1,12 @@
 import { Router } from "express";
+import { QuizService } from "@src/service";
 import wrapAsyncFunc from "@src/utils/catchAsync";
-import { QuizService } from "@src/service/quiz.service";
-import { STATUS_200_OK } from "@src/utils/statusCode";
 import { Submissions } from "@src/models/interface";
-import { bodyValidator, paramsValidator } from "@src/middlewares/requestValidator";
-import { quizSchema, quizSetSchema } from "@src/utils/bodySchema";
-import { identifierSchema } from "@src/utils/paramsSchema";
 import { MINIGAME_STEP } from "@src/utils/constans";
+import { STATUS_200_OK } from "@src/utils/statusCode";
+import { identifierSchema } from "@src/utils/paramsSchema";
+import { quizSchema, quizSetSchema } from "@src/utils/bodySchema";
+import { bodyValidator, paramsValidator } from "@src/middlewares/requestValidator";
 
 const quizController = Router();
 

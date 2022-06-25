@@ -1,10 +1,10 @@
 import { Comment } from "@src/repository";
-import { IComment, IPost, IUser } from "@src/models/interface";
-import { CommentService } from "@src/service/comment.service";
-import { UserService } from "@src/service/user.service";
+import { UserService } from "@src/service";
+import { PostService } from "@src/service";
+import { CommentService } from "@src/service";
 import { RequestError } from "@src/middlewares/errorHandler";
 import { STATUS_400_BADREQUEST } from "@src/utils/statusCode";
-import { PostService } from "@src/service/post.service";
+import { IComment, IPost, IUser } from "@src/models/interface";
 
 const tempComment = {
     content: "댓글 내용",

@@ -1,9 +1,9 @@
 import { Router } from "express";
+import { RobotService } from "@src/service";
 import wrapAsyncFunc from "@src/utils/catchAsync";
-import { RobotService } from "@src/service/robot.service";
-import { queryStringValidator } from "@src/middlewares/requestValidator";
-import { coordinateSchema } from "@src/utils/queryStringSchema";
 import { STATUS_200_OK } from "@src/utils/statusCode";
+import { coordinateSchema } from "@src/utils/queryStringSchema";
+import { queryStringValidator } from "@src/middlewares/requestValidator";
 
 const robotController = Router();
 
