@@ -10,7 +10,7 @@ const robotController = Router();
 robotController.get(
     "/robot",
     queryStringValidator(coordinateSchema),
-    wrapAsyncFunc(async (req, res, next) => {
+    wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["map"]
             #swagger.description = "반경 10km이내 로봇위치 정보 조회" 
             #swagger.parameters['queryString'] = {
