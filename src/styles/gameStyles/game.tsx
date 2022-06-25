@@ -56,9 +56,21 @@ export const GameButton = styled(Button)`
 `;
 
 export const ResultButton = styled(GameButton)`
-  background-color: #d9d9d9;
+  background-color: #ababab;
   margin-right: 0.3rem;
-  color: black;
+
+  &:hover {
+    background-color: #a4a4a4;
+  }
+`;
+
+export const GoLoginButton = styled(Button)`
+  margin-right: 0.3rem;
+  margin-top: 0.5rem;
+`;
+
+export const GoGameButton = styled(Button)`
+  background-color: #ababab;
 
   &:hover {
     background-color: #a4a4a4;
