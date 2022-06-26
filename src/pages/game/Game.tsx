@@ -91,8 +91,6 @@ function Game() {
     }
   }, [leftTrash]);
 
-  console.log(level);
-
   useEffect(() => {
     setLoading(false);
     const getLevelData = async () => {
