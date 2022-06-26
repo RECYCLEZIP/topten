@@ -13,6 +13,9 @@ import LoginPage from "../pages/user/Users";
 import UserPage from "../pages/user/UserPage";
 import Game from "../pages/game/Game";
 import Rank from "../pages/game/Rank";
+import QnA from "../pages/qna/QnA";
+import QnAPost from "../pages/qna/QnAPost";
+import QnADescription from "../pages/qna/QnADescription";
 
 //set router component
 function AppRouter() {
@@ -32,6 +35,9 @@ function AppRouter() {
       <Route path="/users/*" element={<LoginPage />} />
       <Route path="/game/play" element={<Game />} />
       <Route path="/game/ranking" element={<Rank />} />
+      <Route path="/qna" element={<QnA />} />
+      <Route path="/qna/:id" element={<QnADescription />} />
+      <Route path="/qna/post" element={<QnAPost />} />
     </Routes>
   );
 }
