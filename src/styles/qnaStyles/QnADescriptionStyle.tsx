@@ -3,11 +3,15 @@ import styled from "styled-components";
 import { Button } from "../../styles/ButtonStyles";
 
 export const BlackHr = styled.hr`
-  border: 1px solid black;
+  border: none;
+  height: 1px;
+  background-color: black;
 `;
 
 export const GrayHr = styled.hr`
-  border: 0.5px solid #979797;
+  border: none;
+  height: 1px;
+  background-color: rgb(219, 219, 219);
 `;
 
 export const ButtonContainer = styled.div`
@@ -220,7 +224,7 @@ export const CommentPostButton = styled(Button)`
   /* color: #44576c; */
   background: #86919c;
   /* background: #9eacba; */
-  
+
   &:hover {
     background: rgb(130, 140, 148);
     outline: none;
