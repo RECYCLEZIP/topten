@@ -24,6 +24,34 @@ export const SearchContainer = styled.div`
   display: flex;
 `;
 
+export const SearchSelect = styled.select`
+  padding: 0.1rem 0.5rem;
+  padding-right: 1rem;
+  line-height: 1rem;
+
+  border: 1px solid #dadde6;
+  border-radius: 0.8rem;
+
+  font-size: 0.53rem;
+
+  vertical-align: middle;
+
+  /* background-image: none; */
+
+  -webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+
+  &:hover {
+    background: #f7f9fa;
+  }
+
+  &:focus {
+    border-color: #69db7c;
+    outline: none;
+  }
+`;
+
 export const SearchInput = styled.input`
   width: 100%;
 
