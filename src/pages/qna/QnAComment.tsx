@@ -40,7 +40,7 @@ function QnAComment() {
   const [commentValue, setCommentValue] = useState<string>();
 
   const [commentEditValue, setCommentEditValue] = useState<string>();
-  const [isCommentEdit, setIsCommentEdit] = useState<boolean>(false);
+  const [editComment, setEditComment] = useState("");
 
   const get = async () => {
     try {
@@ -81,7 +81,7 @@ function QnAComment() {
       }).then((res) => console.log(res));
 
       // 댓글 전송 후 input 초기화
-      setIsCommentEdit(false);
+      setEditComment("");
       get();
     } catch (err) {
       console.log(err);
@@ -100,6 +100,14 @@ function QnAComment() {
 
   const onCommentEditChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCommentEditValue(e.target.value);
+  };
+
+  const onKeyPressEnter = (e: any, commentId: string) => {
+    // 엔터키가 눌렸을 때
+    if (e.key === "Enter") {
+      console.log(e.target);
+      onClickCommentEdit(commentId);
+    }
   };
 
   useEffect(() => {
@@ -134,20 +142,22 @@ function QnAComment() {
               )}
             </CommentAuthorContainer>
             <>
-              {isCommentEdit ? (
+              {editComment === comment?._id ? (
                 <>
-                  {console.log(isCommentEdit)}
+                  {console.log(editComment)}
                   <CommentEditInput
                     id="comment-edit"
                     type="text"
-                    // placeholder="댓글을 입력해주세요."
                     value={commentEditValue}
                     onChange={onCommentEditChange}
+                    onKeyPress={() => {
+                      onKeyPressEnter(window.event, comment?._id);
+                    }}
                   ></CommentEditInput>
                 </>
               ) : (
                 <>
-                  {console.log(isCommentEdit)}
+                  {console.log(editComment)}
                   <CommentContent>{comment?.content}</CommentContent>
                   <CommentDate>{date(comment?.createdAt)}</CommentDate>
                 </>
@@ -157,11 +167,11 @@ function QnAComment() {
           {/* 현재 로그인한 사용자가 댓글의 작성자일 시 */}
           {user._id === comment?.author.userId && (
             <CommentRight>
-              {isCommentEdit ? (
+              {editComment === comment?._id ? (
                 <>
                   <GrayButton
                     onClick={() => {
-                      setIsCommentEdit(false);
+                      setEditComment("");
                     }}
                   >
                     취소
@@ -178,7 +188,7 @@ function QnAComment() {
                 <>
                   <GrayButton
                     onClick={() => {
-                      setIsCommentEdit(true);
+                      setEditComment(comment?._id);
                       setCommentEditValue(comment?.content);
                     }}
                   >
