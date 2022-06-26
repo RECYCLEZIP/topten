@@ -6,7 +6,7 @@ import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 import { Viewer } from "@toast-ui/react-editor";
 
 import { getData, qnaPostData } from "../../api";
-import { delData } from "../../api";
+import { putData, delData } from "../../api";
 
 import { QnAType } from "../../types/QnA";
 
@@ -34,6 +34,7 @@ import {
   SquareButton,
   CommentInputContainer,
   CommentInput,
+  CommentEditInput,
   CommentAuthorContainer,
   CommentAuthor,
   CommentAuthorLabel,
@@ -44,6 +45,7 @@ import {
   CommentRightButton,
   ButtonContainer,
 } from "../../styles/qnaStyles/QnADescriptionStyle";
+import { setValues } from "framer-motion/types/render/utils/setters";
 
 function QnADescription() {
   const navigate = useNavigate();
@@ -55,7 +57,11 @@ function QnADescription() {
   const user = useRecoilValue(userState);
 
   const [qna, setQna] = useState<QnAType>();
+
   const [commentValue, setCommentValue] = useState<string>();
+
+  const [commentEditValue, setCommentEditValue] = useState<string>();
+  const [isCommentEdit, setIsCommentEdit] = useState<boolean>(false);
 
   const get = async () => {
     try {
@@ -85,7 +91,7 @@ function QnADescription() {
 
   const onClickCommentSubmit = async () => {
     try {
-      await qnaPostData(`comments/${id}`, {
+      await qnaPostData(`posts/${id}/comments`, {
         content: commentValue,
       }).then((res) => console.log(res));
 
@@ -97,18 +103,36 @@ function QnADescription() {
     }
   };
 
-  // 백 수정 후 연동
-  const onClickCommentEdit = async () => {};
-
-  const onClickCommentDelete = async () => {
+  // 댓글 수정
+  const onClickCommentEdit = async (commentId: string) => {
     try {
-      await delData(`posts/${id}`);
+      await putData(`posts/${id}/comments/${commentId}`, {
+        content: commentEditValue,
+      }).then((res) => console.log(res));
 
-      navigate(`/qna`);
+      // 댓글 전송 후 input 초기화
+      setIsCommentEdit(false);
+      get();
     } catch (err) {
       console.log(err);
     }
   };
+
+  const onCommentEditChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCommentEditValue(e.target.value);
+  };
+
+  // 댓글 삭제
+  const onClickCommentDelete = async (commentId: string) => {
+    try {
+      await delData(`posts/${id}/comments/${commentId}`);
+      get();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // 댓글 수정 창
 
   useEffect(() => {
     get();
@@ -165,18 +189,70 @@ function QnADescription() {
               <CommentAuthorContainer>
                 <CommentAuthor>{comment?.author.username}</CommentAuthor>
                 {/* 글의 작성자가 작성한 댓글일 시 */}
-                {qna?.author?._id === comment?.author._id && (
+                {qna?.author?._id === comment?.author.userId && (
                   <CommentAuthorLabel>작성자</CommentAuthorLabel>
                 )}
               </CommentAuthorContainer>
-              <CommentContent>{comment?.content}</CommentContent>
-              <CommentDate>{date(comment?.createdAt)}</CommentDate>
+              <>
+                {isCommentEdit ? (
+                  <>
+                    {console.log(isCommentEdit)}
+                    <CommentEditInput
+                      id="comment-edit"
+                      type="text"
+                      // placeholder="댓글을 입력해주세요."
+                      value={commentEditValue}
+                      onChange={onCommentEditChange}
+                    ></CommentEditInput>
+                  </>
+                ) : (
+                  <>
+                    {console.log(isCommentEdit)}
+                    <CommentContent>{comment?.content}</CommentContent>
+                    <CommentDate>{date(comment?.createdAt)}</CommentDate>
+                  </>
+                )}
+              </>
             </div>
             {/* 현재 로그인한 사용자가 댓글의 작성자일 시 */}
-            {user._id === comment?.author._id && (
+            {user._id === comment?.author.userId && (
               <CommentRight>
-                <GrayButton>수정</GrayButton>
-                <CommentRightButton>삭제</CommentRightButton>
+                {isCommentEdit ? (
+                  <>
+                    <GrayButton
+                      onClick={() => {
+                        setIsCommentEdit(false);
+                      }}
+                    >
+                      취소
+                    </GrayButton>
+                    <CommentRightButton
+                      onClick={() => {
+                        onClickCommentEdit(comment?._id);
+                      }}
+                    >
+                      확인
+                    </CommentRightButton>
+                  </>
+                ) : (
+                  <>
+                    <GrayButton
+                      onClick={() => {
+                        setIsCommentEdit(true);
+                        setCommentEditValue(comment?.content);
+                      }}
+                    >
+                      수정
+                    </GrayButton>
+                    <CommentRightButton
+                      onClick={() => {
+                        onClickCommentDelete(comment?._id);
+                      }}
+                    >
+                      삭제
+                    </CommentRightButton>
+                  </>
+                )}
               </CommentRight>
             )}
           </CommentWrapper>
