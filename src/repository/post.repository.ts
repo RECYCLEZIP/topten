@@ -22,13 +22,13 @@ export class Post {
     }
 
     static async deletePost(id: string) {
-        return PostModel.findOneAndDelete({ _id: id });
+        return PostModel.findByIdAndDelete(id);
     }
 
     static async deleteComment(postId: string, commentId: string) {
         return PostModel.findByIdAndUpdate(
             postId,
-            { $pull: { comments: commentId } },
+            { $pull: { comments: { _id: commentId } } },
             { new: true },
         );
     }

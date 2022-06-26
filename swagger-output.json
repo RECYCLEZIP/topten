@@ -374,7 +374,7 @@
     "/posts/{postId}/comments": {
       "post": {
         "tags": [
-          "comment"
+          "post"
         ],
         "description": "댓글 생성 **로그인 필수**",
         "parameters": [
@@ -416,7 +416,7 @@
     "/posts/{postId}/comments/{commentId}": {
       "delete": {
         "tags": [
-          "comment"
+          "post"
         ],
         "description": "댓글 삭제 **로그인 필수**",
         "parameters": [

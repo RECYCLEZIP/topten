@@ -84,7 +84,7 @@ postController.post(
     authRequired,
     bodyValidator(commentSchema),
     wrapAsyncFunc(async (req, res, _next) => {
-        /*  #swagger.tags = ["comment"]
+        /*  #swagger.tags = ["post"]
             #swagger.description = "댓글 생성 **로그인 필수**"
             #swagger.security = [{
                "bearerAuth": []
@@ -176,7 +176,7 @@ postController.delete(
     authRequired,
     paramsValidator(postIdentifierSchema),
     wrapAsyncFunc(async (req, res, _next) => {
-        /*  #swagger.tags = ["comment"]
+        /*  #swagger.tags = ["post"]
             #swagger.description = "댓글 삭제 **로그인 필수**"
             #swagger.security = [{
                "bearerAuth": []
