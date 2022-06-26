@@ -44,7 +44,11 @@ function ResultModal({
 
   useEffect(() => {
     const updateScore = async () => {
-      putData("users/score", { score: score });
+      try {
+        putData("users/score", { score: score });
+      } catch {
+        console.log("put data request fail");
+      }
     };
     if (gameState === initialState.gameState.GAMEOVER) {
       const bgmAudio = bgm.current;

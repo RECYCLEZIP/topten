@@ -32,8 +32,12 @@ function Rank() {
 
   useEffect(() => {
     const getRank = async () => {
-      const res = await getData("users/rank");
-      setRankList(res.data);
+      try {
+        const res = await getData("users/rank");
+        setRankList(res.data);
+      } catch {
+        console.log("get data request fail");
+      }
     };
     getRank();
   }, []);

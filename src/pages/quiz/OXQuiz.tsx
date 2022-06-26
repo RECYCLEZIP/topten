@@ -46,7 +46,6 @@ function OXQuiz() {
 
   useEffect(() => {
     const answer = isSelected.indexOf(true);
-    console.log(answer);
     if (answer === -1) {
       setOption("-1");
     } else {

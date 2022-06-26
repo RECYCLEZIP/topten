@@ -93,13 +93,16 @@ function Game() {
   useEffect(() => {
     setLoading(false);
     const getLevelData = async () => {
-      const res = await getData(`quizzes/game/${level - 1}`);
-      console.log(res.data);
-      setTrash(res.data.trash);
-      setBins(res.data.bins);
-      setLeftTrash(Array(res.data.trash.length).fill(false));
-      setVisibility(Array(trash.length).fill("visible"));
-      setLoading(true);
+      try {
+        const res = await getData(`quizzes/game/${level - 1}`);
+        setTrash(res.data.trash);
+        setBins(res.data.bins);
+        setLeftTrash(Array(res.data.trash.length).fill(false));
+        setVisibility(Array(trash.length).fill("visible"));
+        setLoading(true);
+      } catch {
+        console.log("get data request fail");
+      }
     };
     if (level === 0) {
       const bgmAudio = bgmMusic.current;

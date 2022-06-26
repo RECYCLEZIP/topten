@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 
 import PrologueBubble from "./PrologueBubble";
 import PrologueAsk from "./PrologueAsk";
@@ -27,8 +27,6 @@ function Prologue() {
     targets.forEach((target) => {
       observer.observe(target);
     });
-
-    console.log(targets);
   }, []);
 
   return (

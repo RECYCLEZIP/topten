@@ -53,7 +53,6 @@ function AnswerAlert() {
       draggable: true,
       progress: undefined,
     });
-  console.log(option);
 
   const CheckAnswer = async () => {
     if (option === "-1") return alert();
