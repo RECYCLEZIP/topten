@@ -48,6 +48,7 @@ function Header() {
         >
           분리수거 정보
         </Link>
+        <Link to="/qna">Q&A</Link>
         <Link to={isLogin ? `/user/${user._id}` : "/users/login"}>
           {isLogin ? "마이페이지" : "로그인"}
         </Link>

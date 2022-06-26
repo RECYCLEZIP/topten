@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 import MapSearch from "./MapSearch";
-// import MapContent from "./MapContent";
 import MapList from "./MapList";
 import MapTest from "../../components/MapTest";
 
@@ -14,7 +13,6 @@ import {
   BinState,
   BinSelectedState,
   selectedMarkerState,
-  SearchBinState,
   RegionValueState,
   RoadsValueState,
   lastIntersectingImageState,

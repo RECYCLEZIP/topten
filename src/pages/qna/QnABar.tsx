@@ -28,17 +28,13 @@ function QnABar() {
 
   return (
     <BarSection>
-      {/* 전체 게시글 수 */}
       <BarText>
         전체 <BarRedText>{qnaList.length}</BarRedText>건
       </BarText>
-      {/* 페이지 번호 */}
       <BarText>
         페이지 <BarRedText>1</BarRedText>
         /32
       </BarText>
-      {/* 검색  */}
-      <div></div>
     </BarSection>
   );
 }

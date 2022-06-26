@@ -23,15 +23,37 @@ export async function postData(endpoint: string, data: object) {
     },
   });
 }
+export async function qnaPostData(endpoint: string, data: object) {
+  const bodyData = JSON.stringify(data);
+  console.log(`%cPOST 요청: ${serverUrl + endpoint}`, "color: #296aba;");
+  console.log(`%cPOST 요청 데이터: ${bodyData}`, "color: #296aba;");
+
+  return axios.post(serverUrl + endpoint, bodyData, {
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  });
+}
 
 export async function putData(endpoint: string, data: object) {
   const bodyData = JSON.stringify(data);
-  console.log(`%cPUT 요청: ${serverUrl + endpoint}`, "color: #29ba6a;");
-  console.log(`%cPUT 요청 데이터: ${bodyData}`, "color: #29ba6a;");
+  console.log(`%cPUT 요청: ${serverUrl + endpoint}`, "color: #296aba;");
+  console.log(`%cPUT 요청 데이터: ${bodyData}`, "color: #296aba;");
 
   return axios.put(serverUrl + endpoint, bodyData, {
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  });
+}
+
+export async function delData(endpoint: string) {
+  console.log(`%cDELETE 요청 ${serverUrl + endpoint}`, "color: #a25cd1;");
+
+  return axios.delete(serverUrl + endpoint, {
+    headers: {
       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     },
   });
