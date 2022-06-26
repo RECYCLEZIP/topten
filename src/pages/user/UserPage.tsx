@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { getData } from "../../api";
-import { loginState } from "../../stores/atoms";
+import { loginState, userState } from "../../stores/atoms";
 import { Button } from "../../styles/ButtonStyles";
 import {
   UserPageContainer,
@@ -13,14 +13,13 @@ import {
 import { UserType } from "../../types/User";
 
 function UserPage() {
-  const userId = useParams().id;
   const navigate = useNavigate();
   const [user, setUser] = useState<UserType>({});
   const setIsLogin = useSetRecoilState(loginState);
 
   const getUser = async () => {
     try {
-      const res = await getData(`users/${userId}`);
+      const res = await getData(`users/current`);
       setUser(res.data);
     } catch {
       console.log("Error: data get request fail");

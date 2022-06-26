@@ -19,7 +19,7 @@ function App() {
       };
       getUser();
     } else setIsLogin(false);
-  }, []);
+  }, [setIsLogin, setUser]);
 
   return (
     <div>

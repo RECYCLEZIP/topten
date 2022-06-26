@@ -32,7 +32,7 @@ function AppRouter() {
       <Route path="/ai" element={<Ai />} />
       <Route path="/category/*" element={<Category />} />
       <Route path="/trash/:id" element={<Trash />} />
-      <Route path="/user/:id" element={<UserPage />} />
+      <Route path="/user/my" element={<UserPage />} />
       <Route path="/users/*" element={<LoginPage />} />
       <Route path="/game/play" element={<Game />} />
       <Route path="/game/ranking" element={<Rank />} />
