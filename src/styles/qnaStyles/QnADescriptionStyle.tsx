@@ -30,17 +30,22 @@ export const GrayButton = styled.button`
 
   font-size: 0.53rem;
   font-weight: bold;
-  color: white;
+  color: #424242;
 
   border: none;
   border-radius: 0.3rem;
-  background: #979797;
+  background: #e1e1e1;
+  /* background: #e4e4e4; */
+  /* background: #bdbdbd; */
+  /* background: #979797; */
 
   cursor: pointer;
 `;
 
 export const RedButton = styled(GrayButton)`
   background: #a62121;
+
+  color: white;
 `;
 
 export const TitleContainer = styled.div`
@@ -105,7 +110,8 @@ export const CommentWrapper = styled.div`
   display: flex;
   position: relative;
 
-  background-color: #ececec;
+  background-color: #f5f5f5;
+  /* background-color: #ececec; */
   border-radius: 0.3rem;
 `;
 
@@ -167,7 +173,7 @@ export const SquareButton = styled(Button)`
   border-radius: 0.3rem;
 `;
 
-export const CommnetInputContainer = styled.div`
+export const CommentInputContainer = styled.div`
   /* display: */
   display: flex;
 
@@ -193,7 +199,7 @@ export const CommentInput = styled.input`
   }
 `;
 
-export const CommnetButtonWrapper = styled.div`
+export const CommentButtonWrapper = styled.div`
   flex-grow: 1;
   align-self: center;
 
@@ -209,10 +215,14 @@ export const CommentPostButton = styled(Button)`
   float: right;
 
   border-radius: 0.3rem;
-  background: #9eacba;
+  /* background: #e9ecf3; */
 
+  /* color: #44576c; */
+  background: #86919c;
+  /* background: #9eacba; */
+  
   &:hover {
-    background: #86919c;
+    background: rgb(130, 140, 148);
     outline: none;
   }
 `;

@@ -46,6 +46,11 @@ export const PostCancleButton = styled(Button)`
 
   background: #f0f2f5;
   color: black;
-
+  
   margin-right: 1rem;
+  
+  &:hover {
+    background: #e1e3e6;
+
+  }
 `;
