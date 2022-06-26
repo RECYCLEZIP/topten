@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -26,9 +26,11 @@ const style = {
 
 function ResultModal({
   score,
+  bonus,
   setTimeLeft,
 }: {
   score: number;
+  bonus: number;
   setTimeLeft: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const navigate = useNavigate();
@@ -40,26 +42,27 @@ function ResultModal({
     navigate("/game/ranking");
   };
 
+  const updateScore = async () => {
+    try {
+      putData("users/score", { score: Math.round(score * bonus) });
+    } catch {
+      console.log("put data request fail");
+    }
+  };
+
   const bgm = useRef(new Audio(gameOverBgm));
 
+  console.log(score, bonus);
+
   useEffect(() => {
-    const updateScore = async () => {
-      try {
-        putData("users/score", { score: score });
-      } catch {
-        console.log("put data request fail");
-      }
-    };
     if (gameState === initialState.gameState.GAMEOVER) {
       const bgmAudio = bgm.current;
       bgmAudio.play();
-      updateScore();
       return () => {
         bgmAudio.pause();
         bgmAudio.currentTime = 0;
       };
     }
-    updateScore();
   }, []);
 
   return (
@@ -95,7 +98,7 @@ function ResultModal({
             id="modal-modal-description"
             sx={{ mt: 0.3, fontSize: "0.8rem", fontWeight: 700 }}
           >
-            {score} 점
+            {score}X{bonus} = {Math.round(score * bonus)} 점
           </Typography>
           <Typography
             id="modal-modal-description"
@@ -105,7 +108,12 @@ function ResultModal({
               ? "마지막 단계까지 도전하세요!"
               : "오늘도 환경보호에 기여하셨습니다!"}
           </Typography>
-          <ResultButton onClick={() => navigate("/game/ranking")}>
+          <ResultButton
+            onClick={() => {
+              navigate("/game/ranking");
+              updateScore();
+            }}
+          >
             랭킹으로
           </ResultButton>
           <GameButton
@@ -120,6 +128,7 @@ function ResultModal({
               }
               setGameState(initialState.gameState.PLAYING);
               setTimeLeft(30);
+              updateScore();
             }}
           >
             {level !== 3

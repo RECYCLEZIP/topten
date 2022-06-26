@@ -11,7 +11,6 @@ import {
   categoryPageState,
   categorySelectedState,
   loginState,
-  userState,
 } from "../stores/atoms";
 
 //header component
@@ -24,7 +23,6 @@ function Header() {
   const setKind = useSetRecoilState(categoryKindState);
   const setIsSelected = useSetRecoilState(categorySelectedState);
   const isLogin = useRecoilValue(loginState);
-  const user = useRecoilValue(userState);
 
   return (
     <Nav isToggled={isToggled}>
@@ -49,7 +47,7 @@ function Header() {
           분리수거 정보
         </Link>
         <Link to="/qna">Q&A</Link>
-        <Link to={isLogin ? `/user/${user.userId}` : "/users/login"}>
+        <Link to={isLogin ? `/user/my` : "/users/login"}>
           {isLogin ? "마이페이지" : "로그인"}
         </Link>
       </Menu>

@@ -47,6 +47,7 @@ function Game() {
   const [level, setLevel] = useRecoilState(gameLevelState);
   const [leftTrash, setLeftTrash] = useState<boolean[]>([false]);
   const [loading, setLoading] = useState(false);
+  const [bonus, setBonus] = useState(0);
 
   const bgmMusic = useRef(new Audio(bgm));
   const selectMusic = useRef(new Audio(selectBgm));
@@ -71,7 +72,7 @@ function Game() {
 
   useEffect(() => {
     setGameState(initialState.gameState.READY);
-    setTimeLeft(initialState.timeLeft);
+    setTimeLeft((prev) => prev);
     setLevel(1);
     setScore(0);
     const bgmAudio = bgmMusic.current;
@@ -89,6 +90,8 @@ function Game() {
       setGameState(initialState.gameState.WIN);
     }
   }, [leftTrash]);
+
+  console.log(level);
 
   useEffect(() => {
     setLoading(false);
@@ -109,17 +112,26 @@ function Game() {
       bgmAudio.volume = 0.5;
       bgmAudio.loop = true;
       bgmAudio.play();
-      setScore(0);
       setLevel(1);
-      getLevelData();
     } else {
       getLevelData();
-      setTimeLeft(initialState.timeLeft);
+      if (level === 1) {
+        setScore(0);
+      } else {
+        setScore(Math.round(score * bonus));
+      }
     }
   }, [level]);
 
   useEffect(() => {
     const bgmAudio = bgmMusic.current;
+    if (
+      gameState === initialState.gameState.GAMEOVER ||
+      gameState === initialState.gameState.WIN
+    ) {
+      const multiply = timeLeft / 30 + 1;
+      setBonus(Number(multiply.toFixed(2)));
+    }
     if (gameState === initialState.gameState.GAMEOVER) {
       bgmAudio.pause();
       bgmAudio.currentTime = 0;
@@ -144,7 +156,7 @@ function Game() {
       {gameState === initialState.gameState.READY && <GameModal />}
       {(gameState === initialState.gameState.GAMEOVER ||
         gameState === initialState.gameState.WIN) && (
-        <ResultModal score={score} setTimeLeft={setTimeLeft} />
+        <ResultModal score={score} bonus={bonus} setTimeLeft={setTimeLeft} />
       )}
       {gameState === initialState.gameState.PLAYING && (
         <DragDropContext onDragEnd={onDragEnd}>
