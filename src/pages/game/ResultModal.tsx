@@ -8,6 +8,7 @@ import { initialState } from "./Game";
 import { useNavigate } from "react-router";
 import { GameButton, ResultButton } from "../../styles/gameStyles/game";
 import gameOverBgm from "../../assets/gameover.mp3";
+import { putData } from "../../api";
 
 const style = {
   position: "absolute" as "absolute",
@@ -42,14 +43,19 @@ function ResultModal({
   const bgm = useRef(new Audio(gameOverBgm));
 
   useEffect(() => {
+    const updateScore = async () => {
+      putData("users/score", { score: score });
+    };
     if (gameState === initialState.gameState.GAMEOVER) {
       const bgmAudio = bgm.current;
       bgmAudio.play();
+      updateScore();
       return () => {
         bgmAudio.pause();
         bgmAudio.currentTime = 0;
       };
     }
+    updateScore();
   }, []);
 
   return (

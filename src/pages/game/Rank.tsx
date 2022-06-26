@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useRecoilValue } from "recoil";
+import { getData } from "../../api";
 import { loginState } from "../../stores/atoms";
 import { Button } from "../../styles/ButtonStyles";
 import {
@@ -11,12 +12,15 @@ import {
   ScoreText,
   NumberText,
 } from "../../styles/gameStyles/game";
+import { RankDataType } from "../../types/Game";
 import GoGameModal from "./GoGameModal";
 
 function Rank() {
   const navigate = useNavigate();
   const isLogin = useRecoilValue(loginState);
   const [open, setOpen] = useState(false);
+  const [rankList, setRankList] = useState<RankDataType[]>([]);
+  const medal = ["🥇", "🥈", "🥉"];
 
   const goGame = () => {
     if (isLogin) {
@@ -25,6 +29,14 @@ function Rank() {
       setOpen(true);
     }
   };
+
+  useEffect(() => {
+    const getRank = async () => {
+      const res = await getData("users/rank");
+      setRankList(res.data);
+    };
+    getRank();
+  }, []);
 
   return (
     <RankContainer>
@@ -35,26 +47,21 @@ function Rank() {
         TOP 10
       </RankTitleText>
       <Button onClick={goGame}>신기록 도전</Button>
-      <Top3Rank index={1}>
-        <NumberText font="1rem">🥇</NumberText>
-        <RankNameText>이 구역의 쓰레기 형님</RankNameText>
-        <ScoreText>202점</ScoreText>
-      </Top3Rank>
-      <Top3Rank index={2}>
-        <NumberText font="1rem">🥈</NumberText>
-        <RankNameText>이 구역의 쓰레기 형님</RankNameText>
-        <ScoreText>202점</ScoreText>
-      </Top3Rank>
-      <Top3Rank index={3}>
-        <NumberText font="1rem">🥉</NumberText>
-        <RankNameText>이 구역의 쓰레기 형님</RankNameText>
-        <ScoreText>202점</ScoreText>
-      </Top3Rank>
-      <Top3Rank index={4} color="#c7ebff">
-        <NumberText>4</NumberText>
-        <RankNameText>이 구역의 쓰레기 형님</RankNameText>
-        <ScoreText>202점</ScoreText>
-      </Top3Rank>
+      {rankList.map((list, index) =>
+        index < 3 ? (
+          <Top3Rank key={index} index={index}>
+            <NumberText font="1rem">{index < 4 ? medal[index] : 4}</NumberText>
+            <RankNameText>{list.username}님</RankNameText>
+            <ScoreText>{list.topscore}점</ScoreText>
+          </Top3Rank>
+        ) : (
+          <Top3Rank key={index} index={index} color="#c7ebff">
+            <NumberText>{index + 1}</NumberText>
+            <RankNameText>{list.username}님</RankNameText>
+            <ScoreText>{list.topscore}점</ScoreText>
+          </Top3Rank>
+        ),
+      )}
     </RankContainer>
   );
 }
