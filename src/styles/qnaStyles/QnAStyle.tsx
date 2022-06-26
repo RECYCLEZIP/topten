@@ -17,7 +17,7 @@ export const BarRedText = styled.span`
 `;
 
 export const SearchContainer = styled.div`
-  width: 20%;
+  /* width: 20%; */
 
   margin-left: auto;
 
@@ -27,7 +27,11 @@ export const SearchContainer = styled.div`
 export const SearchSelect = styled.select`
   padding: 0.1rem 0.5rem;
   padding-right: 1rem;
+  margin-right: 0.5rem;
+
   line-height: 1rem;
+
+  background: #f7f9fa;
 
   border: 1px solid #dadde6;
   border-radius: 0.8rem;
@@ -39,8 +43,8 @@ export const SearchSelect = styled.select`
   /* background-image: none; */
 
   -webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 
   &:hover {
     background: #f7f9fa;
