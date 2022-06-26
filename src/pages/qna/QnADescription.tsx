@@ -32,14 +32,14 @@ import {
   CommentTitle,
   CommentContent,
   SquareButton,
-  CommnetInputContainer,
+  CommentInputContainer,
   CommentInput,
   CommentAuthorContainer,
   CommentAuthor,
   CommentAuthorLabel,
   CommentDate,
   CommentRight,
-  CommnetButtonWrapper,
+  CommentButtonWrapper,
   CommentPostButton,
   CommentRightButton,
   ButtonContainer,
@@ -145,7 +145,7 @@ function QnADescription() {
       </>
       <CommentContainer>
         <CommentTitle>답변</CommentTitle>
-        <CommnetInputContainer>
+        <CommentInputContainer>
           <CommentInput
             id="comment-write"
             type="text"
@@ -153,12 +153,12 @@ function QnADescription() {
             value={commentValue}
             onChange={onCommentChange}
           ></CommentInput>
-          <CommnetButtonWrapper>
+          <CommentButtonWrapper>
             <CommentPostButton onClick={onClickCommentSubmit}>
               등록
             </CommentPostButton>
-          </CommnetButtonWrapper>
-        </CommnetInputContainer>
+          </CommentButtonWrapper>
+        </CommentInputContainer>
         {qna?.comments.map((comment) => (
           <CommentWrapper>
             <div>
