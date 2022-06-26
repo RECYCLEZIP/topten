@@ -52,8 +52,6 @@ function ResultModal({
 
   const bgm = useRef(new Audio(gameOverBgm));
 
-  console.log(score, bonus);
-
   useEffect(() => {
     if (gameState === initialState.gameState.GAMEOVER) {
       const bgmAudio = bgm.current;
