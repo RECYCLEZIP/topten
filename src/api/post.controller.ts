@@ -145,6 +145,39 @@ postController.put(
     }),
 );
 
+postController.put(
+    "/posts/:postId/comments/:commentId",
+    authRequired,
+    paramsValidator(postIdentifierSchema),
+    bodyValidator(commentSchema),
+    wrapAsyncFunc(async (req, res, _next) => {
+        /*  #swagger.tags = ["post"]
+            #swagger.description = "댓글 정보 수정 **로그인 필수**"
+            #swagger.security = [{
+               "bearerAuth": []
+            }]
+            #swagger.parameters['id'] = {
+                in: 'path',
+                description: '수정하고자 하는 댓글의 ID',
+                required: true,
+                schema: { $ref: "#/definitions/CommentId" }
+            }
+            #swagger.parameters['body'] = {
+                in: 'body',
+                description: '수정하고자 하는 댓글의 정보를 body에 담아 요청',
+                required: true,
+                schema: { $ref: "#/definitions/CommentPutRequest" }
+            }
+            #swagger.responses[200] = {
+            schema: { "$ref": "#/definitions/CommentPutResponse" },
+            description: "수정된 댓글 정보 반환" } */
+
+        const { postId, commentId } = req.params;
+        const updatedComment = await PostService.updateComment(postId, commentId, req.body);
+        res.status(STATUS_200_OK).json(updatedComment);
+    }),
+);
+
 postController.delete(
     "/posts/:id",
     authRequired,

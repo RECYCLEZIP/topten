@@ -1,5 +1,5 @@
 import { PostModel } from "@src/db";
-import { IPost, MongooseQuery } from "@src/models/interface";
+import { IPost, IComment, MongooseQuery } from "@src/models/interface";
 
 export class Post {
     static async find({ filteredQuery, limit }: { filteredQuery: MongooseQuery; limit: number }) {
@@ -17,8 +17,16 @@ export class Post {
         return PostModel.create(postInfo);
     }
 
-    static async update(id: string, postInfo: IPost) {
+    static async updatePost(id: string, postInfo: IPost) {
         return PostModel.findByIdAndUpdate(id, postInfo, { new: true });
+    }
+
+    static async updateComment(postId: string, commentId: string, commentInfo: IComment) {
+        return PostModel.findOneAndUpdate(
+            { _id: postId, comments: { $elemMatch: { _id: commentId } } },
+            { $set: { "comments.$.content": commentInfo.content } },
+            { new: true },
+        );
     }
 
     static async deletePost(id: string) {

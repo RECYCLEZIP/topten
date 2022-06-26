@@ -64,7 +64,7 @@ describe("POSTS SERVICE LOGIC", () => {
     });
 
     it("POSTS를 수정한다.", async () => {
-        const spyFn = jest.spyOn(Post, "update");
+        const spyFn = jest.spyOn(Post, "updatePost");
         const createdUser = await UserService.addUser(tempUser);
         const newPost = await PostService.addPost(createdUser._id, tempPost);
         const updatedPost = await PostService.updatePost(newPost._id.toString(), {
@@ -176,7 +176,7 @@ describe("POSTS SERVICE ERROR HANDLING", () => {
     });
 
     it("POSTS 수정 시 게시글을 찾을 수 없으면 에러가 발생한다.", async () => {
-        Post.update = jest.fn().mockResolvedValue(null);
+        Post.updatePost = jest.fn().mockResolvedValue(null);
         try {
             await PostService.updatePost("id", tempPost);
         } catch (err: any) {

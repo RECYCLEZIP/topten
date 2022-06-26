@@ -1,10 +1,15 @@
 import { Schema, model } from "mongoose";
-import { UserSchema } from "@src/db/user.schema";
 import { IComment, IPost } from "@src/models/interface";
 
 const CommentSchema = new Schema<IComment>(
     {
-        author: UserSchema,
+        author: {
+            _id: false,
+            type: {
+                userId: { type: String, required: true },
+                username: { type: String, required: true },
+            },
+        },
         content: {
             type: String,
             required: true,

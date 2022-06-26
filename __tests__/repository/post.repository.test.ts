@@ -28,7 +28,7 @@ describe("Post 모델 접근", () => {
 
     it("update는 게시글를 수정한다.", async () => {
         const post = await Post.create(tempPost);
-        const updatedPost = await Post.update(post._id.toString(), {
+        const updatedPost = await Post.updatePost(post._id.toString(), {
             ...tempPost,
             title: "땡볕",
         });

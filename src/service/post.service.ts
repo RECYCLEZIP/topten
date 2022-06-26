@@ -37,16 +37,23 @@ export class PostService {
         ]);
         if (!foundUser) throw new RequestError("로그인 사용자를 찾을 수 없습니다.");
         if (!foundPost) throw new RequestError("게시글 정보를 찾을 수 없습니다.");
-        commentInfo.author = foundUser;
+        const { _id, username } = foundUser;
+        commentInfo.author = { userId: _id.toString(), username: username ?? "익명" };
         foundPost?.comments?.push(commentInfo);
         await foundPost.save();
         return commentInfo;
     }
 
     static async updatePost(id: string, postInfo: IPost) {
-        const updatedPost = await Post.update(id, postInfo);
+        const updatedPost = await Post.updatePost(id, postInfo);
         if (!updatedPost) throw new RequestError("해당 게시글을 찾을 수 없습니다.");
         return updatedPost;
+    }
+
+    static async updateComment(postId: string, commentId: string, commentInfo: IComment) {
+        const updatedComment = await Post.updateComment(postId, commentId, commentInfo);
+        if (!updatedComment) throw new RequestError("해당 댓글을 찾을 수 없습니다.");
+        return updatedComment;
     }
 
     static async deletePost(id: string) {

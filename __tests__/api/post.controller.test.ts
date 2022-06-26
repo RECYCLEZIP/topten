@@ -1,11 +1,11 @@
 import app from "@src/app";
 import request from "supertest";
+import { Post } from "@src/repository";
 import { PostService } from "@src/service";
 import { UserService } from "@src/service";
 import { createAccessToken } from "@src/utils/jwt";
 import { IComment, IPost, IUser } from "@src/models/interface";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
-import { Post } from "@src/repository";
 
 describe("POST API", () => {
     const tempPost: IPost = {
