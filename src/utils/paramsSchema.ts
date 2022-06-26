@@ -6,5 +6,6 @@ export const identifierSchema = Joi.object({
 });
 
 export const postIdentifierSchema = Joi.object({
-    postId: Joi.string().length(24).required(),
+    postId: Joi.string().length(24),
+    commentId: Joi.string().length(24),
 });

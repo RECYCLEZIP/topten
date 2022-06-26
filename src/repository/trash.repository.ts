@@ -1,4 +1,4 @@
-import { TrashModel } from "@src/db/trash/trash.schema";
+import { TrashModel } from "@src/db";
 import { ITrash, MongooseQuery } from "@src/models/interface";
 
 export class Trash {

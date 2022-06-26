@@ -1,4 +1,4 @@
-import { NewsModel } from "@src/db/news/news.schema";
+import { NewsModel } from "@src/db";
 import { INews, MongooseQuery } from "@src/models/interface";
 
 export class News {

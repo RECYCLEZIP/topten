@@ -1,6 +1,6 @@
-import { News } from "@src/db";
+import { NewsModel } from "@src/db";
+import { News } from "@src/repository";
 import { INews } from "@src/models/interface";
-import { NewsModel } from "@src/db/news/news.schema";
 
 describe("NEWS 모델 접근", () => {
     const tempNews: INews = { url: "http://localhost", title: "로컬호스트" };

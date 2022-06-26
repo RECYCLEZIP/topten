@@ -1,6 +1,3 @@
-import { Request } from "express";
-import { Schema } from "mongoose";
-
 export interface INews {
     url: string;
     title: string;
@@ -71,13 +68,6 @@ export interface Submissions {
     answers: { quizId: string; answer: string }[];
 }
 
-export interface ToUpdate {
-    date?: Date;
-    totalUser: number;
-    wrong: number;
-    yesterday?: number;
-}
-
 export interface Result {
     date: Date;
     totalUser: number;
@@ -113,24 +103,20 @@ export interface IQuiz {
     image: string;
 }
 
+export interface IComment {
+    author?: { userId: string; username: string };
+    content: string;
+}
+
 export interface IPost {
     title: string;
     author?: IUser;
     content: string;
-    comments?: Schema.Types.ObjectId[];
-}
-
-export interface IComment extends Schema.Types.ObjectId {
-    author?: IUser;
-    content: string;
+    comments?: IComment[];
 }
 
 export interface IRobot {
     name: string;
     address: string;
     location: object;
-}
-
-export interface IRequestUserAuthInfo extends Request {
-    currentUserId: string;
 }

@@ -1,6 +1,6 @@
-import { Post } from "@src/db";
+import { Post } from "@src/repository";
 import { IPost } from "@src/models/interface";
-import { PostModel } from "@src/db/post/post.schema";
+import { PostModel } from "@src/db/post.schema";
 
 describe("Post 모델 접근", () => {
     const tempPost: IPost = {
@@ -28,7 +28,7 @@ describe("Post 모델 접근", () => {
 
     it("update는 게시글를 수정한다.", async () => {
         const post = await Post.create(tempPost);
-        const updatedPost = await Post.update(post._id.toString(), {
+        const updatedPost = await Post.updatePost(post._id.toString(), {
             ...tempPost,
             title: "땡볕",
         });
@@ -38,7 +38,7 @@ describe("Post 모델 접근", () => {
 
     it("게시글를 삭제한다.", async () => {
         const post = await Post.create(tempPost);
-        const deletedPost = await Post.delete(post._id.toString());
+        const deletedPost = await Post.deletePost(post._id.toString());
         expect(deletedPost?.title).toEqual("여름");
         expect(deletedPost?.content).toEqual("너무덥다.");
     });

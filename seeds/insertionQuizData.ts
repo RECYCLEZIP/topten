@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import mongoose from "mongoose";
 import "dotenv/config";
-import { QuizModel } from "../src/db/quiz/quiz.schema";
+import { QuizModel } from "../src/db";
 
 interface Result {
     date: Date;

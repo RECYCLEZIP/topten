@@ -1,9 +1,13 @@
-import { Post } from "@src/db";
-import { IPost, IUser } from "@src/models/interface";
-import { PostService } from "@src/service/post.service";
-import { UserService } from "@src/service/user.service";
+import { Post } from "@src/repository";
+import { PostService } from "@src/service";
+import { UserService } from "@src/service";
 import { RequestError } from "@src/middlewares/errorHandler";
+import { IComment, IPost, IUser } from "@src/models/interface";
 import { STATUS_400_BADREQUEST, STATUS_404_NOTFOUND } from "@src/utils/statusCode";
+
+interface ITestComment extends IComment {
+    _id?: string;
+}
 
 const tempPost: IPost = {
     title: "게시글 제목",
@@ -43,8 +47,24 @@ describe("POSTS SERVICE LOGIC", () => {
         expect(createdPost.author).toHaveProperty("username");
     });
 
+    it("COMMENT를 생성한다.", async () => {
+        Post.findById = jest
+            .fn()
+            .mockResolvedValue({ save: jest.fn(), comments: { push: jest.fn() } });
+        const createdUser = await UserService.addUser(tempUser);
+        const createdPost = await PostService.addPost(createdUser._id, tempPost);
+        const commentInfo = await PostService.addComment(
+            createdUser._id.toString(),
+            createdPost._id.toString(),
+            {
+                content: "댓글생성테스트",
+            } as IComment,
+        );
+        expect(commentInfo.content).toEqual("댓글생성테스트");
+    });
+
     it("POSTS를 수정한다.", async () => {
-        const spyFn = jest.spyOn(Post, "update");
+        const spyFn = jest.spyOn(Post, "updatePost");
         const createdUser = await UserService.addUser(tempUser);
         const newPost = await PostService.addPost(createdUser._id, tempPost);
         const updatedPost = await PostService.updatePost(newPost._id.toString(), {
@@ -56,11 +76,40 @@ describe("POSTS SERVICE LOGIC", () => {
         expect(updatedPost.content).toEqual("내용 수정");
     });
 
+    it("COMMENT를 수정한다.", async () => {
+        Post.updateComment = jest.fn().mockResolvedValue(true);
+        const spyFn = jest.spyOn(Post, "updateComment");
+        const createdComment = await PostService.updateComment("postId", "commentId", {
+            content: "내용 수정",
+        });
+        expect(spyFn).toBeCalledTimes(1);
+        expect(createdComment).toBeTruthy();
+    });
+
     it("POSTS를 삭제한다.", async () => {
-        const spyFn = jest.spyOn(Post, "delete");
+        const spyFn = jest.spyOn(Post, "deletePost");
         const createdUser = await UserService.addUser(tempUser);
         const targetPost = await PostService.addPost(createdUser._id, tempPost);
         const deleteResult = await PostService.deletePost(targetPost._id.toString());
+        expect(spyFn).toBeCalledTimes(1);
+        expect(deleteResult.message).toBe("삭제가 완료되었습니다.");
+    });
+
+    it("COMMENT를 삭제한다.", async () => {
+        const spyFn = jest.spyOn(Post, "deleteComment");
+        const createdUser = await UserService.addUser(tempUser);
+        const createdPost = await PostService.addPost(createdUser._id, tempPost);
+        const createdComment: ITestComment = await PostService.addComment(
+            createdUser._id,
+            createdPost._id.toString(),
+            {
+                content: "테스트",
+            } as IComment,
+        );
+        const deleteResult = await PostService.deleteComment(
+            createdPost._id.toString(),
+            createdComment._id as string,
+        );
         expect(spyFn).toBeCalledTimes(1);
         expect(deleteResult.message).toBe("삭제가 완료되었습니다.");
     });
@@ -112,8 +161,32 @@ describe("POSTS SERVICE ERROR HANDLING", () => {
         }
     });
 
+    it("COMMENT 생성 시 게시글을 찾지 못하면 에러가 발생한다.", async () => {
+        UserService.getByUser = jest.fn().mockResolvedValue(true);
+        Post.findById = jest.fn().mockResolvedValue(null);
+        try {
+            await PostService.addComment("userId", "postId", { content: "테스트" } as IComment);
+        } catch (err: any) {
+            expect(err).toBeInstanceOf(RequestError);
+            expect(err.status).toBe(STATUS_400_BADREQUEST);
+            expect(err.message).toBe("게시글 정보를 찾을 수 없습니다.");
+        }
+    });
+
+    it("COMMENT 생성 시 유저를 찾지 못하면 에러가 발생한다.", async () => {
+        UserService.getByUser = jest.fn().mockResolvedValue(null);
+        Post.findById = jest.fn().mockResolvedValue(true);
+        try {
+            await PostService.addComment("userId", "postId", { content: "테스트" } as IComment);
+        } catch (err: any) {
+            expect(err).toBeInstanceOf(RequestError);
+            expect(err.status).toBe(STATUS_400_BADREQUEST);
+            expect(err.message).toBe("로그인 사용자를 찾을 수 없습니다.");
+        }
+    });
+
     it("POSTS 수정 시 게시글을 찾을 수 없으면 에러가 발생한다.", async () => {
-        Post.update = jest.fn().mockResolvedValue(null);
+        Post.updatePost = jest.fn().mockResolvedValue(null);
         try {
             await PostService.updatePost("id", tempPost);
         } catch (err: any) {
@@ -123,8 +196,19 @@ describe("POSTS SERVICE ERROR HANDLING", () => {
         }
     });
 
+    it("COMMENT 수정 시 댓글을 찾을 수 없으면 에러가 발생한다.", async () => {
+        Post.updateComment = jest.fn().mockResolvedValue(null);
+        try {
+            await PostService.updateComment("postId", "commentId", { content: "댓글에러테스트" });
+        } catch (err: any) {
+            expect(err).toBeInstanceOf(RequestError);
+            expect(err.status).toBe(STATUS_400_BADREQUEST);
+            expect(err.message).toBe("해당 댓글을 찾을 수 없습니다.");
+        }
+    });
+
     it("POSTS 삭제 시 게시글을 찾을 수 없으면 에러가 발생한다.", async () => {
-        Post.delete = jest.fn().mockResolvedValue(null);
+        Post.deletePost = jest.fn().mockResolvedValue(null);
         try {
             await PostService.deletePost("id");
         } catch (err: any) {
@@ -134,8 +218,8 @@ describe("POSTS SERVICE ERROR HANDLING", () => {
         }
     });
 
-    it("POSTS의 댓글 삭제 시 댓글을 찾을 수 없으면 에러가 발생한다.", async () => {
-        Post.pullComment = jest.fn().mockResolvedValue(null);
+    it("COMMENT 삭제 시 댓글을 찾을 수 없으면 에러가 발생한다.", async () => {
+        Post.deleteComment = jest.fn().mockResolvedValue(null);
         try {
             await PostService.deleteComment("id", "postId");
         } catch (err: any) {

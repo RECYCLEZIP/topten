@@ -1,4 +1,4 @@
-import { BinsModel } from "@src/db/map/bins.schema";
+import { BinsModel } from "@src/db";
 
 export class Bins {
     static async findLocation(

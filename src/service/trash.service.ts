@@ -1,10 +1,10 @@
 import axios from "axios";
-import { Trash } from "@src/db";
+import { Trash } from "@src/repository";
 import { createAiResult } from "@src/utils/createAiResult";
 import { createFilterQuery } from "@src/utils/createQuery";
-import { RequestError } from "@src/middlewares/errorHandler";
 import { FilterQuery, ITrash } from "@src/models/interface";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
+import { RequestError } from "@src/middlewares/errorHandler";
 
 export class TrashService {
     static async getTrashList(query: FilterQuery) {

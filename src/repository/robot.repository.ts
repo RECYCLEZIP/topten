@@ -1,4 +1,4 @@
-import { RobotModel } from "@src/db/map/robot.schema";
+import { RobotModel } from "@src/db";
 import { GeoQuery } from "@src/models/interface";
 
 export class Robot {

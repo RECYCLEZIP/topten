@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import mongoose from "mongoose";
 import "dotenv/config";
-import { BinsModel } from "../src/db/map/bins.schema";
+import { BinsModel } from "../src/db";
 
 interface Bins {
     region: string;

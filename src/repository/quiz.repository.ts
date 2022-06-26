@@ -1,4 +1,4 @@
-import { QuizModel } from "@src/db/quiz/quiz.schema";
+import { QuizModel } from "@src/db";
 import { Result } from "@src/models/interface";
 
 export class Quiz {
