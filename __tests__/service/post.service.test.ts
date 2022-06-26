@@ -76,6 +76,16 @@ describe("POSTS SERVICE LOGIC", () => {
         expect(updatedPost.content).toEqual("내용 수정");
     });
 
+    it("COMMENT를 수정한다.", async () => {
+        Post.updateComment = jest.fn().mockResolvedValue(true);
+        const spyFn = jest.spyOn(Post, "updateComment");
+        const createdComment = await PostService.updateComment("postId", "commentId", {
+            content: "내용 수정",
+        });
+        expect(spyFn).toBeCalledTimes(1);
+        expect(createdComment).toBeTruthy();
+    });
+
     it("POSTS를 삭제한다.", async () => {
         const spyFn = jest.spyOn(Post, "deletePost");
         const createdUser = await UserService.addUser(tempUser);
@@ -183,6 +193,17 @@ describe("POSTS SERVICE ERROR HANDLING", () => {
             expect(err).toBeInstanceOf(RequestError);
             expect(err.status).toBe(STATUS_400_BADREQUEST);
             expect(err.message).toBe("해당 게시글을 찾을 수 없습니다.");
+        }
+    });
+
+    it("COMMENT 수정 시 댓글을 찾을 수 없으면 에러가 발생한다.", async () => {
+        Post.updateComment = jest.fn().mockResolvedValue(null);
+        try {
+            await PostService.updateComment("postId", "commentId", { content: "댓글에러테스트" });
+        } catch (err: any) {
+            expect(err).toBeInstanceOf(RequestError);
+            expect(err.status).toBe(STATUS_400_BADREQUEST);
+            expect(err.message).toBe("해당 댓글을 찾을 수 없습니다.");
         }
     });
 

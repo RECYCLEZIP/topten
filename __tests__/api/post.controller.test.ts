@@ -70,6 +70,23 @@ describe("POST API", () => {
         expect(res.body._id === posts._id.toString()).toBe(true);
     });
 
+    it("PUT COMMENT/ 댓글을 수정한다.", async () => {
+        const createdUser = await UserService.addUser(tempUser);
+        const accessToken = createAccessToken(createdUser._id);
+        const createdPost = await PostService.addPost(createdUser._id, tempPost);
+        await PostService.addComment(createdUser._id.toString(), createdPost._id.toString(), {
+            content: "댓글생성",
+        } as IComment);
+        const { comments }: any = await PostService.getByPost(createdPost._id.toString());
+        const res = await request(app)
+            .put(`/posts/${createdPost._id}/comments/${comments[0]._id}`)
+            .set("Authorization", `Bearer ${accessToken}`)
+            .send({ content: "댓글수정테스트" });
+        expect(res.status).toBe(STATUS_200_OK);
+        expect(res.body.comments[0]).toHaveProperty("author");
+        expect(res.body.comments[0].content).toEqual("댓글수정테스트");
+    });
+
     it("POST DELETE/ 게시글을 삭제한다.", async () => {
         const createdUser = await UserService.addUser(tempUser);
         const accessToken = createAccessToken(createdUser._id);
