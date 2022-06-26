@@ -203,6 +203,24 @@ export const CommentInput = styled.input`
   }
 `;
 
+export const CommentEditInput = styled.input`
+  width: 100%;
+
+  /* margin-right: 1rem; */
+  padding: 0.5rem;
+
+  font-size: 0.53rem;
+
+  background: #ededed;
+  border: 1px solid #cdc9c9;
+  border-radius: 0.3rem;
+
+  &:focus {
+    background: #e7e7e7;
+    outline: none;
+  }
+`;
+
 export const CommentButtonWrapper = styled.div`
   flex-grow: 1;
   align-self: center;
