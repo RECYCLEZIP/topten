@@ -156,21 +156,21 @@ postController.put(
             #swagger.security = [{
                "bearerAuth": []
             }]
-            #swagger.parameters['id'] = {
+            #swagger.parameters['postId'] = {
+                in: 'path',
+                description: '수정하고자 하는 댓글이 달려있는 게시글 ID',
+                required: true,
+                schema: { $ref: "#/definitions/PostId" }
+            }
+            #swagger.parameters['commentId'] = {
                 in: 'path',
                 description: '수정하고자 하는 댓글의 ID',
                 required: true,
                 schema: { $ref: "#/definitions/CommentId" }
             }
-            #swagger.parameters['body'] = {
-                in: 'body',
-                description: '수정하고자 하는 댓글의 정보를 body에 담아 요청',
-                required: true,
-                schema: { $ref: "#/definitions/CommentPutRequest" }
-            }
             #swagger.responses[200] = {
             schema: { "$ref": "#/definitions/CommentPutResponse" },
-            description: "수정된 댓글 정보 반환" } */
+            description: "수정된 댓글 정보를 포함한 게시글 정보 반환" } */
 
         const { postId, commentId } = req.params;
         const updatedComment = await PostService.updateComment(postId, commentId, req.body);
