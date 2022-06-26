@@ -20,6 +20,7 @@ function Rank() {
   const isLogin = useRecoilValue(loginState);
   const [open, setOpen] = useState(false);
   const [rankList, setRankList] = useState<RankDataType[]>([]);
+  const [loading, setLoading] = useState(false);
   const medal = ["🥇", "🥈", "🥉"];
 
   const goGame = () => {
@@ -35,12 +36,17 @@ function Rank() {
       try {
         const res = await getData("users/rank");
         setRankList(res.data);
+        setLoading(true);
       } catch {
         console.log("get data request fail");
       }
     };
     getRank();
   }, []);
+
+  if (!loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <RankContainer>
