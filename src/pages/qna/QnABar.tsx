@@ -14,12 +14,15 @@ import {
   BarText,
   BarRedText,
   SearchContainer,
+  SearchSelect,
   SearchInput,
 } from "../../styles/qnaStyles/QnAStyle";
 
 function QnABar() {
   const [qnaAllList, setQnaAllList] = useRecoilState(QnAListState);
   const [qnaSearchList, setQnaSearchList] = useRecoilState(QnASearchState);
+
+  const [searchSelect, setSearchSelect] = useState("title");
 
   const [searchValue, setSearchValue] =
     useRecoilState<string>(QnASearchValueState);
@@ -34,6 +37,10 @@ function QnABar() {
     }
   };
 
+  const onChangeSelect = (e: any) => {
+    setSearchSelect(e.target.value);
+  };
+
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
@@ -44,8 +51,18 @@ function QnABar() {
       if (searchValue !== "") {
         // 검색어 있을 시
         const searchResult = qnaAllList.filter((qna) => {
-          console.log(searchValue);
-          return qna.title.includes(searchValue);
+          console.log(qna);
+
+          if (searchSelect === "title") {
+            return qna.title.includes(searchValue);
+          } else if (searchSelect === "content") {
+            return qna.content.includes(searchValue);
+          } else if (searchSelect === "all") {
+            return (
+              qna.title.includes(searchValue) ||
+              qna.content.includes(searchValue)
+            );
+          }
         });
 
         console.log(searchResult);
@@ -61,7 +78,6 @@ function QnABar() {
 
   useEffect(() => {
     getList();
-    // enterkey();
   }, []);
 
   return (
@@ -74,19 +90,22 @@ function QnABar() {
         페이지 <BarRedText>1</BarRedText>
         /32
       </BarText>
-      {/* </div> */}
       <SearchContainer>
-        {/* <SearchWrapper> */}
+        <SearchSelect onChange={onChangeSelect}>
+          <option value="title" selected={true}>
+            제목
+          </option>
+          <option value="content">내용</option>
+          <option value="all">제목+내용</option>
+        </SearchSelect>
         <SearchInput
           id="search"
           type="text"
           placeholder="검색어를 입력해주세요."
           value={searchValue}
           onKeyPress={onKeyPressEnter}
-          // onKeyPress={if( event.keyCode==13 ){addFunc();}}
           onChange={onSearchChange}
         ></SearchInput>
-        {/* </SearchWrapper> */}
       </SearchContainer>
     </BarSection>
   );
