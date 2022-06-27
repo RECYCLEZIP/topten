@@ -17,7 +17,7 @@ build:
 
 test:
     stage: test
-    image: node:15-buster
+    image: node:16-buster
     coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
     script:
         - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
