@@ -1,15 +1,14 @@
 import styled from "styled-components";
 import { Button } from "../ButtonStyles";
-import { img as Img } from "../../assets/imgImport";
 
-export const GameContainer = styled.div`
+export const GameContainer = styled.div<{ Img: string }>`
   padding: 3.3rem 1rem 0.1rem;
   margin: 0 auto;
   width: auto;
   height: auto;
 
-  background-image: url(${Img.gameBackground});
-  background-size: cover;
+  background-image: url(${(props) => props.Img});
+  background-size: 100% 100%;
 
   @media (min-width: 768px) {
     width: 60vw;
@@ -27,12 +26,12 @@ export const RankContainer = styled.div`
 `;
 
 export const DragTrashContainer = styled.div`
-  height: 50vh;
+  height: 65vh;
   position: relative;
 
   @media (min-width: 768px) {
     width: 60vw;
-    height: 18rem;
+    height: 16rem;
   }
 `;
 

@@ -30,7 +30,6 @@ export const initialState = {
     WIN: "win",
   },
   timeLeft: 30,
-  tree: { small: img.tree.small, middle: img.tree.middle, big: img.tree.big },
   gameLevel: 1,
 };
 
@@ -158,7 +157,7 @@ function Game() {
       )}
       {gameState === initialState.gameState.PLAYING && (
         <DragDropContext onDragEnd={onDragEnd}>
-          <GameContainer>
+          <GameContainer Img={img.levelImg[level - 1]}>
             <GameBar>
               <GameLevel>STAGE {level}</GameLevel>
               <GameBox>
