@@ -15,13 +15,14 @@ import {
 import { RankDataType } from "../../types/Game";
 import GoGameModal from "./GoGameModal";
 
+const medal = ["🥇", "🥈", "🥉"];
+
 function Rank() {
   const navigate = useNavigate();
   const isLogin = useRecoilValue(loginState);
   const [open, setOpen] = useState(false);
   const [rankList, setRankList] = useState<RankDataType[]>([]);
   const [loading, setLoading] = useState(false);
-  const medal = ["🥇", "🥈", "🥉"];
 
   const goGame = () => {
     if (isLogin) {
