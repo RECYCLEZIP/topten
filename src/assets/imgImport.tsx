@@ -1,5 +1,5 @@
 import seoul from "./img/seoul.jpg";
-import mainAi from "./img/ai.png";
+import mainAi from "./img/mainAi.png";
 import QuizLogo from "./img/QuizLogo.png";
 import QuizLogoB from "./img/QuizLogoB.png";
 import bin from "./img/bins.png";
