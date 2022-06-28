@@ -22,6 +22,7 @@ import {
   PostButton,
   PostCancleButton,
 } from "../../styles/qnaStyles/QnAPostStyle";
+import { customTostify } from "../../components/customTostify";
 
 function QnAPost() {
   const navigate = useNavigate();
@@ -44,8 +45,8 @@ function QnAPost() {
       }).then((res) => console.log(res));
 
       navigate(`/qna`);
-    } catch (err) {
-      console.log(err);
+    } catch (err: any) {
+      customTostify("error", err.message);
     }
   };
 

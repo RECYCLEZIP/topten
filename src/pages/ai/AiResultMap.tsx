@@ -14,6 +14,7 @@ import {
 import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
 
 import { AiContentTitle, DetailTitle } from "../../styles/aiStyles/AiStyle";
+import { customTostify } from "../../components/customTostify";
 
 function AiResultMap() {
   const [robot, setRobot] = useRecoilState<RobotType[]>(RobotState);
@@ -56,9 +57,10 @@ function AiResultMap() {
       );
 
       setRobot(res.data);
-    } catch (e: any) {
-      console.log(e);
-      setError(e?.response?.data?.message);
+    } catch (err: any) {
+      console.log(err);
+      customTostify("error", err.message);
+      setError(err?.response?.data?.message);
     }
   };
 

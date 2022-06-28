@@ -20,6 +20,7 @@ import {
 import { StyledInput } from "../../styles/mapStyles/MapMuiStyle";
 
 import { getData } from "../../api";
+import { customTostify } from "../../components/customTostify";
 
 // 검색어가 항목에 없을 시 문구 style
 const useStyles = makeStyles({
@@ -51,8 +52,12 @@ function MapSearch() {
 
   // 구 옵션
   const getRegionOptions = async () => {
-    const res = await getData(`bins/locations`);
-    setRegionOptions(res.data.uniqueRegionList);
+    try {
+      const res = await getData(`bins/locations`);
+      setRegionOptions(res.data.uniqueRegionList);
+    } catch (err: any) {
+      customTostify("error", err.message);
+    }
   };
 
   useEffect(() => {

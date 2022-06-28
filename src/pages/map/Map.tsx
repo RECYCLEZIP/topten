@@ -24,6 +24,7 @@ import {
   MapTitle,
   MapBinSection,
 } from "../../styles/mapStyles/mapStyle";
+import { customTostify } from "../../components/customTostify";
 
 function Map() {
   const [bin, setBin] = useRecoilState<BinTypes[]>(BinState);
@@ -51,8 +52,8 @@ function Map() {
         `bins?search=${regionValue}&category=${roadsValue}&limit=5`,
       );
       setBin(res.data);
-    } catch (e) {
-      console.log(e);
+    } catch (err: any) {
+      customTostify("error", err.message);
     }
   };
   useEffect(() => {

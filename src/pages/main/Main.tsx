@@ -9,6 +9,7 @@ import CategorySection from "./CategorySection";
 import MapSection from "./MapSection";
 import NewsSection from "./NewsSection";
 import QuizSection from "./QuizSection";
+import { customTostify } from "../../components/customTostify";
 
 function Main() {
   // main page component
@@ -20,8 +21,8 @@ function Main() {
     try {
       const res = await getData(`news`);
       setNews(res.data);
-    } catch {
-      console.log("Error: data get request fail");
+    } catch (err: any) {
+      customTostify("error", err.message);
     }
     setIsLoading(true);
   };

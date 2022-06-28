@@ -28,7 +28,7 @@ import {
   viewAnswerState,
 } from "../../stores/atoms";
 import { useEffect } from "react";
-import { toast } from "react-toastify";
+import { customTostify } from "../../components/customTostify";
 
 //quiz question card component
 function QuestionCard() {
@@ -45,17 +45,6 @@ function QuestionCard() {
     setCurrentQuiz([quizzes[currentPage]]);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  const alert = () =>
-    toast.warn("모든 문제를 풀어주세요!", {
-      position: "top-center",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
 
   useEffect(() => {
     initialization();
@@ -92,7 +81,7 @@ function QuestionCard() {
           onClick={() => {
             if (currentPage + 1 === 4) {
               if (toPostAnswer.length !== 4) {
-                return alert();
+                return customTostify("warn", "모든 문제를 풀어주세요!");
               }
               navigate("/quizzes/result");
               setCurrentPage(-1);

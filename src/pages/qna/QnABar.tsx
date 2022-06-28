@@ -17,6 +17,7 @@ import {
   SearchSelect,
   SearchInput,
 } from "../../styles/qnaStyles/QnAStyle";
+import { customTostify } from "../../components/customTostify";
 
 function QnABar() {
   const [qnaAllList, setQnaAllList] = useRecoilState(QnAListState);
@@ -32,8 +33,8 @@ function QnABar() {
   const getList = async () => {
     try {
       await getData(`posts`).then((res) => setQnaAllList(res.data));
-    } catch (err) {
-      console.log(err);
+    } catch (err: any) {
+      customTostify("error", err.message);
     }
   };
 
