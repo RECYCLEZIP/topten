@@ -14,7 +14,7 @@ declare global {
   }
 }
 
-function MapTest({
+function MapContent({
   type,
   props,
   propsSelected,
@@ -168,4 +168,4 @@ function MapTest({
   );
 }
 
-export default MapTest;
+export default MapContent;

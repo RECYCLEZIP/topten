@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 
-import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 import { Viewer } from "@toast-ui/react-editor";
 
 import { getData, delData } from "../../api";
@@ -43,7 +42,7 @@ function QnADescription() {
 
   const [qna, setQna] = useState<QnAType>();
 
-  const get = async () => {
+  const getQnA = async () => {
     try {
       await getData(`posts/${id}`).then((res) => setQna(res.data));
     } catch (err) {
@@ -66,7 +65,7 @@ function QnADescription() {
   };
 
   useEffect(() => {
-    get();
+    getQnA();
   }, []);
 
   return (

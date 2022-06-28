@@ -39,7 +39,7 @@ function QnAList() {
 
   const offset = (qnaPage - 1) * 5;
 
-  const date = (prop: any) => {
+  const date = (prop: string) => {
     return prop.split("T")[0].split("-").join(".");
   };
 
