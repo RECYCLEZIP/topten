@@ -24,9 +24,8 @@ describe("POSTS SERVICE LOGIC", () => {
     it("POSTS 목록을 반환한다.", async () => {
         Post.find = jest.fn().mockResolvedValue([tempPost]);
         const postList = await PostService.getPostList({});
-        expect(postList).toHaveLength(1);
-        expect(postList[0].title).toEqual("게시글 제목");
-        expect(postList[0].content).toEqual("게시글 내용");
+        expect(postList.data[0].title).toEqual("게시글 제목");
+        expect(postList.data[0].content).toEqual("게시글 내용");
     });
 
     it("단일 POSTS를 반환한다.", async () => {

@@ -1316,95 +1316,104 @@
       "example": "?search={}&page={ID}&limit={5}"
     },
     "PostGetResponse": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "_id": {
-            "type": "string",
-            "example": "62b8380b0c97c08eb8a7d122"
-          },
-          "title": {
-            "type": "string",
-            "example": "게시글제목"
-          },
-          "author": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "number",
+          "example": 12
+        },
+        "data": {
+          "type": "array",
+          "items": {
             "type": "object",
             "properties": {
               "_id": {
                 "type": "string",
-                "example": "62b513e76ae88bc07ab1c6b5"
+                "example": "62b8380b0c97c08eb8a7d122"
               },
-              "email": {
+              "title": {
                 "type": "string",
-                "example": "test@test.com"
+                "example": "게시글제목"
               },
-              "username": {
+              "author": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "example": "62b513e76ae88bc07ab1c6b5"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "test@test.com"
+                  },
+                  "username": {
+                    "type": "string",
+                    "example": "테스트"
+                  },
+                  "topscore": {
+                    "type": "number",
+                    "example": 0
+                  },
+                  "__v": {
+                    "type": "number",
+                    "example": 0
+                  }
+                }
+              },
+              "content": {
                 "type": "string",
-                "example": "테스트"
+                "example": "게시글내용"
               },
-              "topscore": {
-                "type": "number",
-                "example": 0
+              "comments": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "author": {
+                      "type": "object",
+                      "properties": {
+                        "userId": {
+                          "type": "string",
+                          "example": "62b513e76ae88bc07ab1c6b5"
+                        },
+                        "username": {
+                          "type": "string",
+                          "example": "테스트"
+                        }
+                      }
+                    },
+                    "content": {
+                      "type": "string",
+                      "example": "댓글생성"
+                    },
+                    "_id": {
+                      "type": "string",
+                      "example": "62b838310c97c08eb8a7d129"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2022-06-26T10:42:57.599Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2022-06-26T10:42:57.599Z"
+                    }
+                  }
+                }
+              },
+              "createdAt": {
+                "type": "string",
+                "example": "2022-06-26T10:42:19.796Z"
+              },
+              "updatedAt": {
+                "type": "string",
+                "example": "2022-06-26T10:42:57.599Z"
               },
               "__v": {
                 "type": "number",
-                "example": 0
+                "example": 1
               }
             }
-          },
-          "content": {
-            "type": "string",
-            "example": "게시글내용"
-          },
-          "comments": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "author": {
-                  "type": "object",
-                  "properties": {
-                    "userId": {
-                      "type": "string",
-                      "example": "62b513e76ae88bc07ab1c6b5"
-                    },
-                    "username": {
-                      "type": "string",
-                      "example": "테스트"
-                    }
-                  }
-                },
-                "content": {
-                  "type": "string",
-                  "example": "댓글생성"
-                },
-                "_id": {
-                  "type": "string",
-                  "example": "62b838310c97c08eb8a7d129"
-                },
-                "createdAt": {
-                  "type": "string",
-                  "example": "2022-06-26T10:42:57.599Z"
-                },
-                "updatedAt": {
-                  "type": "string",
-                  "example": "2022-06-26T10:42:57.599Z"
-                }
-              }
-            }
-          },
-          "createdAt": {
-            "type": "string",
-            "example": "2022-06-26T10:42:19.796Z"
-          },
-          "updatedAt": {
-            "type": "string",
-            "example": "2022-06-26T10:42:57.599Z"
-          },
-          "__v": {
-            "type": "number",
-            "example": 1
           }
         }
       }

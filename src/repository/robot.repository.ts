@@ -2,7 +2,7 @@ import { RobotModel } from "@src/db";
 import { GeoQuery } from "@src/models/interface";
 
 export class Robot {
-    static async findLocation(geoQuery: GeoQuery) {
+    static findLocation(geoQuery: GeoQuery) {
         return RobotModel.find(geoQuery);
     }
 }
