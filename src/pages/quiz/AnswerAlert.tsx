@@ -10,7 +10,7 @@ import {
   viewAnswerState,
 } from "../../stores/atoms";
 import { postData } from "../../api";
-import { toast } from "react-toastify";
+import { customTostify } from "../../components/customTostify";
 
 function AnswerAlert() {
   const option = useRecoilValue(answerState);
@@ -21,41 +21,8 @@ function AnswerAlert() {
   const setOpenResult = useSetRecoilState(viewAnswerState);
   const [confirm, setConfirm] = useRecoilState(quizConfirmState);
 
-  const correct = () =>
-    toast.success("맞았습니다!", {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-    });
-
-  const notCorrect = () =>
-    toast.error("틀렸습니다!", {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-    });
-
-  const alert = () =>
-    toast.warn("답을 선택해주세요!", {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-    });
-
   const CheckAnswer = async () => {
-    if (option === "-1") return alert();
+    if (option === "-1") return customTostify("warn", "답을 선택해주세요!");
     setConfirm(true);
     try {
       const res = await postData(`quizzes/${currentQuiz._id}/submission`, {
@@ -63,9 +30,9 @@ function AnswerAlert() {
       });
       setIsCorrect(res.data.isCorrect);
       if (res.data.isCorrect) {
-        correct();
+        customTostify("success", "맞았습니다!");
       } else {
-        notCorrect();
+        customTostify("error", "틀렸습니다!");
       }
       setTimeout(() => {
         setOpenResult((cur) => !cur);
@@ -75,7 +42,7 @@ function AnswerAlert() {
         setToPostAnswer(answerList);
       }, 1000);
     } catch {
-      console.log("post data request fail");
+      customTostify("error", "채점 중 에러가 발생하였습니다.");
     }
   };
 

@@ -20,7 +20,7 @@ import {
 } from "../../styles/mainStyles/QuizStyle";
 import { img } from "../../assets/imgImport";
 import { CardText } from "../../styles/TextStyle";
-import { toast, ToastContainer } from "react-toastify";
+import { customTostify } from "../../components/customTostify";
 
 function WrongQuiz() {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ function WrongQuiz() {
       setCurrentQuiz([res.data]);
       setType(res.data.type);
     } catch {
-      console.log("data get request fail");
+      customTostify("error", "퀴즈 데이터를 불러오는데 실패했습니다.");
     }
     setLoading(true);
   };
@@ -55,7 +55,6 @@ function WrongQuiz() {
       <BackButton onClick={() => navigate("/")}>
         <BackIcon src={img.backPage} /> 뒤로 가기
       </BackButton>
-      <ToastContainer style={{ fontSize: "0.7rem" }} />
       <QuestionBox>
         <QuizImg src={currentQuiz[0].image} />
         <QuizQuestion>
