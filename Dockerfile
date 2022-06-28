@@ -9,6 +9,8 @@ COPY yarn.lock .
 ENV NODE_ENV production
 
 RUN apk --no-cache add --virtual builds-deps build-base python3
-RUN yarn install
+RUN yarn
 
 EXPOSE 5001
+
+CMD ["yarn", "start"]
