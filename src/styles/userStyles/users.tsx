@@ -9,6 +9,7 @@ export const UserContainer = styled.div`
     flex-direction: row;
   }
 `;
+
 export const UserPageImg = styled.img`
   width: 100%;
   height: 50vh;
@@ -36,6 +37,10 @@ export const RightContainer = styled.form`
   @media (min-width: 768px) {
     width: 35%;
   }
+`;
+
+export const LoginButton = styled(Button)`
+  margin-bottom: 0;
 `;
 
 export const RegisterButton = styled(Button)`

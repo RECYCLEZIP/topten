@@ -5,12 +5,12 @@ import { toast } from "react-toastify";
 import { useSetRecoilState } from "recoil";
 import { postData } from "../../api";
 import { loginState, userState } from "../../stores/atoms";
-import { Button } from "../../styles/ButtonStyles";
 import { TitleText } from "../../styles/TextStyle";
 import {
   LoginInput,
   RightContainer,
   RegisterButton,
+  LoginButton,
 } from "../../styles/userStyles/users";
 
 function Login() {
@@ -62,7 +62,7 @@ function Login() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       ></LoginInput>
-      <Button onClick={loginUser}>로그인</Button>
+      <LoginButton onClick={loginUser}>로그인</LoginButton>
       <RegisterButton onClick={() => navigate("/users/register")}>
         회원가입
       </RegisterButton>
