@@ -70,8 +70,8 @@ function Search() {
           onChange={onChangeSearch}
           placeholder="쓰레기 검색"
         />
-        {search !== "" &&
-          (isInputValue ? (
+        {search !== "" ? (
+          isInputValue ? (
             <ResetIcon
               src={img.x}
               alt="icon"
@@ -81,7 +81,10 @@ function Search() {
             ></ResetIcon>
           ) : (
             <ResetIcon src={img.loading} alt="icon"></ResetIcon>
-          ))}
+          )
+        ) : (
+          <ResetIcon visibility="hidden" />
+        )}
         <SearchButton type="submit">
           <SearchIcon style={{ fontSize: "1rem" }}></SearchIcon>
         </SearchButton>

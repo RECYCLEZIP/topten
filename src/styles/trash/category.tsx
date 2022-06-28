@@ -26,7 +26,7 @@ export const CategoryTitleContainer = styled.div`
 `;
 
 export const ItemListContainer = styled.div`
-  margin: 3% 15%;
+  margin: 1.5rem 1rem;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

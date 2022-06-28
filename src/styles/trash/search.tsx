@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const SearchBox = styled.form`
   height: 1rem;
+  width: 8.7rem;
   border: 1px solid black;
   border-radius: 1rem;
   display: flex;
@@ -12,15 +13,16 @@ export const SearchBox = styled.form`
 `;
 
 export const SearchText = styled.input`
-  font-size: 0.4rem;
+  font-size: 0.5rem;
   border: none;
   outline: none;
   margin: 0;
 `;
 
-export const ResetIcon = styled.img`
+export const ResetIcon = styled.img<{ visibility?: string }>`
   cursor: pointer;
   width: 1rem;
+  visibility: ${(props) => props.visibility};
 `;
 
 export const SearchButton = styled.button`
@@ -46,7 +48,7 @@ export const DropDownBox = styled.ul`
 
 export const DropDownItem = styled.li`
   padding: 0 16px;
-  font-size: 0.4rem;
+  font-size: 0.5rem;
   font-weight: 0 !important;
   display: flex;
   align-items: center;
