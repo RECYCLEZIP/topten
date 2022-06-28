@@ -26,7 +26,7 @@ export const RankContainer = styled.div`
 `;
 
 export const DragTrashContainer = styled.div`
-  height: 65vh;
+  height: 50vh;
   position: relative;
 
   @media (min-width: 768px) {
@@ -169,11 +169,22 @@ export const NumberText = styled.span<{ font?: string }>`
 export const GameBar = styled.div`
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: space-around;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 export const GameLevel = styled.span`
   color: white;
+  font-size: 0.8rem;
+
+  @media (min-width: 768px) {
+    margin-right: 0.3rem;
+    width: 4rem;
+  }
 `;
 
 export const GameBox = styled.div`
@@ -181,8 +192,16 @@ export const GameBox = styled.div`
   justify-content: space-between;
   padding: 0.2rem 0.4rem;
   color: white;
+  font-size: 0.8rem;
   background: rgba(255, 255, 255, 0.16);
   border: 2px solid white;
   border-radius: 0.5rem;
-  width: 30%;
+  width: 40%;
+`;
+
+export const GameDescription = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.3rem;
+  width: 100%;
 `;
