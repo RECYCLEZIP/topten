@@ -263,8 +263,3 @@ export const AiGuideImg = styled.img`
 export const AiGuideTitle = styled(AiContentText)`
   color: #9eacba;
 `;
-
-export const DetailTitle = styled.div`
-  color: #9eacba;
-  font-size: 0.53rem;
-`;

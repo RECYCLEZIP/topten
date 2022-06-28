@@ -40,6 +40,7 @@ function QuizResult() {
         type: currentQuiz[0].type,
         answers: toPostAnswer,
       });
+      console.log(res.data);
       setResults(res.data.result);
       setScore(res.data.score);
     } catch {
