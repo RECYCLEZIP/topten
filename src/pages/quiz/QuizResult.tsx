@@ -66,7 +66,9 @@ function QuizResult() {
             <ResultList>
               <ResultText>{index + 1}번</ResultText>
               {result.isCorrect ? (
-                <ResultText width="70%">맞았습니다! </ResultText>
+                <ResultText width="70%" color="#21a663">
+                  맞았습니다!{" "}
+                </ResultText>
               ) : (
                 <ResultText width="70%" color="#ce1b1b">
                   틀렸습니다!
