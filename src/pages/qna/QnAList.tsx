@@ -49,8 +49,8 @@ function QnAList() {
   }, [qnaAllList]);
 
   useEffect(() => {
-    const len = (qnaList?.length);
-    console.log(len)
+    const len = qnaList?.length;
+    console.log(len);
     setQnaTotal(len);
   }, [qnaList]);
 
@@ -75,7 +75,7 @@ function QnAList() {
       <BlackHr />
       <ListTable>
         <ListTbody>
-          {qnaAllList.slice(offset, offset + 5).map((qna: any, idx: any) => (
+          {qnaList?.slice(offset, offset + 5).map((qna: any, idx: any) => (
             <>
               {qnaList?.length === 0 ? (
                 <tr>
@@ -84,7 +84,7 @@ function QnAList() {
               ) : (
                 <ListTr>
                   {/* 게시글 번호 내림차순으로 */}
-                  <ListNumber>{qnaAllList.length - idx}</ListNumber>
+                  <ListNumber>{qnaList.length - idx}</ListNumber>
                   <ListTitle onClick={() => navigate(`/qna/${qna._id}`)}>
                     {qna?.title}
                   </ListTitle>
