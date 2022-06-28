@@ -7,6 +7,8 @@ import {
   QnAListState,
   QnASearchState,
   QnASearchValueState,
+  QnAPageState,
+  QnANumPagesState,
 } from "../../stores/atoms";
 
 import {
@@ -28,6 +30,9 @@ function QnABar() {
     useRecoilState<string>(QnASearchValueState);
 
   const resetQnASearch = useResetRecoilState(QnASearchState);
+
+  const [qnaPage, setQnaPage] = useRecoilState(QnAPageState);
+  const [numPages, setNumPages] = useRecoilState(QnANumPagesState);
 
   const getList = async () => {
     try {
@@ -87,8 +92,7 @@ function QnABar() {
         전체 <BarRedText>{qnaAllList.length}</BarRedText>건
       </BarText>
       <BarText>
-        페이지 <BarRedText>1</BarRedText>
-        /32
+        페이지 <BarRedText>{qnaPage}</BarRedText>/{numPages}
       </BarText>
       <SearchContainer>
         <SearchSelect onChange={onChangeSelect}>
