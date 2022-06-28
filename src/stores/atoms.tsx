@@ -229,6 +229,11 @@ export const QnALengthState = atom({
   default: 0,
 });
 
+export const QnANumPagesState = atom({
+  key: "QnANumPagesState",
+  default: 0,
+});
+
 export const RobotState = atom<RobotType[]>({
   key: "RobotState",
   default: [
