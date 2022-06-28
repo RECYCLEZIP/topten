@@ -75,10 +75,11 @@ function UserPage() {
     setIsEdit(false);
   }, []);
 
+  console.log(user);
   return (
     <UserPageContainer>
       {isEdit ? (
-        <UserEdit />
+        <UserEdit user={user} />
       ) : (
         <NameText>{user.username}님 안녕하세요!</NameText>
       )}

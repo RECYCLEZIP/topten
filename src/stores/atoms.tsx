@@ -246,3 +246,8 @@ export const RobotSelectedState = atom<(number | undefined)[]>({
   key: "RobotSelectedState",
   default: [0, undefined],
 });
+
+export const userEditState = atom<boolean>({
+  key: "userEditState",
+  default: false,
+});

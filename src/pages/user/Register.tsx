@@ -98,7 +98,7 @@ function Register() {
             onChange={(e) => setUsername(e.target.value)}
           ></RegisterInput>
           {username.length < 3 && (
-            <CautionText>닉네임은 3글자 이상입니다.</CautionText>
+            <CautionText>닉네임은 3자리 이상입니다.</CautionText>
           )}
         </RegisterInputContainer>
       </EachInput>
