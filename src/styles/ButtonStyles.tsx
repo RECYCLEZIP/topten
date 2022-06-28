@@ -6,6 +6,7 @@ export const Button = styled.button`
   background-color: #21a663;
   border: none;
   border-radius: 2rem;
+  margin-bottom: 0.5rem;
 
   color: white;
   font-size: 0.6rem;

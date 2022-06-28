@@ -18,7 +18,7 @@ import { useNavigate, useParams } from "react-router";
 
 function CategoryItems() {
   const params = useParams().kind;
-  const kind = useRecoilValue(categoryKindState);
+  const [kind, setKind] = useRecoilState(categoryKindState);
   const [trashList, setTrashList] = useRecoilState(categoryItemState);
   const [page, setPage] = useRecoilState(categoryPageState);
   const observerRef = useRef<IntersectionObserver>();
@@ -33,6 +33,12 @@ function CategoryItems() {
       console.log("Error: data get request fail");
     }
   }, [kind, page, setTrashList]);
+
+  useEffect(() => {
+    setKind("");
+    setPage("");
+  }, []);
+
   useEffect(() => {
     getTrashList();
   }, [getTrashList]);

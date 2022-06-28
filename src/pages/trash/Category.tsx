@@ -47,7 +47,7 @@ function Category() {
           전체 보기
         </CategorySubTitle>
       </CategoryTitleContainer>
-      <CategoryList backColor="#eaf0eb" />
+      <CategoryList backColor="#eaf0eb" padding="4.2rem" />
       <TitleContainer>
         <CategoryTitle>목록</CategoryTitle>
         <Search />

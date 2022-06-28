@@ -4,22 +4,23 @@ export const Container = styled.div`
   margin: 2% 8% 0;
   display: flex;
   align-items: center;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
+  flex-wrap: wrap;
 `;
 
 export const NewsText = styled.span`
   font-size: 0.6rem;
   text-align: left;
   width: 5.2rem;
+
+  @media (max-width: 520px) {
+    margin-bottom: 0.5rem;
+  }
 `;
 
 export const NewsTitle = styled.a`
   display: flex;
   text-decoration: none;
-  font-size: 0.6rem;
+  font-size: 0.5rem;
   color: #9eacba;
   height: 100%;
 `;
@@ -30,5 +31,5 @@ export const NewsContainer = styled.div`
 `;
 
 export const AutoSlide = styled.div`
-  height: 0.83rem;
+  height: 0.8rem;
 `;

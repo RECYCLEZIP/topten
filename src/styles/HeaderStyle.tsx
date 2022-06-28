@@ -7,7 +7,8 @@ export const Nav = styled.div<{ isToggled: boolean }>`
   align-items: center;
   justify-content: space-between;
   padding: 0.3rem 0.5rem;
-  height: 2rem;
+  padding-left: 0;
+  height: 1.7rem;
   background-color: white;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
   position: fixed;
@@ -18,7 +19,7 @@ export const Nav = styled.div<{ isToggled: boolean }>`
 `;
 
 export const Logo = styled.img`
-  height: 80%;
+  height: 90%;
   cursor: pointer;
 `;
 
@@ -27,8 +28,8 @@ export const Menu = styled.div<{ isToggled: boolean }>`
   flex-direction: column;
   background-color: white;
   height: 100%;
-  margin-top: 2.6rem;
-  width: 30%;
+  margin-top: 2.31rem;
+  width: 6.5rem;
   position: fixed;
   top: 0;
   right: 0;
@@ -48,7 +49,7 @@ export const Menu = styled.div<{ isToggled: boolean }>`
 
   animation: fadeIn 0.3s ease-in-out;
 
-  @media (min-width: 950px) {
+  @media (min-width: 1000px) {
     all: unset;
     display: flex;
     flex-direction: row;
@@ -63,7 +64,7 @@ export const Link = styled(RouterLink)<{ border?: string }>`
   margin: 0 0.5rem;
   text-align: left;
   border-bottom: ${(props) => props.border};
-  @media (min-width: 950px) {
+  @media (min-width: 1000px) {
     display: flex;
     flex-direction: row;
     text-align: center;
@@ -74,7 +75,10 @@ export const Link = styled(RouterLink)<{ border?: string }>`
 `;
 
 export const IconMenu = styled.div`
-  @media (min-width: 950px) {
+  display: flex;
+  align-items: center;
+
+  @media (min-width: 1000px) {
     display: none;
   }
 `;

@@ -34,11 +34,11 @@ export const QuestionBox = styled.div<{ width?: string }>`
 
 export const QuizQuestion = styled.div<{ width?: string }>`
   text-align: right;
-  width: ${(props) => (props.width ? `${props.width}%` : "40%")};
+  width: ${(props) => (props.width ? `${props.width}%` : "50%")};
   margin: 0.3rem 0;
 
   @media (min-width: 768px) {
-    width: ${(props) => (props.width ? `${Number(props.width) - 20}%` : "30%")};
+    width: ${(props) => (props.width ? `${Number(props.width) - 20}%` : "40%")};
   }
 `;
 

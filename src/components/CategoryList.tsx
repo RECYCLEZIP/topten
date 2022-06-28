@@ -17,7 +17,13 @@ import {
   CategoryText,
 } from "../styles/mainStyles/CategoryStyle";
 
-function CategoryList({ backColor }: { backColor?: string }) {
+function CategoryList({
+  backColor,
+  padding,
+}: {
+  backColor?: string;
+  padding?: string;
+}) {
   const navigate = useNavigate();
   const [category, setCategory] = useRecoilState(categoryState);
   const setKind = useSetRecoilState(categoryKindState);
@@ -51,7 +57,7 @@ function CategoryList({ backColor }: { backColor?: string }) {
   };
 
   return (
-    <CategoryContainer backColor={backColor}>
+    <CategoryContainer backColor={backColor} padding={padding}>
       <List>
         {category.map((list, index) => (
           <ImgContainer
@@ -72,6 +78,12 @@ function CategoryList({ backColor }: { backColor?: string }) {
             )}
           </ImgContainer>
         ))}
+        <ImgContainer visibility="hidden" />
+        <ImgContainer visibility="hidden" />
+        <ImgContainer visibility="hidden" />
+        <ImgContainer visibility="hidden" />
+        <ImgContainer visibility="hidden" />
+        <ImgContainer visibility="hidden" />
       </List>
     </CategoryContainer>
   );
