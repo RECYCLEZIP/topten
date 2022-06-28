@@ -49,9 +49,11 @@ function QnAList() {
   }, [qnaAllList]);
 
   useEffect(() => {
-    const len = qnaList?.length;
-    console.log(len);
-    setQnaTotal(len);
+    if (qnaAllList?.length !== 0) {
+      setQnaTotal(qnaList?.length);
+    } else {
+      setQnaTotal(0);
+    }
   }, [qnaList]);
 
   useEffect(() => {
@@ -75,7 +77,7 @@ function QnAList() {
       <BlackHr />
       <ListTable>
         <ListTbody>
-          {qnaList?.slice(offset, offset + 5).map((qna: any, idx: any) => (
+          {qnaList?.slice(offset, offset + 5).map((qna: any, idx: number) => (
             <>
               {qnaList?.length === 0 ? (
                 <tr>
