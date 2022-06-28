@@ -20,7 +20,6 @@ import {
 } from "../../styles/mainStyles/QuizStyle";
 import { img } from "../../assets/imgImport";
 import { CardText } from "../../styles/TextStyle";
-import { toast, ToastContainer } from "react-toastify";
 
 function WrongQuiz() {
   const navigate = useNavigate();
@@ -55,7 +54,6 @@ function WrongQuiz() {
       <BackButton onClick={() => navigate("/")}>
         <BackIcon src={img.backPage} /> 뒤로 가기
       </BackButton>
-      <ToastContainer style={{ fontSize: "0.7rem" }} />
       <QuestionBox>
         <QuizImg src={currentQuiz[0].image} />
         <QuizQuestion>

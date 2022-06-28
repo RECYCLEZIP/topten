@@ -1,21 +1,47 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { getData } from "../../api";
-import { loginState, userState } from "../../stores/atoms";
+import { useNavigate } from "react-router";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { delData, getData } from "../../api";
+import { loginState, userEditState } from "../../stores/atoms";
 import { Button } from "../../styles/ButtonStyles";
 import {
   UserPageContainer,
   EmailText,
   NameText,
   EditText,
+  RedButton,
 } from "../../styles/userStyles/userPage";
 import { UserType } from "../../types/User";
+import UserEdit from "./UserEdit";
+import { toast } from "react-toastify";
+
+const correct = () =>
+  toast.success("탈퇴 성공!", {
+    position: "top-center",
+    autoClose: 1000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+  });
+
+const notCorrect = () =>
+  toast.error("탈퇴 실패!", {
+    position: "top-center",
+    autoClose: 1000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+  });
 
 function UserPage() {
   const navigate = useNavigate();
   const [user, setUser] = useState<UserType>({});
   const setIsLogin = useSetRecoilState(loginState);
+  const [isEdit, setIsEdit] = useRecoilState(userEditState);
 
   const getUser = async () => {
     try {
@@ -32,16 +58,38 @@ function UserPage() {
     navigate("/");
   };
 
+  const deleteUser = async () => {
+    try {
+      await delData("users/delete");
+      correct();
+      sessionStorage.removeItem("token");
+      setIsLogin(false);
+      navigate("/");
+    } catch {
+      notCorrect();
+    }
+  };
+
   useEffect(() => {
     getUser();
+    setIsEdit(false);
   }, []);
 
   return (
     <UserPageContainer>
-      <NameText>{user.username}님 안녕하세요!</NameText>
-      <EditText>프로필 수정</EditText>
+      {isEdit ? (
+        <UserEdit />
+      ) : (
+        <NameText>{user.username}님 안녕하세요!</NameText>
+      )}
+      {isEdit ? null : (
+        <EditText onClick={() => setIsEdit((prev) => !prev)}>
+          프로필 수정
+        </EditText>
+      )}
       <EmailText>{user.email}</EmailText>
       <Button onClick={logout}>로그아웃</Button>
+      <RedButton onClick={deleteUser}>회원탈퇴</RedButton>
     </UserPageContainer>
   );
 }

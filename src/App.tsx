@@ -9,6 +9,7 @@ import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "tui-color-picker/dist/tui-color-picker.css";
 import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const setIsLogin = useSetRecoilState(loginState);
@@ -29,6 +30,7 @@ function App() {
   return (
     <div>
       <Header />
+      <ToastContainer style={{ fontSize: "0.7rem" }} />
       <AppRouter />
     </div>
   );
