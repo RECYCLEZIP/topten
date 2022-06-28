@@ -4,7 +4,8 @@
     "main": "./src/server.js",
     "license": "MIT",
     "scripts": {
-        "start": "ts-node-dev --respawn --transpile-only src/server.ts",
+        "start": "node src/server.js",
+        "start:dev": "ts-node-dev --respawn --transpile-only src/server.ts",
         "prestart": "node swagger.js",
         "test": "cross-env NODE_ENV=test jest --setupFiles dotenv/config --detectOpenHandles --forceExit",
         "test:ci": "cross-env NODE_ENV=test jest --config ./jest.config.ts --detectOpenHandles --collectCoverage --coverageDirectory=\"./coverage\" --ci --reporters=default --reporters=jest-junit --watchAll=false --forceExit",
@@ -25,7 +26,9 @@
         "module-alias": "^2.2.2",
         "mongoose": "^6.3.5",
         "multer": "^1.4.5-lts.1",
-        "multer-storage-cloudinary": "^4.0.0"
+        "multer-storage-cloudinary": "^4.0.0",
+        "swagger-autogen": "^2.21.4",
+        "swagger-ui-express": "^4.4.0"
     },
     "devDependencies": {
         "@types/bcrypt": "^5.0.0",
@@ -47,8 +50,6 @@
         "jest-junit": "^13.2.0",
         "mongodb-memory-server": "^8.6.0",
         "supertest": "^6.2.3",
-        "swagger-autogen": "^2.21.3",
-        "swagger-ui-express": "^4.4.0",
         "ts-jest": "^28.0.3",
         "ts-node": "^10.8.1",
         "ts-node-dev": "^2.0.0",
