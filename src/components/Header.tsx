@@ -38,7 +38,6 @@ function Header() {
         <Link
           to="/category"
           onClick={() => {
-            setList([]);
             setPage("");
             setKind("");
             setIsSelected([]);
