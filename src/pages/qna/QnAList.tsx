@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import {
   QnAListState,
   QnASearchState,
   QnASearchValueState,
+  QnAPageState,
+  QnALengthState,
 } from "../../stores/atoms";
 
 import { QnAType } from "../../types/QnA";
@@ -32,6 +34,11 @@ function QnAList() {
   const qnaSearchList = useRecoilValue(QnASearchState);
   const searchValue = useRecoilValue<string>(QnASearchValueState);
 
+  const [qnaTotal, setQnaTotal] = useRecoilState(QnALengthState);
+  const [qnaPage, setQnaPage] = useRecoilState(QnAPageState);
+
+  const offset = (qnaPage - 1) * 5;
+
   const date = (prop: any) => {
     return prop.split("T")[0].split("-").join(".");
   };
@@ -40,6 +47,12 @@ function QnAList() {
     // 검색 전 전체 리스트 세팅
     setQnaList([...qnaAllList]);
   }, [qnaAllList]);
+
+  useEffect(() => {
+    const len = (qnaList?.length);
+    console.log(len)
+    setQnaTotal(len);
+  }, [qnaList]);
 
   useEffect(() => {
     if (searchValue !== "") {
@@ -62,7 +75,7 @@ function QnAList() {
       <BlackHr />
       <ListTable>
         <ListTbody>
-          {qnaAllList.map((qna: any, idx: any) => (
+          {qnaAllList.slice(offset, offset + 5).map((qna: any, idx: any) => (
             <>
               {qnaList?.length === 0 ? (
                 <tr>
