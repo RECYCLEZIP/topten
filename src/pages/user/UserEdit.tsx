@@ -9,10 +9,10 @@ import {
   EditForm,
   CancelButton,
   EditButtons,
+  EditTitle,
 } from "../../styles/userStyles/userPage";
 import {
   EachInput,
-  RegisterText,
   RegisterInputContainer,
   CautionText,
 } from "../../styles/userStyles/users";
@@ -72,7 +72,7 @@ function UserEdit({ user }: { user: UserType }) {
   return (
     <EditForm onSubmit={submitHandler}>
       <EachInput>
-        <RegisterText>닉네임</RegisterText>
+        <EditTitle>닉네임</EditTitle>
         <RegisterInputContainer>
           <EditUserInput
             placeholder="닉네임"
@@ -85,7 +85,7 @@ function UserEdit({ user }: { user: UserType }) {
         </RegisterInputContainer>
       </EachInput>
       <EachInput>
-        <RegisterText>비밀번호 변경</RegisterText>
+        <EditTitle>비밀번호 변경</EditTitle>
         <RegisterInputContainer>
           <EditUserInput
             placeholder="비밀번호"

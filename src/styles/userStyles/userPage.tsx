@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button } from "../ButtonStyles";
-import { RegisterInput } from "./users";
+import { RegisterInput, RegisterText } from "./users";
 
 export const UserPageContainer = styled.div`
   margin: 4rem 2rem;
@@ -47,13 +47,17 @@ export const EditForm = styled.form`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  width: 60%;
+  width: 13rem;
 `;
 
 export const EditUserInput = styled(RegisterInput)`
-  width: 50%;
+  width: 70%;
 `;
 
 export const EditButtons = styled.div`
   width: 100%;
+`;
+
+export const EditTitle = styled(RegisterText)`
+  width: 45%;
 `;
