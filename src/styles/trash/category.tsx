@@ -5,7 +5,7 @@ export const CategoryContainer = styled.div<{
   padding?: string;
 }>`
   background-color: ${(props) => props.backColor};
-  padding: ${(props) => (props.padding ? `1rem 0.5rem` : "1rem 0 ")};
+  padding: ${(props) => (props.padding ? `1rem 0.5rem` : "1rem 0")};
 
   @media (min-width: 768px) {
     padding: ${(props) =>

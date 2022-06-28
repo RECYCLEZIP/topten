@@ -5,16 +5,16 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
 `;
 
 export const NewsText = styled.span`
   font-size: 0.6rem;
   text-align: left;
   width: 5.2rem;
+
+  @media (max-width: 520px) {
+    margin-bottom: 0.5rem;
+  }
 `;
 
 export const NewsTitle = styled.a`
@@ -31,5 +31,5 @@ export const NewsContainer = styled.div`
 `;
 
 export const AutoSlide = styled.div`
-  height: 0.83rem;
+  height: 0.8rem;
 `;
