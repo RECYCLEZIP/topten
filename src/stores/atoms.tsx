@@ -209,6 +209,26 @@ export const QnAListState = atom<QnAType[]>({
   default: [],
 });
 
+export const QnASearchState = atom<QnAType[]>({
+  key: "QnaSearchState",
+  default: [],
+});
+
+export const QnASearchValueState = atom({
+  key: "QnASearchValueState",
+  default: "",
+});
+
+export const QnAPageState = atom({
+  key: "QnAPageState",
+  default: 1,
+});
+
+export const QnALengthState = atom({
+  key: "QnALengthState",
+  default: 0,
+});
+
 export const RobotState = atom<RobotType[]>({
   key: "RobotState",
   default: [

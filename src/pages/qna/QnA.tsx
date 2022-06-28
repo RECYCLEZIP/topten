@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 
 import QnABar from "./QnABar";
 import QnAList from "../../pages/qna/QnAList";
+import QnAPagination from '../../pages/qna/QnAPagination'
 
 import { TitleText } from "../../styles/TextStyle";
 import { Container } from "../../styles/basicStyle";
@@ -26,6 +27,7 @@ function QnA() {
           <Button onClick={() => navigate(`/qna/post`)}>작성하기</Button>
         </ButtonWrapper>
       </ButtonContainer>
+      <QnAPagination />
     </Container>
   );
 }

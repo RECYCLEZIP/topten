@@ -20,6 +20,11 @@ export const TitleInput = styled.input`
   border-radius: 3px;
 
   font-size: 0.6rem;
+
+  &:focus{
+    outline: none;
+    border: 1px solid #69db7c;
+  }
 `;
 
 export const PostButtonContainer = styled.div`
@@ -46,6 +51,11 @@ export const PostCancleButton = styled(Button)`
 
   background: #f0f2f5;
   color: black;
-
+  
   margin-right: 1rem;
+  
+  &:hover {
+    background: #e1e3e6;
+
+  }
 `;

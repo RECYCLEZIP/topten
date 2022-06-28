@@ -11,7 +11,7 @@ export type QnAType = {
     {
       _id: string;
       author: {
-        _id: string;
+        userId: string;
         username: string;
       };
       content: string;
