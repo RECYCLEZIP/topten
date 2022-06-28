@@ -1,8 +1,16 @@
 import styled from "styled-components";
 
-export const CategoryContainer = styled.div<{ backColor?: string }>`
+export const CategoryContainer = styled.div<{
+  backColor?: string;
+  padding?: string;
+}>`
   background-color: ${(props) => props.backColor};
-  padding: 1rem 8% 1rem;
+  padding: ${(props) => (props.padding ? `1rem 0.5rem` : "1rem 0 ")};
+
+  @media (min-width: 768px) {
+    padding: ${(props) =>
+      props.padding ? `1rem ${props.padding}` : "1rem 2rem"};
+  }
 `;
 
 export const TitleContainer = styled.div`
