@@ -2,19 +2,19 @@ import { QuizModel } from "@src/db";
 import { Result } from "@src/models/interface";
 
 export class Quiz {
-    static async findByQuizType(type: string) {
+    static findByQuizType(type: string) {
         return QuizModel.find({ type });
     }
 
-    static async findQuizById(quizId: string) {
+    static findQuizById(quizId: string) {
         return QuizModel.findById(quizId);
     }
 
-    static async findQuizByWrongRate() {
+    static findQuizByWrongRate() {
         return QuizModel.find({}).sort({ "result.yesterday": -1 }).limit(3);
     }
 
-    static async findAnswerByQuizType(type: string) {
+    static findAnswerByQuizType(type: string) {
         return QuizModel.find({ type }).select({ answer: 1 });
     }
 

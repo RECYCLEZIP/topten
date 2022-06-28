@@ -1,7 +1,7 @@
 import { BinsModel } from "@src/db";
 
 export class Bins {
-    static async findLocation(
+    static findLocation(
         filterQuery: (
             | { region: string; roads?: undefined }
             | { roads: string; region?: undefined }
@@ -10,7 +10,7 @@ export class Bins {
         return BinsModel.find({ $and: filterQuery });
     }
 
-    static async findAll() {
+    static findAll() {
         return BinsModel.find({});
     }
 }
