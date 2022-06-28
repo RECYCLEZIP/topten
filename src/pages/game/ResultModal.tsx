@@ -22,6 +22,10 @@ const style = {
   borderRadius: "1rem",
   p: 4,
   textAlign: "center",
+
+  "@media (min-width: 768px)": {
+    height: "8rem",
+  },
 };
 
 function ResultModal({

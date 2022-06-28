@@ -1,7 +1,6 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Dispatch } from "react";
 import { GoLoginButton, GoGameButton } from "../../styles/gameStyles/game";
 import { useNavigate } from "react-router";
 
@@ -21,13 +20,13 @@ const style = {
 
 function GoGameModal({
   open,
-  setOpen,
+  onClose,
 }: {
   open: boolean;
-  setOpen: Dispatch<React.SetStateAction<boolean>>;
+  onClose: () => void;
 }) {
   const navigate = useNavigate();
-  const handleClose = () => setOpen(false);
+  const handleClose = () => onClose();
 
   return (
     <div>

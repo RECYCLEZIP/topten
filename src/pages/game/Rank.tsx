@@ -52,7 +52,7 @@ function Rank() {
 
   return (
     <RankContainer>
-      <GoGameModal open={open} setOpen={setOpen} />
+      <GoGameModal open={open} onClose={() => setOpen(false)} />
       <RankTitleText>
         👑
         <br /> 게임 랭킹 <br />

@@ -19,6 +19,7 @@ import { currentGameState, gameLevelState } from "../../stores/atoms";
 import ResultModal from "./ResultModal";
 import bgm from "../../assets/bgm.mp3";
 import selectBgm from "../../assets/select.mp3";
+import wrongBgm from "../../assets/wrong.mp3";
 import { getData } from "../../api";
 import { GameDataType } from "../../types/Game";
 
@@ -51,13 +52,19 @@ function Game() {
 
   const bgmMusic = useRef(new Audio(bgm));
   const selectMusic = useRef(new Audio(selectBgm));
+  const wrongMusic = useRef(new Audio(wrongBgm));
 
   const onDragEnd = (info: DropResult) => {
     const selectBgm = selectMusic.current;
+    const wrongBgm = wrongMusic.current;
     const { destination, source } = info;
     selectBgm.pause();
     selectBgm.currentTime = 0;
+    wrongBgm.pause();
+    wrongBgm.currentTime = 0;
+    console.log(info);
     if (!destination) return;
+    if (destination.droppableId !== source.droppableId) return wrongBgm.play();
     if (destination.droppableId === source.droppableId) {
       selectBgm.play();
       const newArr = [...visibility];

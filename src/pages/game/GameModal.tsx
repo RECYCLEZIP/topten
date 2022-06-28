@@ -6,7 +6,6 @@ import { useSetRecoilState } from "recoil";
 import { currentGameState } from "../../stores/atoms";
 import { initialState } from "./Game";
 import { GameButton } from "../../styles/gameStyles/game";
-import { useMediaQuery } from "@mui/material";
 
 const style = {
   position: "absolute" as "absolute",
@@ -20,26 +19,15 @@ const style = {
   p: 4,
   borderRadius: "1rem",
   textAlign: "center",
-};
 
-const webStyle = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "60vw",
-  height: "6.5rem",
-  bgcolor: "background.paper",
-  boxShadow: 24,
-  p: 4,
-  borderRadius: "1rem",
-  textAlign: "center",
+  "@media (min-width: 768px)": {
+    height: "6.8rem",
+  },
 };
 
 function GameModal() {
   const setGameState = useSetRecoilState(currentGameState);
   const handleClose = () => setGameState(initialState.gameState.PLAYING);
-  const isMobile = useMediaQuery("(min-width: 768px)");
 
   return (
     <div>
@@ -49,7 +37,7 @@ function GameModal() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={isMobile ? webStyle : style}>
+        <Box sx={style}>
           <Typography id="modal-modal-title" sx={{ fontWeight: 700 }}>
             분리수거 게임
           </Typography>
