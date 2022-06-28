@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 
 import MapSearch from "./MapSearch";
-import MapContent from "./MapContent";
 import MapList from "./MapList";
+import MapTest from "../../components/MapTest";
 
 import { getData } from "../../api";
 
-import { useRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
 
 import {
   BinTypes,
   BinState,
-  SearchBinState,
+  BinSelectedState,
+  selectedMarkerState,
   RegionValueState,
   RoadsValueState,
   lastIntersectingImageState,
@@ -33,6 +34,11 @@ function Map() {
 
   const [page, setPage] = useState(1);
 
+  const bins = useRecoilValue(BinState);
+  const binSelected = useRecoilValue(BinSelectedState);
+  const setSelectedMarker = useSetRecoilState(selectedMarkerState);
+  const setBinSelected = useSetRecoilState(BinSelectedState);
+
   const [lastIntersectingImage, setLastIntersectingImage] =
     useRecoilState<HTMLDivElement | null>(lastIntersectingImageState);
 
@@ -40,11 +46,10 @@ function Map() {
     console.log("fetching 함수 호출됨");
 
     try {
+      // 선택된 지역에 따라 쓰레기통 정보 get
       const res = await getData(
-        `bins?search=${"종로구"}&category=${roadsValue}`,
-        // `bins?search=${"종로구"}&category=${roadsValue}?page=${page}&limit=2`,
+        `bins?search=${regionValue}&category=${roadsValue}&limit=5`,
       );
-      // console.log(res.data);
       setBin(res.data);
     } catch (e) {
       console.log(e);
@@ -90,7 +95,13 @@ function Map() {
         <MapSearch />
       </MapTop>
       <MapBinSection>
-        <MapContent />
+        <MapTest
+          type="bin"
+          props={bins}
+          propsSelected={binSelected}
+          setSelectedMarker={setSelectedMarker}
+          setPropsSelected={setBinSelected}
+        />
         <MapList />
       </MapBinSection>
     </MapContainer>

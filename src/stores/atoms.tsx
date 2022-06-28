@@ -1,14 +1,18 @@
 import { atom } from "recoil";
+import { initialState } from "../pages/game/Game";
 import { CategoryType, NewsType } from "../types/Main";
 import { AnswerListType, AnswerType, QuizType } from "../types/Quiz";
 import { CategoryItemType, TrashType } from "../types/Trash";
+import { UserType } from "../types/User";
+import { QnAType } from "../types/QnA";
+import { RobotType } from "../types/Robot";
 
 export interface BinTypes {
   region: string;
   roads: string;
   details: string;
   points: string;
-  address: "";
+  address: string;
   type: string[];
   x: string;
   y: string;
@@ -22,7 +26,8 @@ export interface BinSelectedTypes {
 // Ai 분석 페이지의 상황
 export const AiSituationState = atom({
   key: "AiSituationState",
-  default: "beforeImgUpload",
+  default: "done",
+  // default: "beforeImgUpload",
 });
 
 // 서울시 쓰레기통 데이터셋
@@ -60,7 +65,7 @@ export const SearchBinState = atom<BinTypes[]>({
 
 export const RegionValueState = atom({
   key: "RegionValueState",
-  default: "",
+  default: "종로구",
 });
 
 export const RoadsValueState = atom({
@@ -81,9 +86,9 @@ export const selectedMarkerState = atom({
 });
 
 export const lastIntersectingImageState = atom<HTMLDivElement | null>({
-  key: 'lastIntersectingImage', 
-  default: null
-})
+  key: "lastIntersectingImage",
+  default: null,
+});
 
 // category list
 export const categoryState = atom<CategoryType[]>({
@@ -177,4 +182,47 @@ export const searchTrashState = atom<TrashType[]>({
 export const quizConfirmState = atom<boolean>({
   key: "quizConfirmState",
   default: false,
+});
+
+export const loginState = atom<boolean>({
+  key: "loginState",
+  default: false,
+});
+
+export const userState = atom<UserType>({
+  key: "userState",
+  default: {},
+});
+
+export const currentGameState = atom({
+  key: "gameState",
+  default: initialState.gameState.READY,
+});
+
+export const gameLevelState = atom<number>({
+  key: "gameLevelState",
+  default: 1,
+});
+
+export const QnAListState = atom<QnAType[]>({
+  key: "QnAListState",
+  default: [],
+});
+
+export const RobotState = atom<RobotType[]>({
+  key: "RobotState",
+  default: [
+    {
+      name: "",
+      address: "",
+      location: {
+        coordinates: [0, 0],
+      },
+    },
+  ],
+});
+
+export const RobotSelectedState = atom<(number | undefined)[]>({
+  key: "RobotSelectedState",
+  default: [0, undefined],
 });

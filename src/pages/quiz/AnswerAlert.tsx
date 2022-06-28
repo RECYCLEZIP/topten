@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CorrectAnswer } from "../../styles/quizStyles/QuizzesStyle";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
@@ -78,6 +78,10 @@ function AnswerAlert() {
       console.log("post data request fail");
     }
   };
+
+  useEffect(() => {
+    setConfirm(false);
+  }, []);
 
   return (
     <>

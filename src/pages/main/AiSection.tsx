@@ -1,9 +1,4 @@
-import { CardText } from "../../styles/TextStyle";
-import {
-  AiContainer,
-  AiImg,
-  AiDescription,
-} from "../../styles/mainStyles/AiStyle";
+import { AiContainer, AiImg, AiText } from "../../styles/mainStyles/AiStyle";
 import { img } from "../../assets/imgImport";
 import { Button } from "../../styles/ButtonStyles";
 import { useNavigate } from "react-router";
@@ -15,11 +10,11 @@ function AiSection() {
   return (
     <AiContainer>
       <AiImg src={img.mainAI} />
-      <AiDescription>
-        <CardText>어떻게 분류할까?</CardText>
-        <CardText>헷갈리면 도와드려요</CardText>
+      <div>
+        <AiText>어떻게 분류할까?</AiText>
+        <AiText>헷갈리면 도와드려요</AiText>
         <Button onClick={() => navigate("./ai")}>AI로 한 번에 분류하기</Button>
-      </AiDescription>
+      </div>
     </AiContainer>
   );
 }

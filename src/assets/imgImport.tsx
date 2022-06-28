@@ -1,8 +1,5 @@
 import seoul from "./img/seoul.jpg";
-import mainAi from "./img/ai.png";
-import PET from "./img/PET.jpg";
-import GLASS from "./img/GLASS.png";
-import PETs from "./img/PETs.jpg";
+import mainAi from "./img/mainAi.png";
 import QuizLogo from "./img/QuizLogo.png";
 import QuizLogoB from "./img/QuizLogoB.png";
 import bin from "./img/bins.png";
@@ -25,12 +22,15 @@ import quiz2 from "./img/quiz2.png";
 import loading from "./img/loading.gif";
 import x from "./img/x.png";
 import backPage from "./img/arrow.png";
+import user from "./img/user.jpg";
+import level1 from "./img/level1.png";
+import level2 from "./img/level2.png";
+import level3 from "./img/level3.png";
+import current_marker from "./img/current_marker.png";
 
 export const img = {
   seoul,
   mainAI: mainAi,
-  category: [PET, GLASS, PET, GLASS, PET, GLASS, PET, GLASS],
-  sample: PETs,
   quizLogo: QuizLogo,
   quizLogoB: QuizLogoB,
   bin: bin,
@@ -53,4 +53,7 @@ export const img = {
   loading,
   x,
   backPage,
+  user,
+  levelImg: [level1, level2, level3],
+  current_marker: current_marker,
 };

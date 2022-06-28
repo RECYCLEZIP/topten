@@ -4,24 +4,22 @@ export const AiContainer = styled.div`
   background-color: #69db7c;
   padding: 5% 0;
   text-align: center;
-  @media (min-width: 768px) {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
-export const AiDescription = styled.div`
-  @media (min-width: 768px) {
-    margin-left: 1.5rem;
-  }
-`;
+export const AiDescription = styled.div``;
 
 export const AiImg = styled.img`
-  width: 35%;
-  height: 20%;
+  width: 50%;
+  height: 40%;
 
   @media (min-width: 768px) {
     width: 35%;
   }
+`;
+
+export const AiText = styled.p`
+  color: white;
 `;
