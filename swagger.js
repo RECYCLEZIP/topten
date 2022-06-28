@@ -96,35 +96,38 @@ const doc = {
         ],
         PostId: "posts/{postId}",
         PostGetQuery: "?search={}&page={ID}&limit={5}",
-        PostGetResponse: [
-            {
-                _id: "62b8380b0c97c08eb8a7d122",
-                title: "게시글제목",
-                author: {
-                    _id: "62b513e76ae88bc07ab1c6b5",
-                    email: "test@test.com",
-                    username: "테스트",
-                    topscore: 0,
-                    __v: 0,
-                },
-                content: "게시글내용",
-                comments: [
-                    {
-                        author: {
-                            userId: "62b513e76ae88bc07ab1c6b5",
-                            username: "테스트",
-                        },
-                        content: "댓글생성",
-                        _id: "62b838310c97c08eb8a7d129",
-                        createdAt: "2022-06-26T10:42:57.599Z",
-                        updatedAt: "2022-06-26T10:42:57.599Z",
+        PostGetResponse: {
+            count: 12,
+            data: [
+                {
+                    _id: "62b8380b0c97c08eb8a7d122",
+                    title: "게시글제목",
+                    author: {
+                        _id: "62b513e76ae88bc07ab1c6b5",
+                        email: "test@test.com",
+                        username: "테스트",
+                        topscore: 0,
+                        __v: 0,
                     },
-                ],
-                createdAt: "2022-06-26T10:42:19.796Z",
-                updatedAt: "2022-06-26T10:42:57.599Z",
-                __v: 1,
-            },
-        ],
+                    content: "게시글내용",
+                    comments: [
+                        {
+                            author: {
+                                userId: "62b513e76ae88bc07ab1c6b5",
+                                username: "테스트",
+                            },
+                            content: "댓글생성",
+                            _id: "62b838310c97c08eb8a7d129",
+                            createdAt: "2022-06-26T10:42:57.599Z",
+                            updatedAt: "2022-06-26T10:42:57.599Z",
+                        },
+                    ],
+                    createdAt: "2022-06-26T10:42:19.796Z",
+                    updatedAt: "2022-06-26T10:42:57.599Z",
+                    __v: 1,
+                },
+            ],
+        },
         PostOneGetResponse: {
             _id: "62b8380b0c97c08eb8a7d122",
             title: "게시글제목",

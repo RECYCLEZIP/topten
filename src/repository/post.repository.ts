@@ -2,6 +2,10 @@ import { PostModel } from "@src/db";
 import { IPost, IComment, MongooseQuery } from "@src/models/interface";
 
 export class Post {
+    static count() {
+        return PostModel.count({});
+    }
+
     static find({ filteredQuery, limit }: { filteredQuery: MongooseQuery; limit: number }) {
         return PostModel.find(filteredQuery)
             .sort({ _id: -1 })
