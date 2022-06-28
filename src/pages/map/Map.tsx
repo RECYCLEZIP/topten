@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-
 import MapSearch from "./MapSearch";
 import MapContent from "./MapContent";
 import MapList from "./MapList";
-
+import MapContent from "../../components/MapContent";
 import { getData } from "../../api";
-
 import { useRecoilState } from "recoil";
-
 import {
   BinTypes,
   BinState,
@@ -16,7 +13,6 @@ import {
   RoadsValueState,
   lastIntersectingImageState,
 } from "../../stores/atoms";
-
 import {
   MapContainer,
   MapTop,
@@ -90,7 +86,13 @@ function Map() {
         <MapSearch />
       </MapTop>
       <MapBinSection>
-        <MapContent />
+        <MapContent
+          type="bin"
+          props={bins}
+          propsSelected={binSelected}
+          setSelectedMarker={setSelectedMarker}
+          setPropsSelected={setBinSelected}
+        />
         <MapList />
       </MapBinSection>
     </MapContainer>

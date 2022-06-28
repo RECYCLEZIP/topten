@@ -81,9 +81,9 @@ export const selectedMarkerState = atom({
 });
 
 export const lastIntersectingImageState = atom<HTMLDivElement | null>({
-  key: 'lastIntersectingImage', 
-  default: null
-})
+  key: "lastIntersectingImage",
+  default: null,
+});
 
 // category list
 export const categoryState = atom<CategoryType[]>({
@@ -177,4 +177,67 @@ export const searchTrashState = atom<TrashType[]>({
 export const quizConfirmState = atom<boolean>({
   key: "quizConfirmState",
   default: false,
+});
+
+export const loginState = atom<boolean>({
+  key: "loginState",
+  default: false,
+});
+
+export const userState = atom<UserType>({
+  key: "userState",
+  default: {},
+});
+
+export const currentGameState = atom({
+  key: "gameState",
+  default: initialState.gameState.READY,
+});
+
+export const gameLevelState = atom<number>({
+  key: "gameLevelState",
+  default: 1,
+});
+
+export const QnAListState = atom<QnAType[]>({
+  key: "QnAListState",
+  default: [],
+});
+
+export const QnASearchState = atom<QnAType[]>({
+  key: "QnaSearchState",
+  default: [],
+});
+
+export const QnASearchValueState = atom({
+  key: "QnASearchValueState",
+  default: "",
+});
+
+export const QnAPageState = atom({
+  key: "QnAPageState",
+  default: 1,
+});
+
+export const QnALengthState = atom({
+  key: "QnALengthState",
+  default: 0,
+});
+
+export const RobotState = atom<RobotType[]>({
+  key: "RobotState",
+  default: [
+    {
+      name: "",
+      address: "",
+      location: {
+        coordinates: [0, 0],
+      },
+    },
+  ],
+});
+
+export const RobotSelectedState = atom<(number | undefined)[]>({
+  key: "RobotSelectedState",
+  default: [0, undefined],
 });
