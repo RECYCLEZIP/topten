@@ -33,9 +33,9 @@ function QuizCard({ display, quiz }: QuizCardType) {
           <CountUp end={Math.round(quiz.result[0].yesterday)} duration={3} />%
         </RateBox>
       </WrongPercent>
-      <QuestionBox width="80">
+      <QuestionBox width="90">
         <QuizImg src={quiz.image} />
-        <QuizQuestion width="73">
+        <QuizQuestion width="80">
           <LogoImg src={img.quizLogo} />
           <CardText>{quiz.title}</CardText>
           <Button onClick={() => navigate(`/quiz/${quiz._id}`)}>
