@@ -12,14 +12,8 @@ export const Button = styled.button`
   font-weight: bold;
 
   cursor: pointer;
-  :disabled {
-    background-color: #b1b1b1;
-  }
 
   &:hover {
-    :disabled {
-      background-color: #b1b1b1;
-    }
     background-color: #2b9a61;
     transition: all 0.5s;
   }

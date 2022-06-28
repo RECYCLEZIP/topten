@@ -17,6 +17,7 @@ import { img } from "../../assets/imgImport";
 
 function Search() {
   const [search, setSearch] = useState("");
+  const [searchReq, setSearchReq] = useState("");
   const [trashList, setTrashList] = useRecoilState(searchTrashState);
   const [isInputValue, setIsInputValue] = useState(false);
   const navigate = useNavigate();
@@ -26,8 +27,15 @@ function Search() {
     setTrashList(res.data);
   };
 
-  const onChangeSearch = (e: { target: { value: SetStateAction<string> } }) => {
+  const onChangeSearch = (e: {
+    preventDefault: () => void;
+    target: { value: SetStateAction<string> };
+  }) => {
+    e.preventDefault();
     setSearch(e.target.value);
+    setTimeout(async () => {
+      setSearchReq(e.target.value);
+    }, 2000);
   };
 
   const onSearch = (e: FormEvent<HTMLFormElement>) => {
@@ -46,20 +54,20 @@ function Search() {
 
   const listReset = () => {
     setSearch("");
-    setIsInputValue(false);
     navigate("/category");
+    setSearchReq("");
   };
 
   useEffect(() => {
     showDropDownList();
-    if (search !== "") {
-      const getResult = setTimeout(async () => {
-        await getTrash();
-        setIsInputValue(true);
-      }, 2000);
-      return () => clearTimeout(getResult);
-    }
   }, [search]);
+
+  useEffect(() => {
+    if (searchReq !== "") {
+      getTrash();
+      setIsInputValue(true);
+    }
+  }, [searchReq]);
 
   return (
     <div>

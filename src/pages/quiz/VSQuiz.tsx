@@ -40,11 +40,7 @@ function VSQuiz() {
 
   useEffect(() => {
     const answer = isSelected.indexOf(true);
-    if (answer === -1) {
-      setOption("-1");
-    } else {
-      setOption(option[answer]);
-    }
+    setOption(option[answer]);
   }, [isSelected]);
 
   return (

@@ -1,101 +1,95 @@
-import styled, { css } from "styled-components";
+import styled2 from "styled-components";
+import { styled } from "@mui/material/styles";
+import InputBase from "@mui/material/InputBase";
+import { autocompleteClasses } from "@mui/material/Autocomplete";
 import { Button } from "../ButtonStyles";
 import { Container } from "../basicStyle";
 
-export const MapContainer = styled(Container)`
-  padding-top: 0;
-  margin-top: 2.6rem;
+export const MapContainer = styled2(Container)`
+padding-top: 0;
+margin-top: 2.6rem;
 `;
 
-export const MapTop = styled.div`
-  background: white;
-  z-index: 1;
-  width: 100%;
-  height: fit-content;
-  position: fixed;
+export const MapTop = styled2.div`
+background: white;
+z-index: 1;
+width: 100%;
+height: fit-content;
+position: fixed;
 
-  padding-top: 2rem;
+padding-top: 2rem;
 `;
 
-export const MapTitle = styled.span`
+export const MapTitle = styled2.span`
   // position: fixed;
 `;
-export const MapSearchSection = styled.section`
+export const MapSearchSection = styled2.section`
   margin: 1rem 0;
   display: flex;
-
+  
   align-items: center;
   // position: fixed;
-`;
+  
+  `;
 
-export const AutocompleteContainer = styled.div`
+export const AutocompleteContainer = styled2.div`
   display: flex;
-
+  
   align-items: center;
-`;
+  `;
 
-export const MapSearchTextWrapper = styled.div`
-  margin-right: 0.5rem;
+export const MapSearchTextWrapper = styled2.div`
+margin-right: 0.5rem;
 
-  font-size: 0.6rem;
+font-size: 0.6rem;
 
-  font-weight: 500;
+font-weight: 500;
 
-  @media (min-width: 768px) {
+@media (min-width: 768px) {
     margin-right: 2rem;
-  }
+    }
 `;
 
-export const MapBinSection = styled.section`
+export const MapBinSection = styled2.section`
   display: block;
 
   @media (min-width: 768px) {
     display: flex;
-  }
+    }
 `;
 
-export const MapContentContainer = styled.div<{ type: any }>`
-  ${(props) =>
-    props?.type === "bin"
-      ? css`
-          width: 85%;
-          height: 30vh;
-          height: 15rem;
+export const MapBinMapContainer = styled2.div`
+width: 85%;
+height: 30vh;
+height: 15rem;
 
-          margin-top: 8rem;
-          padding-bottom: 1.5rem;
-          position: fixed;
 
-          background: white;
+margin-top: 8rem;
+padding-bottom: 1.5rem;
+position: fixed;
 
-          z-index: 1;
+background: white;
 
-          @media (min-width: 768px) {
-            width: 40%;
-            height: 50%;
-            margin-top: 7.3rem;
-          }
-        `
-      : css`
-          width: 85%;
-          height: 10rem;
+z-index: 1;
+  
 
-          @media (min-width: 768px) {
-            width: 40%;
-          }
-        `}
-`;
+  @media (min-width: 768px) {
+    width: 40%;
+    height: 50%;
+    margin-top: 7.3rem;
+    }
+  `;
 
-export const MapContentWrapper = styled.div`
+export const MapBinMapWrapper = styled2.div`
   height: 100%;
 
   @media (min-width: 768px) {
     // height: 80%
     // max-height: 80%;
-  }
+    }
 `;
 
-export const MapBinListContainer = styled.div`
+export const MapBinListContainer = styled2.div`
   display: block;
   position: absolute;
 
@@ -113,53 +107,100 @@ export const MapBinListContainer = styled.div`
   }
 `;
 
-export const MapBinDatailsContainer = styled.div`
+export const MapBinDatailsContainer = styled2.div`
   margin-bottom: 1rem;
 
   cursor: pointer;
 `;
 
-export const MapBinLacationTitle = styled.div`
+export const MapBinLacationTitle = styled2.div`
   margin-bottom: 0.2rem;
   font-size: 0.6rem;
 `;
 
-export const MapBinLacationDes = styled.div`
+export const MapBinLacationDes = styled2.div`
   font-size: 0.53rem;
 
   color: #9eacba;
 `;
 
-export const TypeContainer = styled.div`
-  padding: 0.2rem 0.5rem;
-  margin-right: 0.5rem;
+export const TypeContainer = styled2.div`
+padding: 0.2rem 0.5rem;
+margin-right: 0.5rem;
 
-  display: inline-block;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    #69db7c;
-  border: none;
-  border-radius: 0.2rem;
+display: inline-block;
+background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #69DB7C;border: none;
+border-radius: 0.2rem;
 
-  color: white;
-  font-size: 0.4rem;
-  font-weight: bold;
+color: white;
+font-size: 0.4rem;
+font-weight: bold;
 `;
 
-export const BackWrapper = styled.div`
-  margin-bottom: 0.5rem;
-  display: flex;
+export const BackWrapper = styled2.div`
+    margin-bottom: 0.5rem;
+    display: flex;
+    `;
+
+export const BackButton = styled2(Button)`
+padding: 0.3rem 0.8rem;
+
+background: #F0F2F5;
+color: black;
+
+    font-size: 0.5rem;
+
+    &:hover {
+      background-color: #dadee4;
+      transition: all 0.5s;
+    }
 `;
 
-export const BackButton = styled(Button)`
-  padding: 0.3rem 0.8rem;
+export const StyledInput = styled(InputBase)(({ theme }) => ({
+  padding: 10,
+  width: "100%",
 
-  background: #f0f2f5;
-  color: black;
+  // backgroundColor: "pink",
 
-  font-size: 0.5rem;
+  "& input": {
+    borderRadius: "3rem",
+    padding: "0.3rem 0.5rem",
+    transition: theme.transitions.create(["border-color", "box-shadow"]),
+    border: `1px solid #eaecef`,
 
-  &:hover {
-    background-color: #dadee4;
-    transition: all 0.5s;
-  }
-`;
+    "&:focus": {
+      boxShadow: `0px 0px 0px 3px rgba(189, 189, 189, 0.171)`,
+      borderColor: "rgb(153, 153, 153)",
+    },
+  },
+}));
+
+export const Listbox = styled("div")(({ theme }) => ({
+  width: "4rem",
+  height: "auto",
+  // maxHeight: 200,
+
+  // position: 'relative',
+
+  margin: 0,
+  padding: 0,
+  zIndex: 1,
+
+  backgroundColor: "red",
+  fontSize: "0.53rem",
+
+  listStyle: "none",
+  overflow: "auto",
+  // border: "1px solid rgba(0,0,0,.25)",
+
+  [`& li.${autocompleteClasses.focused}`]: {
+    backgroundColor: "#4a8df6",
+    color: "white",
+    cursor: "pointer",
+  },
+
+  "& li:active": {
+    backgroundColor: "#2977f5",
+    color: "white",
+  },
+}));

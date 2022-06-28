@@ -45,6 +45,7 @@ function AiImageUpload() {
 
   // 이미지 업로드
   const onClickImgUpload = (e: any) => {
+    console.log("asdfds");
     imgInput.current.click();
 
     setFileImage(URL.createObjectURL(e.target.files[0]));
