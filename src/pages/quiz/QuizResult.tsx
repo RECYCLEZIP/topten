@@ -16,6 +16,7 @@ import {
 import { TitleText } from "../../styles/TextStyle";
 import { ResultsType } from "../../types/Quiz";
 import DropAnswer from "./DropAnswer";
+import { customTostify } from "../../components/customTostify";
 
 //quiz result page
 function QuizResult() {
@@ -42,8 +43,8 @@ function QuizResult() {
       });
       setResults(res.data.result);
       setScore(res.data.score);
-    } catch {
-      console.log("post data request fail");
+    } catch (err: any) {
+      customTostify("error", err.message);
     }
     setLoading(true);
     setToPostAnswer([]);

@@ -12,6 +12,7 @@ import {
   RegisterInputContainer,
   CautionText,
 } from "../../styles/userStyles/users";
+import { customTostify } from "../../components/customTostify";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -30,8 +31,8 @@ function Register() {
   const registerUser = async () => {
     try {
       await postData("users/register", { email, password, username });
-    } catch {
-      console.log("Error: data post request fail");
+    } catch (err: any) {
+      customTostify("error", err.message);
     }
     navigate("/users/login");
   };

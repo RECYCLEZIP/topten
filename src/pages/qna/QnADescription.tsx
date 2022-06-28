@@ -31,6 +31,7 @@ import {
   SquareButton,
   ButtonContainer,
 } from "../../styles/qnaStyles/QnADescriptionStyle";
+import { customTostify } from "../../components/customTostify";
 
 function QnADescription() {
   const navigate = useNavigate();
@@ -46,8 +47,8 @@ function QnADescription() {
   const get = async () => {
     try {
       await getData(`posts/${id}`).then((res) => setQna(res.data));
-    } catch (err) {
-      console.log(err);
+    } catch (err: any) {
+      customTostify("error", err.message);
     }
   };
 

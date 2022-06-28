@@ -10,6 +10,7 @@ import {
   selectedAnswerState,
 } from "../../stores/atoms";
 import { useRecoilState, useSetRecoilState } from "recoil";
+import { customTostify } from "../../components/customTostify";
 
 // vs quiz page
 function VSQuiz() {
@@ -28,8 +29,8 @@ function VSQuiz() {
     try {
       const res = await getData("quizzes?type=mixUp");
       setQuizzes(res.data);
-    } catch {
-      console.log("Error: data get request fail");
+    } catch (err: any) {
+      customTostify("error", err.message);
     }
   };
 

@@ -15,6 +15,7 @@ import {
   MoveButton,
 } from "../../styles/trash/items";
 import { useNavigate, useParams } from "react-router";
+import { customTostify } from "../../components/customTostify";
 
 function CategoryItems() {
   const params = useParams().kind;
@@ -29,8 +30,8 @@ function CategoryItems() {
     try {
       const res = await getData(`trash?category=${kind}&page=${page}`);
       setTrashList((prev) => [...prev, res.data]);
-    } catch {
-      console.log("Error: data get request fail");
+    } catch (err: any) {
+      customTostify("error", err.message);
     }
   }, [kind, page, setTrashList]);
   useEffect(() => {

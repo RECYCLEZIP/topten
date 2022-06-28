@@ -28,7 +28,6 @@ import {
   viewAnswerState,
 } from "../../stores/atoms";
 import { useEffect } from "react";
-import { toast } from "react-toastify";
 import { customTostify } from "../../components/customTostify";
 
 //quiz question card component

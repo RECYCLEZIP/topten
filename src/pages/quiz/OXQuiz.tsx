@@ -9,6 +9,7 @@ import {
   quizListState,
   selectedAnswerState,
 } from "../../stores/atoms";
+import { customTostify } from "../../components/customTostify";
 
 // ox quiz page component
 function OXQuiz() {
@@ -34,8 +35,8 @@ function OXQuiz() {
     try {
       const res = await getData("quizzes?type=ox");
       setQuizzes(res.data);
-    } catch {
-      console.log("Error: data get request fail");
+    } catch (err: any) {
+      customTostify("error", err.message);
     }
   };
 

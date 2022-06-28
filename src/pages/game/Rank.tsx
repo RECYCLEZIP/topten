@@ -14,6 +14,7 @@ import {
 } from "../../styles/gameStyles/game";
 import { RankDataType } from "../../types/Game";
 import GoGameModal from "./GoGameModal";
+import { customTostify } from "../../components/customTostify";
 
 function Rank() {
   const navigate = useNavigate();
@@ -37,8 +38,8 @@ function Rank() {
         const res = await getData("users/rank");
         setRankList(res.data);
         setLoading(true);
-      } catch {
-        console.log("get data request fail");
+      } catch (err: any) {
+        customTostify("error", err.message);
       }
     };
     getRank();
