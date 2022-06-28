@@ -28,7 +28,7 @@ export const LoginInput = styled.input`
   padding: 0.2rem 0.3rem;
 `;
 
-export const RightContainer = styled.div`
+export const RightContainer = styled.form`
   display: flex;
   flex-direction: column;
   margin: 0 auto;

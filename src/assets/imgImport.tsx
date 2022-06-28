@@ -23,10 +23,9 @@ import loading from "./img/loading.gif";
 import x from "./img/x.png";
 import backPage from "./img/arrow.png";
 import user from "./img/user.jpg";
-import tree1 from "./img/tree1.png";
-import tree2 from "./img/tree2.png";
-import tree3 from "./img/tree3.png";
-import gameBackground from "./img/game_back_img.png";
+import level1 from "./img/level1.png";
+import level2 from "./img/level2.png";
+import level3 from "./img/level3.png";
 import current_marker from "./img/current_marker.png";
 
 export const img = {
@@ -55,7 +54,6 @@ export const img = {
   x,
   backPage,
   user,
-  tree: { small: tree1, middle: tree2, big: tree3 },
-  gameBackground,
+  levelImg: [level1, level2, level3],
   current_marker: current_marker,
 };
