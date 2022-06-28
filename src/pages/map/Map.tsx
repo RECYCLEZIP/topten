@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import MapSearch from "./MapSearch";
 import MapList from "./MapList";
-import MapTest from "../../components/MapTest";
+import MapContent from "../../components/MapContent";
 
 import { getData } from "../../api";
 
@@ -95,7 +95,7 @@ function Map() {
         <MapSearch />
       </MapTop>
       <MapBinSection>
-        <MapTest
+        <MapContent
           type="bin"
           props={bins}
           propsSelected={binSelected}
