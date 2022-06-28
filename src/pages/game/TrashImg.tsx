@@ -14,14 +14,28 @@ function TrashImg({
 }) {
   const left = useMemo(() => Math.random() * 90, []);
   const top = useMemo(() => Math.random() * 90, []);
+
+  function getStyle(style: any, snapshot: any) {
+    if (!snapshot.isDropAnimating) {
+      return style;
+    }
+    return {
+      ...style,
+      // cannot be 0, but make it super tiny
+      transitionDuration: `0.001s`,
+      opacity: "0",
+    };
+  }
+
   return (
     <Draggable draggableId={index.toString()} index={index}>
-      {(magic, snapshot) => {
+      {(provided, snapshot) => {
         return (
           <TrashCard
-            ref={magic.innerRef}
-            {...magic.draggableProps}
-            {...magic.dragHandleProps}
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            style={getStyle(provided.draggableProps.style, snapshot)}
             left={`${left}%`}
             top={`${top}%`}
             img={data.image}

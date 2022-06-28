@@ -50,6 +50,10 @@ export const ImgContainer = styled.button<{
   &:hover {
     text-decoration: ${(props) => (props.isSelected ? "none" : "underline")};
   }
+
+  @media (min-width: 768px) {
+    width: 4rem;
+  }
 `;
 
 export const IMGBox = styled.div`
@@ -67,4 +71,8 @@ export const IMGBox = styled.div`
 export const IMG = styled.img`
   height: 3rem;
   padding: 1%;
+
+  @media (min-width: 768px) {
+    height: 4rem;
+  }
 `;
