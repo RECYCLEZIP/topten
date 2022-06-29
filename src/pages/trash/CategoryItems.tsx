@@ -36,11 +36,6 @@ function CategoryItems() {
   }, [kind, page, setTrashList]);
 
   useEffect(() => {
-    setKind("");
-    setPage("");
-  }, []);
-
-  useEffect(() => {
     getTrashList();
   }, [getTrashList]);
 

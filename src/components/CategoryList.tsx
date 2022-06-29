@@ -50,8 +50,8 @@ function CategoryList({
     const newArr = Array(category.length).fill(false);
     newArr[index] = true;
     setIsSelected(newArr);
-    setPage("");
     setKind(category[index].name);
+    setPage("");
 
     navigate(`/category/${category[index].name}`);
   };

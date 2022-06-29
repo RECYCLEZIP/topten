@@ -6,7 +6,6 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
-  categoryItemState,
   categoryKindState,
   categoryPageState,
   categorySelectedState,
@@ -18,11 +17,12 @@ function Header() {
   const navigate = useNavigate();
   //mobile menu open or not
   const [isToggled, setIsToggled] = useState(false);
-  const setList = useSetRecoilState(categoryItemState);
   const setPage = useSetRecoilState(categoryPageState);
   const setKind = useSetRecoilState(categoryKindState);
   const setIsSelected = useSetRecoilState(categorySelectedState);
   const isLogin = useRecoilValue(loginState);
+  const url = window.location.pathname;
+  console.log();
 
   return (
     <Nav isToggled={isToggled}>
@@ -38,9 +38,11 @@ function Header() {
         <Link
           to="/category"
           onClick={() => {
-            setPage("");
-            setKind("");
-            setIsSelected([]);
+            if (url !== "/category") {
+              setPage("");
+              setKind("");
+              setIsSelected([]);
+            }
           }}
         >
           분리수거 정보
