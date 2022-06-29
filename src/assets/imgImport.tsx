@@ -28,6 +28,7 @@ import level2 from "./img/level2.png";
 import level3 from "./img/level3.png";
 import current_marker from "./img/current_marker.png";
 import hand from "./img/hand.png";
+import error404 from "./img/404.png";
 
 export const img = {
   seoul,
@@ -58,4 +59,5 @@ export const img = {
   levelImg: [level1, level2, level3],
   current_marker: current_marker,
   hand: hand,
+  error404,
 };

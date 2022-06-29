@@ -24,7 +24,7 @@ import {
   PostButton,
   PostCancleButton,
 } from "../../styles/qnaStyles/QnAPostStyle";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 function QnAPost() {
   const navigate = useNavigate();

@@ -25,10 +25,9 @@ import {
   quizListState,
   selectedAnswerState,
   toPostAnswerState,
-  viewAnswerState,
 } from "../../stores/atoms";
 import { useEffect } from "react";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 //quiz question card component
 function QuestionCard() {
@@ -81,7 +80,7 @@ function QuestionCard() {
           onClick={() => {
             if (currentPage + 1 === 4) {
               if (toPostAnswer.length !== 4) {
-                return customTostify("warn", "모든 문제를 풀어주세요!");
+                return customToastify("warn", "모든 문제를 풀어주세요!");
               }
               navigate("/quizzes/result");
               setCurrentPage(-1);

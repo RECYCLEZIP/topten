@@ -10,7 +10,7 @@ import {
   selectedAnswerState,
 } from "../../stores/atoms";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 // vs quiz page
 function VSQuiz() {
@@ -30,7 +30,7 @@ function VSQuiz() {
       const res = await getData("quizzes?type=mixUp");
       setQuizzes(res.data);
     } catch (err: any) {
-      customTostify("error", err.message);
+      customToastify("error", err.message);
     }
   };
 

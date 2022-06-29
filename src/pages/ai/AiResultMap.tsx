@@ -16,7 +16,7 @@ import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
 import AiResultMapList from "./AiResultMapList";
 
 import { AiContentTitle, DetailTitle } from "../../styles/aiStyles/AiStyle";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 import {
   MapTitleContainer,
   MapContainer,
@@ -64,7 +64,7 @@ function AiResultMap() {
 
       setRobot(res.data);
     } catch (err: any) {
-      customTostify("error", err.message);
+      customToastify("error", err.message);
       setError(err?.response?.data?.message);
     }
   };

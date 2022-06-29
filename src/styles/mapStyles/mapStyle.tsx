@@ -14,7 +14,11 @@ export const MapTop = styled.div`
   height: fit-content;
   position: fixed;
 
-  padding-top: 2rem;
+  padding-top: 1rem;
+
+  @media (min-width: 768px) {
+    padding-top: 2rem;
+  }
 `;
 
 export const MapTitle = styled.span`
@@ -23,9 +27,8 @@ export const MapTitle = styled.span`
 export const MapSearchSection = styled.section`
   margin: 1rem 0;
   display: flex;
-
   align-items: center;
-  // position: fixed;
+  flex-wrap: wrap;
 `;
 
 export const AutocompleteContainer = styled.div`
@@ -59,10 +62,9 @@ export const MapContentContainer = styled.div<{ type: any }>`
     props?.type === "bin"
       ? css`
           width: 85%;
-          height: 30vh;
-          height: 15rem;
+          height: 11rem;
 
-          margin-top: 7rem;
+          margin-top: 6rem;
           padding-bottom: 1.5rem;
           position: fixed;
 
@@ -99,7 +101,7 @@ export const MapBinListContainer = styled.div`
   display: block;
   position: absolute;
 
-  margin-top: 24.5rem;
+  margin-top: 19rem;
 
   flex: 1;
 

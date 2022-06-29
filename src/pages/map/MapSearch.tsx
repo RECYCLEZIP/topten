@@ -20,7 +20,7 @@ import {
 import { StyledInput } from "../../styles/mapStyles/MapMuiStyle";
 
 import { getData } from "../../api";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 // 검색어가 항목에 없을 시 문구 style
 const useStyles = makeStyles({
@@ -56,7 +56,7 @@ function MapSearch() {
       const res = await getData(`bins/locations`);
       setRegionOptions(res.data.uniqueRegionList);
     } catch (err: any) {
-      customTostify("error", err.message);
+      customToastify("error", err.message);
     }
   };
 
@@ -82,7 +82,6 @@ function MapSearch() {
 
   return (
     <MapSearchSection>
-      <MapSearchTextWrapper>서울시</MapSearchTextWrapper>
       <AutocompleteContainer>
         <Autocomplete
           value={regionValue}
@@ -99,10 +98,16 @@ function MapSearch() {
           sx={{
             display: "inline-block",
             "& input": {
-              width: "4rem",
+              width: "3rem",
               height: "0.5rem",
               fontSize: "0.46rem",
               lineHeight: "initial",
+            },
+
+            "@media (min-width: 768px)": {
+              "& input": {
+                width: "4rem",
+              },
             },
           }}
           renderInput={(params) => (
@@ -149,10 +154,15 @@ function MapSearch() {
             sx={{
               display: "inline-block",
               "& input": {
-                width: "4rem",
+                width: "3rem",
                 height: "0.5rem",
                 fontSize: "0.46rem",
                 lineHeight: "initial",
+              },
+              "@media (min-width: 768px)": {
+                "& input": {
+                  width: "4rem",
+                },
               },
             }}
             renderInput={(params) => (

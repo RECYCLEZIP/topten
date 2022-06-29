@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
 import { useParams } from "react-router";
 import { getData } from "../../api";
 import { TitleText } from "../../styles/TextStyle";
@@ -16,7 +15,7 @@ import {
   TrashTitle,
 } from "../../styles/trash/trash";
 import { TrashType } from "../../types/Trash";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 function Item() {
   const id = useParams().id;
@@ -28,7 +27,7 @@ function Item() {
       const res = await getData(`trash/${id}`);
       setTrash(res.data);
     } catch (err: any) {
-      customTostify("error", err.message);
+      customToastify("error", err.message);
     }
     setLoading(true);
   };
@@ -43,9 +42,6 @@ function Item() {
 
   return (
     <TrashContainer>
-      <Helmet>
-        <title>{trash.title} 버리는 법 - 분리수ZIP</title>
-      </Helmet>
       <TopContainer>
         <TrashImage src={trash.image}></TrashImage>
         <div>

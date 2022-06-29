@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router";
 import { useSetRecoilState } from "recoil";
 import { postData } from "../../api";
@@ -11,7 +10,7 @@ import {
   RegisterButton,
   LoginButton,
 } from "../../styles/userStyles/users";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -29,15 +28,12 @@ function Login() {
       sessionStorage.setItem("token", res.data.token);
       navigate("/");
     } catch {
-      customTostify("error", "아이디와 비밀번호를 확인해주세요.");
+      customToastify("error", "아이디와 비밀번호를 확인해주세요.");
     }
   };
 
   return (
     <RightContainer onSubmit={loginUser}>
-      <Helmet>
-        <title>로그인 - 분리수ZIP</title>
-      </Helmet>
       <TitleText>로그인</TitleText>
       <LoginInput
         placeholder="이메일"

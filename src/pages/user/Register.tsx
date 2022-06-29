@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router";
 import { postData } from "../../api";
 import { Button } from "../../styles/ButtonStyles";
@@ -12,7 +11,7 @@ import {
   RegisterInputContainer,
   CautionText,
 } from "../../styles/userStyles/users";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 const validateEmail = (email: string) => {
   const emailRule =
@@ -36,18 +35,15 @@ function Register() {
     e.preventDefault();
     try {
       await postData("users/register", { email, password, username });
-      customTostify("success", "가입 성공!");
+      customToastify("success", "가입 성공!");
     } catch (err: any) {
-      customTostify("error", err.message);
+      customToastify("error", err.message);
     }
     navigate("/users/login");
   };
 
   return (
     <RightContainer onSubmit={registerUser}>
-      <Helmet>
-        <title>회원가입 - 분리수ZIP</title>
-      </Helmet>
       <TitleText>회원가입</TitleText>
       <EachInput>
         <RegisterText>이메일</RegisterText>

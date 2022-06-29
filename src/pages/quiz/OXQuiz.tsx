@@ -9,7 +9,7 @@ import {
   quizListState,
   selectedAnswerState,
 } from "../../stores/atoms";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 // ox quiz page component
 function OXQuiz() {
@@ -19,7 +19,6 @@ function OXQuiz() {
     <ClearIcon style={{ fontSize: "3.5rem" }} />,
   ];
   const resultOption = ["O", "X"];
-  //recoil로 빼도록 하자.
   const [isSelected, setIsSelected] = useRecoilState(selectedAnswerState);
   const setQuizzes = useSetRecoilState(quizListState);
   const setOption = useSetRecoilState(answerState);
@@ -36,7 +35,7 @@ function OXQuiz() {
       const res = await getData("quizzes?type=ox");
       setQuizzes(res.data);
     } catch (err: any) {
-      customTostify("error", err.message);
+      customToastify("error", err.message);
     }
   };
 

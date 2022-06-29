@@ -15,7 +15,7 @@ import MultiQuiz from "./MultiQuiz";
 import OXQuiz from "./OXQuiz";
 import QuestionCard from "./QuestionCard";
 import VSQuiz from "./VSQuiz";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 function Quiz() {
   const [loading, setLoading] = useState(false);
@@ -33,7 +33,7 @@ function Quiz() {
       setCurrentQuiz([res.data[currentPage]]);
       setToPostAnswer([]);
     } catch {
-      customTostify("error", "퀴즈 데이터를 불러오는데 실패했습니다.");
+      customToastify("error", "퀴즈 데이터를 불러오는데 실패했습니다.");
     }
     setLoading(true);
   };

@@ -15,7 +15,7 @@ import {
   MoveButton,
 } from "../../styles/trash/items";
 import { useNavigate, useParams } from "react-router";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 function CategoryItems() {
   const params = useParams().kind;
@@ -31,7 +31,7 @@ function CategoryItems() {
       const res = await getData(`trash?category=${kind}&page=${page}`);
       setTrashList((prev) => [...prev, res.data]);
     } catch (err: any) {
-      customTostify("error", err.message);
+      customToastify("error", err.message);
     }
   }, [kind, page, setTrashList]);
 
