@@ -4,6 +4,8 @@ import { Button } from "../ButtonStyles";
 
 // 공통
 export const AiContentTitle = styled.span`
+  margin-right: 1rem;
+
   font-size: 0.8rem;
 `;
 
@@ -50,6 +52,8 @@ export const UploadContainer = styled.div`
 
 export const UploadWrapper = styled.div`
   align-self: center;
+
+  width: 100%;
 `;
 
 export const UploadNoticeWrapper = styled.div`
@@ -183,6 +187,16 @@ export const AiButton = styled(Button)<{
       props.situation === "analyzing") &&
     "default"};
 
+  :disabled {
+    background-color: #21a663;
+  }
+
+  &:hover {
+    :disabled {
+      background-color: #21a663;
+    }
+  }
+
   background: ${(props) =>
     // ?이미지 업로드 전
     // 이미지 업로드 false, 분석 중 false, 분석 완료 false
@@ -264,7 +278,9 @@ export const AiGuideTitle = styled(AiContentText)`
   color: #9eacba;
 `;
 
-export const DetailTitle = styled.div`
+export const DetailTitle = styled.div<{ click: boolean }>`
   color: #9eacba;
-  font-size: 0.53rem;
+  font-size: 0.5rem;
+
+  cursor: ${(props) => props.click && "pointer"};
 `;
