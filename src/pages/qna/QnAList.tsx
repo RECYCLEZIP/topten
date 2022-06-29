@@ -7,6 +7,7 @@ import {
   QnASearchValueState,
   QnAPageState,
   QnALengthState,
+  QnANumPagesState,
 } from "../../stores/atoms";
 
 import { QnAType } from "../../types/QnA";
@@ -37,7 +38,9 @@ function QnAList() {
   const [qnaTotal, setQnaTotal] = useRecoilState(QnALengthState);
   const [qnaPage, setQnaPage] = useRecoilState(QnAPageState);
 
-  const offset = (qnaPage - 1) * 5;
+  const [numPages, setNumPages] = useRecoilState(QnANumPagesState);
+
+  const offset = (qnaPage - 1) * 10;
 
   const date = (prop: string) => {
     return prop.split("T")[0].split("-").join(".");
@@ -45,15 +48,16 @@ function QnAList() {
 
   useEffect(() => {
     // 검색 전 전체 리스트 세팅
+    console.log(qnaAllList);
     setQnaList([...qnaAllList]);
   }, [qnaAllList]);
 
   useEffect(() => {
-    if (qnaAllList?.length !== 0) {
-      setQnaTotal(qnaList?.length);
-    } else {
-      setQnaTotal(0);
-    }
+    // if (qnaAllList?.length !== 0) {
+    //   setQnaTotal(qnaList?.length);
+    // } else {
+    //   setQnaTotal(0);
+    // }
   }, [qnaList]);
 
   useEffect(() => {
@@ -77,8 +81,10 @@ function QnAList() {
       <BlackHr />
       <ListTable>
         <ListTbody>
-          {qnaList?.slice(offset, offset + 5).map((qna: any, idx: number) => (
+          {/* {qnaList?.slice(offset, offset + 10).map((qna: any, idx: number) => ( */}
+          {qnaList?.map((qna: any, idx: number) => (
             <>
+              <>{console.log(qnaPage)}</>
               {qnaList?.length === 0 ? (
                 <tr>
                   <NothingTd>조회된 게시물이 없습니다.</NothingTd>
@@ -86,7 +92,7 @@ function QnAList() {
               ) : (
                 <ListTr>
                   {/* 게시글 번호 내림차순으로 */}
-                  <ListNumber>{qnaList.length - idx}</ListNumber>
+                  <ListNumber>{(qnaList.length - idx)}</ListNumber>
                   <ListTitle onClick={() => navigate(`/qna/${qna._id}`)}>
                     {qna?.title}
                   </ListTitle>
