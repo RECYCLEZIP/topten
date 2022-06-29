@@ -8,7 +8,7 @@ import { getData } from "../../api";
 
 import {
   RobotState,
-  BinSelectedState,
+  RobotSelectedState,
   selectedMarkerState,
 } from "../../stores/atoms";
 import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
@@ -27,9 +27,8 @@ function AiResultMap() {
   const [robot, setRobot] = useRecoilState<RobotType[]>(RobotState);
 
   const robots = useRecoilValue(RobotState);
-  const robotSelected = useRecoilValue(BinSelectedState);
   const setSelectedMarker = useSetRecoilState(selectedMarkerState);
-  const setRobotSelected = useSetRecoilState(BinSelectedState);
+  const [robotSelected, setRobotSelected] = useRecoilState(RobotSelectedState);
 
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);

@@ -31,7 +31,7 @@ function AiResultMapList() {
 
   // 리스트에서 항목 click 시 해당 항목의 좌표 저장
   const onClickBin = (x: number | undefined, y: number | undefined) => {
-    setRobotSelected([x, y]);
+    setRobotSelected([y, x]);
   };
 
   // 지도에서 선택된 마커의 좌표가 어떤 쓰레기통인지 찾아서 해당 정보 저장
