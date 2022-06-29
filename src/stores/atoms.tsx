@@ -6,6 +6,7 @@ import { CategoryItemType, TrashType } from "../types/Trash";
 import { UserType } from "../types/User";
 import { QnAType } from "../types/QnA";
 import { RobotType } from "../types/Robot";
+import { AiResultType } from "../types/Ai";
 
 export interface BinTypes {
   region: string;
@@ -28,6 +29,21 @@ export const AiSituationState = atom({
   key: "AiSituationState",
   default: "done",
   // default: "beforeImgUpload",
+});
+
+export const AiResultState = atom<AiResultType>({
+  key: "AiResultState",
+  default: {
+    title: "",
+    kind: "",
+    section: [
+      {
+        title: "",
+        score: 0,
+      },
+    ],
+    throwAway: [""],
+  },
 });
 
 // 서울시 쓰레기통 데이터셋
