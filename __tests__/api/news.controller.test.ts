@@ -8,12 +8,12 @@ describe("NEWS API", () => {
     const tempNews: INews = { url: "https://team10", title: "분리수ZIP" };
 
     it("NEWS GET/ 뉴스목록을 응답받는다.", async () => {
-        const res = await request(app).get("/api/news");
+        const res = await request(app).get("/news");
         expect(res.status).toBe(STATUS_200_OK);
     });
 
     it("NEWS POST/ 뉴스를 생성한다.", async () => {
-        const res = await request(app).post("/api/news").send(tempNews);
+        const res = await request(app).post("/news").send(tempNews);
         expect(res.status).toBe(STATUS_201_CREATED);
         expect(res.body.url).toEqual("https://team10");
         expect(res.body.title).toEqual("분리수ZIP");
@@ -22,7 +22,7 @@ describe("NEWS API", () => {
     it("NEWS PUT/ 뉴스를 수정한다.", async () => {
         const news = await NewsService.addNews(tempNews);
         const res = await request(app)
-            .put(`/api/news/${news._id}`)
+            .put(`/news/${news._id}`)
             .send({ ...tempNews, url: "https://elice-team10" });
         expect(res.status).toBe(STATUS_200_OK);
         expect(res.body.title).toEqual("분리수ZIP");
@@ -32,7 +32,7 @@ describe("NEWS API", () => {
 
     it("NEWS DELETE/ 뉴스를 삭제한다.", async () => {
         const targetNews = await NewsService.addNews(tempNews);
-        const res = await request(app).delete(`/api/news/${targetNews._id}`);
+        const res = await request(app).delete(`/news/${targetNews._id}`);
         expect(res.status).toBe(STATUS_200_OK);
         expect(res.body.message).toEqual("삭제가 완료되었습니다.");
     });

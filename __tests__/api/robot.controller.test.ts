@@ -38,7 +38,7 @@ describe("robotController TEST", () => {
     describe("GET /robot TEST", () => {
         it("x, y 쿼리스트링을 담아 요청하면 로봇 위치정보를 반환한다.", async () => {
             const queryString = { x: "127.087316644307", y: "37.5886172687013" };
-            const res = await request(app).get("/api/robot").query(queryString);
+            const res = await request(app).get("/robot").query(queryString);
             expect(res.statusCode).toEqual(STATUS_200_OK);
             expect(res.body.length).toBe(2);
             expect(res.body[0].name).toEqual("중랑구 면목역공원(투명페트병/캔)");
@@ -46,7 +46,7 @@ describe("robotController TEST", () => {
 
         it("queryStringValidator : x, y 중 하나라도 queryString이 누락되면 에러를 반환한다.", async () => {
             const queryString = { x: "127.087316644307" };
-            const res = await request(app).get("/api/robot").query(queryString);
+            const res = await request(app).get("/robot").query(queryString);
             expect(res.body).toEqual({ message: "요청 데이터 형식이 옳바르지 않습니다." });
         });
     });

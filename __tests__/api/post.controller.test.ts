@@ -20,21 +20,21 @@ describe("POST API", () => {
     };
 
     it("POST GET/ 게시글목록을 응답받는다.", async () => {
-        const res = await request(app).get("/api/posts");
+        const res = await request(app).get("/posts");
         expect(res.status).toBe(STATUS_200_OK);
     });
 
     it("POST/:id GET/ 개별 게시글 정보를 응답받는다.", async () => {
         const createdUser = await UserService.addUser(tempUser);
         const posts = await PostService.addPost(createdUser._id, tempPost);
-        const res = await request(app).get(`/api/posts/${posts._id}`);
+        const res = await request(app).get(`/posts/${posts._id}`);
         expect(res.status).toBe(STATUS_200_OK);
     });
 
     it("POST /posts/users/:userId 사용자의 게시글 정보를 응답받는다.", async () => {
         const createdUser = await UserService.addUser(tempUser);
         await PostService.addPost(createdUser._id, tempPost);
-        const res = await request(app).get(`/api/posts/users/${createdUser._id}`);
+        const res = await request(app).get(`/posts/users/${createdUser._id}`);
         expect(res.status).toBe(STATUS_200_OK);
         expect(res.body).toHaveProperty("count");
         expect(res.body).toHaveProperty("data");
@@ -44,7 +44,7 @@ describe("POST API", () => {
         const createdUser = await UserService.addUser(tempUser);
         const accessToken = createAccessToken(createdUser._id);
         const res = await request(app)
-            .post("/api/posts")
+            .post("/posts")
             .set("Authorization", `Bearer ${accessToken}`)
             .send(tempPost);
         expect(res.status).toBe(STATUS_201_CREATED);
@@ -57,7 +57,7 @@ describe("POST API", () => {
         const accessToken = createAccessToken(createdUser._id);
         const posts = await PostService.addPost(createdUser._id, tempPost);
         const res = await request(app)
-            .post(`/api/posts/${posts._id}/comments`)
+            .post(`/posts/${posts._id}/comments`)
             .set("Authorization", `Bearer ${accessToken}`)
             .send({ content: "댓글생성테스트" });
         expect(res.status).toBe(STATUS_201_CREATED);
@@ -70,7 +70,7 @@ describe("POST API", () => {
         const accessToken = createAccessToken(createdUser._id);
         const posts = await PostService.addPost(createdUser._id, tempPost);
         const res = await request(app)
-            .put(`/api/posts/${posts._id}`)
+            .put(`/posts/${posts._id}`)
             .set("Authorization", `Bearer ${accessToken}`)
             .send({ title: "수정된 제목", content: "수정된 내용" });
         expect(res.status).toBe(STATUS_200_OK);
@@ -88,7 +88,7 @@ describe("POST API", () => {
         } as IComment);
         const { comments }: any = await PostService.getByPost(createdPost._id.toString());
         const res = await request(app)
-            .put(`/api/posts/${createdPost._id}/comments/${comments[0]._id}`)
+            .put(`/posts/${createdPost._id}/comments/${comments[0]._id}`)
             .set("Authorization", `Bearer ${accessToken}`)
             .send({ content: "댓글수정테스트" });
         expect(res.status).toBe(STATUS_200_OK);
@@ -101,7 +101,7 @@ describe("POST API", () => {
         const accessToken = createAccessToken(createdUser._id);
         const posts = await PostService.addPost(createdUser._id, tempPost);
         const res = await request(app)
-            .delete(`/api/posts/${posts._id}`)
+            .delete(`/posts/${posts._id}`)
             .set("Authorization", `Bearer ${accessToken}`);
         expect(res.status).toBe(STATUS_200_OK);
         expect(res.body.message).toEqual("삭제가 완료되었습니다.");
@@ -116,7 +116,7 @@ describe("POST API", () => {
             content: "테스트",
         } as IComment);
         const res = await request(app)
-            .delete(`/api/posts/${createdPost._id}/comments/${createdPost._id}`)
+            .delete(`/posts/${createdPost._id}/comments/${createdPost._id}`)
             .set("Authorization", `Bearer ${accessToken}`);
         expect(res.status).toBe(STATUS_200_OK);
         expect(res.body.message).toEqual("삭제가 완료되었습니다.");
