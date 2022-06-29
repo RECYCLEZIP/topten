@@ -15,7 +15,7 @@ import {
 function UserAllQnA() {
   return (
     <Container>
-      <TitleText>Q&A</TitleText>
+      <TitleText>나의 Q&A</TitleText>
       <UserAllQnAList />
       <QnAPagination />
     </Container>

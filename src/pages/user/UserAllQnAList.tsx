@@ -3,8 +3,6 @@ import React, { useState, useEffect } from "react";
 import { useRecoilValue, useRecoilState } from "recoil";
 import {
   QnAListState,
-  QnASearchState,
-  QnASearchValueState,
   QnAPageState,
   QnALengthState,
   QnANumPagesState,
@@ -21,11 +19,8 @@ import {
   NothingTd,
   ListNumber,
   ListTitle,
-  ListAuthor,
   ListDate,
 } from "../../styles/qnaStyles/QnAStyle";
-
-import { BlackHr } from "../../styles/qnaStyles/QnADescriptionStyle";
 
 function UserAllQnAList() {
   const navigate = useNavigate();
@@ -52,7 +47,6 @@ function UserAllQnAList() {
 
   return (
     <>
-      <BlackHr />
       <ListTable>
         <ListTbody>
           {/* {qnaList?.slice(offset, offset + 10).map((qna: any, idx: number) => ( */}
@@ -77,7 +71,6 @@ function UserAllQnAList() {
           ))}
         </ListTbody>
       </ListTable>
-      <BlackHr />
     </>
   );
 }
