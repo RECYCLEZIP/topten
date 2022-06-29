@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
 import { useSetRecoilState } from "recoil";
 import { getData } from "../../api";
 import { categorySelectedState, newsState } from "../../stores/atoms";
@@ -38,9 +37,6 @@ function Main() {
 
   return (
     <MainContainer>
-      <Helmet>
-        <title>분리수ZIP</title>
-      </Helmet>
       <AiSection />
       <NewsSection />
       <CategorySection />

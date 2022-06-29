@@ -1,5 +1,4 @@
 import { Route, Routes, useNavigate } from "react-router";
-import { Helmet } from "react-helmet";
 import {
   CategorySubTitle,
   CategoryTitle,
@@ -30,9 +29,6 @@ function Category() {
 
   return (
     <>
-      <Helmet>
-        <title>카테고리 - 분리수ZIP</title>
-      </Helmet>
       <CategoryTitleContainer>
         <CategoryTitle>카테고리</CategoryTitle>
         <CategorySubTitle
