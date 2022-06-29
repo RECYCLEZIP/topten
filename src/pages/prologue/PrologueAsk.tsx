@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { img } from "../../assets/imgImport";
 
 import {
-  PrologueSection,
+  AskSection,
   PrologueTitle,
   AskTopContainer,
   PrologueAskTitleContainer,
@@ -18,7 +18,7 @@ import {
 
 function PrologueAsk() {
   return (
-    <PrologueSection>
+    <AskSection>
       <AskTopContainer>
         <PrologueAskTitleContainer>
           <AskTitleWrapper className="fade-class">
@@ -30,14 +30,14 @@ function PrologueAsk() {
             <PrologueTitle>하고 계신가요?</PrologueTitle>
           </AskTitleWrapper>
         </PrologueAskTitleContainer>
+        <PrologueAskImg src={img.bin} alt="bins" />
+      </AskTopContainer>
+      <PrologueAskImgWrapper className="fade-class">
         <AskHandWrapper className="fade-class">
           <AskHandImg src={img.hand} alt="hand" />
         </AskHandWrapper>
-      </AskTopContainer>
-      <PrologueAskImgWrapper className="fade-class">
-        <PrologueAskImg src={img.bin} alt="bins" />
       </PrologueAskImgWrapper>
-    </PrologueSection>
+    </AskSection>
   );
 }
 

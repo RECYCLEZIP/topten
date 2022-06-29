@@ -55,6 +55,12 @@ export const PrologueSection = styled.div`
   display: flow-root;
 `;
 
+export const AskSection = styled(PrologueSection)`
+  margin: 13% 8%;
+  margin-right: 0;
+  display: flex;
+`;
+
 export const PrologueTitle = styled.span<{ delay?: string }>`
   font-size: 1.5rem;
 
@@ -174,6 +180,7 @@ export const PrologueAskTitleContainer = styled.div`
 
 export const AskTopContainer = styled.div`
   display: flex;
+  flex-direction: column;
 `;
 
 export const AskTitleWrapper = styled.div<{ delay?: string }>`
@@ -193,7 +200,7 @@ export const AskHandWrapper = styled.div`
 `;
 
 export const AskHandImg = styled.img`
-  width: 10rem;
+  width: 100%;
 
   @media screen and (max-width: 768px) {
     display: none;
@@ -207,8 +214,8 @@ export const AskHandImg = styled.img`
 
 export const PrologueAskImgWrapper = styled.div`
   position: relative;
-  width: 15rem;
   width: 100%;
+  text-align: right;
 
   @media screen and (min-width: 768px) {
     max-width: 60%;
