@@ -20,7 +20,7 @@ import {
   SearchSelect,
   SearchInput,
 } from "../../styles/qnaStyles/QnAStyle";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 function QnABar() {
   const [qnaAllList, setQnaAllList] = useRecoilState(QnAListState);

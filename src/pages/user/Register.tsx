@@ -12,7 +12,7 @@ import {
   RegisterInputContainer,
   CautionText,
 } from "../../styles/userStyles/users";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 const validateEmail = (email: string) => {
   const emailRule =
@@ -36,9 +36,9 @@ function Register() {
     e.preventDefault();
     try {
       await postData("users/register", { email, password, username });
-      customTostify("success", "가입 성공!");
+      customToastify("success", "가입 성공!");
     } catch (err: any) {
-      customTostify("error", err.message);
+      customToastify("error", err.message);
     }
     navigate("/users/login");
   };

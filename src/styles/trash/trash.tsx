@@ -5,9 +5,15 @@ export const TrashContainer = styled.div`
 `;
 
 export const TrashImage = styled.img`
-  width: 5rem;
-  height: 5rem;
-  margin-right: 3rem;
+  width: 4rem;
+  height: 4rem;
+  margin-right: 1.3rem;
+
+  @media (min-width: 768px) {
+    width: 5rem;
+    height: 5rem;
+    margin-right: 3rem;
+  }
 `;
 
 export const TrashCard = styled.div`
@@ -42,6 +48,12 @@ export const MiddleContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 export const MiddleBox = styled.div`
@@ -50,7 +62,11 @@ export const MiddleBox = styled.div`
   text-align: center;
   margin: 1rem;
   padding: 0.7rem 1.5rem;
-  width: 23%;
+  width: 50%;
+
+  @media (min-width: 768px) {
+    width: 23%;
+  }
 `;
 
 export const MiddleText = styled.p<{ margin?: string }>`
@@ -61,10 +77,10 @@ export const MiddleText = styled.p<{ margin?: string }>`
 
 export const TopContainer = styled.div`
   display: flex;
+  justify-content: center;
   margin-bottom: 1rem;
-  margin-left: 2rem;
   align-items: center;
-  width: 80%;
+  width: 100%;
 `;
 
 export const TrashTitle = styled.p`

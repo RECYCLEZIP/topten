@@ -14,7 +14,7 @@ import {
 } from "../../styles/trash/search";
 import { Search as SearchIcon } from "@mui/icons-material";
 import { img } from "../../assets/imgImport";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 function Search() {
   const [search, setSearch] = useState("");
@@ -27,7 +27,7 @@ function Search() {
       const res = await getData(`trash?search=${search}`);
       setTrashList(res.data);
     } catch (err: any) {
-      customTostify("error", err.message);
+      customToastify("error", err.message);
     }
   };
 

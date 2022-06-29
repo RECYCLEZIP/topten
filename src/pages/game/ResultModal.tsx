@@ -9,7 +9,7 @@ import { useNavigate } from "react-router";
 import { GameButton, ResultButton } from "../../styles/gameStyles/game";
 import gameOverBgm from "../../assets/gameover.mp3";
 import { putData } from "../../api";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 const style = {
   position: "absolute" as "absolute",
@@ -51,7 +51,7 @@ function ResultModal({
     try {
       putData("users/score", { score: Math.round(score * bonus) });
     } catch (err: any) {
-      customTostify("error", err.message);
+      customToastify("error", err.message);
     }
   };
 

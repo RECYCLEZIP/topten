@@ -13,7 +13,7 @@ import {
 } from "../../styles/userStyles/userPage";
 import { UserType } from "../../types/User";
 import UserEdit from "./UserEdit";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 function UserPage() {
   const navigate = useNavigate();
@@ -39,12 +39,12 @@ function UserPage() {
   const deleteUser = async () => {
     try {
       await delData("users/delete");
-      customTostify("success", "탈퇴 성공!");
+      customToastify("success", "탈퇴 성공!");
       sessionStorage.removeItem("token");
       setIsLogin(false);
       navigate("/");
     } catch {
-      customTostify("error", "탈퇴 실패!");
+      customToastify("error", "탈퇴 실패!");
     }
   };
 

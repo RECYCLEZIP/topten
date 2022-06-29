@@ -24,7 +24,7 @@ import {
   MapTitle,
   MapBinSection,
 } from "../../styles/mapStyles/mapStyle";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 function Map() {
   const [bin, setBin] = useRecoilState<BinTypes[]>(BinState);
@@ -53,7 +53,7 @@ function Map() {
       );
       setBin(res.data);
     } catch (err: any) {
-      customTostify("error", err.message);
+      customToastify("error", err.message);
     }
   };
   useEffect(() => {

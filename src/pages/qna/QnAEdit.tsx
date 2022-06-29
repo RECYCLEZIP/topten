@@ -21,7 +21,7 @@ import {
   PostButton,
   PostCancleButton,
 } from "../../styles/qnaStyles/QnAPostStyle";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 function QnAEdit() {
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ function QnAEdit() {
     try {
       await getData(`posts/${id}`).then((res) => setQna(res.data));
     } catch (err: any) {
-      customTostify("error", err.message);
+      customToastify("error", err.message);
     }
   };
 
@@ -62,7 +62,7 @@ function QnAEdit() {
 
       navigate(`/qna/${id}`);
     } catch (err: any) {
-      customTostify("error", err.message);
+      customToastify("error", err.message);
     }
   };
 
