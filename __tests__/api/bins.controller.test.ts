@@ -36,9 +36,8 @@ export async function initializeDataBase() {
             y: 37.5770099711,
         },
     ];
-    for (const data of datas) {
-        await BinsModel.create(data);
-    }
+
+    await BinsModel.insertMany(datas);
 }
 
 describe("binsController TEST", () => {
