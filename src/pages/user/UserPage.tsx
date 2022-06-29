@@ -13,6 +13,7 @@ import {
 } from "../../styles/userStyles/userPage";
 import { UserType } from "../../types/User";
 import UserEdit from "./UserEdit";
+import UserQnA from "./UserQnA";
 import { customTostify } from "../../components/customTostify";
 
 function UserPage() {
@@ -68,6 +69,7 @@ function UserPage() {
       <EmailText>{user.email}</EmailText>
       <Button onClick={logout}>로그아웃</Button>
       <RedButton onClick={deleteUser}>회원탈퇴</RedButton>
+      <UserQnA />
     </UserPageContainer>
   );
 }
