@@ -22,7 +22,11 @@ export const EditText = styled.button`
   cursor: pointer;
   font-weight: 700;
   font-size: 0.6rem;
-  margin-left: 0.6rem;
+  padding: 0;
+
+  @media (min-width: 410px) {
+    padding-left: 0.3rem;
+  }
 `;
 
 export const RedButton = styled(Button)`
