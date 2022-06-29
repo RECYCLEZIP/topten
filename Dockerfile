@@ -1,5 +1,5 @@
 FROM node:16.15-alpine
-WORKDIR /usr/src/app/back
+WORKDIR /usr/src/app
 
 COPY dist/ .
 
