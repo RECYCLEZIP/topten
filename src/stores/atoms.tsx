@@ -225,11 +225,6 @@ export const QnAListState = atom<QnAType[]>({
   default: [],
 });
 
-export const QnASearchState = atom<QnAType[]>({
-  key: "QnaSearchState",
-  default: [],
-});
-
 export const QnASearchValueState = atom({
   key: "QnASearchValueState",
   default: "",

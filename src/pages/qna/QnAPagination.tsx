@@ -16,7 +16,6 @@ function QnaPagination() {
   const [numPages, setNumPages] = useRecoilState(QnANumPagesState);
 
   useEffect(() => {
-    console.log(qnaTotal);
     setNumPages(Math.ceil(qnaTotal / 10));
   }, [qnaTotal]);
 
@@ -30,7 +29,6 @@ function QnaPagination() {
         >
           &lt;
         </Button>
-        <> {console.log(numPages)}</>
         {Array(numPages)
           .fill(1, 0)
           .map((_, i) => (
