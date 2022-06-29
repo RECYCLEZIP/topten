@@ -74,7 +74,7 @@ function UserAllQnAList() {
               ) : (
                 <ListTr>
                   {/* 게시글 번호 내림차순으로 */}
-                  <ListNumber>{qnaList.length - idx}</ListNumber>
+                  <ListNumber>{qnaTotal - idx - (qnaPage - 1) * 10}</ListNumber>
                   <ListTitle onClick={() => navigate(`/qna/${qna._id}`)}>
                     {qna?.title}
                   </ListTitle>

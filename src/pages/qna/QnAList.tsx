@@ -34,6 +34,8 @@ function QnAList() {
 
   const [numPages, setNumPages] = useRecoilState(QnANumPagesState);
 
+  const qnaTotal = useRecoilValue(QnALengthState);
+
   const date = (prop: string) => {
     return prop.split("T")[0].split("-").join(".");
   };
@@ -52,7 +54,8 @@ function QnAList() {
               {qnaList?.map((qna: any, idx: number) => (
                 <ListTr>
                   {/* 게시글 번호 내림차순으로 */}
-                  <ListNumber>{qnaList.length - idx}</ListNumber>
+                  {/* <ListNumber>{qnaTotal - idx}</ListNumber> */}
+                  <ListNumber>{qnaTotal - idx - (qnaPage - 1) * 10}</ListNumber>
                   <ListTitle onClick={() => navigate(`/qna/${qna._id}`)}>
                     {qna?.title}
                   </ListTitle>

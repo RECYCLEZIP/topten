@@ -93,7 +93,7 @@ function UserQnA() {
                 ) : (
                   <ListTr>
                     {/* 게시글 번호 내림차순으로 */}
-                    <ListNumber>{/* {qnaList.length - idx} */}1</ListNumber>
+                    <ListNumber>{qnaList?.length - idx}</ListNumber>
                     <ListTitle onClick={() => navigate(`/qna/${qna._id}`)}>
                       {qna?.title}
                     </ListTitle>
