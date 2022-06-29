@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
 import { useParams } from "react-router";
 import { getData } from "../../api";
 import { TitleText } from "../../styles/TextStyle";
@@ -43,9 +42,6 @@ function Item() {
 
   return (
     <TrashContainer>
-      <Helmet>
-        <title>{trash.title} 버리는 법 - 분리수ZIP</title>
-      </Helmet>
       <TopContainer>
         <TrashImage src={trash.image}></TrashImage>
         <div>

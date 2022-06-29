@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
 import { useSetRecoilState } from "recoil";
 import { getData } from "../../api";
 import { categorySelectedState, newsState } from "../../stores/atoms";
@@ -10,6 +9,7 @@ import MapSection from "./MapSection";
 import NewsSection from "./NewsSection";
 import QuizSection from "./QuizSection";
 import { customToastify } from "../../components/customToastify";
+import { Helmet } from "react-helmet-async";
 
 function Main() {
   // main page component
@@ -37,16 +37,23 @@ function Main() {
   }
 
   return (
-    <MainContainer>
+    <>
       <Helmet>
-        <title>분리수ZIP</title>
+        <title>분리수ZIP - 메인</title>
+        <meta
+          name="description"
+          content="AI가 분류해주는 분리수거 서비스 메인페이지"
+        />
+        <link rel="canonical" href="/" />
       </Helmet>
-      <AiSection />
-      <NewsSection />
-      <CategorySection />
-      <QuizSection />
-      <MapSection />
-    </MainContainer>
+      <MainContainer>
+        <AiSection />
+        <NewsSection />
+        <CategorySection />
+        <QuizSection />
+        <MapSection />
+      </MainContainer>
+    </>
   );
 }
 

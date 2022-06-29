@@ -1,5 +1,4 @@
 import { Route, Routes, useNavigate } from "react-router";
-import { Helmet } from "react-helmet";
 import {
   CategorySubTitle,
   CategoryTitle,
@@ -19,6 +18,7 @@ import {
   categoryState,
 } from "../../stores/atoms";
 import { useRecoilState, useSetRecoilState } from "recoil";
+import { Helmet } from "react-helmet-async";
 
 // category page component
 function Category() {
@@ -31,7 +31,12 @@ function Category() {
   return (
     <>
       <Helmet>
-        <title>카테고리 - 분리수ZIP</title>
+        <title>분리수ZIP - 쓰레기 정보</title>
+        <meta
+          name="description"
+          content="AI가 분류해주는 분리수거 서비스 쓰레기 정보페이지"
+        />
+        <link rel="canonical" href="/category" />
       </Helmet>
       <CategoryTitleContainer>
         <CategoryTitle>카테고리</CategoryTitle>
