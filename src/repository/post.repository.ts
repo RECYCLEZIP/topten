@@ -6,9 +6,18 @@ export class Post {
         return PostModel.count({});
     }
 
-    static find({ filteredQuery, limit }: { filteredQuery: MongooseQuery; limit: number }) {
+    static find({
+        filteredQuery,
+        page,
+        limit,
+    }: {
+        filteredQuery: MongooseQuery;
+        page: number;
+        limit: number;
+    }) {
         return PostModel.find(filteredQuery)
-            .sort({ _id: -1 })
+            .sort({ createdAt: -1 })
+            .skip(page)
             .limit(limit)
             .populate("author", "-password");
     }

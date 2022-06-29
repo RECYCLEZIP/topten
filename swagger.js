@@ -95,7 +95,7 @@ const doc = {
             },
         ],
         PostId: "posts/{postId}",
-        PostGetQuery: "?search={}&page={ID}&limit={5}",
+        PostGetQuery: "?search=테스트&type=title&pageno=2&limit=10",
         PostGetResponse: {
             count: 12,
             data: [

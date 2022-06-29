@@ -17,7 +17,8 @@ postController.get(
             #swagger.parameters['queryString'] = {
                 in: 'query',
                 description: '**search** 검색어\n
-                **page** 첫 요청시 빈 문자열 또는 생략\n
+                **type** 검색타입, all, title, content\n
+                **pageno** 페이지 번호\n
                 **limit** 기본값10\n',
                 required: false,
                 schema: { $ref: "#/definitions/PostGetQuery" }

@@ -1,15 +1,14 @@
 import { Post } from "@src/repository";
 import { UserService } from "@src/service";
-import { createFilterQuery } from "@src/utils/createQuery";
+import { createPostQuery } from "@src/utils/createQuery";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 import { RequestError } from "@src/middlewares/errorHandler";
 import { FilterQuery, IComment, IPost } from "@src/models/interface";
 
 export class PostService {
     static async getPostList(query: FilterQuery) {
-        const filterList = ["title", "content"];
-        const { filteredQuery, limit } = createFilterQuery(query, filterList);
-        const foundPostList = await Post.find({ filteredQuery, limit });
+        const { filteredQuery, page, limit } = createPostQuery(query);
+        const foundPostList = await Post.find({ filteredQuery, page, limit });
         const postCount = await Post.count();
         if (!foundPostList)
             throw new RequestError("게시글 목록을 가져올 수 없습니다.", STATUS_404_NOTFOUND);

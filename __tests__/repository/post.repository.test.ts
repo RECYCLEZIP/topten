@@ -10,7 +10,7 @@ describe("Post 모델 접근", () => {
 
     it("find는 모델에서 게시글목록을 찾는다.", async () => {
         const spyFn = jest.spyOn(PostModel, "find");
-        await Post.find({ filteredQuery: {}, limit: 10 });
+        await Post.find({ filteredQuery: {}, page: 1, limit: 10 });
         expect(spyFn).toBeCalledTimes(1);
     });
 
