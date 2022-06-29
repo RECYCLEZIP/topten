@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router";
 import { img } from "../assets/imgImport";
 import {
@@ -14,6 +15,9 @@ function PageNotFound() {
 
   return (
     <PageNotContainer>
+      <Helmet>
+        <title>Not Found</title>
+      </Helmet>
       <ErrorDescription>
         <NumberText>404</NumberText>
         <DescriptionText>페이지를 찾을 수 없습니다.</DescriptionText>

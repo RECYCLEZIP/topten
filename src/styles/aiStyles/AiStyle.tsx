@@ -180,6 +180,7 @@ export const AiButton = styled(Button)<{
   height: 100%;
 
   padding: 0.3rem 1.2rem;
+  margin-top: 0.5rem;
 
   border-radius: 0.3rem;
 
@@ -187,6 +188,7 @@ export const AiButton = styled(Button)<{
 
   @media (min-width: 768px) {
     float: right;
+    margin-top: 0;
   }
 
   cursor: ${(props) =>
