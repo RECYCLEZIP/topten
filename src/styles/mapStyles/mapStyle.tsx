@@ -4,7 +4,7 @@ import { Container } from "../basicStyle";
 
 export const MapContainer = styled(Container)`
   padding-top: 0;
-  margin-top: 2.6rem;
+  margin-top: 2.3rem;
 `;
 
 export const MapTop = styled.div`
