@@ -22,7 +22,7 @@ import selectBgm from "../../assets/select.mp3";
 import wrongBgm from "../../assets/wrong.mp3";
 import { getData } from "../../api";
 import { GameDataType } from "../../types/Game";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 export const initialState = {
   totalScore: 0,
@@ -110,7 +110,7 @@ function Game() {
         setVisibility(Array(trash.length).fill("visible"));
         setLoading(true);
       } catch (err: any) {
-        customTostify("error", err.message);
+        customToastify("error", err.message);
       }
     };
     if (level === 0) {

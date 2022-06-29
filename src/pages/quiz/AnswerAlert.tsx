@@ -10,7 +10,7 @@ import {
   viewAnswerState,
 } from "../../stores/atoms";
 import { postData } from "../../api";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 function AnswerAlert() {
   const option = useRecoilValue(answerState);
@@ -22,7 +22,7 @@ function AnswerAlert() {
   const [confirm, setConfirm] = useRecoilState(quizConfirmState);
 
   const CheckAnswer = async () => {
-    if (option === "-1") return customTostify("warn", "답을 선택해주세요!");
+    if (option === "-1") return customToastify("warn", "답을 선택해주세요!");
     setConfirm(true);
     try {
       const res = await postData(`quizzes/${currentQuiz._id}/submission`, {
@@ -30,9 +30,9 @@ function AnswerAlert() {
       });
       setIsCorrect(res.data.isCorrect);
       if (res.data.isCorrect) {
-        customTostify("success", "맞았습니다!");
+        customToastify("success", "맞았습니다!");
       } else {
-        customTostify("error", "틀렸습니다!");
+        customToastify("error", "틀렸습니다!");
       }
       setTimeout(() => {
         setOpenResult((cur) => !cur);
@@ -42,7 +42,7 @@ function AnswerAlert() {
         setToPostAnswer(answerList);
       }, 1000);
     } catch {
-      customTostify("error", "채점 중 에러가 발생하였습니다.");
+      customToastify("error", "채점 중 에러가 발생하였습니다.");
     }
   };
 

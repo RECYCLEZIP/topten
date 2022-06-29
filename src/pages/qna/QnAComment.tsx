@@ -27,7 +27,7 @@ import {
   CommentPostButton,
   CommentRightButton,
 } from "../../styles/qnaStyles/QnACommentStyle";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 function QnAComment() {
   // 게시글 id
@@ -47,7 +47,7 @@ function QnAComment() {
     try {
       await getData(`posts/${id}`).then((res) => setQna(res.data));
     } catch (err: any) {
-      customTostify("error", err.message);
+      customToastify("error", err.message);
     }
   };
 
@@ -95,7 +95,7 @@ function QnAComment() {
       await delData(`posts/${id}/comments/${commentId}`);
       get();
     } catch (err: any) {
-      customTostify("error", err.message);
+      customToastify("error", err.message);
     }
   };
 

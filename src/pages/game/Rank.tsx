@@ -15,7 +15,7 @@ import {
 } from "../../styles/gameStyles/game";
 import { RankDataType } from "../../types/Game";
 import GoGameModal from "./GoGameModal";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 const medal = ["🥇", "🥈", "🥉"];
 
@@ -41,7 +41,7 @@ function Rank() {
         setRankList(res.data);
         setLoading(true);
       } catch (err: any) {
-        customTostify("error", err.message);
+        customToastify("error", err.message);
       }
     };
     getRank();

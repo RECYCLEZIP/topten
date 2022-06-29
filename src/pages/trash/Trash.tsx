@@ -16,7 +16,7 @@ import {
   TrashTitle,
 } from "../../styles/trash/trash";
 import { TrashType } from "../../types/Trash";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 function Item() {
   const id = useParams().id;
@@ -28,7 +28,7 @@ function Item() {
       const res = await getData(`trash/${id}`);
       setTrash(res.data);
     } catch (err: any) {
-      customTostify("error", err.message);
+      customToastify("error", err.message);
     }
     setLoading(true);
   };

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { getData } from "../../api";
 import { useEffect, useState } from "react";
 import { QuizType } from "../../types/Quiz";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 // main page quiz section component
 function QuizSection() {
@@ -18,7 +18,7 @@ function QuizSection() {
       const res = await getData("quizzes/wrong");
       setQuizzes(res.data);
     } catch (err: any) {
-      customTostify("error", err.message);
+      customToastify("error", err.message);
     }
     setLoading(true);
   };

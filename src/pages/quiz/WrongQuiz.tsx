@@ -20,7 +20,7 @@ import {
 } from "../../styles/mainStyles/QuizStyle";
 import { img } from "../../assets/imgImport";
 import { CardText } from "../../styles/TextStyle";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 function WrongQuiz() {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ function WrongQuiz() {
       setCurrentQuiz([res.data]);
       setType(res.data.type);
     } catch {
-      customTostify("error", "퀴즈 데이터를 불러오는데 실패했습니다.");
+      customToastify("error", "퀴즈 데이터를 불러오는데 실패했습니다.");
     }
     setLoading(true);
   };

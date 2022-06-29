@@ -9,7 +9,7 @@ import CategorySection from "./CategorySection";
 import MapSection from "./MapSection";
 import NewsSection from "./NewsSection";
 import QuizSection from "./QuizSection";
-import { customTostify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 function Main() {
   // main page component
@@ -22,7 +22,7 @@ function Main() {
       const res = await getData(`news`);
       setNews(res.data);
     } catch (err: any) {
-      customTostify("error", err.message);
+      customToastify("error", err.message);
     }
     setIsLoading(true);
   };
