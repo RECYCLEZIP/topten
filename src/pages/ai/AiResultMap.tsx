@@ -19,6 +19,7 @@ import { AiContentTitle, DetailTitle } from "../../styles/aiStyles/AiStyle";
 import {
   MapTitleContainer,
   MapContainer,
+  ErrorContainer,
 } from "../../styles/aiStyles/AiResultStyle";
 
 function AiResultMap() {
@@ -56,8 +57,8 @@ function AiResultMap() {
     try {
       const res = await getData(
         // 서울시 영등포구 선유로 롯데마트(mock)
-        `robot?x=126.89196610216352&y=37.52606733350417`,
-        // `robot?x=${longitude}&y=${latitude}`,
+        // `robot?x=126.89196610216352&y=37.52606733350417`,
+        `robot?x=${longitude}&y=${latitude}`,
         // `robots?search=${"종로구"}&category=${roadsValue}?page=${page}&limit=2`,
       );
 
@@ -96,7 +97,7 @@ function AiResultMap() {
         현위치 반경 10km 범위의 순환자원 회수로봇입니다.
       </DetailTitle>
       {error ? (
-        <span>{error}</span>
+        <ErrorContainer>{error}</ErrorContainer>
       ) : (
         <MapContainer>
           <MapContent

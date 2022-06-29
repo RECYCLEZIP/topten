@@ -29,9 +29,6 @@ export const AiResultSubjectTexture = styled.div`
 export const AiResultContentsSection = styled.section`
   /* display: block; */
   display: flex;
-
-  @media screen and (min-width: 768px) {
-  }
 `;
 
 export const ListContainer = styled.div`
@@ -147,4 +144,17 @@ export const AiMapListContainer = styled.div`
 
     overflow: auto;
   }
+`;
+
+export const ErrorContainer = styled.div`
+  background: #f0f2f5;
+
+  padding: 1rem;
+  margin-top: 1rem;
+
+  border-radius: 0.3rem;
+
+  font-size: 0.6rem;
+
+  text-align: center;
 `;
