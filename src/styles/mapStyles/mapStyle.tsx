@@ -62,7 +62,7 @@ export const MapContentContainer = styled.div<{ type: any }>`
           height: 30vh;
           height: 15rem;
 
-          margin-top: 8rem;
+          margin-top: 7rem;
           padding-bottom: 1.5rem;
           position: fixed;
 
@@ -73,7 +73,7 @@ export const MapContentContainer = styled.div<{ type: any }>`
           @media (min-width: 768px) {
             width: 40%;
             height: 50%;
-            margin-top: 7.3rem;
+            margin-top: 7rem;
           }
         `
       : css`

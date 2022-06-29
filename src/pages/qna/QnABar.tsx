@@ -7,6 +7,9 @@ import {
   QnAListState,
   QnASearchState,
   QnASearchValueState,
+  QnAPageState,
+  QnANumPagesState,
+  QnALengthState,
 } from "../../stores/atoms";
 
 import {
@@ -30,11 +33,27 @@ function QnABar() {
 
   const resetQnASearch = useResetRecoilState(QnASearchState);
 
+  const [qnaPage, setQnaPage] = useRecoilState(QnAPageState);
+  const [numPages, setNumPages] = useRecoilState(QnANumPagesState);
+
+  const [off, setOff] = useState<string>("");
+
+  const [qnaTotal, setQnaTotal] = useRecoilState(QnALengthState);
+
   const getList = async () => {
     try {
+<<<<<<< HEAD
       await getData(`posts`).then((res) => setQnaAllList(res.data));
     } catch (err: any) {
       customTostify("error", err.message);
+=======
+      await getData(`posts?search=&page=${off}&limit=10`).then((res) => {
+        setQnaAllList(res.data?.data);
+        setQnaTotal(res.data?.count);
+      });
+    } catch (err) {
+      console.log(err);
+>>>>>>> qna
     }
   };
 
@@ -79,17 +98,25 @@ function QnABar() {
 
   useEffect(() => {
     getList();
-  }, []);
+  }, [off]);
+
+  useEffect(() => {
+    // setOff(qnaAllList[qnaTotal - 1]._id);
+    // console.log(qnaAllList);
+    // console.log(qnaTotal)
+    setOff(qnaAllList[qnaAllList?.length - 1]?._id);
+    // console.log('바뀜')
+    // getList();
+  }, [qnaPage]);
 
   return (
     <BarSection>
       {/* <div> */}
       <BarText>
-        전체 <BarRedText>{qnaAllList.length}</BarRedText>건
+        전체 <BarRedText>{qnaTotal}</BarRedText>건
       </BarText>
       <BarText>
-        페이지 <BarRedText>1</BarRedText>
-        /32
+        페이지 <BarRedText>{qnaPage}</BarRedText>/{numPages}
       </BarText>
       <SearchContainer>
         <SearchSelect onChange={onChangeSelect}>

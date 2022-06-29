@@ -13,8 +13,18 @@ import {
 } from "../../stores/atoms";
 import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
 
+import AiResultMapList from "./AiResultMapList";
+
 import { AiContentTitle, DetailTitle } from "../../styles/aiStyles/AiStyle";
+<<<<<<< HEAD
 import { customTostify } from "../../components/customTostify";
+=======
+import {
+  MapTitleContainer,
+  MapContainer,
+  ErrorContainer,
+} from "../../styles/aiStyles/AiResultStyle";
+>>>>>>> qna
 
 function AiResultMap() {
   const [robot, setRobot] = useRecoilState<RobotType[]>(RobotState);
@@ -74,25 +84,40 @@ function AiResultMap() {
 
   return (
     <>
-      <AiContentTitle>근처 순환자원 회수로봇</AiContentTitle>
-      <DetailTitle>
+      <MapTitleContainer>
+        <AiContentTitle>근처 순환자원 회수로봇</AiContentTitle>
+        <DetailTitle
+          onClick={() =>
+            window.open(
+              "https://www.superbin.co.kr/new/contents/product.php",
+              "_blank",
+            )
+          }
+          click={true}
+        >
+          순환자원 회수로봇이란?
+        </DetailTitle>
+      </MapTitleContainer>
+      <DetailTitle click={false}>
         현위치 반경 10km 범위의 순환자원 회수로봇입니다.
       </DetailTitle>
-      {/* <DetailTitle>* 순환자원 회수로봇이란?</DetailTitle> */}
       {error ? (
-        <span>{error}</span>
+        <ErrorContainer>{error}</ErrorContainer>
       ) : (
-        <MapContent
-          type="robot"
-          props={robots}
-          propsSelected={robotSelected}
-          setSelectedMarker={setSelectedMarker}
-          setPropsSelected={setRobotSelected}
-          // currentLon={126.89196610216352}
-          // currentLat={37.52606733350417}
-          currentLon={longitude}
-          currentLat={latitude}
-        ></MapContent>
+        <MapContainer>
+          <MapContent
+            type="robot"
+            props={robots}
+            propsSelected={robotSelected}
+            setSelectedMarker={setSelectedMarker}
+            setPropsSelected={setRobotSelected}
+            // currentLon={126.89196610216352}
+            // currentLat={37.52606733350417}
+            currentLon={longitude}
+            currentLat={latitude}
+          ></MapContent>
+          <AiResultMapList />
+        </MapContainer>
       )}
     </>
   );
