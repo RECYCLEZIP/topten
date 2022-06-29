@@ -268,7 +268,7 @@ export const AiGuideImgWrapper = styled.div`
   /* background: lightblue; */
 
   width: 100%;
-  width: 15rem;
+  width: 10rem;
   height: 8rem;
 
   display: flex;
