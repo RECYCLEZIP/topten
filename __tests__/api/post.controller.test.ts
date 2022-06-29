@@ -31,6 +31,15 @@ describe("POST API", () => {
         expect(res.status).toBe(STATUS_200_OK);
     });
 
+    it("POST /posts/users/:userId 사용자의 게시글 정보를 응답받는다.", async () => {
+        const createdUser = await UserService.addUser(tempUser);
+        await PostService.addPost(createdUser._id, tempPost);
+        const res = await request(app).get(`/posts/users/${createdUser._id}`);
+        expect(res.status).toBe(STATUS_200_OK);
+        expect(res.body).toHaveProperty("count");
+        expect(res.body).toHaveProperty("data");
+    });
+
     it("POST POST/ 게시글을 생성한다.", async () => {
         const createdUser = await UserService.addUser(tempUser);
         const accessToken = createAccessToken(createdUser._id);
