@@ -27,8 +27,8 @@ export interface BinSelectedTypes {
 // Ai 분석 페이지의 상황
 export const AiSituationState = atom({
   key: "AiSituationState",
-  default: "done",
-  // default: "beforeImgUpload",
+  // default: "done",
+  default: "beforeImgUpload",
 });
 
 export const AiResultState = atom<AiResultType>({
