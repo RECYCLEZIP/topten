@@ -5,7 +5,7 @@ import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 describe("GET /", () => {
     it("루트로 접속 시 swagger페이지로 리다이렉트 시킨다.", async () => {
         const res = await request(app)
-            .get("/")
+            .get("/api")
             .expect("Location", /swagger/);
         expect(res.redirect).toBe(true);
     });

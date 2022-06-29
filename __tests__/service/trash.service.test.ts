@@ -48,7 +48,7 @@ describe("TRASH SERVICE LOGIC", () => {
                 2: { score: 66.666 },
             },
         });
-        const trashAiResult = await TrashService.aiTrash("testImage");
+        const trashAiResult: any = await TrashService.aiTrash("testImage");
         expect(trashAiResult?.title).toEqual("페트병");
         expect(trashAiResult?.kind).toEqual("플라스틱");
     });
