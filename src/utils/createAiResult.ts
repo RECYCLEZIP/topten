@@ -33,5 +33,5 @@ function petAiResult(aiTarget: any) {
 
 export function createAiResult(aiTarget: any) {
     if (aiTarget.type === "PET") return petAiResult(aiTarget);
-    return;
+    return { message: aiTarget.message };
 }

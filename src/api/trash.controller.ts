@@ -111,8 +111,8 @@ trashController.post(
             }
             #swagger.responses[200] = {
             schema: { "$ref": "#/definitions/TrashAiResponse" },
-            description: "AI 분석결과를 반환" } */
-        7;
+            description: "AI 분석결과를 반환 분석 결과가 없다면 { message: '메시지 반환'}" } */
+
         if (!req.file) throw new RequestError();
         const aiTrashResult = await TrashService.aiTrash(req.file.path);
         res.status(STATUS_200_OK).json(aiTrashResult);
