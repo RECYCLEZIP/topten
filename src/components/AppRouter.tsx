@@ -17,6 +17,7 @@ import QnA from "../pages/qna/QnA";
 import QnAPost from "../pages/qna/QnAPost";
 import QnADescription from "../pages/qna/QnADescription";
 import QnAEdit from "../pages/qna/QnAEdit";
+import UserAllQna from "../pages/user/UserAllQnA";
 
 //set router component
 function AppRouter() {
@@ -33,6 +34,7 @@ function AppRouter() {
       <Route path="/category/*" element={<Category />} />
       <Route path="/trash/:id" element={<Trash />} />
       <Route path="/user/my" element={<UserPage />} />
+      <Route path="/user/my/qna" element={<UserAllQna />} />
       <Route path="/users/*" element={<LoginPage />} />
       <Route path="/game/play" element={<Game />} />
       <Route path="/game/ranking" element={<Rank />} />
