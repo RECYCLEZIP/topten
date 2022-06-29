@@ -28,9 +28,9 @@ export const AiResultSubjectTexture = styled.div`
 
 export const AiResultContentsSection = styled.section`
   /* display: block; */
+  display: flex;
 
   @media screen and (min-width: 768px) {
-    display: flex;
   }
 `;
 
@@ -118,14 +118,16 @@ export const AiResultDesLastContainer = styled(AiResultDesContainer)`
 `;
 
 export const MapTitleContainer = styled.div`
-  display: inline-flex;
+  /* display: flex; */
 
   align-items: center;
+
+  @media screen and (min-width: 768px) {
+    display: inline-flex;
+  }
 `;
 
 export const MapContainer = styled.div`
-  display: block;
-
   margin-top: 0.8rem;
 
   @media screen and (min-width: 768px) {
