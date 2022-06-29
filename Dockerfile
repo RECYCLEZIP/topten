@@ -1,10 +1,11 @@
 FROM node:16.15-alpine
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/back
 
 COPY dist/ .
 
 COPY package.json .
 COPY yarn.lock .
+COPY .env .
 
 ENV NODE_ENV production
 
