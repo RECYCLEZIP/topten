@@ -36,12 +36,14 @@ function AiResultMapList() {
 
   // 지도에서 선택된 마커의 좌표가 어떤 쓰레기통인지 찾아서 해당 정보 저장
   const selectedBinInform: RobotType | undefined = useMemo(() => {
-    console.log(selectedMarker);
-
     return robots.find(
       (bin) =>
-        selectedMarker.Ma === Number(bin.location.coordinates[1]) &&
-        selectedMarker.La === Number(bin.location.coordinates[0]),
+        selectedMarker.Ma ===
+          Math.round(Number(bin.location.coordinates[1] * 10000000000)) /
+            10000000000 &&
+        selectedMarker.La ===
+          Math.round(Number(bin.location.coordinates[0] * 10000000000)) /
+            10000000000,
     );
   }, [selectedMarker]);
 
