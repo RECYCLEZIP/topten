@@ -37,7 +37,11 @@ describe("POSTS SERVICE LOGIC", () => {
 
     it("사용자의 POST를 반환한다.", async () => {
         Post.findUserPost = jest.fn().mockResolvedValue([tempPost]);
-        const foundPostInfo = await PostService.getUserPostList("id", { pageno: 1, limit: 3 });
+        const createdUser = await UserService.addUser(tempUser);
+        const foundPostInfo = await PostService.getUserPostList(createdUser._id, {
+            pageno: 1,
+            limit: 3,
+        });
         expect(foundPostInfo.count).toBe(0);
         expect(foundPostInfo.data[0].title).toEqual("게시글 제목");
         expect(foundPostInfo.data[0].content).toEqual("게시글 내용");
@@ -147,8 +151,9 @@ describe("POSTS SERVICE ERROR HANDLING", () => {
 
     it("사용자의 POST를 찾지 못하면 에러를 발생시킨다.", async () => {
         Post.findUserPost = jest.fn().mockResolvedValue(null);
+        const createdUser = await UserService.addUser(tempUser);
         try {
-            await PostService.getUserPostList("id", {});
+            await PostService.getUserPostList(createdUser._id, {});
         } catch (err: any) {
             expect(err).toBeInstanceOf(RequestError);
             expect(err.status).toBe(STATUS_404_NOTFOUND);
