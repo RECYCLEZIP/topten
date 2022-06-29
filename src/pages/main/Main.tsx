@@ -9,6 +9,7 @@ import MapSection from "./MapSection";
 import NewsSection from "./NewsSection";
 import QuizSection from "./QuizSection";
 import { customToastify } from "../../components/customToastify";
+import { Helmet } from "react-helmet-async";
 
 function Main() {
   // main page component
@@ -36,13 +37,23 @@ function Main() {
   }
 
   return (
-    <MainContainer>
-      <AiSection />
-      <NewsSection />
-      <CategorySection />
-      <QuizSection />
-      <MapSection />
-    </MainContainer>
+    <>
+      <Helmet>
+        <title>분리수ZIP - 메인</title>
+        <meta
+          name="description"
+          content="AI가 분류해주는 분리수거 서비스 메인페이지"
+        />
+        <link rel="canonical" href="/" />
+      </Helmet>
+      <MainContainer>
+        <AiSection />
+        <NewsSection />
+        <CategorySection />
+        <QuizSection />
+        <MapSection />
+      </MainContainer>
+    </>
   );
 }
 

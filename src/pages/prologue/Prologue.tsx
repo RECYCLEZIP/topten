@@ -6,6 +6,7 @@ import PrologueStep from "./PrologueStep";
 import PrologueBinMap from "./PrologueBinMap";
 import PrologueQuiz from "./PrologueQuiz";
 import PrologueEnd from "./PrologueEnd";
+import { Helmet } from "react-helmet-async";
 
 function Prologue() {
   useEffect(() => {
@@ -31,6 +32,14 @@ function Prologue() {
 
   return (
     <>
+      <Helmet>
+        <title>분리수ZIP - 프롤로그</title>
+        <meta
+          name="description"
+          content="AI가 분류해주는 분리수거 서비스 프롤로그"
+        />
+        <link rel="canonical" href="/prologue" />
+      </Helmet>
       <PrologueBubble />
       <PrologueAsk />
       <PrologueStep />

@@ -6,26 +6,31 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import { RecoilRoot } from "recoil";
+import { HelmetProvider } from "react-helmet-async";
 
 const rootElement = document.getElementById("root")!;
 if (rootElement.hasChildNodes()) {
   hydrate(
-    <BrowserRouter>
-      <ScrollToTop />
-      <RecoilRoot>
-        <App />
-      </RecoilRoot>
-    </BrowserRouter>,
+    <HelmetProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <RecoilRoot>
+          <App />
+        </RecoilRoot>
+      </BrowserRouter>
+    </HelmetProvider>,
     rootElement,
   );
 } else {
   render(
-    <BrowserRouter>
-      <ScrollToTop />
-      <RecoilRoot>
-        <App />
-      </RecoilRoot>
-    </BrowserRouter>,
+    <HelmetProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <RecoilRoot>
+          <App />
+        </RecoilRoot>
+      </BrowserRouter>
+    </HelmetProvider>,
     rootElement,
   );
 }

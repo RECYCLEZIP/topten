@@ -25,6 +25,7 @@ import {
   MapBinSection,
 } from "../../styles/mapStyles/mapStyle";
 import { customToastify } from "../../components/customToastify";
+import { Helmet } from "react-helmet-async";
 
 function Map() {
   const [bin, setBin] = useRecoilState<BinTypes[]>(BinState);
@@ -90,22 +91,32 @@ function Map() {
   }, [lastIntersectingImage]);
 
   return (
-    <MapContainer>
-      <MapTop>
-        <MapTitle>서울시 공공 쓰레기통</MapTitle>
-        <MapSearch />
-      </MapTop>
-      <MapBinSection>
-        <MapContent
-          type="bin"
-          props={bins}
-          propsSelected={binSelected}
-          setSelectedMarker={setSelectedMarker}
-          setPropsSelected={setBinSelected}
+    <>
+      <Helmet>
+        <title>분리수ZIP - 쓰레기통 지도</title>
+        <meta
+          name="description"
+          content="AI가 분류해주는 분리수거 서비스 지도페이지"
         />
-        <MapList />
-      </MapBinSection>
-    </MapContainer>
+        <link rel="canonical" href="/map" />
+      </Helmet>
+      <MapContainer>
+        <MapTop>
+          <MapTitle>서울시 공공 쓰레기통</MapTitle>
+          <MapSearch />
+        </MapTop>
+        <MapBinSection>
+          <MapContent
+            type="bin"
+            props={bins}
+            propsSelected={binSelected}
+            setSelectedMarker={setSelectedMarker}
+            setPropsSelected={setBinSelected}
+          />
+          <MapList />
+        </MapBinSection>
+      </MapContainer>
+    </>
   );
 }
 

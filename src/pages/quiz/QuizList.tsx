@@ -8,6 +8,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { currentPageState } from "../../stores/atoms";
+import { Helmet } from "react-helmet-async";
 
 //quiz list page
 function Quiz() {
@@ -22,22 +23,32 @@ function Quiz() {
   const setCurrentPage = useSetRecoilState(currentPageState);
 
   return (
-    <QuizList>
-      <TitleText>오늘의 퀴즈</TitleText>
-      {quizList.map((quiz, index) => (
-        <QuizListBox
-          onClick={() => {
-            navigate(`./${url[index]}`);
-            setCurrentPage(0);
-          }}
-          key={index}
-        >
-          <QuizNumber>4문항</QuizNumber>
-          <QuizText>{quiz}</QuizText>
-          <QuizText size="0.6rem">{quizDescription[index]}</QuizText>
-        </QuizListBox>
-      ))}
-    </QuizList>
+    <>
+      <Helmet>
+        <title>분리수ZIP - 퀴즈</title>
+        <meta
+          name="description"
+          content="AI가 분류해주는 분리수거 서비스 퀴즈페이지"
+        />
+        <link rel="canonical" href="/quizzes" />
+      </Helmet>
+      <QuizList>
+        <TitleText>오늘의 퀴즈</TitleText>
+        {quizList.map((quiz, index) => (
+          <QuizListBox
+            onClick={() => {
+              navigate(`./${url[index]}`);
+              setCurrentPage(0);
+            }}
+            key={index}
+          >
+            <QuizNumber>4문항</QuizNumber>
+            <QuizText>{quiz}</QuizText>
+            <QuizText size="0.6rem">{quizDescription[index]}</QuizText>
+          </QuizListBox>
+        ))}
+      </QuizList>
+    </>
   );
 }
 

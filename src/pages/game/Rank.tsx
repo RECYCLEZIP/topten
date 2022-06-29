@@ -16,6 +16,7 @@ import {
 import { RankDataType } from "../../types/Game";
 import GoGameModal from "./GoGameModal";
 import { customToastify } from "../../components/customToastify";
+import { Helmet } from "react-helmet-async";
 
 const medal = ["🥇", "🥈", "🥉"];
 
@@ -52,36 +53,46 @@ function Rank() {
   }
 
   return (
-    <RankContainer>
-      <GoGameModal open={open} onClose={() => setOpen(false)} />
-      <RankTitleText>
-        👑
-        <br /> 게임 랭킹 <br />
-        TOP 10
-      </RankTitleText>
-      <Button onClick={goGame}>신기록 도전</Button>
-      {rankList.map((list, index) =>
-        index < 3 ? (
-          <Top3Rank key={index} index={index}>
-            <Ranker>
-              <NumberText font="1rem">
-                {index < 4 ? medal[index] : 4}
-              </NumberText>
-              <RankNameText>{list.username}님</RankNameText>
-            </Ranker>
-            <ScoreText>{list.topscore}점</ScoreText>
-          </Top3Rank>
-        ) : (
-          <Top3Rank key={index} index={index} color="#c7ebff">
-            <Ranker>
-              <NumberText>{index + 1}</NumberText>
-              <RankNameText>{list.username}님</RankNameText>
-            </Ranker>
-            <ScoreText>{list.topscore}점</ScoreText>
-          </Top3Rank>
-        ),
-      )}
-    </RankContainer>
+    <>
+      <Helmet>
+        <title>분리수ZIP - 게임</title>
+        <meta
+          name="description"
+          content="AI가 분류해주는 분리수거 서비스 게임페이지"
+        />
+        <link rel="canonical" href="/game/ranking" />
+      </Helmet>
+      <RankContainer>
+        <GoGameModal open={open} onClose={() => setOpen(false)} />
+        <RankTitleText>
+          👑
+          <br /> 게임 랭킹 <br />
+          TOP 10
+        </RankTitleText>
+        <Button onClick={goGame}>신기록 도전</Button>
+        {rankList.map((list, index) =>
+          index < 3 ? (
+            <Top3Rank key={index} index={index}>
+              <Ranker>
+                <NumberText font="1rem">
+                  {index < 4 ? medal[index] : 4}
+                </NumberText>
+                <RankNameText>{list.username}님</RankNameText>
+              </Ranker>
+              <ScoreText>{list.topscore}점</ScoreText>
+            </Top3Rank>
+          ) : (
+            <Top3Rank key={index} index={index} color="#c7ebff">
+              <Ranker>
+                <NumberText>{index + 1}</NumberText>
+                <RankNameText>{list.username}님</RankNameText>
+              </Ranker>
+              <ScoreText>{list.topscore}점</ScoreText>
+            </Top3Rank>
+          ),
+        )}
+      </RankContainer>
+    </>
   );
 }
 

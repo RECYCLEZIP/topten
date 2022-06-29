@@ -58,7 +58,8 @@
       "/map",
       "/quizzes",
       "/category",
-      "/qna"
+      "/qna",
+      "/game/ranking"
     ],
     "puppeteerArgs": [
       "--no-sandbox",
