@@ -4,8 +4,8 @@ import wrapAsyncFunc from "@src/utils/catchAsync";
 import { Submissions } from "@src/models/interface";
 import { MINIGAME_STEP } from "@src/utils/constans";
 import { STATUS_200_OK } from "@src/utils/statusCode";
-import { identifierSchema } from "@src/utils/paramsSchema";
 import { quizSchema, quizSetSchema } from "@src/utils/bodySchema";
+import { gameStepSchema, identifierSchema } from "@src/utils/paramsSchema";
 import { bodyValidator, paramsValidator } from "@src/middlewares/requestValidator";
 
 const quizController = Router();
@@ -48,6 +48,7 @@ quizController.get(
 
 quizController.get(
     "/quizzes/game/:step",
+    paramsValidator(gameStepSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["quiz"]
             #swagger.description = "미니게임 쓰레기 이미지 조회"

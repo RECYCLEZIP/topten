@@ -19,7 +19,7 @@ export class PostService {
         const { pageno = 1, limit = 3 } = query;
         const page = (+pageno - 1) * +limit;
         const foundPostList = await Post.findUserPost(userId, page, limit);
-        const postCount = await Post.count();
+        const postCount = await Post.countUserPost(userId);
         if (!foundPostList)
             throw new RequestError("게시글 목록을 가져올 수 없습니다.", STATUS_404_NOTFOUND);
         return { count: postCount, data: foundPostList };

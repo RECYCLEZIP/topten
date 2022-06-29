@@ -35,6 +35,18 @@ describe("POSTS SERVICE LOGIC", () => {
         expect(foundPostInfo.content).toEqual("게시글 내용");
     });
 
+    it("사용자의 POST를 반환한다.", async () => {
+        Post.findUserPost = jest.fn().mockResolvedValue([tempPost]);
+        const createdUser = await UserService.addUser(tempUser);
+        const foundPostInfo = await PostService.getUserPostList(createdUser._id, {
+            pageno: 1,
+            limit: 3,
+        });
+        expect(foundPostInfo.count).toBe(0);
+        expect(foundPostInfo.data[0].title).toEqual("게시글 제목");
+        expect(foundPostInfo.data[0].content).toEqual("게시글 내용");
+    });
+
     it("POSTS를 생성한다.", async () => {
         const createdUser = await UserService.addUser(tempUser);
         const createdPost = await PostService.addPost(createdUser._id, {
@@ -134,6 +146,18 @@ describe("POSTS SERVICE ERROR HANDLING", () => {
             expect(err).toBeInstanceOf(RequestError);
             expect(err.status).toBe(STATUS_400_BADREQUEST);
             expect(err.message).toBe("게시글 정보를 가져올 수 없습니다.");
+        }
+    });
+
+    it("사용자의 POST를 찾지 못하면 에러를 발생시킨다.", async () => {
+        Post.findUserPost = jest.fn().mockResolvedValue(null);
+        const createdUser = await UserService.addUser(tempUser);
+        try {
+            await PostService.getUserPostList(createdUser._id, {});
+        } catch (err: any) {
+            expect(err).toBeInstanceOf(RequestError);
+            expect(err.status).toBe(STATUS_404_NOTFOUND);
+            expect(err.message).toBe("게시글 목록을 가져올 수 없습니다.");
         }
     });
 

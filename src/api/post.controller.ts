@@ -4,8 +4,13 @@ import wrapAsyncFunc from "@src/utils/catchAsync";
 import { authRequired } from "@src/middlewares/authRequired";
 import { commentSchema, postSchema } from "@src/utils/bodySchema";
 import { STATUS_200_OK, STATUS_201_CREATED } from "@src/utils/statusCode";
-import { identifierSchema, postIdentifierSchema } from "@src/utils/paramsSchema";
 import { bodyValidator, paramsValidator } from "@src/middlewares/requestValidator";
+import {
+    commentIdentifierSchema,
+    identifierSchema,
+    postIdentifierSchema,
+    userIdentifierSchema,
+} from "@src/utils/paramsSchema";
 
 const postController = Router();
 
@@ -34,6 +39,7 @@ postController.get(
 
 postController.get(
     "/posts/users/:userId",
+    paramsValidator(userIdentifierSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["post"]
             #swagger.description = "사용자의 게시글 목록 조회"
@@ -111,6 +117,7 @@ postController.post(
 postController.post(
     "/posts/:postId/comments",
     authRequired,
+    paramsValidator(postIdentifierSchema),
     bodyValidator(commentSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["post"]
@@ -177,7 +184,7 @@ postController.put(
 postController.put(
     "/posts/:postId/comments/:commentId",
     authRequired,
-    paramsValidator(postIdentifierSchema),
+    paramsValidator(commentIdentifierSchema),
     bodyValidator(commentSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["post"]
@@ -236,7 +243,7 @@ postController.delete(
 postController.delete(
     "/posts/:postId/comments/:commentId",
     authRequired,
-    paramsValidator(postIdentifierSchema),
+    paramsValidator(commentIdentifierSchema),
     wrapAsyncFunc(async (req, res, _next) => {
         /*  #swagger.tags = ["post"]
             #swagger.description = "댓글 삭제 **로그인 필수**"

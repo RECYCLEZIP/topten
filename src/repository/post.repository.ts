@@ -7,6 +7,10 @@ export class Post {
         return PostModel.count({});
     }
 
+    static countUserPost(userId: string) {
+        return PostModel.count({ author: new Types.ObjectId(userId) });
+    }
+
     static find(filteredQuery: MongooseQuery, page: number, limit: number) {
         return PostModel.find(filteredQuery)
             .sort({ createdAt: -1 })
