@@ -82,7 +82,6 @@ function MapSearch() {
 
   return (
     <MapSearchSection>
-      <MapSearchTextWrapper>서울시</MapSearchTextWrapper>
       <AutocompleteContainer>
         <Autocomplete
           value={regionValue}
@@ -99,10 +98,16 @@ function MapSearch() {
           sx={{
             display: "inline-block",
             "& input": {
-              width: "4rem",
+              width: "3rem",
               height: "0.5rem",
               fontSize: "0.46rem",
               lineHeight: "initial",
+            },
+
+            "@media (min-width: 768px)": {
+              "& input": {
+                width: "4rem",
+              },
             },
           }}
           renderInput={(params) => (
@@ -149,10 +154,15 @@ function MapSearch() {
             sx={{
               display: "inline-block",
               "& input": {
-                width: "4rem",
+                width: "3rem",
                 height: "0.5rem",
                 fontSize: "0.46rem",
                 lineHeight: "initial",
+              },
+              "@media (min-width: 768px)": {
+                "& input": {
+                  width: "4rem",
+                },
               },
             }}
             renderInput={(params) => (
