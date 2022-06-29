@@ -16,9 +16,9 @@ import {
 } from "../../styles/qnaStyles/QnAStyle";
 
 import {
-  EmailText,
   TitleContainer,
   TitleWrapper,
+  SubTitleWrapper,
   QnaContainer,
 } from "../../styles/userStyles/userPage";
 
@@ -30,7 +30,9 @@ function UserQnA() {
       {/* 타이틀 섹션 */}
       <TitleContainer>
         <TitleWrapper>나의 Q&A</TitleWrapper>
-        <EmailText onClick={() => navigate("qna")}>자세히 보기</EmailText>
+        <SubTitleWrapper onClick={() => navigate("qna")}>
+          자세히 보기
+        </SubTitleWrapper>
       </TitleContainer>
       {/* 컨텐츠 */}
       <QnaContainer>
