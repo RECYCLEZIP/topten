@@ -14,7 +14,7 @@ export const CommentContainer = styled.div`
 export const CommentWrapper = styled.div`
   padding: 0.8rem 1rem;
   padding-top: 0.4rem;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
 
   display: flex;
   position: relative;
@@ -77,7 +77,7 @@ export const CommentInputContainer = styled.div`
   /* display: */
   display: flex;
 
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   /* background-color: pink; */
 `;
 
@@ -129,6 +129,7 @@ export const CommentPostButton = styled(Button)`
   height: 1.7rem;
 
   padding: 0.5rem 0.7rem;
+  margin: 0rem;
 
   float: right;
 
@@ -149,4 +150,12 @@ export const CommentRightButton = styled(RedButton)`
   margin-right: 1rem;
 
   /* font-size: 0.6rem  */
+`;
+
+export const WarnText = styled.p`
+  font-size: 0.5rem;
+  color: #86919c;
+
+  margin-top: 0.5rem;
+  margin-bottom: 0;
 `;
