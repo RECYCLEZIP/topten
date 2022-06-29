@@ -272,6 +272,43 @@
         ]
       }
     },
+    "/posts/users/{userId}": {
+      "get": {
+        "tags": [
+          "post"
+        ],
+        "description": "사용자의 게시글 목록 조회",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "게시글을 조회할 유저의 ID",
+            "schema": {
+              "$ref": "#/definitions/UserId"
+            }
+          },
+          {
+            "name": "queryString",
+            "in": "query",
+            "description": "**pageno** 페이지 번호\n  **limit** 기본값10\n",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UserPostGetQuery"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/PostGetResponse"
+            },
+            "description": "게시글 목록을 배열형태로 반환"
+          }
+        }
+      }
+    },
     "/posts/{id}": {
       "get": {
         "tags": [
@@ -1314,6 +1351,10 @@
     "PostGetQuery": {
       "type": "string",
       "example": "?search=테스트&type=title&pageno=2&limit=10"
+    },
+    "UserPostGetQuery": {
+      "type": "string",
+      "example": "?pageno=2&limit=10"
     },
     "PostGetResponse": {
       "type": "object",

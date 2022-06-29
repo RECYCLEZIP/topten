@@ -33,6 +33,34 @@ postController.get(
 );
 
 postController.get(
+    "/posts/users/:userId",
+    wrapAsyncFunc(async (req, res, _next) => {
+        /*  #swagger.tags = ["post"]
+            #swagger.description = "사용자의 게시글 목록 조회"
+            #swagger.parameters['queryString'] = {
+                in: 'query',
+                description: '**pageno** 페이지 번호\n
+                **limit** 기본값10\n',
+                required: false,
+                schema: { $ref: "#/definitions/UserPostGetQuery" }
+            }
+            #swagger.parameters['userId'] = {
+                in: 'path',
+                description: '게시글을 조회할 유저의 ID',
+                required: true,
+                schema: { $ref: "#/definitions/UserId" }
+            }
+            #swagger.responses[200] = {
+            schema: { "$ref": "#/definitions/PostGetResponse" },
+            description: "게시글 목록을 배열형태로 반환" } */
+
+        const { userId } = req.params;
+        const postList = await PostService.getUserPostList(userId, req.query);
+        res.status(STATUS_200_OK).json(postList);
+    }),
+);
+
+postController.get(
     "/posts/:id",
     paramsValidator(identifierSchema),
     wrapAsyncFunc(async (req, res, _next) => {
