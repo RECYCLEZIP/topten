@@ -14,7 +14,7 @@ import {
 import { UserType } from "../../types/User";
 import UserEdit from "./UserEdit";
 import UserQnA from "./UserQnA";
-import { customToastify } from "../../components/customTostify";
+import { customToastify } from "../../components/customToastify";
 
 function UserPage() {
   const navigate = useNavigate();

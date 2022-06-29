@@ -69,7 +69,7 @@ function QnAEdit() {
 
         navigate(`/qna/${id}`);
       } catch (err: any) {
-        customTostify("error", err.message);
+        customToastify("error", err.message);
       }
     } else {
       if (!titleValue) {

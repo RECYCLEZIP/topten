@@ -54,7 +54,7 @@ function QnAPost() {
 
         navigate(`/qna`);
       } catch (err: any) {
-        customTostify("error", err.message);
+        customToastify("error", err.message);
       }
     } else {
       if (!titleValue) {
