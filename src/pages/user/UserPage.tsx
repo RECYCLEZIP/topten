@@ -13,29 +13,7 @@ import {
 } from "../../styles/userStyles/userPage";
 import { UserType } from "../../types/User";
 import UserEdit from "./UserEdit";
-import { toast } from "react-toastify";
-
-const correct = () =>
-  toast.success("탈퇴 성공!", {
-    position: "top-center",
-    autoClose: 1000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-  });
-
-const notCorrect = () =>
-  toast.error("탈퇴 실패!", {
-    position: "top-center",
-    autoClose: 1000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-  });
+import { customTostify } from "../../components/customTostify";
 
 function UserPage() {
   const navigate = useNavigate();
@@ -61,12 +39,12 @@ function UserPage() {
   const deleteUser = async () => {
     try {
       await delData("users/delete");
-      correct();
+      customTostify("success", "탈퇴 성공!");
       sessionStorage.removeItem("token");
       setIsLogin(false);
       navigate("/");
     } catch {
-      notCorrect();
+      customTostify("error", "탈퇴 실패!");
     }
   };
 
@@ -75,7 +53,6 @@ function UserPage() {
     setIsEdit(false);
   }, []);
 
-  console.log(user);
   return (
     <UserPageContainer>
       {isEdit ? (

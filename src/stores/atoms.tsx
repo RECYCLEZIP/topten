@@ -6,6 +6,7 @@ import { CategoryItemType, TrashType } from "../types/Trash";
 import { UserType } from "../types/User";
 import { QnAType } from "../types/QnA";
 import { RobotType } from "../types/Robot";
+import { AiResultType } from "../types/Ai";
 
 export interface BinTypes {
   region: string;
@@ -26,8 +27,23 @@ export interface BinSelectedTypes {
 // Ai 분석 페이지의 상황
 export const AiSituationState = atom({
   key: "AiSituationState",
-  default: "done",
-  // default: "beforeImgUpload",
+  // default: "done",
+  default: "beforeImgUpload",
+});
+
+export const AiResultState = atom<AiResultType>({
+  key: "AiResultState",
+  default: {
+    title: "",
+    kind: "",
+    section: [
+      {
+        title: "",
+        score: 0,
+      },
+    ],
+    throwAway: [""],
+  },
 });
 
 // 서울시 쓰레기통 데이터셋
@@ -226,6 +242,11 @@ export const QnAPageState = atom({
 
 export const QnALengthState = atom({
   key: "QnALengthState",
+  default: 0,
+});
+
+export const QnANumPagesState = atom({
+  key: "QnANumPagesState",
   default: 0,
 });
 

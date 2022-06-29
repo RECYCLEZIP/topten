@@ -22,6 +22,7 @@ import selectBgm from "../../assets/select.mp3";
 import wrongBgm from "../../assets/wrong.mp3";
 import { getData } from "../../api";
 import { GameDataType } from "../../types/Game";
+import { customTostify } from "../../components/customTostify";
 
 export const initialState = {
   totalScore: 0,
@@ -108,8 +109,8 @@ function Game() {
         setLeftTrash(Array(res.data.trash.length).fill(false));
         setVisibility(Array(trash.length).fill("visible"));
         setLoading(true);
-      } catch {
-        console.log("get data request fail");
+      } catch (err: any) {
+        customTostify("error", err.message);
       }
     };
     if (level === 0) {

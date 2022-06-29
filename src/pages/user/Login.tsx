@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router";
-import { toast } from "react-toastify";
 import { useSetRecoilState } from "recoil";
 import { postData } from "../../api";
 import { loginState, userState } from "../../stores/atoms";
@@ -12,6 +11,7 @@ import {
   RegisterButton,
   LoginButton,
 } from "../../styles/userStyles/users";
+import { customTostify } from "../../components/customTostify";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -29,21 +29,9 @@ function Login() {
       sessionStorage.setItem("token", res.data.token);
       navigate("/");
     } catch {
-      notCorrect();
-      console.log("Error: data post request fail");
+      customTostify("error", "아이디와 비밀번호를 확인해주세요.");
     }
   };
-
-  const notCorrect = () =>
-    toast.error("로그인 실패!", {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-    });
 
   return (
     <RightContainer onSubmit={loginUser}>

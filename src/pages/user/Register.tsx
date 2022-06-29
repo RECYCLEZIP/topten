@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router";
-import { toast } from "react-toastify";
 import { postData } from "../../api";
 import { Button } from "../../styles/ButtonStyles";
 import { TitleText } from "../../styles/TextStyle";
@@ -13,28 +12,7 @@ import {
   RegisterInputContainer,
   CautionText,
 } from "../../styles/userStyles/users";
-
-const correct = () =>
-  toast.success("가입 성공!", {
-    position: "top-center",
-    autoClose: 1000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-  });
-
-const notCorrect = () =>
-  toast.error("가입 실패!", {
-    position: "top-center",
-    autoClose: 1000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-  });
+import { customTostify } from "../../components/customTostify";
 
 const validateEmail = (email: string) => {
   const emailRule =
@@ -58,10 +36,9 @@ function Register() {
     e.preventDefault();
     try {
       await postData("users/register", { email, password, username });
-      correct();
-    } catch {
-      console.log("Error: data post request fail");
-      notCorrect();
+      customTostify("success", "가입 성공!");
+    } catch (err: any) {
+      customTostify("error", err.message);
     }
     navigate("/users/login");
   };

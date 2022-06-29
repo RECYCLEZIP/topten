@@ -46,14 +46,14 @@ export const SearchSelect = styled.select`
   -moz-appearance: none;
   appearance: none;
 
-  &:hover {
+  /* &:hover {
     background: #f7f9fa;
   }
 
   &:focus {
     border-color: #69db7c;
     outline: none;
-  }
+  } */
 `;
 
 export const SearchInput = styled.input`
@@ -68,15 +68,14 @@ export const SearchInput = styled.input`
 
   font-size: 0.53rem;
 
-  &:hover {
+  /* &:hover {
     background: #f7f9fa;
-    /* border: 1px solid #dadde6; */
   }
 
   &:focus {
     border-color: #69db7c;
     outline: none;
-  }
+  } */
 `;
 
 export const ListSection = styled.section``;

@@ -23,6 +23,18 @@ export async function postData(endpoint: string, data: object) {
     },
   });
 }
+
+export async function aiPostData(endpoint: string, data: any) {
+  console.log(`%cPOST 요청: ${serverUrl + endpoint}`, "color: #296aba;");
+  console.log(`%cPOST 요청 데이터: ${data}`, "color: #296aba;");
+
+  return axios.post(serverUrl + endpoint, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+}
+
 export async function qnaPostData(endpoint: string, data: object) {
   const bodyData = JSON.stringify(data);
   console.log(`%cPOST 요청: ${serverUrl + endpoint}`, "color: #296aba;");

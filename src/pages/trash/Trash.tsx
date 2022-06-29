@@ -16,6 +16,7 @@ import {
   TrashTitle,
 } from "../../styles/trash/trash";
 import { TrashType } from "../../types/Trash";
+import { customTostify } from "../../components/customTostify";
 
 function Item() {
   const id = useParams().id;
@@ -26,8 +27,8 @@ function Item() {
     try {
       const res = await getData(`trash/${id}`);
       setTrash(res.data);
-    } catch {
-      console.log("Error: data get request fail");
+    } catch (err: any) {
+      customTostify("error", err.message);
     }
     setLoading(true);
   };

@@ -300,12 +300,13 @@ export const PrologueBinMapSection = styled(PrologueSection)`
   background: #69db7c;
 
   margin: 10% 0;
-  padding: 5%;
+  padding: 8%;
 
   display: block;
 
   @media screen and (min-width: 768px) {
     display: flex;
+    padding: 5%;
   }
 `;
 
@@ -439,10 +440,14 @@ export const QuizImgContainer = styled.div<{ delay?: string }>`
 `;
 
 export const QuizImgWrapper = styled(PrologueQuiz)`
-  width: 50%;
+  width: 100%;
 
   display: flex;
   padding: 0;
+
+  @media screen and (min-width: 768px) {
+    width: 50%;
+  }
 `;
 
 export const Quiz1ImgWrapper = styled(QuizImgWrapper)`
@@ -453,8 +458,10 @@ export const Quiz1ImgWrapper = styled(QuizImgWrapper)`
 export const Quiz2ImgWrapper = styled(QuizImgWrapper)`
   float: left;
 
-  margin-left: 5rem;
-  margin-bottom: 0.5rem;
+  @media screen and (min-width: 768px) {
+    margin-left: 5rem;
+    margin-bottom: 0.5rem;
+  }
 `;
 
 export const Quiz1Img = styled.img`
@@ -500,6 +507,8 @@ export const PrologueEndTitleContainer = styled.div`
   margin-bottom: 2rem;
 
   color: white;
+
+  padding: 0 8%;
 `;
 
 export const StartButton = styled(Button)`

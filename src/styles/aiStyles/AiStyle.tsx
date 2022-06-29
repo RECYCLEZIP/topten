@@ -4,6 +4,8 @@ import { Button } from "../ButtonStyles";
 
 // 공통
 export const AiContentTitle = styled.span`
+  margin-right: 1rem;
+
   font-size: 0.8rem;
 `;
 
@@ -12,7 +14,11 @@ export const AiContentText = styled.span`
 `;
 
 export const AiImageUploadSection = styled.div`
-  margin: 1rem 3rem;
+  margin: 1rem 0rem;
+
+  @media screen and (min-width: 768px) {
+    margin: 1rem 3rem;
+  }
 `;
 
 export const AiImageContainer = styled.div`
@@ -50,6 +56,8 @@ export const UploadContainer = styled.div`
 
 export const UploadWrapper = styled.div`
   align-self: center;
+
+  width: 100%;
 `;
 
 export const UploadNoticeWrapper = styled.div`
@@ -145,11 +153,10 @@ export const AiTopContainer = styled.div`
 
   margin-bottom: 3rem;
 
-  display: flex;
-
   @media (min-width: 768px) {
     margin: 0 1rem;
     margin-bottom: 3rem;
+    display: flex;
   }
 `;
 
@@ -162,7 +169,9 @@ export const AiNoticeWrapper = styled.div`
 export const AiButtonWrapper = styled.div`
   /* background: brown; */
 
-  flex-grow: 1;
+  @media (min-width: 768px) {
+    flex-grow: 1;
+  }
 `;
 
 export const AiButton = styled(Button)<{
@@ -172,16 +181,28 @@ export const AiButton = styled(Button)<{
 
   padding: 0.3rem 1.2rem;
 
-  float: right;
-
   border-radius: 0.3rem;
 
   font-size: 0.6rem;
+
+  @media (min-width: 768px) {
+    float: right;
+  }
 
   cursor: ${(props) =>
     (props.situation === "beforeImgUpload" ||
       props.situation === "analyzing") &&
     "default"};
+
+  :disabled {
+    background-color: #21a663;
+  }
+
+  &:hover {
+    :disabled {
+      background-color: #21a663;
+    }
+  }
 
   background: ${(props) =>
     // ?이미지 업로드 전
@@ -212,14 +233,20 @@ export const AiGuidesTitle = styled(AiContentTitle)`
 
 export const AiGuidesContainer = styled.div`
   margin-top: 0.8rem;
-  padding: 2rem 3rem;
+  padding: 1rem 2rem;
 
   display: grid;
+
   justify-items: center;
 
   background: #ffffff;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
   border-radius: 1rem;
+
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 export const AiGuideContainer = styled.div`
@@ -231,12 +258,18 @@ export const AiGuideContainer = styled.div`
   /* margin-bottom: 2rem; */
 
   text-align: center;
+
+  @media (min-width: 768px) {
+    margin: 1rem 0.5rem;
+  }
 `;
 
 export const AiGuideImgWrapper = styled.div`
   /* background: lightblue; */
 
   width: 100%;
+  width: 10rem;
+  height: 8rem;
 
   display: flex;
 
@@ -247,7 +280,8 @@ export const AiGuideImgWrapper = styled.div`
   justify-content: center;
 
   @media (min-width: 768px) {
-    width: 10rem;
+    width: 100%;
+    max-width: 10rem;
     height: 5.5rem;
   }
 `;
@@ -264,7 +298,9 @@ export const AiGuideTitle = styled(AiContentText)`
   color: #9eacba;
 `;
 
-export const DetailTitle = styled.div`
+export const DetailTitle = styled.div<{ click: boolean }>`
   color: #9eacba;
-  font-size: 0.53rem;
+  font-size: 0.5rem;
+
+  cursor: ${(props) => props.click && "pointer"};
 `;

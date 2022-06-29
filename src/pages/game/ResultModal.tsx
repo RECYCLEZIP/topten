@@ -9,6 +9,7 @@ import { useNavigate } from "react-router";
 import { GameButton, ResultButton } from "../../styles/gameStyles/game";
 import gameOverBgm from "../../assets/gameover.mp3";
 import { putData } from "../../api";
+import { customTostify } from "../../components/customTostify";
 
 const style = {
   position: "absolute" as "absolute",
@@ -49,8 +50,8 @@ function ResultModal({
   const updateScore = async () => {
     try {
       putData("users/score", { score: Math.round(score * bonus) });
-    } catch {
-      console.log("put data request fail");
+    } catch (err: any) {
+      customTostify("error", err.message);
     }
   };
 
