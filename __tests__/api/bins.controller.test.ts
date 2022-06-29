@@ -41,8 +41,8 @@ export async function initializeDataBase() {
 }
 
 describe("binsController TEST", () => {
-    beforeEach(() => {
-        initializeDataBase();
+    beforeEach(async () => {
+        await initializeDataBase();
     });
 
     describe("GET /bins TEST", () => {

@@ -1,3 +1,4 @@
+import { Types } from "mongoose";
 import { PostModel } from "@src/db";
 import { IPost, IComment, MongooseQuery } from "@src/models/interface";
 
@@ -6,9 +7,18 @@ export class Post {
         return PostModel.count({});
     }
 
-    static find({ filteredQuery, limit }: { filteredQuery: MongooseQuery; limit: number }) {
+    static find(filteredQuery: MongooseQuery, page: number, limit: number) {
         return PostModel.find(filteredQuery)
-            .sort({ _id: -1 })
+            .sort({ createdAt: -1 })
+            .skip(page)
+            .limit(limit)
+            .populate("author", "-password");
+    }
+
+    static findUserPost(userId: string, page: number, limit: number) {
+        return PostModel.find({ author: new Types.ObjectId(userId) })
+            .sort({ createdAt: -1 })
+            .skip(page)
             .limit(limit)
             .populate("author", "-password");
     }

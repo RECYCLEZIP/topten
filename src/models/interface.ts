@@ -45,10 +45,13 @@ export interface FilterQuery {
     category?: string;
     page?: string;
     limit?: number;
+    pageno?: number;
+    type?: string;
 }
 
 export interface MongooseQuery {
     $and?: any;
+    $or?: any;
 }
 
 export interface GeoQuery {
