@@ -30,7 +30,6 @@ function App() {
   return (
     <div>
       <Header />
-      <ToastContainer style={{ fontSize: "0.7rem" }} />
       <AppRouter />
       <ToastContainer
         style={{ fontSize: "0.5rem" }}
