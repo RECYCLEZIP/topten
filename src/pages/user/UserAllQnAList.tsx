@@ -6,9 +6,10 @@ import {
   QnAPageState,
   QnALengthState,
   QnANumPagesState,
+  userState,
 } from "../../stores/atoms";
 
-import { QnAType } from "../../types/QnA";
+import { getData } from "../../api";
 
 import { useNavigate } from "react-router";
 
@@ -25,31 +26,44 @@ import {
 function UserAllQnAList() {
   const navigate = useNavigate();
 
-  const qnaAllList = useRecoilValue(QnAListState);
-  const [qnaList, setQnaList] = useState<QnAType | any>();
+  const [user, setUser] = useRecoilState(userState);
+
+  const [qnaList, setQnaList] = useRecoilState(QnAListState);
 
   const [qnaTotal, setQnaTotal] = useRecoilState(QnALengthState);
   const [qnaPage, setQnaPage] = useRecoilState(QnAPageState);
 
   const [numPages, setNumPages] = useRecoilState(QnANumPagesState);
 
-  const offset = (qnaPage - 1) * 10;
+  const getList = async () => {
+    try {
+      await getData(`posts/users/${user._id}?pageno=${qnaPage}&limit=10`).then(
+        (res) => {
+          setQnaList(res.data?.data);
+          setQnaTotal(res.data?.count);
+        },
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const date = (prop: string) => {
     return prop.split("T")[0].split("-").join(".");
   };
 
   useEffect(() => {
-    // 검색 전 전체 리스트 세팅
-    console.log(qnaAllList);
-    setQnaList([...qnaAllList]);
-  }, [qnaAllList]);
+    setQnaPage(1);
+  }, []);
+
+  useEffect(() => {
+    getList();
+  }, [user, qnaPage]);
 
   return (
     <>
       <ListTable>
         <ListTbody>
-          {/* {qnaList?.slice(offset, offset + 10).map((qna: any, idx: number) => ( */}
           {qnaList?.map((qna: any, idx: number) => (
             <>
               <>{console.log(qnaPage)}</>
