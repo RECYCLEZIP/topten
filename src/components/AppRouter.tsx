@@ -17,6 +17,7 @@ import QnA from "../pages/qna/QnA";
 import QnAPost from "../pages/qna/QnAPost";
 import QnADescription from "../pages/qna/QnADescription";
 import QnAEdit from "../pages/qna/QnAEdit";
+import PageNotFound from "./PageNotFound";
 
 //set router component
 function AppRouter() {
@@ -40,6 +41,7 @@ function AppRouter() {
       <Route path="/qna/:id" element={<QnADescription />} />
       <Route path="/qna/post" element={<QnAPost />} />
       <Route path="/qna/:id/edit" element={<QnAEdit />} />
+      <Route path="/*" element={<PageNotFound />} />
     </Routes>
   );
 }
