@@ -17,7 +17,7 @@ function QnaPagination() {
 
   useEffect(() => {
     console.log(qnaTotal);
-    setNumPages(Math.ceil(qnaTotal / 5));
+    setNumPages(Math.ceil(qnaTotal / 10));
   }, [qnaTotal]);
 
   return (
