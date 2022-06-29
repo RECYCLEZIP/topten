@@ -89,7 +89,7 @@
         }
       }
     },
-    "/": {
+    "/api": {
       "get": {
         "description": "",
         "parameters": [],

@@ -12,17 +12,17 @@ import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 import { RequestError } from "@src/middlewares/errorHandler";
 
 const indexController = (app: Express) => {
-    app.use(userController);
-    app.use(newsController);
-    app.use(quizController);
-    app.use(binsController);
-    app.use(postController);
-    app.use(trashController);
-    app.use(robotController);
-    app.get("/", (_req, res) => {
-        res.redirect("/swagger");
+    app.use("/api", userController);
+    app.use("/api", newsController);
+    app.use("/api", quizController);
+    app.use("/api", binsController);
+    app.use("/api", postController);
+    app.use("/api", trashController);
+    app.use("/api", robotController);
+    app.get("/api", (_req, res) => {
+        res.redirect("/api/swagger");
     });
-    app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+    app.use("/api/swagger", swaggerUi.serve, swaggerUi.setup(swaggerFile));
     app.use("*", (_req, _res) => {
         throw new RequestError("요청하신 페이지를 찾을 수 없습니다.", STATUS_404_NOTFOUND);
     });
