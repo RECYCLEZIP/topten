@@ -6,7 +6,9 @@ import { getData, qnaPostData, putData, delData } from "../../api";
 import { QnAType } from "../../types/QnA";
 
 import { useRecoilValue } from "recoil";
-import { userState } from "../../stores/atoms";
+import { userState, loginState } from "../../stores/atoms";
+
+import { toast } from "react-toastify";
 
 import { GrayButton } from "../../styles/qnaStyles/QnADescriptionStyle";
 
@@ -26,6 +28,7 @@ import {
   CommentButtonWrapper,
   CommentPostButton,
   CommentRightButton,
+  WarnText,
 } from "../../styles/qnaStyles/QnACommentStyle";
 import { customToastify } from "../../components/customToastify";
 
@@ -35,6 +38,7 @@ function QnAComment() {
 
   // 로그인한 사용자
   const user = useRecoilValue(userState);
+  const isLogin = useRecoilValue(loginState);
 
   const [qna, setQna] = useState<QnAType>();
 
@@ -42,6 +46,9 @@ function QnAComment() {
 
   const [commentEditValue, setCommentEditValue] = useState<string>();
   const [editComment, setEditComment] = useState("");
+
+  const [isComment, setIsComment] = useState<boolean>(true);
+  const [isCommentEdit, setIsCommentEdit] = useState<boolean>(true);
 
   const get = async () => {
     try {
@@ -61,31 +68,45 @@ function QnAComment() {
 
   // 댓글 작성
   const onClickCommentSubmit = async () => {
-    try {
-      await qnaPostData(`posts/${id}/comments`, {
-        content: commentValue,
-      }).then((res) => console.log(res));
+    if (isLogin) {
+      if (commentValue) {
+        try {
+          await qnaPostData(`posts/${id}/comments`, {
+            content: commentValue,
+          }).then((res) => console.log(res));
 
-      // 댓글 전송 후 input 초기화
-      setCommentValue("");
-      get();
-    } catch (err) {
-      console.log(err);
+          // 댓글 전송 후 input 초기화
+          setCommentValue("");
+          setIsComment(true);
+          get();
+        } catch (err) {
+          console.log(err);
+        }
+      } else {
+        setIsComment(false);
+      }
+    } else {
+      toast.warn("로그인 후 이용할 수 있습니다.");
     }
   };
 
   // 댓글 수정
   const onClickCommentEdit = async (commentId: string) => {
-    try {
-      await putData(`posts/${id}/comments/${commentId}`, {
-        content: commentEditValue,
-      }).then((res) => console.log(res));
+    if (commentEditValue) {
+      try {
+        await putData(`posts/${id}/comments/${commentId}`, {
+          content: commentEditValue,
+        }).then((res) => console.log(res));
 
-      // 댓글 전송 후 input 초기화
-      setEditComment("");
-      get();
-    } catch (err) {
-      console.log(err);
+        // 댓글 전송 후 input 초기화
+        setEditComment("");
+        setIsCommentEdit(true);
+        get();
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      setIsCommentEdit(false);
     }
   };
 
@@ -132,6 +153,7 @@ function QnAComment() {
           </CommentPostButton>
         </CommentButtonWrapper>
       </CommentInputContainer>
+      {!isComment && <WarnText>댓글을 입력해주세요.</WarnText>}
       {qna?.comments.map((comment) => (
         <CommentWrapper>
           <div>
@@ -155,6 +177,7 @@ function QnAComment() {
                       onKeyPressEnter(window.event, comment?._id);
                     }}
                   ></CommentEditInput>
+                  {!isCommentEdit && <WarnText>댓글을 입력해주세요.</WarnText>}
                 </>
               ) : (
                 <>

@@ -172,10 +172,36 @@ export const PrologueAskTitleContainer = styled.div`
   margin-bottom: 5%;
 `;
 
+export const AskTopContainer = styled.div`
+  display: flex;
+`;
+
 export const AskTitleWrapper = styled.div<{ delay?: string }>`
   &.fade-in {
     ${fadeInBubbleCss}
     animation-delay: ${(props) => props.delay || "0.3s"}
+  }
+`;
+
+export const AskHandWrapper = styled.div`
+  margin-left: auto;
+
+  &.fade-in {
+    ${fadeInCss}
+    animation-delay: 0.7s;
+  }
+`;
+
+export const AskHandImg = styled.img`
+  width: 10rem;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+
+  &.fade-in {
+    ${fadeInCss}
+    animation-delay: 0.7s;
   }
 `;
 
@@ -190,7 +216,7 @@ export const PrologueAskImgWrapper = styled.div`
 
   &.fade-in {
     ${fadeInCss}
-    animation-delay: 0.7s;
+    animation-delay: 0.9s;
   }
 `;
 

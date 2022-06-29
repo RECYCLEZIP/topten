@@ -13,7 +13,8 @@ import {
 } from "../../styles/userStyles/userPage";
 import { UserType } from "../../types/User";
 import UserEdit from "./UserEdit";
-import { customToastify } from "../../components/customToastify";
+import UserQnA from "./UserQnA";
+import { customToastify } from "../../components/customTostify";
 
 function UserPage() {
   const navigate = useNavigate();
@@ -68,6 +69,7 @@ function UserPage() {
       <EmailText>{user.email}</EmailText>
       <Button onClick={logout}>로그아웃</Button>
       <RedButton onClick={deleteUser}>회원탈퇴</RedButton>
+      <UserQnA />
     </UserPageContainer>
   );
 }

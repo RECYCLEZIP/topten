@@ -2,9 +2,14 @@ import React from "react";
 
 import { useNavigate } from "react-router";
 
+import { useRecoilValue } from "recoil";
+import { loginState } from "../../stores/atoms";
+
 import QnABar from "./QnABar";
 import QnAList from "../../pages/qna/QnAList";
 import QnAPagination from "../../pages/qna/QnAPagination";
+
+import { toast } from "react-toastify";
 
 import { TitleText } from "../../styles/TextStyle";
 import { Container } from "../../styles/basicStyle";
@@ -17,6 +22,16 @@ import { Helmet } from "react-helmet-async";
 
 function QnA() {
   const navigate = useNavigate();
+
+  const isLogin = useRecoilValue(loginState);
+
+  const onClickPost = () => {
+    if (isLogin) {
+      navigate(`/qna/post`);
+    } else {
+      toast.warn('로그인 후 이용할 수 있습니다.')
+    }
+  };
 
   return (
     <>
@@ -34,7 +49,7 @@ function QnA() {
         <QnAList />
         <ButtonContainer>
           <ButtonWrapper>
-            <Button onClick={() => navigate(`/qna/post`)}>작성하기</Button>
+            <Button onClick={onClickPost}>작성하기</Button>
           </ButtonWrapper>
         </ButtonContainer>
         <QnAPagination />

@@ -65,3 +65,30 @@ export const EditButtons = styled.div`
 export const EditTitle = styled(RegisterText)`
   width: 45%;
 `;
+
+export const TitleContainer = styled.div`
+  display: flex;
+
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+
+  align-items: center;
+`;
+
+export const TitleWrapper = styled.div`
+  margin-right: 1rem;
+`;
+
+export const SubTitleWrapper = styled.div`
+  color: #9eacba;
+  font-size: 0.6rem;
+
+  cursor: pointer;
+`;
+
+export const QnaContainer = styled.div`
+  padding: 0rem 1rem;
+
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+`;
