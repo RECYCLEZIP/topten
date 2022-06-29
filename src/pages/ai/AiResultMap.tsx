@@ -13,7 +13,13 @@ import {
 } from "../../stores/atoms";
 import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
 
+import AiResultMapList from "./AiResultMapList";
+
 import { AiContentTitle, DetailTitle } from "../../styles/aiStyles/AiStyle";
+import {
+  MapTitleContainer,
+  MapContainer,
+} from "../../styles/aiStyles/AiResultStyle";
 
 function AiResultMap() {
   const [robot, setRobot] = useRecoilState<RobotType[]>(RobotState);
@@ -50,8 +56,8 @@ function AiResultMap() {
     try {
       const res = await getData(
         // 서울시 영등포구 선유로 롯데마트(mock)
-        // `robot?x=126.89196610216352&y=37.52606733350417`,
-        `robot?x=${longitude}&y=${latitude}`,
+        `robot?x=126.89196610216352&y=37.52606733350417`,
+        // `robot?x=${longitude}&y=${latitude}`,
         // `robots?search=${"종로구"}&category=${roadsValue}?page=${page}&limit=2`,
       );
 
@@ -72,25 +78,40 @@ function AiResultMap() {
 
   return (
     <>
-      <AiContentTitle>근처 순환자원 회수로봇</AiContentTitle>
-      <DetailTitle>
+      <MapTitleContainer>
+        <AiContentTitle>근처 순환자원 회수로봇</AiContentTitle>
+        <DetailTitle
+          onClick={() =>
+            window.open(
+              "https://www.superbin.co.kr/new/contents/product.php",
+              "_blank",
+            )
+          }
+          click={true}
+        >
+          순환자원 회수로봇이란?
+        </DetailTitle>
+      </MapTitleContainer>
+      <DetailTitle click={false}>
         현위치 반경 10km 범위의 순환자원 회수로봇입니다.
       </DetailTitle>
-      {/* <DetailTitle>* 순환자원 회수로봇이란?</DetailTitle> */}
       {error ? (
         <span>{error}</span>
       ) : (
-        <MapContent
-          type="robot"
-          props={robots}
-          propsSelected={robotSelected}
-          setSelectedMarker={setSelectedMarker}
-          setPropsSelected={setRobotSelected}
-          // currentLon={126.89196610216352}
-          // currentLat={37.52606733350417}
-          currentLon={longitude}
-          currentLat={latitude}
-        ></MapContent>
+        <MapContainer>
+          <MapContent
+            type="robot"
+            props={robots}
+            propsSelected={robotSelected}
+            setSelectedMarker={setSelectedMarker}
+            setPropsSelected={setRobotSelected}
+            // currentLon={126.89196610216352}
+            // currentLat={37.52606733350417}
+            currentLon={longitude}
+            currentLat={latitude}
+          ></MapContent>
+          <AiResultMapList />
+        </MapContainer>
       )}
     </>
   );
