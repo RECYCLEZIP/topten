@@ -45,10 +45,6 @@ const doc = {
             description: "게시글 데이터 API",
         },
         {
-            name: "comment",
-            description: "댓글 데이터 API",
-        },
-        {
             name: "map",
             description: "쓰레기통위치/로봇위치 데이터 API",
         },
