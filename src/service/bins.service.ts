@@ -1,8 +1,8 @@
-import { FilterQuery } from "@src/models/interface";
-import { Bins } from "@src/repository/bins.repository";
+import { Bins } from "@src/repository";
 import { IBins } from "@src/models/interface";
-import { RequestError } from "@src/middlewares/errorHandler";
+import { FilterQuery } from "@src/models/interface";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
+import { RequestError } from "@src/middlewares/errorHandler";
 
 export class BinsService {
     static async getBinsLocation(query: FilterQuery) {

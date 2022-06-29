@@ -1,14 +1,14 @@
 import * as fs from "fs";
 import mongoose from "mongoose";
 import "dotenv/config";
-import { BinsModel } from "../src/db/map/bins.schema";
+import { BinsModel } from "../src/db";
 
 interface Bins {
     region: string;
     roads: string;
     details: string;
     points: string;
-    address: string;
+    full_address: string;
     type: string[];
     x: string;
     y: string;
@@ -28,7 +28,7 @@ db.on("connected", async () => {
     await session.withTransaction(async () => {
         try {
             const dataBuffer = fs.readFileSync(
-                "/Users/yanghaechan/vscode_workspace/elice_project/ai-project/seeds/data/sample_location_data.json",
+                "/Users/yanghaechan/vscode_workspace/elice_project/ai-project/seeds/data/bins_data_final.json",
             );
             const binsData = JSON.parse(dataBuffer.toString());
             binsData.forEach(async (bins: Bins) => {
@@ -37,7 +37,7 @@ db.on("connected", async () => {
                     roads: bins.roads,
                     details: bins.details,
                     points: bins.points,
-                    address: bins.address,
+                    address: bins.full_address,
                     type: bins.type,
                     x: bins.x,
                     y: bins.y,

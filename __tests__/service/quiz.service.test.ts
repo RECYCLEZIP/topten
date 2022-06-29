@@ -1,5 +1,5 @@
-import { Quiz } from "@src/db";
-import { QuizService } from "@src/service/quiz.service";
+import { Quiz } from "@src/repository";
+import { QuizService } from "@src/service";
 import { STATUS_404_NOTFOUND } from "@src/utils/statusCode";
 
 describe("QuizService TEST", () => {

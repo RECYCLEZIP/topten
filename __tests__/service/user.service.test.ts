@@ -1,9 +1,9 @@
+import bcrypt from "bcrypt";
+import { User } from "@src/repository";
+import { UserService } from "@src/service";
 import { IUser } from "@src/models/interface";
-import { User } from "@src/repository/user.repository";
-import { UserService } from "@src/service/user.service";
 import { RequestError } from "@src/middlewares/errorHandler";
 import { STATUS_400_BADREQUEST } from "@src/utils/statusCode";
-import bcrypt from "bcrypt";
 
 const tempUser: IUser = {
     email: "test@test.com",
@@ -42,20 +42,18 @@ describe("USER SERVICE LOGIC", () => {
         expect(deletedUser.message).toEqual("삭제가 완료되었습니다.");
     });
 
-    it("USER 로그인에 성공하면 유저와 토큰을 발급한다.", async () => {
+    it("USER 로그인에 성공하면 유저아이디와 토큰을 반환한다.", async () => {
         bcrypt.compare = jest.fn().mockResolvedValue(true);
         await UserService.addUser(tempUser);
-        const loginedUser = await UserService.login({ email: "test@test.com", password: "test" });
-
-        expect(loginedUser).toHaveProperty("user");
-        expect(loginedUser).toHaveProperty("accessToken");
-        expect(loginedUser).toHaveProperty("refreshToken");
+        const loginInfo = await UserService.login({ email: "test@test.com", password: "test" });
+        expect(loginInfo).toHaveProperty("token");
+        expect(loginInfo).toHaveProperty("userId");
     });
 });
 
 describe("USER SERVICE ERROR HANDLING", () => {
     it("회원가입 시 이미 존재하는 이메일이 있으면 에러가 발생한다.", async () => {
-        User.findByEmail = jest.fn().mockResolvedValue(tempUser);
+        User.isEmailExist = jest.fn().mockResolvedValue(true);
         try {
             await UserService.addUser(tempUser);
         } catch (err: any) {
@@ -83,6 +81,17 @@ describe("USER SERVICE ERROR HANDLING", () => {
                 username: "수정된유저",
                 password: "수정된비밀번호",
             });
+        } catch (err: any) {
+            expect(err).toBeInstanceOf(RequestError);
+            expect(err.status).toBe(STATUS_400_BADREQUEST);
+            expect(err.message).toBe("해당 사용자를 찾을 수 없습니다.");
+        }
+    });
+
+    it("USER SCORE 갱신 시 사용자를 못찾으면 에러가 발생한다.", async () => {
+        User.findById = jest.fn().mockResolvedValue(null);
+        try {
+            await UserService.updateScore("id", 50);
         } catch (err: any) {
             expect(err).toBeInstanceOf(RequestError);
             expect(err.status).toBe(STATUS_400_BADREQUEST);
@@ -121,17 +130,6 @@ describe("USER SERVICE ERROR HANDLING", () => {
             expect(err).toBeInstanceOf(RequestError);
             expect(err.status).toBe(STATUS_400_BADREQUEST);
             expect(err.message).toBe("이메일 또는 비밀번호를 확인해주세요.");
-        }
-    });
-
-    it("USER 로그아웃 시 사용자를 찾을 수 없으면 에러가 발생한다.", async () => {
-        User.removeToken = jest.fn().mockResolvedValue(null);
-        try {
-            await UserService.logout("testId");
-        } catch (err: any) {
-            expect(err).toBeInstanceOf(RequestError);
-            expect(err.status).toBe(STATUS_400_BADREQUEST);
-            expect(err.message).toBe("해당 사용자를 찾을 수 없습니다.");
         }
     });
 });

@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { createAccessToken, createRefreshToken, verifyToken } from "@src/utils/jwt";
+import { createAccessToken, verifyToken } from "@src/utils/jwt";
 jest.mock("jsonwebtoken", () => ({
     sign: jest.fn(() => "success"),
     verify: jest.fn(() => "success"),
@@ -8,11 +8,6 @@ jest.mock("jsonwebtoken", () => ({
 describe("JWT TOKEN", () => {
     it("accessToken을 생성한다.", () => {
         createAccessToken("test");
-        expect(jwt.sign).toHaveBeenCalled();
-    });
-
-    it("refreshToken을 생성한다.", () => {
-        createRefreshToken();
         expect(jwt.sign).toHaveBeenCalled();
     });
 

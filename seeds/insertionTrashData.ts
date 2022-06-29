@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import mongoose from "mongoose";
 import "dotenv/config";
-import { TrashModel } from "../src/db/trash/trash.schema";
+import { TrashModel } from "../src/db";
 import { styrofoam } from "./data/styrofoamSeed";
 import { can } from "./data/canSeed";
 import { glass } from "./data/glassSeed";

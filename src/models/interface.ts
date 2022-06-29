@@ -25,6 +25,12 @@ export enum Answer {
     GENERAL = "일반",
 }
 
+export enum QuizType {
+    MULTI = "multipleChoice",
+    OX = "ox",
+    MIXUP = "mixUp",
+}
+
 export interface ITrash {
     title: string;
     description: { throwAway: string[]; note: string[] };
@@ -39,22 +45,30 @@ export interface FilterQuery {
     category?: string;
     page?: string;
     limit?: number;
+    pageno?: number;
+    type?: string;
 }
 
 export interface MongooseQuery {
     $and?: any;
+    $or?: any;
+}
+
+export interface GeoQuery {
+    location: {
+        $near: {
+            $geometry: {
+                type: string;
+                coordinates: number[];
+            };
+            $maxDistance: number;
+        };
+    };
 }
 
 export interface Submissions {
     type: string;
     answers: { quizId: string; answer: string }[];
-}
-
-export interface ToUpdate {
-    date?: Date;
-    totalUser: number;
-    wrong: number;
-    yesterday?: number;
 }
 
 export interface Result {
@@ -68,7 +82,7 @@ export interface IUser {
     email: string;
     username?: string;
     password?: string;
-    token?: string;
+    topscore?: number;
 }
 
 export interface IBins {
@@ -90,4 +104,22 @@ export interface IQuiz {
     result: Result[];
     type: string;
     image: string;
+}
+
+export interface IComment {
+    author?: { userId: string; username: string };
+    content: string;
+}
+
+export interface IPost {
+    title: string;
+    author?: IUser;
+    content: string;
+    comments?: IComment[];
+}
+
+export interface IRobot {
+    name: string;
+    address: string;
+    location: object;
 }

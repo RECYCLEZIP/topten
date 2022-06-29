@@ -41,8 +41,16 @@ const doc = {
             description: "유저 데이터 API",
         },
         {
-            name: "bins",
-            description: "쓰레기통위치 데이터 API",
+            name: "post",
+            description: "게시글 데이터 API",
+        },
+        {
+            name: "comment",
+            description: "댓글 데이터 API",
+        },
+        {
+            name: "map",
+            description: "쓰레기통위치/로봇위치 데이터 API",
         },
     ],
     definitions: {
@@ -70,7 +78,164 @@ const doc = {
             email: "test@test.com",
             password: "test1234",
         },
+        UserLoginResponse: {
+            userId: "62acd51598886269f298521e",
+            token: "accessToken",
+        },
         UserLogoutResponse: { message: "정상적으로 로그아웃이 완료되었습니다." },
+        UserScoreRequest: { score: 80 },
+        UserScoreResponse: { message: "점수 갱신이 완료되었습니다." },
+        UserRankingResponse: [
+            {
+                _id: "62acd51598886269f298521e",
+                email: "test@test.com",
+                username: "테스트",
+                topscore: 1000,
+                __v: 0,
+            },
+        ],
+        PostId: "posts/{postId}",
+        PostGetQuery: "?search=테스트&type=title&pageno=2&limit=10",
+        UserPostGetQuery: "?pageno=2&limit=10",
+        PostGetResponse: {
+            count: 12,
+            data: [
+                {
+                    _id: "62b8380b0c97c08eb8a7d122",
+                    title: "게시글제목",
+                    author: {
+                        _id: "62b513e76ae88bc07ab1c6b5",
+                        email: "test@test.com",
+                        username: "테스트",
+                        topscore: 0,
+                        __v: 0,
+                    },
+                    content: "게시글내용",
+                    comments: [
+                        {
+                            author: {
+                                userId: "62b513e76ae88bc07ab1c6b5",
+                                username: "테스트",
+                            },
+                            content: "댓글생성",
+                            _id: "62b838310c97c08eb8a7d129",
+                            createdAt: "2022-06-26T10:42:57.599Z",
+                            updatedAt: "2022-06-26T10:42:57.599Z",
+                        },
+                    ],
+                    createdAt: "2022-06-26T10:42:19.796Z",
+                    updatedAt: "2022-06-26T10:42:57.599Z",
+                    __v: 1,
+                },
+            ],
+        },
+        PostOneGetResponse: {
+            _id: "62b8380b0c97c08eb8a7d122",
+            title: "게시글제목",
+            author: {
+                _id: "62b513e76ae88bc07ab1c6b5",
+                email: "test@test.com",
+                username: "테스트",
+                topscore: 0,
+                __v: 0,
+            },
+            content: "게시글내용",
+            comments: [
+                {
+                    author: {
+                        userId: "62b513e76ae88bc07ab1c6b5",
+                        username: "테스트",
+                    },
+                    content: "댓글생성",
+                    _id: "62b838310c97c08eb8a7d129",
+                    createdAt: "2022-06-26T10:42:57.599Z",
+                    updatedAt: "2022-06-26T10:42:57.599Z",
+                },
+            ],
+            createdAt: "2022-06-26T10:42:19.796Z",
+            updatedAt: "2022-06-26T10:42:57.599Z",
+            __v: 1,
+        },
+        PostCreateRequest: {
+            title: "게시글제목",
+            content: "게시글내용",
+        },
+        PostCreateResponse: {
+            title: "게시글제목",
+            author: {
+                _id: "62b513e76ae88bc07ab1c6b5",
+                email: "test@test.com",
+                username: "테스트",
+                topscore: 0,
+                __v: 0,
+            },
+            content: "게시글내용",
+            _id: "62b8380b0c97c08eb8a7d122",
+            comments: [],
+            createdAt: "2022-06-26T10:42:19.796Z",
+            updatedAt: "2022-06-26T10:42:19.796Z",
+            __v: 0,
+        },
+        PostPutRequest: {
+            title: "게시글제목수정",
+            content: "게시글내용수정",
+        },
+        PostPutResponse: {
+            _id: "62b8380b0c97c08eb8a7d122",
+            title: "게시글제목수정",
+            author: "62b513e76ae88bc07ab1c6b5",
+            content: "게시글내용수정",
+            comments: [
+                {
+                    author: {
+                        userId: "62b513e76ae88bc07ab1c6b5",
+                        username: "테스트",
+                    },
+                    content: "댓글생성",
+                    _id: "62b838310c97c08eb8a7d129",
+                    createdAt: "2022-06-26T10:42:57.599Z",
+                    updatedAt: "2022-06-26T10:42:57.599Z",
+                },
+            ],
+            createdAt: "2022-06-26T10:42:19.796Z",
+            updatedAt: "2022-06-26T10:44:57.010Z",
+            __v: 1,
+        },
+        CommentId: "comments/{commentId}",
+        CommentCreateRequest: {
+            content: "댓글생성",
+        },
+        CommentCreateResponse: {
+            content: "댓글생성",
+            author: {
+                userId: "62b513e76ae88bc07ab1c6b5",
+                username: "테스트",
+            },
+        },
+        CommentPutRequest: {
+            content: "댓글내용수정",
+        },
+        CommentPutResponse: {
+            _id: "62b8380b0c97c08eb8a7d122",
+            title: "게시글제목수정",
+            author: "62b513e76ae88bc07ab1c6b5",
+            content: "게시글내용수정",
+            comments: [
+                {
+                    author: {
+                        userId: "62b513e76ae88bc07ab1c6b5",
+                        username: "테스트",
+                    },
+                    content: "댓글내용수정",
+                    _id: "62b838310c97c08eb8a7d129",
+                    createdAt: "2022-06-26T10:42:57.599Z",
+                    updatedAt: "2022-06-26T10:45:48.963Z",
+                },
+            ],
+            createdAt: "2022-06-26T10:42:19.796Z",
+            updatedAt: "2022-06-26T10:45:48.963Z",
+            __v: 1,
+        },
         TrashId: "trash/{trashId}",
         TrashGetQuery: "?search={}&category={}&page={ID}&limit={5}",
         TrashGetResponse: [
@@ -94,6 +259,16 @@ const doc = {
                 __v: 0,
             },
         ],
+        TrashAiResponse: {
+            title: "페트병",
+            kind: "플라스틱",
+            section: [
+                { title: "페트병", score: 0 },
+                { title: "뚜껑", score: 0 },
+                { title: "라벨", score: 0 },
+            ],
+            throwAway: ["내용물을 비운 뒤 세척", "부착 상표 등을 제거 후 일반 쓰레기에 버리기"],
+        },
         TrashOneGetResponse: {
             _id: "62a1624d1458dc8c48ab52ca",
             title: "컵라면",
@@ -264,6 +439,11 @@ const doc = {
                 __v: 0,
             },
         ],
+        QuizStep: "/quizzes/game/1",
+        QuizGameImgSet: {
+            trash: [{ image: "imgURL", category: "일반" }],
+            bins: [{ image: "imgURL", category: "일반" }],
+        },
         BinsQuery: "?search=종로구&category=삼청로",
         BinsLocation: [
             {
@@ -279,10 +459,33 @@ const doc = {
                 __v: 0,
             },
         ],
-        LocationList: {
+        BinsLocationList: {
             uniqueRegionList: ["종로구", "용산구", "성동구", "광진구", "중랑구"],
             uniqueRoadList: ["자하문로", "삼청로", "원효로", "마장로", "왕십리로", "마조로"],
         },
+        CoordinatesQuery: "?x=127.087316644307&y=37.5886172687013",
+        RobotLocationList: [
+            {
+                location: {
+                    type: "Point",
+                    coordinates: [127.087316644307, 37.5886172687013],
+                },
+                _id: "62b4385656b6e08d18a09812",
+                name: "중랑구 면목역공원(투명페트병/캔)",
+                address: "서울 중랑구 면목동 120-30, 면목역 3번출구",
+                __v: 0,
+            },
+            {
+                location: {
+                    type: "Point",
+                    coordinates: [127.093510289011, 37.58923330814],
+                },
+                _id: "62b4385656b6e08d18a0978d",
+                name: "세븐일레븐 면목엠비스점(투명페트병)",
+                address: "서울 중랑구 상봉로 37",
+                __v: 0,
+            },
+        ],
     },
 };
 

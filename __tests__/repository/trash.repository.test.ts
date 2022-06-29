@@ -1,5 +1,5 @@
-import { Trash } from "@src/db";
-import { TrashModel } from "@src/db/trash/trash.schema";
+import { TrashModel } from "@src/db";
+import { Trash } from "@src/repository";
 import { Category, ITrash } from "@src/models/interface";
 
 describe("Trash 모델 접근", () => {

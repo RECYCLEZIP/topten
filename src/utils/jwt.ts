@@ -8,13 +8,8 @@ const publicKey = process.env.JWT_PUBLIC_KEY || "JWT_TOKEN";
 export const createAccessToken = (userId: string) => {
     return jwt.sign({ userId }, secretKey, {
         algorithm: "RS256",
-        expiresIn: "1800s",
-        issuer: "분리수ZIP",
+        issuer: "recyclezip.com",
     });
-};
-
-export const createRefreshToken = () => {
-    return jwt.sign({}, secretKey, { algorithm: "RS256", expiresIn: "14d", issuer: "분리수ZIP" });
 };
 
 export const verifyToken = (token: string) => {
