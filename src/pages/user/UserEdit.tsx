@@ -23,6 +23,8 @@ function UserEdit() {
   const setIsEdit = useSetRecoilState(userEditState);
   const [editUserName, setEditUserName] = useState(user.username);
   const [password, setPassword] = useState("");
+  const [comparePassword, setComparePassword] = useState("");
+  const samePassword = password === comparePassword;
   const [editPassword, setEditPassword] = useState(false);
 
   const submitHandler = async (e: {
@@ -32,7 +34,7 @@ function UserEdit() {
     e.preventDefault();
     try {
       if (editPassword) {
-        if (password.length < 8) return;
+        if (password.length < 8 || !samePassword) return;
         await putData("users/update", {
           email: user.email,
           password,
@@ -100,6 +102,26 @@ function UserEdit() {
           )}
         </RegisterInputContainer>
       </EachInput>
+      {editPassword ? (
+        <EachInput>
+          <EditTitle>비밀번호 확인</EditTitle>
+          <RegisterInputContainer>
+            <EditUserInput
+              placeholder="비밀번호 확인"
+              type="password"
+              value={comparePassword}
+              onChange={(e) => setComparePassword(e.target.value)}
+            ></EditUserInput>
+            {!samePassword && (
+              <CautionText>
+                {comparePassword.length > 0
+                  ? "비밀번호가 다릅니다."
+                  : "입력해주세요."}
+              </CautionText>
+            )}
+          </RegisterInputContainer>
+        </EachInput>
+      ) : null}
       <EditButtons>
         <Button onClick={submitHandler}>확인</Button>
         <CancelButton onClick={() => setIsEdit((prev) => !prev)}>
