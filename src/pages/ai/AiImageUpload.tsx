@@ -42,7 +42,6 @@ function AiImageUpload() {
 
   const onChangeUpload: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     if (e?.target !== null && e?.target?.files?.[0]) {
-      console.log(URL.createObjectURL(e?.target?.files?.[0]));
       setPostImage(e.target.files[0]);
       setFileImage(URL.createObjectURL(e?.target?.files?.[0]));
     }

@@ -127,7 +127,6 @@ function QnAComment() {
   const onKeyPressEnter = (e: any, commentId: string) => {
     // 엔터키가 눌렸을 때
     if (e.key === "Enter") {
-      console.log(e.target);
       onClickCommentEdit(commentId);
     }
   };
@@ -167,7 +166,6 @@ function QnAComment() {
             <>
               {editComment === comment?._id ? (
                 <>
-                  {console.log(editComment)}
                   <CommentEditInput
                     id="comment-edit"
                     type="text"
@@ -181,7 +179,6 @@ function QnAComment() {
                 </>
               ) : (
                 <>
-                  {console.log(editComment)}
                   <CommentContent>{comment?.content}</CommentContent>
                   <CommentDate>{date(comment?.createdAt)}</CommentDate>
                 </>

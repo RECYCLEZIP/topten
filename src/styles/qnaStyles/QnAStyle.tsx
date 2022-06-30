@@ -1,9 +1,22 @@
 import styled from "styled-components";
 
 export const BarSection = styled.section`
-  display: inline-flex;
+  display: block;
+
+  @media screen and (min-width: 768px) {
+    display: inline-flex;
+  }
 
   width: 100%;
+`;
+
+export const BarInfo = styled.div`
+  /* background: pink; */
+  display: inline-flex;
+
+  @media screen and (max-width: 768px) {
+    margin-bottom: 0.5rem;
+  }
 `;
 
 export const BarText = styled.div`
@@ -102,7 +115,6 @@ export const ListTr = styled.tr`
 
 export const NothingTd = styled.td`
   padding: 0.8rem 0.5rem;
-
   text-align: center;
   font-weight: 500;
 `;
@@ -110,38 +122,47 @@ export const NothingTd = styled.td`
 export const ListNumber = styled.td`
   width: 2rem;
 
-  padding: 0.8rem 0.5rem;
-  padding-left: 1rem;
-
   font-weight: 500;
   color: #979797;
+
+  @media screen and (min-width: 768px) {
+    padding: 0.8rem 0.5rem;
+    padding-left: 1rem;
+  }
 `;
 
 export const ListTitle = styled.td`
-  padding: 0.5rem;
-
   cursor: pointer;
+  padding: 0.5rem 0;
+
+  @media screen and (min-width: 768px) {
+    padding: 0.5rem;
+  }
 `;
 
 export const ListAuthor = styled.td`
-  width: 3rem;
-
   padding: 0.5rem;
 
   font-weight: 500;
   text-align: center;
   color: #979797;
+
+  @media screen and (min-width: 768px) {
+    width: 3rem;
+  }
 `;
 
 export const ListDate = styled.td`
-  width: 5rem;
-
-  padding: 0.5rem;
-  padding-right: 1rem;
+  width: 2rem;
 
   font-weight: 500;
   text-align: right;
   color: #979797;
+  @media screen and (min-width: 768px) {
+    width: 5rem;
+    padding: 0.5rem;
+    padding-right: 1rem;
+  }
 `;
 
 export const ButtonContainer = styled.div`

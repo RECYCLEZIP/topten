@@ -53,8 +53,12 @@ export const RedButton = styled(GrayButton)`
 `;
 
 export const TitleContainer = styled.div`
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem;
   display: flex;
+
+  @media screen and (min-width: 768px) {
+    padding: 0.5rem 1.5rem;
+  }
 `;
 
 export const Title = styled.div`
@@ -97,9 +101,13 @@ export const Date = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem;
   font-size: 0.6rem;
   /* color: #979797; */
+
+  @media screen and (min-width: 768px) {
+    padding: 0.5rem 1.5rem;
+  }
 `;
 
 export const SquareButton = styled(Button)`

@@ -18,6 +18,7 @@ import {
   SearchContainer,
   SearchSelect,
   SearchInput,
+  BarInfo,
 } from "../../styles/qnaStyles/QnAStyle";
 import { customToastify } from "../../components/customToastify";
 
@@ -60,9 +61,6 @@ function QnABar() {
     if (e.key === "Enter") {
       if (searchValue !== "") {
         getList();
-      } else {
-        // 검색어 없을 시
-        console.log("검색어 없음");
       }
     }
   };
@@ -73,12 +71,14 @@ function QnABar() {
 
   return (
     <BarSection>
-      <BarText>
-        전체 <BarRedText>{qnaTotal}</BarRedText>건
-      </BarText>
-      <BarText>
-        페이지 <BarRedText>{qnaPage}</BarRedText>/{numPages}
-      </BarText>
+      <BarInfo>
+        <BarText>
+          전체 <BarRedText>{qnaTotal}</BarRedText>건
+        </BarText>
+        <BarText>
+          페이지 <BarRedText>{qnaPage}</BarRedText>/{numPages}
+        </BarText>
+      </BarInfo>
       <SearchContainer>
         <SearchSelect onChange={onChangeSelect}>
           <option value="title" selected={true}>

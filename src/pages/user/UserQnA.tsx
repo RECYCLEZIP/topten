@@ -43,17 +43,14 @@ function UserQnA() {
   const [qnaPage, setQnaPage] = useRecoilState(QnAPageState);
   const [numPages, setNumPages] = useRecoilState(QnANumPagesState);
 
-
-  console.log(user);
-
   const getList = async () => {
     try {
-      await getData(
-        `posts/users/${user._id}?pageno=${qnaPage}&limit=3`,
-      ).then((res) => {
-        setQnaList(res.data?.data);
-        setQnaTotal(res.data?.count);
-      });
+      await getData(`posts/users/${user._id}?pageno=${qnaPage}&limit=3`).then(
+        (res) => {
+          setQnaList(res.data?.data);
+          setQnaTotal(res.data?.count);
+        },
+      );
     } catch (err) {
       console.log(err);
     }

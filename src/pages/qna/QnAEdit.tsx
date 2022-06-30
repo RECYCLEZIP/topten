@@ -99,17 +99,19 @@ function QnAEdit() {
           onChange={onTitleChange}
         ></TitleInput>
       </TitleInputContainer>
-      <Editor
-        initialValue={contentValue}
-        ref={editorRef}
-        previewStyle="vertical"
-        height="600px"
-        initialEditType="wysiwyg"
-        useCommandShortcut={true}
-        plugins={[colorSyntax]} // colorSyntax 플러그인 적용
-        language="ko-KR"
-        onChange={onChangeContent}
-      />
+      {qna && (
+        <Editor
+          initialValue={qna?.content}
+          ref={editorRef}
+          previewStyle="vertical"
+          height="600px"
+          initialEditType="wysiwyg"
+          useCommandShortcut={true}
+          plugins={[colorSyntax]} // colorSyntax 플러그인 적용
+          language="ko-KR"
+          onChange={onChangeContent}
+        />
+      )}
       <PostButtonContainer>
         <PostButtonWrapper>
           <PostCancleButton onClick={() => navigate(`/qna/${id}`)}>
