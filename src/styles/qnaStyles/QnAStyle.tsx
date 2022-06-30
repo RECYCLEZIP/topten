@@ -140,6 +140,19 @@ export const ListTitle = styled.td`
   }
 `;
 
+export const ListTitleWrapper = styled.div`
+  margin-right: 0.5rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 7rem;
+
+  @media screen and (min-width: 768px) {
+    width: 10rem;
+    padding: 0.5rem;
+  }
+`;
+
 export const ListAuthor = styled.td`
   padding: 0.5rem;
 
@@ -152,14 +165,23 @@ export const ListAuthor = styled.td`
   }
 `;
 
+export const ListAuthorWrapper = styled.div`
+  margin-right: 0.5rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 2.5rem;
+`;
+
 export const ListDate = styled.td`
   width: 2rem;
 
   font-weight: 500;
   text-align: right;
   color: #979797;
+
   @media screen and (min-width: 768px) {
-    width: 5rem;
+    width: 2rem;
     padding: 0.5rem;
     padding-right: 1rem;
   }

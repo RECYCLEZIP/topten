@@ -21,6 +21,8 @@ import {
   ListTitle,
   ListAuthor,
   ListDate,
+  ListTitleWrapper,
+  ListAuthorWrapper,
 } from "../../styles/qnaStyles/QnAStyle";
 
 import { BlackHr } from "../../styles/qnaStyles/QnADescriptionStyle";
@@ -73,10 +75,16 @@ function QnAList() {
                     </ListNumber>
                   )}
                   <ListTitle onClick={() => navigate(`/qna/${qna._id}`)}>
-                    {qna?.title}
+                    <ListTitleWrapper>{qna?.title}</ListTitleWrapper>
                   </ListTitle>
                   <>
-                    {mQuery && <ListAuthor>{qna?.author?.username}</ListAuthor>}
+                    {mQuery && (
+                      <ListAuthor>
+                        <ListAuthorWrapper>
+                          {qna?.author?.username}
+                        </ListAuthorWrapper>
+                      </ListAuthor>
+                    )}
                   </>
                   <ListDate>{date(qna?.createdAt)}</ListDate>
                 </ListTr>

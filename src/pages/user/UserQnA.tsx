@@ -22,6 +22,8 @@ import {
   ListNumber,
   ListTitle,
   ListDate,
+  ListTitleWrapper,
+  ListAuthorWrapper,
 } from "../../styles/qnaStyles/QnAStyle";
 
 import {
@@ -107,7 +109,7 @@ function UserQnA() {
                     {/* 게시글 번호 내림차순으로 */}
                     {mQuery && <ListNumber>{qnaList?.length - idx}</ListNumber>}
                     <ListTitle onClick={() => navigate(`/qna/${qna._id}`)}>
-                      {qna?.title}
+                      <ListTitleWrapper>{qna?.title}</ListTitleWrapper>
                     </ListTitle>
                     <ListDate>
                       {date(qna?.createdAt)}
