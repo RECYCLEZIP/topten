@@ -10,6 +10,7 @@ import NewsSection from "./NewsSection";
 import QuizSection from "./QuizSection";
 import { customToastify } from "../../components/customToastify";
 import { Helmet } from "react-helmet-async";
+import Loading from "../../components/Loading";
 
 function Main() {
   // main page component
@@ -33,7 +34,7 @@ function Main() {
   }, []);
 
   if (!isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (

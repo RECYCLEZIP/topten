@@ -55,7 +55,7 @@ function Rank() {
   return (
     <>
       <Helmet>
-        <title>분리수ZIP - 게임</title>
+        <title>분리수ZIP - 게임랭킹</title>
         <meta
           name="description"
           content="AI가 분류해주는 분리수거 서비스 게임페이지"

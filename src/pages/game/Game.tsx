@@ -23,6 +23,7 @@ import wrongBgm from "../../assets/wrong.mp3";
 import { getData } from "../../api";
 import { GameDataType } from "../../types/Game";
 import { customToastify } from "../../components/customToastify";
+import { Helmet } from "react-helmet-async";
 
 export const initialState = {
   totalScore: 0,
@@ -63,7 +64,6 @@ function Game() {
     selectBgm.currentTime = 0;
     wrongBgm.pause();
     wrongBgm.currentTime = 0;
-    console.log(info);
     if (!destination) return;
     if (destination.droppableId !== source.droppableId) return wrongBgm.play();
     if (destination.droppableId === source.droppableId) {
@@ -159,6 +159,9 @@ function Game() {
 
   return (
     <>
+      <Helmet>
+        <title>분리수ZIP - 게임</title>
+      </Helmet>
       {gameState === initialState.gameState.READY && <GameModal />}
       {(gameState === initialState.gameState.GAMEOVER ||
         gameState === initialState.gameState.WIN) && (
@@ -192,7 +195,7 @@ function Game() {
             </DragTrashContainer>
             <DropTrashContainer>
               {bins.map((bin, index) => (
-                <BinZone index={bin.category} bin={bin} key={index} />
+                <BinZone bin={bin} key={index} />
               ))}
             </DropTrashContainer>
           </GameContainer>

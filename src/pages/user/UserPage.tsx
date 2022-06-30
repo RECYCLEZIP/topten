@@ -16,12 +16,14 @@ import UserEdit from "./UserEdit";
 import UserQnA from "./UserQnA";
 import { customToastify } from "../../components/customToastify";
 import { Helmet } from "react-helmet-async";
+import Loading from "../../components/Loading";
 
 function UserPage() {
   const navigate = useNavigate();
   const [user, setUser] = useState<UserType>({});
   const setIsLogin = useSetRecoilState(loginState);
   const [isEdit, setIsEdit] = useRecoilState(userEditState);
+  const [loading, setLoading] = useState(false);
 
   const getUser = async () => {
     try {
@@ -30,6 +32,7 @@ function UserPage() {
     } catch {
       console.log("Error: data get request fail");
     }
+    setLoading(true);
   };
 
   const logout = () => {
@@ -59,6 +62,10 @@ function UserPage() {
     getUser();
     setIsEdit(false);
   }, []);
+
+  if (!loading) {
+    return <Loading />;
+  }
 
   return (
     <UserPageContainer>

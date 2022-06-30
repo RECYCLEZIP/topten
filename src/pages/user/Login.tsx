@@ -11,6 +11,7 @@ import {
   LoginButton,
 } from "../../styles/userStyles/users";
 import { customToastify } from "../../components/customToastify";
+import { Helmet } from "react-helmet-async";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -34,6 +35,9 @@ function Login() {
 
   return (
     <RightContainer onSubmit={loginUser}>
+      <Helmet>
+        <title>분리수ZIP - 로그인</title>
+      </Helmet>
       <TitleText>로그인</TitleText>
       <LoginInput
         placeholder="이메일"
