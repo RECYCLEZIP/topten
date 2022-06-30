@@ -66,7 +66,6 @@ function UserAllQnAList() {
         <ListTbody>
           {qnaList?.map((qna: any, idx: number) => (
             <>
-              <>{console.log(qnaPage)}</>
               {qnaList?.length === 0 ? (
                 <tr>
                   <NothingTd>조회된 게시물이 없습니다.</NothingTd>

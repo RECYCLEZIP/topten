@@ -34,8 +34,6 @@ function Map() {
 
   const [roadsValue, setRoadsValue] = useRecoilState(RoadsValueState);
 
-  const [page, setPage] = useState(1);
-
   const bins = useRecoilValue(BinState);
   const binSelected = useRecoilValue(BinSelectedState);
   const setSelectedMarker = useSetRecoilState(selectedMarkerState);
@@ -57,11 +55,6 @@ function Map() {
   useEffect(() => {
     getBins();
   }, [regionValue, roadsValue]);
-
-  useEffect(() => {
-    console.log("page ? ", page);
-    getBins();
-  }, [page]);
 
   return (
     <>

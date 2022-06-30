@@ -61,9 +61,6 @@ function MapList() {
 
   // 지도에서 선택된 마커의 좌표가 어떤 쓰레기통인지 찾아서 해당 정보 저장
   const selectedBinInform: BinTypes | undefined = useMemo(() => {
-    console.log(selectedMarker);
-    console.log(bins);
-
     return bins.find(
       (bin) =>
         selectedMarker.Ma === Number(bin.y) &&

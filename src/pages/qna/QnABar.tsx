@@ -61,9 +61,6 @@ function QnABar() {
     if (e.key === "Enter") {
       if (searchValue !== "") {
         getList();
-      } else {
-        // 검색어 없을 시
-        console.log("검색어 없음");
       }
     }
   };
