@@ -104,7 +104,7 @@ function AiResultMap() {
       ) : (
         <>
           {longitude === 0 || latitude === 0 ? (
-            <MapLoading>지도를 로딩하고 있습니다.</MapLoading>
+            <MapLoading>근처의 회수로봇을 찾고 있습니다.</MapLoading>
           ) : (
             <MapContainer>
               <MapContent

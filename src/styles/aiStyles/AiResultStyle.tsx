@@ -59,26 +59,23 @@ export const AiResultContentContainer = styled.div`
 `;
 
 export const AiResultSummaryContainer = styled.div`
-  /* margin-top: 2rem;
-  margin-bottom: 3rem; */
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   margin-right: 1rem;
 
   padding: 0.3rem 0.5rem;
 
-  /* flex: 1; */
-  /* text-align: center; */
-
-  display: flex;
+  display: block;
+  text-align: center;
 
   background: white;
   border-radius: 0.3rem;
-  /* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15); */
 
   background: #51cf66;
 
-  /* box-shadow: 0px 0px 20px rgb(0 0 0 / 20%); */
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
 `;
 
 export const AiResultMidSummaryContainer = styled(AiResultSummaryContainer)`
@@ -89,12 +86,13 @@ export const AiResultMidSummaryContainer = styled(AiResultSummaryContainer)`
 `;
 
 export const AiResultSummaryTitleWrapper = styled.div`
-  /* margin-bottom: 0.5rem; */
-  margin-right: 0.5rem;
-
   font-size: 0.5rem;
   font-weight: 500;
   color: white;
+
+  @media screen and (min-width: 768px) {
+    margin-right: 0.5rem;
+  }
 `;
 
 export const AiResultSummaryDesWrapper = styled.div`
@@ -142,7 +140,7 @@ export const MapLoading = styled.div`
   background: #f0f2f5;
   border-radius: 0.3rem;
 
-  font-size: 0.8rem;
+  font-size: 0.6rem;
 
   text-align: center;
   justify-content: center;
