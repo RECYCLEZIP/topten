@@ -42,7 +42,7 @@ describe("TRASH SERVICE LOGIC", () => {
     it("TRASH AI 분석 결과를 반환한다.", async () => {
         axios.post = jest.fn().mockResolvedValue({
             data: {
-                type: "PET",
+                type: "Pet_Total",
                 0: { score: 88.888 },
                 1: { score: 77.777 },
                 2: { score: 66.666 },
