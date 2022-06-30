@@ -11,7 +11,7 @@ export const GameContainer = styled.div<{ Img: string }>`
   background-size: 100% 100%;
 
   @media (min-width: 768px) {
-    width: 60vw;
+    width: 70vw;
   }
 `;
 
@@ -26,7 +26,7 @@ export const RankContainer = styled.div`
 `;
 
 export const DragTrashContainer = styled.div`
-  height: 50vh;
+  height: 60vh;
   position: relative;
 
   @media (min-width: 768px) {
@@ -57,14 +57,14 @@ export const TrashCard = styled.div<{
 `;
 
 export const BinCard = styled.div<{ image: string }>`
-  width: 3.4rem;
-  height: 5rem;
+  width: 2.5rem;
+  height: 4rem;
   background-image: url(${(props) => props.image});
   background-size: cover;
 `;
 
 export const BinList = styled.div`
-  height: 5rem;
+  height: 4rem;
 `;
 
 export const GameButton = styled(Button)`
@@ -201,7 +201,7 @@ export const GameBox = styled.div`
 
 export const GameDescription = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-top: 0.3rem;
   width: 100%;
 `;
