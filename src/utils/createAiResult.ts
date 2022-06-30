@@ -33,5 +33,5 @@ function petAiResult(aiTarget: any) {
 
 export function createAiResult(aiTarget: any) {
     if (aiTarget.type === "Pet_Total") return petAiResult(aiTarget);
-    return { message: aiTarget.message };
+    return { message: "분석결과를 찾을 수 없습니다." };
 }
