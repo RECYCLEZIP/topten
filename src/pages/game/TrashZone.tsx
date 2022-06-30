@@ -2,6 +2,7 @@ import { Droppable } from "react-beautiful-dnd";
 import { GameDataType } from "../../types/Game";
 import TrashImg from "./TrashImg";
 
+// Droppable trash zone component
 function TrashZone({
   data,
   index,

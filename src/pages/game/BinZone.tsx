@@ -2,6 +2,7 @@ import { Droppable } from "react-beautiful-dnd";
 import { BinCard, BinList } from "../../styles/gameStyles/game";
 import { GameDataType } from "../../types/Game";
 
+// Game droppable bins zone
 function BinZone({ bin }: { bin: GameDataType }) {
   return (
     <Droppable droppableId={bin.category}>

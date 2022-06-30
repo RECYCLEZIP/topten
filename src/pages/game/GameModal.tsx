@@ -7,6 +7,7 @@ import { currentGameState } from "../../stores/atoms";
 import { initialState } from "./Game";
 import { GameButton } from "../../styles/gameStyles/game";
 
+// Game modal style
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -25,6 +26,7 @@ const style = {
   },
 };
 
+// Before the game starts modal
 function GameModal() {
   const setGameState = useSetRecoilState(currentGameState);
   const handleClose = () => setGameState(initialState.gameState.PLAYING);

@@ -3,6 +3,7 @@ import { Draggable } from "react-beautiful-dnd";
 import { TrashCard } from "../../styles/gameStyles/game";
 import { GameDataType } from "../../types/Game";
 
+// Game trash image component
 function TrashImg({
   data,
   index,
@@ -12,9 +13,11 @@ function TrashImg({
   index: number;
   visibility: string[];
 }) {
+  // Trash image location random
   const left = useMemo(() => Math.random() * 90, []);
   const top = useMemo(() => Math.random() * 90, []);
 
+  // Delete return to original position animation
   function getStyle(style: any, snapshot: any) {
     if (!snapshot.isDropAnimating) {
       return style;

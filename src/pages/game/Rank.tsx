@@ -17,9 +17,11 @@ import { RankDataType } from "../../types/Game";
 import GoGameModal from "./GoGameModal";
 import { customToastify } from "../../components/customToastify";
 import { Helmet } from "react-helmet-async";
+import Loading from "../../components/Loading";
 
 const medal = ["🥇", "🥈", "🥉"];
 
+// Game rank component
 function Rank() {
   const navigate = useNavigate();
   const isLogin = useRecoilValue(loginState);
@@ -49,7 +51,7 @@ function Rank() {
   }, []);
 
   if (!loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
