@@ -76,7 +76,6 @@ function AiImageUpload() {
 
       try {
         await aiPostData(`trash/ai`, formData).then((res) => {
-          console.log(res.data);
           setResult(res.data);
         });
 
