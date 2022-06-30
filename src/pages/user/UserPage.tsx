@@ -15,6 +15,7 @@ import { UserType } from "../../types/User";
 import UserEdit from "./UserEdit";
 import UserQnA from "./UserQnA";
 import { customToastify } from "../../components/customToastify";
+import { Helmet } from "react-helmet-async";
 
 function UserPage() {
   const navigate = useNavigate();
@@ -39,11 +40,16 @@ function UserPage() {
 
   const deleteUser = async () => {
     try {
-      await delData("users/delete");
-      customToastify("success", "탈퇴 성공!");
-      sessionStorage.removeItem("token");
-      setIsLogin(false);
-      navigate("/");
+      // eslint-disable-next-line no-restricted-globals
+      if (confirm("정말로 탈퇴하시겠습니까?")) {
+        await delData("users/delete");
+        customToastify("success", "탈퇴 성공!");
+        sessionStorage.removeItem("token");
+        setIsLogin(false);
+        navigate("/");
+      } else {
+        return;
+      }
     } catch {
       customToastify("error", "탈퇴 실패!");
     }
@@ -56,6 +62,9 @@ function UserPage() {
 
   return (
     <UserPageContainer>
+      <Helmet>
+        <title>분리수ZIP - 마이페이지</title>
+      </Helmet>
       {isEdit ? (
         <UserEdit user={user} />
       ) : (
