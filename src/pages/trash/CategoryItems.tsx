@@ -14,7 +14,7 @@ import {
   ItemTitle,
   MoveButton,
 } from "../../styles/trash/items";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 import { customToastify } from "../../components/customToastify";
 
 function CategoryItems() {
@@ -33,6 +33,10 @@ function CategoryItems() {
       customToastify("error", err.message);
     }
   }, [kind, page, setTrashList]);
+
+  useEffect(() => {
+    setPage("");
+  }, []);
 
   useEffect(() => {
     getTrashList();
