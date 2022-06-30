@@ -4,6 +4,7 @@ import Modal from "@mui/material/Modal";
 import { GoLoginButton, GoGameButton } from "../../styles/gameStyles/game";
 import { useNavigate } from "react-router";
 
+// Go game modal style
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -18,6 +19,7 @@ const style = {
   textAlign: "center",
 };
 
+// If not login, open go game modal
 function GoGameModal({
   open,
   onClose,

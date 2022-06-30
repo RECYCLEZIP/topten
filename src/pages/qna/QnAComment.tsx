@@ -153,8 +153,8 @@ function QnAComment() {
         </CommentButtonWrapper>
       </CommentInputContainer>
       {!isComment && <WarnText>댓글을 입력해주세요.</WarnText>}
-      {qna?.comments.map((comment) => (
-        <CommentWrapper>
+      {qna?.comments.map((comment, index) => (
+        <CommentWrapper key={index}>
           <div>
             <CommentAuthorContainer>
               <CommentAuthor>{comment?.author.username}</CommentAuthor>

@@ -1,11 +1,10 @@
 import "react-toastify/dist/ReactToastify.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSetRecoilState } from "recoil";
 import { getData } from "./api";
 import AppRouter from "./components/AppRouter";
 import Header from "./components/Header";
-import { loginState, userState } from "./stores/atoms";
-
+import { loginState, modalOpenState, userState } from "./stores/atoms";
 import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "tui-color-picker/dist/tui-color-picker.css";
@@ -16,6 +15,8 @@ import { ToastContainer } from "react-toastify";
 function App() {
   const setIsLogin = useSetRecoilState(loginState);
   const setUser = useSetRecoilState(userState);
+  const setIsToggled = useSetRecoilState(modalOpenState);
+  const outModal = useRef(null);
 
   useEffect(() => {
     const token = sessionStorage.getItem("token");
@@ -32,7 +33,16 @@ function App() {
   return (
     <div>
       <Header />
-      <AppRouter />
+      <div
+        ref={outModal}
+        onClick={(e) => {
+          if (outModal.current !== e.target) {
+            setIsToggled(false);
+          }
+        }}
+      >
+        <AppRouter />
+      </div>
       <ToastContainer
         style={{ fontSize: "0.5rem" }}
         position="top-center"

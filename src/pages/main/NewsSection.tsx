@@ -8,10 +8,10 @@ import {
   NewsContainer,
   AutoSlide,
 } from "../../styles/mainStyles/NewsStyle";
+import { NewsType } from "../../types/Main";
 
 // main page news section
-function NewsSection() {
-  const news = useRecoilValue(newsState);
+function NewsSection({ news }: { news: NewsType[] }) {
   const slideRef = useRef<HTMLDivElement>(null);
   const [slideIndex, setSlideIndex] = useState(0);
   const [isHover, setIsHover] = useState(false);

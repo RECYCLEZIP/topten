@@ -10,11 +10,13 @@ import NewsSection from "./NewsSection";
 import QuizSection from "./QuizSection";
 import { customToastify } from "../../components/customToastify";
 import { Helmet } from "react-helmet-async";
+import Loading from "../../components/Loading";
+import { NewsType } from "../../types/Main";
 
 function Main() {
   // main page component
   const [isLoading, setIsLoading] = useState(false);
-  const setNews = useSetRecoilState(newsState);
+  const [news, setNews] = useState<NewsType[]>([]);
   const setIsSelected = useSetRecoilState(categorySelectedState);
 
   const getNews = async () => {
@@ -33,7 +35,7 @@ function Main() {
   }, []);
 
   if (!isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
@@ -48,7 +50,7 @@ function Main() {
       </Helmet>
       <MainContainer>
         <AiSection />
-        <NewsSection />
+        <NewsSection news={news} />
         <CategorySection />
         <QuizSection />
         <MapSection />

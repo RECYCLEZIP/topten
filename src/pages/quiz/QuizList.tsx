@@ -13,7 +13,7 @@ import { Helmet } from "react-helmet-async";
 //quiz list page
 function Quiz() {
   const url = ["multipleChoice", "ox", "mixUp"];
-  const quizList = ["객관식 퀴즈", "OX 퀴즈", "음식물 vs 일반"];
+  const quizList = ["객관식 퀴즈", "OX 퀴즈", "일반 vs 음식물"];
   const quizDescription = [
     "다양한 보기 중에 고르는 객관식",
     "OX 중에 고르기",

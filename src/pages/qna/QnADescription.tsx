@@ -31,6 +31,8 @@ import {
   ButtonContainer,
 } from "../../styles/qnaStyles/QnADescriptionStyle";
 import { customToastify } from "../../components/customToastify";
+import { Helmet } from "react-helmet-async";
+import Loading from "../../components/Loading";
 
 function QnADescription() {
   const navigate = useNavigate();
@@ -42,6 +44,7 @@ function QnADescription() {
   const user = useRecoilValue(userState);
 
   const [qna, setQna] = useState<QnAType>();
+  const [loading, setLoading] = useState(false);
 
   const getQnA = async () => {
     try {
@@ -49,6 +52,7 @@ function QnADescription() {
     } catch (err: any) {
       customToastify("error", err.message);
     }
+    setLoading(true);
   };
 
   const date = (prop: string) => {
@@ -69,8 +73,15 @@ function QnADescription() {
     getQnA();
   }, []);
 
+  if (!loading) {
+    return <Loading />;
+  }
+
   return (
     <Container>
+      <Helmet>
+        <title>분리수ZIP - {qna?.title}</title>
+      </Helmet>
       <TitleText>Q&A</TitleText>
       <BlackHr />
       <TitleContainer>

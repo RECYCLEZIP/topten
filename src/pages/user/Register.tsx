@@ -12,6 +12,7 @@ import {
   CautionText,
 } from "../../styles/userStyles/users";
 import { customToastify } from "../../components/customToastify";
+import { Helmet } from "react-helmet-async";
 
 const validateEmail = (email: string) => {
   const emailRule =
@@ -44,6 +45,9 @@ function Register() {
 
   return (
     <RightContainer onSubmit={registerUser}>
+      <Helmet>
+        <title>분리수ZIP - 회원가입</title>
+      </Helmet>
       <TitleText>회원가입</TitleText>
       <EachInput>
         <RegisterText>이메일</RegisterText>

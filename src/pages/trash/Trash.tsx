@@ -16,6 +16,8 @@ import {
 } from "../../styles/trash/trash";
 import { TrashType } from "../../types/Trash";
 import { customToastify } from "../../components/customToastify";
+import Loading from "../../components/Loading";
+import { Helmet } from "react-helmet-async";
 
 function Item() {
   const id = useParams().id;
@@ -37,11 +39,15 @@ function Item() {
   }, []);
 
   if (!loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
     <TrashContainer>
+      <Helmet>
+        <title>분리수ZIP - {trash.title} 버리는 법</title>
+        <meta name="description" content={trash.title + "버리는 법"} />
+      </Helmet>
       <TopContainer>
         <TrashImage src={trash.image}></TrashImage>
         <div>

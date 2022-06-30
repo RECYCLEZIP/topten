@@ -17,6 +17,8 @@ import { TitleText } from "../../styles/TextStyle";
 import { ResultsType } from "../../types/Quiz";
 import DropAnswer from "./DropAnswer";
 import { customToastify } from "../../components/customToastify";
+import { Helmet } from "react-helmet-async";
+import Loading from "../../components/Loading";
 
 //quiz result page
 function QuizResult() {
@@ -47,7 +49,6 @@ function QuizResult() {
       customToastify("error", err.message);
     }
     setLoading(true);
-    setToPostAnswer([]);
   };
 
   useEffect(() => {
@@ -55,11 +56,14 @@ function QuizResult() {
   }, []);
 
   if (!loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
     <QuizList>
+      <Helmet>
+        <title>분리수ZIP - 퀴즈 결과</title>
+      </Helmet>
       <TitleText>결과</TitleText>
       <QuizResultCard>
         {results.map((result, index) => (

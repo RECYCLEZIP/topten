@@ -10,6 +10,7 @@ import {
   selectedAnswerState,
 } from "../../stores/atoms";
 import { customToastify } from "../../components/customToastify";
+import { Helmet } from "react-helmet-async";
 
 // ox quiz page component
 function OXQuiz() {
@@ -55,6 +56,9 @@ function OXQuiz() {
 
   return (
     <TwoOptions>
+      <Helmet>
+        <title>분리수ZIP - OX 퀴즈</title>
+      </Helmet>
       {option.map((text, index) => {
         return (
           <TwoOption
