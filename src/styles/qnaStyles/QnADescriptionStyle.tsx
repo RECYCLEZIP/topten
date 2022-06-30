@@ -100,11 +100,11 @@ export const Author = styled.div`
   font-size: 0.53rem;
   font-weight: 500;
   /* flex-grow: 1; */
-  text-align: right;
 
   @media screen and (min-width: 768px) {
     margin-left: 1.5rem;
     float: right;
+    text-align: right;
   }
 `;
 
