@@ -70,6 +70,7 @@ export const Title = styled.div`
   @media screen and (min-width: 768px) {
     display: flex;
     padding: 0.5rem 1.5rem;
+    padding-left: 0;
   }
 `;
 
