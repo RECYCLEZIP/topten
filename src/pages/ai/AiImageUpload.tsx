@@ -160,7 +160,6 @@ function AiImageUpload() {
                     <AiImage
                       src={fileImage}
                       alt="img"
-                      onClick={onClickImgUpload}
                       style={{ cursor: "pointer" }}
                     />
                   )}
