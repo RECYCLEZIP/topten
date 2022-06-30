@@ -36,9 +36,23 @@ function QnAList() {
 
   const qnaTotal = useRecoilValue(QnALengthState);
 
+  const [mQuery, setMQuery] = useState(window.innerWidth > 768 ? true : false);
+
   const date = (prop: string) => {
-    return prop.split("T")[0].split("-").join(".");
+    return prop.split("T")[0].split("-").join(".").substr(2);
   };
+
+  const screenChange = (event: any) => {
+    const matches = event.matches;
+    setMQuery(matches);
+  };
+
+  useEffect(() => {
+    const media = window.matchMedia("screen and (min-width: 768px)");
+    media.addEventListener("change", screenChange);
+
+    return () => media.removeEventListener("change", screenChange);
+  }, []);
 
   return (
     <>
@@ -53,13 +67,17 @@ function QnAList() {
             <>
               {qnaList?.map((qna: any, idx: number) => (
                 <ListTr>
-                  {/* 게시글 번호 내림차순으로 */}
-                  {/* <ListNumber>{qnaTotal - idx}</ListNumber> */}
-                  <ListNumber>{qnaTotal - idx - (qnaPage - 1) * 10}</ListNumber>
+                  {mQuery && (
+                    <ListNumber>
+                      {qnaTotal - idx - (qnaPage - 1) * 10}
+                    </ListNumber>
+                  )}
                   <ListTitle onClick={() => navigate(`/qna/${qna._id}`)}>
                     {qna?.title}
                   </ListTitle>
-                  <ListAuthor>{qna?.author?.username}</ListAuthor>
+                  <>
+                    {mQuery && <ListAuthor>{qna?.author?.username}</ListAuthor>}
+                  </>
                   <ListDate>{date(qna?.createdAt)}</ListDate>
                 </ListTr>
               ))}

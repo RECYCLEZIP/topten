@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useRecoilState, useResetRecoilState } from "recoil";
@@ -43,6 +43,8 @@ function UserQnA() {
   const [qnaPage, setQnaPage] = useRecoilState(QnAPageState);
   const [numPages, setNumPages] = useRecoilState(QnANumPagesState);
 
+  const [mQuery, setMQuery] = useState(window.innerWidth > 768 ? true : false);
+
   const getList = async () => {
     try {
       await getData(`posts/users/${user._id}?pageno=${qnaPage}&limit=3`).then(
@@ -57,10 +59,23 @@ function UserQnA() {
   };
 
   const date = (prop: string) => {
-    return prop.split("T")[0].split("-").join(".");
+    return prop.split("T")[0].split("-").join(".").substr(2);
+  };
+
+  const screenChange = (event: any) => {
+    const matches = event.matches;
+    setMQuery(matches);
+  };
+
+  const mediaQuery = () => {
+    const media = window.matchMedia("screen and (min-width: 768px)");
+    media.addEventListener("change", screenChange);
+
+    return () => media.removeEventListener("change", screenChange);
   };
 
   useEffect(() => {
+    mediaQuery();
     setQnaPage(1);
   }, []);
 
@@ -90,7 +105,7 @@ function UserQnA() {
                 ) : (
                   <ListTr>
                     {/* 게시글 번호 내림차순으로 */}
-                    <ListNumber>{qnaList?.length - idx}</ListNumber>
+                    {mQuery && <ListNumber>{qnaList?.length - idx}</ListNumber>}
                     <ListTitle onClick={() => navigate(`/qna/${qna._id}`)}>
                       {qna?.title}
                     </ListTitle>
