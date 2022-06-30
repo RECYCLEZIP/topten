@@ -7,7 +7,7 @@ export const ItemContainer = styled.div<{ opacity?: number }>`
   margin-bottom: 7%;
   opacity: ${(props) => props.opacity};
   @media (min-width: 768px) {
-    width: 10rem;
+    width: 12rem;
     justify-content: center;
   }
 `;

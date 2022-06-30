@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { img } from "../../assets/imgImport";
 import {
@@ -11,6 +12,16 @@ import {
 // main page map section component
 function MapSection() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setLoading(true), 10);
+  }, []);
+
+  if (!loading) {
+    return <></>;
+  }
+
   return (
     <MapContainer>
       <SeoulImg src={img.seoul} />

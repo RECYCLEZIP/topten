@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router";
 
 import { qnaPostData } from "../../api";
@@ -34,6 +34,7 @@ function QnAPost() {
 
   const [titleValue, setTitleValue] = useState<string>();
   const [contentValue, setContentValue] = useState();
+  const [loading, setLoading] = useState(false);
 
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitleValue(e.target.value);
@@ -65,6 +66,14 @@ function QnAPost() {
       }
     }
   };
+
+  useEffect(() => {
+    setTimeout(() => setLoading(true), 10);
+  }, []);
+
+  if (!loading) {
+    return <></>;
+  }
 
   return (
     <Container>

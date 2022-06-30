@@ -38,10 +38,9 @@ function Map() {
   const binSelected = useRecoilValue(BinSelectedState);
   const setSelectedMarker = useSetRecoilState(selectedMarkerState);
   const setBinSelected = useSetRecoilState(BinSelectedState);
+  const [loading, setLoading] = useState(false);
 
   const getBins = async () => {
-    console.log("fetching 함수 호출됨");
-
     try {
       // 선택된 지역에 따라 쓰레기통 정보 get
       const res = await getData(
@@ -51,10 +50,15 @@ function Map() {
     } catch (err: any) {
       console.log("error", err.message);
     }
+    setLoading(true);
   };
   useEffect(() => {
     getBins();
   }, [regionValue, roadsValue]);
+
+  if (!loading) {
+    return <></>;
+  }
 
   return (
     <>
