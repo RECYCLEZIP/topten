@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { getData } from "../../api";
 
-import { useRecoilState, useResetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import {
   QnAListState,
   QnASearchValueState,
@@ -20,7 +20,6 @@ import {
   SearchInput,
   BarInfo,
 } from "../../styles/qnaStyles/QnAStyle";
-import { customToastify } from "../../components/customToastify";
 
 function QnABar() {
   const [qnaList, setQnaList] = useRecoilState(QnAListState);

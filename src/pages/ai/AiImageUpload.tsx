@@ -61,8 +61,6 @@ function AiImageUpload() {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
-    console.log("클릭");
-
     const formData = new FormData();
     formData.append("aiImage", postImage);
 
@@ -81,17 +79,11 @@ function AiImageUpload() {
 
         setSituation("done");
       } catch (err) {
-        console.log(err);
-
         setSituation("beforeImgUpload");
         setFileImage("");
       }
     }
   };
-
-  useEffect(() => {
-    console.log(situation);
-  }, [situation]);
 
   // 페이지 상태 별 문구
   const messages = {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import MapSearch from "./MapSearch";
 import MapList from "./MapList";
@@ -15,7 +15,6 @@ import {
   selectedMarkerState,
   RegionValueState,
   RoadsValueState,
-  lastIntersectingImageState,
 } from "../../stores/atoms";
 
 import {
@@ -24,7 +23,7 @@ import {
   MapTitle,
   MapBinSection,
 } from "../../styles/mapStyles/mapStyle";
-import { customToastify } from "../../components/customToastify";
+
 import { Helmet } from "react-helmet-async";
 
 function Map() {
@@ -52,6 +51,7 @@ function Map() {
     }
     setLoading(true);
   };
+
   useEffect(() => {
     getBins();
   }, [regionValue, roadsValue]);
