@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
+  userState,
   QnAPageState,
   QnALengthState,
   QnANumPagesState,
@@ -10,6 +11,8 @@ import {
 import { Nav, Button } from "../../styles/qnaStyles/QnAPaginationStyle";
 
 function QnaPagination() {
+  const [user, setUser] = useRecoilState(userState);
+
   // 게시글 수
   const qnaTotal = useRecoilValue(QnALengthState);
   const [qnaPage, setQnaPage] = useRecoilState(QnAPageState);
@@ -17,7 +20,7 @@ function QnaPagination() {
 
   useEffect(() => {
     setNumPages(Math.ceil(qnaTotal / 10));
-  }, [qnaTotal]);
+  }, [user, qnaTotal]);
 
   return (
     <>

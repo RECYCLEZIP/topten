@@ -101,13 +101,13 @@ function UserQnA() {
       <QnaContainer>
         <ListTable>
           <ListTbody>
-            {userQnaList?.map((qna: any, idx: number) => (
+            {userQnaList?.length === 0 ? (
+              <tr>
+                <NothingTd>조회된 게시물이 없습니다.</NothingTd>
+              </tr>
+            ) : (
               <>
-                {userQnaList?.length === 0 ? (
-                  <tr>
-                    <NothingTd>조회된 게시물이 없습니다.</NothingTd>
-                  </tr>
-                ) : (
+                {userQnaList?.map((qna: any, idx: number) => (
                   <ListTr>
                     {/* 게시글 번호 내림차순으로 */}
                     {mQuery && (
@@ -116,14 +116,11 @@ function UserQnA() {
                     <ListTitle onClick={() => navigate(`/qna/${qna._id}`)}>
                       <ListTitleWrapper>{qna?.title}</ListTitleWrapper>
                     </ListTitle>
-                    <ListDate>
-                      {date(qna?.createdAt)}
-                      {/* 2022.06.29 */}
-                    </ListDate>
+                    <ListDate>{date(qna?.createdAt)}</ListDate>
                   </ListTr>
-                )}
+                ))}
               </>
-            ))}
+            )}
           </ListTbody>
         </ListTable>
       </QnaContainer>

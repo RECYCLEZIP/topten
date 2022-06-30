@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { useRecoilValue, useRecoilState } from "recoil";
 import {
-  UserQnaListState,
+  UserQnaAllListState,
   QnAPageState,
   QnALengthState,
   QnANumPagesState,
@@ -28,7 +28,7 @@ function UserAlluserQnaList() {
 
   const [user, setUser] = useRecoilState(userState);
 
-  const [userQnaList, setUseruserQnaList] = useRecoilState(UserQnaListState);
+  const [userQnaList, setUserQnaList] = useRecoilState(UserQnaAllListState);
 
   const [qnaTotal, setQnaTotal] = useRecoilState(QnALengthState);
   const [qnaPage, setQnaPage] = useRecoilState(QnAPageState);
@@ -40,15 +40,18 @@ function UserAlluserQnaList() {
   const [mQuery, setMQuery] = useState(window.innerWidth > 768 ? true : false);
 
   const getList = async () => {
-    try {
-      await getData(`posts/users/${user._id}?pageno=${qnaPage}&limit=10`).then(
-        (res) => {
-          setUseruserQnaList(res.data?.data);
+    if (user?._id || user.userId) {
+      try {
+        await getData(
+          `posts/users/${user._id || user.userId}?pageno=${qnaPage}&limit=10`,
+        ).then((res) => {
+          setUserQnaList(res.data?.data);
           setQnaTotal(res.data?.count);
-        },
-      );
-    } catch (err) {
-      console.log(err);
+          console.log(res.data?.data);
+        });
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -85,13 +88,13 @@ function UserAlluserQnaList() {
     <>
       <ListTable>
         <ListTbody>
-          {userQnaList?.map((qna: any, idx: number) => (
+          {userQnaList?.length === 0 ? (
+            <tr>
+              <NothingTd>조회된 게시물이 없습니다.</NothingTd>
+            </tr>
+          ) : (
             <>
-              {userQnaList?.length === 0 ? (
-                <tr>
-                  <NothingTd>조회된 게시물이 없습니다.</NothingTd>
-                </tr>
-              ) : (
+              {userQnaList?.map((qna: any, idx: number) => (
                 <ListTr>
                   {/* 게시글 번호 내림차순으로 */}
                   {mQuery && (
@@ -102,9 +105,9 @@ function UserAlluserQnaList() {
                   </ListTitle>
                   <ListDate>{date(qna?.createdAt)}</ListDate>
                 </ListTr>
-              )}
+              ))}
             </>
-          ))}
+          )}
         </ListTbody>
       </ListTable>
     </>
