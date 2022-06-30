@@ -13,9 +13,17 @@ import {
 import { customToastify } from "../../components/customToastify";
 import { Helmet } from "react-helmet-async";
 
+const validateEmail = (email: string) => {
+  const emailRule =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return emailRule.test(email);
+};
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const isEmailValid = validateEmail(email);
+  const finish = isEmailValid && password.length >= 8;
   const setIsLogin = useSetRecoilState(loginState);
   const setUserState = useSetRecoilState(userState);
   const navigate = useNavigate();
@@ -50,7 +58,9 @@ function Login() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       ></LoginInput>
-      <LoginButton onClick={loginUser}>로그인</LoginButton>
+      <LoginButton onClick={loginUser} disabled={!finish}>
+        로그인
+      </LoginButton>
       <RegisterButton onClick={() => navigate("/users/register")}>
         회원가입
       </RegisterButton>

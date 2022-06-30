@@ -39,7 +39,7 @@ export const RightContainer = styled.form`
   }
 `;
 
-export const LoginButton = styled(Button)`
+export const LoginButton = styled(Button)<{ disabled?: boolean }>`
   margin-bottom: 0;
 `;
 
