@@ -59,9 +59,8 @@ function AiResultMap() {
       try {
         const res = await getData(
           // 서울시 영등포구 선유로 롯데마트(mock)
-          `robot?x=126.89196610216352&y=37.52606733350417`,
-          // `robot?x=${longitude}&y=${latitude}`,
-          // `robots?search=${"종로구"}&category=${roadsValue}?page=${page}&limit=2`,
+          // `robot?x=126.89196610216352&y=37.52606733350417`,
+          `robot?x=${longitude}&y=${latitude}`,
         );
 
         setRobot(res.data);
