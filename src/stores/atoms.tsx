@@ -34,6 +34,7 @@ export const AiSituationState = atom({
 export const AiResultState = atom<AiResultType>({
   key: "AiResultState",
   default: {
+    message: "",
     title: "",
     kind: "",
     section: [
@@ -225,6 +226,16 @@ export const QnAListState = atom<QnAType[]>({
   default: [],
 });
 
+export const UserQnaListState = atom<QnAType[]>({
+  key: "UserQnaListState",
+  default: [],
+});
+
+export const UserQnaAllListState = atom<QnAType[]>({
+  key: "UserQnaAllListState",
+  default: [],
+});
+
 export const QnASearchValueState = atom({
   key: "QnASearchValueState",
   default: "",
@@ -266,4 +277,9 @@ export const RobotSelectedState = atom<(number | undefined)[]>({
 export const userEditState = atom<boolean>({
   key: "userEditState",
   default: false,
+});
+
+export const roadsState = atom({
+  key: "roadsState",
+  default: [],
 });

@@ -21,6 +21,7 @@ import {
   MapTitleContainer,
   MapContainer,
   ErrorContainer,
+  MapLoading,
 } from "../../styles/aiStyles/AiResultStyle";
 
 function AiResultMap() {
@@ -54,18 +55,19 @@ function AiResultMap() {
   const getRobots = async () => {
     console.log("fetching 함수 호출됨");
 
-    try {
-      const res = await getData(
-        // 서울시 영등포구 선유로 롯데마트(mock)
-        // `robot?x=126.89196610216352&y=37.52606733350417`,
-        `robot?x=${longitude}&y=${latitude}`,
-        // `robots?search=${"종로구"}&category=${roadsValue}?page=${page}&limit=2`,
-      );
+    if (longitude !== 0 && latitude !== 0) {
+      try {
+        const res = await getData(
+          // 서울시 영등포구 선유로 롯데마트(mock)
+          // `robot?x=126.89196610216352&y=37.52606733350417`,
+          `robot?x=${longitude}&y=${latitude}`,
+        );
 
-      setRobot(res.data);
-    } catch (err: any) {
-      customToastify("error", err.message);
-      setError(err?.response?.data?.message);
+        setRobot(res.data);
+      } catch (err: any) {
+        // customToastify("error", err.message);
+        setError(err?.response?.data?.message);
+      }
     }
   };
 
@@ -99,20 +101,24 @@ function AiResultMap() {
       {error ? (
         <ErrorContainer>{error}</ErrorContainer>
       ) : (
-        <MapContainer>
-          <MapContent
-            type="robot"
-            props={robots}
-            propsSelected={robotSelected}
-            setSelectedMarker={setSelectedMarker}
-            setPropsSelected={setRobotSelected}
-            // currentLon={126.89196610216352}
-            // currentLat={37.52606733350417}
-            currentLon={longitude}
-            currentLat={latitude}
-          ></MapContent>
-          <AiResultMapList />
-        </MapContainer>
+        <>
+          {longitude === 0 || latitude === 0 ? (
+            <MapLoading>근처의 회수로봇을 찾고 있습니다.</MapLoading>
+          ) : (
+            <MapContainer>
+              <MapContent
+                type="robot"
+                props={robots}
+                propsSelected={robotSelected}
+                setSelectedMarker={setSelectedMarker}
+                setPropsSelected={setRobotSelected}
+                currentLon={longitude}
+                currentLat={latitude}
+              ></MapContent>
+              <AiResultMapList />
+            </MapContainer>
+          )}
+        </>
       )}
     </>
   );

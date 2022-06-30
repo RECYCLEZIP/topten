@@ -54,9 +54,11 @@ export const RedButton = styled(GrayButton)`
 
 export const TitleContainer = styled.div`
   padding: 0.5rem;
-  display: flex;
+
+  display: block;
 
   @media screen and (min-width: 768px) {
+    display: flex;
     padding: 0.5rem 1.5rem;
   }
 `;
@@ -64,6 +66,12 @@ export const TitleContainer = styled.div`
 export const Title = styled.div`
   /* background: red; */
   font-size: 0.6rem;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    padding: 0.5rem 1.5rem;
+    padding-left: 0;
+  }
 `;
 
 export const SectionTitle = styled.div`
@@ -72,32 +80,47 @@ export const SectionTitle = styled.div`
 
 export const RightContainer = styled.div`
   /* float: right; */
+
   flex-grow: 1;
+  display: inline-grid;
 
   align-self: center;
 
   color: #979797;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+    margin-left: 1rem;
+  }
 `;
 
 export const Author = styled.div`
   /* background: yellow; */
-  margin-right: 1.5rem;
 
   font-size: 0.53rem;
   font-weight: 500;
   /* flex-grow: 1; */
-  float: right;
-  /* text-align: right; */
+
+  @media screen and (min-width: 768px) {
+    margin-left: 1.5rem;
+    float: right;
+    text-align: right;
+  }
 `;
 
 export const Date = styled.div`
   /* background: green; */
+
+  margin-right: 1rem;
+
   font-size: 0.53rem;
   font-weight: 500;
 
-  /* flex-grow: 1; */
-  float: right;
-  /* text-align: right; */
+  @media screen and (min-width: 768px) {
+    margin-left: 1.5rem;
+    margin-right: 0rem;
+    float: right;
+  }
 `;
 
 export const ContentContainer = styled.div`

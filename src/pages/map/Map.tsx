@@ -49,7 +49,7 @@ function Map() {
       );
       setBin(res.data);
     } catch (err: any) {
-      customToastify("error", err.message);
+      console.log("error", err.message);
     }
   };
   useEffect(() => {

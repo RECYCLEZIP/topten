@@ -4,6 +4,7 @@ interface Section {
 }
 
 export type AiResultType = {
+  message: string;
   title: string;
   kind: string;
   section: Section[];
