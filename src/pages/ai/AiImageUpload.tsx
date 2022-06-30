@@ -61,7 +61,7 @@ function AiImageUpload() {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
-    console.log('클릭')
+    console.log("클릭");
 
     const formData = new FormData();
     formData.append("aiImage", postImage);
@@ -134,7 +134,9 @@ function AiImageUpload() {
     <>
       <AiImageUploadSection>
         <AiImageContainer>
-          {(situation === "beforeImgUpload" || situation === "imgUploaded") && (
+          {(situation === "beforeImgUpload" ||
+            situation === "imgUploaded" ||
+            "done") && (
             <UploadContainer onClick={onClickImgUpload}>
               <UploadWrapper>
                 {situation === "beforeImgUpload" && (
@@ -175,10 +177,6 @@ function AiImageUpload() {
               <AiSpinImg src={img.spin} />
             </AiImageLayer>
           )}
-          {situation !== "beforeImgUpload" && situation !== "imgUploaded" && (
-            <AiImage src={fileImage}></AiImage>
-          )}
-          {/* )} */}
         </AiImageContainer>
         <AiIconsContainer></AiIconsContainer>
       </AiImageUploadSection>
