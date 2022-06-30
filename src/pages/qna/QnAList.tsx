@@ -38,6 +38,8 @@ function QnAList() {
 
   const qnaTotal = useRecoilValue(QnALengthState);
 
+  const [qnaNumber, setQnaNumber] = useState(0);
+
   const [mQuery, setMQuery] = useState(window.innerWidth > 768 ? true : false);
 
   const date = (prop: string) => {
@@ -56,6 +58,10 @@ function QnAList() {
     return () => media.removeEventListener("change", screenChange);
   }, []);
 
+  useEffect(() => {
+    setQnaNumber((qnaPage - 1) * 10);
+  }, [qnaList]);
+
   return (
     <>
       <BlackHr />
@@ -69,24 +75,24 @@ function QnAList() {
             <>
               {qnaList?.map((qna: any, idx: number) => (
                 <ListTr>
-                  {mQuery && (
-                    <ListNumber>
-                      {qnaTotal - idx - (qnaPage - 1) * 10}
-                    </ListNumber>
-                  )}
-                  <ListTitle onClick={() => navigate(`/qna/${qna._id}`)}>
-                    <ListTitleWrapper>{qna?.title}</ListTitleWrapper>
-                  </ListTitle>
                   <>
                     {mQuery && (
-                      <ListAuthor>
-                        <ListAuthorWrapper>
-                          {qna?.author?.username}
-                        </ListAuthorWrapper>
-                      </ListAuthor>
+                      <ListNumber>{qnaTotal - idx - qnaNumber}</ListNumber>
                     )}
+                    <ListTitle onClick={() => navigate(`/qna/${qna._id}`)}>
+                      <ListTitleWrapper>{qna?.title}</ListTitleWrapper>
+                    </ListTitle>
+                    <>
+                      {mQuery && (
+                        <ListAuthor>
+                          <ListAuthorWrapper>
+                            {qna?.author?.username}
+                          </ListAuthorWrapper>
+                        </ListAuthor>
+                      )}
+                    </>
+                    <ListDate>{date(qna?.createdAt)}</ListDate>
                   </>
-                  <ListDate>{date(qna?.createdAt)}</ListDate>
                 </ListTr>
               ))}
             </>

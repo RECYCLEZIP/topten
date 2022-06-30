@@ -35,6 +35,8 @@ function UserAllQnAList() {
 
   const [numPages, setNumPages] = useRecoilState(QnANumPagesState);
 
+  const [qnaNumber, setQnaNumber] = useState(0);
+
   const [mQuery, setMQuery] = useState(window.innerWidth > 768 ? true : false);
 
   const getList = async () => {
@@ -75,6 +77,10 @@ function UserAllQnAList() {
     getList();
   }, [user, qnaPage]);
 
+  useEffect(() => {
+    setQnaNumber((qnaPage - 1) * 10);
+  }, [qnaList]);
+
   return (
     <>
       <ListTable>
@@ -89,9 +95,7 @@ function UserAllQnAList() {
                 <ListTr>
                   {/* 게시글 번호 내림차순으로 */}
                   {mQuery && (
-                    <ListNumber>
-                      {qnaTotal - idx - (qnaPage - 1) * 10}
-                    </ListNumber>
+                    <ListNumber>{qnaTotal - idx - qnaNumber}</ListNumber>
                   )}
                   <ListTitle onClick={() => navigate(`/qna/${qna._id}`)}>
                     {qna?.title}
