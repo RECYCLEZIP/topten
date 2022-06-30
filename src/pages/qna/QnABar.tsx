@@ -59,9 +59,7 @@ function QnABar() {
   const onKeyPressEnter: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
     // 엔터키가 눌렸을 때
     if (e.key === "Enter") {
-      if (searchValue !== "") {
-        getList();
-      }
+      getList();
     }
   };
 
