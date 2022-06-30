@@ -8,7 +8,9 @@ import {
 } from "./QnADescriptionStyle";
 
 export const CommentContainer = styled.div`
-  padding: 0.5rem 1.5rem;
+  @media screen and (min-width: 768px) {
+    padding: 0.5rem 1.5rem;
+  }
 `;
 
 export const CommentWrapper = styled.div`
