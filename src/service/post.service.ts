@@ -9,7 +9,7 @@ export class PostService {
     static async getPostList(query: FilterQuery) {
         const { filteredQuery, page, limit } = createPostQuery(query);
         const foundPostList = await Post.find(filteredQuery, page, limit);
-        const postCount = await Post.count();
+        const postCount = await Post.count(filteredQuery);
         if (!foundPostList)
             throw new RequestError("게시글 목록을 가져올 수 없습니다.", STATUS_404_NOTFOUND);
         return { count: postCount, data: foundPostList };
