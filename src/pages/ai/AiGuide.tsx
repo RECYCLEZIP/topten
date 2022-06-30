@@ -30,10 +30,10 @@ function AiGuide() {
           </AiGuideContainer>
           <AiGuideContainer>
             <AiGuideImgWrapper>
-              <AiGuideImg src={img.like2} />
+              <AiGuideImg src={img.like4} />
             </AiGuideImgWrapper>
             <div>
-              <AiGuideTitle>객체가 명확히 구분되는 사진</AiGuideTitle>
+              <AiGuideTitle>물체를 세워서 정면으로 찍은 사진</AiGuideTitle>
             </div>
           </AiGuideContainer>
           <AiGuideContainer>
