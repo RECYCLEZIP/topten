@@ -16,7 +16,6 @@ import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
 import AiResultMapList from "./AiResultMapList";
 
 import { AiContentTitle, DetailTitle } from "../../styles/aiStyles/AiStyle";
-import { customToastify } from "../../components/customToastify";
 import {
   MapTitleContainer,
   MapContainer,
@@ -53,19 +52,14 @@ function AiResultMap() {
   };
 
   const getRobots = async () => {
-    console.log("fetching 함수 호출됨");
-
     if (longitude !== 0 && latitude !== 0) {
       try {
         const res = await getData(
-          // 서울시 영등포구 선유로 롯데마트(mock)
-          // `robot?x=126.89196610216352&y=37.52606733350417`,
           `robot?x=${longitude}&y=${latitude}`,
         );
 
         setRobot(res.data);
       } catch (err: any) {
-        // customToastify("error", err.message);
         setError(err?.response?.data?.message);
       }
     }

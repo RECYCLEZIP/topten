@@ -5,12 +5,9 @@ import { AiResultState } from "../../stores/atoms";
 
 import { getData } from "../../api";
 
-import { TrashType } from "../../types/Trash";
-
-import { AiContentTitle, AiContentText } from "../../styles/aiStyles/AiStyle";
+import { AiContentTitle } from "../../styles/aiStyles/AiStyle";
 
 import AiResultMap from ".//AiResultMap";
-import AiResultMapList from "./AiResultMapList";
 
 import {
   AiResultSubjectSection,
@@ -38,36 +35,13 @@ function AiResult() {
   const [result, setResult] = useRecoilState(AiResultState);
   const [trashInfo, setTrashInfo] = useState<trashInfoType>();
 
-  // useEffect(() => {
-  //   setResult({
-  //     title: "페트병",
-  //     kind: "플라스틱",
-  //     section: [
-  //       {
-  //         title: "라벨",
-  //         score: 0,
-  //       },
-  //       {
-  //         title: "뚜껑",
-  //         score: 70,
-  //       },
-  //     ],
-  //     throwAway: [
-  //       "내용물을 비운 뒤 세척",
-  //       "부착 상표 등을 제거 후 일반 쓰레기에 버리기",
-  //     ],
-  //   });
-  // }, []);
-
-  useEffect(() => {
-    console.log(result);
-  }, [result]);
-
   const getTrashInfo = async () => {
-    const word = "투명 페트병";
-
     try {
-      await getData(`trash?search=${word}`).then((res) => {
+      await getData(
+        `trash?search=${
+          result?.title === "페트병" ? "투명 페트병" : result?.title
+        }`,
+      ).then((res) => {
         setTrashInfo(res.data);
       });
     } catch {

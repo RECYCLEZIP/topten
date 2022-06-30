@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import MapSearch from "./MapSearch";
 import MapList from "./MapList";
@@ -15,7 +15,6 @@ import {
   selectedMarkerState,
   RegionValueState,
   RoadsValueState,
-  lastIntersectingImageState,
 } from "../../stores/atoms";
 
 import {
@@ -24,7 +23,7 @@ import {
   MapTitle,
   MapBinSection,
 } from "../../styles/mapStyles/mapStyle";
-import { customToastify } from "../../components/customToastify";
+
 import { Helmet } from "react-helmet-async";
 
 function Map() {
@@ -40,8 +39,6 @@ function Map() {
   const setBinSelected = useSetRecoilState(BinSelectedState);
 
   const getBins = async () => {
-    console.log("fetching 함수 호출됨");
-
     try {
       // 선택된 지역에 따라 쓰레기통 정보 get
       const res = await getData(
@@ -52,6 +49,7 @@ function Map() {
       console.log("error", err.message);
     }
   };
+
   useEffect(() => {
     getBins();
   }, [regionValue, roadsValue]);

@@ -1,8 +1,7 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { useRecoilValue, useResetRecoilState, useRecoilState } from "recoil";
+import { useResetRecoilState, useRecoilState } from "recoil";
 import {
-  BinState,
   SearchBinState,
   RegionValueState,
   RoadsValueState,
@@ -16,10 +15,10 @@ import {
   AutocompleteContainer,
   MapSearchTextWrapper,
 } from "../../styles/mapStyles/mapStyle";
-
 import { StyledInput } from "../../styles/mapStyles/MapMuiStyle";
 
 import { getData } from "../../api";
+
 import { customToastify } from "../../components/customToastify";
 
 // 검색어가 항목에 없을 시 문구 style
@@ -40,13 +39,11 @@ function MapSearch() {
 
   const resetRoadsValue = useResetRecoilState(RoadsValueState);
 
-  const bins = useRecoilValue(BinState);
-
   // autoComplete 선택한 값(default 전체 리스트)
   const [searchBins, setSearchBins] = useRecoilState(SearchBinState);
 
   const [regionOptions, setRegionOptions] = useState([]);
-  const [roadsOptions, setRoadsOptions] = useState<any>([]);
+  const [roadsOptions, setRoadsOptions] = useState<string[]>([]);
 
   const styles = useStyles();
 
@@ -142,7 +139,6 @@ function MapSearch() {
         <div>
           <Autocomplete
             value={roadsValue}
-            // onChange={(event: any, newValue: string | null) => {
             onChange={(event: any, newValue: any) => {
               setRoadsValue(newValue);
             }}
