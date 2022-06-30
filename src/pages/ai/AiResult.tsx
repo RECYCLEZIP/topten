@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useRecoilState } from "recoil";
-import { AiResultState } from "../../stores/atoms";
+import { AiResultState, AiSituationState } from "../../stores/atoms";
 
 import { getData } from "../../api";
 
@@ -35,13 +35,27 @@ function AiResult() {
   const [result, setResult] = useRecoilState(AiResultState);
   const [trashInfo, setTrashInfo] = useState<trashInfoType>();
 
+  const [situation, setSituation] = useRecoilState(AiSituationState);
+
+  const trashName = (trash: string) => {
+    if (trash === "페트병") {
+      return "투명 페트병";
+    } else if (trash === "캔") {
+      return "알루미늄 캔";
+    } else if (trash === "비닐") {
+      return "비닐봉투";
+    } else if (trash === "종이") {
+      return "일반종이";
+    } else if (trash === "플라스틱") {
+      return "일회용 플라스틱";
+    } else {
+      return trash;
+    }
+  };
+
   const getTrashInfo = async () => {
     try {
-      await getData(
-        `trash?search=${
-          result?.title === "페트병" ? "투명 페트병" : result?.title
-        }`,
-      ).then((res) => {
+      await getData(`trash?search=${trashName(result?.title)}`).then((res) => {
         setTrashInfo(res.data);
       });
     } catch {
@@ -51,11 +65,11 @@ function AiResult() {
 
   useEffect(() => {
     getTrashInfo();
-  }, []);
+  }, [result]);
 
   return (
     <>
-      {result?.message ? (
+      {situation === "fail" || result?.message ? (
         <ErrorContainer>분석 결과가 없습니다.</ErrorContainer>
       ) : (
         <>
@@ -95,9 +109,11 @@ function AiResult() {
                 ))}
             </AiResultDesContainer>
           </div>
-          <div>
-            <AiResultMap />
-          </div>
+          {(result?.title === "페트병" || result?.title === "캔") && (
+            <div>
+              <AiResultMap />
+            </div>
+          )}
         </>
       )}
     </>

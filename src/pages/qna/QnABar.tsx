@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import { getData } from "../../api";
 
@@ -34,6 +34,8 @@ function QnABar() {
 
   const [qnaTotal, setQnaTotal] = useRecoilState(QnALengthState);
 
+  const inputFocus: any = useRef();
+
   const getList = async () => {
     try {
       await getData(
@@ -59,6 +61,8 @@ function QnABar() {
     // 엔터키가 눌렸을 때
     if (e.key === "Enter") {
       getList();
+
+      inputFocus.current.blur();
     }
   };
 
@@ -91,6 +95,7 @@ function QnABar() {
           value={searchValue}
           onKeyPress={onKeyPressEnter}
           onChange={onSearchChange}
+          ref={inputFocus}
         ></SearchInput>
       </SearchContainer>
     </BarSection>
