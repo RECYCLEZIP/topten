@@ -75,7 +75,7 @@ function AiImageUpload() {
       setSituation("analyzing");
 
       try {
-        await aiPostData(`trash/ai`, postImage).then((res) => {
+        await aiPostData(`trash/ai`, formData).then((res) => {
           setResult(res.data);
         });
 
