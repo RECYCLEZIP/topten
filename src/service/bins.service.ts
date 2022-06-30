@@ -19,7 +19,7 @@ export class BinsService {
         }
 
         const locationList = await Bins.findLocation(filterQuery);
-        if (locationList.length === 0) {
+        if (!locationList) {
             throw new RequestError(
                 "해당 조건에 일치하는 쓰레기통 위치정보가 없습니다.",
                 STATUS_404_NOTFOUND,
