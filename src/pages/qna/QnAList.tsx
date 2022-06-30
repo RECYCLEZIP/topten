@@ -8,9 +8,9 @@ import {
   QnANumPagesState,
 } from "../../stores/atoms";
 
-import { QnAType } from "../../types/QnA";
-
 import { useNavigate } from "react-router";
+
+import { QnAType } from "../../types/QnA";
 
 import {
   ListTable,
@@ -46,7 +46,7 @@ function QnAList() {
     return prop.split("T")[0].split("-").join(".").substr(2);
   };
 
-  const screenChange = (event: any) => {
+  const screenChange = (event: MediaQueryListEvent) => {
     const matches = event.matches;
     setMQuery(matches);
   };
@@ -73,7 +73,7 @@ function QnAList() {
             </tr>
           ) : (
             <>
-              {qnaList?.map((qna: any, idx: number) => (
+              {qnaList?.map((qna: QnAType, idx: number) => (
                 <ListTr>
                   <>
                     {mQuery && (

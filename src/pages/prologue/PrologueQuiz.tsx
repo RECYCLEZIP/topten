@@ -6,7 +6,6 @@ import {
   PrologueSection,
   PrologueTitleWrapper,
   PrologueTitle,
-  PrologueSubTitleWhite,
   PrologueQuizTitleContainer,
   PrologueQuizSubTitleContainer,
   PrologueSubTitleGray,
@@ -14,7 +13,6 @@ import {
   Quiz1ImgWrapper,
   Quiz2ImgWrapper,
   Quiz1Img,
-  PrologueQuiz2,
 } from "../../styles/prologueStyles/PrologueStyle";
 
 function PrologueQuiz() {

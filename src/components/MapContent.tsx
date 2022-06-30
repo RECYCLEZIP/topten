@@ -23,13 +23,6 @@ function MapContent({
   currentLon,
   currentLat,
 }: any) {
-  // const props = useRecoilValue(BinState);
-  // const propsSelected = useRecoilValue(BinSelectedState);
-  // const setSelectedMarker = useSetRecoilState(selectedMarkerState);
-  // const setPropsSelected = useSetRecoilState(BinSelectedState);
-
-  // console.log(type, props, propsSelected, setSelectedMarker, setPropsSelected);
-
   // 현위치 마커
   var imageSrc = img.current_marker, // 마커이미지의 주소입니다
     imageSize = new window.kakao.maps.Size(25, 25), // 마커이미지의 크기입니다
@@ -52,8 +45,6 @@ function MapContent({
     // 리스트에서 항목 선택 시 해당 항목으로 지도 이동
     panTo();
   }, [propsSelected]);
-
-  // var bounds = new window.kakao.maps.LatLngBounds();
 
   // 지도 띄우기 - 다중 마커
   const mapLoad = () => {
@@ -149,7 +140,6 @@ function MapContent({
   // 지도 이동
   const panTo = () => {
     // 이동할 위도 경도 위치 생성
-    // console.log(propsSelected)
     var moveLatLon = new window.kakao.maps.LatLng(
       propsSelected[1],
       propsSelected[0],

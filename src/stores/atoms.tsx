@@ -102,10 +102,6 @@ export const selectedMarkerState = atom({
   default: { La: 0, Ma: 0 },
 });
 
-export const lastIntersectingImageState = atom<HTMLDivElement | null>({
-  key: "lastIntersectingImage",
-  default: null,
-});
 
 // category list
 export const categoryState = atom<CategoryType[]>({

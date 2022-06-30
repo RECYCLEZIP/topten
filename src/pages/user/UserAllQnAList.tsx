@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import {
   UserQnaAllListState,
   QnAPageState,
@@ -12,6 +12,8 @@ import {
 import { getData } from "../../api";
 
 import { useNavigate } from "react-router";
+
+import { QnAType } from "../../types/QnA";
 
 import {
   ListTable,
@@ -33,8 +35,6 @@ function UserAlluserQnaList() {
   const [qnaTotal, setQnaTotal] = useRecoilState(QnALengthState);
   const [qnaPage, setQnaPage] = useRecoilState(QnAPageState);
 
-  const [numPages, setNumPages] = useRecoilState(QnANumPagesState);
-
   const [qnaNumber, setQnaNumber] = useState(0);
 
   const [mQuery, setMQuery] = useState(window.innerWidth > 768 ? true : false);
@@ -47,7 +47,6 @@ function UserAlluserQnaList() {
         ).then((res) => {
           setUserQnaList(res.data?.data);
           setQnaTotal(res.data?.count);
-          console.log(res.data?.data);
         });
       } catch (err) {
         console.log(err);
@@ -59,7 +58,8 @@ function UserAlluserQnaList() {
     return prop.split("T")[0].split("-").join(".").substr(2);
   };
 
-  const screenChange = (event: any) => {
+  // 화면 크기에 따라서 글 번호 여부
+  const screenChange = (event: MediaQueryListEvent) => {
     const matches = event.matches;
     setMQuery(matches);
   };
@@ -94,9 +94,8 @@ function UserAlluserQnaList() {
             </tr>
           ) : (
             <>
-              {userQnaList?.map((qna: any, idx: number) => (
+              {userQnaList?.map((qna: QnAType, idx: number) => (
                 <ListTr>
-                  {/* 게시글 번호 내림차순으로 */}
                   {mQuery && (
                     <ListNumber>{qnaTotal - idx - qnaNumber}</ListNumber>
                   )}

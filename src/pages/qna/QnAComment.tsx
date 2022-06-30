@@ -58,7 +58,7 @@ function QnAComment() {
     }
   };
 
-  const date = (prop: any) => {
+  const date = (prop: string) => {
     return prop?.split("T")[0].split("-").join(".");
   };
 
@@ -124,7 +124,7 @@ function QnAComment() {
     setCommentEditValue(e.target.value);
   };
 
-  const onKeyPressEnter = (e: any, commentId: string) => {
+  const onKeyPressEnter = (e: any , commentId: string) => {
     // 엔터키가 눌렸을 때
     if (e.key === "Enter") {
       onClickCommentEdit(commentId);

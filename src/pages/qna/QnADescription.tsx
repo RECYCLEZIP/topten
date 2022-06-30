@@ -51,7 +51,7 @@ function QnADescription() {
     }
   };
 
-  const date = (prop: any) => {
+  const date = (prop: string) => {
     return prop?.split("T")[0].split("-").join(".");
   };
 
@@ -76,9 +76,7 @@ function QnADescription() {
       <TitleContainer>
         <Title>{qna?.title}</Title>
         <RightContainer>
-          <Date>
-            <span>{date(qna?.createdAt)}</span>
-          </Date>
+          <Date>{qna && <span>{date(qna?.createdAt)}</span>}</Date>
           <Author>{qna?.author?.username}</Author>
         </RightContainer>
       </TitleContainer>

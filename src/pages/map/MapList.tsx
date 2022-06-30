@@ -1,11 +1,6 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo, useEffect } from "react";
 
-import {
-  useRecoilValue,
-  useSetRecoilState,
-  useRecoilState,
-  useResetRecoilState,
-} from "recoil";
+import { useRecoilValue, useRecoilState, useResetRecoilState } from "recoil";
 import {
   BinTypes,
   BinState,
@@ -14,7 +9,6 @@ import {
   selectedMarkerState,
   RegionValueState,
   RoadsValueState,
-  lastIntersectingImageState,
 } from "../../stores/atoms";
 
 import {
@@ -30,7 +24,6 @@ import {
 function MapList() {
   const bins = useRecoilValue(BinState);
   const [binSelected, setBinSelected] = useRecoilState(BinSelectedState);
-  // const setBinSelected = useSetRecoilState(BinSelectedState);
   const selectedMarker = useRecoilValue(selectedMarkerState);
 
   const regionValue = useRecoilValue(RegionValueState);

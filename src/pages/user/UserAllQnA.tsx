@@ -6,11 +6,6 @@ import UserAllQnAList from "./UserAllQnAList";
 import QnAPagination from "../../pages/qna/QnAPagination";
 
 import { TitleText } from "../../styles/TextStyle";
-import { Button } from "../../styles/ButtonStyles";
-import {
-  ButtonContainer,
-  ButtonWrapper,
-} from "../../styles/qnaStyles/QnAStyle";
 
 function UserAllQnA() {
   return (
