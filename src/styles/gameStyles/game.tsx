@@ -12,6 +12,8 @@ export const GameContainer = styled.div<{ Img: string }>`
 
   @media (min-width: 768px) {
     width: 70vw;
+    margin-top: 3.7rem;
+    padding-top: 0.3rem;
   }
 `;
 
@@ -26,7 +28,7 @@ export const RankContainer = styled.div`
 `;
 
 export const DragTrashContainer = styled.div`
-  height: 60vh;
+  height: 40vh;
   position: relative;
 
   @media (min-width: 768px) {
