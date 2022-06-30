@@ -267,3 +267,8 @@ export const userEditState = atom<boolean>({
   key: "userEditState",
   default: false,
 });
+
+export const modalOpenState = atom<boolean>({
+  key: "modalOpenState",
+  default: false,
+});
