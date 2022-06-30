@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useRecoilState, useResetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import {
   UserQnaListState,
   QnAPageState,
-  QnANumPagesState,
   QnALengthState,
   userState,
 } from "../../stores/atoms";
 
 import { getData } from "../../api";
 
-import UserAllQnA from "./UserAllQnA";
+import { QnAType } from "../../types/QnA";
 
 import {
   ListTable,
@@ -23,7 +22,6 @@ import {
   ListTitle,
   ListDate,
   ListTitleWrapper,
-  ListAuthorWrapper,
 } from "../../styles/qnaStyles/QnAStyle";
 
 import {
@@ -43,7 +41,6 @@ function UserQnA() {
   const [qnaTotal, setQnaTotal] = useRecoilState(QnALengthState);
 
   const [qnaPage, setQnaPage] = useRecoilState(QnAPageState);
-  const [numPages, setNumPages] = useRecoilState(QnANumPagesState);
 
   const [mQuery, setMQuery] = useState(window.innerWidth > 768 ? true : false);
 
@@ -66,7 +63,7 @@ function UserQnA() {
     return prop.split("T")[0].split("-").join(".").substr(2);
   };
 
-  const screenChange = (event: any) => {
+  const screenChange = (event: MediaQueryListEvent) => {
     const matches = event.matches;
     setMQuery(matches);
   };
@@ -84,20 +81,17 @@ function UserQnA() {
   }, []);
 
   useEffect(() => {
-    console.log("바뀜");
     getList();
   }, [user]);
 
   return (
     <div>
-      {/* 타이틀 섹션 */}
       <TitleContainer>
         <TitleWrapper>나의 Q&A</TitleWrapper>
         <SubTitleWrapper onClick={() => navigate("qna")}>
           자세히 보기
         </SubTitleWrapper>
       </TitleContainer>
-      {/* 컨텐츠 */}
       <QnaContainer>
         <ListTable>
           <ListTbody>
@@ -107,9 +101,8 @@ function UserQnA() {
               </tr>
             ) : (
               <>
-                {userQnaList?.map((qna: any, idx: number) => (
+                {userQnaList?.map((qna: QnAType, idx: number) => (
                   <ListTr>
-                    {/* 게시글 번호 내림차순으로 */}
                     {mQuery && (
                       <ListNumber>{userQnaList?.length - idx}</ListNumber>
                     )}

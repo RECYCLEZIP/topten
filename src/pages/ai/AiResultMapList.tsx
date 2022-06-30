@@ -5,7 +5,6 @@ import {
   RobotState,
   RobotSelectedState,
   selectedMarkerState,
-  lastIntersectingImageState,
 } from "../../stores/atoms";
 
 import { RobotType } from "../../types/Robot";
@@ -23,11 +22,7 @@ import { AiMapListContainer } from "../../styles/aiStyles/AiResultStyle";
 function AiResultMapList() {
   const robots = useRecoilValue(RobotState);
   const [robotSelected, setRobotSelected] = useRecoilState(RobotSelectedState);
-  // const setRobotSelected = useSetRecoilState(RobotSelectedState);
   const selectedMarker = useRecoilValue(selectedMarkerState);
-
-  const [lastIntersectingImage, setLastIntersectingImage] =
-    useRecoilState<HTMLDivElement | null>(lastIntersectingImageState);
 
   // 리스트에서 항목 click 시 해당 항목의 좌표 저장
   const onClickBin = (x: number | undefined, y: number | undefined) => {

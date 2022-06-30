@@ -220,11 +220,6 @@ export const PrologueAskImgWrapper = styled.div`
   @media screen and (min-width: 768px) {
     max-width: 60%;
   }
-
-  &.fade-in {
-    ${fadeInCss}
-    animation-delay: 0.9s;
-  }
 `;
 
 export const PrologueAskImg = styled(PrologueImg)`
@@ -236,6 +231,11 @@ export const PrologueAskImg = styled(PrologueImg)`
   height: auto;
   object-fit: cover;
   margin: auto;
+
+  &.fade-in {
+    ${fadeInCss}
+    animation-delay: 0.9s;
+  }
 `;
 
 // 섹션 3 - AI가 알려주는 분리수거 3 STEP

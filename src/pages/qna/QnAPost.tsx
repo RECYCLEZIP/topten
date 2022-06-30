@@ -3,16 +3,10 @@ import { useNavigate } from "react-router";
 
 import { qnaPostData } from "../../api";
 
-import "@toast-ui/editor/dist/toastui-editor.css";
-import { Editor } from "@toast-ui/react-editor";
-
-import "tui-color-picker/dist/tui-color-picker.css";
-import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
-import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
-
-import "@toast-ui/editor/dist/i18n/ko-kr";
-
 import { toast } from "react-toastify";
+import { Editor } from "@toast-ui/react-editor";
+import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
+import "@toast-ui/editor/dist/i18n/ko-kr";
 
 import { Container } from "../../styles/basicStyle";
 import { TitleText } from "../../styles/TextStyle";
@@ -24,6 +18,7 @@ import {
   PostButton,
   PostCancleButton,
 } from "../../styles/qnaStyles/QnAPostStyle";
+
 import { customToastify } from "../../components/customToastify";
 import { Helmet } from "react-helmet-async";
 
@@ -99,7 +94,6 @@ function QnAPost() {
           </PostCancleButton>
           <PostButton
             onClick={onClickSubmit}
-            // disabled={!titleValue || !contentValue}
           >
             작성 완료
           </PostButton>

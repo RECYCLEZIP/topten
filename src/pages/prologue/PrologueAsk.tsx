@@ -30,7 +30,7 @@ function PrologueAsk() {
             <PrologueTitle>하고 계신가요?</PrologueTitle>
           </AskTitleWrapper>
         </PrologueAskTitleContainer>
-        <PrologueAskImg src={img.bin} alt="bins" />
+        <PrologueAskImg src={img.bin} alt="bins" className="fade-class"/>
       </AskTopContainer>
       <PrologueAskImgWrapper className="fade-class">
         <AskHandWrapper className="fade-class">
