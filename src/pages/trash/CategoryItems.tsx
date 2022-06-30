@@ -58,6 +58,7 @@ function CategoryItems() {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         io.unobserve(entry.target);
+        if (trashList.slice(-1)[0].slice(-1)[0] === undefined) return;
         setPage(trashList.slice(-1)[0].slice(-1)[0]._id);
       }
     });
