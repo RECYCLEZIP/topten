@@ -109,9 +109,11 @@ function AiResult() {
                 ))}
             </AiResultDesContainer>
           </div>
-          <div>
-            <AiResultMap />
-          </div>
+          {(result?.title === "페트병" || result?.title === "캔") && (
+            <div>
+              <AiResultMap />
+            </div>
+          )}
         </>
       )}
     </>
