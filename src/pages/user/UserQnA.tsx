@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useRecoilState, useResetRecoilState } from "recoil";
 import {
-  QnAListState,
+  UserQnaListState,
   QnAPageState,
   QnANumPagesState,
   QnALengthState,
@@ -38,7 +38,7 @@ function UserQnA() {
 
   const [user, setUser] = useRecoilState(userState);
 
-  const [qnaList, setQnaList] = useRecoilState(QnAListState);
+  const [userQnaList, setUserQnaList] = useRecoilState(UserQnaListState);
 
   const [qnaTotal, setQnaTotal] = useRecoilState(QnALengthState);
 
@@ -48,15 +48,17 @@ function UserQnA() {
   const [mQuery, setMQuery] = useState(window.innerWidth > 768 ? true : false);
 
   const getList = async () => {
-    try {
-      await getData(`posts/users/${user._id}?pageno=${qnaPage}&limit=3`).then(
-        (res) => {
-          setQnaList(res.data?.data);
+    if (user?._id || user.userId) {
+      try {
+        await getData(
+          `posts/users/${user._id || user.userId}?pageno=${qnaPage}&limit=3`,
+        ).then((res) => {
+          setUserQnaList(res.data?.data);
           setQnaTotal(res.data?.count);
-        },
-      );
-    } catch (err) {
-      console.log(err);
+        });
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -82,6 +84,7 @@ function UserQnA() {
   }, []);
 
   useEffect(() => {
+    console.log("바뀜");
     getList();
   }, [user]);
 
@@ -98,16 +101,18 @@ function UserQnA() {
       <QnaContainer>
         <ListTable>
           <ListTbody>
-            {qnaList?.map((qna: any, idx: number) => (
+            {userQnaList?.map((qna: any, idx: number) => (
               <>
-                {qnaList?.length === 0 ? (
+                {userQnaList?.length === 0 ? (
                   <tr>
                     <NothingTd>조회된 게시물이 없습니다.</NothingTd>
                   </tr>
                 ) : (
                   <ListTr>
                     {/* 게시글 번호 내림차순으로 */}
-                    {mQuery && <ListNumber>{qnaList?.length - idx}</ListNumber>}
+                    {mQuery && (
+                      <ListNumber>{userQnaList?.length - idx}</ListNumber>
+                    )}
                     <ListTitle onClick={() => navigate(`/qna/${qna._id}`)}>
                       <ListTitleWrapper>{qna?.title}</ListTitleWrapper>
                     </ListTitle>

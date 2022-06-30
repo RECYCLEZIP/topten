@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { useRecoilValue, useRecoilState } from "recoil";
 import {
-  QnAListState,
+  UserQnaListState,
   QnAPageState,
   QnALengthState,
   QnANumPagesState,
@@ -23,12 +23,12 @@ import {
   ListDate,
 } from "../../styles/qnaStyles/QnAStyle";
 
-function UserAllQnAList() {
+function UserAlluserQnaList() {
   const navigate = useNavigate();
 
   const [user, setUser] = useRecoilState(userState);
 
-  const [qnaList, setQnaList] = useRecoilState(QnAListState);
+  const [userQnaList, setUseruserQnaList] = useRecoilState(UserQnaListState);
 
   const [qnaTotal, setQnaTotal] = useRecoilState(QnALengthState);
   const [qnaPage, setQnaPage] = useRecoilState(QnAPageState);
@@ -43,7 +43,7 @@ function UserAllQnAList() {
     try {
       await getData(`posts/users/${user._id}?pageno=${qnaPage}&limit=10`).then(
         (res) => {
-          setQnaList(res.data?.data);
+          setUseruserQnaList(res.data?.data);
           setQnaTotal(res.data?.count);
         },
       );
@@ -79,15 +79,15 @@ function UserAllQnAList() {
 
   useEffect(() => {
     setQnaNumber((qnaPage - 1) * 10);
-  }, [qnaList]);
+  }, [userQnaList]);
 
   return (
     <>
       <ListTable>
         <ListTbody>
-          {qnaList?.map((qna: any, idx: number) => (
+          {userQnaList?.map((qna: any, idx: number) => (
             <>
-              {qnaList?.length === 0 ? (
+              {userQnaList?.length === 0 ? (
                 <tr>
                   <NothingTd>조회된 게시물이 없습니다.</NothingTd>
                 </tr>
@@ -111,4 +111,4 @@ function UserAllQnAList() {
   );
 }
 
-export default UserAllQnAList;
+export default UserAlluserQnaList;
