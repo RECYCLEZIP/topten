@@ -132,6 +132,23 @@ export const MapContainer = styled.div`
   }
 `;
 
+export const MapLoading = styled.div`
+  height: 8rem;
+
+  display: flex;
+
+  padding: 1rem;
+
+  background: #f0f2f5;
+  border-radius: 0.3rem;
+
+  font-size: 0.8rem;
+
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const AiMapListContainer = styled.div`
   margin-top: 1rem;
 
