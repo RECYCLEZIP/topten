@@ -34,6 +34,7 @@ export const AiSituationState = atom({
 export const AiResultState = atom<AiResultType>({
   key: "AiResultState",
   default: {
+    message: "",
     title: "",
     kind: "",
     section: [

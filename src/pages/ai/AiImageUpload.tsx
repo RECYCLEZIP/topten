@@ -61,10 +61,10 @@ function AiImageUpload() {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
+    console.log('클릭')
+
     const formData = new FormData();
     formData.append("aiImage", postImage);
-
-    console.log(postImage);
 
     if (situation === "done") {
       // 다시 분석하기 Click 시 이미지 업로드 전 상태로 초기화
@@ -75,7 +75,8 @@ function AiImageUpload() {
       setSituation("analyzing");
 
       try {
-        await aiPostData(`trash/ai`, postImage).then((res) => {
+        await aiPostData(`trash/ai`, formData).then((res) => {
+          console.log(res.data);
           setResult(res.data);
         });
 
@@ -87,46 +88,11 @@ function AiImageUpload() {
         setFileImage("");
       }
     }
-
-    // const formData = new FormData();
-    // formData.append("aiImage", postImage);
-
-    // console.log(postImage);
-
-    // try {
-    //   await aiPostData(`trash/ai`, postImage).then((res) => {
-    //     console.log(res.data);
-    //   });
-    // } catch (err) {
-    //   console.log(err);
-    // }
-    // axios
-    //   .post("http://home.handwoong.com:5001/trash/ai", postImage, {
-    //     headers: {
-    //       "Content-Type": "multipart/form-data",
-    //     },
-    //   })
-    //   .then((data) => console.log(data));
   };
 
-  // // 분석하기 버튼 Click 시
-  // const onClickAnalyze = () => {
-  //   // handleSubmit();
-
-  //   if (situation === "done") {
-  //     // 다시 분석하기 Click 시 이미지 업로드 전 상태로 초기화
-  //     setSituation("beforeImgUpload");
-  //     setFileImage("");
-  //   } else {
-  //     // 분석하기 Click 시
-  //     setSituation("analyzing");
-
-  //     // 분석 완료 상태 (3초 후 완료라고 임시 설정)
-  //     setTimeout(() => {
-  //       setSituation("done");
-  //     }, 1000);
-  //   }
-  // };
+  useEffect(() => {
+    console.log(situation);
+  }, [situation]);
 
   // 페이지 상태 별 문구
   const messages = {
