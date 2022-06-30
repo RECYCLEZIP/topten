@@ -27,7 +27,11 @@ function Ai() {
         <TopTitle>AI 분리수거</TopTitle>
         <AiImageUpload />
         {/* 분석 완료일 시 분석 결과, 완료 전일 시 분석 가이드 */}
-        {situation === "done" ? <AiResult /> : <AiGuide />}
+        {situation === "done" || situation === "fail" ? (
+          <AiResult />
+        ) : (
+          <AiGuide />
+        )}
       </Container>
     </>
   );

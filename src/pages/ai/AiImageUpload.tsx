@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 
-import { useRecoilState } from "recoil";
+import { useRecoilState, useResetRecoilState } from "recoil";
 import { AiSituationState, AiResultState } from "../../stores/atoms";
 
 import { aiPostData } from "../../api";
@@ -40,6 +40,8 @@ function AiImageUpload() {
 
   const [result, setResult] = useRecoilState(AiResultState);
 
+  const resetSituation = useResetRecoilState(AiSituationState);
+
   const onChangeUpload: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     if (e?.target !== null && e?.target?.files?.[0]) {
       setPostImage(e.target.files[0]);
@@ -51,6 +53,11 @@ function AiImageUpload() {
   const onClickImgUpload: React.MouseEventHandler<HTMLDivElement> = (e) => {
     imgInput.current.click();
   };
+
+  useEffect(() => {
+    // 페이지 상황 리셋
+    resetSituation();
+  }, []);
 
   // 이미지 업로드 시
   useEffect(() => {
@@ -64,7 +71,7 @@ function AiImageUpload() {
     const formData = new FormData();
     formData.append("aiImage", postImage);
 
-    if (situation === "done") {
+    if (situation === "done" || situation === "fail") {
       // 다시 분석하기 Click 시 이미지 업로드 전 상태로 초기화
       setSituation("beforeImgUpload");
       setFileImage("");
@@ -79,8 +86,7 @@ function AiImageUpload() {
 
         setSituation("done");
       } catch (err) {
-        setSituation("beforeImgUpload");
-        setFileImage("");
+        setSituation("fail");
       }
     }
   };
@@ -111,7 +117,7 @@ function AiImageUpload() {
 
     // 페이지 상태에 따라 버튼 문구 변경
     const buttonText = () => {
-      if (situation === "done") {
+      if (situation === "done" || situation === "fail") {
         setButtonText("다시 분석하기");
       } else {
         setButtonText("분석하기");
