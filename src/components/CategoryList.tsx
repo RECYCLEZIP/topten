@@ -53,7 +53,7 @@ function CategoryList({
     setKind(category[index].name);
     setPage("");
 
-    navigate(`/category/${category[index].name}`);
+    navigate("/category");
   };
 
   return (

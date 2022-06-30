@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { getData } from "../../api";
 import {
   categoryItemState,
@@ -18,7 +18,6 @@ import { useNavigate, useParams } from "react-router";
 import { customToastify } from "../../components/customToastify";
 
 function CategoryItems() {
-  const params = useParams().kind;
   const [kind, setKind] = useRecoilState(categoryKindState);
   const [trashList, setTrashList] = useRecoilState(categoryItemState);
   const [page, setPage] = useRecoilState(categoryPageState);
@@ -41,7 +40,7 @@ function CategoryItems() {
 
   useEffect(() => {
     setTrashList([]);
-  }, [params]);
+  }, [kind]);
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(intersectionObserver); // IntersectionObserver

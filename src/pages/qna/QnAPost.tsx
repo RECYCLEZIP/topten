@@ -69,7 +69,7 @@ function QnAPost() {
   return (
     <Container>
       <Helmet>
-        <title>분리수ZIP - Q&A 글 쓰기</title>
+        <title>분리수ZIP - 글 쓰기</title>
       </Helmet>
       <TitleText>Q&A 글 쓰기</TitleText>
       <TitleInputContainer>
