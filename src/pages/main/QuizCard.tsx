@@ -33,7 +33,7 @@ function QuizCard({ display, quiz }: QuizCardType) {
           <CountUp end={Math.round(quiz.result[0].yesterday)} duration={3} />%
         </RateBox>
       </WrongPercent>
-      <QuestionBox width="90">
+      <QuestionBox width="93">
         <QuizImg src={quiz.image} />
         <QuizQuestion width="80">
           <LogoImg src={img.quizLogo} />
