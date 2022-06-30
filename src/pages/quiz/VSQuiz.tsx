@@ -11,6 +11,7 @@ import {
 } from "../../stores/atoms";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { customToastify } from "../../components/customToastify";
+import { Helmet } from "react-helmet-async";
 
 // vs quiz page
 function VSQuiz() {
@@ -50,6 +51,9 @@ function VSQuiz() {
 
   return (
     <TwoOptions>
+      <Helmet>
+        <title>분리수ZIP - 일반 vs 음식물</title>
+      </Helmet>
       {option.map((text, index) => {
         return (
           <TextTwoOption
