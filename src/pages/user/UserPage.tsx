@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { delData, getData } from "../../api";
-import { loginState, userEditState } from "../../stores/atoms";
+import { loginState, userEditState, userState } from "../../stores/atoms";
 import { Button } from "../../styles/ButtonStyles";
 import {
   UserPageContainer,
@@ -11,7 +11,6 @@ import {
   EditText,
   RedButton,
 } from "../../styles/userStyles/userPage";
-import { UserType } from "../../types/User";
 import UserEdit from "./UserEdit";
 import UserQnA from "./UserQnA";
 import { customToastify } from "../../components/customToastify";
@@ -20,7 +19,7 @@ import Loading from "../../components/Loading";
 
 function UserPage() {
   const navigate = useNavigate();
-  const [user, setUser] = useState<UserType>({});
+  const [user, setUser] = useRecoilState(userState);
   const setIsLogin = useSetRecoilState(loginState);
   const [isEdit, setIsEdit] = useRecoilState(userEditState);
   const [loading, setLoading] = useState(false);
@@ -73,7 +72,7 @@ function UserPage() {
         <title>분리수ZIP - 마이페이지</title>
       </Helmet>
       {isEdit ? (
-        <UserEdit user={user} />
+        <UserEdit />
       ) : (
         <NameText>{user.username}님 안녕하세요!</NameText>
       )}

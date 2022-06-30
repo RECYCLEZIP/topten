@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { toast } from "react-toastify";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { putData } from "../../api";
-import { userEditState } from "../../stores/atoms";
+import { customToastify } from "../../components/customToastify";
+import { userEditState, userState } from "../../stores/atoms";
 import { Button } from "../../styles/ButtonStyles";
 import {
   EditUserInput,
@@ -10,58 +10,50 @@ import {
   CancelButton,
   EditButtons,
   EditTitle,
+  EditText,
 } from "../../styles/userStyles/userPage";
 import {
   EachInput,
   RegisterInputContainer,
   CautionText,
 } from "../../styles/userStyles/users";
-import { UserType } from "../../types/User";
 
-const correct = () =>
-  toast.success("변경 성공!", {
-    position: "top-center",
-    autoClose: 1000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-  });
-
-const notCorrect = () =>
-  toast.error("변경 실패!", {
-    position: "top-center",
-    autoClose: 1000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-  });
-
-function UserEdit({ user }: { user: UserType }) {
+function UserEdit() {
+  const [user, setUser] = useRecoilState(userState);
   const setIsEdit = useSetRecoilState(userEditState);
   const [editUserName, setEditUserName] = useState(user.username);
   const [password, setPassword] = useState("");
+  const [editPassword, setEditPassword] = useState(false);
 
   const submitHandler = async (e: {
     preventDefault: () => void;
     target: any;
   }) => {
     e.preventDefault();
-    if (password.length < 8) return;
     try {
-      await putData("users/update", {
-        email: user.email,
-        password,
-        username: editUserName,
-      });
-      correct();
+      if (editPassword) {
+        if (password.length < 8) return;
+        await putData("users/update", {
+          email: user.email,
+          password,
+          username: editUserName,
+        });
+        setUser((prev) => {
+          return { ...prev, username: editUserName };
+        });
+      } else {
+        await putData("users/update", {
+          email: user.email,
+          username: editUserName,
+        });
+        setUser((prev) => {
+          return { ...prev, username: editUserName };
+        });
+      }
+      customToastify("success", "변경 성공!");
       setIsEdit((prev) => !prev);
     } catch {
-      console.log("Error: data put request fail");
-      notCorrect();
+      customToastify("error", "변경 실패!");
     }
   };
 
@@ -87,14 +79,24 @@ function UserEdit({ user }: { user: UserType }) {
       <EachInput>
         <EditTitle>비밀번호 변경</EditTitle>
         <RegisterInputContainer>
-          <EditUserInput
-            placeholder="비밀번호"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          ></EditUserInput>
-          {password.length < 8 && (
-            <CautionText>비밀번호는 8자리 이상입니다.</CautionText>
+          {editPassword ? (
+            <>
+              <EditUserInput
+                placeholder="비밀번호"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              ></EditUserInput>
+              <>
+                {password.length < 8 && (
+                  <CautionText>비밀번호는 8자리 이상입니다.</CautionText>
+                )}
+              </>
+            </>
+          ) : (
+            <EditText onClick={() => setEditPassword((prev) => !prev)}>
+              변경하기
+            </EditText>
           )}
         </RegisterInputContainer>
       </EachInput>
