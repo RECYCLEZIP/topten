@@ -61,6 +61,12 @@ describe("binsController TEST", () => {
             expect(res.body[0].roads).toEqual("원효로");
             expect(res.body.length).toBe(1);
         });
+
+        it("존재하지 않는 지역명을 담은 쿼리를 보내면 빈 배열을 반환한다.", async () => {
+            const res = await request(app).get("/bins").query({ search: "동작구" });
+            expect(res.status).toBe(STATUS_200_OK);
+            expect(res.body).toHaveLength(0);
+        });
     });
 
     describe("GET /bins/locations TEST", () => {
