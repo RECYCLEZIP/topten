@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -11,6 +11,7 @@ import gameOverBgm from "../../assets/gameover.mp3";
 import { putData } from "../../api";
 import { customToastify } from "../../components/customToastify";
 
+// Game result modal style
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -29,6 +30,7 @@ const style = {
   },
 };
 
+// Game result modal
 function ResultModal({
   score,
   bonus,
@@ -47,6 +49,7 @@ function ResultModal({
     navigate("/game/ranking");
   };
 
+  // Score update function
   const updateScore = async () => {
     try {
       putData("users/score", { score: Math.round(score * bonus) });
@@ -55,6 +58,7 @@ function ResultModal({
     }
   };
 
+  // Game over bgm
   const bgm = useRef(new Audio(gameOverBgm));
 
   useEffect(() => {

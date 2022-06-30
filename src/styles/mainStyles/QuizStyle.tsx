@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const RankContainer = styled.div`
-  width: 80%;
+  width: 100%;
   display: flex;
   justify-content: center;
   margin: 2% auto;
   flex-direction: column;
 
   @media (min-width: 768px) {
+    width: 80%;
     flex-direction: row;
   }
 `;

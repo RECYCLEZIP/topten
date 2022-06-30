@@ -25,6 +25,7 @@ import {
   PostCancleButton,
 } from "../../styles/qnaStyles/QnAPostStyle";
 import { customToastify } from "../../components/customToastify";
+import { Helmet } from "react-helmet-async";
 
 function QnAPost() {
   const navigate = useNavigate();
@@ -67,6 +68,9 @@ function QnAPost() {
 
   return (
     <Container>
+      <Helmet>
+        <title>분리수ZIP - 글 쓰기</title>
+      </Helmet>
       <TitleText>Q&A 글 쓰기</TitleText>
       <TitleInputContainer>
         <TitleInput

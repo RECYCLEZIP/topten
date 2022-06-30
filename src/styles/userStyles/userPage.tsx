@@ -13,6 +13,7 @@ export const EmailText = styled.p`
 
 export const NameText = styled.span`
   font-size: 1rem;
+  margin-right: 0.3rem;
 `;
 
 export const EditText = styled.button`
@@ -23,10 +24,7 @@ export const EditText = styled.button`
   font-weight: 700;
   font-size: 0.6rem;
   padding: 0;
-
-  @media (min-width: 410px) {
-    padding-left: 0.3rem;
-  }
+  text-align: left;
 `;
 
 export const RedButton = styled(Button)`

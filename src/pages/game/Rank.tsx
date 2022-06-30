@@ -17,9 +17,11 @@ import { RankDataType } from "../../types/Game";
 import GoGameModal from "./GoGameModal";
 import { customToastify } from "../../components/customToastify";
 import { Helmet } from "react-helmet-async";
+import Loading from "../../components/Loading";
 
 const medal = ["🥇", "🥈", "🥉"];
 
+// Game rank component
 function Rank() {
   const navigate = useNavigate();
   const isLogin = useRecoilValue(loginState);
@@ -49,13 +51,13 @@ function Rank() {
   }, []);
 
   if (!loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
     <>
       <Helmet>
-        <title>분리수ZIP - 게임</title>
+        <title>분리수ZIP - 게임랭킹</title>
         <meta
           name="description"
           content="AI가 분류해주는 분리수거 서비스 게임페이지"

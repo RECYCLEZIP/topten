@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { getData } from "../../api";
 import {
   categoryItemState,
@@ -14,11 +14,10 @@ import {
   ItemTitle,
   MoveButton,
 } from "../../styles/trash/items";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 import { customToastify } from "../../components/customToastify";
 
 function CategoryItems() {
-  const params = useParams().kind;
   const [kind, setKind] = useRecoilState(categoryKindState);
   const [trashList, setTrashList] = useRecoilState(categoryItemState);
   const [page, setPage] = useRecoilState(categoryPageState);
@@ -36,12 +35,16 @@ function CategoryItems() {
   }, [kind, page, setTrashList]);
 
   useEffect(() => {
+    setPage("");
+  }, []);
+
+  useEffect(() => {
     getTrashList();
   }, [getTrashList]);
 
   useEffect(() => {
     setTrashList([]);
-  }, [params]);
+  }, [kind]);
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(intersectionObserver); // IntersectionObserver
@@ -55,6 +58,7 @@ function CategoryItems() {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         io.unobserve(entry.target);
+        if (trashList.slice(-1)[0].slice(-1)[0] === undefined) return;
         setPage(trashList.slice(-1)[0].slice(-1)[0]._id);
       }
     });

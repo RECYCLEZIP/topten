@@ -283,3 +283,8 @@ export const roadsState = atom({
   key: "roadsState",
   default: [],
 });
+
+export const modalOpenState = atom<boolean>({
+  key: "modalOpenState",
+  default: false,
+});

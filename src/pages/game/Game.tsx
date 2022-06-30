@@ -23,7 +23,9 @@ import wrongBgm from "../../assets/wrong.mp3";
 import { getData } from "../../api";
 import { GameDataType } from "../../types/Game";
 import { customToastify } from "../../components/customToastify";
+import { Helmet } from "react-helmet-async";
 
+// Game initial state
 export const initialState = {
   totalScore: 0,
   gameState: {
@@ -38,34 +40,49 @@ export const initialState = {
 
 resetServerContext();
 
+// Game component
 function Game() {
+  // Game data
   const [trash, setTrash] = useState<GameDataType[]>([]);
   const [bins, setBins] = useState<GameDataType[]>([]);
-
+  // Trash image visibility state
   const [visibility, setVisibility] = useState(["visibility"]);
+  // Game score
   const [score, setScore] = useState(initialState.totalScore);
+  // Current game situation state
   const [gameState, setGameState] = useRecoilState(currentGameState);
+  // Game left time state
   const [timeLeft, setTimeLeft] = useState(initialState.timeLeft);
+  // Game level state
   const [level, setLevel] = useRecoilState(gameLevelState);
+  // Left trash state
   const [leftTrash, setLeftTrash] = useState<boolean[]>([false]);
+  // Loading state
   const [loading, setLoading] = useState(false);
+  // Number to multiply state
   const [bonus, setBonus] = useState(0);
 
+  // Game music ref
   const bgmMusic = useRef(new Audio(bgm));
   const selectMusic = useRef(new Audio(selectBgm));
   const wrongMusic = useRef(new Audio(wrongBgm));
 
+  // If drag end, execute
   const onDragEnd = (info: DropResult) => {
+    // Dragging target information
+    const { destination, source } = info;
+    // stop playing music
     const selectBgm = selectMusic.current;
     const wrongBgm = wrongMusic.current;
-    const { destination, source } = info;
     selectBgm.pause();
     selectBgm.currentTime = 0;
     wrongBgm.pause();
     wrongBgm.currentTime = 0;
-    console.log(info);
+    // If drag not droppable, execute
     if (!destination) return;
+    // If not correct, execute
     if (destination.droppableId !== source.droppableId) return wrongBgm.play();
+    // If correct, execute
     if (destination.droppableId === source.droppableId) {
       selectBgm.play();
       const newArr = [...visibility];
@@ -93,14 +110,17 @@ function Game() {
     };
   }, []);
 
+  // If left trash change, execute
   useEffect(() => {
     if (!leftTrash.includes(false)) {
       setGameState(initialState.gameState.WIN);
     }
   }, [leftTrash]);
 
+  // If level change, execute
   useEffect(() => {
     setLoading(false);
+    // Get each level's game data function
     const getLevelData = async () => {
       try {
         const res = await getData(`quizzes/game/${level - 1}`);
@@ -129,6 +149,7 @@ function Game() {
     }
   }, [level]);
 
+  // If game state change, execute
   useEffect(() => {
     const bgmAudio = bgmMusic.current;
     if (
@@ -142,6 +163,7 @@ function Game() {
       bgmAudio.pause();
       bgmAudio.currentTime = 0;
     }
+    // timer
     const timer = setInterval(() => {
       if (timeLeft > 0 && gameState === initialState.gameState.PLAYING)
         setTimeLeft((prev) => prev - 1);
@@ -159,6 +181,9 @@ function Game() {
 
   return (
     <>
+      <Helmet>
+        <title>분리수ZIP - 게임</title>
+      </Helmet>
       {gameState === initialState.gameState.READY && <GameModal />}
       {(gameState === initialState.gameState.GAMEOVER ||
         gameState === initialState.gameState.WIN) && (
@@ -192,7 +217,7 @@ function Game() {
             </DragTrashContainer>
             <DropTrashContainer>
               {bins.map((bin, index) => (
-                <BinZone index={bin.category} bin={bin} key={index} />
+                <BinZone bin={bin} key={index} />
               ))}
             </DropTrashContainer>
           </GameContainer>
