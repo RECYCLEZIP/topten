@@ -29,6 +29,8 @@ export const AiResultSubjectTexture = styled.div`
 export const AiResultContentsSection = styled.section`
   /* display: block; */
   display: flex;
+
+  margin-bottom: 1rem;
 `;
 
 export const ListContainer = styled.div`
