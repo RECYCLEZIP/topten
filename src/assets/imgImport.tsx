@@ -31,6 +31,7 @@ import level1 from "./img/level1.png";
 import level2 from "./img/level2.png";
 import level3 from "./img/level3.png";
 import current_marker from "./img/current_marker.png";
+import orange_marker from "./img/orange_marker.png";
 import hand from "./img/hand.png";
 import error404 from "./img/404.png";
 import notBgm from "./img/notBgm.png";
@@ -68,6 +69,7 @@ export const img = {
   user,
   levelImg: [level1, level2, level3],
   current_marker: current_marker,
+  orange_marker: orange_marker,
   hand: hand,
   error404,
   notBgm,

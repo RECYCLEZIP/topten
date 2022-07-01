@@ -15,6 +15,7 @@ export const AiContentText = styled.span`
 
 export const AiImageUploadSection = styled.div`
   margin: 1rem 0rem;
+  margin-bottom: 0.5rem;
 
   @media screen and (min-width: 768px) {
     margin: 1rem 3rem;
@@ -239,6 +240,7 @@ export const GuideNotice = styled.div`
   margin-top: 0rem;
   margin-bottom: 0rem;
   margin-left: 0rem;
+  margin-right: 0rem;
 
   border-radius: 0.3rem;
 
