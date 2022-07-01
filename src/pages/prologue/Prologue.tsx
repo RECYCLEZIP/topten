@@ -7,7 +7,7 @@ import PrologueBinMap from "./PrologueBinMap";
 import PrologueQuiz from "./PrologueQuiz";
 import PrologueEnd from "./PrologueEnd";
 import { Helmet } from "react-helmet-async";
-import Loading from "../../components/Loading";
+// import Loading from "../../components/Loading";
 
 function Prologue() {
   const [loading, setLoading] = useState(false);

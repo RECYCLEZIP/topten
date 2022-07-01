@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 
-import { useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import {
   QnAListState,
-  QnAPageState,
   QnALengthState,
-  QnANumPagesState,
 } from "../../stores/atoms";
 
 import { useNavigate } from "react-router";
 
-import { QnAType } from "../../types/QnA";
+import { QnAType, QnAPageType } from "../../types/QnA";
 
 import {
   ListTable,
@@ -27,14 +25,10 @@ import {
 
 import { BlackHr } from "../../styles/qnaStyles/QnADescriptionStyle";
 
-function QnAList() {
+function QnAList({ qnaPage }: QnAPageType) {
   const navigate = useNavigate();
 
   const qnaList = useRecoilValue(QnAListState);
-
-  const [qnaPage, setQnaPage] = useRecoilState(QnAPageState);
-
-  const [numPages, setNumPages] = useRecoilState(QnANumPagesState);
 
   const qnaTotal = useRecoilValue(QnALengthState);
 

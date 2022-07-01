@@ -9,9 +9,10 @@ import { getData, delData } from "../../api";
 import { QnAType } from "../../types/QnA";
 
 import { useRecoilValue } from "recoil";
-import { userState } from "../../stores/atoms";
+import { loginState } from "../../stores/atoms";
 
 import QnAComment from "./QnAComment";
+import QnAModal from "./QnAModal";
 
 import { Container } from "../../styles/basicStyle";
 import { TitleText } from "../../styles/TextStyle";
@@ -33,6 +34,8 @@ import {
 import { customToastify } from "../../components/customToastify";
 import { Helmet } from "react-helmet-async";
 
+import { UserType } from "../../types/User";
+
 function QnADescription() {
   const navigate = useNavigate();
 
@@ -40,10 +43,26 @@ function QnADescription() {
   const id = useParams().id;
 
   // 로그인한 사용자
-  const user = useRecoilValue(userState);
+  // const user = useRecoilValue(userState);
+  const [user, setUser] = useState<UserType>();
+  const isLogin = useRecoilValue(loginState);
 
   const [qna, setQna] = useState<QnAType>();
   const [loading, setLoading] = useState(false);
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+
+  const getUser = async () => {
+    if (isLogin) {
+      try {
+        const res = await getData(`users/current`);
+        setUser(res.data);
+      } catch {
+        console.log("Error: data get request fail");
+      }
+    }
+  };
 
   const getQnA = async () => {
     try {
@@ -58,19 +77,13 @@ function QnADescription() {
     return prop?.split("T")[0].split("-").join(".");
   };
 
-  const onClickDelete = async () => {
-    try {
-      await delData(`posts/${id}`);
-
-      navigate(`/qna`);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
     getQnA();
   }, []);
+
+  useEffect(() => {
+    getUser();
+  }, [isLogin]);
 
   if (!loading) {
     return <></>;
@@ -99,11 +112,15 @@ function QnADescription() {
       <BlackHr />
       <>
         {/* 현재 로그인한 사용자가 게시글의 작성자일 시 */}
-        {user._id === qna?.author._id && (
-          <ButtonWrapper>
-            <GrayButton onClick={() => navigate(`edit/`)}>수정</GrayButton>
-            <RedButton onClick={onClickDelete}>삭제</RedButton>
-          </ButtonWrapper>
+        {console.log(user?._id)}
+        {user?._id === qna?.author._id && (
+          <>
+            <ButtonWrapper>
+              <GrayButton onClick={() => navigate(`edit/`)}>수정</GrayButton>
+              <RedButton onClick={handleOpen}>삭제</RedButton>
+            </ButtonWrapper>
+            <QnAModal open={open} setOpen={setOpen} />
+          </>
         )}
       </>
       <QnAComment />

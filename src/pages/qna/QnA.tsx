@@ -26,6 +26,8 @@ function QnA() {
 
   const isLogin = useRecoilValue(loginState);
 
+  const [qnaPage, setQnaPage] = useState(1);
+
   const onClickPost = () => {
     if (isLogin) {
       navigate(`/qna/post`);
@@ -54,14 +56,14 @@ function QnA() {
       </Helmet>
       <Container>
         <TitleText>Q&A</TitleText>
-        <QnABar />
-        <QnAList />
+        <QnABar qnaPage={qnaPage} />
+        <QnAList qnaPage={qnaPage} />
         <ButtonContainer>
           <ButtonWrapper>
             <Button onClick={onClickPost}>작성하기</Button>
           </ButtonWrapper>
         </ButtonContainer>
-        <QnAPagination />
+        <QnAPagination qnaPage={qnaPage} setQnaPage={setQnaPage} />
       </Container>
     </>
   );

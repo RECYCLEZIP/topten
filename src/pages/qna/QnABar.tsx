@@ -6,10 +6,11 @@ import { useRecoilState } from "recoil";
 import {
   QnAListState,
   QnASearchValueState,
-  QnAPageState,
   QnANumPagesState,
   QnALengthState,
 } from "../../stores/atoms";
+
+import { QnAPageType } from "../../types/QnA";
 
 import {
   BarSection,
@@ -21,7 +22,7 @@ import {
   BarInfo,
 } from "../../styles/qnaStyles/QnAStyle";
 
-function QnABar() {
+function QnABar({ qnaPage }: QnAPageType) {
   const [qnaList, setQnaList] = useRecoilState(QnAListState);
 
   const [searchSelect, setSearchSelect] = useState("title");
@@ -29,7 +30,6 @@ function QnABar() {
   const [searchValue, setSearchValue] =
     useRecoilState<string>(QnASearchValueState);
 
-  const [qnaPage, setQnaPage] = useRecoilState(QnAPageState);
   const [numPages, setNumPages] = useRecoilState(QnANumPagesState);
 
   const [qnaTotal, setQnaTotal] = useRecoilState(QnALengthState);

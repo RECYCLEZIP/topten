@@ -25,7 +25,11 @@ export const ButtonWrapper = styled.div`
   float: right;
   text-align-last: right;
 
-  padding-right: 1rem;
+  margin-right: 0;
+
+  @media screen and (min-width: 768px) {
+    padding-right: 1rem;
+  }
 `;
 
 export const GrayButton = styled.button`
@@ -50,6 +54,10 @@ export const RedButton = styled(GrayButton)`
   background: #a62121;
 
   color: white;
+
+  @media screen and (max-width: 768px) {
+    margin-right: 0;
+  }
 `;
 
 export const TitleContainer = styled.div`
@@ -140,4 +148,21 @@ export const SquareButton = styled(Button)`
   margin-top: 0.5rem;
 
   border-radius: 0.3rem;
+`;
+
+export const ModalGreenButton = styled(Button)`
+  margin-top: 0.5rem;
+  margin-bottom: 0rem;
+`;
+
+export const ModalGrayButton = styled(ModalGreenButton)`
+  margin-right: 1rem;
+
+  color: #424242;
+  background: #e1e1e1;
+
+  &:hover {
+    background-color: #d7d5d5;
+    transition: all 0.5s;
+  }
 `;

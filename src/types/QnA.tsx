@@ -19,3 +19,8 @@ export type QnAType = {
     },
   ];
 };
+
+export interface QnAPageType {
+  qnaPage: number;
+  setQnaPage?: React.Dispatch<React.SetStateAction<number>>;
+}

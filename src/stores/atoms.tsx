@@ -237,11 +237,6 @@ export const QnASearchValueState = atom({
   default: "",
 });
 
-export const QnAPageState = atom({
-  key: "QnAPageState",
-  default: 1,
-});
-
 export const QnALengthState = atom({
   key: "QnALengthState",
   default: 0,

@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import {
   UserQnaListState,
-  QnAPageState,
   QnALengthState,
   userState,
 } from "../../stores/atoms";
@@ -40,15 +39,13 @@ function UserQnA() {
 
   const [qnaTotal, setQnaTotal] = useRecoilState(QnALengthState);
 
-  const [qnaPage, setQnaPage] = useRecoilState(QnAPageState);
-
   const [mQuery, setMQuery] = useState(window.innerWidth > 768 ? true : false);
 
   const getList = async () => {
     if (user?._id || user.userId) {
       try {
         await getData(
-          `posts/users/${user._id || user.userId}?pageno=${qnaPage}&limit=3`,
+          `posts/users/${user._id || user.userId}?pageno=1&limit=3`,
         ).then((res) => {
           setUserQnaList(res.data?.data);
           setQnaTotal(res.data?.count);
@@ -77,7 +74,6 @@ function UserQnA() {
 
   useEffect(() => {
     mediaQuery();
-    setQnaPage(1);
   }, []);
 
   useEffect(() => {

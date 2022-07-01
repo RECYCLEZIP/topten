@@ -44,6 +44,14 @@ function AiGuide() {
               <AiGuideTitle>형태가 온전히 드러날 수 있는 사진</AiGuideTitle>
             </div>
           </AiGuideContainer>
+          <AiGuideContainer>
+            <AiGuideImgWrapper>
+              <AiGuideImg src={img.like7} />
+            </AiGuideImgWrapper>
+            <div>
+              <AiGuideTitle>깔끔한 단일 배경에서 찍은 사진</AiGuideTitle>
+            </div>
+          </AiGuideContainer>
         </AiGuidesContainer>
       </AiGuideSection>
       <AiGuideSection>
