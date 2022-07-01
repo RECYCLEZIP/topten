@@ -14,6 +14,7 @@ function petAiResult(aiTarget: any) {
     if (resLabel) {
         resultTemplate.section[2].score = resLabel.confidence;
         resultTemplate.throwAway.push("부착 상표 등을 제거 후 비닐로 분리하여 버리기");
+        resultTemplate.throwAway.push("라벨이 스티커인 경우에는 일반쓰레기로 버리기");
     }
 
     if (resHead) {
