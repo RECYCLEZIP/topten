@@ -176,7 +176,7 @@ function Game() {
   }, [timeLeft, gameState]);
 
   if (!loading) {
-    return <div>Loading...</div>;
+    return <></>;
   }
 
   return (

@@ -1,10 +1,10 @@
 import { img } from "../assets/imgImport";
-import { LoadingContainer } from "../styles/basicStyle";
+import { LoadingContainer, LoadingImg } from "../styles/basicStyle";
 
 function Loading() {
   return (
     <LoadingContainer>
-      <img src={img.pageLoading} alt="img" />
+      <LoadingImg src={img.pageLoading} />
     </LoadingContainer>
   );
 }

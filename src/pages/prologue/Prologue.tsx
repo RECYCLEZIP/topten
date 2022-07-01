@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import PrologueBubble from "./PrologueBubble";
 import PrologueAsk from "./PrologueAsk";
@@ -7,8 +7,10 @@ import PrologueBinMap from "./PrologueBinMap";
 import PrologueQuiz from "./PrologueQuiz";
 import PrologueEnd from "./PrologueEnd";
 import { Helmet } from "react-helmet-async";
+import Loading from "../../components/Loading";
 
 function Prologue() {
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const targets = document.querySelectorAll(".fade-class");
 
@@ -29,6 +31,14 @@ function Prologue() {
       observer.observe(target);
     });
   }, []);
+
+  // useEffect(() => {
+  //   setTimeout(() => setLoading(true), 1);
+  // }, []);
+
+  // if (!loading) {
+  //   return <Loading />;
+  // }
 
   return (
     <>

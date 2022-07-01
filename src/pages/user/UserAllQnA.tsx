@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Container } from "../../styles/basicStyle";
 
@@ -10,6 +10,16 @@ import { TitleText } from "../../styles/TextStyle";
 import { Helmet } from "react-helmet-async";
 
 function UserAllQnA() {
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setLoading(true), 10);
+  }, []);
+
+  if (!loading) {
+    return <></>;
+  }
+
   return (
     <Container>
       <Helmet>

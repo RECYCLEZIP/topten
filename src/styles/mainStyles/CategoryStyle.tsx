@@ -52,7 +52,7 @@ export const ImgContainer = styled.button<{
   }
 
   @media (min-width: 768px) {
-    width: 4rem;
+    width: 5rem;
   }
 `;
 
@@ -73,6 +73,6 @@ export const IMG = styled.img`
   padding: 1%;
 
   @media (min-width: 768px) {
-    height: 4rem;
+    height: 5rem;
   }
 `;

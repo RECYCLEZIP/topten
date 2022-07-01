@@ -15,3 +15,7 @@ export const LoadingContainer = styled.div`
   align-items: center;
   height: 100vh;
 `;
+
+export const LoadingImg = styled.img`
+  height: 5rem;
+`;

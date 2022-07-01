@@ -36,6 +36,7 @@ function QnAEdit() {
   const [qna, setQna] = useState<QnAType>();
   const [titleValue, setTitleValue] = useState<string | undefined>("");
   const [contentValue, setContentValue] = useState<string | undefined>("");
+  const [loading, setLoading] = useState(false);
 
   const get = async () => {
     try {
@@ -43,6 +44,7 @@ function QnAEdit() {
     } catch (err: any) {
       customToastify("error", err.message);
     }
+    setLoading(true);
   };
 
   const setValues = () => {
@@ -87,6 +89,10 @@ function QnAEdit() {
   useEffect(() => {
     setValues();
   }, [qna]);
+
+  if (!loading) {
+    return <></>;
+  }
 
   return (
     <Container>
