@@ -20,7 +20,6 @@ import {
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { Helmet } from "react-helmet-async";
 import { useEffect, useState } from "react";
-import Loading from "../../components/Loading";
 
 // category page component
 function Category() {
@@ -36,7 +35,7 @@ function Category() {
   }, []);
 
   if (!loading) {
-    return <Loading />;
+    return <></>;
   }
 
   return (

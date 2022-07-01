@@ -32,7 +32,6 @@ import level3 from "./img/level3.png";
 import current_marker from "./img/current_marker.png";
 import hand from "./img/hand.png";
 import error404 from "./img/404.png";
-import pageLoading from "./img/pageLoading.gif";
 import notBgm from "./img/notBgm.png";
 import playBgm from "./img/playBgm.png";
 
@@ -69,7 +68,6 @@ export const img = {
   current_marker: current_marker,
   hand: hand,
   error404,
-  pageLoading,
   notBgm,
   playBgm,
 };

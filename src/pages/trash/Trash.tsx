@@ -16,7 +16,6 @@ import {
 } from "../../styles/trash/trash";
 import { TrashType } from "../../types/Trash";
 import { customToastify } from "../../components/customToastify";
-import Loading from "../../components/Loading";
 import { Helmet } from "react-helmet-async";
 
 function Item() {
@@ -39,7 +38,7 @@ function Item() {
   }, []);
 
   if (!loading) {
-    return <Loading />;
+    return <></>;
   }
 
   return (

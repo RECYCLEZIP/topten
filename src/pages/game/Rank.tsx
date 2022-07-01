@@ -17,7 +17,6 @@ import { RankDataType } from "../../types/Game";
 import GoGameModal from "./GoGameModal";
 import { customToastify } from "../../components/customToastify";
 import { Helmet } from "react-helmet-async";
-import Loading from "../../components/Loading";
 
 const medal = ["🥇", "🥈", "🥉"];
 
@@ -51,7 +50,7 @@ function Rank() {
   }, []);
 
   if (!loading) {
-    return <Loading />;
+    return <></>;
   }
 
   return (

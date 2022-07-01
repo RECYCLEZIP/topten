@@ -32,7 +32,6 @@ import {
 } from "../../styles/qnaStyles/QnADescriptionStyle";
 import { customToastify } from "../../components/customToastify";
 import { Helmet } from "react-helmet-async";
-import Loading from "../../components/Loading";
 
 function QnADescription() {
   const navigate = useNavigate();
@@ -74,7 +73,7 @@ function QnADescription() {
   }, []);
 
   if (!loading) {
-    return <Loading />;
+    return <></>;
   }
 
   return (

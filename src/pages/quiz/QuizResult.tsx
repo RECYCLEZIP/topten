@@ -18,7 +18,6 @@ import { ResultsType } from "../../types/Quiz";
 import DropAnswer from "./DropAnswer";
 import { customToastify } from "../../components/customToastify";
 import { Helmet } from "react-helmet-async";
-import Loading from "../../components/Loading";
 
 //quiz result page
 function QuizResult() {
@@ -56,7 +55,7 @@ function QuizResult() {
   }, []);
 
   if (!loading) {
-    return <Loading />;
+    return <></>;
   }
 
   return (
