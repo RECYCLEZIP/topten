@@ -18,6 +18,7 @@ export const AiImageUploadSection = styled.div`
 
   @media screen and (min-width: 768px) {
     margin: 1rem 3rem;
+    margin-bottom: 0.5rem;
   }
 `;
 
@@ -162,6 +163,7 @@ export const AiTopContainer = styled.div`
 
 export const AiNoticeWrapper = styled.div`
   /* background: gray; */
+  margin: auto;
 
   font-size: 0.8rem;
 `;
@@ -227,6 +229,22 @@ export const AiGuideSection = styled.div`
   width: 100%;
 
   margin-bottom: 2rem;
+`;
+
+export const GuideNotice = styled.div`
+  background: #f0f2f5;
+
+  padding: 0.3rem 0.5rem;
+  margin: 1rem;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+
+  border-radius: 0.3rem;
+
+  font-size: 0.5rem;
+  color: #9eacba;
+
+  width: fit-content;
 `;
 
 export const AiGuidesTitle = styled(AiContentTitle)`

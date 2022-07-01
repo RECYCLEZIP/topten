@@ -22,6 +22,7 @@ import {
   AiNoticeWrapper,
   AiButtonWrapper,
   AiButton,
+  GuideNotice,
 } from "../../styles/aiStyles/AiStyle";
 
 function AiImageUpload() {
@@ -176,6 +177,7 @@ function AiImageUpload() {
         </AiImageContainer>
         <AiIconsContainer></AiIconsContainer>
       </AiImageUploadSection>
+      <GuideNotice>현재 지원되는 품목은 페트와 종이류입니다.</GuideNotice>
       <AiTopContainer>
         <AiNoticeWrapper>{notice}</AiNoticeWrapper>
         <AiButtonWrapper>
