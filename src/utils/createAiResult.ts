@@ -2,7 +2,7 @@ function petAiResult(aiTarget: any) {
     const { 6: resBody, 7: resHead, 8: resLabel } = aiTarget;
     const resultTemplate = {
         title: "페트병",
-        kind: "플라스틱",
+        kind: "페트류",
         section: [
             { title: "페트병", score: 0 },
             { title: "뚜껑", score: 0 },
@@ -18,14 +18,14 @@ function petAiResult(aiTarget: any) {
 
     if (resHead) {
         resultTemplate.section[1].score = resHead.confidence;
-        resultTemplate.throwAway.push("페트병을 찌그러뜨리고 뚜껑 닫기");
+        resultTemplate.throwAway.push("페트병을 찌그러뜨리고 뚜껑은 플라스틱으로 배출");
     } else {
         resultTemplate.throwAway.push("페트병을 찌그러뜨리기");
     }
 
     if (resBody) {
         resultTemplate.section[0].score = resBody.confidence;
-        resultTemplate.throwAway.push("플라스틱으로 분리 후 배출");
+        resultTemplate.throwAway.push("페트류로 분리 후 배출");
     }
 
     return resultTemplate;
