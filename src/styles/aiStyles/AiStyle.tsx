@@ -238,6 +238,7 @@ export const GuideNotice = styled.div`
   margin: 1rem;
   margin-top: 0rem;
   margin-bottom: 0rem;
+  margin-left: 0rem;
 
   border-radius: 0.3rem;
 
@@ -245,6 +246,12 @@ export const GuideNotice = styled.div`
   color: #9eacba;
 
   width: fit-content;
+
+  @media (min-width: 768px) {
+    margin: 1rem;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+  }
 `;
 
 export const AiGuidesTitle = styled(AiContentTitle)`
