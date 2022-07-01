@@ -36,6 +36,7 @@ import hand from "./img/hand.png";
 import error404 from "./img/404.png";
 import notBgm from "./img/notBgm.png";
 import playBgm from "./img/playBgm.png";
+import pageLoading from "./img/pageLoading.gif";
 
 export const img = {
   seoul,
@@ -74,4 +75,5 @@ export const img = {
   error404,
   notBgm,
   playBgm,
+  pageLoading,
 };

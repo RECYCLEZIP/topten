@@ -25,6 +25,7 @@ import { getData } from "../../api";
 import { GameDataType } from "../../types/Game";
 import { customToastify } from "../../components/customToastify";
 import { Helmet } from "react-helmet-async";
+import Loading from "../../components/Loading";
 
 // Game initial state
 export const initialState = {
@@ -186,7 +187,7 @@ function Game() {
   }, [timeLeft, gameState]);
 
   if (!loading) {
-    return <></>;
+    return <Loading />;
   }
 
   return (

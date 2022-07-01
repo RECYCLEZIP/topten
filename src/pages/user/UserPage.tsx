@@ -15,6 +15,8 @@ import UserEdit from "./UserEdit";
 import UserQnA from "./UserQnA";
 import { customToastify } from "../../components/customToastify";
 import { Helmet } from "react-helmet-async";
+import Loading from "../../components/Loading";
+
 function UserPage() {
   const navigate = useNavigate();
   const [user, setUser] = useRecoilState(userState);
@@ -61,7 +63,7 @@ function UserPage() {
   }, []);
 
   if (!loading) {
-    return <></>;
+    return <Loading />;
   }
 
   return (

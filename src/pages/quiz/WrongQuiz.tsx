@@ -21,6 +21,7 @@ import {
 import { img } from "../../assets/imgImport";
 import { CardText } from "../../styles/TextStyle";
 import { customToastify } from "../../components/customToastify";
+import Loading from "../../components/Loading";
 
 function WrongQuiz() {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ function WrongQuiz() {
   }, []);
 
   if (!loading) {
-    return <></>;
+    return <Loading />;
   }
 
   return (

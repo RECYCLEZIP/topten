@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { currentPageState } from "../../stores/atoms";
 import { Helmet } from "react-helmet-async";
-import { useEffect, useState } from "react";
 
 //quiz list page
 function Quiz() {
@@ -22,15 +21,6 @@ function Quiz() {
   ];
   const navigate = useNavigate();
   const setCurrentPage = useSetRecoilState(currentPageState);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => setLoading(true), 10);
-  }, []);
-
-  if (!loading) {
-    return <></>;
-  }
 
   return (
     <>

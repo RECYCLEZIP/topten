@@ -24,6 +24,7 @@ import {
   PostCancleButton,
 } from "../../styles/qnaStyles/QnAPostStyle";
 import { customToastify } from "../../components/customToastify";
+import Loading from "../../components/Loading";
 
 function QnAEdit() {
   const navigate = useNavigate();
@@ -91,7 +92,7 @@ function QnAEdit() {
   }, [qna]);
 
   if (!loading) {
-    return <></>;
+    return <Loading />;
   }
 
   return (

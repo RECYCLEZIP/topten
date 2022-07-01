@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router";
 import { img } from "../assets/imgImport";
@@ -13,15 +12,6 @@ import {
 
 function PageNotFound() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => setLoading(true), 10);
-  }, []);
-
-  if (!loading) {
-    return <></>;
-  }
 
   return (
     <PageNotContainer>

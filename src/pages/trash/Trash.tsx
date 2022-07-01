@@ -17,6 +17,7 @@ import {
 import { TrashType } from "../../types/Trash";
 import { customToastify } from "../../components/customToastify";
 import { Helmet } from "react-helmet-async";
+import Loading from "../../components/Loading";
 
 function Item() {
   const id = useParams().id;
@@ -38,7 +39,7 @@ function Item() {
   }, []);
 
   if (!loading) {
-    return <></>;
+    return <Loading />;
   }
 
   return (

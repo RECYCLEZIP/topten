@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router";
 
 import { qnaPostData } from "../../api";
@@ -29,7 +29,6 @@ function QnAPost() {
 
   const [titleValue, setTitleValue] = useState<string>();
   const [contentValue, setContentValue] = useState();
-  const [loading, setLoading] = useState(false);
 
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitleValue(e.target.value);
@@ -62,14 +61,6 @@ function QnAPost() {
     }
   };
 
-  useEffect(() => {
-    setTimeout(() => setLoading(true), 10);
-  }, []);
-
-  if (!loading) {
-    return <></>;
-  }
-
   return (
     <Container>
       <Helmet>
@@ -101,11 +92,7 @@ function QnAPost() {
           <PostCancleButton onClick={() => navigate(`/qna`)}>
             작성 취소
           </PostCancleButton>
-          <PostButton
-            onClick={onClickSubmit}
-          >
-            작성 완료
-          </PostButton>
+          <PostButton onClick={onClickSubmit}>작성 완료</PostButton>
         </PostButtonWrapper>
       </PostButtonContainer>
     </Container>

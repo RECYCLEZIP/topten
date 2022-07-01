@@ -12,15 +12,6 @@ import {
 // main page map section component
 function MapSection() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => setLoading(true), 10);
-  }, []);
-
-  if (!loading) {
-    return <></>;
-  }
 
   return (
     <MapContainer>

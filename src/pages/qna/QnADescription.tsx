@@ -35,6 +35,7 @@ import { customToastify } from "../../components/customToastify";
 import { Helmet } from "react-helmet-async";
 
 import { UserType } from "../../types/User";
+import Loading from "../../components/Loading";
 
 function QnADescription() {
   const navigate = useNavigate();
@@ -86,7 +87,7 @@ function QnADescription() {
   }, [isLogin]);
 
   if (!loading) {
-    return <></>;
+    return <Loading />;
   }
 
   return (

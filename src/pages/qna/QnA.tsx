@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { useNavigate } from "react-router";
 
@@ -22,7 +22,6 @@ import { Helmet } from "react-helmet-async";
 
 function QnA() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
 
   const isLogin = useRecoilValue(loginState);
 
@@ -35,14 +34,6 @@ function QnA() {
       toast.warn("로그인 후 이용할 수 있습니다.");
     }
   };
-
-  useEffect(() => {
-    setTimeout(() => setLoading(true), 10);
-  }, []);
-
-  if (!loading) {
-    return <></>;
-  }
 
   return (
     <>

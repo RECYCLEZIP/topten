@@ -18,11 +18,14 @@ export const NewsText = styled.span`
 `;
 
 export const NewsTitle = styled.a`
-  display: flex;
+  display: block;
   text-decoration: none;
   font-size: 0.5rem;
   color: #9eacba;
   height: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const NewsContainer = styled.div`

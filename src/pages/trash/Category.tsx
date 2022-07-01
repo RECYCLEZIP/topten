@@ -19,7 +19,6 @@ import {
 } from "../../stores/atoms";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { Helmet } from "react-helmet-async";
-import { useEffect, useState } from "react";
 
 // category page component
 function Category() {
@@ -28,15 +27,6 @@ function Category() {
   const setPage = useSetRecoilState(categoryPageState);
   const [isSelected, setIsSelected] = useRecoilState(categorySelectedState);
   const category = useRecoilState(categoryState);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => setLoading(true), 10);
-  }, []);
-
-  if (!loading) {
-    return <></>;
-  }
 
   return (
     <>

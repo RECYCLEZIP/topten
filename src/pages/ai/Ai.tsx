@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import AiImageUpload from "./AiImageUpload";
 import AiGuide from "./AiGuide";
@@ -12,15 +12,6 @@ import { Helmet } from "react-helmet-async";
 
 function Ai() {
   const situation = useRecoilValue(AiSituationState);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => setLoading(true), 10);
-  }, []);
-
-  if (!loading) {
-    return <></>;
-  }
 
   return (
     <>

@@ -16,6 +16,7 @@ import OXQuiz from "./OXQuiz";
 import QuestionCard from "./QuestionCard";
 import VSQuiz from "./VSQuiz";
 import { customToastify } from "../../components/customToastify";
+import Loading from "../../components/Loading";
 
 function Quiz() {
   const [loading, setLoading] = useState(false);
@@ -43,7 +44,7 @@ function Quiz() {
   }, []);
 
   if (!loading) {
-    return <></>;
+    return <Loading />;
   }
 
   return (

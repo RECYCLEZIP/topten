@@ -41,10 +41,6 @@ function MapContent({
   const [testMarkers, setTestMarkers] = useState<any[]>();
 
   useEffect(() => {
-    console.log(testMarkers);
-  }, [testMarkers]);
-
-  useEffect(() => {
     // 렌더링 후 지도 띄우기
     mapLoad();
   }, [props]);
