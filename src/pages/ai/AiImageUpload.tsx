@@ -177,7 +177,7 @@ function AiImageUpload() {
         </AiImageContainer>
         <AiIconsContainer></AiIconsContainer>
       </AiImageUploadSection>
-      <GuideNotice>현재 지원되는 품목은 페트와 종이류입니다.</GuideNotice>
+      <GuideNotice>현재 지원되는 품목은 페트병, 종이팩, 플라스틱, 캔, 종이류, 비닐류입니다.</GuideNotice>
       <AiTopContainer>
         <AiNoticeWrapper>{notice}</AiNoticeWrapper>
         <AiButtonWrapper>
