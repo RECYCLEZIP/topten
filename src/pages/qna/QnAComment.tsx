@@ -146,9 +146,12 @@ function QnAComment() {
   };
 
   useEffect(() => {
-    getUser();
     getQna();
   }, []);
+
+  useEffect(() => {
+    getUser();
+  }, [isLogin]);
 
   return (
     <CommentContainer>

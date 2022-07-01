@@ -60,7 +60,7 @@ function QnADescription() {
         setUser(res.data);
       } catch {
         console.log("Error: data get request fail");
-      } 
+      }
     }
   };
 
@@ -78,9 +78,12 @@ function QnADescription() {
   };
 
   useEffect(() => {
-    getUser();
     getQnA();
   }, []);
+
+  useEffect(() => {
+    getUser();
+  }, [isLogin]);
 
   if (!loading) {
     return <></>;
