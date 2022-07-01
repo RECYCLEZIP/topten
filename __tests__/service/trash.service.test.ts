@@ -50,7 +50,7 @@ describe("TRASH SERVICE LOGIC", () => {
         });
         const trashAiResult: any = await TrashService.aiTrash("testImage");
         expect(trashAiResult?.title).toEqual("페트병");
-        expect(trashAiResult?.kind).toEqual("플라스틱");
+        expect(trashAiResult?.kind).toEqual("페트류");
     });
 
     it("TRASH를 수정한다.", async () => {
