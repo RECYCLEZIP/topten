@@ -75,7 +75,7 @@ export const RegisterInput = styled(LoginInput)<{ margin?: string }>`
 export const RegisterInputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 6rem;
+  width: 100%;
 `;
 
 export const CautionText = styled.span`

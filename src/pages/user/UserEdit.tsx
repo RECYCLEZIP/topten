@@ -11,12 +11,9 @@ import {
   EditButtons,
   EditTitle,
   EditText,
+  EditInputContainer,
 } from "../../styles/userStyles/userPage";
-import {
-  EachInput,
-  RegisterInputContainer,
-  CautionText,
-} from "../../styles/userStyles/users";
+import { EachInput, CautionText } from "../../styles/userStyles/users";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 
@@ -97,7 +94,7 @@ function UserEdit() {
           <EditForm onSubmit={submitHandler}>
             <EachInput>
               <EditTitle>닉네임</EditTitle>
-              <RegisterInputContainer>
+              <EditInputContainer>
                 <EditUserInput
                   placeholder="닉네임"
                   value={editUserName}
@@ -106,11 +103,11 @@ function UserEdit() {
                 {editUserName !== undefined && editUserName.length < 3 && (
                   <CautionText>닉네임은 3자리 이상입니다.</CautionText>
                 )}
-              </RegisterInputContainer>
+              </EditInputContainer>
             </EachInput>
             <EachInput>
               <EditTitle>비밀번호 변경</EditTitle>
-              <RegisterInputContainer>
+              <EditInputContainer>
                 {editPassword ? (
                   <>
                     <EditUserInput
@@ -130,12 +127,12 @@ function UserEdit() {
                     변경하기
                   </EditText>
                 )}
-              </RegisterInputContainer>
+              </EditInputContainer>
             </EachInput>
             {editPassword ? (
               <EachInput>
                 <EditTitle>비밀번호 확인</EditTitle>
-                <RegisterInputContainer>
+                <EditInputContainer>
                   <EditUserInput
                     placeholder="비밀번호 확인"
                     type="password"
@@ -149,7 +146,7 @@ function UserEdit() {
                         : "입력해주세요."}
                     </CautionText>
                   )}
-                </RegisterInputContainer>
+                </EditInputContainer>
               </EachInput>
             ) : null}
             <EditButtons>

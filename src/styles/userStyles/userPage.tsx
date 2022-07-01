@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button } from "../ButtonStyles";
-import { RegisterInput, RegisterText } from "./users";
+import { RegisterInput, RegisterInputContainer, RegisterText } from "./users";
 
 export const UserPageContainer = styled.div`
   margin: 4rem 2rem;
@@ -69,6 +69,10 @@ export const EditTitle = styled(RegisterText)`
   @media (min-width: 768px) {
     width: 20%;
   }
+`;
+
+export const EditInputContainer = styled(RegisterInputContainer)`
+  width: 6rem;
 `;
 
 export const TitleContainer = styled.div`
