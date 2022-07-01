@@ -23,6 +23,7 @@ import {
   ListNumber,
   ListTitle,
   ListDate,
+  ListTitleWrapper,
 } from "../../styles/qnaStyles/QnAStyle";
 
 function UserAlluserQnaList() {
@@ -100,7 +101,7 @@ function UserAlluserQnaList() {
                     <ListNumber>{qnaTotal - idx - qnaNumber}</ListNumber>
                   )}
                   <ListTitle onClick={() => navigate(`/qna/${qna._id}`)}>
-                    {qna?.title}
+                    <ListTitleWrapper>{qna?.title}</ListTitleWrapper>
                   </ListTitle>
                   <ListDate>{date(qna?.createdAt)}</ListDate>
                 </ListTr>
