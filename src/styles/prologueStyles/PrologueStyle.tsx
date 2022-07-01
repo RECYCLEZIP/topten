@@ -259,7 +259,12 @@ export const PrologueStepsContainer = styled.div`
   background: #ffffff;
   box-shadow: 0px 0px 30px rgb(0 0 0 / 10%);
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) and (max-width: 1060px) {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media screen and (min-width: 1060px) {
     display: inline-block;
   }
 
