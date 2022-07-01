@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { img } from "../assets/imgImport";
+
+import { BinTypes } from "../stores/atoms";
 
 import {
   MapContentContainer,
@@ -36,6 +38,12 @@ function MapContent({
     ),
     markerPosition = new window.kakao.maps.LatLng(currentLat, currentLon); // 마커가 표시될 위치입니다
 
+  const [testMarkers, setTestMarkers] = useState<any[]>();
+
+  useEffect(() => {
+    console.log(testMarkers);
+  }, [testMarkers]);
+
   useEffect(() => {
     // 렌더링 후 지도 띄우기
     mapLoad();
@@ -44,6 +52,7 @@ function MapContent({
   useEffect(() => {
     // 리스트에서 항목 선택 시 해당 항목으로 지도 이동
     panTo();
+    makeOrangeMaker();
   }, [propsSelected]);
 
   // 지도 띄우기 - 다중 마커
@@ -81,10 +90,12 @@ function MapContent({
       bounds.extend(new window.kakao.maps.LatLng(currentLat, currentLon));
     }
 
+    const markers: any[] = [];
+
     // 클릭 이미지
     var selectedMarker: any = null;
 
-    props.forEach((prop: any) => {
+    props.forEach((prop: BinTypes | any) => {
       // 마커 생성
       if (type === "bin") {
         var marker = new window.kakao.maps.Marker({
@@ -109,8 +120,11 @@ function MapContent({
         });
       }
 
+      markers.push(marker);
+
       // 마커 click 이벤트
       window.kakao.maps.event.addListener(marker, "click", function () {
+        // 오렌지 마커로 변경
         var clickMarker = new window.kakao.maps.MarkerImage(
           img.orange_marker,
           new window.kakao.maps.Size(50, 50),
@@ -157,9 +171,34 @@ function MapContent({
       }
       window.map.setBounds(bounds);
     });
+
+    setTestMarkers(markers);
   };
 
-  // 지도 이동
+  const makeOrangeMaker = () => {
+    var clickMarker = new window.kakao.maps.MarkerImage(
+      img.orange_marker,
+      new window.kakao.maps.Size(50, 50),
+    );
+
+    testMarkers?.forEach((marker) => {
+      marker.setImage(marker.normalImage);
+    });
+
+    const index = props.findIndex((prop: BinTypes) => {
+      return prop.x === propsSelected[0] && prop.y === propsSelected[1];
+    });
+
+    // 인덱스가 있는지 판별
+    if (index > -1) {
+      const marker = testMarkers?.[index];
+
+      if (marker) {
+        marker.setImage(clickMarker);
+      }
+    }
+  };
+
   const panTo = () => {
     // 이동할 위도 경도 위치 생성
     var moveLatLon = new window.kakao.maps.LatLng(
