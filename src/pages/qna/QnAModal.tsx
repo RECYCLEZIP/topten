@@ -18,15 +18,16 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "40vw",
+  width: "50vw",
   height: "4rem",
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
   borderRadius: "1rem",
   textAlign: "center",
-
+  
   "@media (min-width: 768px)": {
+    width: "40vw",
     height: "3.5rem",
   },
 };
