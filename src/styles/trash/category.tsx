@@ -30,4 +30,8 @@ export const ItemListContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+
+  @media (min-width: 768px) {
+    margin: 1.5rem 5rem;
+  }
 `;

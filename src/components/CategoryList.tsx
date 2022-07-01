@@ -78,12 +78,12 @@ function CategoryList({
             )}
           </ImgContainer>
         ))}
-        <ImgContainer visibility="hidden" />
-        <ImgContainer visibility="hidden" />
-        <ImgContainer visibility="hidden" />
-        <ImgContainer visibility="hidden" />
-        <ImgContainer visibility="hidden" />
-        <ImgContainer visibility="hidden" />
+        <ImgContainer visibility="hidden" display="none" />
+        <ImgContainer visibility="hidden" display="none" />
+        <ImgContainer visibility="hidden" display="none" />
+        <ImgContainer visibility="hidden" display="none" />
+        <ImgContainer visibility="hidden" display="none" />
+        <ImgContainer visibility="hidden" display="none" />
       </List>
     </CategoryContainer>
   );

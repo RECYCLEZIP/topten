@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ItemContainer = styled.div<{ opacity?: number }>`
+export const ItemContainer = styled.div<{ opacity?: number; display?: string }>`
   display: flex;
   align-items: center;
   width: 6rem;
@@ -9,6 +9,9 @@ export const ItemContainer = styled.div<{ opacity?: number }>`
   @media (min-width: 768px) {
     width: 12rem;
     justify-content: center;
+  }
+  @media (min-width: 1700px) {
+    display: ${(props) => props.display};
   }
 `;
 

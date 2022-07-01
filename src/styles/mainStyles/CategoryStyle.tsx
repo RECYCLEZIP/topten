@@ -38,6 +38,7 @@ export const List = styled.div`
 export const ImgContainer = styled.button<{
   isSelected?: boolean;
   visibility?: string;
+  display?: string;
 }>`
   all: unset;
   margin: 0 0.4rem;
@@ -45,7 +46,6 @@ export const ImgContainer = styled.button<{
   flex-direction: column;
   width: 3rem;
   cursor: pointer;
-  visibility: ${(props) => props.visibility};
 
   &:hover {
     text-decoration: ${(props) => (props.isSelected ? "none" : "underline")};
@@ -53,6 +53,9 @@ export const ImgContainer = styled.button<{
 
   @media (min-width: 768px) {
     width: 5rem;
+  }
+  @media (min-width: 1700px) {
+    display: ${(props) => props.display};
   }
 `;
 
