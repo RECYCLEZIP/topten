@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { putData } from "../../api";
 import { customToastify } from "../../components/customToastify";
 import { userEditState, userState } from "../../stores/atoms";
@@ -17,10 +17,30 @@ import {
   RegisterInputContainer,
   CautionText,
 } from "../../styles/userStyles/users";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "10rem",
+  bgcolor: "background.paper",
+  borderRadius: 4,
+  boxShadow: 24,
+  p: 4,
+  pb: 0,
+  textAlign: "center",
+
+  "@media (min-width: 768px)": {
+    width: "20rem",
+  },
+};
 
 function UserEdit() {
   const [user, setUser] = useRecoilState(userState);
-  const setIsEdit = useSetRecoilState(userEditState);
+  const [isEdit, setIsEdit] = useRecoilState(userEditState);
   const [editUserName, setEditUserName] = useState(user.username);
   const [password, setPassword] = useState("");
   const [comparePassword, setComparePassword] = useState("");
@@ -63,72 +83,85 @@ function UserEdit() {
     setEditUserName(e.target.value);
   };
 
+  const handleClose = () => setIsEdit(false);
+
   return (
-    <EditForm onSubmit={submitHandler}>
-      <EachInput>
-        <EditTitle>닉네임</EditTitle>
-        <RegisterInputContainer>
-          <EditUserInput
-            placeholder="닉네임"
-            value={editUserName}
-            onChange={onChangeHandler}
-          ></EditUserInput>
-          {editUserName !== undefined && editUserName.length < 3 && (
-            <CautionText>닉네임은 3자리 이상입니다.</CautionText>
-          )}
-        </RegisterInputContainer>
-      </EachInput>
-      <EachInput>
-        <EditTitle>비밀번호 변경</EditTitle>
-        <RegisterInputContainer>
-          {editPassword ? (
-            <>
-              <EditUserInput
-                placeholder="비밀번호"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              ></EditUserInput>
-              <>
-                {password.length < 8 && (
-                  <CautionText>비밀번호는 8자리 이상입니다.</CautionText>
+    <div>
+      <Modal
+        open={isEdit}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <EditForm onSubmit={submitHandler}>
+            <EachInput>
+              <EditTitle>닉네임</EditTitle>
+              <RegisterInputContainer>
+                <EditUserInput
+                  placeholder="닉네임"
+                  value={editUserName}
+                  onChange={onChangeHandler}
+                ></EditUserInput>
+                {editUserName !== undefined && editUserName.length < 3 && (
+                  <CautionText>닉네임은 3자리 이상입니다.</CautionText>
                 )}
-              </>
-            </>
-          ) : (
-            <EditText onClick={() => setEditPassword((prev) => !prev)}>
-              변경하기
-            </EditText>
-          )}
-        </RegisterInputContainer>
-      </EachInput>
-      {editPassword ? (
-        <EachInput>
-          <EditTitle>비밀번호 확인</EditTitle>
-          <RegisterInputContainer>
-            <EditUserInput
-              placeholder="비밀번호 확인"
-              type="password"
-              value={comparePassword}
-              onChange={(e) => setComparePassword(e.target.value)}
-            ></EditUserInput>
-            {!samePassword && (
-              <CautionText>
-                {comparePassword.length > 0
-                  ? "비밀번호가 다릅니다."
-                  : "입력해주세요."}
-              </CautionText>
-            )}
-          </RegisterInputContainer>
-        </EachInput>
-      ) : null}
-      <EditButtons>
-        <Button onClick={submitHandler}>확인</Button>
-        <CancelButton onClick={() => setIsEdit((prev) => !prev)}>
-          취소
-        </CancelButton>
-      </EditButtons>
-    </EditForm>
+              </RegisterInputContainer>
+            </EachInput>
+            <EachInput>
+              <EditTitle>비밀번호 변경</EditTitle>
+              <RegisterInputContainer>
+                {editPassword ? (
+                  <>
+                    <EditUserInput
+                      placeholder="비밀번호"
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    ></EditUserInput>
+                    <>
+                      {password.length < 8 && (
+                        <CautionText>비밀번호는 8자리 이상입니다.</CautionText>
+                      )}
+                    </>
+                  </>
+                ) : (
+                  <EditText onClick={() => setEditPassword((prev) => !prev)}>
+                    변경하기
+                  </EditText>
+                )}
+              </RegisterInputContainer>
+            </EachInput>
+            {editPassword ? (
+              <EachInput>
+                <EditTitle>비밀번호 확인</EditTitle>
+                <RegisterInputContainer>
+                  <EditUserInput
+                    placeholder="비밀번호 확인"
+                    type="password"
+                    value={comparePassword}
+                    onChange={(e) => setComparePassword(e.target.value)}
+                  ></EditUserInput>
+                  {!samePassword && (
+                    <CautionText>
+                      {comparePassword.length > 0
+                        ? "비밀번호가 다릅니다."
+                        : "입력해주세요."}
+                    </CautionText>
+                  )}
+                </RegisterInputContainer>
+              </EachInput>
+            ) : null}
+            <EditButtons>
+              <Button onClick={submitHandler}>확인</Button>
+              <CancelButton onClick={() => setIsEdit((prev) => !prev)}>
+                취소
+              </CancelButton>
+            </EditButtons>
+          </EditForm>
+        </Box>
+      </Modal>
+    </div>
   );
 }
 

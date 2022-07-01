@@ -63,7 +63,7 @@ export const RegisterText = styled.div<{ display?: string }>`
 export const EachInput = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 1rem;
 `;
 
@@ -75,7 +75,7 @@ export const RegisterInput = styled(LoginInput)<{ margin?: string }>`
 export const RegisterInputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 6rem;
 `;
 
 export const CautionText = styled.span`
@@ -83,4 +83,5 @@ export const CautionText = styled.span`
   color: #f06868;
   font-weight: 500;
   margin-top: 0.1rem;
+  text-align: left;
 `;

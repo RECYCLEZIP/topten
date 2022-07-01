@@ -25,6 +25,7 @@ export const EditText = styled.button`
   font-size: 0.6rem;
   padding: 0;
   text-align: left;
+  width: 6rem;
 `;
 
 export const RedButton = styled(Button)`
@@ -49,11 +50,11 @@ export const EditForm = styled.form`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  width: 13rem;
+  width: 100%;
 `;
 
 export const EditUserInput = styled(RegisterInput)`
-  width: 70%;
+  width: 100%;
 `;
 
 export const EditButtons = styled.div`
@@ -61,7 +62,13 @@ export const EditButtons = styled.div`
 `;
 
 export const EditTitle = styled(RegisterText)`
-  width: 45%;
+  width: 35%;
+  text-align: left;
+  margin-right: 0.3rem;
+
+  @media (min-width: 768px) {
+    width: 20%;
+  }
 `;
 
 export const TitleContainer = styled.div`
