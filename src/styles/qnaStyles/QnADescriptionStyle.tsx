@@ -25,7 +25,11 @@ export const ButtonWrapper = styled.div`
   float: right;
   text-align-last: right;
 
-  padding-right: 1rem;
+  margin-right: 0;
+
+  @media screen and (min-width: 768px) {
+    padding-right: 1rem;
+  }
 `;
 
 export const GrayButton = styled.button`
@@ -50,6 +54,10 @@ export const RedButton = styled(GrayButton)`
   background: #a62121;
 
   color: white;
+
+  @media screen and (max-width: 768px) {
+    margin-right: 0;
+  }
 `;
 
 export const TitleContainer = styled.div`
