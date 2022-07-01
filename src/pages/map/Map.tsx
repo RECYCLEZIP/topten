@@ -6,7 +6,12 @@ import MapContent from "../../components/MapContent";
 
 import { getData } from "../../api";
 
-import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
+import {
+  useRecoilValue,
+  useSetRecoilState,
+  useRecoilState,
+  useResetRecoilState,
+} from "recoil";
 
 import {
   BinTypes,
@@ -30,6 +35,7 @@ function Map() {
   const [bin, setBin] = useRecoilState<BinTypes[]>(BinState);
 
   const [regionValue, setRegionValue] = useRecoilState(RegionValueState);
+  const resetRegion = useResetRecoilState(RegionValueState);
 
   const [roadsValue, setRoadsValue] = useRecoilState(RoadsValueState);
 
@@ -49,6 +55,10 @@ function Map() {
       console.log("error", err.message);
     }
   };
+
+  useEffect(() => {
+    resetRegion();
+  }, []);
 
   useEffect(() => {
     getBins();

@@ -32,21 +32,6 @@ function MapList() {
   const [searchBins, setSearchBins] = useRecoilState(SearchBinState);
   const resetRoadsValue = useResetRecoilState(RoadsValueState);
 
-  useEffect(() => {
-    // 구 선택 변경 시 도로 선택 리셋
-    resetRoadsValue();
-  }, [regionValue]);
-
-  useEffect(() => {
-    if (roadsValue !== "") {
-      setSearchBins(bins.filter((bin) => bin.roads === roadsValue));
-    } else if (regionValue !== "") {
-      setSearchBins(bins.filter((bin) => bin.region === regionValue));
-    } else {
-      setSearchBins([...bins]);
-    }
-  }, [bins, regionValue, roadsValue]);
-
   // 리스트에서 항목 click 시 해당 항목의 좌표 저장
   const onClickBin = (x: string | undefined, y: string | undefined) => {
     setBinSelected([x, y]);
@@ -63,6 +48,24 @@ function MapList() {
 
   // 이전으로 클릭 시 선택한 마커 default 값으로 변경
   const onClickBack = useResetRecoilState(selectedMarkerState);
+
+  useEffect(() => {
+    // 구 선택 변경 시 도로 선택 리셋
+    resetRoadsValue();
+  }, [regionValue]);
+
+  useEffect(() => {
+    if (roadsValue !== "") {
+      setSearchBins(bins.filter((bin) => bin.roads === roadsValue));
+    } else if (regionValue !== "") {
+      setSearchBins(bins.filter((bin) => bin.region === regionValue));
+    } else {
+      setSearchBins([...bins]);
+    }
+
+    // 마커 클릭 된 상태에서 지역 변경되면 리스트 default
+    onClickBack();
+  }, [bins, regionValue, roadsValue]);
 
   return (
     <>
