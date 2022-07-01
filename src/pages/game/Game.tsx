@@ -7,6 +7,7 @@ import {
   DragTrashContainer,
   DropTrashContainer,
   GameDescription,
+  BgmIcon,
 } from "../../styles/gameStyles/game";
 import TrashZone from "./TrashZone";
 import { resetServerContext } from "react-beautiful-dnd";
@@ -61,6 +62,8 @@ function Game() {
   const [loading, setLoading] = useState(false);
   // Number to multiply state
   const [bonus, setBonus] = useState(0);
+  // Bgm on/off
+  const [bgmOff, setBgmOff] = useState(false);
 
   // Game music ref
   const bgmMusic = useRef(new Audio(bgm));
@@ -81,10 +84,17 @@ function Game() {
     // If drag not droppable, execute
     if (!destination) return;
     // If not correct, execute
-    if (destination.droppableId !== source.droppableId) return wrongBgm.play();
+    if (destination.droppableId !== source.droppableId) {
+      if (bgmOff) {
+        return;
+      }
+      return wrongBgm.play();
+    }
     // If correct, execute
     if (destination.droppableId === source.droppableId) {
-      selectBgm.play();
+      if (!bgmOff) {
+        selectBgm.play();
+      }
       const newArr = [...visibility];
       newArr[source.index] = "hidden";
       setVisibility(newArr);
@@ -199,10 +209,27 @@ function Game() {
                   <span>SCORE</span>
                   <span>{score}</span>
                 </GameBox>
-                <GameBox>
+                <GameBox width="30%">
                   <span>TIME</span>
                   <span>{timeLeft}</span>
                 </GameBox>
+                {bgmOff ? (
+                  <BgmIcon
+                    src={img.notBgm}
+                    onClick={() => {
+                      setBgmOff((prev) => !prev);
+                      bgmMusic.current.play();
+                    }}
+                  ></BgmIcon>
+                ) : (
+                  <BgmIcon
+                    src={img.playBgm}
+                    onClick={() => {
+                      setBgmOff((prev) => !prev);
+                      bgmMusic.current.pause();
+                    }}
+                  ></BgmIcon>
+                )}
               </GameDescription>
             </GameBar>
             <DragTrashContainer>

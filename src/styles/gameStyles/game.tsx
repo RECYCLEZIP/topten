@@ -189,7 +189,7 @@ export const GameLevel = styled.span`
   }
 `;
 
-export const GameBox = styled.div`
+export const GameBox = styled.div<{ width?: string }>`
   display: flex;
   justify-content: space-between;
   padding: 0.2rem 0.4rem;
@@ -198,12 +198,19 @@ export const GameBox = styled.div`
   background: rgba(255, 255, 255, 0.16);
   border: 2px solid white;
   border-radius: 0.5rem;
-  width: 40%;
+  width: ${(props) => (props.width ? props.width : "40%")};
 `;
 
 export const GameDescription = styled.div`
   display: flex;
   justify-content: space-around;
+  align-items: center;
   margin-top: 0.3rem;
   width: 100%;
+`;
+
+export const BgmIcon = styled.img`
+  margin-left: 0.2rem;
+  height: 1rem;
+  cursor: pointer;
 `;

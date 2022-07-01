@@ -117,8 +117,8 @@ function ResultModal({
           </Typography>
           <ResultButton
             onClick={() => {
-              navigate("/game/ranking");
               updateScore();
+              navigate("/game/ranking");
             }}
           >
             랭킹으로
