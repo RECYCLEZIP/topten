@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   },
 });
 
-function MapSearch() {
+function MapSearch(this: any) {
   // 구
   const [regionValue, setRegionValue] = useRecoilState(RegionValueState);
   const [inputRegionValue, setRegionInputValue] = React.useState("");
@@ -81,6 +81,7 @@ function MapSearch() {
     <MapSearchSection>
       <AutocompleteContainer>
         <Autocomplete
+          blurOnSelect
           value={regionValue}
           onChange={(event, newValue) => {
             if (newValue !== null) {
@@ -138,6 +139,7 @@ function MapSearch() {
       <AutocompleteContainer>
         <div>
           <Autocomplete
+            blurOnSelect
             value={roadsValue}
             onChange={(event: any, newValue: any) => {
               setRoadsValue(newValue);
