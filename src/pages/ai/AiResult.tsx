@@ -79,12 +79,12 @@ function AiResult() {
           </AiResultSubjectSection>
           <AiResultContentsSection>
             <>
-              {result?.section?.map((prop) => (
-                <AiResultSummaryContainer>
-                  <AiResultSummaryTitleWrapper>
+              {result?.section?.map((prop, idx) => (
+                <AiResultSummaryContainer key={idx}>
+                  <AiResultSummaryTitleWrapper key={`title-${idx}`}>
                     {prop?.title}
                   </AiResultSummaryTitleWrapper>
-                  <AiResultSummaryDesWrapper>
+                  <AiResultSummaryDesWrapper key={`score-${idx}`}>
                     {prop?.score}%
                   </AiResultSummaryDesWrapper>
                 </AiResultSummaryContainer>
@@ -94,8 +94,8 @@ function AiResult() {
           <div>
             <ListContainer>
               <>
-                {result?.throwAway?.map((prop) => (
-                  <List>{prop}</List>
+                {result?.throwAway?.map((prop, idx) => (
+                  <List key={idx}>{prop}</List>
                 ))}
               </>
             </ListContainer>
@@ -104,8 +104,8 @@ function AiResult() {
             </div>
             <AiResultDesContainer>
               {trashInfo &&
-                trashInfo[0]?.description?.throwAway?.map((prop) => (
-                  <List>{prop}</List>
+                trashInfo[0]?.description?.throwAway?.map((prop, idx) => (
+                  <List key={idx}>{prop}</List>
                 ))}
             </AiResultDesContainer>
           </div>

@@ -74,24 +74,29 @@ function QnAList() {
           ) : (
             <>
               {qnaList?.map((qna: QnAType, idx: number) => (
-                <ListTr>
+                <ListTr key={idx}>
                   <>
                     {mQuery && (
                       <ListNumber>{qnaTotal - idx - qnaNumber}</ListNumber>
                     )}
-                    <ListTitle onClick={() => navigate(`/qna/${qna._id}`)}>
+                    <ListTitle
+                      key={`title-${idx}`}
+                      onClick={() => navigate(`/qna/${qna._id}`)}
+                    >
                       <ListTitleWrapper>{qna?.title}</ListTitleWrapper>
                     </ListTitle>
                     <>
                       {mQuery && (
-                        <ListAuthor>
+                        <ListAuthor key={`author-${idx}`}>
                           <ListAuthorWrapper>
                             {qna?.author?.username}
                           </ListAuthorWrapper>
                         </ListAuthor>
                       )}
                     </>
-                    <ListDate>{date(qna?.createdAt)}</ListDate>
+                    <ListDate key={`date-${idx}`}>
+                      {date(qna?.createdAt)}
+                    </ListDate>
                   </>
                 </ListTr>
               ))}

@@ -74,11 +74,17 @@ function MapList() {
               onClick={() => onClickBin(bin?.x, bin?.y)}
               key={index}
             >
-              <MapBinLacationTitle>{bin?.details}</MapBinLacationTitle>
-              <MapBinLacationDes>{bin?.points}</MapBinLacationDes>
+              <MapBinLacationTitle key={`title-${index}`}>
+                {bin?.details}
+              </MapBinLacationTitle>
+              <MapBinLacationDes key={`sub-${index}`}>
+                {bin?.points}
+              </MapBinLacationDes>
               <>
-                {bin?.type.map((type) => (
-                  <TypeContainer>{type}</TypeContainer>
+                {bin?.type.map((type, idx) => (
+                  <TypeContainer key={`type-${index}-${idx}`}>
+                    {type}
+                  </TypeContainer>
                 ))}
               </>
             </MapBinDatailsContainer>
