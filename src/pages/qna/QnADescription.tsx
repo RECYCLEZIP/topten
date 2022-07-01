@@ -9,7 +9,7 @@ import { getData, delData } from "../../api";
 import { QnAType } from "../../types/QnA";
 
 import { useRecoilValue } from "recoil";
-import { userState } from "../../stores/atoms";
+import { loginState } from "../../stores/atoms";
 
 import QnAComment from "./QnAComment";
 import QnAModal from "./QnAModal";
@@ -34,6 +34,8 @@ import {
 import { customToastify } from "../../components/customToastify";
 import { Helmet } from "react-helmet-async";
 
+import { UserType } from "../../types/User";
+
 function QnADescription() {
   const navigate = useNavigate();
 
@@ -41,13 +43,26 @@ function QnADescription() {
   const id = useParams().id;
 
   // 로그인한 사용자
-  const user = useRecoilValue(userState);
+  // const user = useRecoilValue(userState);
+  const [user, setUser] = useState<UserType>();
+  const isLogin = useRecoilValue(loginState);
 
   const [qna, setQna] = useState<QnAType>();
   const [loading, setLoading] = useState(false);
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
+
+  const getUser = async () => {
+    if (isLogin) {
+      try {
+        const res = await getData(`users/current`);
+        setUser(res.data);
+      } catch {
+        console.log("Error: data get request fail");
+      } 
+    }
+  };
 
   const getQnA = async () => {
     try {
@@ -63,6 +78,7 @@ function QnADescription() {
   };
 
   useEffect(() => {
+    getUser();
     getQnA();
   }, []);
 
@@ -93,7 +109,8 @@ function QnADescription() {
       <BlackHr />
       <>
         {/* 현재 로그인한 사용자가 게시글의 작성자일 시 */}
-        {user._id === qna?.author._id && (
+        {console.log(user?._id)}
+        {user?._id === qna?.author._id && (
           <>
             <ButtonWrapper>
               <GrayButton onClick={() => navigate(`edit/`)}>수정</GrayButton>

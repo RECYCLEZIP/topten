@@ -32,12 +32,15 @@ import {
 } from "../../styles/qnaStyles/QnACommentStyle";
 import { customToastify } from "../../components/customToastify";
 
+import { UserType } from "../../types/User";
+
 function QnAComment() {
   // 게시글 id
   const id = useParams().id;
 
   // 로그인한 사용자
-  const user = useRecoilValue(userState);
+  // const user = useRecoilValue(userState);
+  const [user, setUser] = useState<UserType>();
   const isLogin = useRecoilValue(loginState);
 
   const [qna, setQna] = useState<QnAType>();
@@ -50,7 +53,18 @@ function QnAComment() {
   const [isComment, setIsComment] = useState<boolean>(true);
   const [isCommentEdit, setIsCommentEdit] = useState<boolean>(true);
 
-  const get = async () => {
+  const getUser = async () => {
+    if (isLogin) {
+      try {
+        const res = await getData(`users/current`);
+        setUser(res.data);
+      } catch {
+        console.log("Error: data get request fail");
+      }
+    }
+  };
+
+  const getQna = async () => {
     try {
       await getData(`posts/${id}`).then((res) => setQna(res.data));
     } catch (err: any) {
@@ -78,7 +92,7 @@ function QnAComment() {
           // 댓글 전송 후 input 초기화
           setCommentValue("");
           setIsComment(true);
-          get();
+          getQna();
         } catch (err) {
           console.log(err);
         }
@@ -101,7 +115,7 @@ function QnAComment() {
         // 댓글 전송 후 input 초기화
         setEditComment("");
         setIsCommentEdit(true);
-        get();
+        getQna();
       } catch (err) {
         console.log(err);
       }
@@ -114,7 +128,7 @@ function QnAComment() {
   const onClickCommentDelete = async (commentId: string) => {
     try {
       await delData(`posts/${id}/comments/${commentId}`);
-      get();
+      getQna();
     } catch (err: any) {
       customToastify("error", err.message);
     }
@@ -124,7 +138,7 @@ function QnAComment() {
     setCommentEditValue(e.target.value);
   };
 
-  const onKeyPressEnter = (e: any , commentId: string) => {
+  const onKeyPressEnter = (e: any, commentId: string) => {
     // 엔터키가 눌렸을 때
     if (e.key === "Enter") {
       onClickCommentEdit(commentId);
@@ -132,7 +146,8 @@ function QnAComment() {
   };
 
   useEffect(() => {
-    get();
+    getUser();
+    getQna();
   }, []);
 
   return (
@@ -186,7 +201,7 @@ function QnAComment() {
             </>
           </div>
           {/* 현재 로그인한 사용자가 댓글의 작성자일 시 */}
-          {user._id === comment?.author.userId && (
+          {user?._id === comment?.author.userId && (
             <CommentRight>
               {editComment === comment?._id ? (
                 <>
