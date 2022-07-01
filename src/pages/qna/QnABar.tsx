@@ -82,9 +82,7 @@ function QnABar() {
       </BarInfo>
       <SearchContainer>
         <SearchSelect onChange={onChangeSelect}>
-          <option value="title" selected={true}>
-            제목
-          </option>
+          <option value="title">제목</option>
           <option value="content">내용</option>
           <option value="all">제목+내용</option>
         </SearchSelect>
