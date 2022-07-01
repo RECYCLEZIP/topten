@@ -14,7 +14,7 @@ describe("AI 분석 결과 템플릿", () => {
             "8": { confidence: 100 },
         });
         expect(result.section[1].score).toBe(90);
-        expect(result.throwAway).toHaveLength(4);
+        expect(result.throwAway).toHaveLength(5);
     });
 
     it("분석 RESPONSE의 type이 종이팩이면 종이팩 템플릿을 반환한다.", () => {
