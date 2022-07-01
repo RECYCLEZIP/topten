@@ -3,9 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import {
   UserQnaAllListState,
-  QnAPageState,
   QnALengthState,
-  QnANumPagesState,
   userState,
 } from "../../stores/atoms";
 
@@ -13,7 +11,7 @@ import { getData } from "../../api";
 
 import { useNavigate } from "react-router";
 
-import { QnAType } from "../../types/QnA";
+import { QnAType, QnAPageType } from "../../types/QnA";
 
 import {
   ListTable,
@@ -26,16 +24,18 @@ import {
   ListTitleWrapper,
 } from "../../styles/qnaStyles/QnAStyle";
 
-function UserAlluserQnaList() {
+interface Props {
+  qnaPage: number;
+  setQnaPage: React.Dispatch<React.SetStateAction<number>>;
+}
+
+function UserAlluserQnaList({ qnaPage, setQnaPage }: Props) {
   const navigate = useNavigate();
 
   const [user, setUser] = useRecoilState(userState);
 
   const [userQnaList, setUserQnaList] = useRecoilState(UserQnaAllListState);
-
   const [qnaTotal, setQnaTotal] = useRecoilState(QnALengthState);
-  const [qnaPage, setQnaPage] = useRecoilState(QnAPageState);
-
   const [qnaNumber, setQnaNumber] = useState(0);
 
   const [mQuery, setMQuery] = useState(window.innerWidth > 768 ? true : false);

@@ -12,6 +12,8 @@ import { Helmet } from "react-helmet-async";
 function UserAllQnA() {
   const [loading, setLoading] = useState(false);
 
+  const [qnaPage, setQnaPage] = useState(1);
+
   useEffect(() => {
     setTimeout(() => setLoading(true), 10);
   }, []);
@@ -26,8 +28,8 @@ function UserAllQnA() {
         <title>분리수ZIP - 나의 Q&A</title>
       </Helmet>
       <TitleText>나의 Q&A</TitleText>
-      <UserAllQnAList />
-      <QnAPagination />
+      <UserAllQnAList qnaPage={qnaPage} setQnaPage={setQnaPage} />
+      <QnAPagination qnaPage={qnaPage} setQnaPage={setQnaPage} />
     </Container>
   );
 }

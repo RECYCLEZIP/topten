@@ -9,16 +9,12 @@ import {
 
 import { Nav, Button } from "../../styles/qnaStyles/QnAPaginationStyle";
 
-interface Props {
-  qnaPage: number;
-  setQnaPage: React.Dispatch<React.SetStateAction<number>>;
-}
-
-function QnaPagination({ qnaPage, setQnaPage }: Props) {
+function UserQnAPagination({ qnaPage, setQnaPage }: any) {
   const [user, setUser] = useRecoilState(userState);
 
   // 게시글 수
   const qnaTotal = useRecoilValue(QnALengthState);
+  // const [qnaPage, setQnaPage] = useRecoilState(QnAPageState);
   const [numPages, setNumPages] = useRecoilState(QnANumPagesState);
 
   useEffect(() => {
@@ -62,4 +58,4 @@ function QnaPagination({ qnaPage, setQnaPage }: Props) {
   );
 }
 
-export default QnaPagination;
+export default UserQnAPagination;
