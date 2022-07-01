@@ -54,7 +54,7 @@ export const ImgContainer = styled.button<{
   @media (min-width: 768px) {
     width: 5rem;
   }
-  @media (min-width: 1700px) {
+  @media (min-width: 1720px) {
     display: ${(props) => props.display};
   }
 `;
