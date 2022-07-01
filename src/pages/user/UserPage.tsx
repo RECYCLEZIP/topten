@@ -71,16 +71,11 @@ function UserPage() {
       <Helmet>
         <title>분리수ZIP - 마이페이지</title>
       </Helmet>
-      {isEdit ? (
-        <UserEdit />
-      ) : (
-        <NameText>{user.username}님 안녕하세요!</NameText>
-      )}
-      {isEdit ? null : (
-        <EditText onClick={() => setIsEdit((prev) => !prev)}>
-          프로필 수정
-        </EditText>
-      )}
+      {isEdit && <UserEdit />}
+      <NameText>{user.username}님 안녕하세요!</NameText>
+      <EditText onClick={() => setIsEdit((prev) => !prev)}>
+        프로필 수정
+      </EditText>
       <EmailText>{user.email}</EmailText>
       <Button onClick={logout}>로그아웃</Button>
       <RedButton onClick={deleteUser}>회원탈퇴</RedButton>
