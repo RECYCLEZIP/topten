@@ -92,21 +92,15 @@ function AiResult() {
             </>
           </AiResultContentsSection>
           <div>
-            <ListContainer>
+            <div>
+              <AiContentTitle>버리는 법</AiContentTitle>
+            </div>
+            <AiResultDesContainer>
               <>
                 {result?.throwAway?.map((prop, idx) => (
                   <List key={idx}>{prop}</List>
                 ))}
               </>
-            </ListContainer>
-            <div>
-              <AiContentTitle>버리는 법</AiContentTitle>
-            </div>
-            <AiResultDesContainer>
-              {trashInfo &&
-                trashInfo[0]?.description?.throwAway?.map((prop, idx) => (
-                  <List key={idx}>{prop}</List>
-                ))}
             </AiResultDesContainer>
           </div>
           {(result?.title === "페트병" || result?.title === "캔") && (
