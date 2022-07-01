@@ -37,7 +37,6 @@ function Map() {
   const binSelected = useRecoilValue(BinSelectedState);
   const setSelectedMarker = useSetRecoilState(selectedMarkerState);
   const setBinSelected = useSetRecoilState(BinSelectedState);
-  const [loading, setLoading] = useState(false);
 
   const getBins = async () => {
     try {
@@ -49,16 +48,11 @@ function Map() {
     } catch (err: any) {
       console.log("error", err.message);
     }
-    setLoading(true);
   };
 
   useEffect(() => {
     getBins();
   }, [regionValue, roadsValue]);
-
-  if (!loading) {
-    return <></>;
-  }
 
   return (
     <>
