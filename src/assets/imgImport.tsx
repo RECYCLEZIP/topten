@@ -10,6 +10,8 @@ import like1 from "./img/image 48.png";
 import like2 from "./img/image 50.png";
 import like3 from "./img/image 54.png";
 import like4 from "./img/like4.jpeg";
+import like5 from "./img/like5.jpg";
+import like6 from "./img/like6.jpg";
 import hard1 from "./img/image 51.png";
 import hard2 from "./img/image 53.png";
 import hard3 from "./img/image 52.png";
@@ -45,6 +47,8 @@ export const img = {
   like2: like2,
   like3: like3,
   like4: like4,
+  like5: like5,
+  like6: like6,
   hard1: hard1,
   hard2: hard2,
   hard3: hard3,
