@@ -81,6 +81,9 @@ function MapContent({
       bounds.extend(new window.kakao.maps.LatLng(currentLat, currentLon));
     }
 
+    // 클릭 이미지
+    var selectedMarker: any = null;
+
     props.forEach((prop: any) => {
       // 마커 생성
       if (type === "bin") {
@@ -108,10 +111,29 @@ function MapContent({
 
       // 마커 click 이벤트
       window.kakao.maps.event.addListener(marker, "click", function () {
+        var clickMarker = new window.kakao.maps.MarkerImage(
+          img.orange_marker,
+          new window.kakao.maps.Size(50, 50),
+        );
+
+        if (!selectedMarker || selectedMarker !== marker) {
+          // 클릭된 마커 객체가 null이 아니면
+          // 클릭된 마커의 이미지를 기본 이미지로 변경하고
+          !!selectedMarker &&
+            selectedMarker.setImage(selectedMarker.normalImage);
+
+          // 현재 클릭된 마커의 이미지는 클릭 이미지로 변경합니다
+          marker.setImage(clickMarker);
+        }
+
+        // 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
+        selectedMarker = marker;
+
         setSelectedMarker({
           La: Math.round(marker.getPosition().La * 10000000000) / 10000000000,
           Ma: Math.round(marker.getPosition().Ma * 10000000000) / 10000000000,
         });
+
         if (type === "bin") {
           setPropsSelected([prop.x, prop.y]);
         } else {
