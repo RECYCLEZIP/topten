@@ -49,7 +49,7 @@ function cartonAiResult(aiTarget: any) {
         resultTemplate.throwAway.push("빨대는 제거하여 일반쓰레기에 버리기");
     }
 
-    if (resStraw) {
+    if (resHead) {
         resultTemplate.section[1].score = resHead.confidence;
         resultTemplate.throwAway.push("종이팩의 뚜껑은 플라스틱으로 분리하여 버리기");
     }
