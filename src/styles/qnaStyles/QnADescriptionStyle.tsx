@@ -141,3 +141,20 @@ export const SquareButton = styled(Button)`
 
   border-radius: 0.3rem;
 `;
+
+export const ModalGreenButton = styled(Button)`
+  margin-top: 0.5rem;
+  margin-bottom: 0rem;
+`;
+
+export const ModalGrayButton = styled(ModalGreenButton)`
+  margin-right: 1rem;
+
+  color: #424242;
+  background: #e1e1e1;
+
+  &:hover {
+    background-color: #d7d5d5;
+    transition: all 0.5s;
+  }
+`;
