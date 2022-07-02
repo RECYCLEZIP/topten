@@ -1,9 +1,8 @@
 ## 프로젝트 주제
 
 > ***객체분류 인공지능을 이용한 쓰레기 분류 서비스***
-> 
 
-배포 ➡️ [https://kdt-ai4-team10.elicecoding.com/](https://kdt-ai4-team10.elicecoding.com/)
+데모 링크 [https://kdt-ai4-team10.elicecoding.com/](https://kdt-ai4-team10.elicecoding.com/)
 
 ## 한 줄 소개
 
@@ -42,48 +41,45 @@
 
 ## 기술 문서
 
-[아키텍처](https://github.com/Handwoong/garbage-sorting-backend/wiki/Project-Architecture)
-
-[ERD](https://github.com/Handwoong/garbage-sorting-backend/wiki/ERD-Image)
-
-[와이어프레임](https://www.figma.com/file/AaGUvtqz6TPuonXHEAWhMN/TOPTEN?node-id=7%3A364)
-
+[아키텍처](https://github.com/Handwoong/garbage-sorting-backend/wiki/Project-Architecture)<br/>
+[ERD](https://github.com/Handwoong/garbage-sorting-backend/wiki/ERD-Image)<br/>
+[와이어프레임](https://www.figma.com/file/AaGUvtqz6TPuonXHEAWhMN/TOPTEN?node-id=7%3A364)<br/>
 [스토리보드](https://user-images.githubusercontent.com/97578390/176987314-28688c87-6105-462e-b9ac-a3561fb21eef.png)
 
 ## 서비스 시연
 
 - 쓰레기 AI 분석
-    
-    ![ai]([https://user-images.githubusercontent.com/97578390/176987267-7f5aa012-4756-4563-aaa0-cb0699b03a1f.gif](https://user-images.githubusercontent.com/97578390/176987267-7f5aa012-4756-4563-aaa0-cb0699b03a1f.gif))
+
+![ai](https://user-images.githubusercontent.com/97578390/176987267-7f5aa012-4756-4563-aaa0-cb0699b03a1f.gif)
     
 - 쓰레기 분류 미니게임
     
-    ![game]([https://user-images.githubusercontent.com/97578390/176987297-478e2eeb-f78e-4984-8617-1a4f44f09a19.gif](https://user-images.githubusercontent.com/97578390/176987297-478e2eeb-f78e-4984-8617-1a4f44f09a19.gif))
+![game](https://user-images.githubusercontent.com/97578390/176987297-478e2eeb-f78e-4984-8617-1a4f44f09a19.gif)
     
 - 퀴즈
     
-    ![quiz]([https://user-images.githubusercontent.com/97578390/176987300-5a26074c-0d8b-4d54-90ef-4945779a7153.gif](https://user-images.githubusercontent.com/97578390/176987300-5a26074c-0d8b-4d54-90ef-4945779a7153.gif))
+![quiz](https://user-images.githubusercontent.com/97578390/176987300-5a26074c-0d8b-4d54-90ef-4945779a7153.gif)
     
 
 ## 메인 기능 및 서브 기능
 
 - 메인 기능
-    1. 쓰레기 이미지(페트병, 종이 팩, 플라스틱, 캔, 종이류, 비닐류)를 AI로 객체 분류하여 올바른 가이드라인을 제시합니다.
-    2. 사용자의 현 위치 기준 반경 10km 이내에 있는 쓰레기 순환자원 회수 로봇을 지도로 안내합니다.
+    - 쓰레기 이미지(페트병, 종이 팩, 플라스틱, 캔, 종이류, 비닐류)를 AI로 객체 분류하여 올바른 가이드라인을 제시합니다.
+    - 사용자의 현 위치 기준 반경 10km 이내에 있는 쓰레기 순환자원 회수 로봇을 지도로 안내합니다.
 - 서브 기능
-    1. 올바른 쓰레기 배출 퀴즈 및 오답랭킹을 제공합니다.
-    2. 분리수거 게임을 제공합니다.
-    3. 지도 기반 쓰레기통 위치(서울시)를 제공합니다.
-    4. 환경 관련 실시간 뉴스 정보를 제공합니다.
-    5. 올바른 쓰레기 배출을 위한 분리배출 방법, 검색기능을 제공합니다.
-    6. 쓰레기 배출 관련 질의응답을 위한 게시판을 제공합니다.
+    - 올바른 쓰레기 배출 퀴즈 및 오답랭킹을 제공합니다.
+    - 분리수거 게임을 제공합니다.
+    - 지도 기반 쓰레기통 위치(서울시)를 제공합니다.
+    - 환경 관련 실시간 뉴스 정보를 제공합니다.
+    - 올바른 쓰레기 배출을 위한 분리배출 방법, 검색기능을 제공합니다.
+    - 쓰레기 배출 관련 질의응답을 위한 게시판을 제공합니다.
 
 ## 유사서비스 및 차이점
 
 - 서비스이름 : [쓰레기 백과사전](https://blisgo.com/)
 - 차이점 :
-    1. 쓰레기 백과사전서비스 같은 경우는 사용자가 직접 검색을 통해 쓰레기의 배출 방법을 습득하는 방식입니다. 이에 객체 분류 인공지능을 적용함으로써 사진 한 장으로 쉽고 빠르게 쓰레기의 배출 방법을 제시하고 추가로 많은 범위의 카테고리와 상세 분류 서비스(ex: 페트병의 경우 뚜껑, 라벨, 몸통 따로 인식하여 분류 가이드 제공)를 제공하여 현재 쓰레기의 상태에 따른 정확한 가이드를 제공합니다.
-    2. 미니게임, 쓰레기통 지도검색, 퀴즈 등 다양한 서비스를 제공하여 사용자에게 친숙한 분리수거 지식습득 방식을 제공합니다.
+    - 쓰레기 백과사전서비스 같은 경우는 사용자가 직접 검색을 통해 쓰레기의 배출 방법을 습득하는 방식입니다. 이에 객체 분류 인공지능을 적용함으로써 사진 한 장으로 쉽고 빠르게 쓰레기의 배출 방법을 제시하고 추가로 많은 범위의 카테고리와 상세 분류 서비스(ex: 페트병의 경우 뚜껑, 라벨, 몸통 따로 인식하여 분류 가이드 제공)를 제공하여 현재 쓰레기의 상태에 따른 정확한 가이드를 제공합니다.
+    - 미니게임, 쓰레기통 지도검색, 퀴즈 등 다양한 서비스를 제공하여 사용자에게 친숙한 분리수거 지식습득 방식을 제공합니다.
 
 ## 팀 구성원
 
