@@ -1,3 +1,4 @@
+![서비스로고-removebg-preview](/uploads/fbcee992cc70b12025eb8cad81d82b7e/서비스로고-removebg-preview.png)
 # 🗑️ 분리수ZIP
 
 ***객체분류 인공지능을 이용한 쓰레기 분류 서비스***
