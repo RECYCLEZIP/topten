@@ -1,0 +1,17 @@
+node_modules/
+env/
+seeds/
+coverage/
+__tests__/
+
+.git
+.cache
+.gitlab-ci.yml
+.gitignore
+.jest.config.ts
+
+.eslintignore
+.eslintrc.js
+.prettierrc
+
+*.md

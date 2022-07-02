@@ -1,0 +1,58 @@
+stages:
+    - build
+    - test
+    - deploy
+
+before_script:
+    - echo $JWT_PUBLIC_KEY
+    - echo $JWT_SECRET_KEY
+    - export NODE_OPTIONS=--max_old_space_size=4096
+
+build:
+    stage: build
+    script:
+        - df -h
+    tags:
+        - handwoong
+
+test:
+    stage: test
+    image: node:16-buster
+    coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+    script:
+        - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
+        - ". ~/.nvm/nvm.sh"
+        - nvm --version
+        - nvm install --lts
+        - npm install --global yarn
+        - yarn
+        - yarn test:ci
+    cache:
+        - paths:
+              - coverage/
+    artifacts:
+        paths:
+            - coverage/
+        when: always
+        reports:
+            junit:
+                - junit.xml
+            cobertura: coverage/cobertura-coverage.xml
+    tags:
+        - handwoong
+
+pages:
+    stage: deploy
+    dependencies:
+        - test
+    script:
+        - mkdir .public
+        - cp -r coverage/* .public
+        - mv .public public
+    artifacts:
+        paths:
+            - public
+    only:
+        - dev
+    tags:
+        - handwoong
