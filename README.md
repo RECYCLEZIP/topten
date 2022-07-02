@@ -1,3 +1,5 @@
+# ![분리수ZIP](https://user-images.githubusercontent.com/97578390/176987336-0b54e8c6-8c8e-425c-8e40-28a03a9ff9ae.png)
+
 ## 프로젝트 주제
 
 > ***객체분류 인공지능을 이용한 쓰레기 분류 서비스***
