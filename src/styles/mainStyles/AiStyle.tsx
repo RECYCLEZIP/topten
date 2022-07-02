@@ -2,18 +2,15 @@ import styled from "styled-components";
 
 export const AiContainer = styled.div`
   background-color: #69db7c;
-  padding: 5% 0;
+  padding: 1.3rem 0;
   text-align: center;
-  @media (min-width: 768px) {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-`;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
-export const AiDescription = styled.div`
   @media (min-width: 768px) {
-    margin-left: 1.5rem;
+    flex-direction: row;
   }
 `;
 

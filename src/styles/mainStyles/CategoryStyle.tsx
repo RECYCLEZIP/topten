@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CategoryContainer = styled.div`
-  margin: 3% 8%;
+  margin: 1rem 8% 0;
 `;
 
 export const CategoryTitle = styled.span`
@@ -30,28 +30,32 @@ export const CategoryText = styled.p<{ isSelected?: boolean }>`
 export const List = styled.div`
   height: 50%;
   margin-top: 2%;
-  display: grid;
-  justify-content: center;
+  display: flex;
+  justify-content: space-around;
   flex-wrap: wrap;
-  gap: 1rem;
-  grid-template-columns: repeat(3, 5rem);
-  @media (min-width: 896px) {
-    grid-template-columns: repeat(5, 5rem);
-  }
-  @media (min-width: 1300px) {
-    grid-template-columns: repeat(7, 5rem);
-  }
 `;
 
-export const ImgContainer = styled.button<{ isSelected: boolean }>`
+export const ImgContainer = styled.button<{
+  isSelected?: boolean;
+  visibility?: string;
+  display?: string;
+}>`
   all: unset;
+  margin: 0 0.4rem;
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
-  width: 80%;
+  width: 3rem;
   cursor: pointer;
+
   &:hover {
     text-decoration: ${(props) => (props.isSelected ? "none" : "underline")};
+  }
+
+  @media (min-width: 768px) {
+    width: 5rem;
+  }
+  @media (min-width: 1720px) {
+    display: ${(props) => props.display};
   }
 `;
 
@@ -68,6 +72,10 @@ export const IMGBox = styled.div`
 `;
 
 export const IMG = styled.img`
-  height: 4rem;
+  height: 3rem;
   padding: 1%;
+
+  @media (min-width: 768px) {
+    height: 5rem;
+  }
 `;

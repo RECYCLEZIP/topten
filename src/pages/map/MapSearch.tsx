@@ -1,8 +1,7 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { useRecoilValue, useResetRecoilState, useRecoilState } from "recoil";
+import { useResetRecoilState, useRecoilState } from "recoil";
 import {
-  BinState,
   SearchBinState,
   RegionValueState,
   RoadsValueState,
@@ -17,6 +16,11 @@ import {
   MapSearchTextWrapper,
   StyledInput,
 } from "../../styles/mapStyles/mapStyle";
+import { StyledInput } from "../../styles/mapStyles/MapMuiStyle";
+
+import { getData } from "../../api";
+
+import { customToastify } from "../../components/customToastify";
 
 // 검색어가 항목에 없을 시 문구 style
 const useStyles = makeStyles({
@@ -25,7 +29,7 @@ const useStyles = makeStyles({
   },
 });
 
-function MapSearch() {
+function MapSearch(this: any) {
   // 구
   const [regionValue, setRegionValue] = useRecoilState(RegionValueState);
   const [inputRegionValue, setRegionInputValue] = React.useState("");
@@ -36,18 +40,23 @@ function MapSearch() {
 
   const resetRoadsValue = useResetRecoilState(RoadsValueState);
 
-  const bins = useRecoilValue(BinState);
-
   // autoComplete 선택한 값(default 전체 리스트)
   const [searchBins, setSearchBins] = useRecoilState(SearchBinState);
 
-  const [roadsOptions, setRoadsOptions] = useState<any>([]);
+  const [regionOptions, setRegionOptions] = useState([]);
+  const [roadsOptions, setRoadsOptions] = useState<string[]>([]);
 
   const styles = useStyles();
 
   // 구 옵션
-  const regionOptions = useMemo(() => {
-    const array = bins.map((bin) => bin.region);
+  const getRegionOptions = async () => {
+    try {
+      const res = await getData(`bins/locations`);
+      setRegionOptions(res.data.uniqueRegionList);
+    } catch (err: any) {
+      customToastify("error", err.message);
+    }
+  };
 
     // 중복 제거
     return array.filter((v, i) => array.indexOf(v) === i);
@@ -71,9 +80,9 @@ function MapSearch() {
 
   return (
     <MapSearchSection>
-      <MapSearchTextWrapper>서울시</MapSearchTextWrapper>
       <AutocompleteContainer>
         <Autocomplete
+          blurOnSelect
           value={regionValue}
           onChange={(event: any, newValue: any) => {
             setRegionValue(newValue);
@@ -86,10 +95,16 @@ function MapSearch() {
           sx={{
             display: "inline-block",
             "& input": {
-              width: "4rem",
+              width: "3rem",
               height: "0.5rem",
               fontSize: "0.46rem",
               lineHeight: "initial",
+            },
+
+            "@media (min-width: 768px)": {
+              "& input": {
+                width: "4rem",
+              },
             },
           }}
           renderInput={(params) => (
@@ -123,8 +138,8 @@ function MapSearch() {
       <AutocompleteContainer>
         <div>
           <Autocomplete
+            blurOnSelect
             value={roadsValue}
-            // onChange={(event: any, newValue: string | null) => {
             onChange={(event: any, newValue: any) => {
               setRoadsValue(newValue);
             }}
@@ -136,10 +151,15 @@ function MapSearch() {
             sx={{
               display: "inline-block",
               "& input": {
-                width: "4rem",
+                width: "3rem",
                 height: "0.5rem",
                 fontSize: "0.46rem",
                 lineHeight: "initial",
+              },
+              "@media (min-width: 768px)": {
+                "& input": {
+                  width: "4rem",
+                },
               },
             }}
             renderInput={(params) => (

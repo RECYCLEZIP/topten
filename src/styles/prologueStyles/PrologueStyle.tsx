@@ -55,6 +55,12 @@ export const PrologueSection = styled.div`
   display: flow-root;
 `;
 
+export const AskSection = styled(PrologueSection)`
+  margin: 13% 8%;
+  margin-right: 0;
+  display: flex;
+`;
+
 export const PrologueTitle = styled.span<{ delay?: string }>`
   font-size: 1.5rem;
 
@@ -172,6 +178,11 @@ export const PrologueAskTitleContainer = styled.div`
   margin-bottom: 5%;
 `;
 
+export const AskTopContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const AskTitleWrapper = styled.div<{ delay?: string }>`
   &.fade-in {
     ${fadeInBubbleCss}
@@ -179,18 +190,35 @@ export const AskTitleWrapper = styled.div<{ delay?: string }>`
   }
 `;
 
-export const PrologueAskImgWrapper = styled.div`
-  position: relative;
-  width: 15rem;
+export const AskHandWrapper = styled.div`
+  margin-left: auto;
+
+  &.fade-in {
+    ${fadeInCss}
+    animation-delay: 0.7s;
+  }
+`;
+
+export const AskHandImg = styled.img`
   width: 100%;
 
-  @media screen and (min-width: 768px) {
-    max-width: 60%;
+  @media screen and (max-width: 768px) {
+    display: none;
   }
 
   &.fade-in {
     ${fadeInCss}
     animation-delay: 0.7s;
+  }
+`;
+
+export const PrologueAskImgWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  text-align: right;
+
+  @media screen and (min-width: 768px) {
+    max-width: 60%;
   }
 `;
 
@@ -203,6 +231,11 @@ export const PrologueAskImg = styled(PrologueImg)`
   height: auto;
   object-fit: cover;
   margin: auto;
+
+  &.fade-in {
+    ${fadeInCss}
+    animation-delay: 0.9s;
+  }
 `;
 
 // 섹션 3 - AI가 알려주는 분리수거 3 STEP
@@ -226,7 +259,12 @@ export const PrologueStepsContainer = styled.div`
   background: #ffffff;
   box-shadow: 0px 0px 30px rgb(0 0 0 / 10%);
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) and (max-width: 1060px) {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media screen and (min-width: 1060px) {
     display: inline-block;
   }
 
@@ -300,12 +338,13 @@ export const PrologueBinMapSection = styled(PrologueSection)`
   background: #69db7c;
 
   margin: 10% 0;
-  padding: 5%;
+  padding: 8%;
 
   display: block;
 
   @media screen and (min-width: 768px) {
     display: flex;
+    padding: 5%;
   }
 `;
 
@@ -439,10 +478,14 @@ export const QuizImgContainer = styled.div<{ delay?: string }>`
 `;
 
 export const QuizImgWrapper = styled(PrologueQuiz)`
-  width: 50%;
+  width: 100%;
 
   display: flex;
   padding: 0;
+
+  @media screen and (min-width: 768px) {
+    width: 50%;
+  }
 `;
 
 export const Quiz1ImgWrapper = styled(QuizImgWrapper)`
@@ -453,8 +496,10 @@ export const Quiz1ImgWrapper = styled(QuizImgWrapper)`
 export const Quiz2ImgWrapper = styled(QuizImgWrapper)`
   float: left;
 
-  margin-left: 5rem;
-  margin-bottom: 0.5rem;
+  @media screen and (min-width: 768px) {
+    margin-left: 5rem;
+    margin-bottom: 0.5rem;
+  }
 `;
 
 export const Quiz1Img = styled.img`
@@ -500,6 +545,8 @@ export const PrologueEndTitleContainer = styled.div`
   margin-bottom: 2rem;
 
   color: white;
+
+  padding: 0 8%;
 `;
 
 export const StartButton = styled(Button)`

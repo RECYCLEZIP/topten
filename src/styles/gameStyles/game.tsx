@@ -11,7 +11,9 @@ export const GameContainer = styled.div<{ Img: string }>`
   background-size: 100% 100%;
 
   @media (min-width: 768px) {
-    width: 60vw;
+    width: 70vw;
+    margin-top: 3.7rem;
+    padding-top: 0.3rem;
   }
 `;
 
@@ -19,14 +21,14 @@ export const RankContainer = styled.div`
   width: unset;
   display: flex;
   justify-content: center;
-  margin: 0 2rem;
+  margin: 0 1.5rem;
   padding: 3rem 0;
   flex-wrap: wrap;
   background-color: white;
 `;
 
 export const DragTrashContainer = styled.div`
-  height: 65vh;
+  height: 40vh;
   position: relative;
 
   @media (min-width: 768px) {
@@ -57,14 +59,14 @@ export const TrashCard = styled.div<{
 `;
 
 export const BinCard = styled.div<{ image: string }>`
-  width: 3.4rem;
-  height: 5rem;
+  width: 2.5rem;
+  height: 4rem;
   background-image: url(${(props) => props.image});
   background-size: cover;
 `;
 
 export const BinList = styled.div`
-  height: 5rem;
+  height: 4rem;
 `;
 
 export const GameButton = styled(Button)`
@@ -117,7 +119,7 @@ export const RankTitleText = styled.p`
 export const Top3Rank = styled.div<{ color?: string; index: number }>`
   opacity: 0;
   margin-top: 0.7rem;
-  padding: 0.2rem 0.7rem;
+  padding: 0.7rem 1rem;
   width: 100%;
   background-color: ${(props) => (props.color ? props.color : "#65c8ff")};
   box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
@@ -143,18 +145,23 @@ export const Top3Rank = styled.div<{ color?: string; index: number }>`
   }
 `;
 
-export const RankNameText = styled.p`
-  font-size: 0.8rem;
-  text-align: left;
-  width: 75%;
+export const Ranker = styled.div`
+  display: flex;
+  align-items: center;
+  width: 70%;
 `;
 
-export const ScoreText = styled.p`
+export const RankNameText = styled.span`
+  font-size: 0.8rem;
+  text-align: left;
+`;
+
+export const ScoreText = styled.span`
   text-align: right;
   font-size: 0.8rem;
 `;
 
-export const NumberText = styled.p<{ font?: string }>`
+export const NumberText = styled.span<{ font?: string }>`
   text-align: center;
   font-size: ${(props) => (props.font ? props.font : "0.8rem")};
   margin-right: 0.3rem;
@@ -164,20 +171,46 @@ export const NumberText = styled.p<{ font?: string }>`
 export const GameBar = styled.div`
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: space-around;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 export const GameLevel = styled.span`
   color: white;
+  font-size: 0.8rem;
+
+  @media (min-width: 768px) {
+    margin-right: 0.3rem;
+    width: 4rem;
+  }
 `;
 
-export const GameBox = styled.div`
+export const GameBox = styled.div<{ width?: string }>`
   display: flex;
   justify-content: space-between;
   padding: 0.2rem 0.4rem;
   color: white;
+  font-size: 0.8rem;
   background: rgba(255, 255, 255, 0.16);
   border: 2px solid white;
   border-radius: 0.5rem;
-  width: 30%;
+  width: ${(props) => (props.width ? props.width : "40%")};
+`;
+
+export const GameDescription = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 0.3rem;
+  width: 100%;
+`;
+
+export const BgmIcon = styled.img`
+  margin-left: 0.2rem;
+  height: 1rem;
+  cursor: pointer;
 `;

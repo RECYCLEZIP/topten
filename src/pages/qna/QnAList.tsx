@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
 
-import { useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import {
   QnAListState,
-  QnASearchState,
-  QnASearchValueState,
-  QnAPageState,
   QnALengthState,
 } from "../../stores/atoms";
 
-import { QnAType } from "../../types/QnA";
-
 import { useNavigate } from "react-router";
+
+import { QnAType, QnAPageType } from "../../types/QnA";
 
 import {
   ListTable,
@@ -22,78 +19,83 @@ import {
   ListTitle,
   ListAuthor,
   ListDate,
+  ListTitleWrapper,
+  ListAuthorWrapper,
 } from "../../styles/qnaStyles/QnAStyle";
 
 import { BlackHr } from "../../styles/qnaStyles/QnADescriptionStyle";
 
-function QnAList() {
+function QnAList({ qnaPage }: QnAPageType) {
   const navigate = useNavigate();
 
-  const qnaAllList = useRecoilValue(QnAListState);
-  const [qnaList, setQnaList] = useState<QnAType | any>();
-  const qnaSearchList = useRecoilValue(QnASearchState);
-  const searchValue = useRecoilValue<string>(QnASearchValueState);
+  const qnaList = useRecoilValue(QnAListState);
 
-  const [qnaTotal, setQnaTotal] = useRecoilState(QnALengthState);
-  const [qnaPage, setQnaPage] = useRecoilState(QnAPageState);
+  const qnaTotal = useRecoilValue(QnALengthState);
 
-  const offset = (qnaPage - 1) * 5;
+  const [qnaNumber, setQnaNumber] = useState(0);
+
+  const [mQuery, setMQuery] = useState(window.innerWidth > 768 ? true : false);
 
   const date = (prop: string) => {
-    return prop.split("T")[0].split("-").join(".");
+    return prop.split("T")[0].split("-").join(".").substr(2);
+  };
+
+  const screenChange = (event: MediaQueryListEvent) => {
+    const matches = event.matches;
+    setMQuery(matches);
   };
 
   useEffect(() => {
-    // 검색 전 전체 리스트 세팅
-    setQnaList([...qnaAllList]);
-  }, [qnaAllList]);
+    const media = window.matchMedia("screen and (min-width: 768px)");
+    media.addEventListener("change", screenChange);
+
+    return () => media.removeEventListener("change", screenChange);
+  }, []);
 
   useEffect(() => {
-    const len = (qnaList?.length);
-    console.log(len)
-    setQnaTotal(len);
+    setQnaNumber((qnaPage - 1) * 10);
   }, [qnaList]);
-
-  useEffect(() => {
-    if (searchValue !== "") {
-      // 검색어 있을 시
-      if (qnaSearchList.length !== 0) {
-        // 검색 결과 있을 시
-        setQnaList(qnaSearchList);
-      } else {
-        // 검색 결과 없을 시
-        setQnaList([]);
-      }
-    } else {
-      // 검색어 없을 시
-      setQnaList(qnaAllList);
-    }
-  }, [qnaSearchList]);
 
   return (
     <>
       <BlackHr />
       <ListTable>
         <ListTbody>
-          {qnaAllList.slice(offset, offset + 5).map((qna: any, idx: any) => (
+          {qnaList?.length === 0 ? (
+            <tr>
+              <NothingTd>조회된 게시물이 없습니다.</NothingTd>
+            </tr>
+          ) : (
             <>
-              {qnaList?.length === 0 ? (
-                <tr>
-                  <NothingTd>조회된 게시물이 없습니다.</NothingTd>
-                </tr>
-              ) : (
-                <ListTr>
-                  {/* 게시글 번호 내림차순으로 */}
-                  <ListNumber>{qnaAllList.length - idx}</ListNumber>
-                  <ListTitle onClick={() => navigate(`/qna/${qna._id}`)}>
-                    {qna?.title}
-                  </ListTitle>
-                  <ListAuthor>{qna?.author?.username}</ListAuthor>
-                  <ListDate>{date(qna?.createdAt)}</ListDate>
+              {qnaList?.map((qna: QnAType, idx: number) => (
+                <ListTr key={idx}>
+                  <>
+                    {mQuery && (
+                      <ListNumber>{qnaTotal - idx - qnaNumber}</ListNumber>
+                    )}
+                    <ListTitle
+                      key={`title-${idx}`}
+                      onClick={() => navigate(`/qna/${qna._id}`)}
+                    >
+                      <ListTitleWrapper>{qna?.title}</ListTitleWrapper>
+                    </ListTitle>
+                    <>
+                      {mQuery && (
+                        <ListAuthor key={`author-${idx}`}>
+                          <ListAuthorWrapper>
+                            {qna?.author?.username}
+                          </ListAuthorWrapper>
+                        </ListAuthor>
+                      )}
+                    </>
+                    <ListDate key={`date-${idx}`}>
+                      {date(qna?.createdAt)}
+                    </ListDate>
+                  </>
                 </ListTr>
-              )}
+              ))}
             </>
-          ))}
+          )}
         </ListTbody>
       </ListTable>
       <BlackHr />

@@ -14,6 +14,7 @@ import {
 } from "../../styles/trash/search";
 import { Search as SearchIcon } from "@mui/icons-material";
 import { img } from "../../assets/imgImport";
+import { customToastify } from "../../components/customToastify";
 
 function Search() {
   const [search, setSearch] = useState("");
@@ -23,8 +24,12 @@ function Search() {
   const navigate = useNavigate();
 
   const getTrash = async () => {
-    const res = await getData(`trash?search=${search}`);
-    setTrashList(res.data);
+    try {
+      const res = await getData(`trash?search=${search}`);
+      setTrashList(res.data);
+    } catch (err: any) {
+      customToastify("error", err.message);
+    }
   };
 
   const onChangeSearch = (e: {
@@ -78,8 +83,8 @@ function Search() {
           onChange={onChangeSearch}
           placeholder="쓰레기 검색"
         />
-        {search !== "" &&
-          (isInputValue ? (
+        {search !== "" ? (
+          isInputValue ? (
             <ResetIcon
               src={img.x}
               alt="icon"
@@ -89,7 +94,10 @@ function Search() {
             ></ResetIcon>
           ) : (
             <ResetIcon src={img.loading} alt="icon"></ResetIcon>
-          ))}
+          )
+        ) : (
+          <ResetIcon visibility="hidden" />
+        )}
         <SearchButton type="submit">
           <SearchIcon style={{ fontSize: "1rem" }}></SearchIcon>
         </SearchButton>

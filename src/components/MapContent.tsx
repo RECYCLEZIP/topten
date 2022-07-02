@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { img } from "../assets/imgImport";
+
+import { BinTypes } from "../stores/atoms";
 
 import {
   MapContentContainer,
@@ -23,13 +25,6 @@ function MapContent({
   currentLon,
   currentLat,
 }: any) {
-  // const props = useRecoilValue(BinState);
-  // const propsSelected = useRecoilValue(BinSelectedState);
-  // const setSelectedMarker = useSetRecoilState(selectedMarkerState);
-  // const setPropsSelected = useSetRecoilState(BinSelectedState);
-
-  // console.log(type, props, propsSelected, setSelectedMarker, setPropsSelected);
-
   // 현위치 마커
   var imageSrc = img.current_marker, // 마커이미지의 주소입니다
     imageSize = new window.kakao.maps.Size(25, 25), // 마커이미지의 크기입니다
@@ -43,6 +38,8 @@ function MapContent({
     ),
     markerPosition = new window.kakao.maps.LatLng(currentLat, currentLon); // 마커가 표시될 위치입니다
 
+  const [testMarkers, setTestMarkers] = useState<any[]>();
+
   useEffect(() => {
     // 렌더링 후 지도 띄우기
     mapLoad();
@@ -51,9 +48,8 @@ function MapContent({
   useEffect(() => {
     // 리스트에서 항목 선택 시 해당 항목으로 지도 이동
     panTo();
+    makeOrangeMaker();
   }, [propsSelected]);
-
-  // var bounds = new window.kakao.maps.LatLngBounds();
 
   // 지도 띄우기 - 다중 마커
   const mapLoad = () => {
@@ -90,7 +86,12 @@ function MapContent({
       bounds.extend(new window.kakao.maps.LatLng(currentLat, currentLon));
     }
 
-    props.forEach((prop: any) => {
+    const markers: any[] = [];
+
+    // 클릭 이미지
+    var selectedMarker: any = null;
+
+    props.forEach((prop: BinTypes | any) => {
       // 마커 생성
       if (type === "bin") {
         var marker = new window.kakao.maps.Marker({
@@ -115,12 +116,34 @@ function MapContent({
         });
       }
 
+      markers.push(marker);
+
       // 마커 click 이벤트
       window.kakao.maps.event.addListener(marker, "click", function () {
+        // 오렌지 마커로 변경
+        var clickMarker = new window.kakao.maps.MarkerImage(
+          img.orange_marker,
+          new window.kakao.maps.Size(50, 50),
+        );
+
+        if (!selectedMarker || selectedMarker !== marker) {
+          // 클릭된 마커 객체가 null이 아니면
+          // 클릭된 마커의 이미지를 기본 이미지로 변경하고
+          !!selectedMarker &&
+            selectedMarker.setImage(selectedMarker.normalImage);
+
+          // 현재 클릭된 마커의 이미지는 클릭 이미지로 변경합니다
+          marker.setImage(clickMarker);
+        }
+
+        // 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
+        selectedMarker = marker;
+
         setSelectedMarker({
           La: Math.round(marker.getPosition().La * 10000000000) / 10000000000,
           Ma: Math.round(marker.getPosition().Ma * 10000000000) / 10000000000,
         });
+
         if (type === "bin") {
           setPropsSelected([prop.x, prop.y]);
         } else {
@@ -144,12 +167,36 @@ function MapContent({
       }
       window.map.setBounds(bounds);
     });
+
+    setTestMarkers(markers);
   };
 
-  // 지도 이동
+  const makeOrangeMaker = () => {
+    var clickMarker = new window.kakao.maps.MarkerImage(
+      img.orange_marker,
+      new window.kakao.maps.Size(50, 50),
+    );
+
+    testMarkers?.forEach((marker) => {
+      marker.setImage(marker.normalImage);
+    });
+
+    const index = props.findIndex((prop: BinTypes) => {
+      return prop.x === propsSelected[0] && prop.y === propsSelected[1];
+    });
+
+    // 인덱스가 있는지 판별
+    if (index > -1) {
+      const marker = testMarkers?.[index];
+
+      if (marker) {
+        marker.setImage(clickMarker);
+      }
+    }
+  };
+
   const panTo = () => {
     // 이동할 위도 경도 위치 생성
-    // console.log(propsSelected)
     var moveLatLon = new window.kakao.maps.LatLng(
       propsSelected[1],
       propsSelected[0],

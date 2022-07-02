@@ -5,9 +5,9 @@ import { autocompleteClasses } from "@mui/material/Autocomplete";
 import { Button } from "../ButtonStyles";
 import { Container } from "../basicStyle";
 
-export const MapContainer = styled2(Container)`
-padding-top: 0;
-margin-top: 2.6rem;
+export const MapContainer = styled(Container)`
+  padding-top: 0;
+  margin-top: 2.3rem;
 `;
 
 export const MapTop = styled2.div`
@@ -17,7 +17,11 @@ width: 100%;
 height: fit-content;
 position: fixed;
 
-padding-top: 2rem;
+  padding-top: 1rem;
+
+  @media (min-width: 768px) {
+    padding-top: 2rem;
+  }
 `;
 
 export const MapTitle = styled2.span`
@@ -26,11 +30,9 @@ export const MapTitle = styled2.span`
 export const MapSearchSection = styled2.section`
   margin: 1rem 0;
   display: flex;
-  
   align-items: center;
-  // position: fixed;
-  
-  `;
+  flex-wrap: wrap;
+`;
 
 export const AutocompleteContainer = styled2.div`
   display: flex;
@@ -58,27 +60,36 @@ export const MapBinSection = styled2.section`
     }
 `;
 
-export const MapBinMapContainer = styled2.div`
-width: 85%;
-height: 30vh;
-height: 15rem;
+export const MapContentContainer = styled.div<{ type: any }>`
+  ${(props) =>
+    props?.type === "bin"
+      ? css`
+          width: 85%;
+          height: 11rem;
 
+          margin-top: 6rem;
+          padding-bottom: 1.5rem;
+          position: fixed;
 
-margin-top: 8rem;
-padding-bottom: 1.5rem;
-position: fixed;
+          background: white;
 
-background: white;
+          z-index: 1;
 
-z-index: 1;
-  
+          @media (min-width: 768px) {
+            width: 40%;
+            height: 50%;
+            margin-top: 7rem;
+          }
+        `
+      : css`
+          width: 85%;
+          height: 10rem;
 
-  @media (min-width: 768px) {
-    width: 40%;
-    height: 50%;
-    margin-top: 7.3rem;
-    }
-  `;
+          @media (min-width: 768px) {
+            width: 40%;
+          }
+        `}
+`;
 
 export const MapBinMapWrapper = styled2.div`
   height: 100%;
@@ -93,7 +104,7 @@ export const MapBinListContainer = styled2.div`
   display: block;
   position: absolute;
 
-  margin-top: 24.5rem;
+  margin-top: 19rem;
 
   flex: 1;
 

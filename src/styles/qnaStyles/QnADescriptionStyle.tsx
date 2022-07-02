@@ -25,7 +25,11 @@ export const ButtonWrapper = styled.div`
   float: right;
   text-align-last: right;
 
-  padding-right: 1rem;
+  margin-right: 0;
+
+  @media screen and (min-width: 768px) {
+    padding-right: 1rem;
+  }
 `;
 
 export const GrayButton = styled.button`
@@ -50,16 +54,32 @@ export const RedButton = styled(GrayButton)`
   background: #a62121;
 
   color: white;
+
+  @media screen and (max-width: 768px) {
+    margin-right: 0;
+  }
 `;
 
 export const TitleContainer = styled.div`
-  padding: 0.5rem 1.5rem;
-  display: flex;
+  padding: 0.5rem;
+
+  display: block;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    padding: 0.5rem 1.5rem;
+  }
 `;
 
 export const Title = styled.div`
   /* background: red; */
   font-size: 0.6rem;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    padding: 0.5rem 1.5rem;
+    padding-left: 0;
+  }
 `;
 
 export const SectionTitle = styled.div`
@@ -68,38 +88,57 @@ export const SectionTitle = styled.div`
 
 export const RightContainer = styled.div`
   /* float: right; */
+
   flex-grow: 1;
+  display: inline-grid;
 
   align-self: center;
 
   color: #979797;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+    margin-left: 1rem;
+  }
 `;
 
 export const Author = styled.div`
   /* background: yellow; */
-  margin-right: 1.5rem;
 
   font-size: 0.53rem;
   font-weight: 500;
   /* flex-grow: 1; */
-  float: right;
-  /* text-align: right; */
+
+  @media screen and (min-width: 768px) {
+    margin-left: 1.5rem;
+    float: right;
+    text-align: right;
+  }
 `;
 
 export const Date = styled.div`
   /* background: green; */
+
+  margin-right: 1rem;
+
   font-size: 0.53rem;
   font-weight: 500;
 
-  /* flex-grow: 1; */
-  float: right;
-  /* text-align: right; */
+  @media screen and (min-width: 768px) {
+    margin-left: 1.5rem;
+    margin-right: 0rem;
+    float: right;
+  }
 `;
 
 export const ContentContainer = styled.div`
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem;
   font-size: 0.6rem;
   /* color: #979797; */
+
+  @media screen and (min-width: 768px) {
+    padding: 0.5rem 1.5rem;
+  }
 `;
 
 export const SquareButton = styled(Button)`
@@ -109,4 +148,21 @@ export const SquareButton = styled(Button)`
   margin-top: 0.5rem;
 
   border-radius: 0.3rem;
+`;
+
+export const ModalGreenButton = styled(Button)`
+  margin-top: 0.5rem;
+  margin-bottom: 0rem;
+`;
+
+export const ModalGrayButton = styled(ModalGreenButton)`
+  margin-right: 1rem;
+
+  color: #424242;
+  background: #e1e1e1;
+
+  &:hover {
+    background-color: #d7d5d5;
+    transition: all 0.5s;
+  }
 `;

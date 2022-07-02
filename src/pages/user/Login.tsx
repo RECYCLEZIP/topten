@@ -1,21 +1,29 @@
 import { useState } from "react";
-import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router";
-import { toast } from "react-toastify";
 import { useSetRecoilState } from "recoil";
 import { postData } from "../../api";
 import { loginState, userState } from "../../stores/atoms";
-import { Button } from "../../styles/ButtonStyles";
 import { TitleText } from "../../styles/TextStyle";
 import {
   LoginInput,
   RightContainer,
   RegisterButton,
+  LoginButton,
 } from "../../styles/userStyles/users";
+import { customToastify } from "../../components/customToastify";
+import { Helmet } from "react-helmet-async";
+
+const validateEmail = (email: string) => {
+  const emailRule =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return emailRule.test(email);
+};
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const isEmailValid = validateEmail(email);
+  const finish = isEmailValid && password.length >= 8;
   const setIsLogin = useSetRecoilState(loginState);
   const setUserState = useSetRecoilState(userState);
   const navigate = useNavigate();
@@ -29,26 +37,14 @@ function Login() {
       sessionStorage.setItem("token", res.data.token);
       navigate("/");
     } catch {
-      notCorrect();
-      console.log("Error: data post request fail");
+      customToastify("error", "아이디와 비밀번호를 확인해주세요.");
     }
   };
-
-  const notCorrect = () =>
-    toast.error("로그인 실패!", {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-    });
 
   return (
     <RightContainer onSubmit={loginUser}>
       <Helmet>
-        <title>로그인 - 분리수ZIP</title>
+        <title>분리수ZIP - 로그인</title>
       </Helmet>
       <TitleText>로그인</TitleText>
       <LoginInput
@@ -62,7 +58,9 @@ function Login() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       ></LoginInput>
-      <Button onClick={loginUser}>로그인</Button>
+      <LoginButton onClick={loginUser} disabled={!finish}>
+        로그인
+      </LoginButton>
       <RegisterButton onClick={() => navigate("/users/register")}>
         회원가입
       </RegisterButton>

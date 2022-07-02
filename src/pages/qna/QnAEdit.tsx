@@ -11,6 +11,8 @@ import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 
 import "@toast-ui/editor/dist/i18n/ko-kr";
 
+import { toast } from "react-toastify";
+
 import { Container } from "../../styles/basicStyle";
 import { TitleText } from "../../styles/TextStyle";
 import {
@@ -21,6 +23,8 @@ import {
   PostButton,
   PostCancleButton,
 } from "../../styles/qnaStyles/QnAPostStyle";
+import { customToastify } from "../../components/customToastify";
+import Loading from "../../components/Loading";
 
 function QnAEdit() {
   const navigate = useNavigate();
@@ -33,13 +37,15 @@ function QnAEdit() {
   const [qna, setQna] = useState<QnAType>();
   const [titleValue, setTitleValue] = useState<string | undefined>("");
   const [contentValue, setContentValue] = useState<string | undefined>("");
+  const [loading, setLoading] = useState(false);
 
   const get = async () => {
     try {
       await getData(`posts/${id}`).then((res) => setQna(res.data));
-    } catch (err) {
-      console.log(err);
+    } catch (err: any) {
+      customToastify("error", err.message);
     }
+    setLoading(true);
   };
 
   const setValues = () => {
@@ -51,17 +57,29 @@ function QnAEdit() {
     setTitleValue(e.target.value);
   };
 
+  const onChangeContent = () => {
+    setContentValue(editorRef.current.getInstance().getMarkdown());
+  };
+
   const onClickSubmit = async () => {
     const data = editorRef.current.getInstance().getMarkdown();
 
-    try {
-      await putData(`posts/${id}`, { title: titleValue, content: data }).then(
-        (res) => console.log(res),
-      );
+    if (titleValue && contentValue) {
+      try {
+        await putData(`posts/${id}`, { title: titleValue, content: data }).then(
+          (res) => console.log(res),
+        );
 
-      navigate(`/qna/${id}`);
-    } catch (err) {
-      console.log(err);
+        navigate(`/qna/${id}`);
+      } catch (err: any) {
+        customToastify("error", err.message);
+      }
+    } else {
+      if (!titleValue) {
+        toast.warn("제목을 입력해주세요");
+      } else {
+        toast.warn("내용을 입력해주세요");
+      }
     }
   };
 
@@ -72,6 +90,10 @@ function QnAEdit() {
   useEffect(() => {
     setValues();
   }, [qna]);
+
+  if (!loading) {
+    return <Loading />;
+  }
 
   return (
     <Container>
@@ -84,9 +106,9 @@ function QnAEdit() {
           onChange={onTitleChange}
         ></TitleInput>
       </TitleInputContainer>
-      {contentValue && (
+      {qna && (
         <Editor
-          initialValue={contentValue}
+          initialValue={qna?.content}
           ref={editorRef}
           previewStyle="vertical"
           height="600px"
@@ -94,6 +116,7 @@ function QnAEdit() {
           useCommandShortcut={true}
           plugins={[colorSyntax]} // colorSyntax 플러그인 적용
           language="ko-KR"
+          onChange={onChangeContent}
         />
       )}
       <PostButtonContainer>

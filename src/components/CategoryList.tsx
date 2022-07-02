@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { getData } from "../api";
 import {
   categoryKindState,
@@ -17,7 +17,13 @@ import {
   CategoryText,
 } from "../styles/mainStyles/CategoryStyle";
 
-function CategoryList({ backColor }: { backColor?: string }) {
+function CategoryList({
+  backColor,
+  padding,
+}: {
+  backColor?: string;
+  padding?: string;
+}) {
   const navigate = useNavigate();
   const [category, setCategory] = useRecoilState(categoryState);
   const setKind = useSetRecoilState(categoryKindState);
@@ -44,14 +50,14 @@ function CategoryList({ backColor }: { backColor?: string }) {
     const newArr = Array(category.length).fill(false);
     newArr[index] = true;
     setIsSelected(newArr);
-    setPage("");
     setKind(category[index].name);
+    setPage("");
 
-    navigate(`/category/${category[index].name}`);
+    navigate("/category");
   };
 
   return (
-    <CategoryContainer backColor={backColor}>
+    <CategoryContainer backColor={backColor} padding={padding}>
       <List>
         {category.map((list, index) => (
           <ImgContainer
@@ -72,6 +78,12 @@ function CategoryList({ backColor }: { backColor?: string }) {
             )}
           </ImgContainer>
         ))}
+        <ImgContainer visibility="hidden" display="none" />
+        <ImgContainer visibility="hidden" display="none" />
+        <ImgContainer visibility="hidden" display="none" />
+        <ImgContainer visibility="hidden" display="none" />
+        <ImgContainer visibility="hidden" display="none" />
+        <ImgContainer visibility="hidden" display="none" />
       </List>
     </CategoryContainer>
   );

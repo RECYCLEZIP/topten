@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { ToastContainer } from "react-toastify";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { getData } from "../../api";
 import {
@@ -16,7 +15,8 @@ import MultiQuiz from "./MultiQuiz";
 import OXQuiz from "./OXQuiz";
 import QuestionCard from "./QuestionCard";
 import VSQuiz from "./VSQuiz";
-import "react-toastify/dist/ReactToastify.css";
+import { customToastify } from "../../components/customToastify";
+import Loading from "../../components/Loading";
 
 function Quiz() {
   const [loading, setLoading] = useState(false);
@@ -34,7 +34,7 @@ function Quiz() {
       setCurrentQuiz([res.data[currentPage]]);
       setToPostAnswer([]);
     } catch {
-      console.log("Error: data get request fail");
+      customToastify("error", "퀴즈 데이터를 불러오는데 실패했습니다.");
     }
     setLoading(true);
   };
@@ -44,12 +44,11 @@ function Quiz() {
   }, []);
 
   if (!loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
     <QuizContainer>
-      <ToastContainer style={{ fontSize: "0.7rem" }} />
       <QuestionCard />
       {toPostAnswer[currentPage] && openResult ? (
         <div>이미 푼 문제입니다.</div>

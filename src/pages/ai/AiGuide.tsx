@@ -22,26 +22,34 @@ function AiGuide() {
         <AiGuidesContainer>
           <AiGuideContainer>
             <AiGuideImgWrapper>
-              <AiGuideImg src={img.like1} />
+              <AiGuideImg src={img.like5} />
             </AiGuideImgWrapper>
             <div>
-              <AiGuideTitle>화질이 선명한 사진</AiGuideTitle>
+              <AiGuideTitle>화질이 좋고 객체 구분이 명확한 사진</AiGuideTitle>
             </div>
           </AiGuideContainer>
           <AiGuideContainer>
             <AiGuideImgWrapper>
-              <AiGuideImg src={img.like2} />
+              <AiGuideImg src={img.like4} />
             </AiGuideImgWrapper>
             <div>
-              <AiGuideTitle>객체가 명확히 구분되는 사진</AiGuideTitle>
+              <AiGuideTitle>물체를 세워서 정면으로 찍은 사진</AiGuideTitle>
             </div>
           </AiGuideContainer>
           <AiGuideContainer>
             <AiGuideImgWrapper>
-              <AiGuideImg src={img.like3} />
+              <AiGuideImg src={img.like6} />
             </AiGuideImgWrapper>
             <div>
-              <AiGuideTitle>형태가 온전히 드러나는 사진</AiGuideTitle>
+              <AiGuideTitle>형태가 온전히 드러날 수 있는 사진</AiGuideTitle>
+            </div>
+          </AiGuideContainer>
+          <AiGuideContainer>
+            <AiGuideImgWrapper>
+              <AiGuideImg src={img.like7} />
+            </AiGuideImgWrapper>
+            <div>
+              <AiGuideTitle>깔끔한 단일 배경에서 찍은 사진</AiGuideTitle>
             </div>
           </AiGuideContainer>
         </AiGuidesContainer>

@@ -9,6 +9,7 @@ export const UserContainer = styled.div`
     flex-direction: row;
   }
 `;
+
 export const UserPageImg = styled.img`
   width: 100%;
   height: 50vh;
@@ -38,6 +39,10 @@ export const RightContainer = styled.form`
   }
 `;
 
+export const LoginButton = styled(Button)<{ disabled?: boolean }>`
+  margin-bottom: 0;
+`;
+
 export const RegisterButton = styled(Button)`
   margin-top: 0.5rem;
   background-color: #f0f2f5;
@@ -58,7 +63,7 @@ export const RegisterText = styled.div<{ display?: string }>`
 export const EachInput = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 1rem;
 `;
 
@@ -78,4 +83,5 @@ export const CautionText = styled.span`
   color: #f06868;
   font-weight: 500;
   margin-top: 0.1rem;
+  text-align: left;
 `;

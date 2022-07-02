@@ -20,7 +20,7 @@ export const QuizListBox = styled.div`
 
 export const QuizNumber = styled.p`
   background-color: #40a050;
-  font-size: 0.5rem;
+  font-size: 0.45rem;
   font-weight: 400;
   border-radius: 0.5rem;
   color: white;

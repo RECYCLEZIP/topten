@@ -16,6 +16,8 @@ import {
 import { TitleText } from "../../styles/TextStyle";
 import { ResultsType } from "../../types/Quiz";
 import DropAnswer from "./DropAnswer";
+import { customToastify } from "../../components/customToastify";
+import { Helmet } from "react-helmet-async";
 
 //quiz result page
 function QuizResult() {
@@ -43,11 +45,10 @@ function QuizResult() {
       console.log(res.data);
       setResults(res.data.result);
       setScore(res.data.score);
-    } catch {
-      console.log("post data request fail");
+    } catch (err: any) {
+      customToastify("error", err.message);
     }
     setLoading(true);
-    setToPostAnswer([]);
   };
 
   useEffect(() => {
@@ -55,11 +56,14 @@ function QuizResult() {
   }, []);
 
   if (!loading) {
-    return <div>Loading...</div>;
+    return <></>;
   }
 
   return (
     <QuizList>
+      <Helmet>
+        <title>분리수ZIP - 퀴즈 결과</title>
+      </Helmet>
       <TitleText>결과</TitleText>
       <QuizResultCard>
         {results.map((result, index) => (
@@ -67,7 +71,9 @@ function QuizResult() {
             <ResultList>
               <ResultText>{index + 1}번</ResultText>
               {result.isCorrect ? (
-                <ResultText width="70%">맞았습니다! </ResultText>
+                <ResultText width="70%" color="#21a663">
+                  맞았습니다!{" "}
+                </ResultText>
               ) : (
                 <ResultText width="70%" color="#ce1b1b">
                   틀렸습니다!

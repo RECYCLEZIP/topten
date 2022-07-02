@@ -8,15 +8,17 @@ import {
 } from "./QnADescriptionStyle";
 
 export const CommentContainer = styled.div`
-  padding: 0.5rem 1.5rem;
+  @media screen and (min-width: 768px) {
+    padding: 0.5rem 1.5rem;
+  }
 `;
 
 export const CommentWrapper = styled.div`
   padding: 0.8rem 1rem;
   padding-top: 0.4rem;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
 
-  display: flex;
+  /* display: flex; */
   position: relative;
 
   background-color: #f5f5f5;
@@ -25,11 +27,15 @@ export const CommentWrapper = styled.div`
 `;
 
 export const CommentRight = styled.div`
-  margin-bottom: 1rem;
-  bottom: 0;
+  /* margin-bottom: 1rem; */
+  margin-top: 0.5rem;
+  /* bottom: 0; */
 
-  position: absolute;
-  right: 0;
+  /* position: absolute; */
+  /* right: 0; */
+  /* text-align-last: right; */
+
+  /* background: green;  */
 `;
 
 export const CommentTitle = styled(SectionTitle)`
@@ -77,7 +83,7 @@ export const CommentInputContainer = styled.div`
   /* display: */
   display: flex;
 
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   /* background-color: pink; */
 `;
 
@@ -100,9 +106,9 @@ export const CommentInput = styled.input`
 `;
 
 export const CommentEditInput = styled.input`
-  width: 100%;
+  width: 92%;
 
-  /* margin-right: 1rem; */
+  margin-top: 0.5rem;
   padding: 0.5rem;
 
   font-size: 0.53rem;
@@ -110,6 +116,10 @@ export const CommentEditInput = styled.input`
   background: #ededed;
   border: 1px solid #cdc9c9;
   border-radius: 0.3rem;
+
+  @media screen and (min-width: 768px) {
+    width: 95%;
+  }
 
   &:focus {
     background: #e7e7e7;
@@ -129,6 +139,7 @@ export const CommentPostButton = styled(Button)`
   height: 1.7rem;
 
   padding: 0.5rem 0.7rem;
+  margin: 0rem;
 
   float: right;
 
@@ -149,4 +160,12 @@ export const CommentRightButton = styled(RedButton)`
   margin-right: 1rem;
 
   /* font-size: 0.6rem  */
+`;
+
+export const WarnText = styled.p`
+  font-size: 0.5rem;
+  color: #86919c;
+
+  margin-top: 0.5rem;
+  margin-bottom: 0;
 `;

@@ -1,58 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
-import styled from "styled-components";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  userState,
+  QnALengthState,
+  QnANumPagesState,
+} from "../../stores/atoms";
 
-import { useRecoilState } from "recoil";
-import { QnAPageState, QnALengthState } from "../../stores/atoms";
+import { Nav, Button } from "../../styles/qnaStyles/QnAPaginationStyle";
 
-const Nav = styled.nav`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  margin: 16px;
-`;
+interface Props {
+  qnaPage: number;
+  setQnaPage: React.Dispatch<React.SetStateAction<number>>;
+}
 
-const Button = styled.button`
-  border: none;
-  border-radius: 8px;
-  padding: 8px;
-  margin: 0;
-  background: black;
-  color: white;
-  font-size: 1rem;
+function QnaPagination({ qnaPage, setQnaPage }: Props) {
+  const [user, setUser] = useRecoilState(userState);
 
-  &:hover {
-    background: tomato;
-    cursor: pointer;
-    transform: translateY(-2px);
-  }
-
-  &[disabled] {
-    background: grey;
-    cursor: revert;
-    transform: revert;
-  }
-
-  &[aria-current] {
-    background: deeppink;
-    font-weight: bold;
-    cursor: revert;
-    transform: revert;
-  }
-`;
-
-function QnaPagination() {
-  const [qnaTotal, setQnaTotal] = useRecoilState(QnALengthState);
-  const [qnaPage, setQnaPage] = useRecoilState(QnAPageState);
-  const [numPages, setNumPages] = useState<number>();
-
-  const limit = 5;
+  // 게시글 수
+  const qnaTotal = useRecoilValue(QnALengthState);
+  const [numPages, setNumPages] = useRecoilState(QnANumPagesState);
 
   useEffect(() => {
-    console.log(qnaTotal);
-    setNumPages(Math.ceil(qnaTotal / limit));
+    setQnaPage(1);
   }, []);
+
+  useEffect(() => {
+    setNumPages(Math.ceil(qnaTotal / 10));
+  }, [user, qnaTotal]);
 
   return (
     <>
@@ -60,17 +35,17 @@ function QnaPagination() {
         <Button
           onClick={() => setQnaPage(qnaPage - 1)}
           disabled={qnaPage === 1}
+          current={null}
         >
           &lt;
         </Button>
-        <>{console.log(numPages)}</>
         {Array(numPages)
-          .fill(1, 1)
+          .fill(1, 0)
           .map((_, i) => (
             <Button
               key={i + 1}
               onClick={() => setQnaPage(i + 1)}
-              //   aria-current={qnaPage === i + 1 ? "qnaPage" : null}
+              current={qnaPage === i + 1 ? "qnaPage" : null}
             >
               {i + 1}
             </Button>
@@ -78,6 +53,7 @@ function QnaPagination() {
         <Button
           onClick={() => setQnaPage(qnaPage + 1)}
           disabled={qnaPage === numPages}
+          current={null}
         >
           &gt;
         </Button>

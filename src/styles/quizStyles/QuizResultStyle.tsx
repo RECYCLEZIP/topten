@@ -58,20 +58,24 @@ export const AnswerCard = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 2% 0;
-  margin-bottom: 3%;
+  margin-bottom: 0.5rem;
 `;
 
 export const AnswerProblem = styled.div`
   display: flex;
+  align-items: center;
   justify-content: space-around;
   padding: 0.5rem 0.6rem;
   border-bottom: 1px solid black;
+
+  @media (min-width: 768px) {
+    padding: 1rem 0.6rem;
+  }
 `;
 
 export const AnswerDescription = styled.div`
   width: 70%;
-  margin: 0 auto;
+  margin: 0.5rem auto 0;
 `;
 
 export const AnswerText = styled.p<ResultTextType>`
