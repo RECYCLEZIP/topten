@@ -1,4 +1,4 @@
-<div align="center"><img src="/uploads/fbcee992cc70b12025eb8cad81d82b7e/서비스로고-removebg-preview.png" width="30%" /></div>
+<div align="center"><img src="https://user-images.githubusercontent.com/95751425/176986789-3a1d5b62-e914-44d7-8bb3-e23355de449b.png" width="30%" /></div>
 
 # 🗑️ 분리수ZIP
 ***객체분류 인공지능을 이용한 쓰레기 분류 서비스***
