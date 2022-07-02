@@ -1,7 +1,7 @@
 import app from "@src/app";
 import request from "supertest";
 import { BinsModel } from "@src/db";
-import { STATUS_200_OK, STATUS_404_NOTFOUND } from "@src/utils/statusCode";
+import { STATUS_200_OK } from "@src/utils/statusCode";
 
 export async function initializeDataBase() {
     const datas = [
@@ -62,10 +62,10 @@ describe("binsController TEST", () => {
             expect(res.body.length).toBe(1);
         });
 
-        it("존재하지 않는 지역명을 담은 쿼리를 보내면 에러를 반환한다.", async () => {
+        it("존재하지 않는 지역명을 담은 쿼리를 보내면 빈 배열을 반환한다.", async () => {
             const res = await request(app).get("/bins").query({ search: "동작구" });
-            expect(res.status).toBe(STATUS_404_NOTFOUND);
-            expect(res.body.message).toEqual("해당 조건에 일치하는 쓰레기통 위치정보가 없습니다.");
+            expect(res.status).toBe(STATUS_200_OK);
+            expect(res.body).toHaveLength(0);
         });
     });
 

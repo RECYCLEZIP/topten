@@ -42,15 +42,15 @@ describe("TRASH SERVICE LOGIC", () => {
     it("TRASH AI 분석 결과를 반환한다.", async () => {
         axios.post = jest.fn().mockResolvedValue({
             data: {
-                type: "PET",
+                type: "Pet_Total",
                 0: { score: 88.888 },
                 1: { score: 77.777 },
                 2: { score: 66.666 },
             },
         });
-        const trashAiResult = await TrashService.aiTrash("testImage");
+        const trashAiResult: any = await TrashService.aiTrash("testImage");
         expect(trashAiResult?.title).toEqual("페트병");
-        expect(trashAiResult?.kind).toEqual("플라스틱");
+        expect(trashAiResult?.kind).toEqual("페트류");
     });
 
     it("TRASH를 수정한다.", async () => {

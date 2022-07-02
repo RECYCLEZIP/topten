@@ -3,8 +3,12 @@ import { PostModel } from "@src/db";
 import { IPost, IComment, MongooseQuery } from "@src/models/interface";
 
 export class Post {
-    static count() {
-        return PostModel.count({});
+    static count(filteredQuery: MongooseQuery) {
+        return PostModel.count(filteredQuery);
+    }
+
+    static countUserPost(userId: string) {
+        return PostModel.count({ author: new Types.ObjectId(userId) });
     }
 
     static find(filteredQuery: MongooseQuery, page: number, limit: number) {
