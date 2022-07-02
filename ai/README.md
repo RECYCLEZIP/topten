@@ -24,10 +24,10 @@
 - COCO dataset으로 사전학습을 거친 **detectron2 기반의 faster-Rcnn R101 모델**을 전이학습하였습니다.
 ---
 - ### Model evaluation with COCO
-  - ![evaluation](/uploads/7a48b67cca5cd97307346e99bcb06167/evaluation.JPG)
+  - ![evaluation](https://user-images.githubusercontent.com/95131477/176986772-6e28676f-1201-4bb3-a0b2-a2d76efe07c0.JPG)
 
 ## 데이터셋 분포도
-### <img width="700" height="600" src="/uploads/71615e84df9b2fb4bedd74f0d2aaf335/dataset.jpg">
+![dataset](https://user-images.githubusercontent.com/95131477/176986773-2c1880e4-71e5-4108-8b5c-3a2f99752ffc.jpg)
 ---
 - 총 2602장(.JPG)
   - PET : 844
@@ -46,7 +46,7 @@
 2.  convert to COCO annotations from xmlfiles
     <https://github.com/Tony607/voc2coco>
 
-![labeling](/uploads/db63e2f228626d5ea9ae01dd85a81df2/labeling.png)
+![labeling](https://user-images.githubusercontent.com/95131477/176986785-91f23c55-4e9e-45de-abbf-8d4ef8f2e639.png)
 
 ## 데이터셋 출처
 - 상세분류 서비스에 속하는 PET, CARTON 카테고리는 직접 촬영한 원천 데이터로 라벨링 작업을 하여 학습시켰습니다.
