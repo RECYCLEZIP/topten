@@ -36,10 +36,10 @@ function WrongQuiz() {
       const res = await getData(`quizzes/${id}`);
       setCurrentQuiz([res.data]);
       setType(res.data.type);
+      setLoading(true);
     } catch {
       customToastify("error", "퀴즈 데이터를 불러오는데 실패했습니다.");
     }
-    setLoading(true);
   };
 
   useEffect(() => {

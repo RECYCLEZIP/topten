@@ -33,10 +33,10 @@ function Quiz() {
       setQuizzes(res.data);
       setCurrentQuiz([res.data[currentPage]]);
       setToPostAnswer([]);
+      setLoading(true);
     } catch {
       customToastify("error", "퀴즈 데이터를 불러오는데 실패했습니다.");
     }
-    setLoading(true);
   };
 
   useEffect(() => {
@@ -51,7 +51,7 @@ function Quiz() {
     <QuizContainer>
       <QuestionCard />
       {toPostAnswer[currentPage] && openResult ? (
-        <div>이미 푼 문제입니다.</div>
+        <div>문제를 풀었습니다.</div>
       ) : (
         <>
           {type === "multipleChoice" && <MultiQuiz />}

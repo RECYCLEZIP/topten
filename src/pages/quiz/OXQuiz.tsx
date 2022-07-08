@@ -36,7 +36,7 @@ function OXQuiz() {
       const res = await getData("quizzes?type=ox");
       setQuizzes(res.data);
     } catch (err: any) {
-      customToastify("error", err.message);
+      customToastify("error", err?.response?.data?.message);
     }
   };
 

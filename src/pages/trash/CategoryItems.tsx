@@ -30,7 +30,7 @@ function CategoryItems() {
       const res = await getData(`trash?category=${kind}&page=${page}`);
       setTrashList((prev) => [...prev, res.data]);
     } catch (err: any) {
-      customToastify("error", err.message);
+      customToastify("error", err?.response?.data?.message);
     }
   }, [kind, page, setTrashList]);
 

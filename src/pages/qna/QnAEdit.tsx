@@ -43,7 +43,7 @@ function QnAEdit() {
     try {
       await getData(`posts/${id}`).then((res) => setQna(res.data));
     } catch (err: any) {
-      customToastify("error", err.message);
+      customToastify("error", err?.response?.data?.message);
     }
     setLoading(true);
   };
@@ -72,7 +72,7 @@ function QnAEdit() {
 
         navigate(`/qna/${id}`);
       } catch (err: any) {
-        customToastify("error", err.message);
+        customToastify("error", err?.response?.data?.message);
       }
     } else {
       if (!titleValue) {

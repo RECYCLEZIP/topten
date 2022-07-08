@@ -29,6 +29,7 @@ import {
   SubTitleWrapper,
   QnaContainer,
 } from "../../styles/userStyles/userPage";
+import { customToastify } from "../../components/customToastify";
 
 function UserQnA() {
   const navigate = useNavigate();
@@ -50,8 +51,8 @@ function UserQnA() {
           setUserQnaList(res.data?.data);
           setQnaTotal(res.data?.count);
         });
-      } catch (err) {
-        console.log(err);
+      } catch (err: any) {
+        customToastify("error", err?.response?.data?.message);
       }
     }
   };

@@ -39,7 +39,7 @@ function PrologueStep() {
         </PrologueStepContainer>
         <PrologueStepRightContainer className="fade-class">
           <PrologueStepLabel>STEP 3</PrologueStepLabel>
-          <PrologueStepTitle>사진 올리기</PrologueStepTitle>
+          <PrologueStepTitle>분리수거 하기</PrologueStepTitle>
           <PrologueStepSubTitle>AI가 알려준대로 분리수거</PrologueStepSubTitle>
         </PrologueStepRightContainer>
       </PrologueStepsContainer>

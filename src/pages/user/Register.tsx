@@ -37,10 +37,10 @@ function Register() {
     try {
       await postData("users/register", { email, password, username });
       customToastify("success", "가입 성공!");
+      navigate("/users/login");
     } catch (err: any) {
-      customToastify("error", err.message);
+      customToastify("error", err?.response?.data?.message);
     }
-    navigate("/users/login");
   };
 
   return (

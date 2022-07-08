@@ -4,7 +4,7 @@ import { Button } from "../ButtonStyles";
 
 // 공통
 export const AiContentTitle = styled.span`
-  margin-right: 1rem;
+  margin-right: 0.4rem;
 
   font-size: 0.8rem;
 `;
@@ -327,9 +327,10 @@ export const AiGuideTitle = styled(AiContentText)`
   color: #9eacba;
 `;
 
-export const DetailTitle = styled.div<{ click: boolean }>`
+export const DetailTitle = styled.a<{ click: boolean }>`
   color: #9eacba;
   font-size: 0.5rem;
+  text-decoration: none;
 
   cursor: ${(props) => props.click && "pointer"};
 `;

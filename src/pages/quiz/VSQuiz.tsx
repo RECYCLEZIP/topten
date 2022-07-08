@@ -31,7 +31,7 @@ function VSQuiz() {
       const res = await getData("quizzes?type=mixUp");
       setQuizzes(res.data);
     } catch (err: any) {
-      customToastify("error", err.message);
+      customToastify("error", err?.response?.data?.message);
     }
   };
 

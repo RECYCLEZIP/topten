@@ -27,7 +27,7 @@ function Search() {
       const res = await getData(`trash?search=${search}`);
       setTrashList(res.data);
     } catch (err: any) {
-      customToastify("error", err.message);
+      customToastify("error", err?.response?.data?.message);
     }
   };
 

@@ -28,10 +28,10 @@ function Item() {
     try {
       const res = await getData(`trash/${id}`);
       setTrash(res.data);
+      setLoading(true);
     } catch (err: any) {
-      customToastify("error", err.message);
+      customToastify("error", err?.response?.data?.message);
     }
-    setLoading(true);
   };
 
   useEffect(() => {

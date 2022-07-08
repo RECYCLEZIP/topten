@@ -24,7 +24,7 @@ function Main() {
       const res = await getData(`news`);
       setNews(res.data);
     } catch (err: any) {
-      customToastify("error", err.message);
+      customToastify("error", err?.response?.data?.message);
     }
     setIsLoading(true);
   };

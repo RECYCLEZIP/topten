@@ -12,6 +12,7 @@ import {
   ModalGreenButton,
   ModalGrayButton,
 } from "../../styles/qnaStyles/QnADescriptionStyle";
+import { customToastify } from "../../components/customToastify";
 
 const style = {
   position: "absolute" as "absolute",
@@ -25,7 +26,7 @@ const style = {
   p: 4,
   borderRadius: "1rem",
   textAlign: "center",
-  
+
   "@media (min-width: 768px)": {
     width: "40vw",
     height: "3.5rem",
@@ -44,8 +45,8 @@ function QnAModal({ open, setOpen }: any) {
       await delData(`posts/${id}`);
 
       navigate(`/qna`);
-    } catch (err) {
-      console.log(err);
+    } catch (err: any) {
+      customToastify("error", err?.response?.data?.message);
     }
   };
 

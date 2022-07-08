@@ -45,7 +45,7 @@ function QuizResult() {
       setResults(res.data.result);
       setScore(res.data.score);
     } catch (err: any) {
-      customToastify("error", err.message);
+      customToastify("error", err?.response?.data?.message);
     }
     setLoading(true);
   };

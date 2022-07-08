@@ -10,15 +10,16 @@ import { useSetRecoilState } from "recoil";
 import { currentPageState } from "../../stores/atoms";
 import { Helmet } from "react-helmet-async";
 
+const url = ["multipleChoice", "ox", "mixUp"];
+const quizList = ["객관식 퀴즈", "OX 퀴즈", "일반 vs 음식물"];
+const quizDescription = [
+  "다양한 보기 중에 고르는 객관식",
+  "OX 중에 고르기",
+  "헷갈리는 음식물과 일반 쓰레기",
+];
+
 //quiz list page
 function Quiz() {
-  const url = ["multipleChoice", "ox", "mixUp"];
-  const quizList = ["객관식 퀴즈", "OX 퀴즈", "일반 vs 음식물"];
-  const quizDescription = [
-    "다양한 보기 중에 고르는 객관식",
-    "OX 중에 고르기",
-    "헷갈리는 음식물과 일반 쓰레기",
-  ];
   const navigate = useNavigate();
   const setCurrentPage = useSetRecoilState(currentPageState);
 

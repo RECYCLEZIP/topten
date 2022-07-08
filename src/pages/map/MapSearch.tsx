@@ -53,7 +53,7 @@ function MapSearch(this: any) {
       const res = await getData(`bins/locations`);
       setRegionOptions(res.data.uniqueRegionList);
     } catch (err: any) {
-      customToastify("error", err.message);
+      customToastify("error", err?.response?.data?.message);
     }
   };
 

@@ -21,6 +21,7 @@ import {
   MapContainer,
   ErrorContainer,
   MapLoading,
+  ResultNotice,
 } from "../../styles/aiStyles/AiResultStyle";
 
 function AiResultMap() {
@@ -54,9 +55,7 @@ function AiResultMap() {
   const getRobots = async () => {
     if (longitude !== 0 && latitude !== 0) {
       try {
-        const res = await getData(
-          `robot?x=${longitude}&y=${latitude}`,
-        );
+        const res = await getData(`robot?x=${longitude}&y=${latitude}`);
 
         setRobot(res.data);
       } catch (err: any) {
@@ -75,23 +74,24 @@ function AiResultMap() {
 
   return (
     <>
+      <ResultNotice>새 돈 줄게 헌 쓰레기 다오</ResultNotice>
       <MapTitleContainer>
         <AiContentTitle>근처 순환자원 회수로봇</AiContentTitle>
-        <DetailTitle
-          onClick={() =>
-            window.open(
-              "https://www.superbin.co.kr/new/contents/product.php",
-              "_blank",
-            )
-          }
-          click={true}
-        >
-          순환자원 회수로봇이란?
-        </DetailTitle>
+        <div>
+          <DetailTitle
+            href="https://www.superbin.co.kr/new/contents/product.php"
+            target="_blank"
+            click={true}
+          >
+            순환자원 회수로봇이란?
+          </DetailTitle>
+        </div>
       </MapTitleContainer>
-      <DetailTitle click={false}>
-        현위치 반경 10km 범위의 순환자원 회수로봇입니다.
-      </DetailTitle>
+      <div>
+        <DetailTitle click={false}>
+          현위치 반경 10km 범위의 순환자원 회수로봇입니다.
+        </DetailTitle>
+      </div>
       {error ? (
         <ErrorContainer>{error}</ErrorContainer>
       ) : (

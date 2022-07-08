@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { img } from "../assets/imgImport";
 import { Link, Logo, Nav, Menu, IconMenu } from "../styles/HeaderStyle";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
@@ -22,7 +22,7 @@ function Header() {
   const setKind = useSetRecoilState(categoryKindState);
   const setIsSelected = useSetRecoilState(categorySelectedState);
   const isLogin = useRecoilValue(loginState);
-  const url = window.location.pathname;
+  const url = useLocation().pathname;
 
   return (
     <>

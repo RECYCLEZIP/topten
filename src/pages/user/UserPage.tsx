@@ -28,10 +28,10 @@ function UserPage() {
     try {
       const res = await getData(`users/current`);
       setUser(res.data);
+      setLoading(true);
     } catch {
       console.log("Error: data get request fail");
     }
-    setLoading(true);
   };
 
   const logout = () => {

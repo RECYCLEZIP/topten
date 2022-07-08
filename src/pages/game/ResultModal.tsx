@@ -54,7 +54,7 @@ function ResultModal({
     try {
       putData("users/score", { score: Math.round(score * bonus) });
     } catch (err: any) {
-      customToastify("error", err.message);
+      customToastify("error", err?.response?.data?.message);
     }
   };
 

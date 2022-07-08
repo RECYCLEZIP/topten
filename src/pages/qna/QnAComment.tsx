@@ -58,8 +58,8 @@ function QnAComment() {
       try {
         const res = await getData(`users/current`);
         setUser(res.data);
-      } catch {
-        console.log("Error: data get request fail");
+      } catch (err: any) {
+        console.log(err.response.data.message);
       }
     }
   };
@@ -68,7 +68,7 @@ function QnAComment() {
     try {
       await getData(`posts/${id}`).then((res) => setQna(res.data));
     } catch (err: any) {
-      customToastify("error", err.message);
+      customToastify("error", err?.response?.data?.message);
     }
   };
 
@@ -93,8 +93,8 @@ function QnAComment() {
           setCommentValue("");
           setIsComment(true);
           getQna();
-        } catch (err) {
-          console.log(err);
+        } catch (err: any) {
+          customToastify("error", err?.response?.data?.message);
         }
       } else {
         setIsComment(false);
@@ -116,8 +116,8 @@ function QnAComment() {
         setEditComment("");
         setIsCommentEdit(true);
         getQna();
-      } catch (err) {
-        console.log(err);
+      } catch (err: any) {
+        customToastify("error", err?.response?.data?.message);
       }
     } else {
       setIsCommentEdit(false);
@@ -130,7 +130,7 @@ function QnAComment() {
       await delData(`posts/${id}/comments/${commentId}`);
       getQna();
     } catch (err: any) {
-      customToastify("error", err.message);
+      customToastify("error", err?.response?.data?.message);
     }
   };
 

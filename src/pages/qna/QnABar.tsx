@@ -21,6 +21,7 @@ import {
   SearchInput,
   BarInfo,
 } from "../../styles/qnaStyles/QnAStyle";
+import { customToastify } from "../../components/customToastify";
 
 function QnABar({ qnaPage }: QnAPageType) {
   const [qnaList, setQnaList] = useRecoilState(QnAListState);
@@ -44,8 +45,8 @@ function QnABar({ qnaPage }: QnAPageType) {
         setQnaList(res.data?.data);
         setQnaTotal(res.data?.count);
       });
-    } catch (err) {
-      console.log(err);
+    } catch (err: any) {
+      customToastify("error", err?.response?.data?.message);
     }
   };
 

@@ -18,7 +18,7 @@ function QuizSection() {
       const res = await getData("quizzes/wrong");
       setQuizzes(res.data);
     } catch (err: any) {
-      customToastify("error", err.message);
+      customToastify("error", err?.response?.data?.message);
     }
     setLoading(true);
   };

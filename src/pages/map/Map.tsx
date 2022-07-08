@@ -52,7 +52,7 @@ function Map() {
       );
       setBin(res.data);
     } catch (err: any) {
-      console.log("error", err.message);
+      console.log("error", err.response.data.message);
     }
   };
 

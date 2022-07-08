@@ -141,7 +141,7 @@ function Game() {
         setVisibility(Array(trash.length).fill("visible"));
         setLoading(true);
       } catch (err: any) {
-        customToastify("error", err.message);
+        customToastify("error", err?.response?.data?.message);
       }
     };
     if (level === 0) {

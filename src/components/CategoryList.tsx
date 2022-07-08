@@ -16,6 +16,7 @@ import {
   IMG,
   CategoryText,
 } from "../styles/mainStyles/CategoryStyle";
+import { customToastify } from "./customToastify";
 
 function CategoryList({
   backColor,
@@ -36,8 +37,8 @@ function CategoryList({
     try {
       const res = await getData(`trash/categories`);
       setCategory(res.data);
-    } catch {
-      console.log("Error: data get request fail");
+    } catch (err: any) {
+      customToastify("error", err?.response?.data?.message);
     }
   };
 

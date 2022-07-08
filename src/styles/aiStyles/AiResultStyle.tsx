@@ -80,6 +80,24 @@ export const AiResultSummaryContainer = styled.div`
   }
 `;
 
+export const ResultNotice = styled(AiResultSummaryContainer)`
+  font-size: 0.53rem;
+  color: white;
+
+  width: fit-content;
+
+  margin: 0;
+  margin-bottom: 0.2rem;
+
+  background-color: white;
+  color: #51cf66;
+  padding: 0rem;
+
+  border-radius: 0;
+  padding-left: 0.5rem;
+  border-left: 3px solid #9eacba;
+`;
+
 export const AiResultMidSummaryContainer = styled(AiResultSummaryContainer)`
   @media screen and (min-width: 768px) {
     margin: 2rem 1rem;
