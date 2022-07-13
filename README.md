@@ -42,8 +42,8 @@
 
 ## 기술 문서
 
-[아키텍처](https://github.com/Handwoong/garbage-sorting-backend/wiki/Project-Architecture)<br/>
-[ERD](https://github.com/Handwoong/garbage-sorting-backend/wiki/ERD-Image)<br/>
+[아키텍처](https://github.com/RECYCLEZIP/topten/wiki/Project-Architecture)<br/>
+[ERD](https://github.com/RECYCLEZIP/topten/wiki/ERD-Image)<br/>
 [와이어프레임](https://www.figma.com/file/AaGUvtqz6TPuonXHEAWhMN/TOPTEN?node-id=7%3A364)<br/>
 [스토리보드](https://user-images.githubusercontent.com/97578390/176987314-28688c87-6105-462e-b9ac-a3561fb21eef.png)
 
